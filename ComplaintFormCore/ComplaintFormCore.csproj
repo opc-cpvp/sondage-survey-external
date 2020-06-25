@@ -1,0 +1,47 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>ComplaintFormCore</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources_original\**" />
+    <Compile Remove="wwwroot\lib\survey-vue\**" />
+    <Compile Remove="wwwroot\lib\vue\dist\**" />
+    <Compile Remove="wwwroot\lib\vue\src\**" />
+    <Content Remove="Resources_original\**" />
+    <Content Remove="wwwroot\lib\survey-vue\**" />
+    <Content Remove="wwwroot\lib\vue\dist\**" />
+    <Content Remove="wwwroot\lib\vue\src\**" />
+    <EmbeddedResource Remove="Resources_original\**" />
+    <EmbeddedResource Remove="wwwroot\lib\survey-vue\**" />
+    <EmbeddedResource Remove="wwwroot\lib\vue\dist\**" />
+    <EmbeddedResource Remove="wwwroot\lib\vue\src\**" />
+    <None Remove="Resources_original\**" />
+    <None Remove="wwwroot\lib\survey-vue\**" />
+    <None Remove="wwwroot\lib\vue\dist\**" />
+    <None Remove="wwwroot\lib\vue\src\**" />
+    <TypeScriptCompile Remove="Resources_original\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\survey-vue\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\vue\dist\**" />
+    <TypeScriptCompile Remove="wwwroot\lib\vue\src\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="3.1.2" />
+  </ItemGroup>
+
+</Project>

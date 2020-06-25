@@ -1,0 +1,24 @@
+﻿@{ ViewData["Title"] = "Overview PA"; }
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
+
+@functions
+{ public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    } }
+
+<link rel="stylesheet" type="text/css" href="~/css/theme_export.css">
+
+<div class="sv_page_title">
+    <span>Instructions - Privacy complaint form (federal institution)</span>
+</div>
+<div>
+    <p> @Html.Raw(System.Net.WebUtility.HtmlDecode(Localizer.GetLocalizedString("OverviewPA")))</p>
+</div>
+
+<div class="form-group">
+    @Html.ActionLink("Start", "SurveyPA", "Home", null, new { @class = "btn btn-primary" })
+</div>
+

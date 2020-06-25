@@ -1,0 +1,682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Accountant" xml:space="preserve">
+    <value>Comptable</value>
+  </data>
+  <data name="Airline" xml:space="preserve">
+    <value>Compagnie aérienne</value>
+  </data>
+  <data name="Alberta" xml:space="preserve">
+    <value>Alberta</value>
+  </data>
+  <data name="Bank" xml:space="preserve">
+    <value>Banque</value>
+  </data>
+  <data name="British_Columbia" xml:space="preserve">
+    <value>Colombie-Britannique</value>
+  </data>
+  <data name="Collection_Agency" xml:space="preserve">
+    <value>Agence de recouvrement</value>
+  </data>
+  <data name="Collection_Agency_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant une agence de recouvrement&lt;/h2&gt;
+&lt;p&gt;Les agences de recouvrement sont assujetties aux règlements sur la protection des consommateurs appliqués par les bureaux de protection des consommateurs, ainsi qu’à la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE).&lt;/p&gt;
+&lt;p&gt;Les bureaux de protection des consommateurs appliquent les règles de conduite des agences de recouvrement, notamment en ce qui concerne la façon dont elles peuvent communiquer avec les gens et le moment où elles peuvent le faire, et la quantité de preuves de dettes qu’elles doivent présenter. Le bureau de protection des consommateurs de votre province ou territoire pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection des renseignements personnels.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;déposer une plainte auprès du &lt;a href="http://www.guideduconsommateur.ca/fr/contacts/provincial-territorial-offices"&gt;bureau de protection des consommateurs de votre province ou territoire&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de l’agence en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez alors déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat du bureau de protection des consommateurs de votre province ou territoire, ou&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir utilisé la procédure de traitement des plaintes du bureau de protection des consommateurs ou après avoir communiqué avec l’agence&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Credit_Reporting_Agency" xml:space="preserve">
+    <value>Agence d’évaluation du crédit (p. ex. Equifax ou TransUnion)</value>
+  </data>
+  <data name="Credit_Union" xml:space="preserve">
+    <value>Coopérative de crédit</value>
+  </data>
+  <data name="Insurance_Company" xml:space="preserve">
+    <value>Compagnie d’assurance</value>
+  </data>
+  <data name="Insurance_Company_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant une compagnie d’assurance&lt;/h2&gt;
+&lt;p&gt;Les compagnies d’assurance doivent respecter les lois et règlements en matière d’assurance, ainsi que la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE). La plupart des compagnies d’assurance sont tenues d’être membres d’un service indépendant de règlement des différends.&lt;/p&gt;
+&lt;p&gt;Deux organismes indépendants de règlement des plaintes, supervisés par le Conseil canadien des responsables de la réglementation d’assurance, traitent les plaintes des consommateurs.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Pour les plaintes relatives à l’assurance automobile : Service de conciliation en assurance de dommages (SCAD)&lt;/li&gt;
+  &lt;li&gt;Pour les plaintes relatives à l’assurance-vie et à l’assurance-maladie (y compris l’assurance-invalidité et l’assurance-voyage) : Ombudsman des assurances de personnes (OAP)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ces organismes peuvent traiter les plaintes concernant un large éventail de questions liées à l’assurance, y compris le traitement des demandes d’indemnisation.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, si votre plainte porte sur des préoccupations relatives à la protection de la vie privée pendant le traitement d’une demande d’indemnisation, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://scadcanada.org/"&gt;déposer une plainte auprès du Service de conciliation en assurance de dommages&lt;/a&gt;;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.oapcanada.ca/"&gt;déposer une plainte auprès de l’Ombudsman des assurances de personnes&lt;/a&gt;;&lt;/li&gt;
+  &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie d’assurance en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat des deux organismes de règlement des plaintes&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir utilisé les procédures de traitement des plaintes ou après avoir écrit à votre compagnie d’assurance&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="LandlordOrCoopHousing" xml:space="preserve">
+    <value>Propriétaire ou coopérative d’habitation</value>
+  </data>
+  <data name="LandlordOrCoopHousing_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un propriétaire&lt;/h2&gt;
+&lt;p&gt;Les propriétaires doivent respecter les règlements provinciaux et territoriaux en matière de location, appliqués par leur organisme de réglementation de la location à usage d’habitation, ainsi que la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE). Ces organismes peuvent traiter un large éventail de questions entre propriétaires et locataires, y compris le traitement des renseignements personnels et la protection de la vie privée.&lt;/p&gt;
+&lt;p&gt;L’organisme de réglementation de votre province ou territoire pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection de la vie privée.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;déposer une plainte auprès de l’organisme de réglementation de la location de votre province ou territoire&lt;/li&gt;
+  &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de votre propriétaire (ou conseil d’administration de coopérative) en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat des organismes de réglementation de la location&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir porté plainte auprès de l’organisme de réglementation ou après avoir écrit au propriétaire&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Lawyer" xml:space="preserve">
+    <value>Avocat</value>
+  </data>
+  <data name="Lawyer_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un avocat&lt;/h2&gt;
+&lt;p&gt;Les avocats doivent respecter les normes de conduite professionnelle établies par leur barreau provincial ou territorial, ainsi que la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE).&lt;/p&gt;
+&lt;p&gt;Les barreaux supervisent les règles de conduite professionnelle, y compris les questions relatives à la protection de la vie privée. Un barreau pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection des renseignements personnels.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;&lt;a href="https://flsc.ca/fr/a-propos-de-nous/les-ordres-professionnels-de-juristes-du-canada/"&gt;déposer une plainte auprès du barreau de votre province ou territoire&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée du barreau en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;vos préoccupations ne relèvent pas du mandat du barreau de votre province ou territoire&lt;/li&gt;
+ &lt;li&gt;vous êtes insatisfait des résultats après avoir utilisé les procédures de traitement des plaintes ou après avoir écrit au cabinet d’avocats&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Manitoba" xml:space="preserve">
+    <value>Manitoba</value>
+  </data>
+  <data name="My_Employer_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant votre employeur&lt;/h2&gt;
+&lt;p&gt;En général, en vertu de la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE), les gens doivent tenter de résoudre leur problème en matière de protection de la vie privée auprès d’une organisation avant de déposer une plainte. Nous encourageons fortement tous les employés syndiqués à passer d’abord par la procédure de règlement des griefs.&lt;/p&gt;
+&lt;p&gt;Si vos préoccupations en matière de protection de la vie privée sont liées à des problèmes plus vastes de discrimination illégale, de sécurité au travail, de salaire ou de congédiement injustifié, il pourrait y avoir d’autres moyens mieux à même de répondre à vos préoccupations.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.chrc-ccdp.gc.ca/fra"&gt;vous renseigner sur le dépôt d’une plainte relative aux droits de la personne&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://www.canada.ca/fr/emploi-developpement-social/services/normes-travail/rapports/deposer-plainte.html"&gt;vous renseigner sur le dépôt d’une plainte en vertu du Code canadien du travail&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de votre employeur en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat d’un grief syndical ou d’une plainte relative aux droits de la personne ou aux droits du travail ou&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir utilisé ces procédures ou après avoir communiqué par écrit avec votre employeur&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="NatureOfComplaintCollectionInformation" xml:space="preserve">
+    <value>Une institution a recueilli des renseignements personnels qui ne sont pas nécessaires à l’exploitation d’un de ses programmes ou à l’une de ses activités; les renseignements personnels n’ont pas été recueillis directement auprès de la personne concernée; ou la personne n’a pas été informée des fins pour lesquelles les renseignements personnels ont été recueillis.</value>
+  </data>
+  <data name="NatureOfComplaintDelayInformation" xml:space="preserve">
+    <value>L’institution n’a pas répondu à votre demande d’accès ou de correction dans les délais prévus par la loi. En vertu de la &lt;i&gt;Loi sur la protection des renseignements personnels&lt;/i&gt;, les institutions disposent de trente (30) jours après la réception de votre demande pour y répondre (ou de 60 jours si une prorogation a été dûment invoquée pour une demande d’accès).</value>
+  </data>
+  <data name="NatureOfComplaintDenialOfAccessInformation" xml:space="preserve">
+    <value>Une personne n’a pas obtenu les renseignements personnels qu’une institution détient à son sujet parce qu’il manque des documents ou des renseignements ou encore parce que l’organisation a invoqué des exceptions afin de ne pas communiquer les renseignements.</value>
+  </data>
+  <data name="NatureOfComplaintExtensionOfTimeInformation" xml:space="preserve">
+    <value>Les institutions peuvent demander, pour un motif énoncé dans la Loi, un délai supplémentaire de trente (30) jours pour répondre.</value>
+  </data>
+  <data name="NatureOfComplaintRetentionAndDisposalInformation" xml:space="preserve">
+    <value>Des renseignements personnels n’ont pas été conservés selon les calendriers de conservation et de retrait (approuvés par les Archives nationales); ils ont été détruits trop rapidement ou conservés trop longtemps. Les renseignements personnels utilisés à des fins administratives doivent être conservés pendant au moins deux ans après la dernière application d’une mesure administrative, à moins que la personne n’ait consenti à leur retrait.</value>
+  </data>
+  <data name="NatureOfComplaintUseAndDisclosureInformation" xml:space="preserve">
+    <value>Des renseignements personnels ont été utilisés ou communiqués sans le consentement de la personne qu’ils concernent et ne satisfont pas à l’un des critères de communication permise sans consentement énoncés aux &lt;a href="https://laws.justice.gc.ca/fra/lois/P-21/page-2.html"&gt;articles 7 et 8 de la &lt;i&gt;Loi sur la protection des renseignements personnels&lt;/i&gt;&lt;/a&gt;.</value>
+  </data>
+  <data name="Newfoundland_And_Labrador" xml:space="preserve">
+    <value>Terre-Neuve-et-Labrador</value>
+  </data>
+  <data name="New_Brunswick" xml:space="preserve">
+    <value>Nouveau-Brunswick</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="Northwest_Territories" xml:space="preserve">
+    <value>Territoires du Nord-Ouest</value>
+  </data>
+  <data name="Nova_Scotia" xml:space="preserve">
+    <value>Nouvelle-Écosse</value>
+  </data>
+  <data name="Nunavut" xml:space="preserve">
+    <value>Nunavut</value>
+  </data>
+  <data name="Ontario" xml:space="preserve">
+    <value>Ontario</value>
+  </data>
+  <data name="OrganizationCallOnDoNotCallList" xml:space="preserve">
+    <value>Organisation qui vous appelle, alors que vous figurez sur la liste nationale de numéros exclus</value>
+  </data>
+  <data name="OrganizationCallOnDoNotCallList_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant les appels de télémarketing ou non sollicités, malgré le fait de figurer sur la liste de numéros exclus&lt;/h2&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;&lt;a href="https://lnnte-dncl.gc.ca/fr#consomateur"&gt;déposer une plainte auprès de la liste nationale de numéros de télécommunication exclus du Canada&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie de téléphone ou du fournisseur de services Internet en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;vos préoccupations ne relèvent pas du mandat de la procédure de traitement des plaintes relative à la liste nationale de numéros de télécommunication exclus&lt;/li&gt;
+ &lt;li&gt;vous êtes insatisfait des résultats après avoir suivi cette procédure ou après avoir fait part de vos préoccupations par écrit directement à l’organisation&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="OrganizationSentUnsolicitedEmail" xml:space="preserve">
+    <value>Organisation qui vous envoie un courriel de marketing non sollicité (pourriel) sans lien de désabonnement fonctionnel</value>
+  </data>
+  <data name="OrganizationSentUnsolicitedEmail_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant des courriels ou des messages textes de marketing non sollicités (pourriels) sans lien pour se désabonner&lt;/h2&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Si votre plainte vise une organisation avec laquelle &lt;strong&gt;vous n’avez pas de relation continue&lt;/strong&gt;, vous pouvez : &lt;a href="https://www.fightspam.gc.ca/eic/site/030.nsf/frm-fra/MMCN-9EZV6S"&gt;déposer votre plainte auprès du Centre national de notification des pourriels&lt;/a&gt;. Le centre recueille de l’information pour aider à faire appliquer la Loi canadienne anti-pourriel (LCAP).&lt;/p&gt;
+&lt;p&gt;Si votre plainte vise une organisation avec laquelle &lt;strong&gt;vous avez une relation continue&lt;/strong&gt;, vous pouvez déposer une plainte auprès de nous.&lt;/p&gt;</value>
+  </data>
+  <data name="Other_NotUS" xml:space="preserve">
+    <value>Autre (à l’étranger)</value>
+  </data>
+  <data name="Phone_Or_Internet_Service_Provider" xml:space="preserve">
+    <value>Fournisseur de services téléphoniques ou Internet</value>
+  </data>
+  <data name="Phone_Or_Internet_Service_Provider_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un fournisseur de services téléphoniques ou Internet&lt;/h2&gt;
+&lt;p&gt;Les fournisseurs de services téléphoniques ou Internet doivent respecter les règles établies par le Conseil de la radiodiffusion et des télécommunications canadiennes (CRTC), ainsi que la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE). Les gens peuvent déposer des plaintes au sujet des services canadiens de télécommunications et de télévision auprès de la Commission des plaintes relatives aux services de télécom-télévision (CPRST).&lt;/p&gt;
+&lt;p&gt;La Commission traite un large éventail de plaintes de consommateurs au sujet des services téléphoniques et Internet, et pourrait être mieux en mesure de répondre à vos préoccupations si votre problème va au-delà de la protection des renseignements personnels.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.ccts-cprst.ca/fr/pour-les-consommateurs/plaintes/"&gt;déposer une plainte auprès de la Commission des plaintes relatives aux services de télécom-télévision&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie de téléphone ou du fournisseur de services Internet en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat de la Commission&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir présenté votre problème à la Commission ou après avoir écrit à votre fournisseur de services&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Prince_Edward_Island" xml:space="preserve">
+    <value>Île-du-Prince-Édouard</value>
+  </data>
+  <data name="Quebec" xml:space="preserve">
+    <value>Québec</value>
+  </data>
+  <data name="Question1_Alberta_PC" xml:space="preserve">
+    <value>Commissariat à l’information et à la protection de la vie privée de l’Alberta</value>
+  </data>
+  <data name="Question1_BC_PC" xml:space="preserve">
+    <value>Commissariat à l’information et à la protection de la vie privée de la Colombie-Britannique</value>
+  </data>
+  <data name="Question1_Information_PC" xml:space="preserve">
+    <value>Commissariat à l’information et à la protection de la vie privée du Canada</value>
+  </data>
+  <data name="Question1_QC_PC" xml:space="preserve">
+    <value>Commission d’accès à l’information du Québec</value>
+  </data>
+  <data name="Question3_A" xml:space="preserve">
+    <value>Organisme de bienfaisance ou sans but lucratif (autre qu’une caisse populaire, une coopérative d’habitation ou une garderie)</value>
+  </data>
+  <data name="Question3_A_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte contre un organisme de bienfaisance ou sans but lucratif&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) s’applique à la collecte, à l’utilisation et à la communication de renseignements personnels dans le cadre d’une &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/bulletins-sur-l-interpretation-de-la-lprpde/interpretations_03_ca/"&gt;activité commerciale.&lt;/a&gt;
+&lt;p&gt;Les activités principales des organismes sans but lucratif, en particulier les organismes de bienfaisance, ne sont habituellement pas commerciales et, par conséquent, ne sont pas visées par la LPRPDE.&lt;/p&gt;
+&lt;p&gt;Toutefois, la LPRPDE &lt;strong&gt;s’applique&lt;/strong&gt; aux activités des organismes sans but lucratif, lorsqu’ils exercent une activité commerciale :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;la vente ou le troc de renseignements personnels&lt;/li&gt;
+  &lt;li&gt;la prestation de services aux taux du marché (comparables à ceux des entreprises), comme dans le cas de certaines garderies, caisses populaires et coopératives d’habitation gérées par des organismes sans but lucratif&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veuillez noter que l’imposition de frais pour des services n’est habituellement pas considérée comme une activité commerciale si les services font partie du mandat de l’organisme sans but lucratif.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Communiquez avec l’organisme pour savoir s’il répondra à vos préoccupations et modifiera ses pratiques : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/renseignements-et-conseils-pour-les-particuliers/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;.&lt;/p&gt;</value>
+  </data>
+  <data name="Question3_B" xml:space="preserve">
+    <value>Société d’immeuble en copropriété</value>
+  </data>
+  <data name="Question3_B_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte contre une société d’immeuble en copropriété ou son mandataire&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) s’applique à la collecte, à l’utilisation et à la communication de renseignements personnels dans le cadre d’une &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/bulletins-sur-l-interpretation-de-la-lprpde/interpretations_03_ca/"&gt;activité commerciale.&lt;/a&gt;
+&lt;p&gt;En général, la LPRPDE ne s’applique pas aux activités principales d’une société d’immeuble en copropriété ou de son mandataire, comme un gestionnaire immobilier ou un avocat. Ces activités de base sont normalement :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;administration générale&lt;/li&gt;
+  &lt;li&gt;gestion et entretien des parties communes de la propriété,&lt;/li&gt;
+  &lt;li&gt;non effectués pour le bénéfice de la société&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dans les cas liés à des immeubles en copropriété, la LPRPDE ne s’applique habituellement qu’aux activités suivantes :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;le traitement des renseignements personnels par un promoteur (le constructeur qui vend les logements en copropriété)&lt;/li&gt;
+  &lt;li&gt;le traitement des renseignements personnels dans le cadre d’une activité commerciale d’une société d’immeuble en copropriété&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Veuillez noter que l’imposition de frais pour des services n’est pas une activité commerciale si les services font partie du mandat de la société.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;En fonction de vos préoccupations, vous pourrez peut-être :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.condoauthorityontario.ca/fr-FR/tribunal/"&gt;déposer un dossier auprès du Tribunal de l’autorité du secteur des condominiums&lt;/a&gt; pour un immeuble en copropriété en Ontario&lt;/li&gt;
+  &lt;li&gt;communiquer avec le conseil d’administration de l’immeuble en copropriété pour savoir s’il répondra à vos préoccupations et adaptera ses pratiques&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Question3_C" xml:space="preserve">
+    <value>Institution fédérale</value>
+  </data>
+  <data name="Question3_C_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant une institution fédérale&lt;/h2&gt;
+&lt;p&gt;Les institutions fédérales sont assujetties à la &lt;em&gt;Loi sur la protection des renseignements personnels&lt;/em&gt; à l’échelle fédérale et non à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE).&lt;/p&gt; 
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;a href="https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/deposer-une-plainte-visant-une-institution-du-gouvernement-federal/"&gt;Déposer une plainte concernant la protection de la vie privée visant une institution du gouvernement fédéral&lt;/a&gt;</value>
+  </data>
+  <data name="Question3_D" xml:space="preserve">
+    <value>Conseil de bande d’une Première Nation</value>
+  </data>
+  <data name="Question3_D_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un conseil de bande d’une Première Nation&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) ne s’applique que si la plainte concerne le traitement des renseignements personnels :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;au sujet d’un employé d’un conseil de bande d’une Première Nation,&lt;/li&gt;
+  &lt;li&gt;pendant une &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/bulletins-sur-l-interpretation-de-la-lprpde/interpretations_03_ca/"&gt;activité commerciale&lt;/a&gt; entreprise par un conseil de bande d’une Première Nation dans le cadre de ses fonctions essentielles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;En fonction de vos préoccupations, vous pourrez peut-être :&lt;/p&gt; 
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.aadnc-aandc.gc.ca/fra/1100100011234/1100100011235"&gt;déposer une plainte auprès de Services aux Autochtones Canada&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;communiquer avec le conseil de bande pour voir s’il répondra à vos préoccupations et adaptera ses pratiques&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Question3_E" xml:space="preserve">
+    <value>Particulier</value>
+  </data>
+  <data name="Question3_E_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un particulier&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) s’applique à la collecte, à l’utilisation et à la communication de renseignements personnels par une organisation pendant une &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/bulletins-sur-l-interpretation-de-la-lprpde/interpretations_03_ca/"&gt;activité commerciale&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Par conséquent, la LPRPDE ne s’applique à une plainte visant un particulier que si cette personne exerce une activité commerciale – par exemple, à titre de propriétaire d’entreprise, comme un propriétaire, un agent immobilier ou un autre propriétaire unique.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Communiquer avec la police si vous craignez une intrusion, un vol ou d’autres activités illégales de la part d’un particulier&lt;/li&gt;
+ &lt;li&gt;Envisager d’obtenir des conseils juridiques si l’affaire semble être un litige civil&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Question3_F" xml:space="preserve">
+    <value>Organisation faisant du journalisme (journal, magazine, radio ou télédiffuseur en ligne ou hors ligne)</value>
+  </data>
+  <data name="Question3_F_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un journal, un magazine, une radio ou un télédiffuseur en ligne ou hors ligne&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) ne s’applique pas aux renseignements recueillis, utilisés ou communiqués uniquement à des fins journalistiques, artistiques ou littéraires.&lt;/p&gt;
+&lt;p&gt;Dans ce contexte, la LPRPDE ne s’applique généralement pas aux renseignements recueillis, utilisés ou communiqués dans des articles ou des émissions.&lt;/p&gt;
+&lt;p&gt;Toutefois, la LPRPDE vise le traitement des renseignements personnels des abonnés.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Communiquer avec l’éditeur ou le diffuseur pour lui faire part de vos préoccupations : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations en matière de protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Envisagez d’obtenir des conseils juridiques si vous pensez que quelque chose qui a été dit ou écrit à votre sujet est diffamatoire&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="Question3_G" xml:space="preserve">
+    <value>Parti politique</value>
+  </data>
+  <data name="Question3_G_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un parti politique&lt;/h2&gt;
+&lt;p&gt;La &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE) s’applique à la collecte, à l’utilisation et à la communication de renseignements personnels pendant une &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/bulletins-sur-l-interpretation-de-la-lprpde/interpretations_03_ca/"&gt;activité commerciale&lt;/a&gt;.
+&lt;p&gt;Les activités principales des partis politiques &lt;strong&gt;ne sont pas considérées&lt;/strong&gt; comme étant de nature commerciale. Par conséquent, la LPRPDE ne s’appliquerait que si la plainte porte sur une transaction ou une activité régulière qui revêt un caractère commercial de par sa nature.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Communiquer avec le parti politique pour savoir s’il répondra à vos préoccupations et adaptera ses pratiques.&lt;/p&gt;</value>
+  </data>
+  <data name="Realtor" xml:space="preserve">
+    <value>Agent immobilier</value>
+  </data>
+  <data name="Saskatchewan" xml:space="preserve">
+    <value>Saskatchewan</value>
+  </data>
+  <data name="Travel_Agent" xml:space="preserve">
+    <value>Agent de voyages</value>
+  </data>
+  <data name="UnitedStates" xml:space="preserve">
+    <value>États-Unis</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Yukon" xml:space="preserve">
+    <value>Yukon</value>
+  </data>
+  <data name="FieldIsRequired" xml:space="preserve">
+    <value>Ce champ est obligatoire.</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Sélectionnez...</value>
+  </data>
+  <data name="Your_Employer" xml:space="preserve">
+    <value>Votre employeur</value>
+  </data>
+  <data name="NatureOfComplaintCorrectionInformation" xml:space="preserve">
+    <value>L’institution n’a pas apporté les corrections aux renseignements ou ne les a pas annotés pour indiquer la correction demandée.</value>
+  </data>
+  <data name="CheckAllThatApply" xml:space="preserve">
+    <value>Veuillez cocher toutes les réponses qui s’appliquent.</value>
+  </data>
+  <data name="AtLeastOneItemMustBeSelected" xml:space="preserve">
+    <value>Au moins un élément doit être sélectionné.</value>
+  </data>
+  <data name="AtLeastOneFileHasToBeUploaded" xml:space="preserve">
+    <value>Comme « Les deux » est sélectionné, vous devez télécharger au moins un fichier.</value>
+  </data>
+  <data name="ComplaintAboutHandlingOfInformation" xml:space="preserve">
+    <value>Votre plainte concerne-t-elle le traitement de renseignements personnels à l’extérieur de votre province de résidence?</value>
+  </data>
+  <data name="ComplaintAgainstAccess" xml:space="preserve">
+    <value>Votre plainte porte-t-elle sur un &lt;strong&gt;refus d’accès&lt;/strong&gt; à vos &lt;strong&gt;renseignements personnels&lt;/strong&gt;?</value>
+  </data>
+  <data name="ComplaintAgainstFollowingOrganizations" xml:space="preserve">
+    <value>Votre plainte vise-t-elle l’un des types d’organisation suivants?</value>
+  </data>
+  <data name="ComplaintAgainstAnyOfFollowing" xml:space="preserve">
+    <value>Si votre plainte vise l’un des types d’organisation suivants, veuillez cocher ceux qui s’appliquent.</value>
+  </data>
+  <data name="ComplaintStillOngoing" xml:space="preserve">
+    <value>La plainte est-elle toujours en cours de traitement?</value>
+  </data>
+  <data name="ComplaintToOtherBody" xml:space="preserve">
+    <value>Avez-vous déposé une plainte au sujet de vos préoccupations auprès d’un autre organisme (autre que l’organisation visée par votre plainte)?</value>
+  </data>
+  <data name="EmployeeOrCustomer" xml:space="preserve">
+    <value>Déposez-vous la plainte en tant que client ou en tant qu’employé de l’organisation?</value>
+  </data>
+  <data name="FilingComplaintOnOwnBehalf" xml:space="preserve">
+    <value>Déposez-vous cette plainte &lt;strong&gt;en votre propre nom&lt;/strong&gt; (ou au nom d’un enfant mineur dont vous êtes le tuteur) ou &lt;strong&gt;au nom d’une autre personne&lt;/strong&gt;?</value>
+  </data>
+  <data name="HandlingOfHealthPractioner" xml:space="preserve">
+    <value>Votre plainte concerne-t-elle le traitement des renseignements personnels par un praticien de la santé (médecin, infirmière, pharmacien, chiropraticien, psychologue, etc.), une clinique ou un hôpital?</value>
+  </data>
+  <data name="HandlingofPersonalInfoHealth" xml:space="preserve">
+    <value>Votre plainte concerne-t-elle le traitement des renseignements personnels par l’une ou l’autre des entités suivantes :</value>
+  </data>
+  <data name="HandlingofPersonalInfoHealthList" xml:space="preserve">
+    <value>&lt;ul&gt;
+                        &lt;li&gt;un ministère, un organisme, un conseil, une commission ou un service de police provinciaux&lt;/li&gt;
+                        &lt;li&gt;une école, une université ou un collège financé par les fonds publics&lt;/li&gt;
+                        &lt;li&gt;une institution gouvernementale locale, comme une municipalité, un service de police local, une bibliothèque, un conseil scolaire ou une commission de transport en commun&lt;/li&gt;
+                    &lt;/ul&gt;</value>
+  </data>
+  <data name="IndependantPhysicalExam" xml:space="preserve">
+    <value>Votre plainte concerne-t-elle le traitement des renseignements personnels pendant ou en rapport avec un examen médical indépendant effectué pour un employeur ou une compagnie d’assurance (par exemple, pour déterminer l’aptitude au travail ou l’admissibilité aux prestations)?</value>
+  </data>
+  <data name="IsAgainstFwub" xml:space="preserve">
+    <value>Votre plainte vise-t-elle l’un des types d’organisation suivants?</value>
+  </data>
+  <data name="ListOfOrganizationFwubPipeda" xml:space="preserve">
+    <value>&lt;ul&gt;
+                        &lt;li&gt;Aéroport ou port&lt;/li&gt;
+                        &lt;li&gt;Banque&lt;/li&gt;
+                        &lt;li&gt;Conseil de bande d’une Première Nation&lt;/li&gt;
+                        &lt;li&gt;Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou aérienne)&lt;/li&gt;
+                        &lt;li&gt;Activité de forage en mer ou organisation participant à des activités liées au nucléaire&lt;/li&gt;
+                        &lt;li&gt;Entreprise de téléphonie, fournisseur de services Internet (FSI) ou entreprise d’infrastructure de télécommunications&lt;/li&gt;
+                        &lt;li&gt;Station de radio ou de télévision&lt;/li&gt;
+                        &lt;/ul&gt;</value>
+  </data>
+  <data name="ListOfOrganizationPipeda" xml:space="preserve">
+    <value>&lt;ul&gt;
+                            &lt;li&gt;Aéroport ou port&lt;/li&gt;
+                            &lt;li&gt;Banque&lt;/li&gt;
+                            &lt;li&gt;Conseil de bande d’une Première Nation&lt;/li&gt;
+                            &lt;li&gt;Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou aérienne)&lt;/li&gt;
+                            &lt;li&gt;Activité de forage en mer ou organisation participant à des activités liées au nucléaire&lt;/li&gt;
+                            &lt;li&gt;Entreprise de téléphonie, fournisseur de services Internet (FSI) ou entreprise d’infrastructure de télécommunications&lt;/li&gt;
+                            &lt;li&gt;Station de radio ou de télévision&lt;/li&gt;
+                            &lt;/ul&gt;</value>
+  </data>
+  <data name="ProvinceOrTerritoryIncident" xml:space="preserve">
+    <value>Dans quelle province ou quel territoire l’incident ou la pratique qui vous préoccupe s’est-il produit?</value>
+  </data>
+  <data name="ProvincePcReferedToCanadaPc" xml:space="preserve">
+    <value>Est-ce que le commissaire à la protection de la vie privée {0} vous a expressément renvoyé au Commissariat à la protection de la vie privée du Canada?</value>
+  </data>
+  <data name="RaisedConcernToPrivacyOfficer" xml:space="preserve">
+    <value>Avez-vous fait part de vos préoccupations par écrit à la personne-ressource de l’organisation chargée des questions relatives à la protection de la vie privée (souvent appelée l’agent de protection de la vie privée)?</value>
+  </data>
+  <data name="RaisedPrivacyToAtipCoordinator" xml:space="preserve">
+    <value>Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au &lt;a href="https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp"&gt;coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP)&lt;/a&gt; de l’institution?</value>
+  </data>
+  <data name="WhichFederalGovernementInstitutionComplaintAgainst" xml:space="preserve">
+    <value>Quelle &lt;strong&gt;institution fédérale&lt;/strong&gt; fait l’objet de votre plainte?</value>
+  </data>
+  <data name="WhichOneOfTheseChoicesSummarizesYourComplaint" xml:space="preserve">
+    <value>Lesquels des choix suivants résume le mieux votre plainte?</value>
+  </data>
+  <data name="NatureOfComplaintCollection" xml:space="preserve">
+    <value>Collecte inappropriée de renseignements personnels</value>
+  </data>
+  <data name="NatureOfComplaintCorrection" xml:space="preserve">
+    <value>Absence de correction des renseignements personnels (annotation)</value>
+  </data>
+  <data name="NatureOfComplaintDelay" xml:space="preserve">
+    <value>Réponse tardive à votre demande</value>
+  </data>
+  <data name="NatureOfComplaintDenialOfAccess" xml:space="preserve">
+    <value>Refus de donner accès aux renseignements personnels</value>
+  </data>
+  <data name="NatureOfComplaintExtensionOfTime" xml:space="preserve">
+    <value>Objection à la demande de l’institution pour une prorogation de répondre (à votre demande d’accès)</value>
+  </data>
+  <data name="NatureOfComplaintLanguage" xml:space="preserve">
+    <value>Réponse à une demande officielle d’accès à des renseignements personnels qui n’est pas fournie dans la langue officielle ou sur le média substitut demandé</value>
+  </data>
+  <data name="NatureOfComplaintRetentionAndDisposal" xml:space="preserve">
+    <value>Conservation ou retrait injustifié de renseignements personnels</value>
+  </data>
+  <data name="NatureOfComplaintUseAndDisclosure" xml:space="preserve">
+    <value>Utilisation ou communication injustifiée de renseignements personnels</value>
+  </data>
+  <data name="FieldIsOverCharacterLimit" xml:space="preserve">
+    <value>Ce champ dépasse la limite de caractères {0}.</value>
+  </data>
+  <data name="Realtor_Answer" xml:space="preserve">
+    <value>&lt;h2&gt;Plainte visant un agent immobilier&lt;/h2&gt;
+&lt;p&gt;Les agents immobiliers doivent se conformer aux règlements provinciaux et territoriaux sur l’immobilier, appliqués par les organismes de réglementation immobilière, ainsi qu’à la &lt;em&gt;Loi sur la protection des renseignements personnels et les documents électroniques&lt;/em&gt; (LPRPDE).&lt;/p&gt;
+&lt;p&gt;Les organismes de réglementation immobilière supervisent la conduite professionnelle et pourraient donc être mieux en mesure de répondre à vos préoccupations si votre problème va au-delà de la protection de la vie privée.&lt;/p&gt;
+&lt;h2&gt;Ce que vous pouvez faire&lt;/h2&gt;
+&lt;p&gt;Avant de déposer une plainte auprès de nous, vous pouvez :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;déposer une plainte auprès de l’organisme de réglementation immobilière de votre province ou territoire&lt;/li&gt;
+  &lt;li&gt;faire part de vos préoccupations par écrit à la personne-ressource désignée de l’agent immobilier en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : &lt;a href="https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/"&gt;Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Vous pouvez déposer une plainte auprès de nous, &lt;strong&gt;si&lt;/strong&gt; :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;vos préoccupations ne relèvent pas du mandat de l’organisme de réglementation&lt;/li&gt;
+  &lt;li&gt;vous êtes insatisfait des résultats après avoir utilisé la procédure de traitement des plaintes ou après avoir écrit à l’agent immobilier&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
+  <data name="DisabilityAccommodation" xml:space="preserve">
+    <value>Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison. Si vous ne pouvez pas le faire par écrit, veuillez &lt;a href="https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/"&gt;communiquer avec le Centre d’information du Commissariat&lt;/a&gt; pour obtenir de l’aide.</value>
+  </data>
+  <data name="NeedsDisabilityAccommodation" xml:space="preserve">
+    <value>Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?</value>
+  </data>
+  <data name="HaveYouSubmittedBefore" xml:space="preserve">
+    <value>Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?</value>
+  </data>
+  <data name="PhoneNumberInvalid" xml:space="preserve">
+    <value>Veuillez saisir un numéro de téléphone valide.</value>
+  </data>
+  <data name="PostalCodeInvalid" xml:space="preserve">
+    <value>Veuillez saisir un code postal valide.</value>
+  </data>
+  <data name="EmailInvalid" xml:space="preserve">
+    <value>Veuillez inscrire une adresse de courriel valide.</value>
+  </data>
+  <data name="Both" xml:space="preserve">
+    <value>Les deux</value>
+  </data>
+  <data name="SendByMail" xml:space="preserve">
+    <value>Les envoyer par la poste</value>
+  </data>
+  <data name="UploadThem" xml:space="preserve">
+    <value>Les télécharger</value>
+  </data>
+  <data name="MustAcceptTerms" xml:space="preserve">
+    <value>Vous devez accepter ces conditions avant de soumettre votre plainte.</value>
+  </data>
+  <data name="NatureOfComplaintOther" xml:space="preserve">
+    <value>Autre</value>
+  </data>
+  <data name="IHaveNoSupportingDocuments" xml:space="preserve">
+    <value>Je n’ai pas de documents à l’appui à fournir</value>
+  </data>
+  <data name="CanOnlyContainDigits" xml:space="preserve">
+    <value>Ce champ ne doit contenir que des chiffres</value>
+  </data>
+  <data name="InstructionsTextRepresentative" xml:space="preserve">
+    <value>&lt;p&gt;S'il vous plaît mettre l'information du plaignant dans la section du plaignant et votre information en tant que leur représentant dans la section du représentant ci-bas&lt;/p&gt;</value>
+  </data>
+  <data name="InstructionsTextTitle" xml:space="preserve">
+    <value>&lt;h2&gt;Instructions&lt;/h2&gt;</value>
+  </data>
+  <data name="PrefixProvinces" xml:space="preserve">
+    <value>en</value>
+    <comment>Seulement pour le francais</comment>
+  </data>
+  <data name="PrefixQuebec" xml:space="preserve">
+    <value>au</value>
+    <comment>Seulement pour le francais</comment>
+  </data>
+  <data name="PrefixProvinces_De" xml:space="preserve">
+    <value>de</value>
+  </data>
+  <data name="PrefixProvinces_De_l" xml:space="preserve">
+    <value>de l'</value>
+  </data>
+  <data name="PrefixProvinces_De_la" xml:space="preserve">
+    <value>de la</value>
+  </data>
+  <data name="PrefixProvinces_Du" xml:space="preserve">
+    <value>du</value>
+  </data>
+</root>

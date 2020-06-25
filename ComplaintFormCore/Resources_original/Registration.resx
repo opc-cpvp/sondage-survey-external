@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddInfoToPreExistingCase" xml:space="preserve">
+    <value>Add information to a pre-existing case</value>
+  </data>
+  <data name="ComplainantsOrRespondentsMayAddExtraInfoOrDocs" xml:space="preserve">
+    <value>&lt;p&gt;
+  The person who made the complaint and the organization or institution the complaint is against may add extra information or documents about the complaint with the Office of the Privacy Commissioner of Canada (OPC).
+&lt;/p&gt;
+
+&lt;p&gt;
+  First, please submit your email address below. We will email you a unique link to access the form to add information or documents.
+&lt;/p&gt;</value>
+  </data>
+  <data name="EmailPaAndPipeda" xml:space="preserve">
+    <value>&lt;p&gt;This message has been automatically generated as the first step 
+    of making a privacy complaint to the Office of the Privacy Commissioner of Canada.
+&lt;/p&gt;
+&lt;p&gt;To continue, please &lt;a href="{0}"&gt;fill out our online complaint form using this unique link.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Important information&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;For security reasons, you may only use the unique link once&lt;/li&gt;
+    &lt;li&gt;If you haven’t entered anything for two hours, the session will end and your information will be deleted&lt;/li&gt;
+    &lt;li&gt;If you go to another page or refresh the page using your browser’s navigation buttons, you may lose any information you have entered&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you have questions about our complaints process or our secure online form, please contact &lt;a href="https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre"&gt;OPC’s Information Centre.&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="FilePAComplaint" xml:space="preserve">
+    <value>File a PA Complaint</value>
+  </data>
+  <data name="FilePIPEDAComplaint" xml:space="preserve">
+    <value>File a PIPEDA Complaint</value>
+  </data>
+  <data name="IfYouDoNotReceiveEmailContactOPC" xml:space="preserve">
+    <value>If you do not receive the email within a few minutes, please &lt;a href="https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/"&gt;contact OPC’s Information Centre.&lt;/a&gt;</value>
+  </data>
+  <data name="OnlineComplaintForm" xml:space="preserve">
+    <value>Online Complaint Form</value>
+  </data>
+  <data name="PAComplaint" xml:space="preserve">
+    <value>PA Complaint</value>
+  </data>
+  <data name="PIPEDAComplaint" xml:space="preserve">
+    <value>PIPEDA Complaint</value>
+  </data>
+  <data name="PleaseSubmitEmailFirst" xml:space="preserve">
+    <value>First, please submit your email address below. We will email you a unique link to complete your complaint online.</value>
+  </data>
+  <data name="RegistrationAddInfoOnComplaint" xml:space="preserve">
+    <value>Registration—Document drop-off</value>
+  </data>
+  <data name="RegistrationOnlineBusiness" xml:space="preserve">
+    <value>Access our online privacy complaint form (private sector organization)</value>
+  </data>
+  <data name="RegistrationOnlineFederal" xml:space="preserve">
+    <value>Access our Online privacy complaint form (federal institution)</value>
+  </data>
+  <data name="ThanksForSubmittingOnlineComplaint" xml:space="preserve">
+    <value>Thanks for submitting your email address. You will receive an email from
+            &lt;a href="mailto:NePasRepondre-DoNotRepl%20hrefy@priv.gc.ca"&gt;NePasRepondre-DoNotReply@priv.gc.ca&lt;/a&gt; with a link to complete your complaint online.
+            If you use a security filter, make sure to set it to allow messages from this email address.</value>
+  </data>
+  <data name="ThanksForSubmittingOnlineComplaintSuppInfo" xml:space="preserve">
+    <value>You will receive an email with a unique link to add information
+            &lt;a href="mailto:NePasRepondre-DoNotRepl%20hrefy@priv.gc.ca"&gt;NePasRepondre-DoNotReply@priv.gc.ca&lt;/a&gt; with a link to complete your complaint online.
+            If you use a security filter, make sure to set it to allow messages from this email address.</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>Thank You!</value>
+  </data>
+  <data name="UseBrowserForNavigation" xml:space="preserve">
+    <value>Please use your browser navigation to go back to the previous page.</value>
+  </data>
+  <data name="UseFormAgainstAnotherFederalInstitution" xml:space="preserve">
+    <value>Use this form for the same privacy complaint against another public sector institution.</value>
+  </data>
+  <data name="UseFormAgainstSameFederalInstitution" xml:space="preserve">
+    <value>Use this form for additional privacy complaints against the same federal government institution.</value>
+  </data>
+  <data name="EmailDropOff" xml:space="preserve">
+    <value>&lt;p&gt;This message has been automatically generated as the first step 
+    of submitting documents or information relating to an existing privacy complaint already submitted to the Office of the Privacy Commissioner of Canada.
+&lt;/p&gt;
+&lt;p&gt;To continue, please use this &lt;a href="{0}"&gt;unique link to the document drop-off.&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;Important information&lt;/b&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;For security reasons, you may only use the unique link once&lt;/li&gt;
+    &lt;li&gt;If you haven’t entered anything for two hours, the session will end and your information will be deleted&lt;/li&gt;
+    &lt;li&gt;If you go to another page or refresh the page using your browser’s navigation buttons, you may lose any information you have entered&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you have questions about our complaints process or our secure online document drop-off, please contact &lt;a href="https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre"&gt;OPC’s Information Centre.&lt;/a&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="EmailTitleDropOff" xml:space="preserve">
+    <value>Submitting documents</value>
+  </data>
+  <data name="EmailTitlePaAndPipeda" xml:space="preserve">
+    <value>Submit a privacy complaint</value>
+  </data>
+  <data name="FileAPaComplaintText" xml:space="preserve">
+    <value>File a complaint about a federal institution</value>
+  </data>
+  <data name="FileAPipedaComplaintText" xml:space="preserve">
+    <value>File a complaint about a business</value>
+  </data>
+  <data name="ThisSiteRequiresJavascript" xml:space="preserve">
+    <value>This site requires JavaScript. You might have difficulties doing certain actions. Please consider turning it on.</value>
+  </data>
+</root>
