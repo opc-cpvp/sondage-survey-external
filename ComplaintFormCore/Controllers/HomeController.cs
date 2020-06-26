@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ComplaintFormCore.Models;
+using GoC.WebTemplate.CoreMVC.Controllers;
+using GoC.WebTemplate.Components.Core.Services;
 
 namespace ComplaintFormCore.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : WebTemplateBaseController
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ModelAccessor modelAccessor, ILogger<HomeController> logger)
+            : base(modelAccessor)
         {
             _logger = logger;
         }
