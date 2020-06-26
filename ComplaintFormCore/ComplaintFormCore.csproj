@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.5">
       <PrivateAssets>all</PrivateAssets>

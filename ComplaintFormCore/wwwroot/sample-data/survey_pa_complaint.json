@@ -161,6 +161,7 @@
           "title": "Which of the following choices most accurately summarizes your complaint?",
           "isRequired": true,
           "colCount": 1,
+          "asHtmlInfo": true,
           "choices": [
             {
               "value": "NatureOfComplaintDelay",
@@ -199,6 +200,9 @@
               "text": "Other"
             }
           ]
+        },
+        {
+
         }
       ]
     },

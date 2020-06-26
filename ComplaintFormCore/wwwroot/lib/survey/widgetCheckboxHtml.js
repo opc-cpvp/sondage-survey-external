@@ -1,21 +1,18 @@
 ﻿var widget = {
     //the widget name. It should be unique and written in lowcase.
-    name: "commentwithhtmldescription",
+    name: "checkboxwithhtmlinfo",
     //the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder
-    title: "Comment box with Html description",
-    //the name of the icon on the toolbox. We will leave it empty to use the standard one
+    title: "Check box with Html info",
     iconName: "",
     //If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
     widgetIsLoaded: function () {
-        //return typeof $ == "function" && !!$.fn.select2; //return true if jQuery and select2 widget are loaded on the page
         return true; //we do not require anything so we just return true. 
     },
     //SurveyJS library calls this function for every question to check, if it should use this widget instead of default rendering/behavior
     isFit: function (question) {
         //we return true if the type of question is commentwithhtml
-        return question.getType() === 'commentwithhtmldescription';
-        //the following code will activate the widget for a text question with inputType equals to date
-        //return question.getType() === 'text' && question.inputType === "date";
+        return question.getType() === 'checkbox' && question.asHtmlInfo == true;
+       // return ['checkbox'].indexOf(question.getType()) > -1;
     },
     //Use this function to create a new class or add new properties or remove unneeded properties from your widget
     //activatedBy tells how your widget has been activated by: property, type or customType
@@ -25,60 +22,40 @@
     activatedByChanged: function (activatedBy) {
         //we do not need to check acticatedBy parameter, since we will use our widget for customType only
         //We are creating a new class and derived it from text question type. It means that text model (properties and fuctions) will be available to us
-        Survey.JsonObject.metaData.addClass("commentwithhtmldescription", [], null, "comment");
+        //Survey.JsonObject.metaData.addClass("commentwithhtmldescription", [], null, "comment");
         //signaturepad is derived from "empty" class - basic question class
         //Survey.JsonObject.metaData.addClass("signaturepad", [], null, "empty");
 
         //Add new property(s)
         //For more information go to https://surveyjs.io/Examples/Builder/?id=addproperties#content-docs
         Survey.JsonObject.metaData.addProperties("commentwithhtmldescription", [
-            { name: "htmldescription", default: "" }
+            {
+                name: "htmlInfo", default: "",
+                name: "asHtmlInfo", default: false
+            }
         ]);
     },
     //If you want to use the default question rendering then set this property to true. We do not need any default rendering, we will use our our htmlTemplate
     isDefaultRender: false,
     //You should use it if your set the isDefaultRender to false
-    htmlTemplate: "<div><input /><button></button></div>",
+    //htmlTemplate: "<div><input /><button></button></div>",
     //The main function, rendering and two-way binding
     afterRender: function (question, el) {
-        //el is our root element in htmlTemplate, is "div" in our case
-        //get the text element
-        var text = el.getElementsByTagName("input")[0];
-        //set some properties
-        text.inputType = question.inputType;
-        text.placeholder = question.placeHolder;
-        //get button and set some rpoeprties
-        var button = el.getElementsByTagName("button")[0];
-        button.innerText = question.buttonText;
-        button.onclick = function () {
-            question.value = "You have clicked me";
-        }
 
-        //set the changed value into question value
-        text.onchange = function () {
-            question.value = text.value;
-        }
-        onValueChangedCallback = function () {
-            text.value = question.value ? question.value : "";
-        }
-        onReadOnlyChangedCallback = function () {
-            if (question.isReadOnly) {
-                text.setAttribute('disabled', 'disabled');
-                button.setAttribute('disabled', 'disabled');
-            } else {
-                text.removeAttribute("disabled");
-                button.removeAttribute("disabled");
-            }
-        };
-        //if question becomes readonly/enabled add/remove disabled attribute
-        question.readOnlyChangedCallback = onReadOnlyChangedCallback;
-        //if the question value changed in the code, for example you have changed it in JavaScript
-        question.valueChangedCallback = onValueChangedCallback;
-        //set initial value
-        onValueChangedCallback();
-        //make elements disabled if needed
-        onReadOnlyChangedCallback();
+        var outputHTML = '';
+        var allCheckboxes = question.choices;
 
+        allCheckboxes.forEach(function (row, index, rows) {
+            outputHTML = outputHTML +
+                '<div>' +
+                '   <label data - index="1" role = "checkbox" >' +
+                '   <input type="checkbox" name="' + row.value + '" value="' + row.value + '" class="checkbox-info-popup-trigger"/>' + row.text + 
+                '   </label>' +
+                '   <div class="info-popup alert alert-info col-md-12 mrgn-tp-md" style="display: none;"><p>The institution has not responded to your access or correction request within the statutory time limits. Under the <i>Privacy Act</i> institutions have thirty (30) days after your request is received to respond (or 60 days if an extension has been properly invoked for an access request).</p></div>' +
+                '</div >'
+        });
+
+        el.innerHTML = outputHTML;
     },
     //Use it to destroy the widget. It is typically needed by jQuery widgets
     willUnmount: function (question, el) {

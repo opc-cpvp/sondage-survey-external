@@ -22,10 +22,9 @@
     isDefaultRender: true,
     afterRender: function (question, el) {
 
-        //  This will remove the html questions in Preview mode.
-        //if (question.surveyValue.isDisplayMode == true) {
-        //    question.html = "";
-        //}
+        if (question.surveyValue.isDisplayMode == true) {
+            question.html = "";
+        }
     }
 }
 
