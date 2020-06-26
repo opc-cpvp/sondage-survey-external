@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using ComplaintFormCore.Resources;
+using GoC.WebTemplate.Components.Core.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -49,6 +50,9 @@ namespace ComplaintFormCore
             });
 
             services.AddSingleton<SharedViewLocalizer>();
+
+            services.AddModelAccessor();
+            services.ConfigureGoCTemplateRequestLocalization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,7 +87,7 @@ namespace ComplaintFormCore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+
         }
     }
 }
