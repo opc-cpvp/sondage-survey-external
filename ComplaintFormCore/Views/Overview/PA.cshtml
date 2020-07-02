@@ -4,21 +4,23 @@
 @inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
 
 @functions
-{ public string GetAntiXsrfRequestToken()
+{ 
+    public string GetAntiXsrfRequestToken()
     {
         return Xsrf.GetAndStoreTokens(Context).RequestToken;
-    } }
+    } 
+ }
 
-<link rel="stylesheet" type="text/css" href="~/css/theme_export.css">
+@*<link rel="stylesheet" type="text/css" href="~/css/theme_export.css">*@
 
-<div class="sv_page_title">
-    <span>Instructions - Privacy complaint form (federal institution)</span>
+<div>
+    <h1>Instructions - Privacy complaint form (federal institution)</h1>
 </div>
 <div>
     <p> @Html.Raw(System.Net.WebUtility.HtmlDecode(Localizer.GetLocalizedString("OverviewPA")))</p>
 </div>
 
 <div class="form-group">
-    @Html.ActionLink("Start", "SurveyPA", "Home", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Start", "DetailsPA", "Home", null, new { @class = "btn btn-primary" })
 </div>
 

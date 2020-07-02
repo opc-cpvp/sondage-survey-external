@@ -19,6 +19,12 @@ namespace ComplaintFormCore.Controllers
             : base(modelAccessor)
         {
             _logger = logger;
+
+            WebTemplateModel.HeaderTitle = "Title set for everypage!";
+
+           
+
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href="/Overview/PA"});
         }
 
         public IActionResult Index()
@@ -27,6 +33,11 @@ namespace ComplaintFormCore.Controllers
         }
 
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        public IActionResult DetailsPA()
         {
             return View();
         }

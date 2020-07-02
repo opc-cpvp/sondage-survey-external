@@ -1,86 +1,18 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
-
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+﻿
+/*  The question titles are being rendered as <h5> by Survey.js and the css from GoC doesn't set 
+    the style desired */
+.sv_q_title {
+    color: black;
+    font-weight: bold;
 }
 
-/* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+/*.sv_p_title {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}*/
 
-.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
-}
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
-}
-
-/* For survey.js */
-.sv_page_title span {
-    font-size: 34px;
-    color: #b31885;
-    font-weight: 500;
-    line-height: 120%;
-}
-
-.sv_q_required_text{
+.sv_q_required_text {
     color: red;
-
 }
 
 .sv_textarea{
@@ -88,13 +20,55 @@ body {
     height: 120px
 }
 
-.sv_main .sv_p_root > .sv_row:nth-child(even) {
-    background-color: white !important;
+/*  This is to make the radio button items not being bold*/
+.sv_q_radiogroup_label {
+    font-weight: normal
 }
 
-.sv_main .sv_p_root > .sv_row:nth-child(odd) {
-    background-color: white !important;
+/*  This is to make the check box items not being bold*/
+.sv_q_checkbox_control_label {
+    font-weight: normal
 }
+
+/*  This is to shift the items to the right a bit*/
+.sv_main .sv_container .sv_body .sv_p_root fieldset.sv_qcbc {
+    padding-top: 0.1em;
+    margin-left: 30px;
+}
+
+/* Progress bar native style except for the color blue (#007292)*/
+.sv_main .sv_progress {
+    background-color: #e7e7e7;
+    margin-bottom: 2em;
+}
+
+.sv_main .sv_progress_bar {
+    background-color: #007292;
+}
+
+.sv_main .sv_container .sv_body .sv_progress {
+    height: 0.3em;
+}
+
+.sv_main .sv_container .sv_body .sv_progress .sv_progress_bar {
+    height: 100%;
+    min-width: 100px;
+    position: relative;
+    margin-top: 2em;
+}
+
+.sv_main .sv_container .sv_body .sv_progress .sv_progress_bar > span {
+    position: absolute;
+    top: -1.5em;
+    display: inline-block;
+    white-space: nowrap;
+}
+/* end progress bar ***********************/
+
+.sv_row {
+    min-width: 300px;
+}
+
 
 
 
