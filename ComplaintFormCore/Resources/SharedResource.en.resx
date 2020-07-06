@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnComplete" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="btnEndSession" xml:space="preserve">
+    <value>End Session</value>
+  </data>
+  <data name="btnShowPreview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="btnSurveyNext" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="btnSurveyPrev" xml:space="preserve">
+    <value>Previous</value>
+  </data>
   <data name="OverviewPA" xml:space="preserve">
     <value>&amp;lt;p&amp;gt;Complete this form to submit a privacy complaint about a federal institution to the Office of the Privacy Commissioner of Canada.&amp;lt;/p&amp;gt;
 
@@ -152,8 +167,5 @@
 &amp;lt;div class="alert alert-info"&amp;gt;
   &amp;lt;p&amp;gt;Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, your information will be deleted. You will have to start over.&amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;</value>
-  </data>
-  <data name="Test" xml:space="preserve">
-    <value>gkjldflgjfsdlgjsldfjg</value>
   </data>
 </root>

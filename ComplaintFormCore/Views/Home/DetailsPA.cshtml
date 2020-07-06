@@ -14,6 +14,8 @@
     }
 }
 
+
+
 <div id="surveyElement" style="display:inline-block;width:100%;">
     <survey :survey='survey' />
 </div>
@@ -22,11 +24,11 @@
 
 <center>
     <div id="div_navigation">
-        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary">Previous</button>
-        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary">Continue</button>
-        <button id="btnShowPreview" onclick="survey.showPreview();" class="btn btn-primary">Preview</button>
-        <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">Complete</button>
-        <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">End Session</button>
+        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnShowPreview" onclick="survey.showPreview();" class="btn btn-primary">@Localizer.GetLocalizedString("btnShowPreview")</button>
+        <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">@Localizer.GetLocalizedString("btnComplete")</button>
+        <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>
         @*<button id="btnSave" onclick="save()" class="btn btn-primary">Save</button>*@
     </div>
 </center>
@@ -104,6 +106,8 @@
                 .display = survey.isDisplayMode
                     ? "inline"
                     : "none";
+
+            saveStateLocally(survey);
         }
 
         //  Will return true if a dropdown has a selected item otherwise false.
@@ -121,6 +125,43 @@
 
         function save() {
             alert("Not implemented. Probably need to trigger Complete on the survey.");
+        }
+
+        var storageName = "SurveyJS_LoadState";
+
+        function loadStateLocally(survey) {
+            //Here should be the code to load the data from your database
+            var storageSt = window
+                .localStorage
+                .getItem(storageName) || "";
+
+            var res = {};
+            if (storageSt)
+                res = JSON.parse(storageSt); //Create the survey state for the demo. This line should be deleted in the real app.
+            else
+                res = {
+                    currentPageNo: 1,
+                    data: {
+                        "type_complaint": [""]
+                    }
+                };
+
+            //Set the loaded data into the survey.
+            if (res.currentPageNo)
+                survey.currentPageNo = res.currentPageNo;
+            if (res.data)
+                survey.data = res.data;
+        }
+
+        function saveStateLocally(survey) {
+            var res = {
+                currentPageNo: survey.currentPageNo,
+                data: survey.data
+            };
+            //Here should be the code to save the data into your database
+            window
+                .localStorage
+                .setItem(storageName, JSON.stringify(res));
         }
 
         // Register the function for use in SurveyJS expressions. This function validates that at least one selection was made in a <select>
@@ -142,6 +183,10 @@
                 name: "showOnPreview", default: true
             });
 
+        Survey.JsonObject.metaData.addProperty("page", {
+            name: "showOnPreview", default: true
+        });
+
         //  Add a new property for each item choices (to the native text, value). This is used for checkboxes with addtional Html info
         //  but could be used for radiobutton as well.
         Survey.JsonObject.metaData.addProperty("itemvalue", {
@@ -151,8 +196,12 @@
         //Survey
         //    .StylesManager
         //    .applyTheme("default");
+       
 
-        fetch("/sample-data/survey_pa_complaint.json")
+
+        var json = "/sample-data/survey_pa_complaint_" + '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName' + ".json";
+
+        fetch(json)
             .then(response => response.json())
             .then(json => {
                 survey = new Survey.Model(json);
@@ -179,12 +228,47 @@
 
                                 //  Hide the navigation buttons
                                 $("#div_navigation").hide();
+
+                                window
+                                    .localStorage
+                                    .setItem(storageName, "");
                             },
                             error: function (req, status, error) {
                                 alert(error);
                             }
                         });
                     });
+
+                //survey
+                //    .onServerValidateQuestions
+                //    .add(function (result) {
+
+                //        //options.data contains the data for the current page.
+                //        var countryName = options.data["country"];
+                //        //If the question is empty then do nothing
+                //        if (!countryName)
+                //            options.complete();
+
+                //        //call the ajax method
+                //        $.ajax({ url: "https://restcountries.eu/rest/v2/all" })
+                //            .then(function (data) {
+                //                var found = false;
+                //                var countries = data;
+                //                for (var i = 0; i < countries.length; i++) {
+                //                    if (countries[i].name == countryName) {
+                //                        found = true;
+                //                        break;
+                //                    }
+                //                }
+                //                //if the country is unknown, add the error
+                //                if (!found)
+                //                    options.errors["country"] = "The country name '" + countryName + "' is not in this list: https://restcountries.eu/rest/v2/all";
+
+                //                //tell survey that we are done with the server validation
+                //                options.complete();
+                //            });
+                //    });
+
 
                 //  THIS IS THE SHOWDOWN MARKDOWN CODE***************
                 var converter = new showdown.Converter();
@@ -207,14 +291,40 @@
                     });
 
                 survey
+                    .onValueChanged
+                    .add(function (sender, options) {
+
+                        if (options.question.getType() === 'comment') {
+                            if (!options.value || (!options.value.trim() && options.value.trim() !== 0 && options.value.trim() !== false)) {
+
+                                 //  Adding a . for comment questions that are not answered so they can be displayed in the preview
+                                sender.getQuestionByName(options.name).value = ".";
+                            }
+                        }
+                    });
+
+                survey
                     .onAfterRenderQuestion
                     .add(function (survey, options) {
+
+                        if (options.question.getType() === 'comment') {
+                            if (!options.question.value || (!options.question.value.trim() && options.question.value.trim() !== 0 && options.question.value.trim() !== false)) {
+
+                                //  Adding a . for comment questions that are not answered so they can be displayed in the preview
+                                options.question.value = ".";
+                            }
+                        }
+
 
                         //  If it is the preview mode...
                         if (survey.isDisplayMode == true) {
 
                             if (options.question.showOnPreview == false) {
                                 //  don't show the question.... but how?
+                            }
+
+                            if (options.question.page.showOnPreview == false) {
+                                //options.question.page.visible = false;
                             }
 
                             //  do not show the 'description' property
@@ -224,6 +334,7 @@
                             if (options.question.getType() === 'html') {
                                 options.question.html = "";
                             }
+
                         }
 
                         //  This is to add * at the beginning of a required question. The property requiredText
@@ -234,58 +345,18 @@
                         }
                     });
 
-                survey
-                    .onAfterRenderPage
-                    .add(function (survey, options) {
-
-                        //if (survey.isDisplayMode == true) {
-                        //    if (options.page.showOnPreview == false) {
-                        //        debugger;
-                        //        options.page.visible = false;
-                        //    }
-
-                        //}
-                    });
-
-                survey
-                    .onUpdateQuestionCssClasses
-                    .add(function (survey, options) {
-                        //debugger; //form-group
-                        var classes = options.cssClasses
-
-                       // classes.root += " form-group";
-                       // classes.title = "sq-title"
-                        //classes.item = "sq-item";
-                        //classes.label = "sq-label";
-
-                        //if (options.question.isRequired) {
-                        //    classes.title += " sq-title-required";
-                        //    classes.root += " sq-root-required";
-                        //}
-
-                        if (options.question.getType() === "dropdown") {
-
-                            //
-                            //classes.selectWrapper = "";
-                            //classes.control = "";
-                        }
-                        else if (options.question.getType() === "radiogroup") {
-                            //classes.root += " sq-align-left";
-                        }
-
-                    });
-
-
-
-
 
                 // DICTIONNARY
                 survey.requiredText = "(required)";
                 survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)");
                 survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)");
 
-               // survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
-                survey.showPreviewBeforeComplete = 'showAllQuestions';
+                survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
+               // survey.showPreviewBeforeComplete = 'showAllQuestions';
+
+                //  onHidden -> survey clears the question value when the question becomes invisible.
+                //  If a question has an answer value and it was invisible initially, a survey clears the value on completing.
+                survey.clearInvisibleValues = "onHidden ";
 
                 survey.questionErrorLocation = "top";
 
@@ -300,42 +371,45 @@
                 //    "type_complaint": [""]
                 //};
 
-                survey.data = {
-                    "filing_own_behalf": "yourself",
-                    "raised_concern_writing": "yes",
-                    "type_complaint": [
-                        "NatureOfComplaintOther",
-                        "NatureOfComplaintDelay",
-                        "NatureOfComplaintExtensionOfTime",
-                        "NatureOfComplaintCollection"
-                    ],
-                    "description_IsEmployee": "genral_public",
-                    "AdditionalComments": "iuyiuyuiyiuy",
-                    "complainant_HaveYouSubmittedBefore": "No",
-                    "complainant_title": "Mr.",
-                    "complainant_first_name": "jf",
-                    "complainant_last_name": "brouillette",
-                    "complainant_email": "jf@hotmail.com",
-                    "complainant_mailing_address": "66",
-                    "complainant_city": "gat",
-                    "complainant_postal_code": "J9A2V5",
-                    "complainant_daytime_phone": "6135656667",
-                    "complainant_NeedsDisabilityAccommodation": "Yes",
-                    "complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
-                    "documentation_type": "none",
-                    "WhatWouldResolveYourComplaintDetailsPA": "gsdgdfgsdf",
-                    "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                    "institution": "3",
-                    "complainant_country": "CA",
-                    "complainant_provinces": "2",
-                    "DateSentRequests": "qwerewr",
-                    "WordingOfRequest": "hgdffgh",
-                    "MoreDetailsOfRequest": "oiuyoiuo",
-                    "DateOfFinalAnswer": "gfhfjgj",
-                    "DidNoRecordExist": "Yes",
-                    "InstitutionAgreedRequestOnInformalBasis": "Not sure",
-                    "SummarizeYourConcernsAndAnyStepsTaken_A": "poiuiop"
-                };
+                //survey.data = {
+                //    "filing_own_behalf": "yourself",
+                //    "raised_concern_writing": "yes",
+                //    "type_complaint": [
+                //        "NatureOfComplaintOther",
+                //        "NatureOfComplaintDelay",
+                //        "NatureOfComplaintExtensionOfTime",
+                //        "NatureOfComplaintCollection"
+                //    ],
+                //    "description_IsEmployee": "genral_public",
+                //    "AdditionalComments": "iuyiuyuiyiuy",
+                //    "complainant_HaveYouSubmittedBefore": "No",
+                //    "complainant_title": "Mr.",
+                //    "complainant_first_name": "jf",
+                //    "complainant_last_name": "brouillette",
+                //    "complainant_email": "jf@hotmail.com",
+                //    "complainant_mailing_address": "66",
+                //    "complainant_city": "gat",
+                //    "complainant_postal_code": "J9A2V5",
+                //    "complainant_daytime_phone": "6135656667",
+                //    "complainant_NeedsDisabilityAccommodation": "Yes",
+                //    "complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
+                //    "documentation_type": "none",
+                //    "WhatWouldResolveYourComplaintDetailsPA": "gsdgdfgsdf",
+                //    "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
+                //    "institution": "3",
+                //    "complainant_country": "CA",
+                //    "complainant_provinces": "2",
+                //    "DateSentRequests": "qwerewr",
+                //    "WordingOfRequest": "hgdffgh",
+                //    "MoreDetailsOfRequest": "oiuyoiuo",
+                //    "DateOfFinalAnswer": "gfhfjgj",
+                //    "DidNoRecordExist": "Yes",
+                //    "InstitutionAgreedRequestOnInformalBasis": "Not sure",
+                //    "SummarizeYourConcernsAndAnyStepsTaken_A": "poiuiop"
+                //};
+                
+                //Load the initial state
+                loadStateLocally(survey);
 
                 //  Use for our custom navigation
                 survey
@@ -347,6 +421,14 @@
                 survey.onCompleting.add(function (sender, options) {
                     options.allowComplete = confirm('Do you want to complete the survey?');
                 });
+
+
+                //  The next 2 lines are for saving data after each page change
+                //survey.sendResultOnPageNext = true;
+                //survey.onPartialSend.add(function (survey) {
+                //    //saveSurveyData(survey);
+                //    alert(JSON.stringify(survey.data));
+                //});
 
                 var app = new Vue({
                     el: '#surveyElement',
