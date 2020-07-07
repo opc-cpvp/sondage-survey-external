@@ -40,7 +40,7 @@
       "elements": [
         {
           "type": "dropdown",
-          "name": "institution",
+          "name": "Institution",
           "title": "Which federal government institution is your complaint againts?",
           "placeHolder": "Select...",
           "requiredErrorText": "This field is required",

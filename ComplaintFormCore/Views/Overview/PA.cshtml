@@ -4,14 +4,27 @@
 @inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
 
 @functions
-{ 
+{
     public string GetAntiXsrfRequestToken()
     {
         return Xsrf.GetAndStoreTokens(Context).RequestToken;
-    } 
- }
+    }
+}
 
-@*<link rel="stylesheet" type="text/css" href="~/css/theme_export.css">*@
+@section CustomScripts {
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/survey/survey.vue.OPC.js"></script>
+    <script src="~/js/survey/SurveyInit.js"></script>
+    <script src="~/js/survey/SurveyLocalStorage.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            clearLocalStorage(storageName_PA);
+
+        });
+    </script>
+}
 
 <div>
     <h1>Instructions - Privacy complaint form (federal institution)</h1>

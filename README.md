@@ -45,8 +45,11 @@ e) The logic for showing the information section in Part C section 4 needs to be
 f) Hide navigation bar in the 'Preview'
 g) Return to the same question on page refresh or on language switching
 h) Total MB downloaded
+i) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
+j) Match the property names with the oroginal project 
 
 ### Preview
+	Still not fixed!!!
 	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
 		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question
 		- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 

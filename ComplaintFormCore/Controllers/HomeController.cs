@@ -24,7 +24,8 @@ namespace ComplaintFormCore.Controllers
 
            
 
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href="/Overview/PA"});
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href="/Home/Test"});
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Overview/PA" });
         }
 
         public IActionResult Index()
@@ -42,12 +43,7 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
-        public IActionResult SurveyPA()
-        {
-            return View();
-        }
-
-        public IActionResult SurveyPIPEDA()
+        public IActionResult Test()
         {
             return View();
         }

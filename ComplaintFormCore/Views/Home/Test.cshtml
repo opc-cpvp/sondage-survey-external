@@ -1,0 +1,103 @@
+﻿@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
+
+@section CustomStyles {
+
+    <link href="~/css/site.css" rel="stylesheet" />
+}
+
+@section CustomScripts {
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/survey/survey.vue.OPC.js"></script>
+    <script src="~/js/survey/SurveyInit.js"></script>
+    <script src="~/js/survey/SurveyLocalStorage.js"></script>
+    <script src="~/js/survey/widgets/widgetPanel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+    <script>
+
+        function onCurrentPageChanged_saveState(survey) {
+
+            saveStateLocally(survey, storageName_Test);
+        }
+
+        initSurvey(Survey);
+
+        var json = "/sample-data/survey_test.json";
+
+        fetch(json)
+            .then(response => response.json())
+            .then(json => {
+
+                survey = new Survey.Model(json);
+
+                initSurveyModelEvents(survey);
+
+                initSurveyModelProperties(survey);
+
+                var defaultData = {
+                    "price_to_competitors": "",
+                    "price": "",
+                    "email": ""
+                };
+
+                //  Load the initial state
+                loadStateLocally(survey, storageName_Test, defaultData);
+
+                //  Save the state back to local storage
+                onCurrentPageChanged_saveState(survey);
+
+                //  Call the event to set the navigation buttons on page load
+                onCurrentPageChanged_updateNavButtons(survey);
+
+               // onCurrentPageChanged_saveState(survey);
+
+                //  Add events only applicable to this page **********************
+                survey
+                    .onComplete
+                    .add(function (result) {
+
+                        let data = JSON.stringify(result.data, null, 3);
+
+                        console.log(data);
+
+                        //  Hide the navigation buttons
+                        $("#div_navigation").hide();
+
+                        survey.clear(true, true);
+                        clearLocalStorage(storageName_Test);
+                    });
+
+
+                survey
+                    .onCurrentPageChanged
+                    .add(onCurrentPageChanged_saveState);
+
+               // ****Event *****************************************************
+
+                var app = new Vue({
+                    el: '#surveyElement',
+                    data: {
+                        survey: survey
+                    }
+                });
+            });
+
+    </script>
+}
+
+<div id="surveyElement" style="display:inline-block;width:100%;">
+    <survey :survey='survey' />
+</div>
+
+<div id="surveyResult"></div>
+
+<center>
+    <div id="div_navigation">
+        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnShowPreview" onclick="survey.showPreview();" class="btn btn-primary">@Localizer.GetLocalizedString("btnShowPreview")</button>
+        <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">@Localizer.GetLocalizedString("btnComplete")</button>
+        <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>
+    </div>
+</center>
