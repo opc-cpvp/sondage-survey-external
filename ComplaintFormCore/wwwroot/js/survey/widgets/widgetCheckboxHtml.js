@@ -1,4 +1,38 @@
-﻿var widget = {
+﻿//  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
+//  It will also remove or add the item being chekced or unchecked from the json data
+function checkBoxInfoPopup(checkbox) {
+
+    var parent = $(checkbox).closest("div");
+    var data = survey.data;
+
+    if ($(checkbox).is(':checked')) {
+        parent.find(".info-popup").show();
+
+        //  If the array object of the checkbox list is not set the create it
+        if (!data[checkbox.name]) {
+            data[checkbox.name] = [];
+        }
+
+        //  push the selected value
+        data[checkbox.name].push(checkbox.value);
+
+    }
+    else {
+
+        parent.find(".info-popup").hide();
+
+        //  removing the un-checked item from the json object
+        for (var i = 0; i < data[checkbox.name].length; i++) {
+            if (data[checkbox.name][i] === checkbox.value) {
+                data[checkbox.name].splice(i, 1);
+            }
+        }
+    }
+
+    survey.data = data;
+}
+
+var widget = {
     //the widget name. It should be unique and written in lowcase.
     name: "checkboxwithhtmlinfo",
     //the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder

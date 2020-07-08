@@ -55,32 +55,6 @@
 
         //});
 
-        //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
-        //  It will also remove or add the item being chekced or unchecked from the json data
-        function checkBoxInfoPopup(checkbox) {
-
-            var parent = $(checkbox).closest("div");
-
-            if ($(checkbox).is(':checked')) {
-                parent.find(".info-popup").show();
-
-                //  adding the checked item to the json object
-                survey.data[checkbox.name].push(checkbox.value);
-            }
-            else {
-
-                parent.find(".info-popup").hide();
-
-                //  removing the un-checked item from the json object
-                for (var i = 0; i < survey.data[checkbox.name].length; i++) {
-                    if (survey.data[checkbox.name][i] === checkbox.value)
-                    {
-                        survey.data[checkbox.name].splice(i, 1);
-                    }
-                }
-            }
-        }
-
         function onCurrentPageChanged_saveState(survey) {
 
             saveStateLocally(survey, storageName_PA);
@@ -89,7 +63,6 @@
         initSurvey(Survey);
 
         var json = "/sample-data/survey_pa_complaint_" + '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName' + ".json";
-        //var json = "/sample-data/survey_test.json";
 
         fetch(json)
             .then(response => response.json())
@@ -143,38 +116,40 @@
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.
-                //survey.data = {
-                //    "type_complaint": [""]
+                //var defaultData  = { };
+
+                //var defaultData = {
+                //    "type_complaint": []
                 //};
 
                 var defaultData  = {
-                    "filing_own_behalf": "yourself",
-                    "raised_concern_writing": "yes",
-                    "type_complaint": [
+                    "FilingComplaintOnOwnBehalf": "yourself",
+                    "RaisedPrivacyToAtipCoordinator": "yes",
+                    "WhichOneOfTheseChoicesSummarizesYourComplaint": [
                         "NatureOfComplaintOther",
                         "NatureOfComplaintDelay",
                         "NatureOfComplaintExtensionOfTime",
                         "NatureOfComplaintCollection"
                     ],
-                    "description_IsEmployee": "genral_public",
+                    "EmployeeOrCustomer": "genral_public",
                     "AdditionalComments": "iuyiuyuiyiuy",
                     "complainant_HaveYouSubmittedBefore": "No",
                     "complainant_title": "Mr.",
-                    "complainant_first_name": "jf",
-                    "complainant_last_name": "brouillette",
-                    "complainant_email": "jf@hotmail.com",
-                    "complainant_mailing_address": "66",
-                    "complainant_city": "gat",
-                    "complainant_postal_code": "J9A2V5",
-                    "complainant_daytime_phone": "6135656667",
+                    "complainant_FirstName": "jf",
+                    "complainant_LastName": "brouillette",
+                    "complainant_Email": "jf@hotmail.com",
+                    "complainant_MailingAddress": "66",
+                    "complainant_City": "gat",
+                    "complainant_PostalCode": "J9A2V5",
+                    "complainant_DayTimeNumber": "6135656667",
                     "complainant_NeedsDisabilityAccommodation": "Yes",
                     "complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
                     "documentation_type": "none",
                     "WhatWouldResolveYourComplaintDetailsPA": "gsdgdfgsdf",
                     "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                    "Institution": "3",
-                    "complainant_country": "CA",
-                    "complainant_provinces": "2",
+                    "WhichFederalGovernementInstitutionComplaintAgainst": "3",
+                    "complainant_Country": "CA",
+                    "complainant_ProvinceOrState": "2",
                     "DateSentRequests": "qwerewr",
                     "WordingOfRequest": "hgdffgh",
                     "MoreDetailsOfRequest": "oiuyoiuo",

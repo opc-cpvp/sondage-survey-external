@@ -56,7 +56,8 @@
     },
     {
       "name": "page3",
-      "title" : "this is the page title",
+      "title": "this is the page title",
+      "showOnPreview": false,
       "elements": [
         {
           "type": "panel",
@@ -67,7 +68,7 @@
             {
               "type": "html",
               "name": "What should be improved?",
-              "html" : "<p>hello world</p>"
+              "html": "<p>hello world</p>"
             }
           ]
         }

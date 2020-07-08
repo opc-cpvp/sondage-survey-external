@@ -32,28 +32,12 @@ Located in the code in ~\wwwroot\js\survey\
 - Each check box item is being constructed in the function 'afterRender'.
 - There is a function checkBoxInfoPopup(checkbox) needed for it to work
 
-All other widgets are only for testing features. They are not being used.
+* All other widgets are only for testing features. They are not being used.
 
 ### Notes on CSS classes
 
 - When Survey.js builds the pages, it sets a lot of css classes on html elements. These classes are not used for styling in our case. In
 other words, we are not using the style provided by Survey.js but rather the css for GoC. There is some custom css in ~\wwwroot\css\site.css
-
-### TODO
-
-a) The alert-label-error when a question is not answered is not displaying properly.
-	a1) Also on this, make a box on the top of the page showing all errors (DONE)
-
-b) The navigation panel is the native of and should be replaced
-c) Validation not working for checkboxes with additional html. Plan B: always show the html additional information and use the 'comment' as is. 
-d) Make a french PA.json and set local=fr (that created problem g)
-e) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
-f) Hide navigation bar in the 'Preview'
-g) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
-h) Total MB downloaded
-i) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
-j) Match the property names with the original project 
-k) French accents in json files are not rendered properly. The one found in Survey.js are ok.
 
 ### Preview Problem
 	Still not fixed!!!
@@ -81,3 +65,30 @@ k) French accents in json files are not rendered properly. The one found in Surv
 
 2)	The code to build the error box at the top of the page when thre is errors is in SurveyInit.js in function buildErrorMessage. 
 	There is probably a better to handle the construction of the <section>, specially for multilanguage sites but for now it is working.
+
+### Localization notes
+
+a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
+
+### TODO
+
+a) The alert-label-error when a question is not answered is not displaying properly. It is just CSS
+b) The navigation panel is the native of and should be replaced
+c) Make a french PA.json and set local=fr (that created problem below)
+d) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
+e) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
+f) Hide navigation bar in the 'Preview'
+g) Total MB downloaded
+h) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
+i) Match the property names with the original project 
+j) Explore survey Creator
+l) Add max width on text fields
+
+
+### Fixed todos
+
+1) French accents in json files are not rendered properly. The one found in Survey.js are ok. (DONE)
+2) On alert-label-error, make a box on the top of the page showing all errors (DONE)
+3) Validation not working for checkboxes with additional html. Plan B: always show the html additional information and use the 'comment' as is (DONE with plan A)
+4) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
+then the section "Representative" info is missing

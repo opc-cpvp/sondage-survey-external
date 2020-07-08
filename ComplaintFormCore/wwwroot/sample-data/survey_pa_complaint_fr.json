@@ -3,20 +3,20 @@
   "pages": [
     {
       "name": "page_preliminary_info_1",
-      "title": "Partie A : Renseignements pr\u00e9liminaires (autorisation de repr�sentation) � Formulaire de plainte concernant la protection de la vie priv�e (institution f�d�rale)",
+      "title": "Partie A : Renseignements préliminaires (autorisation de représentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "elements": [
         {
           "type": "radiogroup",
-          "name": "filing_own_behalf",
-          "title": "D�posez-vous cette plainte en votre propre nom (ou au nom d�un enfant mineur dont vous �tes le tuteur) ou au nom d�une autre personne?",
+          "name": "FilingComplaintOnOwnBehalf",
+          "title": "Déposez-vous cette plainte en votre propre nom (ou au nom d’un enfant mineur dont vous êtes le tuteur) ou au nom d’une autre personne?",
           "isRequired": true,
           "choices": [
             {
-              "text": "Vous-m�me (ou un enfant mineur dont vous �tes le tuteur l�gal) ",
+              "text": "Vous-même (ou un enfant mineur dont vous êtes le tuteur légal) ",
               "value": "yourself"
             },
             {
-              "text": "Quelqu�un d�autre",
+              "text": "Quelqu’un d’autre",
               "value": "someone_else"
             }
           ]
@@ -24,20 +24,20 @@
         {
           "type": "html",
           "name": "info_part_a_1",
-          "html": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>Vous ne pouvez d�poser une plainte au nom d�une autre personne que si vous y �tes autoris�. Veuillez utiliser notre formulaire d�autorisation de repr�sentation : </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Autorisation de repr�sentation par un tiers dans le cadre d�une plainte relative � la protection des renseignements personnels (PDF, 99&nbsp;Ko)</a><br><br><p>Vous devez joindre � votre plainte le formulaire d�ment rempli et sign� par le plaignant.</p><p>Nous ne serons pas en mesure de traiter la plainte sans le formulaire d�autorisation d�ment rempli et sign�.</p></section>"
+          "html": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>Vous ne pouvez déposer une plainte au nom d’une autre personne que si vous y êtes autorisé. Veuillez utiliser notre formulaire d’autorisation de représentation : </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Autorisation de représentation par un tiers dans le cadre d’une plainte relative à la protection des renseignements personnels (PDF, 99&nbsp;Ko)</a><br><br><p>Vous devez joindre à votre plainte le formulaire dûment rempli et signé par le plaignant.</p><p>Nous ne serons pas en mesure de traiter la plainte sans le formulaire d’autorisation dûment rempli et signé.</p></section>"
 
         }
       ]
     },
     {
       "name": "page_preliminary_info_2",
-      "title": "Partie A : Renseignements pr�liminaires (identifier l�institution) � Formulaire de plainte concernant la protection de la vie priv�e (institution f�d�rale)",
+      "title": "Partie A : Renseignements préliminaires (identifier l’institution) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "elements": [
         {
           "type": "dropdown",
-          "name": "institution",
-          "title": "Quelle institution f�d�rale fait l�objet de votre plainte? ",
-          "placeHolder": "S�lectionnez...",
+          "name": "WhichFederalGovernementInstitutionComplaintAgainst",
+          "title": "Quelle institution fédérale fait l’objet de votre plainte? ",
+          "placeHolder": "Sélectionnez...",
           "isRequired": true,
           "validators": [
             {
@@ -54,18 +54,18 @@
         {
           "type": "html",
           "name": "info_part_a_2",
-          "html": "<section class='alert alert-info'><p></p><ul><li>Si l�institution pertinente ne figure pas sur la liste, elle peut �tre couverte par une loi applicable au secteur priv� ou par la loi provinciale sur la protection de la vie priv�e. Pour savoir � qui adresser une question vis�e par une autre loi sur la protection de la vie priv�e, veuillez consulter l' <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/' target='_blank'>Aper�u des lois sur la protection des renseignements personnels au Canada.</a></li><li>Si, apr�s avoir consult� cette page, vous n��tes toujours pas certain de l�institution, veuillez <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>communiquer avec le Centre d�information du Commissariat.</a></li><li>Apr�s avoir soumis la plainte, vous aurez l�occasion de d�poser une plainte diff�rente visant la m�me institution ou de d�poser le m�me type de plainte visant une autre institution sans avoir � entrer de nouveau tous vos renseignements personnels.</li></ul></section>"
+          "html": "<section class='alert alert-info'><p></p><ul><li>Si l’institution pertinente ne figure pas sur la liste, elle peut être couverte par une loi applicable au secteur privé ou par la loi provinciale sur la protection de la vie privée. Pour savoir à qui adresser une question visée par une autre loi sur la protection de la vie privée, veuillez consulter l' <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/' target='_blank'>Aperçu des lois sur la protection des renseignements personnels au Canada.</a></li><li>Si, après avoir consulté cette page, vous n’êtes toujours pas certain de l’institution, veuillez <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>communiquer avec le Centre d’information du Commissariat.</a></li><li>Après avoir soumis la plainte, vous aurez l’occasion de déposer une plainte différente visant la même institution ou de déposer le même type de plainte visant une autre institution sans avoir à entrer de nouveau tous vos renseignements personnels.</li></ul></section>"
         }
       ]
     },
     {
       "name": "page_steps_taken_1",
-      "title": "{ part_b_1_title }",
+      "title": "Partie B : Mesures prises (écrire au coordonnateur de l’AIPRP) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "breadcrumb_title": "description page 2",
       "elements": [
         {
           "type": "radiogroup",
-          "name": "raised_concern_writing",
+          "name": "RaisedPrivacyToAtipCoordinator",
           "title": "Have you raised your privacy concerns in writing with the institution's [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>Access to Information and Privacy (ATIP) Coordinator</a>?",
           "isRequired": true,
           "choices": [
@@ -92,56 +92,56 @@
     },
     {
       "name": "page_steps_taken_2",
-      "title": "Part B: Steps taken (Concerns raised with institution) - Privacy complaint form (federal institution)",
+      "title": "Partie B : Mesures prises (préoccupations non soulevées) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "showOnPreview": false,
       "visibleIf": "{}",
       "elements": [
         {
           "type": "html",
-          "html": "<p><strong>If you have already raised your privacy concern with the institution, and you still have any of the following concerns, please click on any relevant choices below for further information.</strong></p>"
+          "html": "<p><strong>Quelle est la raison pour laquelle vous n’avez pas fait part de vos préoccupations par écrit à la personne-ressource de l’institution?</strong></p>"
         },
         {
           "type": "html",
-          "html": "<details><summary>The institution has not responded.</summary><p>Please allow some time for the institution to respond and resolve your issue before filing a complaint with us. Usually, it is reasonable to allow 3 to 5 weeks.</p></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'yes'"
+          "html": "<details><summary>L’institution n’a pas répondu.</summary><p>Veuillez accorder un certain temps à l’institution pour répondre et résoudre votre problème avant de déposer une plainte auprès de nous. En général, il est raisonnable de laisser de trois à cinq semaines.</p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
         },
         {
           "type": "html",
-          "html": "<details><summary>The institution has not made the changes you asked for or given you the information you are looking for.</summary><p>Please be sure to check that your correspondence with the institution was clear about the exact changes or information you are seeking. Consider making a final summary of your concerns and what you are seeking in case the institution did not fully understand.</p></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'yes'"
+          "html": "<details><summary>L’institution n’a pas apporté les changements que vous avez demandés ou ne vous a pas fourni les renseignements que vous cherchez.</summary><p>Veuillez vérifier que votre correspondance avec l’institution était claire au sujet des changements ou des renseignements exacts que vous demandez. Envisagez de faire un résumé final de vos préoccupations et de ce que vous cherchez au cas où l’institution n’aurait pas bien compris.</p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
         },
         {
           "type": "html",
-          "html": "<details><summary>The institution has not compensated you for what happened.</summary><p>Please be aware that our office does not have the power to order compensation. Usually, people need to take legal action to pursue compensation. You may wish to consult a lawyer for more information.</p></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'yes'"
+          "html": "<details><summary>L’institution ne vous a pas indemnisé pour ce qui s’est passé.</summary><p>Veuillez noter que notre Commissariat n’a pas le pouvoir d’ordonner une indemnisation. En règle générale, les gens doivent intenter une action en justice pour obtenir une indemnisation. Il peut être souhaitable de consulter un avocat pour obtenir de plus amples renseignements.</p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
         },
         {
           "type": "html",
-          "html": "<details><summary>The employee(s) responsible for what happened have not been held accountable.</summary><p>Generally, an institution is accountable for how its employees handle personal information. This could mean taking steps to prevent a similar problem in the future. The institution might change its systems, processes and training, or discipline the employee. The decision to discipline an employee is complex and must be made carefully by the institution. Our office cannot order disciplinary action.</p><p>Also, the <em>Privacy Act</em> does not give complainants the right to know if an employee was disciplined and institutions will not usually release this information.</p></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'yes'"
+          "html": "<details><summary>Les employés responsables de ce qui s’est passé n’ont pas été tenus responsables.</summary><p>En général, une institution est responsable de la façon dont ses employés traitent les renseignements personnels. Cela pourrait signifier qu’il faudrait prendre des mesures pour éviter qu’un problème semblable ne se reproduise à l’avenir. L’institution pourrait modifier ses systèmes, ses processus et sa formation ou prendre des mesures disciplinaires à l’égard des employés concernés. La décision de prendre des mesures disciplinaires à l’égard d’employés est complexe et doit être prise avec soin par l’institution. Notre Commissariat ne peut pas ordonner des mesures disciplinaires.</p><p>De plus, la <em>Loi sur la protection des renseignements personnels</em> ne donne pas aux plaignants le droit de savoir si un employé a fait l’objet de mesures disciplinaires et, en général, les institutions ne communiquent pas cette information.</p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
         },
         {
           "type": "html",
-          "visibleIf": "{raised_concern_writing}  contains 'no' or {raised_concern_writing}  contains 'not_sure'",
-          "html": "<details><summary>Don't think it will help</summary><p>Before filing a complaint with our office, we encourage you first to attempt to address your concerns directly with the institution. Many times you can resolve privacy issues through direct communication with the Access to Information and Privacy (ATIP) Coordinator. To find this person please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'> list of Access to Information and Privacy Coordinators by institution</a></p></details>"
+          "html": "<details><summary>Ne pense pas que ça aidera</summary><p>Avant de déposer une plainte auprès de notre bureau, nous vous encourageons à commencer par essayer de faire part de vos préoccupations directement à l’institution. Bien souvent, vous pouvez résoudre les problèmes de protection de la vie privée en communiquant directement avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP). Pour trouver cette personne, veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a></p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
         },
         {
           "type": "html",
-          "html": "<details><summary>Can't find the contact</summary>Please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>list of Access to Information and Privacy Coordinators by institution.</a></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'no' or {raised_concern_writing}  contains 'not_sure'"
+          "html": "<details><summary>Impossible de trouver la personne-ressource</summary>Veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
         },
         {
           "type": "html",
-          "html": "<details><summary>Wish to stay anonymous</summary><p>Please note that yourname (except in extraordinary circumstances) and the details of your complaint will be shared with the institution that is the subject of the complaint. </p><p> We may for the purpose of the investigation share personal information with the institution and may collect personal information from that institution. </p><p> We do not otherwise disclose the information you, provide unless, such a,disclosure is in accordance, with the <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>subsection 8(2) of the, Privacy Act</a>, which is,reserved for,limited situations. In the case of such a disclosure we will only disclose,the information that is required and wherever possible will inform you. </p><p> The personal information you provide,on our complaint form is protected under the <em>Access to Information Act</em> and the <em>Privacy Act</em></p> <p> If you wish to just tell us about an issue and not have your identity revealed use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'> online form to share a privacy comment or an issue without filing a formal complaint</a> At our Commissioner's discretion we can look into matters without a person making a complaint.</p></details>",
-          "visibleIf": "{raised_concern_writing}  contains 'no' or {raised_concern_writing}  contains 'not_sure'"
+          "html": "<details><summary>Souhaite rester anonyme</summary><p>Veuillez noter que votre nom (sauf dans des circonstances extraordinaires) et les détails de votre plainte seront communiqués à l’institution qui fait l’objet de la plainte.</p><p>Nous pouvons, aux fins de l’enquête, communiquer des renseignements personnels à l’institution et recueillir des renseignements personnels auprès de cette institution.</p><p>Nous ne divulguons pas autrement les renseignements que vous nous fournissez, à moins que cette divulgation soit conforme au <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>paragraphe 8(2) de la Loi sur la protection des renseignements personnels</a>, qui est réservé à des situations limitées. Le cas échéant, le Commissariat ne communiquera que l’information nécessaire et, dans la mesure du possible, vous en avisera.</p><p>Les renseignements personnels que vous fournissez sur notre formulaire de plainte sont protégés en vertu de la <em>Loi sur l’accès à l’information</em> et de la <em>Loi sur la protection des renseignements personnels.</em></p> <p>Si vous souhaitez simplement nous parler d’un problème, et que votre identité ne soit pas révélée, utilisez notre <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'> formulaire en ligne pour faire part d’un commentaire ou d’une question relative à la protection de la vie privée sans avoir à déposer une plainte officielle.</a> À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></details>",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
         },
         {
           "type": "html",
-          "html": "<p><h4>Ending your session</h4></p><p>If, If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>"
+          "html": "<p><h4>Fermeture de votre session</h4></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
         },
         {
           "type": "html",
-          "html": "<h4>Continuing with your complaint</h4><p>If you wish to continue your complaint, you will need to attach copies of your correspondence with the institution (if any) about your privacy concern at the end of this form.</p>"
+          "html": "<h4>Poursuite de votre plainte</h4><p>Si vous souhaitez poursuivre votre plainte, vous devrez joindre des copies de votre correspondance avec l’institution (le cas échéant) au sujet de vos préoccupations en matière de protection de la vie privée à la fin du présent formulaire.</p>"
         }
       ]
     },
@@ -151,7 +151,7 @@
       "elements": [
         {
           "type": "checkbox",
-          "name": "type_complaint",
+          "name": "WhichOneOfTheseChoicesSummarizesYourComplaint",
           "title": "Which of the following choices most accurately summarizes your complaint?",
           "isRequired": true,
           "colCount": 1,
@@ -213,7 +213,7 @@
       "elements": [
         {
           "type": "radiogroup",
-          "name": "description_IsEmployee",
+          "name": "EmployeeOrCustomer",
           "title": "Are you submitting the complaint as a member of the general public or as an employee of the goverment institution?",
           "isRequired": true,
           "choices": [
@@ -233,7 +233,7 @@
           "title": "What date did you send your written access request to the institution ? If you sent multiple requests please list each one. (maximum 5,000 characters)",
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' ",
           "width": "100%"
 
         },
@@ -243,14 +243,14 @@
           "title": "What was the wording of your request and the file number (or reference number) provided by the institution? (maximum 5,000 characters)",
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
           "name": "MoreDetailsOfRequest",
           "title": "If the institution asked you for more information or to provide a clarification regarding your request, what and when did you reply? (maximum 5,000 characters)",
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
@@ -258,14 +258,14 @@
           "title": "What date did you receive a final response from the institution? (maximum 5,000 characters)",
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "radiogroup",
           "name": "DidNoRecordExist",
           "title": "Did the institution reply that no records exist?",
           "isRequired": true,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' ",
           "choices": [
             "Yes",
             "No"
@@ -276,21 +276,21 @@
           "name": "PrivacyActSectionsApplied",
           "title": "What sections of the *Privacy Act* did the institution mention (if any) as the reason it withheld information in its response to your request? (maximum 5,000 characters)",
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
           "name": "ItemsNotRecieved",
           "title": "Please describe each item (if any) from your access request that you have not yet received. (maximum 5,000 characters)",
           "maxLength": 5000,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "radiogroup",
           "name": "InstitutionAgreedRequestOnInformalBasis",
           "title": "Did the institution agree to process your request on an informal basis?",
           "isRequired": true,
-          "visibleIf": "{type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' ",
           "choices": [
             "Yes",
             "No",
@@ -303,7 +303,7 @@
           "title": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "({type_complaint} contains 'NatureOfComplaintCorrection' or {type_complaint} contains 'NatureOfComplaintCollection' or {type_complaint} contains 'NatureOfComplaintUseAndDisclosure' or {type_complaint} contains 'NatureOfComplaintRetentionAndDisposal' or {type_complaint} contains 'NatureOfComplaintOther') and ({type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage')",
+          "visibleIf": "({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage')",
           "htmldescription": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>"
         },
         {
@@ -312,7 +312,7 @@
           "title": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "!(({type_complaint} contains 'NatureOfComplaintCorrection' or {type_complaint} contains 'NatureOfComplaintCollection' or {type_complaint} contains 'NatureOfComplaintUseAndDisclosure' or {type_complaint} contains 'NatureOfComplaintRetentionAndDisposal' or {type_complaint} contains 'NatureOfComplaintOther') and ({type_complaint} contains 'NatureOfComplaintDelay' or {type_complaint} contains 'NatureOfComplaintExtensionOfTime' or {type_complaint} contains 'NatureOfComplaintDenialOfAccess' or {type_complaint} contains 'NatureOfComplaintLanguage'))",
+          "visibleIf": "!(({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage'))",
 
           "htmldescription": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>"
         },
@@ -400,38 +400,38 @@
             },
             {
               "type": "text",
-              "name": "complainant_first_name",
+              "name": "complainant_FirstName",
               "title": "First name",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "complainant_last_name",
+              "name": "complainant_LastName",
               "title": "Last name",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "complainant_email",
+              "name": "complainant_Email",
               "inputType": "email",
               "title": "E-mail address (yourname@domain.com)",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "complainant_mailing_address",
+              "name": "complainant_MailingAddress",
               "title": "Mailing address",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "complainant_city",
+              "name": "complainant_City",
               "title": "City",
               "isRequired": true
             },
             {
               "type": "dropdown",
-              "name": "complainant_country",
+              "name": "complainant_Country",
               "title": "Country",
               "requiredErrorText": "This field is required",
               "isRequired": true,
@@ -449,7 +449,7 @@
             },
             {
               "type": "dropdown",
-              "name": "complainant_provinces",
+              "name": "complainant_ProvinceOrState",
               "title": "Province/Territory",
               "requiredErrorText": "This field is required",
               "isRequired": true,
@@ -468,13 +468,13 @@
             },
             {
               "type": "text",
-              "name": "complainant_postal_code",
+              "name": "complainant_PostalCode",
               "title": "Postal code",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "complainant_daytime_phone",
+              "name": "complainant_DayTimeNumber",
               "inputType": "tel",
               "title": "Daytime telephone number (123-456-7890)",
               "description": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
@@ -482,19 +482,141 @@
             },
             {
               "type": "text",
-              "name": "complainant_extension",
+              "name": "complainant_DayTimeNumberExtension",
               "title": "Extension (digits only)",
               "inputType": "number"
             },
             {
               "type": "text",
-              "name": "complainant_alt_phone",
+              "name": "complainant_AltTelephoneNumber",
               "inputType": "tel",
               "title": "Alternate telephone number (123-456-7890)"
             },
             {
               "type": "text",
-              "name": "complainant_alt_phone_extension",
+              "name": "complainant_AltTelephoneNumberExtension",
+              "title": "Extension (digits only)",
+              "inputType": "number"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "ReprensentativeInformation",
+          "title": "Reprensentative Information",
+          "description": "Enter Representative Information",
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else'",
+          "elements": [
+            {
+              "type": "dropdown",
+              "name": "reprensentative_title",
+              "title": "Preferred form of address",
+              "isRequired": true,
+              "colCount": 0,
+              "choices": [
+                "Mr.",
+                "Mrs.",
+                "Ms.",
+                "Other"
+              ]
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_FirstName",
+              "title": "First name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_LastName",
+              "title": "Last name",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_Email",
+              "inputType": "email",
+              "title": "E-mail address (yourname@domain.com)",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_MailingAddress",
+              "title": "Mailing address",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_City",
+              "title": "City",
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "reprensentative_Country",
+              "title": "Country",
+              "requiredErrorText": "This field is required",
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({reprensentative_Country}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Country",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "dropdown",
+              "name": "reprensentative_ProvinceOrState",
+              "title": "Province/Territory",
+              "requiredErrorText": "This field is required",
+              "isRequired": true,
+              "visibleIf": "{reprensentative_Country} = 'CA'",
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({reprensentative_ProvinceOrState}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Province",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_PostalCode",
+              "title": "Postal code",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_DayTimeNumber",
+              "inputType": "tel",
+              "title": "Daytime telephone number (123-456-7890)",
+              "description": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_DayTimeNumberExtension",
+              "title": "Extension (digits only)",
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_AltTelephoneNumber",
+              "inputType": "tel",
+              "title": "Alternate telephone number (123-456-7890)"
+            },
+            {
+              "type": "text",
+              "name": "reprensentative_AltTelephoneNumberExtension",
               "title": "Extension (digits only)",
               "inputType": "number"
             }
@@ -532,7 +654,7 @@
               "type": "comment",
               "name": "complainant_NeedsDisabilityAccommodation_details",
               "title": "If yes, please describe what accommodation measures you are requesting and the reason.",
-              "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC�s Information Centre</a>",
+              "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a>",
               "isRequired": true,
               "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'Yes'"
 
