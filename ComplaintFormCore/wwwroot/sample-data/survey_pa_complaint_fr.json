@@ -1,27 +1,22 @@
 {
   "locale": "fr",
-  "showProgressBar": "bottom",
-  "goNextPageAutomatic": false,
-  "showNavigationButtons": false,
-  "showQuestionNumbers": "off",
-  "questionErrorLocation": "top",
   "pages": [
     {
       "name": "page_preliminary_info_1",
-      "title": "Part A: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
+      "title": "Partie A : Renseignements pr\u00e9liminaires (autorisation de représentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "elements": [
         {
           "type": "radiogroup",
           "name": "filing_own_behalf",
-          "title": "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?",
+          "title": "Déposez-vous cette plainte en votre propre nom (ou au nom d’un enfant mineur dont vous êtes le tuteur) ou au nom d’une autre personne?",
           "isRequired": true,
           "choices": [
             {
-              "text": "Yourself (or minor child for whom you are legal guardian)",
+              "text": "Vous-même (ou un enfant mineur dont vous êtes le tuteur légal) ",
               "value": "yourself"
             },
             {
-              "text": "Someone else",
+              "text": "Quelqu’un d’autre",
               "value": "someone_else"
             }
           ]
@@ -29,21 +24,20 @@
         {
           "type": "html",
           "name": "info_part_a_1",
-          "html": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>You may only file a complaint on behalf of someone else if you are authorized to do so. Please use our representative authorization form: </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Authorization to act as a representative for a privacy complaint (PDF, 99 KB)</a><br><br><p>You must submit the completed form signed by the complainant as an attachment to your complaint.</p><p>We will not be able to process the complaint without the completed signed authorization form.</p></section>"
+          "html": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>Vous ne pouvez déposer une plainte au nom d’une autre personne que si vous y êtes autorisé. Veuillez utiliser notre formulaire d’autorisation de représentation : </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Autorisation de représentation par un tiers dans le cadre d’une plainte relative à la protection des renseignements personnels (PDF, 99&nbsp;Ko)</a><br><br><p>Vous devez joindre à votre plainte le formulaire dûment rempli et signé par le plaignant.</p><p>Nous ne serons pas en mesure de traiter la plainte sans le formulaire d’autorisation dûment rempli et signé.</p></section>"
 
         }
       ]
     },
     {
       "name": "page_preliminary_info_2",
-      "title": "{ part_a_2_title }",
+      "title": "Partie A : Renseignements préliminaires (identifier l’institution) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)",
       "elements": [
         {
           "type": "dropdown",
           "name": "institution",
-          "title": "Which federal government institution is your complaint againts?",
-          "placeHolder": "Select...",
-          "requiredErrorText": "This field is required",
+          "title": "Quelle institution fédérale fait l’objet de votre plainte? ",
+          "placeHolder": "Sélectionnez...",
           "isRequired": true,
           "validators": [
             {
@@ -60,7 +54,7 @@
         {
           "type": "html",
           "name": "info_part_a_2",
-          "html": "<section class='alert alert-info'><p></p><ul><li>If the relevant institution is not listed, it may be covered by private sector or provincial privacy legislation. To find out where to address an issue covered by another privacy law, refer to the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/' target='_blank'>summary of privacy laws in Canada.</a></li><li>If after consulting this page you are still unsure of the institution, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>contact OPC's Information Center.</a></li><li>After submitting the complaint, you will have the opportunity to file a different privacy complaint about the same institution or file the same type of complaint about another institution without having to re-enter all your information.</li></ul></section>"
+          "html": "<section class='alert alert-info'><p></p><ul><li>Si l’institution pertinente ne figure pas sur la liste, elle peut être couverte par une loi applicable au secteur privé ou par la loi provinciale sur la protection de la vie privée. Pour savoir à qui adresser une question visée par une autre loi sur la protection de la vie privée, veuillez consulter l' <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/' target='_blank'>Aperçu des lois sur la protection des renseignements personnels au Canada.</a></li><li>Si, après avoir consulté cette page, vous n’êtes toujours pas certain de l’institution, veuillez <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>communiquer avec le Centre d’information du Commissariat.</a></li><li>Après avoir soumis la plainte, vous aurez l’occasion de déposer une plainte différente visant la même institution ou de déposer le même type de plainte visant une autre institution sans avoir à entrer de nouveau tous vos renseignements personnels.</li></ul></section>"
         }
       ]
     },
@@ -541,7 +535,7 @@
               "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a>",
               "isRequired": true,
               "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'Yes'"
-       
+
             }
           ]
         }

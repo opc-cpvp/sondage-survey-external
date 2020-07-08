@@ -1,10 +1,5 @@
 {
   "locale": "en",
-  "showProgressBar": "bottom",
-  "goNextPageAutomatic": false,
-  "showNavigationButtons": false,
-  "showQuestionNumbers": "off",
-  "questionErrorLocation": "top",
   "pages": [
     {
       "name": "page_preliminary_info_1",
@@ -541,7 +536,7 @@
               "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a>",
               "isRequired": true,
               "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'Yes'"
-       
+
             }
           ]
         }

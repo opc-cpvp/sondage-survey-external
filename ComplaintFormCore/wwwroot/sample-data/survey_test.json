@@ -1,28 +1,41 @@
 {
   "locale": "en",
-  "showProgressBar": "bottom",
-  "goNextPageAutomatic": false,
-  "showNavigationButtons": false,
-  "showQuestionNumbers": "off",
-  "questionErrorLocation": "top",
   "pages": [
     {
       "name": "page2",
       "elements": [
         {
-          "type": "radiogroup",
-          "name": "price_to_competitors",
-          "title": "Compared to our competitors, do you feel the Product is",
+          "name": "my_name",
+          "type": "text",
+          "title": "Please enter your name:",
+          "placeHolder": "Jon Snow",
+          "isRequired": true
+        },
+        {
+          "type": "dropdown",
+          "name": "car",
+          "title": "What car are you driving?",
+          "isRequired": true,
+          "colCount": 0,
           "choices": [
-            "Less expensive",
-            "Priced about the same",
-            "More expensive",
-            "Not sure"
+            "None",
+            "Ford",
+            "Vauxhall",
+            "Volkswagen",
+            "Nissan",
+            "Audi",
+            "Mercedes-Benz",
+            "BMW",
+            "Peugeot",
+            "Toyota",
+            "Citroen"
           ]
         },
         {
           "type": "radiogroup",
           "name": "price",
+          "isRequired": true,
+          "requiredErrorText": "This field is required 3",
           "title": "Do you feel our current price is merited by our product?",
           "choices": [
             {

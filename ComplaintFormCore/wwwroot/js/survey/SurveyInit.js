@@ -1,4 +1,6 @@
-﻿function initSurvey(Survey) {
+﻿var global_language = "";
+
+function initSurvey(Survey) {
 
     //  Add a new property for each item choices (to the native text, value). This is used for checkboxes with addtional Html info
     //  but could be used for radiobutton as well.
@@ -38,12 +40,12 @@
     //    .StylesManager
     //    .applyTheme("default");
 
-
+    //  This is how we replace string from Survey.js (englishStrings or frenchSurveyStrings) for localization.
+    Survey.surveyLocalization.locales["en"].requiredError = "This field is required";
+    Survey.surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
 }
 
 function initSurveyModelProperties(survey) {
-
-    survey.requiredText = "(required)";
 
     //survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
     survey.showPreviewBeforeComplete = 'showAllQuestions';
@@ -53,6 +55,19 @@ function initSurveyModelProperties(survey) {
     survey.clearInvisibleValues = "onHidden ";
 
     survey.questionErrorLocation = "top";
+    survey.showProgressBar = "bottom";
+    survey.goNextPageAutomatic = false;
+    survey.showQuestionNumbers = "off";
+    survey.showNavigationButtons = false;
+
+    global_language = survey.locale;
+
+    if (global_language == "fr") {
+        survey.requiredText = "(obligatoire)";
+    }
+    else {
+        survey.requiredText = "(required)";
+    }
 }
 
 function initSurveyModelEvents(survey) {
@@ -81,26 +96,26 @@ function initSurveyModelEvents(survey) {
         .onValueChanged
         .add(function (sender, options) {
 
-            if (options.question.getType() === 'comment') {
-                if (!options.value || (!options.value.trim() && options.value.trim() !== 0 && options.value.trim() !== false)) {
+            //if (options.question.getType() === 'comment') {
+            //    if (!options.value || (!options.value.trim() && options.value.trim() !== 0 && options.value.trim() !== false)) {
 
-                    //  Adding a . for comment questions that are not answered so they can be displayed in the preview
-                    sender.getQuestionByName(options.name).value = ".";
-                }
-            }
+            //        //  Adding a . for comment questions that are not answered so they can be displayed in the preview
+            //        sender.getQuestionByName(options.name).value = ".";
+            //    }
+            //}
         });
 
     survey
         .onAfterRenderQuestion
         .add(function (survey, options) {
 
-            if (options.question.getType() === 'comment') {
-                if (!options.question.value || (!options.question.value.trim() && options.question.value.trim() !== 0 && options.question.value.trim() !== false)) {
+            //if (options.question.getType() === 'comment') {
+            //    if (!options.question.value || (!options.question.value.trim() && options.question.value.trim() !== 0 && options.question.value.trim() !== false)) {
 
-                    //  Adding a . for comment questions that are not answered so they can be displayed in the preview
-                    options.question.value = ".";
-                }
-            }
+            //        //  Adding a . for comment questions that are not answered so they can be displayed in the preview
+            //        options.question.value = ".";
+            //    }
+            //}
 
 
             //  If it is the preview mode...
@@ -118,9 +133,9 @@ function initSurveyModelEvents(survey) {
                 options.question.description = "";
 
                 //  This will remove the html questions in Preview mode.
-                if (options.question.getType() === 'html') {
-                    options.question.html = "";
-                }
+                //if (options.question.getType() === 'html') {
+                //    options.question.html = "";
+                //}
 
             }
 
@@ -129,6 +144,20 @@ function initSurveyModelEvents(survey) {
             if (options.question.isRequired == true && !options.question.title.includes("<span class='sv_q_required_text'>&ast; </span>")) {
 
                 options.question.title = "<span class='sv_q_required_text'>&ast; </span>" + options.question.title;
+            }
+        });
+
+    survey
+        .onValidatedErrorsOnCurrentPage
+        .add(function (sender, options) {
+            
+            if (options.errors && options.errors.length > 0) {
+                $("#div_errors_list").html(buildErrorMessage(options.errors, options.questions));
+                $("#div_errors_list").show();
+            }
+            else {
+                $("#div_errors_list").html("");
+                $("#div_errors_list").hide();
             }
         });
 
@@ -187,5 +216,74 @@ function endSession() {
 
 function save() {
     alert("Not implemented. Probably need to trigger Complete on the survey.");
+}
+
+function buildErrorMessage(errorArray, questionArray) {
+
+    var message = "<section role='alert' class='alert alert-danger'>";
+    message += "<h2>";
+
+    if (global_language == "fr") {
+        message += "Le formulaire ne pouvait pas être soumis parce que ";
+    }
+    else {
+        message += "The form could not be submitted because ";
+    }
+   
+    message += errorArray.length;
+
+    if (errorArray.length > 1) {
+        if (global_language == "fr") {
+            message += " erreurs ont été trouvée";
+        }
+        else {
+            message += " errors where found";
+        }        
+    }
+    else {
+        if (global_language == "fr") {
+            message += " erreur a été trouvée";
+        }
+        else {
+            message += " error was found";
+        }
+    }
+   
+    message += "</h2>";
+
+    message += "<ul>";
+
+    $.each(questionArray, function (key, val) {
+
+        if (val.hasErrors) {
+            var errorIndex = key + 1;
+
+            message += "<li>";
+
+            if (val.getType() == "radiogroup") {
+                //  We are selecting the first option to href to
+                message += "<a href='#" + val.inputId + "_0'>";
+            }
+            else {
+                message += "<a href='#" + val.inputId + "'>";
+            }
+
+            if (global_language == "fr") {
+                message += "Erreur " + errorIndex + ": ";
+            }
+            else {
+                message += "Error " + errorIndex + ": ";
+            }
+           
+            message += val.title;
+            message += "</a>";
+            message += "</li>";
+        }       
+    });
+   
+    message += "</ul>";
+    message += "</section>";
+
+    return message;
 }
 

@@ -127,10 +127,10 @@
     <value>FR-Preview</value>
   </data>
   <data name="btnSurveyNext" xml:space="preserve">
-    <value>FR-Continue</value>
+    <value>Continuer</value>
   </data>
   <data name="btnSurveyPrev" xml:space="preserve">
-    <value>FR-Previous</value>
+    <value>Écran précédent</value>
   </data>
   <data name="OverviewPA" xml:space="preserve">
     <value>&amp;lt;p&amp;gt;Remplissez ce formulaire pour déposer une plainte concernant la protection de la vie privée visant une institution fédérale auprès du Commissariat à la protection de la vie privée du Canada.&amp;lt;/p&amp;gt;
