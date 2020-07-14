@@ -89,20 +89,30 @@ var widget = {
 
             outputHTML = outputHTML + "/>";
 
-            outputHTML = outputHTML + "<span class='checkbox-material'><svg viewBox = '0 0 24 24' class='sv-hidden' ><path d='M5,13l2-2l3,3l7-7l2,2l-9,9L5,13z'></path></svg ><span class='check'></span></span >    <span class='sv_q_checkbox_control_label'><span style='position: static;'><span style='position: static;'>" + row.text + "</span></span></span>" +
+            outputHTML = outputHTML + "<span class='checkbox-material'><span class='check'></span></span >    <span class='sv_q_checkbox_control_label'><span style='position: static;'><span style='position: static;'>" + row.text + "</span></span></span>" +
                 "   </label>";
 
             //  question.isReadOnly means we are in 'Preview' mode so we don't want to display the additional information in preview
             if (!question.isReadOnly && row.htmlAdditionalInfo) {
-
+                
                 //  This is where we are adding the additionnal information. 
                 //  Putting the <div> wrapper here is probably better than putting it in the json
-                if (isChecked) {
-                    outputHTML = outputHTML + "<div class='info-popup alert alert-info' style='display: block;'>" + row.htmlAdditionalInfo + "</div>";
+                outputHTML += "<div class='info-popup alert alert-info' style='display: " + (isChecked ? 'block' : 'none') + ";'>";
+
+                var rowText = "";
+
+                if (global_language == 'fr' && row.htmlAdditionalInfo.fr) {
+                    rowText = row.htmlAdditionalInfo.fr;
+                }
+                else if (row.htmlAdditionalInfo.en) {
+                    rowText = row.htmlAdditionalInfo.en;
                 }
                 else {
-                    outputHTML = outputHTML + "<div class='info-popup alert alert-info' style='display: none;'>" + row.htmlAdditionalInfo + "</div>";
-                }                
+                    rowText = row.htmlAdditionalInfo;
+                }
+
+                outputHTML += rowText;
+                outputHTML += "</div>";
             }
 
             outputHTML = outputHTML + "</div>";

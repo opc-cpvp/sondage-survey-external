@@ -11,7 +11,7 @@
     <script src="~/js/survey/survey.vue.OPC.js"></script>
     <script src="~/js/survey/SurveyInit.js"></script>
     <script src="~/js/survey/SurveyLocalStorage.js"></script>
-    <script src="~/js/survey/widgets/widgetPanel.js"></script>
+    <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
     <script>
@@ -23,13 +23,15 @@
 
         initSurvey(Survey);
 
-        var json = "/sample-data/survey_test.json";
+        var json = "/sample-data/survey_test_2.json";
 
         fetch(json)
             .then(response => response.json())
             .then(json => {
 
                 survey = new Survey.Model(json);
+
+                survey.SurveyTemplateText().replaceText('<div><p>hgfhgf</p></div>', "question", "radiogroup");
 
                 initSurveyModelEvents(survey);
 
@@ -50,7 +52,7 @@
                 //  Call the event to set the navigation buttons on page load
                 onCurrentPageChanged_updateNavButtons(survey);
 
-               // onCurrentPageChanged_saveState(survey);
+                // onCurrentPageChanged_saveState(survey);
 
                 //  Add events only applicable to this page **********************
                 survey
@@ -73,7 +75,7 @@
                     .onCurrentPageChanged
                     .add(onCurrentPageChanged_saveState);
 
-               // ****Event *****************************************************
+                // ****Event *****************************************************
 
                 var app = new Vue({
                     el: '#surveyElement',

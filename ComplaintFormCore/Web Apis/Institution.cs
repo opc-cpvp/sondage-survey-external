@@ -9,7 +9,13 @@ namespace ComplaintFormCore.Web_Apis.Models
     public class Institution
     {
         public string Value { get; set; }
+
+        public string Name { get; set; }
+
         public string EnglishName { get; set; }
         public string FrenchName { get; set; }
+
     }
+
+    
 }

@@ -126,6 +126,9 @@
   <data name="btnShowPreview" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="btnStartSurvey" xml:space="preserve">
+    <value>Start</value>
+  </data>
   <data name="btnSurveyNext" xml:space="preserve">
     <value>Continue</value>
   </data>
@@ -167,5 +170,8 @@
 &amp;lt;div class="alert alert-info"&amp;gt;
   &amp;lt;p&amp;gt;Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, your information will be deleted. You will have to start over.&amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;</value>
+  </data>
+  <data name="OverviewPaTitle" xml:space="preserve">
+    <value>Instructions - Privacy complaint form (federal institution)</value>
   </data>
 </root>

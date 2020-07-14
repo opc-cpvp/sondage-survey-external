@@ -1,5 +1,5 @@
 {
-  "locale": "en",
+  
   "pages": [
     {
       "name": "page2",
@@ -7,9 +7,32 @@
         {
           "name": "my_name",
           "type": "text",
-          "title": "Please enter your name:",
+          "title": {
+            "en": "Please enter your name",
+            "fr": "Entrer votre nom"
+          },
           "placeHolder": "Jon Snow",
           "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "SummarizeYourConcernsAndAnyStepsTaken_B",
+          "title": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
+          "isRequired": true,
+          "maxLength": 5000,
+          "htmldescription": "Please explain:  * what the organization did or did not do, with personal information, that you are unhappy about * the who, what, when, where, why of your complaint * If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)"
+        },
+        {
+          "type": "comment",
+          "name": "WhatWouldResolveYourComplaintDetailsPA",
+          "title": "What would resolve your concerns? (maximum 5,000 characters)",
+          "isRequired": true,
+          "htmldescription": "Please describe any steps or remedies that would resolve your concerns.  pFor example, * for an employee to receive training * a change in a practice * getting a specific piece of information    Please note our Office does not have the power to fine organizations or award damages    Note that our Commissioner does not have the power to force a government institution to take a specific action."
+        },
+        {
+          "type": "comment",
+          "name": "PrivacyActSectionsApplied",
+          "title": "What sections of the <i>Privacy Act</i> did the institution mention (if any) as the reason it withheld information in its response to your request? (maximum 5,000 characters)"
         },
         {
           "type": "dropdown",

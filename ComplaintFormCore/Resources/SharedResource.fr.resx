@@ -126,6 +126,9 @@
   <data name="btnShowPreview" xml:space="preserve">
     <value>FR-Preview</value>
   </data>
+  <data name="btnStartSurvey" xml:space="preserve">
+    <value>Commencé</value>
+  </data>
   <data name="btnSurveyNext" xml:space="preserve">
     <value>Continuer</value>
   </data>
@@ -166,6 +169,9 @@
   &amp;lt;/ul&amp;gt;&amp;lt;div class="alert alert-info"&amp;gt;
         &amp;lt;p&amp;gt;Vos renseignements ne seront pas enregistrés tant que vous n’aurez pas terminé l’étape finale « Soumettre la plainte ». Si vous mettez fin à votre session avant de soumettre la plainte, vos renseignements seront supprimés. Vous devrez recommencer à zéro.&amp;lt;/p&amp;gt;
 &amp;lt;/div&amp;gt;</value>
+  </data>
+  <data name="OverviewPaTitle" xml:space="preserve">
+    <value>Instructions – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>gkjldflgjfsdlgjsldfjg</value>

@@ -322,7 +322,7 @@
           "name": "WhatWouldResolveYourComplaintDetailsPA",
           "title": "What would resolve your concerns? (maximum 5,000 characters)",
           "isRequired": true,
-          "htmldescription": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><div class='alert alert-info'><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>"
+          "htmldescription": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><div class='alert alert-info'><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>&nbsp;&nbsp;&nbsp;"
         },
         {
           "type": "comment",
@@ -654,7 +654,7 @@
               "type": "comment",
               "name": "complainant_NeedsDisabilityAccommodation_details",
               "title": "If yes, please describe what accommodation measures you are requesting and the reason.",
-              "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a>",
+              "description": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPCâ€™s Information Centre</a>",
               "isRequired": true,
               "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'Yes'"
 
@@ -713,17 +713,40 @@
               "html": "<div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div>"
             },
             {
-              "type": "file",
-              "name": "documentation_file_upload",
+              "type": "panel",
+              "title": "Authorization form attachment(s)",
+              "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else'",
+              "elements": [
+                {
+                  "type": "file",
+                  "name": "documentation_file_upload",
+                  "title": "Attachments",
+                  "description": "Upload a file to attach to your complaint",
+                  "hasComment": false,
+                  "allowMultiple": true,
+                  "waitForUpload": true,
+                  "maxSize": 0,
+                  "needConfirmRemoveFile": true
+                }
+              ]
+            },
+            {
+              "type": "panel",
               "title": "Attachments",
-              "description": "Upload a file to attach to your complaint",
-              "isRequired": true,
-              "hasComment": false,
-              "allowMultiple": true,
-              "waitForUpload": true,
-              "maxSize": 0,
-              "needConfirmRemoveFile": true
-            }
+              "elements": [
+                {
+                  "type": "file",
+                  "name": "documentation_file_upload",
+                  "title": "&nbsp;",
+                  "description": "Upload a file to attach to your complaint",
+                  "hasComment": false,
+                  "allowMultiple": true,
+                  "waitForUpload": true,
+                  "maxSize": 0,
+                  "needConfirmRemoveFile": true
+                }
+              ]
+            } 
           ]
         },
         {

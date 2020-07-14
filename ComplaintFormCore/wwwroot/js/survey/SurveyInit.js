@@ -14,27 +14,6 @@ function initSurvey(Survey) {
         .Instance
         .register("HasSelectedItem", HasSelectedItem);
 
-    //  You may add a new property into all question types, panel, page and survey. If you add a property into base type, like “question” then it will be available
-    //  in all its successors.“questionbase” is base class for all questions and “question” is base class for all questions that has a value property.
-    //  “html” question is derived from “questionbase” and not “question” type.
-    Survey.JsonObject.metaData.addProperty("question",
-        {
-            name: "showOnPreview", default: true
-        });
-
-    Survey.JsonObject.metaData.addProperty("questionbase",
-        {
-            name: "showOnPreview", default: true
-        });
-
-    Survey.JsonObject.metaData.addProperty("page", {
-        name: "showOnPreview", default: true
-    });
-
-    Survey.JsonObject.metaData.addProperty("panel", {
-        name: "showOnPreview", default: true
-    });
-
     //  We do not apply style here, we're using the GoC style
     //Survey
     //    .StylesManager
@@ -43,9 +22,28 @@ function initSurvey(Survey) {
     //  This is how we replace string from Survey.js (englishStrings or frenchSurveyStrings) for localization.
     Survey.surveyLocalization.locales["en"].requiredError = "This field is required";
     Survey.surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
+
+    Survey.StylesManager.Enabled = false;
+
+    //Survey.ChoicesRestfull.onBeforeSendRequest = function (sender, options) {
+    //    options.request.setRequestHeader("Authorization", "Bearer " + authToken);
+    //};
+
+    //Survey.ChoicesRestfull.onBeforeSendRequest = function (sender, options) {
+    //    options.request.setRequestHeader("language", Survey.surveyLocalization.locales);
+    //};
+
+    //new Survey.SurveyTemplateText().replaceText('<div><p>hgfhgf</p></div>', "question", "radiogroup");
 }
 
 function initSurveyModelProperties(survey) {
+
+    var myCss = {
+        navigationButton: "btn btn-primary",
+        html: "sq-html"
+    };
+
+    survey.css = myCss;
 
     //survey.showPreviewBeforeComplete = 'showAnsweredQuestions';
     survey.showPreviewBeforeComplete = 'showAllQuestions';
@@ -61,6 +59,7 @@ function initSurveyModelProperties(survey) {
     survey.showNavigationButtons = false;
 
     global_language = survey.locale;
+    survey.setVariable("languageCode", global_language);    
 
     if (global_language == "fr") {
         survey.requiredText = "(obligatoire)";
@@ -73,6 +72,7 @@ function initSurveyModelProperties(survey) {
 function initSurveyModelEvents(survey) {
 
     //  THIS IS THE SHOWDOWN MARKDOWN CODE***************
+    //  More details on this at https://github.com/showdownjs/showdown/wiki/Showdown-Options
     var converter = new showdown.Converter();
     converter.simpleLineBreaks = true;
     converter.tasklists = true;
@@ -91,6 +91,54 @@ function initSurveyModelEvents(survey) {
             //set html
             options.html = str;
         });
+
+    survey
+        .onUpdateQuestionCssClasses
+        .add((survey, options) => {
+
+        let classes = options.cssClasses;
+
+        //  Add the css class label-danger
+        classes.error.locationTop += " label-danger";
+
+        if (options.question.getType() == "comment") {
+            // This is a little strange but for 'comment' the root is <textarea>
+            classes.root = "form-control";
+            //let parentClasses = options.question.parent.cssClasses;
+        }
+        else {
+
+            classes.root += " form-group";
+
+            if (options.question.getType() == "checkbox") {
+                classes.itemControl += " checkbox-info-popup-trigger";
+            }
+            else if (options.question.getType() == "file") {
+                //classes.chooseFile = "btn btn-primary";
+            }
+            else if (options.question.getType() == "dropdown") {
+                classes.control += " form-control";
+            }
+            else if (options.question.getType() == "comment") {
+                //classes.comment = "form-control";
+                //classes.root += " form-group";
+                //let parentClasses = options.question.parent.cssClasses;
+            }
+            else if (options.question.getType() == "radiogroup") {
+                //classes.materialDecorator = "";
+            } 
+        }       
+    });
+
+    survey
+        .onUpdatePanelCssClasses
+        .add((survey, options) => {
+
+            let classes = options.cssClasses;
+            classes.panel.container = "";
+        });
+
+   
 
     survey
         .onValueChanged
@@ -138,13 +186,6 @@ function initSurveyModelEvents(survey) {
                 //}
 
             }
-
-            //  This is to add * at the beginning of a required question. The property requiredText
-            //  is set as 'required' later in the code
-            if (options.question.isRequired == true && !options.question.title.includes("<span class='sv_q_required_text'>&ast; </span>")) {
-
-                options.question.title = "<span class='sv_q_required_text'>&ast; </span>" + options.question.title;
-            }
         });
 
     survey
@@ -152,14 +193,26 @@ function initSurveyModelEvents(survey) {
         .add(function (sender, options) {
             
             if (options.errors && options.errors.length > 0) {
-                $("#div_errors_list").html(buildErrorMessage(options.errors, options.questions));
+                $("#div_errors_list").html(buildErrorMessage(options.errors));
                 $("#div_errors_list").show();
+
+                updateLabelError(options.errors);
             }
             else {
                 $("#div_errors_list").html("");
                 $("#div_errors_list").hide();
             }
         });
+
+    survey
+        .onGetQuestionTitle.add(function (sender, options) {
+
+            //  This is to add * at the beginning of a required question. The property requiredText
+            //  is set as 'required' later in the code
+            if (options.question.owner.isRequired) {
+                options.title = "<span class='sv_q_required_text'>&ast; </span>" + options.title;
+            }
+    });
 
     //  Use for our custom navigation
     survey
@@ -218,7 +271,7 @@ function save() {
     alert("Not implemented. Probably need to trigger Complete on the survey.");
 }
 
-function buildErrorMessage(errorArray, questionArray) {
+function buildErrorMessage(errors) {
 
     var message = "<section role='alert' class='alert alert-danger'>";
     message += "<h2>";
@@ -230,9 +283,9 @@ function buildErrorMessage(errorArray, questionArray) {
         message += "The form could not be submitted because ";
     }
    
-    message += errorArray.length;
+    message += errors.length;
 
-    if (errorArray.length > 1) {
+    if (errors.length > 1) {
         if (global_language == "fr") {
             message += " erreurs ont été trouvée";
         }
@@ -253,37 +306,45 @@ function buildErrorMessage(errorArray, questionArray) {
 
     message += "<ul>";
 
-    $.each(questionArray, function (key, val) {
+    $.each(errors, function (key, value) {
 
-        if (val.hasErrors) {
-            var errorIndex = key + 1;
+        var errorIndex = key + 1;
 
-            message += "<li>";
+        message += "<li>";
 
-            if (val.getType() == "radiogroup") {
-                //  We are selecting the first option to href to
-                message += "<a href='#" + val.inputId + "_0'>";
-            }
-            else {
-                message += "<a href='#" + val.inputId + "'>";
-            }
+        if (value.errorOwner.getType() == "radiogroup") {
+            //  We are selecting the first option to href to
+            message += "<a href='#" + value.errorOwner.inputId + "_0'>";
+        }
+        else {
+            message += "<a href='#" + value.errorOwner.inputId + "'>";
+        }
 
-            if (global_language == "fr") {
-                message += "Erreur " + errorIndex + ": ";
-            }
-            else {
-                message += "Error " + errorIndex + ": ";
-            }
-           
-            message += val.title;
-            message += "</a>";
-            message += "</li>";
-        }       
+        if (global_language == "fr") {
+            message += "Erreur " + errorIndex + ": ";
+        }
+        else {
+            message += "Error " + errorIndex + ": ";
+        }
+
+        message += value.errorOwner.title;
+        message += " - " + value.getText();
+        message += "</a>";
+        message += "</li>";
     });
    
     message += "</ul>";
     message += "</section>";
 
     return message;
+}
+
+function updateLabelError(errors) {
+
+    $.each(errors, function (key, value) {
+
+      
+        var test = value.owner;
+    });
 }
 

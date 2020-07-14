@@ -65,10 +65,24 @@
 }
 /* end progress bar ***********************/
 
-.sv_row {
+/*.sv_row {
     min-width: 300px;
+}*/
+
+
+.alert, .label-danger {
+    border-radius: 0;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    text-align: left !important;
 }
 
+/*  Because we ar enot using the css from Survey.js we need to have a copy of that element.
+    Otherwise the radiobuttons are showing a big <circle> div
+*/
+.sv-hidden {
+    display: none !important;
+}
 
 
 

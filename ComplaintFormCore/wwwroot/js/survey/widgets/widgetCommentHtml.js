@@ -43,11 +43,22 @@
 
         // NOTE:    This is where we are setting the "description" property from the htmldescription.
         //          At the moment I do not know why the html gets parse as html but it works! Magic.
-        if (question.htmldescription && question.htmldescription.length > 0) {
+        if (question.htmldescription) {
 
-            var description = question.htmldescription;
+            var description = "";
+
+            if (global_language == 'fr' && question.htmldescription.fr) {
+                description = question.htmldescription.fr;
+            }
+            else if (question.htmldescription.en) {
+                description = question.htmldescription.en;
+            }
+            else {
+                description = question.htmldescription;
+            }
+
             question.description = description;
-        }
+        }        
     },
     //Use it to destroy the widget. It is typically needed by jQuery widgets
     willUnmount: function (question, el) {

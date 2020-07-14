@@ -10,7 +10,12 @@
 
 ### Special lib used
 
-a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js. It is used ton convert markdown to html.
+a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js. 
+	It is used;
+		- to convert markdown text to html 
+		- convert to html description found in 'comment' type questions
+		- the * at the beginning of required questions
+
 b) inputmask.js found at https://unpkg.com/inputmask@5.0.3/dist/inputmask.js. it is used for input mask such phone number or postal code (NOT USED YET)
 
 ### On the Code 
@@ -72,17 +77,21 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 ### TODO
 
-a) The alert-label-error when a question is not answered is not displaying properly. It is just CSS
+a) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
 b) The navigation panel is the native of and should be replaced
-c) Make a french PA.json and set local=fr (that created problem below)
 d) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
 e) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
-f) Hide navigation bar in the 'Preview'
-g) Total MB downloaded
+f) Hide navigation bar in the 'Preview''
+g) Total MB downloaded 
 h) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
-i) Match the property names with the original project 
-j) Explore survey Creator
+j) Explore survey Creator (POSTPONED)
 l) Add max width on text fields
+m) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
+then the section "Authorization form attachment(s)" info is missing when uploading files
+o) Fr & en property of elements (Stephanie). This is started in we are now using only 1 file (survey_pa_complaint.json). Light work.
+q) The page & panel title <h> tag have been hard coded in Survey.vue.OPC.js. Need to find a way to not do that. 
+	[Hint: look for SurveyTemplateText() but it only looks like it is avaialble for knockout]
+r) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
 
 
 ### Fixed todos
@@ -92,3 +101,6 @@ l) Add max width on text fields
 3) Validation not working for checkboxes with additional html. Plan B: always show the html additional information and use the 'comment' as is (DONE with plan A)
 4) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
 then the section "Representative" info is missing
+5) Match the property names with the original project 
+6) Survey.StylesManager.Enabled = false
+7) The style on the 'comment' has crapped after disabling the native style (Survey.StylesManager.Enabled)

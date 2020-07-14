@@ -1,0 +1,57 @@
+{
+  
+  "pages": [
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "car",
+          "title": "What car are you driving?",
+          "isRequired": true,
+          "colCount": 4,
+          "choices": [
+            "None",
+            "Ford",
+            "Vauxhall",
+            "Volkswagen",
+            "Nissan",
+            "Audi",
+            "Mercedes-Benz",
+            "BMW",
+            "Peugeot",
+            "Toyota",
+            "Citroen"
+          ]
+        },
+        {
+          "type": "panel",
+          "title": "Attachments",
+          "elements": [
+            {
+              "type": "file",
+              "name": "documentation_file_upload",
+              "titleLocation" :"hidden",
+              "description": "Upload a file to attach to your complaint",
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "text",
+          "name": "email",
+          "title": "Thank you for taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
+        }
+      ]
+    }
+  ]
+}

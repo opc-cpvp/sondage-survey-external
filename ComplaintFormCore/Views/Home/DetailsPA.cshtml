@@ -62,13 +62,16 @@
 
         initSurvey(Survey);
 
-        var json = "/sample-data/survey_pa_complaint_" + '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName' + ".json";
+        var json = "/sample-data/survey_pa_complaint.json";
 
         fetch(json)
             .then(response => response.json())
             .then(json => {
 
                 survey = new Survey.Model(json);
+
+                //  This needs to be here
+                survey.locale = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
 
                  //  Add events only applicable to this page **********************
 
@@ -150,13 +153,13 @@
                     "WhichFederalGovernementInstitutionComplaintAgainst": "3",
                     "complainant_Country": "CA",
                     "complainant_ProvinceOrState": "2",
-                    "DateSentRequests": "qwerewr",
+                    "DateSentRequestsAccess": "qwerewr",
                     "WordingOfRequest": "hgdffgh",
                     "MoreDetailsOfRequest": "oiuyoiuo",
                     "DateOfFinalAnswer": "gfhfjgj",
                     "DidNoRecordExist": "Yes",
                     "InstitutionAgreedRequestOnInformalBasis": "Not sure",
-                    "SummarizeYourConcernsAndAnyStepsTaken_A": "poiuiop"
+                    "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
                 };
 
                 //  Load the initial state

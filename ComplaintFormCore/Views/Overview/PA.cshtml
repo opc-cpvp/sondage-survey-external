@@ -12,9 +12,7 @@
 }
 
 @section CustomScripts {
-    <script src="~/lib/vue/vue.min.js"></script>
-    <script src="~/js/survey/survey.vue.OPC.js"></script>
-    <script src="~/js/survey/SurveyInit.js"></script>
+
     <script src="~/js/survey/SurveyLocalStorage.js"></script>
 
     <script>
@@ -27,13 +25,13 @@
 }
 
 <div>
-    <h1>Instructions - Privacy complaint form (federal institution)</h1>
+    <h1>@Html.Raw(System.Net.WebUtility.HtmlDecode(Localizer.GetLocalizedString("OverviewPaTitle")))</h1>
 </div>
 <div>
     <p> @Html.Raw(System.Net.WebUtility.HtmlDecode(Localizer.GetLocalizedString("OverviewPA")))</p>
 </div>
 
 <div class="form-group">
-    @Html.ActionLink("Start", "DetailsPA", "Home", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink(Localizer.GetLocalizedString("btnStartSurvey"), "DetailsPA", "Home", null, new { @class = "btn btn-primary" }) 
 </div>
 
