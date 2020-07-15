@@ -78,21 +78,15 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 ### TODO
 
 a) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
-b) The navigation panel is the native of and should be replaced
-d) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
-e) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
-f) Hide navigation bar in the 'Preview''
-g) Total MB downloaded 
-h) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
-j) Explore survey Creator (POSTPONED)
-l) Add max width on text fields
-m) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
-then the section "Authorization form attachment(s)" info is missing when uploading files
-o) Fr & en property of elements (Stephanie). This is started in we are now using only 1 file (survey_pa_complaint.json). Light work.
-q) The page & panel title <h> tag have been hard coded in Survey.vue.OPC.js. Need to find a way to not do that. 
-	[Hint: look for SurveyTemplateText() but it only looks like it is avaialble for knockout]
-r) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
-
+b) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
+c) Hide navigation bar in the 'Preview'
+d) Total MB downloaded 
+e) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
+f) Add max width on text fields. Need to find out the max width for first name, last name and all those.
+g) Part-C, at the question 'Did the institution agree to process your request on an informal basis?', the 'htmldescription' is missing. 
+	I need to create another widget for radiobuttons, just like for the checkboxHtml.
+h) Update the page title for every page
+i) Replace <div id="div_errors_list" style="display:none"></div> in body
 
 ### Fixed todos
 
@@ -104,3 +98,14 @@ then the section "Representative" info is missing
 5) Match the property names with the original project 
 6) Survey.StylesManager.Enabled = false
 7) The style on the 'comment' has crapped after disabling the native style (Survey.StylesManager.Enabled)
+8) The page & panel title <h> tag have been hard coded in Survey.vue.OPC.js. Need to find a way to not do that. 
+	[Hint: look for SurveyTemplateText() but it only looks like it is avaialble for knockout]
+9) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
+then the section "Authorization form attachment(s)" info is missing when uploading files
+10) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
+11) Fr & en property of elements (Stephanie). This is started in we are now using only 1 file (survey_pa_complaint.json).
+12) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
+
+### Postponed todo
+A) Explore survey Creator (POSTPONED)
+B) The navigation panel is the native of and should be replaced (POSTPONED)

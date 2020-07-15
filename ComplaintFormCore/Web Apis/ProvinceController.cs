@@ -15,21 +15,61 @@ namespace ComplaintFormCore.Web_Apis
         [HttpGet]
         public IEnumerable<Province> Get()
         {
+            string language = "en";
+            var lang = HttpContext.Request.Query.Where(k => k.Key == "lang").Select(v => v.Value).FirstOrDefault();
+
+            if (string.IsNullOrWhiteSpace(lang) == false)
+            {
+                language = lang;
+            }
+
+            if (language == "fr")
+            {
+                return GetFrenchProvinces();
+            }
+            else
+            {
+                return GetProvinces();
+            }
+        }
+
+        private static List<Province> GetFrenchProvinces()
+        {
+            return new List<Province>
+            {
+                new Province {Value = "1", Text = "Ontario"},
+                new Province {Value = "2", Text = "Québec"},
+                new Province {Value = "3", Text = "Nouvelle Écosse"},
+                new Province {Value = "4", Text = "Nouveau-Brunswick"},
+                new Province {Value = "5", Text = "Manitoba"},
+                new Province {Value = "6", Text = "Colombie Britanique"},
+                new Province {Value = "7", Text = "Ile du Prince Édouard"},
+                new Province {Value = "8", Text = "Saskatchewan"},
+                new Province {Value = "9", Text = "Alberta"},
+                new Province {Value = "10", Text = "Terre-Neuve-et-Labrador"},
+                new Province {Value = "11", Text = "Nunavut"},
+                new Province {Value = "12", Text = "Yukon"},
+                new Province {Value = "13", Text = "Territoires du Nord-Ouest"}
+            };
+        }
+
+        private static List<Province> GetProvinces()
+        {
             return new List<Province>
             {
                 new Province {Value = "1", Text = "Ontario"},
                 new Province {Value = "2", Text = "Quebec"},
-                new Province {Value = "3", Text = "Nova_Scotia"},
-                new Province {Value = "4", Text = "New_Brunswick"},
+                new Province {Value = "3", Text = "Nova Scotia"},
+                new Province {Value = "4", Text = "New Brunswick"},
                 new Province {Value = "5", Text = "Manitoba"},
-                new Province {Value = "6", Text = "British_Columbia"},
-                new Province {Value = "7", Text = "Prince_Edward_Island"},
+                new Province {Value = "6", Text = "British Columbia"},
+                new Province {Value = "7", Text = "Prince Edward Island"},
                 new Province {Value = "8", Text = "Saskatchewan"},
                 new Province {Value = "9", Text = "Alberta"},
-                new Province {Value = "10", Text = "Newfoundland_And_Labrador"},
+                new Province {Value = "10", Text = "Newfoundland And Labrador"},
                 new Province {Value = "11", Text = "Nunavut"},
                 new Province {Value = "12", Text = "Yukon"},
-                new Province {Value = "13", Text = "Northwest_Territories"}
+                new Province {Value = "13", Text = "Northwest Territories"}
             };
         }
     }

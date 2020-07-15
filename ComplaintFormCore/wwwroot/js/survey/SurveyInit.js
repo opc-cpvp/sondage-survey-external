@@ -77,6 +77,14 @@ function initSurveyModelEvents(survey) {
     converter.simpleLineBreaks = true;
     converter.tasklists = true;
 
+    survey.onAfterRenderPage.add(function (survey, options) {
+
+        // Change page title to <h1>
+        switchPageTitleToH1();
+
+        switchPanelTitleToH2();
+    });
+
     survey
         .onTextMarkdown
         .add(function (survey, options) {
@@ -111,18 +119,13 @@ function initSurveyModelEvents(survey) {
             classes.root += " form-group";
 
             if (options.question.getType() == "checkbox") {
-                classes.itemControl += " checkbox-info-popup-trigger";
+
             }
             else if (options.question.getType() == "file") {
                 //classes.chooseFile = "btn btn-primary";
             }
             else if (options.question.getType() == "dropdown") {
                 classes.control += " form-control";
-            }
-            else if (options.question.getType() == "comment") {
-                //classes.comment = "form-control";
-                //classes.root += " form-group";
-                //let parentClasses = options.question.parent.cssClasses;
             }
             else if (options.question.getType() == "radiogroup") {
                 //classes.materialDecorator = "";
@@ -345,6 +348,20 @@ function updateLabelError(errors) {
 
       
         var test = value.owner;
+    });
+}
+
+function switchPageTitleToH1() {
+    $("h4.sv_page_title").replaceWith(function () {
+
+        return '<h1>' + $(this).text() + '</h1>';
+    });
+}
+
+function switchPanelTitleToH2() {
+    $("h4.sv_p_title").replaceWith(function () {
+
+        return '<h2>' + $(this).text() + '</h2>';
     });
 }
 

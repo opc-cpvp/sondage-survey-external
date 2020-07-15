@@ -5,6 +5,11 @@
       "name": "page2",
       "elements": [
         {
+          "type": "html",
+          "name": "complainant_HaveYouSubmittedBefore_info",
+          "html": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>"
+        },
+        {
           "type": "radiogroup",
           "name": "car",
           "title": "What car are you driving?",
