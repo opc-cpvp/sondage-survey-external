@@ -3,6 +3,7 @@
   "pages": [
     {
       "name": "page2",
+      "title": "Part A2: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
       "elements": [
         {
           "type": "html",
@@ -27,23 +28,6 @@
             "Peugeot",
             "Toyota",
             "Citroen"
-          ]
-        },
-        {
-          "type": "panel",
-          "title": "Attachments",
-          "elements": [
-            {
-              "type": "file",
-              "name": "documentation_file_upload",
-              "titleLocation" :"hidden",
-              "description": "Upload a file to attach to your complaint",
-              "hasComment": false,
-              "allowMultiple": true,
-              "waitForUpload": true,
-              "maxSize": 0,
-              "needConfirmRemoveFile": true
-            }
           ]
         }
       ]

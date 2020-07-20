@@ -20,7 +20,7 @@ namespace ComplaintFormCore.Controllers
         {
             _logger = logger;
 
-            WebTemplateModel.HeaderTitle = "Title set for everypage!";
+            WebTemplateModel.HeaderTitle = "Complaint Form";
 
            
 

@@ -83,10 +83,9 @@ c) Hide navigation bar in the 'Preview'
 d) Total MB downloaded 
 e) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
 f) Add max width on text fields. Need to find out the max width for first name, last name and all those.
-g) Part-C, at the question 'Did the institution agree to process your request on an informal basis?', the 'htmldescription' is missing. 
-	I need to create another widget for radiobuttons, just like for the checkboxHtml.
 h) Update the page title for every page
 i) Replace <div id="div_errors_list" style="display:none"></div> in body
+j) WCAG compliance, talk to Stephanie
 
 ### Fixed todos
 
@@ -105,6 +104,8 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 10) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
 11) Fr & en property of elements (Stephanie). This is started in we are now using only 1 file (survey_pa_complaint.json).
 12) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
+13) Part-C, at the question 'Did the institution agree to process your request on an informal basis?', the 'htmldescription' is missing. 
+	I need to create another widget for radiobuttons, just like for the checkboxHtml. No need to custom widget.
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

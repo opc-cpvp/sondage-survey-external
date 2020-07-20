@@ -7,11 +7,12 @@
 
 @section CustomScripts {
 
-    <script src="~/lib/vue/vue.min.js"></script>
-    <script src="~/js/survey/survey.vue.OPC.js"></script>
+    <script src="~/lib/vue/vue.js"></script>
+
+    <script src="~/lib/survey/survey.vue.js"></script>
     <script src="~/js/survey/SurveyInit.js"></script>
     <script src="~/js/survey/SurveyLocalStorage.js"></script>
-    <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
+    <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
     <script>
@@ -20,6 +21,10 @@
 
             saveStateLocally(survey, storageName_Test);
         }
+
+        // Survey
+        //.StylesManager
+        //.applyTheme("default");
 
         initSurvey(Survey);
 
@@ -33,15 +38,14 @@
 
                 //survey.SurveyTemplateText().replaceText('<div><p>hgfhgf</p></div>', "question", "radiogroup");
 
+                //  This needs to be here
+                survey.locale = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
+
                 initSurveyModelEvents(survey);
 
                 initSurveyModelProperties(survey);
 
-                var defaultData = {
-                    "price_to_competitors": "",
-                    "price": "",
-                    "email": ""
-                };
+                var defaultData = {};
 
                 //  Load the initial state
                 loadStateLocally(survey, storageName_Test, defaultData);

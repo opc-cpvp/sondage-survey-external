@@ -190,8 +190,8 @@
             "en": "<details><summary>Can't find the contact</summary>Please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>list of Access to Information and Privacy Coordinators by institution.</a></details>",
             "fr": "<details><summary>Impossible de trouver la personne-ressource</summary>Veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></details>"
           },
-            "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
-          },
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
+        },
         {
           "type": "html",
           "html": {
@@ -221,7 +221,7 @@
       "title": {
         "en": "Part C: Details (Type of complaint) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (type de plainte) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
-        },
+      },
       "elements": [
         {
           "type": "checkbox",
@@ -323,12 +323,12 @@
               "text": {
                 "en": "Other",
                 "fr": "Autre"
-              }              
+              }
             }
           ]
         }
       ]
-      },
+    },
     {
       "name": "page_description",
       "title": {
@@ -493,76 +493,76 @@
             "fr": "<section class='alert alert-info'><p>En vertu de la Loi sur la protection des renseignements personnels, vous devez présenter une demande officielle à l’institution et lui donner la possibilité de répondre avant de déposer une plainte à notre bureau. Veuillez communiquer avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels de l’institution. Pour trouver cette personne, veuillez consulter la <a target='_blank' href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></p><p>Si, d’après ce qui précède, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p></section>"
           }
         },
-          {
-            "type": "comment",
-            "name": "SummarizeYourConcernsAndAnyStepsTaken",
-            "title": {
-              "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
-              "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
-            },
-            "isRequired": true,
-            "maxLength": 5000,
-            "visibleIf": "({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage')",
-            "htmldescription": {
-              "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
-              "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
-            }
+        {
+          "type": "comment",
+          "name": "SummarizeYourConcernsAndAnyStepsTaken",
+          "title": {
+            "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
+            "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
           },
-          {
-            "type": "comment",
-            "name": "SummarizeYourComplaintAndAnyStepsTaken",
-            "title": {
-              "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
-              "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
-            },
-            "isRequired": true,
-            "maxLength": 5000,
-            "visibleIf": "!(({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage'))",
-
-            "htmldescription": {
-              "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
-              "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
-            }
-          },
-          {
-            "type": "comment",
-            "name": "WhatWouldResolveYourComplaintDetailsPA",
-            "title": {
-              "en": "What would resolve your concerns? (maximum 5,000 characters)",
-              "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
-            },
-            "maxLength": 5000,
-            "isRequired": true,
-            "htmldescription": {
-              "en": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><div class='alert alert-info'><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>&nbsp;&nbsp;&nbsp;",
-              "fr": "<p>Veuillez décrire les démarches ou les mesures correctives qui permettraient de résoudre votre problème. Par exemple: </p><p><ul><li>donner une formation à un employé</li><li>un changement de pratique</li><li>obtenir un renseignement précis</li></ul></p><p>Veuillez noter que le Commissariat n’a pas le pouvoir d’imposer des amendes aux organisations ou d’accorder des dommages-intérêts.</p><div class='alert alert-info'><p>Il est à noter que notre commissaire n’a pas le pouvoir de forcer une institution fédérale à prendre une mesure particulière.</p><p>Le commissaire formule des conclusions et des recommandations et collabore avec les institutions pour améliorer leur gestion des renseignements personnels.</p><p>Notre bureau n’a pas le pouvoir d’imposer des amendes aux institutions ou de réclamer des dommages-intérêts pour les plaintes. De plus, nous n’abordons pas la question de la responsabilité civile ou criminelle.</p></div>&nbsp;&nbsp;&nbsp;"
-            }
-          },
-          {
-            "type": "comment",
-            "name": "SummarizeAttemptsToResolvePrivacyMatter",
-            "title": {
-              "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
-              "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
-            },
-            "isRequired": true,
-            "maxLength": 5000,
-            "htmldescription": {
-              "en": "<p>Note that you will be asked to attach copies of any related correspondence with the organization about your privacy concerns.</p><p>Please include:</p><p><ul><li>a description of your efforts (including a timeline)</li><li>a description of the result (if any)</li></ul></p>",
-              "fr": "<p>Veuillez noter qu’on vous demandera de joindre des copies de toute correspondance connexe avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée.</p><p>Veuillez inclure:</p><p><ul><li>une description de vos efforts (y compris une chronologie)</li><li>une description du résultat (le cas échéant)</li></ul></p>"
-            }
-          },
-          {
-            "type": "comment",
-            "name": "AdditionalComments",
-            "title": {
-              "en": "Additional comments / special Instructions (maximum 5,000 characters)",
-              "fr": "Commentaires supplémentaires/instructions spéciales (maximum 5 000 caractères)"
-            },
-            "maxLength": 5000
+          "isRequired": true,
+          "maxLength": 5000,
+          "visibleIf": "({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage')",
+          "htmldescription": {
+            "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
+            "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
           }
+        },
+        {
+          "type": "comment",
+          "name": "SummarizeYourComplaintAndAnyStepsTaken",
+          "title": {
+            "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
+            "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
+          },
+          "isRequired": true,
+          "maxLength": 5000,
+          "visibleIf": "!(({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage'))",
+
+          "htmldescription": {
+            "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
+            "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhatWouldResolveYourComplaintDetailsPA",
+          "title": {
+            "en": "What would resolve your concerns? (maximum 5,000 characters)",
+            "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
+          },
+          "maxLength": 5000,
+          "isRequired": true,
+          "htmldescription": {
+            "en": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><div class='alert alert-info'><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>&nbsp;&nbsp;&nbsp;",
+            "fr": "<p>Veuillez décrire les démarches ou les mesures correctives qui permettraient de résoudre votre problème. Par exemple: </p><p><ul><li>donner une formation à un employé</li><li>un changement de pratique</li><li>obtenir un renseignement précis</li></ul></p><p>Veuillez noter que le Commissariat n’a pas le pouvoir d’imposer des amendes aux organisations ou d’accorder des dommages-intérêts.</p><div class='alert alert-info'><p>Il est à noter que notre commissaire n’a pas le pouvoir de forcer une institution fédérale à prendre une mesure particulière.</p><p>Le commissaire formule des conclusions et des recommandations et collabore avec les institutions pour améliorer leur gestion des renseignements personnels.</p><p>Notre bureau n’a pas le pouvoir d’imposer des amendes aux institutions ou de réclamer des dommages-intérêts pour les plaintes. De plus, nous n’abordons pas la question de la responsabilité civile ou criminelle.</p></div>&nbsp;&nbsp;&nbsp;"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "SummarizeAttemptsToResolvePrivacyMatter",
+          "title": {
+            "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
+            "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
+          },
+          "isRequired": true,
+          "maxLength": 5000,
+          "htmldescription": {
+            "en": "<p>Note that you will be asked to attach copies of any related correspondence with the organization about your privacy concerns.</p><p>Please include:</p><p><ul><li>a description of your efforts (including a timeline)</li><li>a description of the result (if any)</li></ul></p>",
+            "fr": "<p>Veuillez noter qu’on vous demandera de joindre des copies de toute correspondance connexe avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée.</p><p>Veuillez inclure:</p><p><ul><li>une description de vos efforts (y compris une chronologie)</li><li>une description du résultat (le cas échéant)</li></ul></p>"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "AdditionalComments",
+          "title": {
+            "en": "Additional comments / special Instructions (maximum 5,000 characters)",
+            "fr": "Commentaires supplémentaires/instructions spéciales (maximum 5 000 caractères)"
+          },
+          "maxLength": 5000
+        }
       ]
-      },
+    },
     {
       "name": "page_complainant",
       "title": {
@@ -599,42 +599,42 @@
             "en": "Previous Complaint",
             "fr": "Plainte antérieure"
           },
-            "elements": [
-              {
-                "type": "radiogroup",
-                "name": "complainant_HaveYouSubmittedBefore",
-                "title": {
-                  "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
-                  "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
-                },
-                "isRequired": true,
-                "choices": [
-                  {
-                    "text": {
-                      "en": "Yes",
-                      "fr": "Oui"
-                    },
-                    "value": "yes"
-                  },
-                  {
-                    "text": {
-                      "en": "No",
-                      "fr": "Non"
-                    },
-                    "value": "no"
-                  }
-                ]
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "complainant_HaveYouSubmittedBefore",
+              "title": {
+                "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
+                "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
               },
-              {
-                "type": "html",
-                "name": "complainant_HaveYouSubmittedBefore_info",
-                "html": {
-                  "en": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>",
-                  "fr": "<section class='alert alert-info'><p>Nous demandons cela pour nous assurer d’avoir les coordonnées exactes des personnes qui déposent des plaintes. Veuillez noter que nous pouvons mettre à jour vos coordonnées relatives à toute plainte en cours auprès de notre Commissariat, en utilisant les renseignements que vous fournissez ci-dessous.</p></section>"
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Yes",
+                    "fr": "Oui"
+                  },
+                  "value": "yes"
+                },
+                {
+                  "text": {
+                    "en": "No",
+                    "fr": "Non"
+                  },
+                  "value": "no"
                 }
+              ]
+            },
+            {
+              "type": "html",
+              "name": "complainant_HaveYouSubmittedBefore_info",
+              "html": {
+                "en": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>",
+                "fr": "<section class='alert alert-info'><p>Nous demandons cela pour nous assurer d’avoir les coordonnées exactes des personnes qui déposent des plaintes. Veuillez noter que nous pouvons mettre à jour vos coordonnées relatives à toute plainte en cours auprès de notre Commissariat, en utilisant les renseignements que vous fournissez ci-dessous.</p></section>"
               }
-            ]
-          },
+            }
+          ]
+        },
         {
           "type": "panel",
           "name": "complainant_ComplaintInformation",
@@ -821,13 +821,13 @@
                 "en": "Extension (digits only)",
                 "fr": "Prolongation (chiffres seulement)"
               },
-                "inputType": "number"
-              }
+              "inputType": "number"
+            }
           ]
         },
         {
           "type": "panel",
-          "name": "ReprensentativeInformation",
+          "name": "pnl_ReprensentativeInformation",
           "title": {
             "en": "Reprensentative Information",
             "fr": "Renseignements sur le représentant"
@@ -1024,56 +1024,56 @@
             "fr": "<div class='alert alert-info'><h2>Utilisation des coordonnées</h2><p>Veuillez noter que le Commissariat peut utiliser les coordonnées que vous avez fournies pour communiquer avec vous ou votre représentant au sujet de votre plainte. Veuillez noter que toutes les méthodes de communication présentent le risque que les renseignements soient mal acheminés ou interceptés et manipulés. Lorsque nous communiquerons avec vous au sujet de renseignements personnels, nous prendrons les mesures de sécurité appropriées conformément à la <a href='https://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=16578' target='_blank'>Politique sur la sécurité du gouvernement</a>.</p></div>"
           }
         },
-          {
-            "type": "panel",
-            "name": "complainant_accomodation",
-            "title": {
-              "en": "Accomodation",
-              "fr": "Mesures d’adaptation"
-            },
-              "elements": [
+        {
+          "type": "panel",
+          "name": "pnl_complainant_accomodation",
+          "title": {
+            "en": "Accomodation",
+            "fr": "Mesures d’adaptation"
+          },
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "complainant_NeedsDisabilityAccommodation",
+              "title": {
+                "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
+                "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
+              },
+              "isRequired": true,
+              "choices": [
                 {
-                  "type": "radiogroup",
-                  "name": "complainant_NeedsDisabilityAccommodation",
-                  "title": {
-                    "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
-                    "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
+                  "text": {
+                    "en": "Yes",
+                    "fr": "Oui"
                   },
-                  "isRequired": true,
-                  "choices": [
-                    {
-                      "text": {
-                        "en": "Yes",
-                        "fr": "Oui"
-                      },
-                      "value": "yes"
-                    },
-                    {
-                      "text": {
-                        "en": "No",
-                        "fr": "Non"
-                      },
-                      "value": "no"
-                    }
-                  ]
+                  "value": "yes"
                 },
                 {
-                  "type": "comment",
-                  "name": "complainant_NeedsDisabilityAccommodation_details",
-                  "title": {
-                    "en": "If yes, please describe what accommodation measures you are requesting and the reason.",
-                    "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
+                  "text": {
+                    "en": "No",
+                    "fr": "Non"
                   },
-                  "description": {
-                    "en": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a> for assistance.",
-                    "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
-                  },
-                  "isRequired": true,
-                  "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'Yes'"
-
+                  "value": "no"
                 }
               ]
+            },
+            {
+              "type": "comment",
+              "name": "complainant_NeedsDisabilityAccommodation_details",
+              "title": {
+                "en": "If yes, please describe what accommodation measures you are requesting and the reason.",
+                "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
+              },
+              "description": {
+                "en": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a> for assistance.",
+                "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
+              },
+              "isRequired": true,
+              "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'yes'"
+
             }
+          ]
+        }
       ]
     },
     {
@@ -1082,147 +1082,179 @@
         "en": "Part C: Details (Section 4: Documentation) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (Section 4 : Documentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
       },
-        "elements": [
-          {
-            "type": "html",
-            "name": "documentation_info",
-            "html": {
-              "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul><li class='mrgn-bttm-sm'>a copy of any written responses you received from the organization about your privacy concerns</li><li class='mrgn-bttm-sm'>a copy of your request to the institution</li><li class='mrgn-bttm-sm'>a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution's Access to Information and Privacy (ATIP) Coordinator</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
-              "fr": "todo"
-            }
-          },
-          {
-            "type": "radiogroup",
-            "name": "documentation_type",
-            "title": {
-              "en": "Do you wish to upload your supporting documents or send them by mail?",
-              "fr": "Souhaitez-vous télécharger vos documents à l’appui ou les envoyer par la poste?"
-            },
-            "isRequired": true,
-            "colCount": 1,
-            "choices": [
-              {
-                "text": {
-                  "en": "Upload them",
-                  "fr": "Les télécharger"
-                },
-                "value": "upload"
-              },
-              {
-                "text": {
-                  "en": "Send them by mail",
-                  "fr": "Les envoyer par la poste"
-                },
-                "value": "mail"
-              },
-              {
-                "text": {
-                  "en": "Both",
-                  "fr": "Les deux"
-                },
-                "value": "both"
-              },
-              {
-                "text": {
-                  "en": "I have no supporting documents to provide",
-                  "fr": "Je n’ai pas de documents à l’appui à fournir"
-                },
-                "value": "none"
-              }
-            ]
-          },
-          {
-            "type": "html",
-            "name": "documentation_info_2",
-            "html": {
-              "en": "<section class='alert alert-info'><p>Please be aware that we might need documents to support your allegation before we can accept a complaint.</p></section>",
-              "fr": "<section class='alert alert-info'><p>Veuillez noter qu’il se peut que nous ayons besoin de documents à l’appui de votre allégation pour pouvoir accepter une plainte.</p></section>"
-            }
-          },
-          {
-            "type": "panel",
-            "title": {
-              "en": "Uploading supporting documents",
-              "fr": "Téléchargement des documents à l’appui"
-            },
-              "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
-              "elements": [
-                {
-                  "type": "html",
-                  "name": "documentation_uploading_file_types",
-                  "html": {
-                    "en": "<div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div>",
-                    "fr": "<div class='alert alert-info'><p>Nous acceptons les types de fichiers suivants : doc, docx, xls, xls, xlsx, ppt, pptx, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif et tiff.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Vous pouvez télécharger des fichiers jusqu’à un total de 25 Mo.</p></div>"
-                  }
-                },
-                {
-                  "type": "panel",
-                  "title": {
-                    "en": "Authorization form attachment(s)",
-                    "fr": "Pièces jointes au formulaire d’autorisation"
-                  },
-                    "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else'",
-                    "elements": [
-                      {
-                        "type": "file",
-                        "name": "documentation_file_upload",
-                        "titleLocation": "hidden",
-                        "description": {
-                          "en": "Upload the representative authorization form signed by the complainant.",
-                          "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
-                        },
-                        "hasComment": false,
-                        "allowMultiple": true,
-                        "waitForUpload": true,
-                        "maxSize": 0,
-                        "needConfirmRemoveFile": true
-                      }
-                    ]
-                  },
-                {
-                  "type": "panel",
-                  "title": {
-                    "en": "Attachments",
-                    "fr": "Pièces jointes"
-                  },
-                  "elements": [
-                    {
-                      "type": "file",
-                      "name": "documentation_file_upload",
-                      "titleLocation": "hidden",
-                      "description": {
-                        "en": "Upload a file to attach to your complaint",
-                        "fr": "Téléchargez un fichier à joindre à votre plainte"
-                      },
-                      "hasComment": false,
-                      "allowMultiple": true,
-                      "waitForUpload": true,
-                      "maxSize": 0,
-                      "needConfirmRemoveFile": true
-                    }
-                  ]
-                }
-              ]
-            },
-          {
-            "type": "panel",
-            "title": {
-              "en": "Sending documents by mail",
-              "fr": "Envoi de documents par la poste"
-            },
-            "visibleIf": "{documentation_type} contains 'mail' or {documentation_type} contains 'both'",
-            "elements": [
-              {
-                "type": "html",
-                "name": "documentation_uploading_file_types",
-                "html": {
-                  "en": "<div class='alert alert-info'><p>If you send your supporting documents by mail, please include the <strong>reference number</strong>that you will get when you submit this online complaint form.</p><p>We cannot process a complaint until all relevant information is received. If we do not receive the supporting documents <strong>within 45 days</strong>, no further action will be taken.</p><h4>Mailing address</h4><address>Office of the Privacy Commissioner of Canada<br>30 Victoria Street<br>Gatineau, QC  K1A 1H3</address></div>",
-                  "fr": "<div class='alert alert-info'><p>Si vous envoyez vos documents à l’appui par la poste, veuillez indiquer le <strong>numéro de référence</strong> que vous obtiendrez lorsque vous soumettrez ce formulaire de plainte en ligne.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Si nous ne recevons pas les documents à l’appui <strong>dans les 45&nbsp;jours</strong>, aucune autre mesure ne sera prise.</p><h3>Adresse postale</h3><address>Commissariat à la protection de la vie privée du Canada<br>30, rue Victoria<br>Gatineau (Québec)  K1A&nbsp;1H3</address></div>"
-                }
-              }
-            ]
+      "elements": [
+        {
+          "type": "html",
+          "name": "documentation_info",
+          "html": {
+            "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul><li class='mrgn-bttm-sm'>a copy of any written responses you received from the organization about your privacy concerns</li><li class='mrgn-bttm-sm'>a copy of your request to the institution</li><li class='mrgn-bttm-sm'>a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution's Access to Information and Privacy (ATIP) Coordinator</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
+            "fr": "todo"
           }
-        ]
-      }
+        },
+        {
+          "type": "radiogroup",
+          "name": "documentation_type",
+          "title": {
+            "en": "Do you wish to upload your supporting documents or send them by mail?",
+            "fr": "Souhaitez-vous télécharger vos documents à l’appui ou les envoyer par la poste?"
+          },
+          "isRequired": true,
+          "colCount": 1,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload them",
+                "fr": "Les télécharger"
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Send them by mail",
+                "fr": "Les envoyer par la poste"
+              },
+              "value": "mail"
+            },
+            {
+              "text": {
+                "en": "Both",
+                "fr": "Les deux"
+              },
+              "value": "both"
+            },
+            {
+              "text": {
+                "en": "I have no supporting documents to provide",
+                "fr": "Je n’ai pas de documents à l’appui à fournir"
+              },
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "name": "documentation_info_2",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Please be aware that we might need documents to support your allegation before we can accept a complaint.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Veuillez noter qu’il se peut que nous ayons besoin de documents à l’appui de votre allégation pour pouvoir accepter une plainte.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "name": "documentation_uploading_file_types",
+          "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+          "html": {
+            "en": "<p><h2>Uploading supporting documents</h2></p><p><div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div></p>",
+            "fr": "<p><h2>Téléchargement des documents à l’appui</h2></p><div class='alert alert-info'><p>Nous acceptons les types de fichiers suivants : doc, docx, xls, xls, xlsx, ppt, pptx, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif et tiff.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Vous pouvez télécharger des fichiers jusqu’à un total de 25 Mo.</p></div></p>"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "pnl_file_upload_rep",
+          "title": {
+            "en": "Authorization form attachment(s)",
+            "fr": "Pièces jointes au formulaire d’autorisation"
+          },
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({documentation_type} contains 'upload' or {documentation_type} contains 'both')",
+          "elements": [
+            {
+              "type": "file",
+              "name": "documentation_file_upload_rep",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload the representative authorization form signed by the complainant.",
+                "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "confirmRemoveAllMessage": {
+                "en": "really?",
+                "fr": "vraiment?"
+              },
+              "itemListTitle": {
+                "en": "Attached",
+                "fr": "Fichier joint au formulaire d’autorisation"
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n’a encore été téléchargée."
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_file_upload",
+          "title": {
+            "en": "Attachments",
+            "fr": "Pièces jointes"
+          },
+          "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+          "elements": [
+            {
+              "type": "file",
+              "name": "documentation_file_upload",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload a file to attach to your complaint",
+                "fr": "Téléchargez un fichier à joindre à votre plainte"
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "storeDataAsText": true,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "confirmRemoveAllMessage": {
+                "en": "really?",
+                "fr": "vraiment?"
+              },
+              "itemListTitle": {
+                "en": "Attached",
+                "fr": "En pièce jointe"
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n’a encore été téléchargée."
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_send_mail",
+          "title": {
+            "en": "Sending documents by mail",
+            "fr": "Envoi de documents par la poste"
+          },
+          "visibleIf": "{documentation_type} contains 'mail' or {documentation_type} contains 'both'",
+          "elements": [
+            {
+              "type": "html",
+              "name": "documentation_uploading_file_types",
+              "html": {
+                "en": "<p><h2>Sending documents by mail</h2></p><div class='alert alert-info'><p>If you send your supporting documents by mail, please include the <strong>reference number</strong>that you will get when you submit this online complaint form.</p><p>We cannot process a complaint until all relevant information is received. If we do not receive the supporting documents <strong>within 45 days</strong>, no further action will be taken.</p><h4>Mailing address</h4><address>Office of the Privacy Commissioner of Canada<br>30 Victoria Street<br>Gatineau, QC  K1A 1H3</address></div></p>",
+                "fr": "<p><h2>Envoi de documents par la poste</h2></p><div class='alert alert-info'><p>Si vous envoyez vos documents à l’appui par la poste, veuillez indiquer le <strong>numéro de référence</strong> que vous obtiendrez lorsque vous soumettrez ce formulaire de plainte en ligne.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Si nous ne recevons pas les documents à l’appui <strong>dans les 45&nbsp;jours</strong>, aucune autre mesure ne sera prise.</p><h3>Adresse postale</h3><address>Commissariat à la protection de la vie privée du Canada<br>30, rue Victoria<br>Gatineau (Québec)  K1A&nbsp;1H3</address></div></p>"
+              }
+            }
+          ]
+        }       
+      ]
+    }
   ]
 }
