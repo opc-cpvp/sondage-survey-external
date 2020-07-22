@@ -48,7 +48,7 @@
 
                 var description = "";
 
-                if (global_language == 'fr' && question.htmldescription.fr) {
+                if (question.survey.locale == 'fr' && question.htmldescription.fr) {
                     description = question.htmldescription.fr;
                 }
                 else if (question.htmldescription.en) {

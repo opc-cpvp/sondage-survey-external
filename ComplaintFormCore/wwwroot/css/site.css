@@ -6,10 +6,6 @@
     font-weight: bold;
 }
 
-/*.sv_p_title {
-    margin: 0 0 0 0;
-    padding: 0 0 0 0;
-}*/
 
 .sv_q_required_text {
     color: red;
@@ -82,6 +78,21 @@
 */
 .sv-hidden {
     display: none !important;
+}
+
+/* This css is manually set because the page title <h4> could not be dynamically updated to <h1>.
+    This is the style copied from theme.css from GoC
+*/
+.sv_page_title {
+    color: #b31885;
+    font-weight: 500;
+    border-bottom: 1px solid #007292;
+    margin-bottom: 1em;
+    font-size: 34px;
+    margin-top: 1.25em;
+    padding-bottom: .2em;
+    line-height: 1.1;
+    margin: .67em 0;
 }
 
 

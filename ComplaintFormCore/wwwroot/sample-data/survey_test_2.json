@@ -11,34 +11,67 @@
           "html": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>"
         },
         {
-          "type": "radiogroup",
-          "name": "car",
-          "title": "What car are you driving?",
-          "isRequired": true,
-          "colCount": 4,
-          "choices": [
-            "None",
-            "Ford",
-            "Vauxhall",
-            "Volkswagen",
-            "Nissan",
-            "Audi",
-            "Mercedes-Benz",
-            "BMW",
-            "Peugeot",
-            "Toyota",
-            "Citroen"
+          "type": "panel",
+          "name": "panel1",
+          "title": "Please, help us improve our product",
+          "hideOnPreview":  true,
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "car",
+              "title": "What car are you driving?",
+              "isRequired": true,
+              "colCount": 4,
+              "choices": [
+                "None",
+                "Ford",
+                "Vauxhall",
+                "Volkswagen",
+                "Nissan",
+                "Audi",
+                "Mercedes-Benz",
+                "BMW",
+                "Peugeot",
+                "Toyota",
+                "Citroen"
+              ]
+            },
+            {
+              "type": "html",
+              "name": "documentation_info",
+              "html": "<p>hello</p>"
+            }
           ]
         }
+       
       ]
     },
     {
       "name": "page3",
+      "hideOnPreview": true,
       "elements": [
         {
           "type": "text",
           "name": "email",
-          "title": "Thank you for taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
+          "isRequired": true,
+          "title": "Thank you for {sum(4,7)} taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
+        }
+      ]
+    },
+    {
+      "name": "page8",
+      "elements": [
+        {
+          "type": "text",
+          "name": "testtext",
+          "title": "Tglkfdjgklsdfgj."
+        },
+        {
+          "type": "boolean",
+          "name": "bool",
+          "title": "Please answer the question",
+          "label": "Are you 21 or older?",
+          "visibleIf": "isDisplayMode()"
         }
       ]
     }

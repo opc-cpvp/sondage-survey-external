@@ -103,7 +103,7 @@ function checkBoxInfoPopup(checkbox) {
 
                     var rowText = "";
 
-                    if (global_language == 'fr' && row.htmlAdditionalInfo.fr) {
+                    if (question.survey.locale == 'fr' && row.htmlAdditionalInfo.fr) {
                         rowText = row.htmlAdditionalInfo.fr;
                     }
                     else if (row.htmlAdditionalInfo.en) {

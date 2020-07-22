@@ -113,7 +113,7 @@
             },
             {
               "text": {
-                "en": "No sure",
+                "en": "Not sure",
                 "fr": "Ne sait pas"
               },
               "value": "not_sure"
@@ -132,6 +132,7 @@
     },
     {
       "name": "page_steps_taken_2",
+      "hideOnPreview": true,
       "title": {
         "en": "Part B: Steps taken (Concerns raised with institution) - Privacy complaint form (federal institution)",
         "fr": "Partie B : Mesures prises (préoccupations non soulevées) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -489,7 +490,7 @@
           "name": "InstitutionAgreedRequestOnInformalBasis_info",
           "visibleIf": "{InstitutionAgreedRequestOnInformalBasis} contains 'yes' or {InstitutionAgreedRequestOnInformalBasis} contains 'not_sure'",
           "html": {
-            "en": "<section class='alert alert-info'><p>Under the Privacy Act, you must make a formal request to the institution and give the institution an opportunity to respond before making a complaint to our office. Please contact the Access to Information and Privacy Coordinator at the institution. To find this person, please consult the <a target='_blank' href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp'>list of Access to Information and Privacy Coordinators by institution</a></p><p>If, based on the above, you’re not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p></section>",
+            "en": "<section class='alert alert-info'><p>Under the Privacy Act, you must make a formal request to the institution and give the institution an opportunity to respond before making a complaint to our office. Please contact the Access to Information and Privacy Coordinator at the institution. To find this person, please consult the <a target='_blank' href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp'>list of Access to Information and Privacy Coordinators by institution</a></p><p>If, based on the above, you’re not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p></section>",
             "fr": "<section class='alert alert-info'><p>En vertu de la Loi sur la protection des renseignements personnels, vous devez présenter une demande officielle à l’institution et lui donner la possibilité de répondre avant de déposer une plainte à notre bureau. Veuillez communiquer avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels de l’institution. Pour trouver cette personne, veuillez consulter la <a target='_blank' href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></p><p>Si, d’après ce qui précède, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p></section>"
           }
         },
@@ -577,6 +578,7 @@
             "en": "Instructions",
             "fr": "Instructions"
           },
+          "hideOnPreview": true,
           "elements": [
             {
               "type": "html",
@@ -1085,11 +1087,7 @@
       "elements": [
         {
           "type": "html",
-          "name": "documentation_info",
-          "html": {
-            "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul><li class='mrgn-bttm-sm'>a copy of any written responses you received from the organization about your privacy concerns</li><li class='mrgn-bttm-sm'>a copy of your request to the institution</li><li class='mrgn-bttm-sm'>a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution's Access to Information and Privacy (ATIP) Coordinator</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
-            "fr": "todo"
-          }
+          "name": "documentation_info"
         },
         {
           "type": "radiogroup",
@@ -1172,9 +1170,9 @@
               "needConfirmRemoveFile": true,
               "showPreview": false,
               "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveAllMessage": {
-                "en": "really?",
-                "fr": "vraiment?"
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce dossier?"
               },
               "itemListTitle": {
                 "en": "Attached",
@@ -1216,9 +1214,9 @@
               "storeDataAsText": true,
               "showPreview": false,
               "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveAllMessage": {
-                "en": "really?",
-                "fr": "vraiment?"
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce dossier?"
               },
               "itemListTitle": {
                 "en": "Attached",
@@ -1236,8 +1234,18 @@
           ]
         },
         {
+          "type": "html",
+          "name": "upload_toal_mb",
+          "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+          "html": {
+            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded 0.0 bytes of files out of 25MB allowed</h4> <span><meter min='0'' value='0' max='26214400' class='full-width'></meter></span></div>",
+            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded 0.0 bytes of files out of 25MB allowed</h4> <span><meter min='0'' value='0' max='26214400' class='full-width'></meter></span></div>"
+          }
+        },
+        {
           "type": "panel",
           "name": "pnl_send_mail",
+          "hideOnPreview": true,
           "title": {
             "en": "Sending documents by mail",
             "fr": "Envoi de documents par la poste"
@@ -1248,8 +1256,8 @@
               "type": "html",
               "name": "documentation_uploading_file_types",
               "html": {
-                "en": "<p><h2>Sending documents by mail</h2></p><div class='alert alert-info'><p>If you send your supporting documents by mail, please include the <strong>reference number</strong>that you will get when you submit this online complaint form.</p><p>We cannot process a complaint until all relevant information is received. If we do not receive the supporting documents <strong>within 45 days</strong>, no further action will be taken.</p><h4>Mailing address</h4><address>Office of the Privacy Commissioner of Canada<br>30 Victoria Street<br>Gatineau, QC  K1A 1H3</address></div></p>",
-                "fr": "<p><h2>Envoi de documents par la poste</h2></p><div class='alert alert-info'><p>Si vous envoyez vos documents à l’appui par la poste, veuillez indiquer le <strong>numéro de référence</strong> que vous obtiendrez lorsque vous soumettrez ce formulaire de plainte en ligne.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Si nous ne recevons pas les documents à l’appui <strong>dans les 45&nbsp;jours</strong>, aucune autre mesure ne sera prise.</p><h3>Adresse postale</h3><address>Commissariat à la protection de la vie privée du Canada<br>30, rue Victoria<br>Gatineau (Québec)  K1A&nbsp;1H3</address></div></p>"
+                "en": "<div class='alert alert-info'><p>If you send your supporting documents by mail, please include the <strong>reference number</strong>that you will get when you submit this online complaint form.</p><p>We cannot process a complaint until all relevant information is received. If we do not receive the supporting documents <strong>within 45 days</strong>, no further action will be taken.</p><h4>Mailing address</h4><address>Office of the Privacy Commissioner of Canada<br>30 Victoria Street<br>Gatineau, QC  K1A 1H3</address></div></p>",
+                "fr": "<div class='alert alert-info'><p>Si vous envoyez vos documents à l’appui par la poste, veuillez indiquer le <strong>numéro de référence</strong> que vous obtiendrez lorsque vous soumettrez ce formulaire de plainte en ligne.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Si nous ne recevons pas les documents à l’appui <strong>dans les 45&nbsp;jours</strong>, aucune autre mesure ne sera prise.</p><h3>Adresse postale</h3><address>Commissariat à la protection de la vie privée du Canada<br>30, rue Victoria<br>Gatineau (Québec)  K1A&nbsp;1H3</address></div></p>"
               }
             }
           ]

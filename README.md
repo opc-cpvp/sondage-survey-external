@@ -76,16 +76,20 @@ other words, we are not using the style provided by Survey.js but rather the css
 a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
 
 ### TODO
-
-a) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
+ 
 b) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
 c) Hide navigation bar in the 'Preview'
-d) Total MB downloaded 
 e) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
-f) Add max width on text fields. Need to find out the max width for first name, last name and all those.
 h) Update the page title for every page
 i) Replace <div id="div_errors_list" style="display:none"></div> in body
-j) WCAG compliance, talk to Stephanie
+k) Add a modal popup to confirm when completing the survey.
+
+### Mode details required or help required
+
+1) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database
+2) Add max width on text fields. Need to find out the max width for first name, last name and all those.
+3) WCAG compliance, talk to Stephanie
+4) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
 
 ### Fixed todos
 
