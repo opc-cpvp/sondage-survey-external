@@ -50,15 +50,13 @@ other words, we are not using the style provided by Survey.js but rather the css
 	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
 		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
 		- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 
-			For this to work, I am adding a period (.) for any question of type 'comment' in the box. It is not pretty but it's the best I could find for now. 
-				(Adding an blank spaces is not working because survey treats the blank spaces as empty e.g. question not answered). THAT DIDN'T WORK.
 			For other types of non required questions (such as radiogroup, dropdown or checkbox) it a TODO
 
 	Also, for all questions, the 'description' property is being hidden.
 	Also, for 'html' questions, during the preview, the actual html gets wiped out. 
 
 	I have asked the guy at Survey.js. Here is the link to the question: https://github.com/surveyjs/survey-library/issues/2268
-	Hopefully he can implement something soon.
+	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview.
 
 
 ### Error handling
@@ -75,26 +73,33 @@ other words, we are not using the style provided by Survey.js but rather the css
 
 a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
 
-### TODO
- 
-b) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
-c) Hide navigation bar in the 'Preview'
-e) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";)
-h) Update the page title for every page
-i) Replace <div id="div_errors_list" style="display:none"></div> in body
-k) Add a modal popup to confirm when completing the survey.
+### TODO 
+
+-) Replace <div id="div_errors_list" style="display:none"></div> in body
+-) WCAG compliance, talk to Stephanie
+-) Make a proper completed page
+-) Complete page -> PDF
+-) Complete page -> Page refresh problem
+-) Find a strategy to clear local storage
+-) Problem with refresh or language switching during the 'Preview'. We are going back to the start page because currentPageNo gets reset to 0.
+-) prevent files with same name
+-) Make sure the css classes are the same on the checkboxes & the radio buttons
+-) Create a C# object from JSON to be sent to CRM
+-) Survey Id generation coming from the email
+-) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic.
+-) Put the certify page with checkbox the last page
+-) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database. LOCALSTORAGE
 
 ### Mode details required or help required
 
-1) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database
-2) Add max width on text fields. Need to find out the max width for first name, last name and all those.
-3) WCAG compliance, talk to Stephanie
+
+2) Add max width on text fields. Need to find out the max width for first name, last name and all those. ASK GAB 
 4) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
 
 ### Fixed todos
 
-1) French accents in json files are not rendered properly. The one found in Survey.js are ok. (DONE)
-2) On alert-label-error, make a box on the top of the page showing all errors (DONE)
+1) French accents in json files are not rendered properly. The one found in Survey.js are ok. That json file needed to be saved as UTF-8
+2) On alert-label-error, make a box on the top of the page showing all errors
 3) Validation not working for checkboxes with additional html. Plan B: always show the html additional information and use the 'comment' as is (DONE with plan A)
 4) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
 then the section "Representative" info is missing
@@ -110,7 +115,19 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 12) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
 13) Part-C, at the question 'Did the institution agree to process your request on an informal basis?', the 'htmldescription' is missing. 
 	I need to create another widget for radiobuttons, just like for the checkboxHtml. No need to custom widget.
+14) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
+15) Update the page title for every page
+16) Hide navigation bar in the 'Preview', except the Complete button
+17) Complete page -> { survey_file_number }
+
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)
 B) The navigation panel is the native of and should be replaced (POSTPONED)
+C) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
+
+### Won't fix or implement'
+
+a) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";). It's not going
+	to work with our custom navigation AND also on page refresh or on language switching it returns to the start page which is not
+	what we want.

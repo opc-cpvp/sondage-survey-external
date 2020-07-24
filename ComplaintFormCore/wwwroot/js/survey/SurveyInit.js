@@ -74,6 +74,7 @@ function initSurveyModelProperties(survey) {
     survey.goNextPageAutomatic = false;
     survey.showQuestionNumbers = "off";
     survey.showNavigationButtons = false;
+    survey.showCompletedPage = true;
 
     if (survey.locale == "fr") {
         survey.requiredText = "(obligatoire)";
@@ -91,7 +92,9 @@ function initSurveyModelEvents(survey) {
         //  This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
         //      because the tag <h4> is not there anymore and during the preview, the page titles are being transformed into <h2>
        // switchPageTitleToH1();
-     
+        
+        window.document.title = options.page.title;
+
         switchPanelTitleToH2();
     });
 
@@ -122,6 +125,26 @@ function initSurveyModelEvents(survey) {
 
             let classes = options.cssClasses;
 
+            //  If it is the preview mode...
+            if (survey.isDisplayMode == true) {
+
+                if (options.question.getType() === 'html') {
+
+                    //  This will remove the html questions in Preview mode.
+                    classes.root += " sv-hidden";
+                }
+                else if (options.question.getType() == "comment") {
+
+                    //  do not show the 'description' property
+                    classes.description += " sv-hidden";
+                }
+                else if (options.question.getType() == "file") {
+
+
+                    classes.placeholderInput += " sv-hidden";
+                }
+            }
+
             //  Add the css class label-danger
             classes.error.locationTop += " label-danger";
 
@@ -133,10 +156,7 @@ function initSurveyModelEvents(survey) {
 
                 classes.root += " form-group";
 
-                if (options.question.getType() == "checkbox") {
-
-                }
-                else if (options.question.getType() == "file") {
+                if (options.question.getType() == "file") {
 
                     // Hide the file decorator
                     classes.fileDecorator += " sv-hidden";
@@ -151,6 +171,7 @@ function initSurveyModelEvents(survey) {
                     classes.materialDecorator = "";
                 }
             }
+
         });  
 
     survey
@@ -171,24 +192,12 @@ function initSurveyModelEvents(survey) {
                 //  This is a class found in GoC and was used in the original project.
                 //  It adds a border around a panel and a different backgroud color
                 classes.panel.container += " well"; 
-            }         
+            } 
         }); 
 
     survey
         .onAfterRenderQuestion
         .add(function (survey, options) {
-
-            //  If it is the preview mode...
-            if (survey.isDisplayMode == true) {
-
-                //  do not show the 'description' property
-                options.question.description = "";
-
-                //  This will remove the html questions in Preview mode.
-                if (options.question.getType() === 'html') {
-                    options.question.html = "";
-                }
-            }
 
             if (options.question.getType() === "file") {
 
@@ -215,17 +224,17 @@ function initSurveyModelEvents(survey) {
                     .add(function (question, options) {
                    
                         if (options.name === "value") {
-                            updateFilePreview(question, container);
+                            updateFilePreview(survey, question, container);
                         }
                     });
 
-                updateFilePreview(options.question, container);
+                updateFilePreview(survey, options.question, container);
             }
         });
 
     survey
         .onClearFiles
-        .add(function (sender, options) {          
+        .add(function (survey, options) {          
             options.callback('success');
         });
 
@@ -256,16 +265,20 @@ function initSurveyModelEvents(survey) {
     //  Use for our custom navigation
     survey
         .onCurrentPageChanged
-        .add(onCurrentPageChanged_updateNavButtons);
+        .add(function (survey, options) {
+            onCurrentPageChanged_updateNavButtons(survey);
+        });
 
-    survey.onCompleting.add(function (sender, options) {
-        options.allowComplete = confirm('Do you want to complete the survey?');
-    });
+    survey
+        .onCompleting
+        .add(function (sender, options) {
+            options.allowComplete = confirm('Do you want to complete the survey?');
+        });
 
 }
 
 //  This is to build a custom file preview container.
-function updateFilePreview(question, container) {
+function updateFilePreview(survey, question, container) {
 
     container.innerHTML = "";
 
@@ -300,6 +313,10 @@ function updateFilePreview(question, container) {
             buttonRemove.className = "btn sv_q_file_remove_button";
             buttonRemove.innerText = getTranslation(question.itemListRemoveText);
 
+            if (survey.isDisplayMode == true) {
+                buttonRemove.setAttribute('disabled', 'disabled');
+            }
+
             buttonRemove.onclick = function () {
                 if (confirm(getTranslation(question.confirmRemoveMessage))) {
                     question.removeFile({ name: fileItem.name });
@@ -323,6 +340,23 @@ function updateFilePreview(question, container) {
 //  Function for updating (show/hide) the navigation buttons
 function onCurrentPageChanged_updateNavButtons(survey) {
 
+    //  NOTES:
+    //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage 
+    //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
+
+    document
+        .getElementById('btnEndSession')
+        .style
+        .display = !survey.isFirstPage || survey.isDisplayMode
+            ? "inline"
+            : "none";
+
+    document
+        .getElementById('btnStart')
+        .style.display = survey.isFirstPage && !survey.isDisplayMode
+            ? "inline"
+            : "none";
+
     document
         .getElementById('btnSurveyPrev')
         .style
@@ -332,13 +366,13 @@ function onCurrentPageChanged_updateNavButtons(survey) {
     document
         .getElementById('btnSurveyNext')
         .style
-        .display = !survey.isLastPage
+        .display = !survey.isFirstPage && !survey.isLastPage
             ? "inline"
             : "none";
     document
         .getElementById('btnShowPreview')
         .style
-        .display = (survey.isLastPage && !survey.isDisplayMode) || survey.passedPreviewPage == true
+        .display = !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage == true)
             ? "inline"
             : "none";
     document
@@ -356,6 +390,13 @@ function showPreview(survey) {
 
     //  Calling the native showPreview method
     survey.showPreview();
+}
+
+function startSurvey(survey) {
+
+    clearLocalStorage(storageName_PA);
+
+    survey.nextPage();
 }
 
 function endSession() {

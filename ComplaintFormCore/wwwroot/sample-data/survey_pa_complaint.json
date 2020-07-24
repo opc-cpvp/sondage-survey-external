@@ -2,6 +2,25 @@
   "locale": "en",
   "pages": [
     {
+      "name": "page_start",
+      "title": {
+        "en": "Instructions - Privacy complaint form (federal institution)",
+        "fr": "Instructions – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+      },
+      "hideOnPreview": true,
+      "elements": [
+        {
+          "type": "html",
+          "name": "start_info",
+          "html": {
+            "en": "<p>Complete this form to submit a privacy complaint about a federal institution to the Office of the Privacy Commissioner of Canada.</p><p>Use this form if your complaint pertains to your personal information or when you believe that a federal government institution has mishandled personal information</p><p>Under the <em>Privacy Act</em>, personal information is defined as any recorded information about an identifiable individual. This can include information such as:</p><ul><li>individual’s age</li><li>marital status</li><li>medical or employment history</li><li>information on financial transactions</li><li>identifying number assigned to an individual</li><li>opinions about an individual made by others</li></ul><h2>Instructions</h2><p>If your complaint is about a request for information that is not personal information, you may wish to contact the <a href='http://oic-ci.gc.ca/eng/'>Office of the Information Commissioner of Canada</a> (OIC)</p><h2>Filling out the form</h2><ul><li>Fill out the 3 sections of the form:<ul><li><strong>Part A: Preliminary information</strong>, which asks questions to help us determine if we have jurisdiction under the Privacy Act to address your concern</li><li><strong>Part B: Steps taken</strong>, which asks what you have done so far to try to resolve your concern</li><li><strong>Part C: Details and documents</strong>, which asks for details of your concern and supporting documentation (such as copies of correspondence with the institution's Access to Information and Privacy Coordinator)</li></ul></li>  <li>You can check your progress at the bottom of each screen</li><li>Use the “Previous screen” navigation button instead of your browser's back button</li>  <li>Your session will expire after 2 hours of inactivity</li>  <li>Review and edit your information after filling out the 3 sections</li>  <li>Review your complaint before submitting it</li>  <li>After submitting the complaint, you may download or print a copy</li></ul><div class='alert alert-info'><p>Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, your information will be deleted. You will have to start over.</p></div>",
+            "fr": "<p>Remplissez ce formulaire pour déposer une plainte concernant la protection de la vie privée visant une institution fédérale auprès du Commissariat à la protection de la vie privée du Canada.</p><p>Utilisez ce formulaire si votre plainte concerne vos renseignements personnels ou si vous croyez qu’une institution du gouvernement fédéral a mal géré des renseignements personnels</p><p>En vertu de la <em>Loi sur la protection des renseignements personnels</em>, les renseignements personnels sont définis comme tout renseignement enregistré concernant une personne identifiable. Il peut s’agir de renseignements tels que :</p><ul><li>l’âge de la personne</li><li>son état matrimonial</li><li>ses antécédents médicaux ou professionnels</li><li>des renseignements sur les transactions financières</li><li>le numéro d’identification attribué à une personne</li><li>les opinions de tiers sur une personne</li></ul><h2>Instructions</h2><p>Si votre plainte porte sur une demande de renseignements qui ne sont pas des renseignements personnels, vous pouvez communiquer avec le <a href='https://www.oic-ci.gc.ca/fr'>Commissariat à l’information du Canada</a> (CIC)</p><h2>Remplir le formulaire</h2><ul><li>Remplissez les trois sections du formulaire :<ul><li><strong>Partie A : Renseignements préliminaires</strong>, qui pose des questions pour nous aider à déterminer si nous avons compétence en vertu de la Loi sur la protection des renseignements personnels pour répondre à vos préoccupations</li><li><strong>Partie B : Mesures prises</strong>, qui demande ce que vous avez fait jusqu’à présent pour tenter de résoudre votre problème</li><li><strong>Partie C : Détails et documents</strong>, qui demande des détails sur votre problème et les documents justificatifs (comme des copies de la correspondance avec le coordonnateur de l’accès à l’information et la protection des renseignements personnels de l’institution)</li></ul></li><li>Vous pouvez vérifier vos progrès au bas de chaque écran</li><li>Utilisez le bouton de navigation « Écran précédent » au lieu du bouton « Précédent » de votre navigateur</li><li>Votre session expirera après deux heures d’inactivité</li><li>Passez en revue vos renseignements après avoir rempli les trois sections et modifiez-les</li><li>Passez en revue votre plainte avant de la soumettre</li><li>Après avoir soumis la plainte, vous pouvez télécharger ou imprimer une copie</li></ul><div class='alert alert-info'><p>Vos renseignements ne seront pas enregistrés tant que vous n’aurez pas terminé l’étape finale « Soumettre la plainte ». Si vous mettez fin à votre session avant de soumettre la plainte, vos renseignements seront supprimés. Vous devrez recommencer à zéro.</p></div>"
+          }
+        }
+      ]
+
+    },
+    {
       "name": "page_preliminary_info_1",
       "title": {
         "en": "Part A: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
@@ -46,7 +65,7 @@
     {
       "name": "page_preliminary_info_2",
       "title": {
-        "en": "{ part_a_2_title }",
+        "en": "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)",
         "fr": "Partie A : Renseignements préliminaires (identifier l’institution) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
       },
       "elements": [
@@ -84,7 +103,7 @@
     {
       "name": "page_steps_taken_1",
       "title": {
-        "en": "{ part_b_1_title }",
+        "en": "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)",
         "fr": "Partie B : Mesures prises (écrire au coordonnateur de l’AIPRP) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
       },
       "elements": [
@@ -1261,8 +1280,13 @@
               }
             }
           ]
-        }       
+        }
       ]
     }
-  ]
+  ],
+  "completedHtml": {
+    "en": "<h1>Completed—Privacy complaint form (federal institution)</h1><p>You have sent the Office of the Privacy Commissioner (OPC) an online privacy complaint about a federal institution. Your temporary file number is <span id='sp_survey_file_number'></span>. You will receive an email soon to confirm its receipt. We will review your information and will try to contact you, if appropriate, as soon as possible.</p><div class='alert alert-info'><p>We cannot process a complaint until all relevant information is received. All supporting documents must be received <strong>within 45 days</strong> or no further action will be taken.</p></div><h2>Download a summary of your complaint</h2><p>You can download a summary to save or print</p><a class='btn btn-primary piwik_download' href='pdf'>Download a summary of your complaint</a><h2>File another complaint</h2><p><a href='/en/complete/different-complaint'>File the same type of complaint about another institution</a></p><h2>Related content</h2><ul><li><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/privacy-act-compliance-help/gd_exp_pa/' target='_blank'>Guide: What to expect during a complaint investigation under the <i>Privacy Act</i></a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/' target='_blank'><i>Privacy Act</i></a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/the-federal-government-and-your-personal-information/' target='_blank'>The federal government and your personal information</a></li><li><a href='http://www.tbs-sct.gc.ca/atip-aiprp/apps/coords/index-eng.asp' target='_blank'>List of Access to Information and Privacy Coordinators by institution</a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-federal-government-institution/' target='_blank'>Tips for raising your privacy concern with a federal government institution</a></li></ul>",
+    "fr": "<h1>Remplie&nbsp;– Formulaire de plainte sur la protection de la vie privée (institution fédérale)</h1><p>Vous avez envoyé au Commissariat à la protection de la vie privée du Canada (Commissariat) un formulaire de plainte en ligne au sujet d’une institution fédérale. Votre numéro de dossier temporaire est le <span id='sp_survey_file_number'></span>. Vous recevrez bientôt un courriel confirmant sa réception. Nous examinerons vos renseignements et tenterons de communiquer avec vous, le cas échéant, dès que possible.</p><div class='alert alert-info'><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Toutes les pièces justificatives doivent être reçues<strong>dans les 45&nbsp;jours</strong>; sinon, aucune autre mesure ne sera prise.</p></div><h2>Téléchargez un résumé de votre plainte</h2><p>Vous pouvez télécharger un résumé pour l’enregistrer ou l’imprimer</p><a class='btn btn-primary piwik_download' href='pdf'>Téléchargez un résumé de votre plainte</a><h2>Déposer une autre plainte</h2><p><a href='/fr/complete/complaint-differente'>Déposer le même type de plainte visant une autre institution</a></p><h2>Contenu connexe</h2><ul><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/enquetes/gd_exp_pa/' target='_blank'>Guide&nbsp;: Ce à quoi il faut s’attendre au cours d’une enquête sur une plainte en vertu de la <i>Loi sur la protection des renseignements personnels</i></a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/' target='_blank'><i>Loi sur la protection des renseignements personnels</i></a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/le-gouvernement-federal-et-vos-renseignements-personnels/' target='_blank'>Le gouvernement fédéral et vos renseignements personnels</a></li><li><a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>Liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-institutions-federale/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une institution fédérale</a></li></ul>"
+  }
+
 }

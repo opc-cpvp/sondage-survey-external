@@ -7,6 +7,13 @@ function saveStateLocally(survey, storageName) {
         data: survey.data
     };
 
+    if (survey.isDisplayMode == true) {
+        res.currentPageNo = 999;
+    }
+    else if (survey.state == "completed") {
+        res.currentPageNo = 1000;
+    }
+
     //Here should be the code to save the data into your database
 
     window
@@ -35,12 +42,19 @@ function loadStateLocally(survey, storageName, defaultData) {
         };
     }
 
-    //Set the loaded data into the survey.
-    if (res.currentPageNo)
-        survey.currentPageNo = res.currentPageNo;
-
     if (res.data)
         survey.data = res.data;
+
+    //Set the loaded data into the survey.
+    if (res.currentPageNo == 999) {
+        survey.showPreview();
+    }
+    else if (res.currentPageNo == 1000) {
+        //go to completed page
+    }
+    else {
+        survey.currentPageNo = res.currentPageNo;
+    }     
 }
 
 function clearLocalStorage(storageName) {

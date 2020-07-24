@@ -20,12 +20,12 @@ namespace ComplaintFormCore.Controllers
         {
             _logger = logger;
 
-            WebTemplateModel.HeaderTitle = "Complaint Form";
+           // WebTemplateModel.HeaderTitle = "Complaint Form";
 
            
 
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href="/Home/Test"});
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Overview/PA" });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA" });
         }
 
         public IActionResult Index()
@@ -54,7 +54,7 @@ namespace ComplaintFormCore.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SurveyFromBody([FromBody] PostSurveyResultModel model)
         {
-            return Json(new { Id = "123" });
+            return Json(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

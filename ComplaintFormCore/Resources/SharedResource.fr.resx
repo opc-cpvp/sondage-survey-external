@@ -135,44 +135,6 @@
   <data name="btnSurveyPrev" xml:space="preserve">
     <value>Écran précédent</value>
   </data>
-  <data name="OverviewPA" xml:space="preserve">
-    <value>&amp;lt;p&amp;gt;Remplissez ce formulaire pour déposer une plainte concernant la protection de la vie privée visant une institution fédérale auprès du Commissariat à la protection de la vie privée du Canada.&amp;lt;/p&amp;gt;
-
-&amp;lt;p&amp;gt;Utilisez ce formulaire si votre plainte concerne vos renseignements personnels ou si vous croyez qu’une institution du gouvernement fédéral a mal géré des renseignements personnels&amp;lt;/p&amp;gt;
-
-&amp;lt;p&amp;gt;En vertu de la &amp;lt;em&amp;gt;Loi sur la protection des renseignements personnels&amp;lt;/em&amp;gt;, les renseignements personnels sont définis comme tout renseignement enregistré concernant une personne identifiable. Il peut s’agir de renseignements tels que :&amp;lt;/p&amp;gt;
-&amp;lt;ul&amp;gt;
-  &amp;lt;li&amp;gt;l’âge de la personne&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;son état matrimonial&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;ses antécédents médicaux ou professionnels&amp;lt;/li&amp;gt;
- &amp;lt;li&amp;gt;des renseignements sur les transactions financières&amp;lt;/li&amp;gt;
- &amp;lt;li&amp;gt;le numéro d’identification attribué à une personne&amp;lt;/li&amp;gt;
- &amp;lt;li&amp;gt;les opinions de tiers sur une personne&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-&amp;lt;h2&amp;gt;Instructions&amp;lt;/h2&amp;gt;
- &amp;lt;p&amp;gt;Si votre plainte porte sur une demande de renseignements qui ne sont pas des renseignements personnels, vous pouvez communiquer avec le &amp;lt;a href="https://www.oic-ci.gc.ca/fr"&amp;gt;Commissariat à l’information du Canada&amp;lt;/a&amp;gt; (CIC)&amp;lt;/p&amp;gt;
-&amp;lt;h2&amp;gt;Remplir le formulaire&amp;lt;/h2&amp;gt;
-&amp;lt;ul&amp;gt;
-  &amp;lt;li&amp;gt;Remplissez les trois sections du formulaire :
-    &amp;lt;ul&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Partie A : Renseignements préliminaires&amp;lt;/strong&amp;gt;, qui pose des questions pour nous aider à déterminer si nous avons compétence en vertu de la Loi sur la protection des renseignements personnels pour répondre à vos préoccupations&amp;lt;/li&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Partie B : Mesures prises&amp;lt;/strong&amp;gt;, qui demande ce que vous avez fait jusqu’à présent pour tenter de résoudre votre problème&amp;lt;/li&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Partie C : Détails et documents&amp;lt;/strong&amp;gt;, qui demande des détails sur votre problème et les documents justificatifs (comme des copies de la correspondance avec le coordonnateur de l’accès à l’information et la protection des renseignements personnels de l’institution)&amp;lt;/li&amp;gt;
-    &amp;lt;/ul&amp;gt;
-  &amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Vous pouvez vérifier vos progrès au bas de chaque écran&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Utilisez le bouton de navigation « Écran précédent » au lieu du bouton « Précédent » de votre navigateur&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Votre session expirera après deux heures d’inactivité&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Passez en revue vos renseignements après avoir rempli les trois sections et modifiez-les&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Passez en revue votre plainte avant de la soumettre&amp;lt;/li&amp;gt;
-&amp;lt;li&amp;gt;Après avoir soumis la plainte, vous pouvez télécharger ou imprimer une copie&amp;lt;/li&amp;gt;
-  &amp;lt;/ul&amp;gt;&amp;lt;div class="alert alert-info"&amp;gt;
-        &amp;lt;p&amp;gt;Vos renseignements ne seront pas enregistrés tant que vous n’aurez pas terminé l’étape finale « Soumettre la plainte ». Si vous mettez fin à votre session avant de soumettre la plainte, vos renseignements seront supprimés. Vous devrez recommencer à zéro.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;</value>
-  </data>
-  <data name="OverviewPaTitle" xml:space="preserve">
-    <value>Instructions – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)</value>
-  </data>
   <data name="Test" xml:space="preserve">
     <value>gkjldflgjfsdlgjsldfjg</value>
   </data>

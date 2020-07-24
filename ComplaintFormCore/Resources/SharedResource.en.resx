@@ -135,43 +135,4 @@
   <data name="btnSurveyPrev" xml:space="preserve">
     <value>Previous</value>
   </data>
-  <data name="OverviewPA" xml:space="preserve">
-    <value>&amp;lt;p&amp;gt;Complete this form to submit a privacy complaint about a federal institution to the Office of the Privacy Commissioner of Canada.&amp;lt;/p&amp;gt;
-
-&amp;lt;p&amp;gt;Use this form if your complaint pertains to your personal information or when you believe that a federal government institution has mishandled personal information&amp;lt;/p&amp;gt;
-
-&amp;lt;p&amp;gt;Under the &amp;lt;em&amp;gt;Privacy Act&amp;lt;/em&amp;gt;, personal information is defined as any recorded information about an identifiable individual. This can include information such as:&amp;lt;/p&amp;gt;
-&amp;lt;ul&amp;gt;
-  &amp;lt;li&amp;gt;individual’s age&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;marital status&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;medical or employment history&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;information on financial transactions&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;identifying number assigned to an individual&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;opinions about an individual made by others&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-&amp;lt;h2&amp;gt;Instructions&amp;lt;/h2&amp;gt;
-  &amp;lt;p&amp;gt;If your complaint is about a request for information that is not personal information, you may wish to contact the &amp;lt;a href="http://oic-ci.gc.ca/eng/"&amp;gt;Office of the Information Commissioner of Canada&amp;lt;/a&amp;gt; (OIC)&amp;lt;/p&amp;gt;
-&amp;lt;h2&amp;gt;Filling out the form&amp;lt;/h2&amp;gt;
-&amp;lt;ul&amp;gt;
-  &amp;lt;li&amp;gt;Fill out the 3 sections of the form:
-    &amp;lt;ul&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Part A: Preliminary information&amp;lt;/strong&amp;gt;, which asks questions to help us determine if we have jurisdiction under the Privacy Act to address your concern&amp;lt;/li&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Part B: Steps taken&amp;lt;/strong&amp;gt;, which asks what you have done so far to try to resolve your concern&amp;lt;/li&amp;gt;
-        &amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;Part C: Details and documents&amp;lt;/strong&amp;gt;, which asks for details of your concern and supporting documentation (such as copies of correspondence with the institution's Access to Information and Privacy Coordinator)&amp;lt;/li&amp;gt;
-    &amp;lt;/ul&amp;gt;
-  &amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;You can check your progress at the bottom of each screen&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Use the “Previous screen” navigation button instead of your browser's "back" button&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Your session will expire after 2 hours of inactivity&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Review and edit your information after filling out the 3 sections&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;Review your complaint before submitting it&amp;lt;/li&amp;gt;
-  &amp;lt;li&amp;gt;After submitting the complaint, you may download or print a copy&amp;lt;/li&amp;gt;
-&amp;lt;/ul&amp;gt;
-&amp;lt;div class="alert alert-info"&amp;gt;
-  &amp;lt;p&amp;gt;Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, your information will be deleted. You will have to start over.&amp;lt;/p&amp;gt;
-&amp;lt;/div&amp;gt;</value>
-  </data>
-  <data name="OverviewPaTitle" xml:space="preserve">
-    <value>Instructions - Privacy complaint form (federal institution)</value>
-  </data>
 </root>
