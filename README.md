@@ -73,22 +73,41 @@ other words, we are not using the style provided by Survey.js but rather the css
 
 a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
 
+### Survey Templates
+#### Page
+ ```
+ {
+    "name": "page_name",
+    "title": {
+    "en": "page_title_en",
+    "fr": "page_title_fr"
+    },
+    "elements": [
+
+    ]
+}
+```
+
 ### TODO 
 
 -) Replace <div id="div_errors_list" style="display:none"></div> in body
 -) WCAG compliance, talk to Stephanie
--) Make a proper completed page
 -) Complete page -> PDF
 -) Complete page -> Page refresh problem
--) Find a strategy to clear local storage
--) Problem with refresh or language switching during the 'Preview'. We are going back to the start page because currentPageNo gets reset to 0.
+-) Find a strategy to clear local storage. Put a timestamp on local storage?
 -) prevent files with same name
 -) Make sure the css classes are the same on the checkboxes & the radio buttons
 -) Create a C# object from JSON to be sent to CRM
 -) Survey Id generation coming from the email
 -) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic.
--) Put the certify page with checkbox the last page
--) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database. LOCALSTORAGE
+-) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database. LOCALSTORAGE.PROBLEMS!
+		The local storage quota limit is 5MB.
+-) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
+-) JS Error: 
+	Uncaught TypeError: Cannot read property 'length' of undefined
+    at Function.ChoicesRestfull.unregisterSameRequests (choicesRestfull.ts:76)
+    at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
+    at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
 
 ### Mode details required or help required
 
@@ -118,7 +137,12 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 14) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
 15) Update the page title for every page
 16) Hide navigation bar in the 'Preview', except the Complete button
-17) Complete page -> { survey_file_number }
+17) Make a proper completed page
+18) Complete page -> { survey_file_number }
+19) Problem with refresh or language switching during the 'Preview'. We are going back to the start page because currentPageNo gets reset to 0. 
+		Fixed using currentPageNo = 999
+20) Put the certify page with checkbox the last page
+
 
 
 ### Postponed todo

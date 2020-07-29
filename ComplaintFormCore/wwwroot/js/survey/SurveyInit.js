@@ -1,4 +1,5 @@
-﻿
+﻿var file_uploaded = [];
+
 function initSurvey(Survey) {
 
     //  Add a new property for each item choices (to the native text, value). This is used for checkboxes with addtional Html info
@@ -12,7 +13,9 @@ function initSurvey(Survey) {
         { name: "itemListTitle:text" },
         { name: "itemListRemoveText:text" },
         { name: "itemListNoAttachmentsText:text" },
-        { name: "confirmRemoveMessage:text" }
+        { name: "confirmRemoveMessage:text" },
+        { name: "duplicateFileNameExceptionMessage:text" },
+        { name: "multipleFileMaxSizeErrorMessage:text" }
     ]);
 
     // Register the function for use in SurveyJS expressions. This function validates that at least one selection was made in a <select>
@@ -70,6 +73,10 @@ function initSurveyModelProperties(survey) {
     survey.clearInvisibleValues = "onHidden ";
 
     survey.questionErrorLocation = "top";
+
+    //https://surveyjs.io/Documentation/Library?id=surveymodel#checkErrorsMode
+    survey.checkErrorsMode = "onValueChanged";
+
     survey.showProgressBar = "bottom";
     survey.goNextPageAutomatic = false;
     survey.showQuestionNumbers = "off";
@@ -91,7 +98,7 @@ function initSurveyModelEvents(survey) {
         //  Change page title to <h1>. 
         //  This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
         //      because the tag <h4> is not there anymore and during the preview, the page titles are being transformed into <h2>
-       // switchPageTitleToH1();
+        //switchPageTitleToH1();
         
         window.document.title = options.page.title;
 
@@ -203,7 +210,7 @@ function initSurveyModelEvents(survey) {
 
                 //  This is to build the file preview, we're not using the native one
                 var container = document.createElement("div");
-                container.setAttribute("id", "div_file" + options.question.name);
+                container.setAttribute("id", "div_file_" + options.question.name);
                 container.className = "my-preview-container";             
 
                 var fileElement = options
@@ -224,12 +231,81 @@ function initSurveyModelEvents(survey) {
                     .add(function (question, options) {
                    
                         if (options.name === "value") {
+
+                            //  Checking for files with the same name. We don't want that because when we 'removed' a file, all files with the same
+                            //  name are being deleted. This could be solved if the file property "storeDataAsText" was set to false and files 
+                            //  were uploaded into a server. But for now, we store the files in the local storage.
+
+                            //var tempArray = [];
+
+                            //(options.newValue).forEach(function (fileItem) {
+
+                            //    if (tempArray.length > 0) {
+                            //        if (tempArray.some(e => e.name === fileItem.name)) {
+                            //            //  If a duplicate is found we are just adding a timstamp.
+                            //            //  It is way easier then setting up errors on the question and asking the user
+                            //            //  to remove one of the file.
+                            //            fileItem.name += "_" + (new Date).getTime().toString() 
+                            //        }
+                            //    }
+
+                            //    tempArray.push(fileItem);
+                            //});
+
                             updateFilePreview(survey, question, container);
                         }
                     });
 
                 updateFilePreview(survey, options.question, container);
             }
+        });
+
+    survey
+        .onUploadFiles
+        .add((sender, options) => {
+            options
+                .files
+                .forEach(function (file) {
+
+                    var formData = new FormData();
+                    //formData.append('SurveyId', sender.surveyId);
+                    formData.append('file', file, file.name);
+                    //formData.append("filename", file.n)
+             
+
+                    $.ajax({
+                        url: "/api/File?surveyId=" + sender.surveyId,
+                        type: "POST",
+                        success: function () {
+
+                            options.callback("success", options.files.map(file => {
+                                const newFilename = (new Date).getTime().toString() + file.name
+
+                                var file_uploaded_item = {
+                                    questionname: options.name,
+                                    filename: file.name,
+                                    size: file.size
+                                };
+
+                                file_uploaded.push(file_uploaded_item);
+
+                                return {
+                                    file: new File([file], file.name, { type: file.type, size: file.length })
+                                };  
+                            }));
+                        },
+                        error: function (xhr, status, error) {
+                            //var err = eval("(" + xhr.responseText + ")");
+                            alert(xhr.responseText);
+                        },
+                        async: true,
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        timeout: 60000
+                    });
+                });
         });
 
     survey
@@ -284,7 +360,7 @@ function updateFilePreview(survey, question, container) {
 
     var title = document.createElement("h3");
     title.innerHTML = getTranslation(question.itemListTitle);
-    container.append(title);
+    container.append(title);   
 
     if (question.value && question.value.length > 0) {
 
@@ -294,18 +370,42 @@ function updateFilePreview(survey, question, container) {
 
             var item = document.createElement("li");
 
+            var span = document.createElement("span");
+            span.className = "sv_q_file_preview";
+
             var div = document.createElement("div");
 
-            var button = document.createElement("div");
-            button.className = "btn sv-btn sv-file__choose-btn";
+            //var size = Math.round(fileItem.content.length / 1000, 0) || 0;
+            // var size = Math.round(fileItem.content.length / 1000, 0) || 0;
+            var size = 33;
+            var object_from_memory = file_uploaded.filter(function (item)
+            {
+                return (item.questionname == question.name && item.filename == fileItem.name);
+            });
 
-            var size = Math.round(fileItem.content.length / 1000, 0) || 0;
-            button.innerText = fileItem.name + " (" + size + " KB)";
+            size = object_from_memory || 0;
+
+            var button = document.createElement("div");
+            button.className = "btn sv-btn sv-file__choose-btn";            
+            button.innerText = fileItem.name + " (" + size + " KB-B)";
 
             button.onclick = function () {
-                //TODO: load the file
-                alert(JSON.stringify(fileItem));
+
+                fetch("/api/File?surveyId=" + survey.surveyId + "&filename=" + fileItem.name)
+                    .then(resp => resp.blob())
+                    .then(blob => {
+                        const url = window.URL.createObjectURL(blob);
+                        const a = document.createElement('a');
+                        a.style.display = 'none';
+                        a.href = url;
+                        a.download = fileItem.name;
+                        document.body.appendChild(a);
+                        a.click();
+                        window.URL.revokeObjectURL(url);
+                    })
+                    .catch(() => alert('oh no!'));
             }
+
             div.append(button);
 
             var buttonRemove = document.createElement("button");
@@ -320,11 +420,14 @@ function updateFilePreview(survey, question, container) {
             buttonRemove.onclick = function () {
                 if (confirm(getTranslation(question.confirmRemoveMessage))) {
                     question.removeFile({ name: fileItem.name });
-                }                
+                }
             }
+
             div.append(buttonRemove);
 
-            item.appendChild(div);
+            span.appendChild(div);
+            item.appendChild(span);
+
             listView.appendChild(item);
         });
 
@@ -335,6 +438,21 @@ function updateFilePreview(survey, question, container) {
         title.innerHTML = getTranslation(question.itemListNoAttachmentsText);
         container.append(title);
     }    
+}
+
+function getFileSize(surveyId, filename) {
+
+    $.ajax({
+        url: "/api/File?surveyId=" + surveyId + "&filename=" + filename,
+        type: "GET",
+        success: function (data) {
+            return data.size;
+        },
+        error: function (xhr, status, error) {
+            //var err = eval("(" + xhr.responseText + ")");
+            alert(xhr.responseText);
+        }
+    });
 }
 
 //  Function for updating (show/hide) the navigation buttons
@@ -398,6 +516,7 @@ function startSurvey(survey) {
 
     survey.nextPage();
 }
+
 
 function endSession() {
     var url = "/Home/Index";
@@ -473,15 +592,15 @@ function buildErrorMessage(errors) {
     return message;
 }
 
-//function switchPageTitleToH1() {
+function switchPageTitleToH1() {
 
-//    var pagetitle = $("h4.sv_page_title");
+    var pagetitle = $("h4.sv_page_title");
 
-//    pagetitle.replaceWith(function () {
+    pagetitle.replaceWith(function () {
 
-//        return "<h1 class='sv_page_title'><span style='position: static; '><span style='position: static;'>" + $(this).text() + "</span></span></h1>";
-//    });
-//}
+        return "<h1 class='sv_page_title'><span style='position: static; '><span style='position: static;'>" + $(this).text() + "</span></span></h1>";
+    });
+}
 
 function switchPanelTitleToH2() {
 

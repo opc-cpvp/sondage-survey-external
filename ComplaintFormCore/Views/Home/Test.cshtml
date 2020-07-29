@@ -9,7 +9,7 @@
 
     <script src="~/lib/vue/vue.js"></script>
 
-    <script src="https://surveyjs.azureedge.net/1.7.20/survey.vue.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.7.23/survey.vue.js"></script>
     <script src="~/js/survey/surveyHelper.js"></script>
     <script src="~/js/survey/surveyInit.js"></script>
     <script src="~/js/survey/surveyLocalStorage.js"></script>
@@ -17,6 +17,79 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
 
     <script>
+
+        $(function () {
+            $('#input_upload').change(function () {
+                debugger
+                var file = this.files[0];
+
+                var formData = new FormData();
+                //formData.append('SurveyId', sender.surveyId);
+                formData.append(file, file.name);
+                //formData.append("filename", file.n)
+
+                $.ajax({
+                    url: "/api/File",
+                    type: "GET",
+                    success: function (data) {
+                        
+                    },
+                    error: function (xhr, status, error) {
+                        //var err = eval("(" + xhr.responseText + ")");
+                        alert(xhr.responseText);
+                    },
+                    async: true,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    timeout: 60000
+                });
+
+                $.ajax({
+                    url: "/api/File/Upload",
+                    type: "POST",
+                    success: function (data) {
+                        //var content = data.replace('dxsfile:', 'https://api.surveyjs.io/public/v1/Survey/file?filePath=');
+                        //if (data.indexOf("dxsimage:") === 0) {
+                        //    content = data.replace('dxsimage:', 'https://api.surveyjs.io/public/v1/Survey/file?filePath=');
+                        //}
+                        options.callback("success", [
+                            {
+                                file: file,
+                                content: content
+                            }
+                        ]);
+                    },
+                    error: function (xhr, status, error) {
+                        //var err = eval("(" + xhr.responseText + ")");
+                        alert(xhr.responseText);
+                    },
+                    async: true,
+                    data: formData,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    timeout: 60000
+                });
+
+                //var input = this;
+                //var url = $(this).val();
+                //var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+                //if (input.files && input.files[0]) {
+                //    var reader = new FileReader();
+
+                //    reader.onload = function (e) {
+                //        $('#img').attr('src', e.target.result);
+                //    }
+                //    reader.readAsDataURL(input.files[0]);
+                //}
+                //else {
+                //    $('#img').attr('src', '/assets/no_preview.png');
+                //}
+            });
+
+        });
 
         function onCurrentPageChanged_saveState(survey) {
 
@@ -109,3 +182,5 @@
         <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>
     </div>
 </center>
+
+<input type="file" id="input_upload" />

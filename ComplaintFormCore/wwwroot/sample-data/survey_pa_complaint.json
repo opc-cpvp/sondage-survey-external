@@ -1187,11 +1187,16 @@
               "waitForUpload": true,
               "maxSize": 0,
               "needConfirmRemoveFile": true,
+              "storeDataAsText": false,
               "showPreview": false,
               "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": "FR - Maximum size of files 25MB allowed"
+              },
               "confirmRemoveMessage": {
                 "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce dossier?"
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
               },
               "itemListTitle": {
                 "en": "Attached",
@@ -1204,6 +1209,10 @@
               "itemListNoAttachmentsText": {
                 "en": "No attachments have been uploaded yet.",
                 "fr": "Aucune pièce jointe n’a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "Duplicate file name not allowed",
+                "fr": "Fichier avec le meme nom non permis"
               }
             }
           ]
@@ -1230,12 +1239,16 @@
               "waitForUpload": true,
               "maxSize": 0,
               "needConfirmRemoveFile": true,
-              "storeDataAsText": true,
+              "storeDataAsText": false,
               "showPreview": false,
               "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": "FR - Maximum size of files 25MB allowed"
+              },
               "confirmRemoveMessage": {
                 "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce dossier?"
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
               },
               "itemListTitle": {
                 "en": "Attached",
@@ -1248,17 +1261,21 @@
               "itemListNoAttachmentsText": {
                 "en": "No attachments have been uploaded yet.",
                 "fr": "Aucune pièce jointe n’a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "Duplicate file name not allowed",
+                "fr": "Fichier avec le meme nom non permis"
               }
             }
           ]
         },
         {
           "type": "html",
-          "name": "upload_toal_mb",
+          "name": "upload_total_mb",
           "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
           "html": {
-            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded 0.0 bytes of files out of 25MB allowed</h4> <span><meter min='0'' value='0' max='26214400' class='full-width'></meter></span></div>",
-            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded 0.0 bytes of files out of 25MB allowed</h4> <span><meter min='0'' value='0' max='26214400' class='full-width'></meter></span></div>"
+            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>",
+            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>"
           }
         },
         {
@@ -1280,6 +1297,41 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "title": {
+        "en": "Confirmation",
+        "fr": "Confirmation"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "confirmation_verification",
+          "title": {
+            "en": "Please certify that the information you have given on this form is, to the best of your knowledge, true, accurate and complete.",
+            "fr": "Veuillez attester que les renseignements que vous avez fournis dans ce formulaire sont, à votre connaissance, véridiques, exacts et complets."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": {
+                "en": "I certify",
+                "fr": "Je certifie"
+              }
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "name": "confirmation_verification_info",
+          "html": {
+            "en": "<section class='alert alert-info col-md-12'><p>After submitting your complaint, you will be able to use the next screen to:</p><ul><li>download and print a summary of your complaint</li><li>file a different type of complaint about the same institution</li><li>file the same type of complaint about another institution</li><li>file a different type of complaint about another institution</li></ul></section>",
+            "fr": "<section class='alert alert-info col-md-12'><p>Après avoir soumis votre plainte, vous pourrez utiliser l’écran suivant pour:</p><ul><li>télécharger et imprimer un résumé de votre dossier de plainte</li><li>déposer un autre type de plainte concernant la même institution</li><li>déposer le même type de plainte concernant une autre institution</li><li>déposer un autre type de plainte concernant une autre institution</li></ul></section>"
+          }
         }
       ]
     }
