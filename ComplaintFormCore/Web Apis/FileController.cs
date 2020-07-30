@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ComplaintFormCore.Web_Apis
 {
-    [Route("api/File")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class FileController : ControllerBase
     {
@@ -72,6 +72,7 @@ namespace ComplaintFormCore.Web_Apis
         }
 
         [HttpGet]
+        [ActionName("Get")]
         public IActionResult Get([FromQuery] string surveyId, [FromQuery] string filename)
         {
             var folderName = Path.Combine("FileUploads", surveyId);
@@ -86,22 +87,23 @@ namespace ComplaintFormCore.Web_Apis
             return File(content, contentType, filename);
         }
 
-        [HttpGet]
-        public IActionResult GetFileSize([FromQuery] string surveyId, [FromQuery] string filename)
-        {
-            //var folderName = Path.Combine("FileUploads", surveyId);
-            //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            //var fullPath = Path.Combine(pathToSave, filename);
+        //[HttpGet]
+        //[ActionName("GetFileSize")]
+        //public IActionResult GetFileSize([FromQuery] string surveyId, [FromQuery] string filename)
+        //{
+        //    //var folderName = Path.Combine("FileUploads", surveyId);
+        //    //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+        //    //var fullPath = Path.Combine(pathToSave, filename);
 
-            //var net = new System.Net.WebClient();
-            //var data = net.DownloadData(fullPath);
-            //var content = new System.IO.MemoryStream(data);
-            //var contentType = "APPLICATION/octet-stream";
+        //    //var net = new System.Net.WebClient();
+        //    //var data = net.DownloadData(fullPath);
+        //    //var content = new System.IO.MemoryStream(data);
+        //    //var contentType = "APPLICATION/octet-stream";
 
-            long size = 99;
+        //    long size = 99;
 
-            return Ok(new { size });
-        }
+        //    return Ok(new { size });
+        //}
     }
 
     public class FileRequest

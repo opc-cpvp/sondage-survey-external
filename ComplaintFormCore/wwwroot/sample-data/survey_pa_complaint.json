@@ -1211,8 +1211,8 @@
                 "fr": "Aucune pièce jointe n’a encore été téléchargée."
               },
               "duplicateFileNameExceptionMessage": {
-                "en": "Duplicate file name not allowed",
-                "fr": "Fichier avec le meme nom non permis"
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
               }
             }
           ]
@@ -1263,8 +1263,8 @@
                 "fr": "Aucune pièce jointe n’a encore été téléchargée."
               },
               "duplicateFileNameExceptionMessage": {
-                "en": "Duplicate file name not allowed",
-                "fr": "Fichier avec le meme nom non permis"
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
               }
             }
           ]

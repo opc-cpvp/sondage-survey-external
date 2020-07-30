@@ -95,13 +95,10 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) Complete page -> PDF
 -) Complete page -> Page refresh problem
 -) Find a strategy to clear local storage. Put a timestamp on local storage?
--) prevent files with same name
 -) Make sure the css classes are the same on the checkboxes & the radio buttons
 -) Create a C# object from JSON to be sent to CRM
 -) Survey Id generation coming from the email
 -) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic.
--) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database. LOCALSTORAGE.PROBLEMS!
-		The local storage quota limit is 5MB.
 -) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
 -) JS Error: 
 	Uncaught TypeError: Cannot read property 'length' of undefined
@@ -110,7 +107,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
 
 ### Mode details required or help required
-
 
 2) Add max width on text fields. Need to find out the max width for first name, last name and all those. ASK GAB 
 4) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
@@ -142,7 +138,10 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 19) Problem with refresh or language switching during the 'Preview'. We are going back to the start page because currentPageNo gets reset to 0. 
 		Fixed using currentPageNo = 999
 20) Put the certify page with checkbox the last page
-
+21) Total MB downloaded. I need to know if we are going to 'storeDataAsText' or save the file data to the database. LOCALSTORAGE.PROBLEMS!
+		The local storage quota limit is 5MB. Files are stored in the file system for now.
+22) prevent files with same name. We are pre-fixing the file name with a timestamps in survey.onUploadFiles. It is way easier then 
+		setting up errors on the question and asking the user to do an action.
 
 
 ### Postponed todo

@@ -40,6 +40,7 @@
     <script src="~/js/survey/surveyHelper.js"></script>
     <script src="~/js/survey/surveyInit.js"></script>
     <script src="~/js/survey/surveyLocalStorage.js"></script>
+    <script src="~/js/survey/surveyFile.js"></script>
 
     <script src="~/js/survey/widgets/widgetCheckboxHtml.js"></script>
     <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
@@ -137,13 +138,16 @@
 
         //  This is to get the total number of bytes for both file uploads.
         //  We will compare with the max value later.
+        //  Note that the file size is being stored in file.content
         function getTotalFileSize(survey, options){
 
             var totalBytes = 0;
 
             (options.question.value).forEach(function (fileItem) {
-                totalBytes = totalBytes + fileItem.content.length;
+                totalBytes = totalBytes + fileItem.content;
             });
+
+            //  We need to calculate the total size of all files for both file upload
 
             if(options.question.name == "documentation_file_upload"){       
                         
@@ -152,7 +156,7 @@
                 if(rep_file_upload && rep_file_upload.value){
                             
                     (rep_file_upload.value).forEach(function (fileItem) {
-                        totalBytes = totalBytes + fileItem.content.length;
+                        totalBytes = totalBytes + fileItem.content;
                     });
                 }
             }
@@ -163,7 +167,7 @@
                 if(file_upload && file_upload.value){
                             
                     (file_upload.value).forEach(function (fileItem) {
-                        totalBytes = totalBytes + fileItem.content.length;
+                        totalBytes = totalBytes + fileItem.content;
                     });
                 }
             }
@@ -172,6 +176,7 @@
         }
 
         initSurvey(Survey);
+        initSurveyFile(Survey);
 
         var json = "/sample-data/survey_pa_complaint.json";
 
@@ -201,7 +206,7 @@
                         $.ajax({
                             type: "POST",
                             url: "@Url.Action("Survey")",
-                           // headers: { "RequestVerificationToken": '@GetAntiXsrfRequestToken()' },
+                            headers: { "RequestVerificationToken": '@GetAntiXsrfRequestToken()' },
                             dataType: 'json',
                             contentType: dataType,
                             data: data,
@@ -263,7 +268,7 @@
         
                             if(multipleFileMaxSize > 0 && totalBytes > multipleFileMaxSize){
                                 options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage);
-                                return false;
+                                //return false;
                             }
 
                             var sizeInMB = (totalBytes / 1000000).toFixed(2);
@@ -279,6 +284,9 @@
                 initSurveyModelEvents(survey);
 
                 initSurveyModelProperties(survey);
+
+                initSurveyFileModelEvents(survey);
+
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.

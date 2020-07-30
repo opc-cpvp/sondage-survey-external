@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http.Extensions;
 
 namespace ComplaintFormCore.Web_Apis
 {
-    [Route("api/Institution")]
+    [Route("api/[controller]")]
     [ApiController]
     public class InstitutionController : ControllerBase
     {

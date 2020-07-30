@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ComplaintFormCore.Web_Apis
 {
-    [Route("api/Country")]
+    [Route("api/[controller]")]
     [ApiController]
     public class CountryController : ControllerBase
     {

@@ -6,17 +6,7 @@ function initSurvey(Survey) {
     //  but could be used for radiobutton as well.
     Survey.JsonObject.metaData.addProperty("itemvalue", {
         name: "htmlAdditionalInfo:text"
-    });
-
-    //  Adding properties to 'file' type question. Those are mainly for messaging/text purposes
-    Survey.JsonObject.metaData.addProperties("file", [
-        { name: "itemListTitle:text" },
-        { name: "itemListRemoveText:text" },
-        { name: "itemListNoAttachmentsText:text" },
-        { name: "confirmRemoveMessage:text" },
-        { name: "duplicateFileNameExceptionMessage:text" },
-        { name: "multipleFileMaxSizeErrorMessage:text" }
-    ]);
+    });   
 
     // Register the function for use in SurveyJS expressions. This function validates that at least one selection was made in a <select>
     Survey
@@ -75,6 +65,7 @@ function initSurveyModelProperties(survey) {
     survey.questionErrorLocation = "top";
 
     //https://surveyjs.io/Documentation/Library?id=surveymodel#checkErrorsMode
+    //  check errors on every question value (i.e., answer) changing.
     survey.checkErrorsMode = "onValueChanged";
 
     survey.showProgressBar = "bottom";
@@ -93,7 +84,7 @@ function initSurveyModelProperties(survey) {
 
 function initSurveyModelEvents(survey) {
 
-    survey.onAfterRenderPage.add(function (survey, options) {
+    survey.onAfterRenderPage.add(function (sender, options) {
 
         //  Change page title to <h1>. 
         //  This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
@@ -113,7 +104,7 @@ function initSurveyModelEvents(survey) {
 
     survey
         .onTextMarkdown
-        .add(function (survey, options) {
+        .add(function (sender, options) {
 
             //convert the mardown text to html
             var str = converter.makeHtml(options.text);
@@ -128,12 +119,12 @@ function initSurveyModelEvents(survey) {
 
     survey
         .onUpdateQuestionCssClasses
-        .add((survey, options) => {
+        .add((sender, options) => {
 
             let classes = options.cssClasses;
 
             //  If it is the preview mode...
-            if (survey.isDisplayMode == true) {
+            if (sender.isDisplayMode == true) {
 
                 if (options.question.getType() === 'html') {
 
@@ -146,7 +137,6 @@ function initSurveyModelEvents(survey) {
                     classes.description += " sv-hidden";
                 }
                 else if (options.question.getType() == "file") {
-
 
                     classes.placeholderInput += " sv-hidden";
                 }
@@ -183,11 +173,11 @@ function initSurveyModelEvents(survey) {
 
     survey
         .onUpdatePanelCssClasses
-        .add((survey, options) => {
+        .add((sender, options) => {
             
             let classes = options.cssClasses;
 
-            if (survey.isDisplayMode == true && options.panel.hideOnPreview == true) {
+            if (sender.isDisplayMode == true && options.panel.hideOnPreview == true) {
 
                 //  This is to hide panel we don't want to show on preview.
                 //  Panels that contains information html for example.
@@ -201,118 +191,6 @@ function initSurveyModelEvents(survey) {
                 classes.panel.container += " well"; 
             } 
         }); 
-
-    survey
-        .onAfterRenderQuestion
-        .add(function (survey, options) {
-
-            if (options.question.getType() === "file") {
-
-                //  This is to build the file preview, we're not using the native one
-                var container = document.createElement("div");
-                container.setAttribute("id", "div_file_" + options.question.name);
-                container.className = "my-preview-container";             
-
-                var fileElement = options
-                    .htmlElement
-                    .getElementsByClassName("sv_q_file")[0];
-
-                if (!fileElement) {
-                    fileElement = options
-                        .htmlElement
-                        .getElementsByClassName("sv-file__decorator")[0];
-                }
-
-                fileElement.append(container);
-                
-                options
-                    .question
-                    .onPropertyChanged
-                    .add(function (question, options) {
-                   
-                        if (options.name === "value") {
-
-                            //  Checking for files with the same name. We don't want that because when we 'removed' a file, all files with the same
-                            //  name are being deleted. This could be solved if the file property "storeDataAsText" was set to false and files 
-                            //  were uploaded into a server. But for now, we store the files in the local storage.
-
-                            //var tempArray = [];
-
-                            //(options.newValue).forEach(function (fileItem) {
-
-                            //    if (tempArray.length > 0) {
-                            //        if (tempArray.some(e => e.name === fileItem.name)) {
-                            //            //  If a duplicate is found we are just adding a timstamp.
-                            //            //  It is way easier then setting up errors on the question and asking the user
-                            //            //  to remove one of the file.
-                            //            fileItem.name += "_" + (new Date).getTime().toString() 
-                            //        }
-                            //    }
-
-                            //    tempArray.push(fileItem);
-                            //});
-
-                            updateFilePreview(survey, question, container);
-                        }
-                    });
-
-                updateFilePreview(survey, options.question, container);
-            }
-        });
-
-    survey
-        .onUploadFiles
-        .add((sender, options) => {
-            options
-                .files
-                .forEach(function (file) {
-
-                    var formData = new FormData();
-                    //formData.append('SurveyId', sender.surveyId);
-                    formData.append('file', file, file.name);
-                    //formData.append("filename", file.n)
-             
-
-                    $.ajax({
-                        url: "/api/File?surveyId=" + sender.surveyId,
-                        type: "POST",
-                        success: function () {
-
-                            options.callback("success", options.files.map(file => {
-                                const newFilename = (new Date).getTime().toString() + file.name
-
-                                var file_uploaded_item = {
-                                    questionname: options.name,
-                                    filename: file.name,
-                                    size: file.size
-                                };
-
-                                file_uploaded.push(file_uploaded_item);
-
-                                return {
-                                    file: new File([file], file.name, { type: file.type, size: file.length })
-                                };  
-                            }));
-                        },
-                        error: function (xhr, status, error) {
-                            //var err = eval("(" + xhr.responseText + ")");
-                            alert(xhr.responseText);
-                        },
-                        async: true,
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        timeout: 60000
-                    });
-                });
-        });
-
-    survey
-        .onClearFiles
-        .add(function (survey, options) {          
-            options.callback('success');
-        });
 
     survey
         .onValidatedErrorsOnCurrentPage
@@ -341,8 +219,8 @@ function initSurveyModelEvents(survey) {
     //  Use for our custom navigation
     survey
         .onCurrentPageChanged
-        .add(function (survey, options) {
-            onCurrentPageChanged_updateNavButtons(survey);
+        .add(function (sender, options) {
+            onCurrentPageChanged_updateNavButtons(sender);
         });
 
     survey
@@ -351,108 +229,6 @@ function initSurveyModelEvents(survey) {
             options.allowComplete = confirm('Do you want to complete the survey?');
         });
 
-}
-
-//  This is to build a custom file preview container.
-function updateFilePreview(survey, question, container) {
-
-    container.innerHTML = "";
-
-    var title = document.createElement("h3");
-    title.innerHTML = getTranslation(question.itemListTitle);
-    container.append(title);   
-
-    if (question.value && question.value.length > 0) {
-
-        var listView = document.createElement("ol");
-
-        (question.value).forEach(function (fileItem) {
-
-            var item = document.createElement("li");
-
-            var span = document.createElement("span");
-            span.className = "sv_q_file_preview";
-
-            var div = document.createElement("div");
-
-            //var size = Math.round(fileItem.content.length / 1000, 0) || 0;
-            // var size = Math.round(fileItem.content.length / 1000, 0) || 0;
-            var size = 33;
-            var object_from_memory = file_uploaded.filter(function (item)
-            {
-                return (item.questionname == question.name && item.filename == fileItem.name);
-            });
-
-            size = object_from_memory || 0;
-
-            var button = document.createElement("div");
-            button.className = "btn sv-btn sv-file__choose-btn";            
-            button.innerText = fileItem.name + " (" + size + " KB-B)";
-
-            button.onclick = function () {
-
-                fetch("/api/File?surveyId=" + survey.surveyId + "&filename=" + fileItem.name)
-                    .then(resp => resp.blob())
-                    .then(blob => {
-                        const url = window.URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.style.display = 'none';
-                        a.href = url;
-                        a.download = fileItem.name;
-                        document.body.appendChild(a);
-                        a.click();
-                        window.URL.revokeObjectURL(url);
-                    })
-                    .catch(() => alert('oh no!'));
-            }
-
-            div.append(button);
-
-            var buttonRemove = document.createElement("button");
-            buttonRemove.setAttribute('type', 'button');
-            buttonRemove.className = "btn sv_q_file_remove_button";
-            buttonRemove.innerText = getTranslation(question.itemListRemoveText);
-
-            if (survey.isDisplayMode == true) {
-                buttonRemove.setAttribute('disabled', 'disabled');
-            }
-
-            buttonRemove.onclick = function () {
-                if (confirm(getTranslation(question.confirmRemoveMessage))) {
-                    question.removeFile({ name: fileItem.name });
-                }
-            }
-
-            div.append(buttonRemove);
-
-            span.appendChild(div);
-            item.appendChild(span);
-
-            listView.appendChild(item);
-        });
-
-        container.append(listView);
-    }
-    else {
-        var title = document.createElement("p");
-        title.innerHTML = getTranslation(question.itemListNoAttachmentsText);
-        container.append(title);
-    }    
-}
-
-function getFileSize(surveyId, filename) {
-
-    $.ajax({
-        url: "/api/File?surveyId=" + surveyId + "&filename=" + filename,
-        type: "GET",
-        success: function (data) {
-            return data.size;
-        },
-        error: function (xhr, status, error) {
-            //var err = eval("(" + xhr.responseText + ")");
-            alert(xhr.responseText);
-        }
-    });
 }
 
 //  Function for updating (show/hide) the navigation buttons
@@ -516,7 +292,6 @@ function startSurvey(survey) {
 
     survey.nextPage();
 }
-
 
 function endSession() {
     var url = "/Home/Index";

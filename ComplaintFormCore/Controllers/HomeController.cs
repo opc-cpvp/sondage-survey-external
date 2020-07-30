@@ -57,8 +57,10 @@ namespace ComplaintFormCore.Controllers
         [HttpPost]
         [ActionName("Survey")]
         [ValidateAntiForgeryToken]
-        public IActionResult SurveyFromBody([FromBody] PostSurveyResultModel model)
+        public IActionResult SurveyFromBody([FromBody] SurveyPAModel model, [FromQuery] string surveyId)
         {
+            
+            
             return Json(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
 
