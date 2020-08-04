@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,10 +13,10 @@ namespace ComplaintFormCore.Models
         public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
         public string RaisedPrivacyToAtipCoordinator { get; set; }
- 
-        public List<string> WhichOneOfTheseChoicesSummarizesYourComplaint { get; set; }
 
-        public string EmployeeOrCustomer { get; set; }
+        public List<string> NatureOfComplaint { get; set; }
+
+        public string IsEmployee { get; set; }
 
         public string DateSentRequestsAccess { get; set; }
 
@@ -91,17 +92,32 @@ namespace ComplaintFormCore.Models
 
         public List<SurveyFile> Documentation_file_upload_rep { get; set; }
 
-        public bool Confirmation_verification { get; set; }
+        public List<string> Confirmation_verification { get; set; }
     }
 
+    [Serializable]
     public class SurveyFile 
     {
-        public string Name { get; set; }
+        public string name { get; set; }
 
-        public string Type { get; set; }
+        public string type { get; set; }
 
-        public string Content { get; set; }
+        public string content { get; set; }
 
-        public long Size { get; set; }
+        public long size { get; set; }
+    }
+
+
+    public enum NatureOfComplaintType
+    {
+        NatureOfComplaintDelay,
+        NatureOfComplaintExtensionOfTime,
+        NatureOfComplaintDenialOfAccess,
+        NatureOfComplaintLanguage,
+        NatureOfComplaintCorrection,
+        NatureOfComplaintCollection,
+        NatureOfComplaintUseAndDisclosure,
+        NatureOfComplaintRetentionAndDisposal,
+        NatureOfComplaintOther
     }
 }

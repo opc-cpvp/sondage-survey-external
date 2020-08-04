@@ -245,7 +245,7 @@
       "elements": [
         {
           "type": "checkbox",
-          "name": "WhichOneOfTheseChoicesSummarizesYourComplaint",
+          "name": "NatureOfComplaint",
           "title": {
             "en": "Which of the following choices most accurately summarizes your complaint?",
             "fr": "Lesquels des choix suivants résume le mieux votre plainte?"
@@ -358,7 +358,7 @@
       "elements": [
         {
           "type": "radiogroup",
-          "name": "EmployeeOrCustomer",
+          "name": "IsEmployee",
           "title": {
             "en": "Are you submitting the complaint as a member of the general public or as an employee of the goverment institution?",
             "fr": "Déposez-vous la plainte en tant que membre du grand public ou en tant qu’employé de l’institution fédérale?"
@@ -366,7 +366,7 @@
           "isRequired": true,
           "choices": [
             {
-              "value": "genral_public",
+              "value": "general_public",
               "text": {
                 "en": "General public",
                 "fr": "Grand public"
@@ -390,7 +390,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
 
         },
         {
@@ -402,7 +402,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
@@ -412,7 +412,7 @@
             "fr": "Si l’institution vous a demandé de plus amples renseignements ou des éclaircissements au sujet de votre demande, que lui avez-vous répondu et quand l’avez-vous fait? (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
@@ -423,7 +423,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "radiogroup",
@@ -433,7 +433,7 @@
             "fr": "L’institution a-t-elle répondu qu’il n’existe aucun document?"
           },
           "isRequired": true,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
           "choices": [
             {
               "text": {
@@ -459,7 +459,7 @@
             "fr": "Quels articles de la *Loi sur la protection des renseignements personnels* l’institution a-t-elle mentionnés (le cas échéant) comme raison pour laquelle elle a refusé de divulguer des renseignements dans sa réponse à votre demande? (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "comment",
@@ -469,7 +469,7 @@
             "fr": "Veuillez décrire chaque élément (s’il y a lieu) de votre demande d’accès que vous n’avez pas encore reçu. (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
         },
         {
           "type": "radiogroup",
@@ -479,7 +479,7 @@
             "fr": "L’institution a-t-elle accepté de traiter votre demande de façon informelle?"
           },
           "isRequired": true,
-          "visibleIf": "{WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
           "choices": [
             {
               "text": {
@@ -522,7 +522,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage')",
+          "visibleIf": "({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage')",
           "htmldescription": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
@@ -537,7 +537,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "!(({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCorrection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintCollection' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintOther') and ({WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDelay' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintExtensionOfTime' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintDenialOfAccess' or {WhichOneOfTheseChoicesSummarizesYourComplaint} contains 'NatureOfComplaintLanguage'))",
+          "visibleIf": "!(({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage'))",
 
           "htmldescription": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",

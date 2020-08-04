@@ -18,12 +18,12 @@ namespace ComplaintFormCore.Controllers
         public HomeController(ModelAccessor modelAccessor, ILogger<HomeController> logger)
             : base(modelAccessor)
         {
-            _logger = logger;       
-
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href="/Home/Test"});
+            _logger = logger;
 
             //  The token should be coming from the Complaint table
             string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
+
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });           
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
         }
 

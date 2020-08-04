@@ -79,7 +79,7 @@ function initSurveyFileModelEvents(survey) {
                     formData.append('file', file, newFilename);
 
                     $.ajax({
-                        url: "/api/File/Upload?surveyId=" + sender.surveyId,
+                        url: "/api/File/Upload?referenceId=" + sender.complaintId,
                         type: "POST",
                         success: function () {
 
@@ -91,7 +91,7 @@ function initSurveyFileModelEvents(survey) {
 
                                 return {
                                     file: new File([file], newFilename, { type: file.type }),
-                                    content: file.size
+                                    content: file.size.toString()
                                 };
                             }));
                         },
@@ -155,11 +155,9 @@ function updateFilePreview(survey, question, container) {
             index = index + 1;
             button.setAttribute('id', buttonId);
 
-            //setButtonTextWithFileSize(buttonId, survey.surveyId, fileItem.name);
-
             button.onclick = function () {
 
-                fetch("/api/File/Get?surveyId=" + survey.surveyId + "&filename=" + fileItem.name)
+                fetch("/api/File/Get?referenceId=" + survey.complaintId + "&filename=" + fileItem.name)
                     .then(resp => resp.blob())
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
@@ -207,20 +205,3 @@ function updateFilePreview(survey, question, container) {
         container.append(title);
     }
 }
-
-//function setButtonTextWithFileSize(elementId, surveyId, filename) {
-
-//    $.ajax({
-//        url: "/api/File/GetFileSize?surveyId=" + surveyId + "&filename=" + filename,
-//        type: "GET",
-//        success: function (data) {
-
-//            $("#" + elementId).html(filename + " (" + data.size + " KB)");
-
-//        },
-//        error: function (xhr, status, error) {
-//            //var err = eval("(" + xhr.responseText + ")");
-//            alert(xhr.responseText);
-//        }
-//    });
-//}

@@ -2,6 +2,11 @@
 
 function initSurvey(Survey) {
 
+    Survey
+        .JsonObject
+        .metaData
+        .addProperty("survey", { name: "complaintId:string", default: "" });
+
     //  Add a new property for each item choices (to the native text, value). This is used for checkboxes with addtional Html info
     //  but could be used for radiobutton as well.
     Survey.JsonObject.metaData.addProperty("itemvalue", {
@@ -223,11 +228,11 @@ function initSurveyModelEvents(survey) {
             onCurrentPageChanged_updateNavButtons(sender);
         });
 
-    survey
-        .onCompleting
-        .add(function (sender, options) {
-            options.allowComplete = confirm('Do you want to complete the survey?');
-        });
+    //survey
+    //    .onCompleting
+    //    .add(function (sender, options) {
+    //        options.allowComplete = confirm('Do you want to complete the survey?');
+    //    });
 
 }
 

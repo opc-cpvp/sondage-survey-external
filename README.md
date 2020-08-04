@@ -88,6 +88,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 }
 ```
 
+### Added Nuget packages
+- Hellang.Middleware.ProblemDetails for error handling in Web Apis
+
 ### TODO 
 
 -) Replace <div id="div_errors_list" style="display:none"></div> in body
@@ -96,15 +99,13 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) Complete page -> Page refresh problem
 -) Find a strategy to clear local storage. Put a timestamp on local storage?
 -) Make sure the css classes are the same on the checkboxes & the radio buttons
--) Create a C# object from JSON to be sent to CRM
--) Survey Id generation coming from the email
--) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic.
--) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
 -) JS Error: 
 	Uncaught TypeError: Cannot read property 'length' of undefined
     at Function.ChoicesRestfull.unregisterSameRequests (choicesRestfull.ts:76)
     at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
+-) Server side validation
+-) Make sure the Start button is there, and probably the other buttons
 
 ### Mode details required or help required
 
@@ -142,12 +143,17 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 		The local storage quota limit is 5MB. Files are stored in the file system for now.
 22) prevent files with same name. We are pre-fixing the file name with a timestamps in survey.onUploadFiles. It is way easier then 
 		setting up errors on the question and asking the user to do an action.
+23) Survey Id generation coming from the email. We are not using surveyId because the surveyId has a different purposes. We are using tokens.
+24) Create a C# object from JSON to be sent to CRM
+25) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
 
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)
 B) The navigation panel is the native of and should be replaced (POSTPONED)
 C) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
+D) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic. There is
+	no need for this just now.
 
 ### Won't fix or implement'
 

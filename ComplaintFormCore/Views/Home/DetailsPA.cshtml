@@ -108,7 +108,7 @@
                 options.question.html += "</li>";
             }
 
-            if (survey.data["WhichOneOfTheseChoicesSummarizesYourComplaint"].filter(x => x == "NatureOfComplaintDenialOfAccess").length > 0) {
+            if (survey.data["NatureOfComplaint"].filter(x => x == "NatureOfComplaintDenialOfAccess").length > 0) {
                 options.question.html += "<li class='mrgn-bttm-sm'>";
                 if (survey.locale == "fr") {
                     options.question.html += "vos demandes d’accès et toute réponse reçue de l’institution";
@@ -144,7 +144,7 @@
             var totalBytes = 0;
 
             (options.question.value).forEach(function (fileItem) {
-                totalBytes = totalBytes + fileItem.content;
+                totalBytes = totalBytes + parseInt(fileItem.content);
             });
 
             //  We need to calculate the total size of all files for both file upload
@@ -156,7 +156,7 @@
                 if(rep_file_upload && rep_file_upload.value){
                             
                     (rep_file_upload.value).forEach(function (fileItem) {
-                        totalBytes = totalBytes + fileItem.content;
+                        totalBytes = totalBytes + parseInt(fileItem.content);
                     });
                 }
             }
@@ -167,7 +167,7 @@
                 if(file_upload && file_upload.value){
                             
                     (file_upload.value).forEach(function (fileItem) {
-                        totalBytes = totalBytes + fileItem.content;
+                        totalBytes = totalBytes + parseInt(fileItem.content);
                     });
                 }
             }
@@ -186,48 +186,100 @@
 
                 survey = new Survey.Model(json);
 
-                survey.surveyId = '@ViewBag.token'
+                survey.complaintId = '@ViewBag.token'
 
                 //  This needs to be here
                 survey.locale = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
 
                 //  Add events only applicable to this page **********************
 
-                // This EVENT bindings needs to be here
+                //  ISSUE WITH THE FLOW: When calling survey.onComplete the completed page shows right away. This is
+                //  not desired. If the validation doesn't pas, we don't want to go to the completed page. So to do that, 
+                //  we call survey.onCompleting.
+                //	The event onCompleting is fired before the survey is completed and the onComplete event is fired.
+                //  You can prevent the survey from completing by setting options.allowComplete to false
+                //  sender - the survey object that fires the event.
+                //  NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
+                //          This is because the call is waiting for options.allowComplete = true
+                survey
+                    .onCompleting 
+                    .add(function (sender, options) {
+
+                        options.allowComplete = false;
+
+                        let data = JSON.stringify(sender.data, null, 3);
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/api/PASurvey/Validate?complaintId=" + sender.complaintId, false);
+                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                        xhr.onload = xhr.onerror = function () {
+                            if (xhr.status == 200) {
+
+                                options.allowComplete = true;
+
+                            }
+                            else if (xhr.status == 400) {
+
+                                var response = JSON.parse(xhr.response);
+
+                                if (response.detail)
+                                    alert(response.detail);
+                                else
+                                    alert("oopsy");
+                            }
+                            else if (xhr.status == 500) {
+
+                                alert(xhr.response);
+                            }
+                            else {
+                                //Error
+                                options.showDataSavingError(); // you may pass a text parameter to show your own text
+                            }
+                        };
+                        xhr.send(data);
+
+                    });
+
                 survey
                     .onComplete
-                    .add(function (result) {
-                   
-                        let dataType = 'application/json; charset=utf-8';
-                        let data = JSON.stringify(result.data, null, 3);
+                    .add(function (sender, options) {
 
-                        console.log(data);
+                        ////let dataType = 'application/json; charset=utf-8';
+                        let data = JSON.stringify(sender.data, null, 3);
 
-                        $.ajax({
-                            type: "POST",
-                            url: "@Url.Action("Survey")",
-                            headers: { "RequestVerificationToken": '@GetAntiXsrfRequestToken()' },
-                            dataType: 'json',
-                            contentType: dataType,
-                            data: data,
-                            success: function (result) {
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", "/api/PASurvey/Complete?complaintId=" + sender.complaintId);
+                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                        xhr.onload = xhr.onerror = function (result) {
+
+                            if (xhr.status == 200) {
 
                                 //  Hide the navigation buttons
                                 $("#div_navigation").hide();
 
                                 //  Update the file reference number
-                                $("#sp_survey_file_number").html(result.referenceNumber);
-
+                                var response = JSON.parse(xhr.response);
+                                $("#sp_survey_file_number").html(response.referenceNumber);
 
                                 //survey.clear(true, true);
                                 //clearLocalStorage(storageName_PA);
                                 saveStateLocally(survey, storageName_PA);
-                            },
-                            error: function (req, status, error) {
-                                alert(error);
+
+                                console.log(data);
+
+                            } else if (xhr.status == 400) {
+
+                                var response = JSON.parse(xhr.response);
+                                alert(response.detail);
                             }
-                        });
+                            else {
+                                //Error
+                                options.showDataSavingError(); // you may pass a text parameter to show your own text
+                            }
+                        };
+                        xhr.send(data);
                     });
+                
 
                 survey
                     .onAfterRenderQuestion
@@ -279,6 +331,58 @@
                         }
                     });
 
+                survey
+                    .onServerValidateQuestions
+                    .add(function (sender, options) {                        
+
+                        if (options.data["documentation_file_upload"] || options.data["documentation_file_upload_rep"]) {
+
+                            var data = [];
+
+                            (options.data["documentation_file_upload"]).forEach(function (file) {
+                                data.push(file);
+                            });
+
+                            (options.data["documentation_file_upload_rep"]).forEach(function (file) {
+                                data.push(file);
+                            });
+
+                            let fullData = JSON.stringify(data, null, 3);
+
+                            var xhr = new XMLHttpRequest();
+                            xhr.open("POST", "/api/PASurvey/ValidateAttachments?complaintId=" + sender.complaintId, true);
+                            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                            xhr.onload = xhr.onerror = function () {
+                                if (xhr.status == 200) {
+
+                                    options.complete();
+
+                                }
+                                else if (xhr.status == 400) {
+
+                                    var response = JSON.parse(xhr.response);
+
+                                    if (response.detail)
+                                        alert(response.detail);
+                                    else
+                                        alert("oopsy");
+                                }
+                                else if (xhr.status == 500) {
+
+                                    alert(xhr.response);
+                                }
+                                else {
+                                    //Error
+                                    options.showDataSavingError(); // you may pass a text parameter to show your own text
+                                }
+                            };
+                            xhr.send(fullData);
+                        }
+                        else {
+                            options.complete();
+                        }                      
+                    });
+
                 // ****Event *****************************************************
 
                 initSurveyModelEvents(survey);
@@ -300,13 +404,13 @@
                     "FilingComplaintOnOwnBehalf": "yourself",
                     "RaisedPrivacyToAtipCoordinator": "yes",
                     "WhichFederalGovernementInstitutionComplaintAgainst": "3",
-                    "WhichOneOfTheseChoicesSummarizesYourComplaint": [
+                    "NatureOfComplaint": [
                         "NatureOfComplaintOther",
                         "NatureOfComplaintDelay",
                         "NatureOfComplaintExtensionOfTime",
                         "NatureOfComplaintCollection"
                     ],
-                    "EmployeeOrCustomer": "genral_public",
+                    "IsEmployee": "general_public",
                     "AdditionalComments": "iuyiuyuiyiuy",
                     "complainant_HaveYouSubmittedBefore": "no",
                     "complainant_title": "Mr.",

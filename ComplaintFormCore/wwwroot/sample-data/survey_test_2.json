@@ -14,7 +14,6 @@
           "type": "panel",
           "name": "panel1",
           "title": "Please, help us improve our product",
-          "hideOnPreview":  true,
           "elements": [
             {
               "type": "radiogroup",
@@ -48,7 +47,6 @@
     },
     {
       "name": "page3",
-      "hideOnPreview": true,
       "elements": [
         {
           "type": "text",

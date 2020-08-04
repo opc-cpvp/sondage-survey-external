@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ComplaintFormCore.Resources;
 using GoC.WebTemplate.Components.Core.Services;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -63,6 +64,10 @@ namespace ComplaintFormCore
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
+
+            //  This is for error handling
+            services.AddProblemDetails();
+            //services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -100,7 +105,8 @@ namespace ComplaintFormCore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-           
+            //  This is for error handling
+            app.UseProblemDetails();
         }
     }
 }

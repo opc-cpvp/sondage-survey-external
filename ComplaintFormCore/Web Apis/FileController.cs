@@ -18,12 +18,12 @@ namespace ComplaintFormCore.Web_Apis
     public class FileController : ControllerBase
     {
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string surveyId)
+        public async Task<IActionResult> Upload(string referenceId)
         {
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("FileUploads", surveyId);
+                var folderName = Path.Combine("FileUploads", referenceId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (file.Length > 0)
@@ -73,9 +73,9 @@ namespace ComplaintFormCore.Web_Apis
 
         [HttpGet]
         [ActionName("Get")]
-        public IActionResult Get([FromQuery] string surveyId, [FromQuery] string filename)
+        public IActionResult Get([FromQuery] string referenceId, [FromQuery] string filename)
         {
-            var folderName = Path.Combine("FileUploads", surveyId);
+            var folderName = Path.Combine("FileUploads", referenceId);
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             var fullPath = Path.Combine(pathToSave, filename);
 
@@ -104,14 +104,5 @@ namespace ComplaintFormCore.Web_Apis
 
         //    return Ok(new { size });
         //}
-    }
-
-    public class FileRequest
-    {
-        public string SurveyId { get; set; }
-
-        public string Name { get; set; }
-
-        public string Content { get; set; }
     }
 }
