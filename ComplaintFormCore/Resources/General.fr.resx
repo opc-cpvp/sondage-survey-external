@@ -117,10 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AtLeastOneItemMustBeSelected" xml:space="preserve">
-    <value>Au moins un élément doit être sélectionné.</value>
+  <data name="Continue" xml:space="preserve">
+    <value>Continuer</value>
   </data>
-  <data name="SizeOfFilesExceeded" xml:space="preserve">
-    <value>FR-The size of your files is exceeding the maximum of 25 MB allocated.</value>
+  <data name="Delete" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Dropbox" xml:space="preserve">
+    <value>Boîte de dépôt</value>
+  </data>
+  <data name="EndYourSession" xml:space="preserve">
+    <value>Fermer votre session</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>S.O.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Aucun</value>
+  </data>
+  <data name="NotSure" xml:space="preserve">
+    <value>Ne sait pas</value>
+  </data>
+  <data name="PreviousScreen" xml:space="preserve">
+    <value>Écran précédent</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>obligatoire</value>
+  </data>
+  <data name="ReviewYourComplaintSummary" xml:space="preserve">
+    <value>Examiner le résumé de votre plainte</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Soumettre</value>
+  </data>
+  <data name="TempLinkToDropbox" xml:space="preserve">
+    <value>Lien temporaire vers la boîte de dépôt</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>Ce champ est obligatoire</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="AnswerLabelShort" xml:space="preserve">
+    <value>R</value>
   </data>
 </root>

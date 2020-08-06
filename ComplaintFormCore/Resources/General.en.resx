@@ -117,10 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AtLeastOneItemMustBeSelected" xml:space="preserve">
-    <value>At least one item must be selected.</value>
+  <data name="AnswerLabelShort" xml:space="preserve">
+    <value>A</value>
   </data>
-  <data name="SizeOfFilesExceeded" xml:space="preserve">
-    <value>The size of your files is exceeding the maximum of 25 MB allocated.</value>
+  <data name="Colon" xml:space="preserve">
+    <value>:</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Dropbox" xml:space="preserve">
+    <value>Drop-box</value>
+  </data>
+  <data name="EndYourSession" xml:space="preserve">
+    <value>End your session</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="NA" xml:space="preserve">
+    <value>N/A</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="NotSure" xml:space="preserve">
+    <value>Not sure</value>
+  </data>
+  <data name="PreviousScreen" xml:space="preserve">
+    <value>Previous screen</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>required</value>
+  </data>
+  <data name="ReviewYourComplaintSummary" xml:space="preserve">
+    <value>Review your complaint summary</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="TempLinkToDropbox" xml:space="preserve">
+    <value>Temporary link to Drop-Box</value>
+  </data>
+  <data name="ThisFieldIsRequired" xml:space="preserve">
+    <value>This field is required</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
 </root>

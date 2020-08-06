@@ -90,6 +90,7 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis
+- libphonenumber-csharp already in used in the original project
 
 ### TODO 
 
@@ -106,6 +107,11 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
 -) Server side validation
 -) Make sure the Start button is there, and probably the other buttons
+-) Log JS exceptions using a web api
+-) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
+		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
+-) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
+		representative if there's a representative
 
 ### Mode details required or help required
 

@@ -38,6 +38,7 @@
   <ItemGroup>
     <PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.12.7" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.5">
       <PrivateAssets>all</PrivateAssets>

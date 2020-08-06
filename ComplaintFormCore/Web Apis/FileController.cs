@@ -18,12 +18,12 @@ namespace ComplaintFormCore.Web_Apis
     public class FileController : ControllerBase
     {
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string referenceId)
+        public async Task<IActionResult> Upload(string complaintId)
         {
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("FileUploads", referenceId);
+                var folderName = Path.Combine("FileUploads", complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 if (file.Length > 0)
@@ -71,11 +71,15 @@ namespace ComplaintFormCore.Web_Apis
             }
         }
 
+        /// <summary>
+        /// Fetch a file associated to a complaint
+        /// </summary>
         [HttpGet]
         [ActionName("Get")]
-        public IActionResult Get([FromQuery] string referenceId, [FromQuery] string filename)
+        public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
         {
-            var folderName = Path.Combine("FileUploads", referenceId);
+            //  Files are organized by complaint id in the folder FileUploads
+            var folderName = Path.Combine("FileUploads", complaintId);
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
             var fullPath = Path.Combine(pathToSave, filename);
 
@@ -86,23 +90,5 @@ namespace ComplaintFormCore.Web_Apis
   
             return File(content, contentType, filename);
         }
-
-        //[HttpGet]
-        //[ActionName("GetFileSize")]
-        //public IActionResult GetFileSize([FromQuery] string surveyId, [FromQuery] string filename)
-        //{
-        //    //var folderName = Path.Combine("FileUploads", surveyId);
-        //    //var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-        //    //var fullPath = Path.Combine(pathToSave, filename);
-
-        //    //var net = new System.Net.WebClient();
-        //    //var data = net.DownloadData(fullPath);
-        //    //var content = new System.IO.MemoryStream(data);
-        //    //var contentType = "APPLICATION/octet-stream";
-
-        //    long size = 99;
-
-        //    return Ok(new { size });
-        //}
     }
 }

@@ -8,42 +8,99 @@ namespace ComplaintFormCore.Models
 {
     public class SurveyPAModel
     {
+        /// <summary>
+        /// Page 1: page_preliminary_info_Authorization_for_Representative
+        /// </summary>
         public string FilingComplaintOnOwnBehalf { get; set; }
 
+        /// <summary>
+        /// Page 2: page_preliminary_info_Identify_institution
+        /// </summary>
         public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
+        /// <summary>
+        /// Page 3: page_steps_taken_Writing_ATIP_Coordinator
+        /// </summary>
         public string RaisedPrivacyToAtipCoordinator { get; set; }
 
+        /// <summary>
+        /// Page 5: page_details_Type_complaint
+        /// </summary>
         public List<string> NatureOfComplaint { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string IsEmployee { get; set; }
 
-        public string DateSentRequestsAccess { get; set; }
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
+        public string DateSentRequests { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string WordingOfRequest { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string MoreDetailsOfRequest { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string DateOfFinalAnswer { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string DidNoRecordExist { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string PrivacyActSectionsApplied { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string ItemsNotRecieved { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string InstitutionAgreedRequestOnInformalBasis { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string SummarizeYourConcernsAndAnyStepsTaken { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string SummarizeYourComplaintAndAnyStepsTaken { get; set; }
 
-        public string WhatWouldResolveYourComplaintDetailsPA { get; set; }
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
+        public string WhatWouldResolveYourComplaint { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string SummarizeAttemptsToResolvePrivacyMatter { get; set; }
 
+        /// <summary>
+        /// Page 6: page_details_description_of_concerns
+        /// </summary>
         public string AdditionalComments { get; set; }
 
+        /// <summary>
+        /// Page 7: page_complainant_representative
+        /// </summary>
         public string Complainant_HaveYouSubmittedBefore { get; set; }
 
         public string Reprensentative_title { get; set; }
@@ -62,7 +119,7 @@ namespace ComplaintFormCore.Models
 
         public string Reprensentative_DayTimeNumber { get; set; }
 
-        public string Complainant_title { get; set; }
+        public string Complainant_FormOfAddress { get; set; }
 
         public string Complainant_FirstName { get; set; }
 
@@ -81,6 +138,12 @@ namespace ComplaintFormCore.Models
         public string Complainant_ProvinceOrState { get; set; }
 
         public string Complainant_DayTimeNumber { get; set; }
+
+        public string Complainant_DayTimeNumberExtension { get; set; }
+
+        public string Complainant_AltTelephoneNumber { get; set; }        
+
+        public string Complainant_AltTelephoneNumberExtension { get; set; } //
 
         public string Complainant_NeedsDisabilityAccommodation { get; set; }
 

@@ -222,10 +222,16 @@
 
                                 var response = JSON.parse(xhr.response);
 
-                                if (response.detail)
+                                if (response.detail) {
                                     alert(response.detail);
-                                else
+                                }
+                                else if (response.errorMessages && response.errorMessages.length > 0) {
+
+                                    alert(response.errorMessages.join('\n'));
+                                }
+                                else {
                                     alert("oopsy");
+                                } 
                             }
                             else if (xhr.status == 500) {
 
@@ -337,6 +343,8 @@
 
                         if (options.data["documentation_file_upload"] || options.data["documentation_file_upload_rep"]) {
 
+                            //  This is to validate the size of all attachments
+
                             var data = [];
 
                             (options.data["documentation_file_upload"]).forEach(function (file) {
@@ -413,7 +421,7 @@
                     "IsEmployee": "general_public",
                     "AdditionalComments": "iuyiuyuiyiuy",
                     "complainant_HaveYouSubmittedBefore": "no",
-                    "complainant_title": "Mr.",
+                    "complainant_FormOfAddress": "Mr.",
                     "complainant_FirstName": "jf",
                     "complainant_LastName": "brouillette",
                     "complainant_Email": "jf@hotmail.com",
@@ -434,9 +442,9 @@
                     "reprensentative_PostalCode": "J9A2V5",
                     "reprensentative_DayTimeNumber": "6135656667",
                     "documentation_type": "none",
-                    "WhatWouldResolveYourComplaintDetailsPA": "gsdgdfgsdf",
+                    "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
                     "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                    "DateSentRequestsAccess": "qwerewr",
+                    "DateSentRequests": "qwerewr",
                     "WordingOfRequest": "hgdffgh",
                     "MoreDetailsOfRequest": "oiuyoiuo",
                     "DateOfFinalAnswer": "gfhfjgj",

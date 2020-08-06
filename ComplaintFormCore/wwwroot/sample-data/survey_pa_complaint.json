@@ -21,7 +21,7 @@
 
     },
     {
-      "name": "page_preliminary_info_1",
+      "name": "page_preliminary_info_Authorization_for_Representative",
       "title": {
         "en": "Part A: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
         "fr": "Partie A : Renseignements préliminaires (autorisation de représentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -63,7 +63,7 @@
       ]
     },
     {
-      "name": "page_preliminary_info_2",
+      "name": "page_preliminary_info_Identify_institution",
       "title": {
         "en": "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)",
         "fr": "Partie A : Renseignements préliminaires (identifier l’institution) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -101,7 +101,7 @@
       ]
     },
     {
-      "name": "page_steps_taken_1",
+      "name": "page_steps_taken_Writing_ATIP_Coordinator",
       "title": {
         "en": "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)",
         "fr": "Partie B : Mesures prises (écrire au coordonnateur de l’AIPRP) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -150,7 +150,7 @@
       ]
     },
     {
-      "name": "page_steps_taken_2",
+      "name": "page_steps_taken_Concerns_raised_with_institution",
       "hideOnPreview": true,
       "title": {
         "en": "Part B: Steps taken (Concerns raised with institution) - Privacy complaint form (federal institution)",
@@ -237,7 +237,7 @@
       ]
     },
     {
-      "name": "page_review_and_send",
+      "name": "page_details_Type_complaint",
       "title": {
         "en": "Part C: Details (Type of complaint) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (type de plainte) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -350,7 +350,7 @@
       ]
     },
     {
-      "name": "page_description",
+      "name": "page_details_description_of_concerns",
       "title": {
         "en": "Part C: Details (description of concerns) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (Section 2 : Détails de la plainte) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -383,7 +383,7 @@
         },
         {
           "type": "comment",
-          "name": "DateSentRequestsAccess",
+          "name": "DateSentRequests",
           "title": {
             "en": "What date did you send your written access request to the institution? If you sent multiple requests please list each one. (maximum 5,000 characters)",
             "fr": "À quelle date avez-vous envoyé votre demande d’accès par écrit à l’institution? Si vous avez envoyé plusieurs demandes, veuillez les énumérer toutes. (maximum 5 000 caractères)"
@@ -546,7 +546,7 @@
         },
         {
           "type": "comment",
-          "name": "WhatWouldResolveYourComplaintDetailsPA",
+          "name": "WhatWouldResolveYourComplaint",
           "title": {
             "en": "What would resolve your concerns? (maximum 5,000 characters)",
             "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
@@ -584,7 +584,7 @@
       ]
     },
     {
-      "name": "page_complainant",
+      "name": "page_complainant_representative",
       "title": {
         "en": "Part C: Details (Section 3: Complaintant/Representative information) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (Section 3 : Information sur le plaignant ou le représentant) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -670,7 +670,7 @@
           "elements": [
             {
               "type": "dropdown",
-              "name": "complainant_title",
+              "name": "complainant_FormOfAddress",
               "title": {
                 "en": "Preferred form of address",
                 "fr": "Titre de civilité préféré"

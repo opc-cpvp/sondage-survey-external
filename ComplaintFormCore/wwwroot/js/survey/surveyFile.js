@@ -79,7 +79,7 @@ function initSurveyFileModelEvents(survey) {
                     formData.append('file', file, newFilename);
 
                     $.ajax({
-                        url: "/api/File/Upload?referenceId=" + sender.complaintId,
+                        url: "/api/File/Upload?complaintId=" + sender.complaintId,
                         type: "POST",
                         success: function () {
 
@@ -120,10 +120,6 @@ function initSurveyFileModelEvents(survey) {
 //  This is to build a custom file preview container.
 function updateFilePreview(survey, question, container) {
 
-    //if (!container) {
-    //    container = document.getElementById("div_file_" + question.name);
-    //}
-
     container.innerHTML = "";
 
     var title = document.createElement("h3");
@@ -157,7 +153,7 @@ function updateFilePreview(survey, question, container) {
 
             button.onclick = function () {
 
-                fetch("/api/File/Get?referenceId=" + survey.complaintId + "&filename=" + fileItem.name)
+                fetch("/api/File/Get?complaintId=" + survey.complaintId + "&filename=" + fileItem.name)
                     .then(resp => resp.blob())
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
