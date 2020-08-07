@@ -43,8 +43,9 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
-        public IActionResult Test()
+        public IActionResult Test([FromQuery(Name = "token")] string token)
         {
+            ViewBag.token = token;
             return View();
         }
 

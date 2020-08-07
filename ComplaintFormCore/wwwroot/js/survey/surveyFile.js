@@ -96,8 +96,14 @@ function initSurveyFileModelEvents(survey) {
                             }));
                         },
                         error: function (xhr, status, error) {
-                            //var err = eval("(" + xhr.responseText + ")");
-                            alert(xhr.responseText);
+
+                            var response = JSON.parse(xhr.responseText);
+
+                            if (response.detail)
+                                alert(response.detail);
+                            else
+                                alert("Could not upload the file");
+
                         },
                         async: true,
                         data: formData,
@@ -154,6 +160,7 @@ function updateFilePreview(survey, question, container) {
             button.onclick = function () {
 
                 fetch("/api/File/Get?complaintId=" + survey.complaintId + "&filename=" + fileItem.name)
+                    .then(handleErrors)
                     .then(resp => resp.blob())
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
@@ -165,7 +172,16 @@ function updateFilePreview(survey, question, container) {
                         a.click();
                         window.URL.revokeObjectURL(url);
                     })
-                    .catch(() => alert('oh no!'));
+                    .catch(function (error) {
+
+                        var response = JSON.parse(error);
+
+                        if (response.detail)
+                            alert(response.detail);
+                        else
+                            alert("Could not upload the file");
+
+                    });
             }
 
             div.append(button);

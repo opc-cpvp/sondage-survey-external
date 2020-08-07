@@ -72,7 +72,7 @@
 
                         var data2 = {
                             "FilingComplaintOnOwnBehalf": "yourself",
-                            "RaisedPrivacyToAtipCoordinator": "yes",
+                            "RaisedPrivacyToAtipCoordinator": "",
                             "WhichFederalGovernementInstitutionComplaintAgainst": "3",
                             "NatureOfComplaint": [
                                 "NatureOfComplaintOther",
@@ -83,7 +83,7 @@
                             "IsEmployee": "general_public",
                             "AdditionalComments": "iuyiuyuiyiuy",
                             "Complainant_HaveYouSubmittedBefore": "no",
-                            "Complainant_title": "Mr.",
+                            "Complainant_FormOfAddress": "Mr.",
                             "Complainant_FirstName": "jf",
                             "Complainant_LastName": "brouillette",
                             "Complainant_Email": "jf@hotmail.com",
@@ -91,11 +91,11 @@
                             "Complainant_City": "gat",
                             "Complainant_PostalCode": "J9A2V5",
                             "Complainant_DayTimeNumber": "6135656667",
-                            "Complainant_NeedsDisabilityAccommodation": "yes",
-                            "Complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
+                            "NeedsDisabilityAccommodation": "yes",
+                            "DisabilityAccommodation": "iuyuiyiuyiuy",
                             "Complainant_Country": "CA",
                             "Complainant_ProvinceOrState": "2",
-                            "Reprensentative_title": "Mr.",
+                            "Reprensentative_FormOfAddress": "Mr.",
                             "Reprensentative_FirstName": "jf",
                             "Reprensentative_LastName": "brouillette",
                             "Reprensentative_Email": "jf@hotmail.com",
@@ -121,44 +121,65 @@
                             ]
                         };
 
-                        let data = JSON.stringify(data2, null, 3);
+                        //let data = JSON.stringify(data2, null, 3);
 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "/api/PASurvey/Validate?complaintId=" + sender.complaintId, false);
-                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                        xhr.onload = xhr.onerror = function () {
-                            if (xhr.status == 200) {
+                        var params = {
+                            'complaintId': sender.complaintId
+                        }
 
-                               // options.allowComplete = true;
+                        let query = Object.keys(params)
+                            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+                            .join('&');
 
-                            }
-                            else if (xhr.status == 400) {
+                        var uri = "/api/PASurvey/Validate?" + query;
 
-                                var response = JSON.parse(xhr.response);
+                        fetch(uri, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json; charset=utf-8'
+                            },
+                            body: JSON.stringify(data2)
 
-                                if (response.detail) {
+                            }).then(function (response) {
+                                switch (response.status) {
+                                    case 200:
+                                        // good
+                                        break;
+                                    case 400:                                    
+                                        response.json().then(function (error) {
+   
+                                            if (error.detail) {
+                                                alert(error.detail);
+                                            }
+                                            else if (error.errorMessages && error.errorMessages.length > 0) {
+
+                                                alert(error.errorMessages.join('\n'));
+                                            }
+                                            else {
+                                                alert("oopsy");
+                                            }
+                                        });
+                                       
+                                        break;
+                                    case 500:
+                                        var ttt = response;
+                                    default:
+                                    // code block
+                                }
+                            })
+                            .catch(function (error) {
+
+                                var response = JSON.parse(error);
+
+                                if (response.detail)
                                     alert(response.detail);
-                                }
-                                else if (response.errorMessages && response.errorMessages.length > 0) {
+                                else
+                                    alert("Could not upload the file");
 
-                                    alert(response.errorMessages.join('\n'));
-                                }
-                                else {
-                                    alert("oopsy");
-                                }                                    
-                            }
-                            else if (xhr.status == 500) {
+                            });
 
-                                alert(xhr.response);
-                            }
-                            else {
-                                //Error
-                                options.showDataSavingError(); // you may pass a text parameter to show your own text
-                            }
-                        };
-                        xhr.send(data);
-
-                    });
+                        });
 
                 survey
                     .onComplete
@@ -194,8 +215,8 @@
                             "Complainant_City": "gat",
                             "Complainant_PostalCode": "J9A2V5",
                             "Complainant_DayTimeNumber": "6135656667",
-                            "Complainant_NeedsDisabilityAccommodation": "yes",
-                            "Complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
+                            "NeedsDisabilityAccommodation": "yes",
+                            "DisabilityAccommodation": "iuyuiyiuyiuy",
                             "Complainant_Country": "CA",
                             "Complainant_ProvinceOrState": "2",
                             "Reprensentative_title": "Mr.",

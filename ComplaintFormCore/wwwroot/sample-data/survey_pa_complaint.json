@@ -1055,7 +1055,7 @@
           "elements": [
             {
               "type": "radiogroup",
-              "name": "complainant_NeedsDisabilityAccommodation",
+              "name": "NeedsDisabilityAccommodation",
               "title": {
                 "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
                 "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
@@ -1080,7 +1080,7 @@
             },
             {
               "type": "comment",
-              "name": "complainant_NeedsDisabilityAccommodation_details",
+              "name": "DisabilityAccommodation",
               "title": {
                 "en": "If yes, please describe what accommodation measures you are requesting and the reason.",
                 "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
@@ -1090,7 +1090,7 @@
                 "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
               },
               "isRequired": true,
-              "visibleIf": "{complainant_NeedsDisabilityAccommodation} contains 'yes'"
+              "visibleIf": "{NeedsDisabilityAccommodation} contains 'yes'"
 
             }
           ]
@@ -1309,7 +1309,7 @@
       "elements": [
         {
           "type": "checkbox",
-          "name": "confirmation_verification",
+          "name": "InformationIsTrue",
           "title": {
             "en": "Please certify that the information you have given on this form is, to the best of your knowledge, true, accurate and complete.",
             "fr": "Veuillez attester que les renseignements que vous avez fournis dans ce formulaire sont, à votre connaissance, véridiques, exacts et complets."
@@ -1327,7 +1327,7 @@
         },
         {
           "type": "html",
-          "name": "confirmation_verification_info",
+          "name": "InformationIsTrue_info",
           "html": {
             "en": "<section class='alert alert-info col-md-12'><p>After submitting your complaint, you will be able to use the next screen to:</p><ul><li>download and print a summary of your complaint</li><li>file a different type of complaint about the same institution</li><li>file the same type of complaint about another institution</li><li>file a different type of complaint about another institution</li></ul></section>",
             "fr": "<section class='alert alert-info col-md-12'><p>Après avoir soumis votre plainte, vous pourrez utiliser l’écran suivant pour:</p><ul><li>télécharger et imprimer un résumé de votre dossier de plainte</li><li>déposer un autre type de plainte concernant la même institution</li><li>déposer le même type de plainte concernant une autre institution</li><li>déposer un autre type de plainte concernant une autre institution</li></ul></section>"

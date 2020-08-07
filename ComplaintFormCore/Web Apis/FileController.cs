@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using ComplaintFormCore.Exceptions;
 //using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -17,6 +18,8 @@ namespace ComplaintFormCore.Web_Apis
     [ApiController]
     public class FileController : ControllerBase
     {
+        private List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
+
         [HttpPost, DisableRequestSizeLimit]
         public async Task<IActionResult> Upload(string complaintId)
         {
@@ -25,6 +28,20 @@ namespace ComplaintFormCore.Web_Apis
                 var file = Request.Form.Files[0];
                 var folderName = Path.Combine("FileUploads", complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                var extension = Path.GetExtension(file.FileName);
+
+                if(_allowedFileTypes.Contains(extension) == false)
+                {
+                    OPCProblemDetails problem = new OPCProblemDetails
+                    {
+                        Detail = "Extension " + extension + " not allowed",
+                        Status = 400,
+                        Title = ""
+                    };
+
+                    return BadRequest(problem);
+                }
 
                 if (file.Length > 0)
                 {
@@ -45,20 +62,71 @@ namespace ComplaintFormCore.Web_Apis
                         file.CopyTo(stream);
                     }
 
-                    string apiUrl = folderName + fileName;
-
-
-
                     return Ok(new { dbPath, size = file.Length });
                 }
                 else
                 {
-                    return BadRequest();
+                    OPCProblemDetails problem = new OPCProblemDetails
+                    {
+                        Detail = "The file is empty",
+                        Status = 400,
+                        Title = ""
+                    };
+
+                    return BadRequest(problem);
                 }
             }
             catch (Exception ex)
             {
+                //  TODO: Log this somewhere
                 return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }     
+
+        /// <summary>
+        /// Fetch a file associated to a complaint
+        /// </summary>
+        [HttpGet]
+        [ActionName("Get")]
+        public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
+        {
+            try
+            {
+               // Files are organized by complaint id in the folder FileUploads
+                var folderName = Path.Combine("FileUploads", complaintId);
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                var fullPath = Path.Combine(pathToSave, filename);
+
+                var net = new System.Net.WebClient();
+                var data = net.DownloadData(fullPath);
+                var content = new System.IO.MemoryStream(data);
+                var contentType = "APPLICATION/octet-stream";
+
+                return File(content, contentType, filename);
+            }
+            catch (WebException)
+            {
+                //  TODO: Log this somewhere
+                OPCProblemDetails problem = new OPCProblemDetails
+                {
+                    Detail = "The file is not found or has been removed from the server",
+                    Status = 400,
+                    Title = ""
+                };
+
+                return BadRequest(problem);
+            }
+            catch (Exception ex)
+            {
+                //  TODO: Log this somewhere
+                OPCProblemDetails problem = new OPCProblemDetails
+                {
+                    Detail = "The file is empty",
+                    Status = 400,
+                    Title = ""
+                };
+
+                return BadRequest(problem);
             }
         }
 
@@ -69,26 +137,6 @@ namespace ComplaintFormCore.Web_Apis
                 await file.CopyToAsync(target);
                 return target.ToArray();
             }
-        }
-
-        /// <summary>
-        /// Fetch a file associated to a complaint
-        /// </summary>
-        [HttpGet]
-        [ActionName("Get")]
-        public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
-        {
-            //  Files are organized by complaint id in the folder FileUploads
-            var folderName = Path.Combine("FileUploads", complaintId);
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            var fullPath = Path.Combine(pathToSave, filename);
-
-            var net = new System.Net.WebClient();
-            var data = net.DownloadData(fullPath);
-            var content = new System.IO.MemoryStream(data);
-            var contentType = "APPLICATION/octet-stream";
-  
-            return File(content, contentType, filename);
         }
     }
 }

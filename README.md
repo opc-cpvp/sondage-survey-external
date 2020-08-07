@@ -107,11 +107,14 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
 -) Server side validation
 -) Make sure the Start button is there, and probably the other buttons
--) Log JS exceptions using a web api
+-) Log JS exceptions using a web api. console.write
 -) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
+-) Backend error logging - need to ask soemone
+-) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch
+-) Test on IE
 
 ### Mode details required or help required
 

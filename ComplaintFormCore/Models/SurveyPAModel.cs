@@ -143,11 +143,11 @@ namespace ComplaintFormCore.Models
 
         public string Complainant_AltTelephoneNumber { get; set; }        
 
-        public string Complainant_AltTelephoneNumberExtension { get; set; } //
+        public string Complainant_AltTelephoneNumberExtension { get; set; }
 
-        public string Complainant_NeedsDisabilityAccommodation { get; set; }
+        public string NeedsDisabilityAccommodation { get; set; }
 
-        public string Complainant_NeedsDisabilityAccommodation_details { get; set; }
+        public string DisabilityAccommodation { get; set; }
 
         public string Documentation_type { get; set; }
 
@@ -155,7 +155,7 @@ namespace ComplaintFormCore.Models
 
         public List<SurveyFile> Documentation_file_upload_rep { get; set; }
 
-        public List<string> Confirmation_verification { get; set; }
+        public List<string> InformationIsTrue { get; set; }
     }
 
     [Serializable]

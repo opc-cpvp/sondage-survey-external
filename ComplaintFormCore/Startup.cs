@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -33,6 +34,15 @@ namespace ComplaintFormCore
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //  This is for error handling
+            services.AddProblemDetails(opts =>
+            {
+                // configure here
+
+            });
+            //services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
+
             //  https://visualstudiomagazine.com/articles/2018/12/01/working-with-session.aspx
             services.AddSession(so =>
             {
@@ -40,6 +50,7 @@ namespace ComplaintFormCore
             });
 
             services.AddControllersWithViews();
+            services.AddMvc();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>
@@ -64,15 +75,14 @@ namespace ComplaintFormCore
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
-
-            //  This is for error handling
-            services.AddProblemDetails();
-            //services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            //  This is for error handling
+            app.UseProblemDetails();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -105,8 +115,7 @@ namespace ComplaintFormCore
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //  This is for error handling
-            app.UseProblemDetails();
+          
         }
     }
 }

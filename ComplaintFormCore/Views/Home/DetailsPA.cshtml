@@ -41,6 +41,8 @@
     <script src="~/js/survey/surveyInit.js"></script>
     <script src="~/js/survey/surveyLocalStorage.js"></script>
     <script src="~/js/survey/surveyFile.js"></script>
+    <script src="~/lib/fetch/fetch.min.js"></script>
+    <script src="~/lib/promise-polyfill/polyfill.min.js"></script>
 
     <script src="~/js/survey/widgets/widgetCheckboxHtml.js"></script>
     <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
@@ -48,7 +50,7 @@
 
 
     <script type="text/javascript">
-        
+
         //  This is the total file sizes
         var multipleFileMaxSize = 26214400;
 
@@ -149,23 +151,23 @@
 
             //  We need to calculate the total size of all files for both file upload
 
-            if(options.question.name == "documentation_file_upload"){       
-                        
+            if(options.question.name == "documentation_file_upload"){
+
                 var rep_file_upload = survey.getQuestionByName("documentation_file_upload_rep");
-                        
+
                 if(rep_file_upload && rep_file_upload.value){
-                            
+
                     (rep_file_upload.value).forEach(function (fileItem) {
                         totalBytes = totalBytes + parseInt(fileItem.content);
                     });
                 }
             }
-            else  if(options.question.name == "documentation_file_upload_rep"){       
-                        
+            else  if(options.question.name == "documentation_file_upload_rep"){
+
                 var file_upload = survey.getQuestionByName("documentation_file_upload");
-                        
+
                 if(file_upload && file_upload.value){
-                            
+
                     (file_upload.value).forEach(function (fileItem) {
                         totalBytes = totalBytes + parseInt(fileItem.content);
                     });
@@ -194,7 +196,7 @@
                 //  Add events only applicable to this page **********************
 
                 //  ISSUE WITH THE FLOW: When calling survey.onComplete the completed page shows right away. This is
-                //  not desired. If the validation doesn't pas, we don't want to go to the completed page. So to do that, 
+                //  not desired. If the validation doesn't pas, we don't want to go to the completed page. So to do that,
                 //  we call survey.onCompleting.
                 //	The event onCompleting is fired before the survey is completed and the onComplete event is fired.
                 //  You can prevent the survey from completing by setting options.allowComplete to false
@@ -202,12 +204,39 @@
                 //  NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
                 //          This is because the call is waiting for options.allowComplete = true
                 survey
-                    .onCompleting 
+                    .onCompleting
                     .add(function (sender, options) {
 
                         options.allowComplete = false;
 
-                        let data = JSON.stringify(sender.data, null, 3);
+                        //let data = JSON.stringify(sender.data, null, 3);
+
+                        const uri = "/api/PASurvey/Validate?complaintId=" + sender.complaintId;
+
+                        fetch(uri, {
+                            method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json; charset=utf-8'
+                            },
+                            body: JSON.stringify(sender.data)
+
+                        })
+                            .then(response => response.json())
+                            .then(() => {
+                                getItems();
+                                addNameTextbox.value = '';
+                            })
+                            .catch(function (error) {
+
+                                var response = JSON.parse(error);
+
+                                if (response.detail)
+                                    alert(response.detail);
+                                else
+                                    alert("Could not upload the file");
+
+                            });
 
                         var xhr = new XMLHttpRequest();
                         xhr.open("POST", "/api/PASurvey/Validate?complaintId=" + sender.complaintId, false);
@@ -231,7 +260,7 @@
                                 }
                                 else {
                                     alert("oopsy");
-                                } 
+                                }
                             }
                             else if (xhr.status == 500) {
 
@@ -285,7 +314,7 @@
                         };
                         xhr.send(data);
                     });
-                
+
 
                 survey
                     .onAfterRenderQuestion
@@ -296,12 +325,12 @@
                             buildDocumentationInfoSection(survey, options);
                         }
                         else if (options.question.getType() === "file" && options.question.value){
-                      
-                            //  Getting the total size of all uploaded files 
-                            var totalBytes = getTotalFileSize(survey, options); 
-        
+
+                            //  Getting the total size of all uploaded files
+                            var totalBytes = getTotalFileSize(survey, options);
+
                              var sizeInMB = (totalBytes / 1000000).toFixed(2);
-      
+
                             //  Setting up the <meter> values
                             $("#sp_total").html(sizeInMB);
                             $("#meter_upload_total_mb").val(totalBytes);
@@ -320,17 +349,17 @@
                     .add(function (sender, options) {
 
                         if (options.question.getType() === "file" && options.question.value) {
-                         
-                            //  Getting the total size of all uploaded files  
+
+                            //  Getting the total size of all uploaded files
                             var totalBytes = getTotalFileSize(survey, options);
-        
+
                             if(multipleFileMaxSize > 0 && totalBytes > multipleFileMaxSize){
                                 options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage);
                                 //return false;
                             }
 
                             var sizeInMB = (totalBytes / 1000000).toFixed(2);
-        
+
                             //  Setting up the <meter> values
                             $("#sp_total").html(sizeInMB);
                             $("#meter_upload_total_mb").val(totalBytes);
@@ -339,7 +368,7 @@
 
                 survey
                     .onServerValidateQuestions
-                    .add(function (sender, options) {                        
+                    .add(function (sender, options) {
 
                         if (options.data["documentation_file_upload"] || options.data["documentation_file_upload_rep"]) {
 
@@ -351,9 +380,11 @@
                                 data.push(file);
                             });
 
-                            (options.data["documentation_file_upload_rep"]).forEach(function (file) {
-                                data.push(file);
-                            });
+                            if (options.data["documentation_file_upload_rep"]) {
+                                (options.data["documentation_file_upload_rep"]).forEach(function (file) {
+                                    data.push(file);
+                                });
+                            }
 
                             let fullData = JSON.stringify(data, null, 3);
 
@@ -388,7 +419,7 @@
                         }
                         else {
                             options.complete();
-                        }                      
+                        }
                     });
 
                 // ****Event *****************************************************
@@ -429,8 +460,8 @@
                     "complainant_City": "gat",
                     "complainant_PostalCode": "J9A2V5",
                     "complainant_DayTimeNumber": "6135656667",
-                    "complainant_NeedsDisabilityAccommodation": "yes",
-                    "complainant_NeedsDisabilityAccommodation_details": "iuyuiyiuyiuy",
+                    "NeedsDisabilityAccommodation": "yes",
+                    "DisabilityAccommodation": "iuyuiyiuyiuy",
                     "complainant_Country": "CA",
                     "complainant_ProvinceOrState": "2",
                     "reprensentative_title": "Mr.",
@@ -474,6 +505,6 @@
 
                 });
             });
-</script>
+    </script>
 }
 

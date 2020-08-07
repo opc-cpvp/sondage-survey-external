@@ -18,3 +18,11 @@ function HasSelectedItem(params) {
     // value is the id of the selected item
     return value !== "";
 }
+
+function handleErrors(response) {
+    if (!response.ok) {
+        var test = response.json();
+        throw Error(response.statusText);
+    }
+    return response;
+}
