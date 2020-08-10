@@ -41,8 +41,9 @@
     <script src="~/js/survey/surveyInit.js"></script>
     <script src="~/js/survey/surveyLocalStorage.js"></script>
     <script src="~/js/survey/surveyFile.js"></script>
-    <script src="~/lib/fetch/fetch.min.js"></script>
-    <script src="~/lib/promise-polyfill/polyfill.min.js"></script>
+    <script src="~/lib/promise-polyfill/polyfill.js"></script>
+    <script src="~/lib/fetch/fetch.js"></script>
+    
 
     <script src="~/js/survey/widgets/widgetCheckboxHtml.js"></script>
     <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
@@ -203,91 +204,86 @@
                 //  sender - the survey object that fires the event.
                 //  NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
                 //          This is because the call is waiting for options.allowComplete = true
+                var allowComplete = false;
+              
+
                 survey
                     .onCompleting
                     .add(function (sender, options) {
 
-                        options.allowComplete = false;
+                        options.allowComplete = allowComplete;
 
                         //let data = JSON.stringify(sender.data, null, 3);
 
-                        const uri = "/api/PASurvey/Validate?complaintId=" + sender.complaintId;
+                        var params = { 'complaintId': sender.complaintId }
+                        let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+                        var uri = "/api/PASurvey/Validate?" + query;
 
-                        fetch(uri, {
-                            method: 'POST',
-                            headers: {
-                                'Accept': 'application/json',
-                                'Content-Type': 'application/json; charset=utf-8'
-                            },
-                            body: JSON.stringify(sender.data)
+                        const validate = async () => {
 
-                        })
-                            .then(response => response.json())
-                            .then(() => {
-                                getItems();
-                                addNameTextbox.value = '';
-                            })
-                            .catch(function (error) {
-
-                                var response = JSON.parse(error);
-
-                                if (response.detail)
-                                    alert(response.detail);
-                                else
-                                    alert("Could not upload the file");
+                            const response = await fetch(uri, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json; charset=utf-8'
+                                },
+                                body: JSON.stringify(sender.data)
 
                             });
 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "/api/PASurvey/Validate?complaintId=" + sender.complaintId, false);
-                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                        xhr.onload = xhr.onerror = function () {
-                            if (xhr.status == 200) {
+                            const validationResponse = await response;
 
-                                options.allowComplete = true;
-
+                            if (validationResponse.status == 200) {
+                                options.allowComplete = false;
+           
                             }
-                            else if (xhr.status == 400) {
-
-                                var response = JSON.parse(xhr.response);
-
-                                if (response.detail) {
-                                    alert(response.detail);
-                                }
-                                else if (response.errorMessages && response.errorMessages.length > 0) {
-
-                                    alert(response.errorMessages.join('\n'));
+                            else {
+                                if (validationResponse.json) {
+                                    validationResponse.json().then(function (error) {
+                                        printProblemDetails(error);
+                                    });
                                 }
                                 else {
                                     alert("oopsy");
                                 }
-                            }
-                            else if (xhr.status == 500) {
 
-                                alert(xhr.response);
+                                //return false;
                             }
-                            else {
-                                //Error
-                                options.showDataSavingError(); // you may pass a text parameter to show your own text
-                            }
-                        };
-                        xhr.send(data);
+                        }
 
+
+                        //    options.allowComplete = validate() == true;
+
+                        validate();
+                        //options.allowComplete = allowComplete;
+                        //validate().catch(function (error) {
+                        //    console.warn(error);
+                        //});
                     });
+
+               
 
                 survey
                     .onComplete
                     .add(function (sender, options) {
 
-                        ////let dataType = 'application/json; charset=utf-8';
-                        let data = JSON.stringify(sender.data, null, 3);
+                        var params = { 'complaintId': sender.complaintId }
+                        let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+                        var uri = "/api/PASurvey/Validate?" + query;
 
-                        var xhr = new XMLHttpRequest();
-                        xhr.open("POST", "/api/PASurvey/Complete?complaintId=" + sender.complaintId);
-                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                        xhr.onload = xhr.onerror = function (result) {
+                        async function complete() {
 
-                            if (xhr.status == 200) {
+                            let completeResponse = await fetch(uri, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json; charset=utf-8'
+                                },
+                                body: JSON.stringify(sender.data)
+
+                            });
+
+                            if (completeResponse.status == 200) {
 
                                 //  Hide the navigation buttons
                                 $("#div_navigation").hide();
@@ -302,19 +298,59 @@
 
                                 console.log(data);
 
-                            } else if (xhr.status == 400) {
-
-                                var response = JSON.parse(xhr.response);
-                                alert(response.detail);
                             }
                             else {
-                                //Error
-                                options.showDataSavingError(); // you may pass a text parameter to show your own text
+                                if (completeResponse.json) {
+                                    completeResponse.json().then(function (error) {
+                                        printProblemDetails(error);
+                                    });
+                                }
+                                else {
+                                    alert("oopsy");
+                                }
                             }
-                        };
-                        xhr.send(data);
-                    });
+                        }
 
+                        complete().catch(function (error) {
+                            console.warn(error);
+                        });
+
+
+                        ////let dataType = 'application/json; charset=utf-8';
+                        //let data = JSON.stringify(sender.data, null, 3);
+
+                        //var xhr = new XMLHttpRequest();
+                        //xhr.open("POST", "/api/PASurvey/Complete?complaintId=" + sender.complaintId);
+                        //xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+                        //xhr.onload = xhr.onerror = function (result) {
+
+                        //    if (xhr.status == 200) {
+
+                        //        //  Hide the navigation buttons
+                        //        $("#div_navigation").hide();
+
+                        //        //  Update the file reference number
+                        //        var response = JSON.parse(xhr.response);
+                        //        $("#sp_survey_file_number").html(response.referenceNumber);
+
+                        //        //survey.clear(true, true);
+                        //        //clearLocalStorage(storageName_PA);
+                        //        saveStateLocally(survey, storageName_PA);
+
+                        //        console.log(data);
+
+                        //    } else if (xhr.status == 400) {
+
+                        //        var response = JSON.parse(xhr.response);
+                        //        alert(response.detail);
+                        //    }
+                        //    else {
+                        //        //Error
+                        //        options.showDataSavingError(); // you may pass a text parameter to show your own text
+                        //    }
+                        //};
+                        //xhr.send(data);
+                    });
 
                 survey
                     .onAfterRenderQuestion
@@ -370,52 +406,47 @@
                     .onServerValidateQuestions
                     .add(function (sender, options) {
 
-                        if (options.data["documentation_file_upload"] || options.data["documentation_file_upload_rep"]) {
+                        if (options.data["documentation_type"] && (options.data["documentation_type"] == "upload" || options.data["documentation_type"] == "both")) {
 
-                            //  This is to validate the size of all attachments
+                            //  Validating the documentation page if and only if there is documents to be validated
 
-                            var data = [];
+                            var params = { 'complaintId': sender.complaintId }
+                            let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+                            var uri = "/api/PASurvey/ValidateAttachments?" + query;
 
-                            (options.data["documentation_file_upload"]).forEach(function (file) {
-                                data.push(file);
-                            });
+                            fetch(uri, {
+                                method: 'POST',
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json; charset=utf-8'
+                                },
+                                body: JSON.stringify(options.data)
 
-                            if (options.data["documentation_file_upload_rep"]) {
-                                (options.data["documentation_file_upload_rep"]).forEach(function (file) {
-                                    data.push(file);
-                                });
-                            }
+                            }).then(function (response) {
+                                switch (response.status) {
+                                    case 200:
+                                        //  This will allowed the validation to pass and go to the next page
+                                        options.complete();
+                                        break;
+                                    case 400:
+                                    case 500:
+                                        if (response.json) {
+                                            response.json().then(function (problem) {
+                                                printProblemDetails(problem);
 
-                            let fullData = JSON.stringify(data, null, 3);
+                                            });
+                                        }
+                                        else {
+                                            alert("oopsy");
+                                        }
+                                        break;
 
-                            var xhr = new XMLHttpRequest();
-                            xhr.open("POST", "/api/PASurvey/ValidateAttachments?complaintId=" + sender.complaintId, true);
-                            xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                            xhr.onload = xhr.onerror = function () {
-                                if (xhr.status == 200) {
-
-                                    options.complete();
-
-                                }
-                                else if (xhr.status == 400) {
-
-                                    var response = JSON.parse(xhr.response);
-
-                                    if (response.detail)
-                                        alert(response.detail);
-                                    else
+                                    default:
                                         alert("oopsy");
                                 }
-                                else if (xhr.status == 500) {
-
-                                    alert(xhr.response);
-                                }
-                                else {
-                                    //Error
-                                    options.showDataSavingError(); // you may pass a text parameter to show your own text
-                                }
-                            };
-                            xhr.send(fullData);
+                            }).catch(function (error) {
+                                console.warn(error);
+                            });
                         }
                         else {
                             options.complete();
@@ -449,9 +480,9 @@
                         "NatureOfComplaintExtensionOfTime",
                         "NatureOfComplaintCollection"
                     ],
-                    "IsEmployee": "general_public",
+                    "IsEmployeeChoice": "general_public",
                     "AdditionalComments": "iuyiuyuiyiuy",
-                    "complainant_HaveYouSubmittedBefore": "no",
+                    "complainant_HaveYouSubmittedBeforeChoice": "no",
                     "complainant_FormOfAddress": "Mr.",
                     "complainant_FirstName": "jf",
                     "complainant_LastName": "brouillette",
@@ -460,7 +491,7 @@
                     "complainant_City": "gat",
                     "complainant_PostalCode": "J9A2V5",
                     "complainant_DayTimeNumber": "6135656667",
-                    "NeedsDisabilityAccommodation": "yes",
+                    "NeedsDisabilityAccommodationChoice": "yes",
                     "DisabilityAccommodation": "iuyuiyiuyiuy",
                     "complainant_Country": "CA",
                     "complainant_ProvinceOrState": "2",
@@ -479,7 +510,7 @@
                     "WordingOfRequest": "hgdffgh",
                     "MoreDetailsOfRequest": "oiuyoiuo",
                     "DateOfFinalAnswer": "gfhfjgj",
-                    "DidNoRecordExist": "yes",
+                    "DidNoRecordExistChoice": "yes",
                     "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                     "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
                 };

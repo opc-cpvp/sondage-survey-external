@@ -14,11 +14,14 @@ using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
+using Newtonsoft;
 
 namespace ComplaintFormCore
 {
@@ -36,9 +39,17 @@ namespace ComplaintFormCore
         {
 
             //  This is for error handling
-            services.AddProblemDetails(opts =>
+            services.AddProblemDetails(options =>
             {
-                // configure here
+                //// configure here
+                //options.Map<OutOfCreditException>(exception => new OutOfCreditProblemDetails
+                //{
+                //    Title = exception.Message,
+                //    Detail = exception.Description,
+                //    Balance = exception.Balance,
+                //    Status = StatusCodes.Status403Forbidden,
+                //    Type = exception.Type
+                //});
 
             });
             //services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
@@ -83,16 +94,16 @@ namespace ComplaintFormCore
             //  This is for error handling
             app.UseProblemDetails();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/Home/Error");
+            //    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //    app.UseHsts();
+            //}
             app.UseHttpsRedirection();
 
            // app.UseDefaultFiles();

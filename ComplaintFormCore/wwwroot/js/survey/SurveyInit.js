@@ -227,13 +227,6 @@ function initSurveyModelEvents(survey) {
         .add(function (sender, options) {
             onCurrentPageChanged_updateNavButtons(sender);
         });
-
-    //survey
-    //    .onCompleting
-    //    .add(function (sender, options) {
-    //        options.allowComplete = confirm('Do you want to complete the survey?');
-    //    });
-
 }
 
 //  Function for updating (show/hide) the navigation buttons

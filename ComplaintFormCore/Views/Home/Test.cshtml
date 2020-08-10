@@ -72,7 +72,7 @@
 
                         var data2 = {
                             "FilingComplaintOnOwnBehalf": "yourself",
-                            "RaisedPrivacyToAtipCoordinator": "",
+                            "RaisedPrivacyToAtipCoordinator": "fsdafasd",
                             "WhichFederalGovernementInstitutionComplaintAgainst": "3",
                             "NatureOfComplaint": [
                                 "NatureOfComplaintOther",
@@ -80,9 +80,9 @@
                                 "NatureOfComplaintExtensionOfTime",
                                 "NatureOfComplaintCollection"
                             ],
-                            "IsEmployee": "general_public",
+                            "IsEmployeeChoice": "general_public",
                             "AdditionalComments": "iuyiuyuiyiuy",
-                            "Complainant_HaveYouSubmittedBefore": "no",
+                            "Complainant_HaveYouSubmittedBeforeChoice": "no",
                             "Complainant_FormOfAddress": "Mr.",
                             "Complainant_FirstName": "jf",
                             "Complainant_LastName": "brouillette",
@@ -91,12 +91,12 @@
                             "Complainant_City": "gat",
                             "Complainant_PostalCode": "J9A2V5",
                             "Complainant_DayTimeNumber": "6135656667",
-                            "NeedsDisabilityAccommodation": "yes",
+                            "NeedsDisabilityAccommodationChoice": "yes",
                             "DisabilityAccommodation": "iuyuiyiuyiuy",
                             "Complainant_Country": "CA",
                             "Complainant_ProvinceOrState": "2",
                             "Reprensentative_FormOfAddress": "Mr.",
-                            "Reprensentative_FirstName": "jf",
+                            "Reprensentative_FirstName": "",
                             "Reprensentative_LastName": "brouillette",
                             "Reprensentative_Email": "jf@hotmail.com",
                             "Reprensentative_MailingAddress": "66",
@@ -106,13 +106,14 @@
                             "Documentation_type": "none",
                             "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
                             "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                            "DateSentRequests": "",
-                            "WordingOfRequest": "",
+                            "DateSentRequests": "gfdgfd",
+                            "WordingOfRequest": "gdsfg",
                             "MoreDetailsOfRequest": "oiuyoiuo",
                             "DateOfFinalAnswer": "gfhfjgj",
-                            "DidNoRecordExist": "yes",
+                            "DidNoRecordExistChoice": "yes",
                             "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                             "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop",
+                            "InformationIsTrue": [ "yesff" ],
                             "documentation_file_upload": [
                                 { "name": "test.txt", "type": "text/plain", "content": "10921680" },
                                 { "name": "test.txt", "type": "text/plain", "content": "10921680" },
@@ -121,16 +122,8 @@
                             ]
                         };
 
-                        //let data = JSON.stringify(data2, null, 3);
-
-                        var params = {
-                            'complaintId': sender.complaintId
-                        }
-
-                        let query = Object.keys(params)
-                            .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
-                            .join('&');
-
+                        var params = { 'complaintId': sender.complaintId }
+                        let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
                         var uri = "/api/PASurvey/Validate?" + query;
 
                         fetch(uri, {
@@ -141,45 +134,48 @@
                             },
                             body: JSON.stringify(data2)
 
-                            }).then(function (response) {
-                                switch (response.status) {
-                                    case 200:
-                                        // good
-                                        break;
-                                    case 400:                                    
+                        }).then(function (response) {
+                            switch (response.status) {
+                                case 200:
+                                    //  This will allowed the validation to pass and go to the next page
+                                    options.complete();
+                                    break;
+                                case 400:
+                                case 500:
+                                    if (response.json) {
                                         response.json().then(function (error) {
-   
+                                            var message = "";
+
+                                            if (error.title) {
+                                                message += error.title + '\n';
+                                            }
+
                                             if (error.detail) {
-                                                alert(error.detail);
+                                                message += error.detail + '\n';
                                             }
-                                            else if (error.errorMessages && error.errorMessages.length > 0) {
 
-                                                alert(error.errorMessages.join('\n'));
+                                            if (error.errors) {
+                                                printProblemDetails(error)
+                                                for (const [key, value] of Object.entries(error.errors)) {
+                                                    message += key + ':' + value + '\n';
+                                                }
                                             }
-                                            else {
-                                                alert("oopsy");
-                                            }
+
+                                            alert(message);
                                         });
-                                       
-                                        break;
-                                    case 500:
-                                        var ttt = response;
-                                    default:
-                                    // code block
-                                }
-                            })
-                            .catch(function (error) {
+                                    }
+                                    else {
+                                        alert("oopsy");
+                                    }
+                                    break;
 
-                                var response = JSON.parse(error);
-
-                                if (response.detail)
-                                    alert(response.detail);
-                                else
-                                    alert("Could not upload the file");
-
-                            });
-
+                                default:
+                                    alert("oopsy");
+                            }
+                        }).catch(function (error) {
+                            console.warn(error);
                         });
+                    });
 
                 survey
                     .onComplete
@@ -204,9 +200,9 @@
                                 "NatureOfComplaintExtensionOfTime",
                                 "NatureOfComplaintCollection"
                             ],
-                            "IsEmployee": "general_public",
+                            "IsEmployeeChoice": "general_public",
                             "AdditionalComments": "iuyiuyuiyiuy",
-                            "Complainant_HaveYouSubmittedBefore": "no",
+                            "Complainant_HaveYouSubmittedBeforeChoice": "no",
                             "Complainant_title": "Mr.",
                             "Complainant_FirstName": "jf",
                             "Complainant_LastName": "brouillette",
@@ -215,7 +211,7 @@
                             "Complainant_City": "gat",
                             "Complainant_PostalCode": "J9A2V5",
                             "Complainant_DayTimeNumber": "6135656667",
-                            "NeedsDisabilityAccommodation": "yes",
+                            "NeedsDisabilityAccommodationChoice": "yes",
                             "DisabilityAccommodation": "iuyuiyiuyiuy",
                             "Complainant_Country": "CA",
                             "Complainant_ProvinceOrState": "2",
@@ -234,7 +230,7 @@
                             "WordingOfRequest": "hgdffgh",
                             "MoreDetailsOfRequest": "oiuyoiuo",
                             "DateOfFinalAnswer": "gfhfjgj",
-                            "DidNoRecordExist": "yes",
+                            "DidNoRecordExistChoice": "yes",
                             "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                             "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop",
                             "documentation_file_upload": [

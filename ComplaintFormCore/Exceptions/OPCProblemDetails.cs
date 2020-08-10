@@ -9,9 +9,22 @@ namespace ComplaintFormCore.Exceptions
     {
         public OPCProblemDetails()
         {
-            ErrorMessages = new List<string>();
+            Status = 200;
+            Errors = new Dictionary<string, List<string>>();
         }
 
-        public List<string> ErrorMessages { get; set; }
+        public Dictionary<string, List<string>> Errors { get; set; }
+
+        public void AddError(string key, string value)
+        {
+            if (Errors.ContainsKey(key))
+            {
+                Errors[key].Add(value);
+            }
+            else
+            {
+                Errors.Add(key, new List<string>() { value });
+            }            
+        }
     }
 }

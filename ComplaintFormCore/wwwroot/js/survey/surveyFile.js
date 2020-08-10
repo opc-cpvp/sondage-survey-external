@@ -75,42 +75,53 @@ function initSurveyFileModelEvents(survey) {
                         newFilename = (new Date).getTime().toString() + '_' + file.name;
                     }
 
-                    var formData = new FormData();
+                    const formData = new FormData();
                     formData.append('file', file, newFilename);
 
-                    $.ajax({
-                        url: "/api/File/Upload?complaintId=" + sender.complaintId,
-                        type: "POST",
-                        success: function () {
+                    var params = { 'complaintId': sender.complaintId }
+                    let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
+                    var uri = "/api/File/Upload?" + query;
 
-                            options.callback("success", options.files.map(file => {
-
-                                //  We cannot store the file content in local storage because of the 5MB storage limit.
-                                //  The problem was with the file size e.g. without file content, there is no way to know the
-                                //  file size. The work around is to store the file size in the 'content' property.
-
-                                return {
-                                    file: new File([file], newFilename, { type: file.type }),
-                                    content: file.size.toString()
-                                };
-                            }));
+                    fetch(uri, {
+                        method: 'POST',
+                        headers: {
+                            //'Accept': 'application/json',
+                            //'Content-Type': false
                         },
-                        error: function (xhr, status, error) {
+                        body: formData
 
-                            var response = JSON.parse(xhr.responseText);
+                    }).then(function (response) {
+                        switch (response.status) {
+                            case 200:
+                                options.callback("success", options.files.map(file => {
 
-                            if (response.detail)
-                                alert(response.detail);
-                            else
-                                alert("Could not upload the file");
+                                    //  We cannot store the file content in local storage because of the 5MB storage limit.
+                                    //  The problem was with the file size e.g. without file content, there is no way to know the
+                                    //  file size. The work around is to store the file size in the 'content' property.
 
-                        },
-                        async: true,
-                        data: formData,
-                        cache: false,
-                        contentType: false,
-                        processData: false,
-                        timeout: 60000
+                                    return {
+                                        file: new File([file], newFilename, { type: file.type }),
+                                        content: file.size.toString()
+                                    };
+                                }));
+                                break;
+                            case 400:
+                            case 500:
+                                if (response.json) {
+                                    response.json().then(function (problem) {
+                                        printProblemDetails(problem);
+                                    });
+                                }
+                                else {
+                                    alert("oopsy");
+                                }
+                                break;
+
+                            default:
+                                alert("oopsy");
+                        }
+                    }).catch(function (error) {
+                        console.warn(error);
                     });
                 });
         });
@@ -146,12 +157,19 @@ function updateFilePreview(survey, question, container) {
 
             var div = document.createElement("div");
 
-            var fileSizeInBytes = fileItem.content || 0;
-            var size = Math.round(fileSizeInBytes / 1000, 0) || 0;
-
             var button = document.createElement("div");
             button.className = "btn sv-btn sv-file__choose-btn";
-            button.innerText = fileItem.name + " (" + size + " KB)";
+
+            var fileSizeInBytes = fileItem.content || 0;
+            var size = 0;
+
+            if (fileSizeInBytes < 1000) {
+                button.innerText = fileItem.name + " (" + fileSizeInBytes + " B)";
+            }
+            else {
+                size = Math.round(fileSizeInBytes / 1000, 0);
+                button.innerText = fileItem.name + " (" + size + " KB)";
+            }           
 
             var buttonId = 'btn_' + question.name + '_' + index;
             index = index + 1;
@@ -160,7 +178,19 @@ function updateFilePreview(survey, question, container) {
             button.onclick = function () {
 
                 fetch("/api/File/Get?complaintId=" + survey.complaintId + "&filename=" + fileItem.name)
-                    .then(handleErrors)
+                    .then(function (response) {
+                        switch (response.status) {
+                            case 400:
+                            case 500:
+                                if (response.json) {
+                                    response.json().then(function (problem) {
+                                        printProblemDetails(problem);
+                                    });
+                                }
+                            default:
+                                return response;
+                        }
+                    })
                     .then(resp => resp.blob())
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
@@ -173,14 +203,8 @@ function updateFilePreview(survey, question, container) {
                         window.URL.revokeObjectURL(url);
                     })
                     .catch(function (error) {
-
-                        var response = JSON.parse(error);
-
-                        if (response.detail)
-                            alert(response.detail);
-                        else
-                            alert("Could not upload the file");
-
+                        console.warn("Could not upload the file");
+                        console.warn(error);
                     });
             }
 

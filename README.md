@@ -74,6 +74,7 @@ other words, we are not using the style provided by Survey.js but rather the css
 a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
 
 ### Survey Templates
+
 #### Page
  ```
  {
@@ -89,7 +90,7 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 ```
 
 ### Added Nuget packages
-- Hellang.Middleware.ProblemDetails for error handling in Web Apis
+- Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
 - libphonenumber-csharp already in used in the original project
 
 ### TODO 
@@ -105,15 +106,13 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
     at Function.ChoicesRestfull.unregisterSameRequests (choicesRestfull.ts:76)
     at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
--) Server side validation
+
 -) Make sure the Start button is there, and probably the other buttons
 -) Log JS exceptions using a web api. console.write
 -) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
--) Backend error logging - need to ask soemone
--) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch
 -) Test on IE
 
 ### Mode details required or help required
@@ -155,6 +154,8 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 23) Survey Id generation coming from the email. We are not using surveyId because the surveyId has a different purposes. We are using tokens.
 24) Create a C# object from JSON to be sent to CRM
 25) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
+26) Server side validation - work with Data annotation for SurveyPAModel
+27) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch. Used polyfill & fetch.js
 
 
 ### Postponed todo
@@ -163,6 +164,7 @@ B) The navigation panel is the native of and should be replaced (POSTPONED)
 C) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
 D) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic. There is
 	no need for this just now.
+E) Backend error logging - need to ask soemone
 
 ### Won't fix or implement'
 

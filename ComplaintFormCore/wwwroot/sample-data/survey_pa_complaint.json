@@ -358,7 +358,7 @@
       "elements": [
         {
           "type": "radiogroup",
-          "name": "IsEmployee",
+          "name": "IsEmployeeChoice",
           "title": {
             "en": "Are you submitting the complaint as a member of the general public or as an employee of the goverment institution?",
             "fr": "Déposez-vous la plainte en tant que membre du grand public ou en tant qu’employé de l’institution fédérale?"
@@ -427,7 +427,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "DidNoRecordExist",
+          "name": "DidNoRecordExistChoice",
           "title": {
             "en": "Did the institution reply that no records exist?",
             "fr": "L’institution a-t-elle répondu qu’il n’existe aucun document?"
@@ -623,7 +623,7 @@
           "elements": [
             {
               "type": "radiogroup",
-              "name": "complainant_HaveYouSubmittedBefore",
+              "name": "complainant_HaveYouSubmittedBeforeChoice",
               "title": {
                 "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
                 "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
@@ -1055,7 +1055,7 @@
           "elements": [
             {
               "type": "radiogroup",
-              "name": "NeedsDisabilityAccommodation",
+              "name": "NeedsDisabilityAccommodationChoice",
               "title": {
                 "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
                 "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
@@ -1090,7 +1090,7 @@
                 "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
               },
               "isRequired": true,
-              "visibleIf": "{NeedsDisabilityAccommodation} contains 'yes'"
+              "visibleIf": "{NeedsDisabilityAccommodationChoice} contains 'yes'"
 
             }
           ]

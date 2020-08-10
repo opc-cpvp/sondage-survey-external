@@ -90,9 +90,21 @@ namespace ComplaintFormCore.Web_Apis
         [ActionName("Get")]
         public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
         {
+           // throw new Exception("The file is not found or has been removed from the server");
+            //OPCProblemDetails problem2 = new OPCProblemDetails
+            //{
+            //    Detail = "The file is not found or has been removed from the server",
+            //    Status = 400,
+            //    Title = ""
+            //};
+
+            //problem2.Errors.Add("my key", new List<string>() { "The file is not found or has been removed from the server" });
+
+            //return BadRequest(problem2);
+
             try
             {
-               // Files are organized by complaint id in the folder FileUploads
+                // Files are organized by complaint id in the folder FileUploads
                 var folderName = Path.Combine("FileUploads", complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
                 var fullPath = Path.Combine(pathToSave, filename);
@@ -128,6 +140,7 @@ namespace ComplaintFormCore.Web_Apis
 
                 return BadRequest(problem);
             }
+
         }
 
         private async Task<byte[]> GetByteArrayFromImageAsync(IFormFile file)
