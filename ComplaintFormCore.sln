@@ -28,6 +28,28 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "survey-library-master", "..
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53727"
+		SlnRelativePath = "..\..\..\Desktop\survey-library-master\survey-library-master\"
+	EndProjectSection
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "survey-pdf-master", "..\..\..\Downloads\survey-pdf-master\survey-pdf-master\", "{72DA9436-5628-489E-BA9E-A74A6E87E810}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_51144"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\survey-pdf-master\survey-pdf-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51144\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_51144"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\survey-pdf-master\survey-pdf-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_51144\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "51144"
+		SlnRelativePath = "..\..\..\Downloads\survey-pdf-master\survey-pdf-master\"
 	EndProjectSection
 EndProject
 Global
@@ -44,6 +66,10 @@ Global
 		{C48FB1C2-2990-41E6-B1F3-68155F11788C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C48FB1C2-2990-41E6-B1F3-68155F11788C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
 		{C48FB1C2-2990-41E6-B1F3-68155F11788C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{72DA9436-5628-489E-BA9E-A74A6E87E810}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72DA9436-5628-489E-BA9E-A74A6E87E810}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72DA9436-5628-489E-BA9E-A74A6E87E810}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{72DA9436-5628-489E-BA9E-A74A6E87E810}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

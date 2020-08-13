@@ -1,6 +1,4 @@
-﻿var file_uploaded = [];
-
-function initSurvey(Survey) {
+﻿function initSurvey(Survey) {
 
     Survey
         .JsonObject
@@ -65,7 +63,7 @@ function initSurveyModelProperties(survey) {
 
     //  onHidden -> survey clears the question value when the question becomes invisible.
     //  If a question has an answer value and it was invisible initially, a survey clears the value on completing.
-    survey.clearInvisibleValues = "onHidden ";
+    survey.clearInvisibleValues = "onHidden";
 
     survey.questionErrorLocation = "top";
 

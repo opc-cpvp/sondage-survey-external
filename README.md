@@ -93,6 +93,10 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
 - libphonenumber-csharp already in used in the original project
 
+### PDF
+- English is working, french not working. We need to find and add a font that accept unicode
+	https://surveyjs.answerdesk.io/ticket/details/t2748/export-survey-with-multiple-languages-not-working
+
 ### TODO 
 
 -) Replace <div id="div_errors_list" style="display:none"></div> in body
@@ -113,7 +117,20 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
--) Test on IE
+-) fetch 
+	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
+	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest.
+-) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
+-) PDF;
+	- Remove question numbers
+	- Attachments are missing
+	- Make it not editable
+
+-) Test on Internet Explorer
+	-
+
+-) Put a spinner when completing the survey since there is 2 api calls
+
 
 ### Mode details required or help required
 
@@ -156,6 +173,11 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 25) Rename survey parameter in function, use sender instead. It can lead to confusion with the survey object
 26) Server side validation - work with Data annotation for SurveyPAModel
 27) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch. Used polyfill & fetch.js
+28) PDF;
+	- Why do we have blank spaces (whole page) see first page. Options.compress: true seems to not include the answers? (Fix with new json)
+	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with new json)
+	- Hide html type questions (Fix with new json)
+	- Hide whole pages (Fix with new json)
 
 
 ### Postponed todo

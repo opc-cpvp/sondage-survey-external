@@ -13,12 +13,59 @@
     <script src="~/js/survey/surveyHelper.js"></script>
     <script src="~/js/survey/surveyInit.js"></script>
     <script src="~/js/survey/surveyLocalStorage.js"></script>
-    <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
+    @*<script src="~/js/survey/widgets/widgetCommentHtml.js"></script>*@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+    <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
+    <script src="https://surveyjs.azureedge.net/1.7.26/survey.pdf.js"></script>
 
     <script>
 
+        function saveSurveyToPdf(filename, surveyModel) {
 
+            var options = {
+                fontSize: 14,
+                margins: {
+                    left: 10,
+                    right: 10,
+                    top: 10,
+                    bot: 10
+                },
+                format: "a4",
+                fontName: 'times',
+                fontStyle: 'normal'
+            };
+
+            var surveyPDF = new SurveyPDF.SurveyPDF(json, options);
+            surveyPDF.data = surveyModel.data;
+            surveyPDF.save(filename);
+        }
+
+        function exportToPDF() {
+
+            //var storageSt = window
+            //    .localStorage
+            //    .getItem(storageName_Test) || "";
+
+            //var json = "/sample-data/survey_test.json";
+
+            //fetch(json)
+            //    .then(response => response.json())
+            //    .then(json => {
+
+            //       // survey = new Survey.Model(json);
+
+            //        var data = {};
+            //        if (storageSt) {
+            //            data = JSON.parse(storageSt);
+
+            //            survey.data = data;
+            //            saveSurveyToPdf("surveyResult.pdf", survey, json);
+            //        }
+            //    });
+
+            saveSurveyToPdf("surveyResult.pdf", survey, json);
+        }
 
         function onCurrentPageChanged_saveState(survey) {
 
@@ -188,7 +235,7 @@
                         //    "RaisedPrivacyToAtipCoordinator": "yes"
                         //};
 
-                        
+
 
                         var data = {
                             "FilingComplaintOnOwnBehalf": "yourself",
@@ -283,6 +330,28 @@
                     .onCurrentPageChanged
                     .add(onCurrentPageChanged_saveState);
 
+                $("#pdfPreviewBtn").click(function () {
+
+                    var filename = "surveyResult.pdf";
+
+                    var options = {
+                        fontSize: 14,
+                        margins: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bot: 10
+                        },
+                        format: "a4",
+                        fontName: 'times',
+                        fontStyle: 'normal'
+                    };
+
+                    var surveyPDF = new SurveyPDF.SurveyPDF(json, options);
+                    surveyPDF.data = survey.data;
+                    surveyPDF.save(filename);
+                });
+
 
                 // ****Event *****************************************************
 
@@ -311,5 +380,6 @@
         <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">@Localizer.GetLocalizedString("btnComplete")</button>
         <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>
         <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary">Start</button>
+        <button id="pdfPreviewBtn" style="margin:10px" class="btn btn-primary">PDF Preview</button>
     </div>
 </center>

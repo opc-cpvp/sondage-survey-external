@@ -9,7 +9,6 @@
           "name": "name",
           "type": "text",
           "title": "Please enter your name:",
-          "placeHolder": "Jon Snow",
           "isRequired": true
         }
       ]
