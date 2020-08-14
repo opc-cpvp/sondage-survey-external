@@ -9,9 +9,9 @@ var optionsEn = {
         bot: 10
     },
     format: "a4",
-    fontName: 'times',
+    fontName: 'helvetica',
     fontStyle: 'normal',
-    htmlRenderAs: "image",
+   // htmlRenderAs: "image",
   
     //pagebreak: { mode: 'avoid-all' }      // this option avoid breaking the survey on an element
     //compress: true
@@ -35,12 +35,14 @@ var optionsFr = {
 
 function intiSurveyPDF(json, lang) {
 
-    if (lang == 'fr') {
-        surveyPDF = new SurveyPDF.SurveyPDF(json, optionsFr);
-    }
-    else {
-        surveyPDF = new SurveyPDF.SurveyPDF(json, optionsEn);
-    }    
+    //if (lang == 'fr') {
+    //    surveyPDF = new SurveyPDF.SurveyPDF(json, optionsFr);
+    //}
+    //else {
+    //    surveyPDF = new SurveyPDF.SurveyPDF(json, optionsEn);
+    //}   
+
+    var surveyPDF = new SurveyPDF.SurveyPDF(json, optionsEn);
 
     var converter = new showdown.Converter();
 
@@ -94,24 +96,49 @@ function intiSurveyPDF(json, lang) {
     //    });
 }
 
-function saveSurveyPDF(surveyModel, filename) {
+function saveSurveyPDF(json, surveyModel, lang, filename) {
 
+    var surveyPDF = new SurveyPDF.SurveyPDF(json, optionsEn);
+    surveyPDF.locale = lang;
     surveyPDF.data = surveyModel.data;
+    surveyPDF.showQuestionNumbers = "off";
+    surveyPDF.mode = "display";
 
-    var saveType = 'saveAsString';
+    //  Adding the markdown
+    var converter = new showdown.Converter();
+    converter.simpleLineBreaks = true;
+    converter.tasklists = true;
+
+    surveyPDF
+        .onTextMarkdown
+        .add(function (sender, options) {
+
+            //convert the mardown text to html
+            var str = converter.makeHtml(options.text);
+
+            //remove root paragraphs <p></p>
+            str = str.substring(3);
+            str = str.substring(0, str.length - 4);
+
+            //set html
+            options.html = str;
+        });
+
+    var saveType = 'saveAsFile';
 
     if (saveType === "saveAsFile") {
 
-        filename += '_asFile.pdf';
+        filename += '_asFile_' + lang + '.pdf';
         surveyPDF.save(filename);
     }
     else if (saveType === "saveAsString") {
 
         filename += '_asString.pdf';
+
         surveyPDF
             .raw()
             .then(function (text) {
-                var file = new Blob([text], { type: "application/pdf" });
+                var file = new Blob([text], { type: "application/pdf;base64,BASE_64_ENCODED_PDF" });
                // var file = new Blob([text], { type: "text/plain" });
                 var a = document.createElement("a");
                 a.href = URL.createObjectURL(file);

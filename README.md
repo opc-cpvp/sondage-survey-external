@@ -122,9 +122,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest.
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 -) PDF;
-	- Remove question numbers
 	- Attachments are missing
-	- Make it not editable
+	- Remove menu button when finished with the bugs
+
 
 -) Test on Internet Explorer
 	-
@@ -178,7 +178,10 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with new json)
 	- Hide html type questions (Fix with new json)
 	- Hide whole pages (Fix with new json)
-
+	- Not exporting pdf in francais (property locale had to be set on SurveyPDF object)
+	- Make it not editable (property mode had to be set on SurveyPDF object)
+	- Remove question numbers (property showQuestionNumbers had to be set on SurveyPDF object)
+	- Markdown is not working (using surveyPDF.save(filename))
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

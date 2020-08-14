@@ -61,9 +61,9 @@
 
     <script type="text/javascript">
 
-        $("#pdfPreviewBtn").click(function () {
+        function showPDF() {
 
-            var filename = "surveyResultToPDF";
+             var filename = "surveyResultToPDF";
 
             var json_pdf = "/sample-data/survey_pa_complaint_pdf.json";
 
@@ -73,12 +73,10 @@
 
                     var survey_pdf = new Survey.Model(json_pdf);
                     survey_pdf.complaintId = '@ViewBag.token'
-                    survey_pdf.locale = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
-                    survey_pdf.showQuestionNumbers = "off";
-                    survey_pdf.mode = "display";
 
-                    intiSurveyPDF(json_pdf, survey_pdf.locale);
+                    var lang = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
 
+                    //  Getting the data from browser local storage
                     var storageSt = window.localStorage.getItem(storageName_PA) || "";
 
                     if (storageSt) {
@@ -87,11 +85,15 @@
                         if (res.data) {
                             survey_pdf.data = res.data;
 
-                            saveSurveyPDF(survey_pdf, filename);
+                            saveSurveyPDF(json_pdf, survey_pdf, lang, filename);
                         }
                     }
-
                 });
+        }
+
+        $("#pdfPreviewBtn").click(function () {
+
+            showPDF();
         });
 
         //  This is the total file sizes
@@ -534,7 +536,7 @@
 
                 initSurveyFileModelEvents(survey);
 
-                
+
 
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
