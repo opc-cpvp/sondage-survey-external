@@ -860,7 +860,7 @@
           "elements": [
             {
               "type": "dropdown",
-              "name": "reprensentative_title",
+              "name": "reprensentative_FormOfAddress",
               "title": {
                 "en": "Preferred form of address",
                 "fr": "Titre de civilité préféré"

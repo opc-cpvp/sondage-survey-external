@@ -56,7 +56,6 @@
 
   <ItemGroup>
     <Folder Include="FileUploads\" />
-    <Folder Include="wwwroot\Fonts\" />
   </ItemGroup>
 
 </Project>

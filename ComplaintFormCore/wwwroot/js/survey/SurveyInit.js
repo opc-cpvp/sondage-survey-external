@@ -234,12 +234,12 @@ function onCurrentPageChanged_updateNavButtons(survey) {
     //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage 
     //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
 
-    document
-        .getElementById('btnEndSession')
-        .style
-        .display = !survey.isFirstPage || survey.isDisplayMode
-            ? "inline"
-            : "none";
+    //document
+    //    .getElementById('btnEndSession')
+    //    .style
+    //    .display = !survey.isFirstPage || survey.isDisplayMode
+    //        ? "inline"
+    //        : "none";
 
     document
         .getElementById('btnStart')

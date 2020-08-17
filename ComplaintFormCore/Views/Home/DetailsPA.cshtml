@@ -25,9 +25,9 @@
         <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyNext")</button>
         <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary">@Localizer.GetLocalizedString("btnShowPreview")</button>
         <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">@Localizer.GetLocalizedString("btnComplete")</button>
-        <button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>
+        @*<button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>*@
         <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary">Start</button>
-        <button id="pdfPreviewBtn" style="margin:10px" class="btn btn-primary">PDF Preview</button>
+        @*<button id="pdfPreviewBtn" style="margin:10px" class="btn btn-primary">PDF Preview</button>*@
     </div>
 </center>
 
@@ -44,57 +44,15 @@
     <script src="~/js/survey/surveyFile.js"></script>
     <script src="~/lib/promise-polyfill/polyfill.js"></script>
     <script src="~/lib/fetch/fetch.js"></script>
-
-
     <script src="~/js/survey/widgets/widgetCheckboxHtml.js"></script>
     <script src="~/js/survey/widgets/widgetCommentHtml.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-
-
     <script src="https://unpkg.com/jspdf@1.5.3/dist/jspdf.min.js"></script>
-
     <script src="https://surveyjs.azureedge.net/1.7.26/survey.pdf.js"></script>
-    <script src="~/Fonts/fontawesome-webfont-normal.js"></script>
-    <script src="~/Fonts/fontawesome-webfont-bold.js"></script>
     <script src="~/js/survey/surveyPDF.js"></script>
 
 
     <script type="text/javascript">
-
-        function showPDF() {
-
-             var filename = "surveyResultToPDF";
-
-            var json_pdf = "/sample-data/survey_pa_complaint_pdf.json";
-
-            fetch(json_pdf)
-                .then(response => response.json())
-                .then(json_pdf => {
-
-                    var survey_pdf = new Survey.Model(json_pdf);
-                    survey_pdf.complaintId = '@ViewBag.token'
-
-                    var lang = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
-
-                    //  Getting the data from browser local storage
-                    var storageSt = window.localStorage.getItem(storageName_PA) || "";
-
-                    if (storageSt) {
-                        var res = JSON.parse(storageSt);
-
-                        if (res.data) {
-                            survey_pdf.data = res.data;
-
-                            saveSurveyPDF(json_pdf, survey_pdf, lang, filename);
-                        }
-                    }
-                });
-        }
-
-        $("#pdfPreviewBtn").click(function () {
-
-            showPDF();
-        });
 
         //  This is the total file sizes
         var multipleFileMaxSize = 26214400;
@@ -222,6 +180,41 @@
             return totalBytes;
         }
 
+        function showPDF() {
+
+            //  TODO: Find a good pdf file name
+            var filename = "surveyResultToPDF.pdf";
+            var json_pdf = "/sample-data/survey_pa_complaint_pdf.json";
+
+            fetch(json_pdf)
+                .then(response => response.json())
+                .then(json_pdf => {
+
+                    var survey_pdf = new Survey.Model(json_pdf);
+                    survey_pdf.complaintId = '@ViewBag.token'
+
+                    var lang = '@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName';
+
+                    //  Getting the data from browser local storage
+                    var storageSt = window.localStorage.getItem(storageName_PA) || "";
+
+                    if (storageSt) {
+                        var res = JSON.parse(storageSt);
+
+                        if (res.data) {
+                            survey_pdf.data = res.data;
+
+                            saveSurveyPDF(json_pdf, survey_pdf, lang, filename);
+                        }
+                    }
+                });
+        }
+
+        //$("#pdfPreviewBtn").click(function () {
+
+        //    showPDF();
+        //});
+
         initSurvey(Survey);
         initSurveyFile(Survey);
 
@@ -261,19 +254,11 @@
                         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                         xhr.onload = xhr.onerror = function () {
                             if (xhr.status == 200) {
-
                                 options.allowComplete = true;
                             }
                             else {
-
-                                if (validationResponse.json) {
-                                    validationResponse.json().then(function (error) {
-                                        printProblemDetails(error);
-                                    });
-                                }
-                                else {
-                                    alert("oopsy");
-                                }
+                                var validationResponse = JSON.parse(xhr.response);
+                                printProblemDetails(validationResponse);
                             }
                         };
                         xhr.send(data);
@@ -572,7 +557,7 @@
                     "DisabilityAccommodation": "iuyuiyiuyiuy",
                     "complainant_Country": "CA",
                     "complainant_ProvinceOrState": "2",
-                    "reprensentative_title": "Mr.",
+                    "reprensentative_FormOfAddress": "Mr.",
                     "reprensentative_FirstName": "jf",
                     "reprensentative_LastName": "brouillette",
                     "reprensentative_Email": "jf@hotmail.com",

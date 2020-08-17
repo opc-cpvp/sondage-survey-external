@@ -67,7 +67,7 @@
               "name": "RaisedPrivacyToAtipCoordinator",
               "title": {
                 "en": "Have you raised your privacy concerns in writing with the institution's [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>Access to Information and Privacy (ATIP) Coordinator</a>?",
-                "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
+                "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l'accès à l'information et de la protection des renseignements personnels (AIPRP)</a> de l'institution?"
               },
               "choices": [
                 {
@@ -591,7 +591,7 @@
               "elements": [
                 {
                   "type": "dropdown",
-                  "name": "reprensentative_title",
+                  "name": "reprensentative_FormOfAddress",
                   "title": {
                     "en": "Preferred form of address",
                     "fr": "Titre de civilité préféré"
@@ -785,6 +785,54 @@
                 "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
               },
               "visibleIf": "{NeedsDisabilityAccommodationChoice} contains 'yes'"
+            },
+            {
+              "type": "panel",
+              "name": "pnl_file_upload_rep",
+              "title": {
+                "en": "Authorization form attachment(s)",
+                "fr": "Pièces jointes au formulaire d’autorisation"
+              },
+              "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({documentation_type} contains 'upload' or {documentation_type} contains 'both')",
+              "elements": [
+                {
+                  "type": "file",
+                  "name": "documentation_file_upload_rep",
+                  "titleLocation": "hidden",
+                  "itemListTitle": {
+                    "en": "Attached",
+                    "fr": "Fichier joint au formulaire d’autorisation"
+                  },
+                  "itemListNoAttachmentsText": {
+                    "en": "No attachments have been uploaded yet.",
+                    "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                  }
+                }
+              ]
+            },
+            {
+              "type": "panel",
+              "name": "pnl_file_upload",
+              "title": {
+                "en": "Attachments",
+                "fr": "Pièces jointes"
+              },
+              "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+              "elements": [
+                {
+                  "type": "file",
+                  "name": "documentation_file_upload",
+                  "titleLocation": "hidden",
+                  "itemListTitle": {
+                    "en": "Attached",
+                    "fr": "En pièce jointe"
+                  },
+                  "itemListNoAttachmentsText": {
+                    "en": "No attachments have been uploaded yet.",
+                    "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                  }
+                }
+              ]
             },
             {
               "type": "checkbox",

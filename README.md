@@ -101,7 +101,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 -) Replace <div id="div_errors_list" style="display:none"></div> in body
 -) WCAG compliance, talk to Stephanie
--) Complete page -> PDF
 -) Complete page -> Page refresh problem
 -) Find a strategy to clear local storage. Put a timestamp on local storage?
 -) Make sure the css classes are the same on the checkboxes & the radio buttons
@@ -121,10 +120,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
 	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest.
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
--) PDF;
-	- Attachments are missing
-	- Remove menu button when finished with the bugs
-
 
 -) Test on Internet Explorer
 	-
@@ -182,6 +177,8 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Make it not editable (property mode had to be set on SurveyPDF object)
 	- Remove question numbers (property showQuestionNumbers had to be set on SurveyPDF object)
 	- Markdown is not working (using surveyPDF.save(filename))
+	- Attachments are missing
+	- Remove menu button when finished with the bugs
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)
