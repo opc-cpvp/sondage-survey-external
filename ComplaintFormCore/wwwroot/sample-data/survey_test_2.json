@@ -1,75 +1,1243 @@
 {
-  
   "pages": [
     {
-      "name": "page2",
-      "title": "Part A2: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
+      "name": "single_page",
+      "title": {
+        "en": "Review and send Privacy complaint form (federal institution)",
+        "fr": "FR-Review and send—Privacy complaint form (federal institution)"
+      },
       "elements": [
         {
-          "type": "html",
-          "name": "complainant_HaveYouSubmittedBefore_info",
-          "html": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>"
-        },
-        {
+          "name": "page_preliminary_info_Authorization_for_Representative",
           "type": "panel",
-          "name": "panel1",
-          "title": "Please, help us improve our product",
+          "title": {
+            "en": "Part A: Preliminary information (Authorization for Representative)-Privacy complaint form (federal institution)",
+            "fr": "Partie A : Renseignements préliminaires (autorisation de représentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
           "elements": [
-            {
-              "type": "radiogroup",
-              "name": "car",
-              "title": "What car are you driving?",
-              "isRequired": true,
-              "colCount": 4,
-              "choices": [
-                "None",
-                "Ford",
-                "Vauxhall",
-                "Volkswagen",
-                "Nissan",
-                "Audi",
-                "Mercedes-Benz",
-                "BMW",
-                "Peugeot",
-                "Toyota",
-                "Citroen"
-              ]
-            },
-            {
-              "type": "html",
-              "name": "documentation_info",
-              "html": "<p>hello</p>"
-            }
+            [
+              {
+                "type": "radiogroup",
+                "name": "FilingComplaintOnOwnBehalf",
+                "title": {
+                  "en": "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?",
+                  "fr": "Déposez-vous cette plainte en votre propre nom (ou au nom d’un enfant mineur dont vous êtes le tuteur) ou au nom d’une autre personne?"
+                },
+                "isRequired": true,
+                "choices": [
+                  {
+                    "text": {
+                      "en": "Yourself (or minor child for whom you are legal guardian)",
+                      "fr": "Vous-même (ou un enfant mineur dont vous êtes le tuteur légal) "
+                    },
+                    "value": "yourself"
+                  },
+                  {
+                    "text": {
+                      "en": "Someone else",
+                      "fr": "Quelqu’un d’autre"
+                    },
+                    "value": "someone_else"
+                  }
+                ]
+              }
+            ]
           ]
-        }
-       
-      ]
-    },
-    {
-      "name": "page3",
-      "elements": [
-        {
-          "type": "text",
-          "name": "email",
-          "isRequired": true,
-          "title": "Thank you for {sum(4,7)} taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
-        }
-      ]
-    },
-    {
-      "name": "page8",
-      "elements": [
-        {
-          "type": "text",
-          "name": "testtext",
-          "title": "Tglkfdjgklsdfgj."
         },
         {
-          "type": "boolean",
-          "name": "bool",
-          "title": "Please answer the question",
-          "label": "Are you 21 or older?",
-          "visibleIf": "isDisplayMode()"
+          "name": "page_preliminary_info_Identify_institution",
+          "type": "panel",
+          "title": {
+            "en": "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)",
+            "fr": "Partie A : Renseignements préliminaires (identifier l’institution) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "dropdown",
+                "name": "WhichFederalGovernementInstitutionComplaintAgainst",
+                "title": {
+                  "en": "Which federal government institution is your complaint againts?",
+                  "fr": "Quelle institution fédérale fait l’objet de votre plainte?"
+                },
+                "requiredErrorText": "This field is required remove me",
+                "isRequired": true,
+                "validators": [
+                  {
+                    "type": "expression",
+                    "expression": "HasSelectedItem({institution}) = true"
+                  }
+                ],
+                "choicesByUrl": {
+                  "url": "/api/Institution?lang={locale}",
+                  "titleName": "name",
+                  "valueName": "value"
+                }
+              }
+            ]
+          ]
+        },
+        {
+          "name": "page_steps_taken_Writing_ATIP_Coordinator",
+          "type": "panel",
+          "title": {
+            "en": "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)",
+            "fr": "Partie B : Mesures prises (écrire au coordonnateur de l’AIPRP) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "radiogroup",
+                "name": "RaisedPrivacyToAtipCoordinator",
+                "title": {
+                  "en": "Have you raised your privacy concerns in writing with the institution's [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>Access to Information and Privacy (ATIP) Coordinator</a>?",
+                  "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
+                },
+                "isRequired": true,
+                "choices": [
+                  {
+                    "text": {
+                      "en": "Yes",
+                      "fr": "Oui"
+                    },
+                    "value": "yes"
+                  },
+                  {
+                    "text": {
+                      "en": "No",
+                      "fr": "Non"
+                    },
+                    "value": "no"
+                  },
+                  {
+                    "text": {
+                      "en": "Not sure",
+                      "fr": "Ne sait pas"
+                    },
+                    "value": "not_sure"
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "name": "page_details_Type_complaint",
+          "type": "panel",
+          "title": {
+            "en": "Part C: Details (Type of complaint) - Privacy complaint form (federal institution)",
+            "fr": "Partie C : Détails (type de plainte) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "checkbox",
+                "name": "NatureOfComplaint",
+                "title": {
+                  "en": "Which of the following choices most accurately summarizes your complaint?",
+                  "fr": "Lesquels des choix suivants résume le mieux votre plainte?"
+                },
+                "isRequired": true,
+                "colCount": 1,
+                "hasHtmlAddtionalInfo": true,
+                "choices": [
+                  {
+                    "value": "NatureOfComplaintDelay",
+                    "text": {
+                      "en": "Delayed response to your request",
+                      "fr": "Réponse tardive à votre demande"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>The institution has not responded to your access or correction request within the statutory time limits. Under the <i>Privacy Act</i> institutions have thirty (30) days after your request is received to respond (or 60 days if an extension has been properly invoked for an access request).</p>",
+                      "fr": "<p>L’institution n’a pas répondu à votre demande d’accès ou de correction dans les délais prévus par la loi. En vertu de la <i>Loi sur la protection des renseignements personnels</i>, les institutions disposent de trente (30) jours après la réception de votre demande pour y répondre (ou de 60 jours si une prorogation a été dûment invoquée pour une demande d’accès).</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintExtensionOfTime",
+                    "text": {
+                      "en": "Objecting to institutions' request for an extension to respond (to your access request)",
+                      "fr": "Objection à la demande de l’institution pour une prorogation de répondre (à votre demande d’accès)"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>Institutions may seek, with a reason set out in the Act, an extension of a further thirty (30) days to respond.</p>",
+                      "fr": "<p>Les institutions peuvent demander, pour un motif énoncé dans la Loi, un délai supplémentaire de trente (30) jours pour répondre.</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintDenialOfAccess",
+                    "text": {
+                      "en": "Denial of access to personal information",
+                      "fr": "Refus de donner accès aux renseignements personnels"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>Personal information has not been received, either because some documents or information are missing or the institution has applied exemptions to withhold information.</p>",
+                      "fr": "<p>Une personne n’a pas obtenu les renseignements personnels qu’une institution détient à son sujet parce qu’il manque des documents ou des renseignements ou encore parce que l’organisation a invoqué des exceptions afin de ne pas communiquer les renseignements.</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintLanguage",
+                    "text": {
+                      "en": "Response to formal request for access to personal information not provided in the official language or alternative format requested",
+                      "fr": "Réponse à une demande officielle d’accès à des renseignements personnels qui n’est pas fournie dans la langue officielle ou sur le média substitut demandé"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintCorrection",
+                    "text": {
+                      "en": "Lack of correction of personal information (notation)",
+                      "fr": "Absence de correction des renseignements personnels (annotation)"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>The institution has not corrected the information or placed a notation on the file showing the requested correction.</p>",
+                      "fr": "<p>L’institution n’a pas apporté les corrections aux renseignements ou ne les a pas annotés pour indiquer la correction demandée.</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintCollection",
+                    "text": {
+                      "en": "Inappropriate collection of personal information",
+                      "fr": "Collecte inappropriée de renseignements personnels"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>Personal information has been collected that is not required for an operating program or activity of the institution; personal information is not collected directly from the individual concerned; or the individual is not advised of the purpose of the collection of personal information.</p>",
+                      "fr": "<p>Une institution a recueilli des renseignements personnels qui ne sont pas nécessaires à l’exploitation d’un de ses programmes ou à l’une de ses activités; les renseignements personnels n’ont pas été recueillis directement auprès de la personne concernée; ou la personne n’a pas été informée des fins pour lesquelles les renseignements personnels ont été recueillis</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintUseAndDisclosure",
+                    "text": {
+                      "en": "Wrongful use or disclosure of personal information",
+                      "fr": "Utilisation ou communication injustifiée de renseignements personnels"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>Personal information has been used or disclosed without the consent of the individual and does not meet one of the permissible uses or disclosures without consent set out in <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>sections 7 and 8 of the <i>Privacy Act</i>.</a></p>",
+                      "fr": "<p>Des renseignements personnels ont été utilisés ou communiqués sans le consentement de la personne qu’ils concernent et ne satisfont pas à l’un des critères de communication permise sans consentement énoncés aux <a href='https://laws.justice.gc.ca/fra/lois/P-21/page-2.html' target='_blank'>articles 7 et 8 de la <i>Loi sur la protection des renseignements personnels.</i></a></p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintRetentionAndDisposal",
+                    "text": {
+                      "en": "Wrongful retention or disposal of personal information",
+                      "fr": "Conservation ou retrait injustifié de renseignements personnels"
+                    },
+                    "htmlAdditionalInfo": {
+                      "en": "<p>Personal information has not been kept in accordance with retention and disposal schedules (approved by National Archives); either destroyed too soon or kept too long. Personal information used for an administrative purpose must be kept for at least two years after the last administrative action unless the individual consents to its disposal.</p>",
+                      "fr": "<p>Des renseignements personnels n’ont pas été conservés selon les calendriers de conservation et de retrait (approuvés par les Archives nationales); ils ont été détruits trop rapidement ou conservés trop longtemps. Les renseignements personnels utilisés à des fins administratives doivent être conservés pendant au moins deux ans après la dernière application d’une mesure administrative, à moins que la personne n’ait consenti à leur retrait.</p>"
+                    }
+                  },
+                  {
+                    "value": "NatureOfComplaintOther",
+                    "text": {
+                      "en": "Other",
+                      "fr": "Autre"
+                    }
+                  }
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "name": "page_details_description_of_concerns",
+          "type": "panel",
+          "title": {
+            "en": "Part C: Details (description of concerns) - Privacy complaint form (federal institution)",
+            "fr": "Partie C : Détails (Section 2 : Détails de la plainte) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "radiogroup",
+                "name": "IsEmployeeChoice",
+                "title": {
+                  "en": "Are you submitting the complaint as a member of the general public or as an employee of the goverment institution?",
+                  "fr": "Déposez-vous la plainte en tant que membre du grand public ou en tant qu’employé de l’institution fédérale?"
+                },
+                "isRequired": true,
+                "choices": [
+                  {
+                    "value": "general_public",
+                    "text": {
+                      "en": "General public",
+                      "fr": "Grand public"
+                    }
+                  },
+                  {
+                    "value": "employee_government",
+                    "text": {
+                      "en": "Employee of the goverment institution",
+                      "fr": "Employé de l’institution fédérale"
+                    }
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "DateSentRequests",
+                "title": {
+                  "en": "What date did you send your written access request to the institution? If you sent multiple requests please list each one. (maximum 5,000 characters)",
+                  "fr": "À quelle date avez-vous envoyé votre demande d’accès par écrit à l’institution? Si vous avez envoyé plusieurs demandes, veuillez les énumérer toutes. (maximum 5 000 caractères)"
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "WordingOfRequest",
+                "title": {
+                  "en": "What was the wording of your request and the file number (or reference number) provided by the institution? (maximum 5,000 characters)",
+                  "fr": "Quel était le libellé de votre demande? (maximum 5 000 caractères)"
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "MoreDetailsOfRequest",
+                "title": {
+                  "en": "If the institution asked you for more information or to provide a clarification regarding your request, what and when did you reply? (maximum 5,000 characters)",
+                  "fr": "Si l’institution vous a demandé de plus amples renseignements ou des éclaircissements au sujet de votre demande, que lui avez-vous répondu et quand l’avez-vous fait? (maximum 5 000 caractères)"
+                },
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "DateOfFinalAnswer",
+                "title": {
+                  "en": "What date did you receive a final response from the institution? (maximum 5,000 characters)",
+                  "fr": "À quelle date avez-vous reçu une réponse finale de l’institution? (maximum 5 000 caractères)"
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "radiogroup",
+                "name": "DidNoRecordExistChoice",
+                "title": {
+                  "en": "Did the institution reply that no records exist?",
+                  "fr": "L’institution a-t-elle répondu qu’il n’existe aucun document?"
+                },
+                "isRequired": true,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
+                "choices": [
+                  {
+                    "text": {
+                      "en": "Yes",
+                      "fr": "Oui"
+                    },
+                    "value": "yes"
+                  },
+                  {
+                    "text": {
+                      "en": "No",
+                      "fr": "Non"
+                    },
+                    "value": "no"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "PrivacyActSectionsApplied",
+                "title": {
+                  "en": "What sections of the *Privacy Act* did the institution mention (if any) as the reason it withheld information in its response to your request? (maximum 5,000 characters)",
+                  "fr": "Quels articles de la *Loi sur la protection des renseignements personnels* l’institution a-t-elle mentionnés (le cas échéant) comme raison pour laquelle elle a refusé de divulguer des renseignements dans sa réponse à votre demande? (maximum 5 000 caractères)"
+                },
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "ItemsNotRecieved",
+                "title": {
+                  "en": "Please describe each item (if any) from your access request that you have not yet received. (maximum 5,000 characters)",
+                  "fr": "Veuillez décrire chaque élément (s’il y a lieu) de votre demande d’accès que vous n’avez pas encore reçu. (maximum 5 000 caractères)"
+                },
+                "maxLength": 5000,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+              }
+            ],
+            [
+              {
+                "type": "radiogroup",
+                "name": "InstitutionAgreedRequestOnInformalBasis",
+                "title": {
+                  "en": "Did the institution agree to process your request on an informal basis?",
+                  "fr": "L’institution a-t-elle accepté de traiter votre demande de façon informelle?"
+                },
+                "isRequired": true,
+                "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
+                "choices": [
+                  {
+                    "text": {
+                      "en": "Yes",
+                      "fr": "Oui"
+                    },
+                    "value": "yes"
+                  },
+                  {
+                    "text": {
+                      "en": "No",
+                      "fr": "Non"
+                    },
+                    "value": "no"
+                  },
+                  {
+                    "text": {
+                      "en": "No sure",
+                      "fr": "Ne sait pas"
+                    },
+                    "value": "not_sure"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "SummarizeYourConcernsAndAnyStepsTaken",
+                "title": {
+                  "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
+                  "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "visibleIf": "({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage')",
+                "htmldescription": {
+                  "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
+                  "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
+                }
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "SummarizeYourComplaintAndAnyStepsTaken",
+                "title": {
+                  "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
+                  "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "visibleIf": "!(({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage'))",
+                "htmldescription": {
+                  "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
+                  "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
+                }
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "WhatWouldResolveYourComplaint",
+                "title": {
+                  "en": "What would resolve your concerns? (maximum 5,000 characters)",
+                  "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
+                },
+                "maxLength": 5000,
+                "isRequired": true,
+                "htmldescription": {
+                  "en": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><div class='alert alert-info'><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>&nbsp;&nbsp;&nbsp;",
+                  "fr": "<p>Veuillez décrire les démarches ou les mesures correctives qui permettraient de résoudre votre problème. Par exemple: </p><p><ul><li>donner une formation à un employé</li><li>un changement de pratique</li><li>obtenir un renseignement précis</li></ul></p><p>Veuillez noter que le Commissariat n’a pas le pouvoir d’imposer des amendes aux organisations ou d’accorder des dommages-intérêts.</p><div class='alert alert-info'><p>Il est à noter que notre commissaire n’a pas le pouvoir de forcer une institution fédérale à prendre une mesure particulière.</p><p>Le commissaire formule des conclusions et des recommandations et collabore avec les institutions pour améliorer leur gestion des renseignements personnels.</p><p>Notre bureau n’a pas le pouvoir d’imposer des amendes aux institutions ou de réclamer des dommages-intérêts pour les plaintes. De plus, nous n’abordons pas la question de la responsabilité civile ou criminelle.</p></div>&nbsp;&nbsp;&nbsp;"
+                }
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "SummarizeAttemptsToResolvePrivacyMatter",
+                "title": {
+                  "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
+                  "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
+                },
+                "isRequired": true,
+                "maxLength": 5000,
+                "htmldescription": {
+                  "en": "<p>Note that you will be asked to attach copies of any related correspondence with the organization about your privacy concerns.</p><p>Please include:</p><p><ul><li>a description of your efforts (including a timeline)</li><li>a description of the result (if any)</li></ul></p>",
+                  "fr": "<p>Veuillez noter qu’on vous demandera de joindre des copies de toute correspondance connexe avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée.</p><p>Veuillez inclure:</p><p><ul><li>une description de vos efforts (y compris une chronologie)</li><li>une description du résultat (le cas échéant)</li></ul></p>"
+                }
+              }
+            ],
+            [
+              {
+                "type": "comment",
+                "name": "AdditionalComments",
+                "title": {
+                  "en": "Additional comments / special Instructions (maximum 5,000 characters)",
+                  "fr": "Commentaires supplémentaires/instructions spéciales (maximum 5 000 caractères)"
+                },
+                "maxLength": 5000
+              }
+            ]
+          ]
+        },
+        {
+          "name": "page_complainant_representative",
+          "type": "panel",
+          "title": {
+            "en": "Part C: Details (Section 3: Complaintant/Representative information) - Privacy complaint form (federal institution)",
+            "fr": "Partie C : Détails (Section 3 : Information sur le plaignant ou le représentant) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "panel",
+                "name": "complainant_PreviousComplaint",
+                "title": {
+                  "en": "Previous Complaint",
+                  "fr": "Plainte antérieure"
+                },
+                "elements": [
+                  [
+                    {
+                      "type": "radiogroup",
+                      "name": "complainant_HaveYouSubmittedBeforeChoice",
+                      "title": {
+                        "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
+                        "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
+                      },
+                      "isRequired": true,
+                      "choices": [
+                        {
+                          "text": {
+                            "en": "Yes",
+                            "fr": "Oui"
+                          },
+                          "value": "yes"
+                        },
+                        {
+                          "text": {
+                            "en": "No",
+                            "fr": "Non"
+                          },
+                          "value": "no"
+                        }
+                      ]
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "complainant_ComplaintInformation",
+                "title": {
+                  "en": "Complaint Information",
+                  "fr": "Renseignements sur le plaignant"
+                },
+                "description": {
+                  "en": "Enter the information of the person making the complaint",
+                  "fr": "Veuillez saisir les coordonnées de la personne qui dépose la plainte."
+                },
+                "elements": [
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "complainant_FormOfAddress",
+                      "title": {
+                        "en": "Preferred form of address",
+                        "fr": "Titre de civilité préféré"
+                      },
+                      "isRequired": true,
+                      "colCount": 0,
+                      "choices": [
+                        {
+                          "text": {
+                            "en": "Mr.",
+                            "fr": "M."
+                          },
+                          "value": "Mr."
+                        },
+                        {
+                          "text": {
+                            "en": "Mrs.",
+                            "fr": "Mme"
+                          },
+                          "value": "Mrs."
+                        },
+                        {
+                          "text": {
+                            "en": "Ms.",
+                            "fr": "Mlle"
+                          },
+                          "value": "Ms."
+                        },
+                        {
+                          "text": {
+                            "en": "Other",
+                            "fr": "Autre"
+                          },
+                          "value": "Other"
+                        }
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_FirstName",
+                      "title": {
+                        "en": "First name",
+                        "fr": "Prénom "
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_LastName",
+                      "title": {
+                        "en": "Last name",
+                        "fr": "Nom de famille"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_Email",
+                      "inputType": "email",
+                      "title": {
+                        "en": "E-mail address (yourname@domain.com)",
+                        "fr": "Adresse électronique (votrenom@domaine.com)"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_MailingAddress",
+                      "title": {
+                        "en": "Mailing address",
+                        "fr": "Adresse postale"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_City",
+                      "title": {
+                        "en": "City",
+                        "fr": "Ville "
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "complainant_Country",
+                      "title": {
+                        "en": "Country",
+                        "fr": "Pays"
+                      },
+                      "isRequired": true,
+                      "validators": [
+                        {
+                          "type": "expression",
+                          "expression": "HasSelectedItem({complainant_Country}) = true"
+                        }
+                      ],
+                      "choicesByUrl": {
+                        "url": "/api/Country?lang={locale}",
+                        "titleName": "text",
+                        "valueName": "value"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "complainant_ProvinceOrState",
+                      "title": {
+                        "en": "Province/Territory",
+                        "fr": "Province ou territoire"
+                      },
+                      "isRequired": true,
+                      "visibleIf": "{complainant_Country} = 'CA'",
+                      "validators": [
+                        {
+                          "type": "expression",
+                          "expression": "HasSelectedItem({complainant_ProvinceOrState}) = true"
+                        }
+                      ],
+                      "choicesByUrl": {
+                        "url": "/api/Province?lang={locale}",
+                        "titleName": "text",
+                        "valueName": "value"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_PostalCode",
+                      "title": {
+                        "en": "Postal code",
+                        "fr": "Code postal"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_DayTimeNumber",
+                      "inputType": "tel",
+                      "title": {
+                        "en": "Daytime telephone number (123-456-7890)",
+                        "fr": "Numéro de téléphone pendant la journée (123-456-7890)"
+                      },
+                      "description": {
+                        "en": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
+                        "fr": "Veuillez entrer le numéro de téléphone où nous pourrons vous joindre pendant la journée du lundi au vendredi, de 8 h 30 à 16 h 30 (HE)."
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_DayTimeNumberExtension",
+                      "title": {
+                        "en": "Extension (digits only)",
+                        "fr": "Prolongation (chiffres seulement)"
+                      },
+                      "inputType": "number"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_AltTelephoneNumber",
+                      "inputType": "tel",
+                      "title": {
+                        "en": "Alternate telephone number (123-456-7890)",
+                        "fr": "Autre numéro de téléphone (123-456-7890)"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "complainant_AltTelephoneNumberExtension",
+                      "title": {
+                        "en": "Extension (digits only)",
+                        "fr": "Prolongation (chiffres seulement)"
+                      },
+                      "inputType": "number"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "pnl_ReprensentativeInformation",
+                "title": {
+                  "en": "Reprensentative Information",
+                  "fr": "Renseignements sur le représentant"
+                },
+                "description": {
+                  "en": "Enter Representative Information",
+                  "fr": "Entrer les renseignements sur le représentant"
+                },
+                "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else'",
+                "elements": [
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "reprensentative_FormOfAddress",
+                      "title": {
+                        "en": "Preferred form of address",
+                        "fr": "Titre de civilité préféré"
+                      },
+                      "isRequired": true,
+                      "choices": [
+                        {
+                          "text": {
+                            "en": "Mr.",
+                            "fr": "M."
+                          },
+                          "value": "Mr."
+                        },
+                        {
+                          "text": {
+                            "en": "Mrs.",
+                            "fr": "Mme"
+                          },
+                          "value": "Mrs."
+                        },
+                        {
+                          "text": {
+                            "en": "Ms.",
+                            "fr": "Mlle"
+                          },
+                          "value": "Ms."
+                        },
+                        {
+                          "text": {
+                            "en": "Other",
+                            "fr": "Autre"
+                          },
+                          "value": "Other"
+                        }
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_FirstName",
+                      "title": {
+                        "en": "First name",
+                        "fr": "Prénom "
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_LastName",
+                      "title": {
+                        "en": "Last name",
+                        "fr": "Nom de famille"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_Email",
+                      "inputType": "email",
+                      "title": {
+                        "en": "E-mail address (yourname@domain.com)",
+                        "fr": "Adresse électronique (votrenom@domaine.com)"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_MailingAddress",
+                      "title": {
+                        "en": "Mailing address",
+                        "fr": "Adresse postale"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_City",
+                      "title": {
+                        "en": "City",
+                        "fr": "Ville "
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "reprensentative_Country",
+                      "title": {
+                        "en": "Country",
+                        "fr": "Pays"
+                      },
+                      "isRequired": true,
+                      "validators": [
+                        {
+                          "type": "expression",
+                          "expression": "HasSelectedItem({reprensentative_Country}) = true"
+                        }
+                      ],
+                      "choicesByUrl": {
+                        "url": "/api/Country?lang={locale}",
+                        "titleName": "text",
+                        "valueName": "value"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "dropdown",
+                      "name": "reprensentative_ProvinceOrState",
+                      "title": {
+                        "en": "Province/Territory",
+                        "fr": "Province ou territoire"
+                      },
+                      "isRequired": true,
+                      "visibleIf": "{reprensentative_Country} = 'CA'",
+                      "validators": [
+                        {
+                          "type": "expression",
+                          "expression": "HasSelectedItem({reprensentative_ProvinceOrState}) = true"
+                        }
+                      ],
+                      "choicesByUrl": {
+                        "url": "/api/Province?lang={locale}",
+                        "titleName": "text",
+                        "valueName": "value"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_PostalCode",
+                      "title": {
+                        "en": "Postal code",
+                        "fr": "Code postal"
+                      },
+                      "isRequired": true
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_DayTimeNumber",
+                      "inputType": "tel",
+                      "isRequired": true,
+                      "title": {
+                        "en": "Daytime telephone number (123-456-7890)",
+                        "fr": "Numéro de téléphone pendant la journée (123-456-7890)"
+                      },
+                      "description": {
+                        "en": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
+                        "fr": "Veuillez entrer le numéro de téléphone où nous pourrons vous joindre pendant la journée du lundi au vendredi, de 8 h 30 à 16 h 30 (HE)."
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_DayTimeNumberExtension",
+                      "title": {
+                        "en": "Extension (digits only)",
+                        "fr": "Prolongation (chiffres seulement)"
+                      },
+                      "inputType": "number"
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_AltTelephoneNumber",
+                      "inputType": "tel",
+                      "title": {
+                        "en": "Alternate telephone number (123-456-7890)",
+                        "fr": "Autre numéro de téléphone (123-456-7890)"
+                      }
+                    }
+                  ],
+                  [
+                    {
+                      "type": "text",
+                      "name": "reprensentative_AltTelephoneNumberExtension",
+                      "title": {
+                        "en": "Extension (digits only)",
+                        "fr": "Prolongation (chiffres seulement)"
+                      },
+                      "inputType": "number"
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "pnl_complainant_accomodation",
+                "title": {
+                  "en": "Accomodation",
+                  "fr": "Mesures d’adaptation"
+                },
+                "elements": [
+                  [
+                    {
+                      "type": "radiogroup",
+                      "name": "NeedsDisabilityAccommodationChoice",
+                      "title": {
+                        "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
+                        "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
+                      },
+                      "isRequired": true,
+                      "choices": [
+                        {
+                          "text": {
+                            "en": "Yes",
+                            "fr": "Oui"
+                          },
+                          "value": "yes"
+                        },
+                        {
+                          "text": {
+                            "en": "No",
+                            "fr": "Non"
+                          },
+                          "value": "no"
+                        }
+                      ]
+                    }
+                  ],
+                  [
+                    {
+                      "type": "comment",
+                      "name": "DisabilityAccommodation",
+                      "title": {
+                        "en": "If yes, please describe what accommodation measures you are requesting and the reason.",
+                        "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
+                      },
+                      "description": {
+                        "en": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a> for assistance.",
+                        "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
+                      },
+                      "isRequired": true,
+                      "visibleIf": "{NeedsDisabilityAccommodationChoice} contains 'yes'"
+                    }
+                  ]
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "name": "page_documentation",
+          "type": "panel",
+          "title": {
+            "en": "Part C: Details (Section 4: Documentation) - Privacy complaint form (federal institution)",
+            "fr": "Partie C : Détails (Section 4 : Documentation) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
+          },
+          "elements": [
+            [
+              {
+                "type": "radiogroup",
+                "name": "documentation_type",
+                "title": {
+                  "en": "Do you wish to upload your supporting documents or send them by mail?",
+                  "fr": "Souhaitez-vous télécharger vos documents à l’appui ou les envoyer par la poste?"
+                },
+                "isRequired": true,
+                "colCount": 1,
+                "choices": [
+                  {
+                    "text": {
+                      "en": "Upload them",
+                      "fr": "Les télécharger"
+                    },
+                    "value": "upload"
+                  },
+                  {
+                    "text": {
+                      "en": "Send them by mail",
+                      "fr": "Les envoyer par la poste"
+                    },
+                    "value": "mail"
+                  },
+                  {
+                    "text": {
+                      "en": "Both",
+                      "fr": "Les deux"
+                    },
+                    "value": "both"
+                  },
+                  {
+                    "text": {
+                      "en": "I have no supporting documents to provide",
+                      "fr": "Je n’ai pas de documents à l’appui à fournir"
+                    },
+                    "value": "none"
+                  }
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "pnl_file_upload_rep",
+                "title": {
+                  "en": "Authorization form attachment(s)",
+                  "fr": "Pièces jointes au formulaire d’autorisation"
+                },
+                "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({documentation_type} contains 'upload' or {documentation_type} contains 'both')",
+                "elements": [
+                  [
+                    {
+                      "type": "file",
+                      "name": "documentation_file_upload_rep",
+                      "titleLocation": "hidden",
+                      "description": {
+                        "en": "Upload the representative authorization form signed by the complainant.",
+                        "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
+                      },
+                      "hasComment": false,
+                      "allowMultiple": true,
+                      "waitForUpload": true,
+                      "maxSize": 0,
+                      "needConfirmRemoveFile": true,
+                      "storeDataAsText": false,
+                      "showPreview": false,
+                      "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+                      "multipleFileMaxSizeErrorMessage": {
+                        "en": "Maximum size of files 25MB allowed",
+                        "fr": "FR - Maximum size of files 25MB allowed"
+                      },
+                      "confirmRemoveMessage": {
+                        "en": "Do you really want to remove this file?",
+                        "fr": "Voulez-vous vraiment supprimer ce fichier?"
+                      },
+                      "itemListTitle": {
+                        "en": "Attached",
+                        "fr": "Fichier joint au formulaire d’autorisation"
+                      },
+                      "itemListRemoveText": {
+                        "en": "Remove",
+                        "fr": "Supprimer"
+                      },
+                      "itemListNoAttachmentsText": {
+                        "en": "No attachments have been uploaded yet.",
+                        "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                      },
+                      "duplicateFileNameExceptionMessage": {
+                        "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                        "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+                      }
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "pnl_file_upload",
+                "title": {
+                  "en": "Attachments",
+                  "fr": "Pièces jointes"
+                },
+                "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+                "elements": [
+                  [
+                    {
+                      "type": "file",
+                      "name": "documentation_file_upload",
+                      "titleLocation": "hidden",
+                      "description": {
+                        "en": "Upload a file to attach to your complaint",
+                        "fr": "Téléchargez un fichier à joindre à votre plainte"
+                      },
+                      "hasComment": false,
+                      "allowMultiple": true,
+                      "waitForUpload": true,
+                      "maxSize": 0,
+                      "needConfirmRemoveFile": true,
+                      "storeDataAsText": false,
+                      "showPreview": false,
+                      "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+                      "multipleFileMaxSizeErrorMessage": {
+                        "en": "Maximum size of files 25MB allowed",
+                        "fr": "FR - Maximum size of files 25MB allowed"
+                      },
+                      "confirmRemoveMessage": {
+                        "en": "Do you really want to remove this file?",
+                        "fr": "Voulez-vous vraiment supprimer ce fichier?"
+                      },
+                      "itemListTitle": {
+                        "en": "Attached",
+                        "fr": "En pièce jointe"
+                      },
+                      "itemListRemoveText": {
+                        "en": "Remove",
+                        "fr": "Supprimer"
+                      },
+                      "itemListNoAttachmentsText": {
+                        "en": "No attachments have been uploaded yet.",
+                        "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                      },
+                      "duplicateFileNameExceptionMessage": {
+                        "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                        "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+                      }
+                    }
+                  ]
+                ]
+              }
+            ],
+            [
+              {
+                "type": "panel",
+                "name": "pnl_send_mail",
+                "hideOnPreview": true,
+                "title": {
+                  "en": "Sending documents by mail",
+                  "fr": "Envoi de documents par la poste"
+                },
+                "visibleIf": "{documentation_type} contains 'mail' or {documentation_type} contains 'both'",
+                "elements": [
+
+                ]
+              }
+            ]
+          ]
+        },
+        {
+          "name": "",
+          "type": "panel",
+          "title": {
+            "en": "Confirmation",
+            "fr": "Confirmation"
+          },
+          "elements": [
+            [
+              {
+                "type": "checkbox",
+                "name": "InformationIsTrue",
+                "title": {
+                  "en": "Please certify that the information you have given on this form is, to the best of your knowledge, true, accurate and complete.",
+                  "fr": "Veuillez attester que les renseignements que vous avez fournis dans ce formulaire sont, à votre connaissance, véridiques, exacts et complets."
+                },
+                "isRequired": true,
+                "choices": [
+                  {
+                    "value": "yes",
+                    "text": {
+                      "en": "I certify",
+                      "fr": "Je certifie"
+                    }
+                  }
+                ]
+              }
+            ]
+          ]
         }
       ]
     }

@@ -7,11 +7,11 @@
       "destination": "wwwroot/lib/vue"
     },
     {
-      "library": "survey-vue@1.7.9",
+      "library": "survey-vue@1.7.23",
       "destination": "wwwroot/lib/survey"
     },
     {
-      "library": "fetch@3.1.0",
+      "library": "fetch@3.4.0",
       "destination": "wwwroot/lib/fetch/"
     },
     {

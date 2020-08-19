@@ -54,23 +54,23 @@ function buildValidationErrorMessage(problem) {
     var errorIndex = 1;
 
     if (problem.errors) {
-        for (const [key, value] of Object.entries(problem.errors)) {
+        //for (const [key, value] of Object.entries(problem.errors)) {
 
-            message += "<li>";
+        //    message += "<li>";
 
-            if (survey.locale == "fr") {
-                message += "Erreur " + errorIndex + ": ";
-            }
-            else {
-                message += "Error " + errorIndex + ": ";
-            }
+        //    if (survey.locale == "fr") {
+        //        message += "Erreur " + errorIndex + ": ";
+        //    }
+        //    else {
+        //        message += "Error " + errorIndex + ": ";
+        //    }
 
-            message += key + " - " + value;
+        //    message += key + " - " + value;
 
-            message += "</li>";
+        //    message += "</li>";
 
-            errorIndex = errorIndex + 1;
-        }
+        //    errorIndex = errorIndex + 1;
+        //}
     }
 
     message += "</ul>";

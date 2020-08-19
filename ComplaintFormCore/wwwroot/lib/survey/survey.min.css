@@ -1,5 +1,5 @@
 /*!
- * surveyjs - Survey JavaScript library v1.7.9
+ * surveyjs - Survey JavaScript library v1.7.23
  * Copyright (c) 2015-2020 Devsoft Baltic OÜ  - http://surveyjs.io/
  * License: MIT (http://www.opensource.org/licenses/mit-license.php)
  */
@@ -129,6 +129,8 @@
   .sv_main table.sv_q_matrix_dropdown tr,
   .sv_main table.sv_q_matrix_dynamic tr {
     border-bottom: 1px solid #e7e7e7; }
+  .sv_main .sv_matrix_cell {
+    vertical-align: top; }
   .sv_main .sv_q_m_cell_selected {
     color: white;
     background-color: #179d82; }

@@ -7,6 +7,7 @@
         "fr": "Instructions – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
       },
       "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
         {
           "type": "html",
@@ -151,6 +152,7 @@
     {
       "name": "page_steps_taken_Concerns_raised_with_institution",
       "hideOnPreview": true,
+      "hideOnPDF": true,
       "title": {
         "en": "Part B: Steps taken (Concerns raised with institution) - Privacy complaint form (federal institution)",
         "fr": "Partie B : Mesures prises (préoccupations non soulevées) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -597,6 +599,7 @@
             "fr": "Instructions"
           },
           "hideOnPreview": true,
+          "hideOnPDF": true,
           "elements": [
             {
               "type": "html",

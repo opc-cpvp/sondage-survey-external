@@ -110,21 +110,23 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
     at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
     at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
 
--) Make sure the Start button is there, and probably the other buttons
 -) Log JS exceptions using a web api. console.write
 -) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
+
 -) fetch 
 	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
 	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest.
+
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 
 -) Test on Internet Explorer
-	-
+	- fetch is not working, this is the first step
 
 -) Put a spinner when completing the survey since there is 2 api calls
+-) PDF: Try to have only one json to manage
 
 
 ### Mode details required or help required

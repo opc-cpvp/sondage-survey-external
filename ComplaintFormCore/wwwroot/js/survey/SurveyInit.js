@@ -44,6 +44,16 @@
         .metaData
         .addProperty("page", { name: "hideOnPreview:boolean", default: false });
 
+    Survey
+        .JsonObject
+        .metaData
+        .addProperty("panel", { name: "hideOnPDF:boolean", default: false });
+
+    Survey
+        .JsonObject
+        .metaData
+        .addProperty("page", { name: "hideOnPDF:boolean", default: false });
+
     //  This is an example of how to update the Survey settings
     //Survey.settings.minWidth = "109px"
     
@@ -122,7 +132,7 @@ function initSurveyModelEvents(survey) {
 
     survey
         .onUpdateQuestionCssClasses
-        .add((sender, options) => {
+        .add(function (sender, options) {
 
             let classes = options.cssClasses;
 
@@ -176,7 +186,7 @@ function initSurveyModelEvents(survey) {
 
     survey
         .onUpdatePanelCssClasses
-        .add((sender, options) => {
+        .add(function (sender, options) {
             
             let classes = options.cssClasses;
 

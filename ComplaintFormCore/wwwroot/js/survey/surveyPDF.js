@@ -15,6 +15,83 @@
     //compress: true
 };
 
+function exportToPDF(filename, json_pdf, lang) {
+
+    fetch(json_pdf)
+        .then(response => response.json())
+        .then(json_pdf => {
+
+            //  The idea is to convert each survey pages into survey panels
+            var root = {
+                pages : []
+            };
+
+            var singlePage = {
+                name: "single_page",
+                title: {
+                    en: "Review and send Privacy complaint form (federal institution)",
+                    fr: "FR-Review and send—Privacy complaint form (federal institution)"
+                },
+                elements: []
+            };
+
+            for (var key in json_pdf) {
+                if (key == 'pages') {
+                    for (var i = 0; i < json_pdf[key].length; i++) {
+
+                        var page = json_pdf[key][i];
+
+                        if (!page.hideOnPDF) {
+
+                            //  Create a panel for each page
+                            var panel = {
+                                name: page.name,
+                                type: 'panel',
+                                title: {
+                                    en: page.title.en,
+                                    fr: page.title.fr
+                                },
+                                elements: []
+                            };
+
+                            for (var j = 0; j < page.elements.length; j++) {
+
+                                var element = page.elements[j];
+
+                                var elements = getPanelElements(element);
+
+                                if (elements.length > 0) {
+                                    panel.elements.push(elements);
+                                }
+                            }
+
+                            singlePage.elements.push(panel);
+                        }
+                    }
+                }
+            }
+
+            root.pages.push(singlePage);
+
+            let newJson = JSON.stringify(root);
+
+            var survey_pdf = new Survey.Model(newJson);
+
+            //  Getting the data from browser local storage
+            var storageSt = window.localStorage.getItem(storageName_PA) || "";
+
+            if (storageSt) {
+                var res = JSON.parse(storageSt);
+
+                if (res.data) {
+                    survey_pdf.data = res.data;
+
+                    saveSurveyPDF(newJson, survey_pdf, lang, filename);
+                }
+            }
+        });
+}
+
 function saveSurveyPDF(json, surveyModel, lang, filename) {
 
     //  From: https://embed.plnkr.co/qoxpmWp2XOUFlRDsk6ta/
@@ -104,4 +181,35 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
         });
 
     surveyPDF.save(filename);
+}
+
+function getPanelElements(element) {
+
+    var elements = [];
+
+    if (!element.hideOnPDF) {
+
+        if (element.type == 'panel') {
+            var panelElements = [];
+
+            for (var j = 0; j < element.elements.length; j++) {
+                var tempElement = getPanelElements(element.elements[j]);
+                if (tempElement.length > 0) {
+                    panelElements.push(tempElement);
+                }
+            }
+
+            element.elements = panelElements;
+            elements.push(element);
+        }
+        else if (element.type == 'html') {
+            //  do nothing
+        }
+        else {
+            //  just add the element to the array
+            elements.push(element);
+        }
+    }
+
+    return elements;
 }
