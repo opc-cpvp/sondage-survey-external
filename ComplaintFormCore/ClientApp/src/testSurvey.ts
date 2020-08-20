@@ -226,8 +226,6 @@ export class TestSurvey {
                         // //    "RaisedPrivacyToAtipCoordinator": "yes"
                         // //};
 
-
-
                         const data = {
                             "FilingComplaintOnOwnBehalf": "yourself",
                             "RaisedPrivacyToAtipCoordinator": "yes",
@@ -316,7 +314,6 @@ export class TestSurvey {
                         SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_Test);
                     });
 
-
                 survey
                     .onCurrentPageChanged
                     .add(onCurrentPageChanged_saveState);
@@ -342,7 +339,6 @@ export class TestSurvey {
                     surveyPDF.data = survey.data;
                     surveyPDF.save(filename);
                 });
-
 
                 // ****Event *****************************************************
 

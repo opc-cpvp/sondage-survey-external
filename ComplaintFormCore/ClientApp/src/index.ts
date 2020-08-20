@@ -56,5 +56,3 @@ declare let Symbol;
     surveyPolyfill();
     main();
 })();
-
-
