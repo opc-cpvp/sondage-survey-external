@@ -7,6 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComplaintFormCore", "Compla
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{639670F8-394F-4B3B-A235-0784FFF7B300}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -28,10 +29,46 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "survey-library-master", "..
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "53727"
+	EndProjectSection
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_53727"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Desktop\survey-library-master\survey-library-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53727\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_53727"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Desktop\survey-library-master\survey-library-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_53727\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "53727"
 		SlnRelativePath = "..\..\..\Desktop\survey-library-master\survey-library-master\"
 	EndProjectSection
 EndProject
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "survey-pdf-master(1)", "..\..\..\Downloads\survey-pdf-master (1)\survey-pdf-master\", "{FFCBAD4E-D304-426C-A71A-9F175D574851}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54174"
+		Debug.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\survey-pdf-master (1)\survey-pdf-master\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54174\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54174"
+		Release.AspNetCompiler.PhysicalPath = "..\..\..\Downloads\survey-pdf-master (1)\survey-pdf-master\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54174\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54174"
+	EndProjectSection
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_54174"

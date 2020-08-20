@@ -10,6 +10,15 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>ComplaintFormCore</RootNamespace>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <IsPackable>true</IsPackable>
+
+    <SpaRoot>ClientApp\</SpaRoot>
+    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+
+    <!-- VS's FastUpToDateCheck doesn't consider .ts file changes, so it's necessary to disable it to get incremental builds to work correctly (albeit not as fast as if FastUpToDateCheck did work for them) -->
+    <DisableFastUpToDateCheck>false</DisableFastUpToDateCheck>
   </PropertyGroup>
 
   <ItemGroup>
@@ -39,6 +48,7 @@
     <PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
     <PackageReference Include="libphonenumber-csharp" Version="8.12.7" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="3.9.7">
       <PrivateAssets>all</PrivateAssets>
@@ -46,6 +56,8 @@
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
+    <WebpackInputs Include="**\*.ts" Exclude="node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -56,6 +68,75 @@
 
   <ItemGroup>
     <Folder Include="FileUploads\" />
+    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Content Remove="$(SpaRoot)**" />
+    <None Remove="$(SpaRoot)**" />
+    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\surveyFile.ts" />
+    <None Remove="ClientApp\src\surveyHelper.ts" />
+    <None Remove="ClientApp\src\SurveyInit.ts" />
+    <None Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <None Remove="ClientApp\src\testSurvey.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\surveyFile.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\surveyHelper.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\SurveyInit.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\SurveyLocalStorage.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
+    <WebpackInputs Remove="ClientApp\src\SurveyInit.ts" />
+    <WebpackInputs Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\src\surveyFile.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\surveyHelper.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\SurveyInit.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="ClientApp\src\SurveyLocalStorage.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <!-- Ensure Node.js is installed -->
+    <Exec Command="node --version" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+    </Exec>
+    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+  </Target>
+
+  <Target Name="RunWebpack" BeforeTargets="Build" Inputs="@(WebpackInputs)" Outputs="NOT_USED" Condition=" '$(Configuration)' == 'Debug' ">
+    <RemoveDir Directories="dist" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:dev" />
+  </Target>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
 
 </Project>
