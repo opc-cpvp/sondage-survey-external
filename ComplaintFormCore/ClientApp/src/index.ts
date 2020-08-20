@@ -11,6 +11,9 @@ declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
+
+    function initPaSurvey(): void;
+    function initTestSurvey(): void;
   }
 
 declare let Symbol;
@@ -32,17 +35,26 @@ declare let Symbol;
         if (IsIE()) {
             Symbol.useSimple();
         }
+    }
 
+    function main() {
         globalThis.startSurvey = SurveyInit.startSurvey;
         globalThis.endSession = SurveyInit.endSession;
         globalThis.showPreview = SurveyInit.showPreview;
 
-        const sampleSurvey = new TestSurvey();
-        sampleSurvey.init();
+        globalThis.initPaSurvey = () => {
+            const paSurvey = new PaSurvey();
+            paSurvey.init();
+        };
 
-        const paSurvey = new PaSurvey();
-        paSurvey.init();
+        globalThis.initTestSurvey = () => {
+            const sampleSurvey = new TestSurvey();
+            sampleSurvey.init();
+        };
     }
 
     surveyPolyfill();
+    main();
 })();
+
+

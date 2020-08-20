@@ -76,7 +76,6 @@ export class TestSurvey {
             .then(response => response.json())
             .then(json => {
                 globalThis.survey = new Survey.Model(json);
-
                 const survey = globalThis.survey;
 
                 survey.complaintId = "@ViewBag.token";

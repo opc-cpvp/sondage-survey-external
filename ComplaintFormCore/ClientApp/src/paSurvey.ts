@@ -5,6 +5,10 @@ import { initSurvey, initSurveyModelEvents, initSurveyModelProperties, onCurrent
 import { initSurveyFile, initSurveyFileModelEvents } from "./surveyFile";
 import { printProblemDetails, getTranslation } from "./surveyHelper";
 
+declare global {
+    var survey: Survey.SurveyModel;
+}
+
 declare function exportToPDF(s: string, s2: string, s3: string): void;
 
 // This is the total file sizes
@@ -143,7 +147,8 @@ export class PaSurvey {
             .then(response => response.json())
             .then(json => {
 
-                survey = new Survey.Model(json);
+                globalThis.survey = new Survey.Model(json);
+                const survey = globalThis.survey;
 
                 survey.complaintId = "@ViewBag.token";
 
