@@ -1,4 +1,10 @@
-﻿var options = {
+﻿import * as Survey from "survey-vue";
+import * as SurveyCore from "survey-core"; //  SurveyPDF is using survey-core
+import { storageName_PA } from "./SurveyLocalStorage";
+import * as SurveyPDF from "survey-pdf";
+import * as showdown from "showdown";
+
+const options = {
     fontSize: 12,
     margins: {
         left: 10,
@@ -9,50 +15,53 @@
     format: "a4",
     fontName: 'helvetica',
     fontStyle: 'normal',
-    htmlRenderAs: "image",
+    //htmlRenderAs: "image",
   
     //pagebreak: { mode: 'avoid-all' }      // this option avoid breaking the survey on an element
     //compress: true
 };
 
-function exportToPDF(filename, json_pdf, lang) {
+export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
 
-    fetch(json_pdf)
+    fetch(jsonUrl)
         .then(response => response.json())
         .then(json_pdf => {
 
             //  The idea is to convert each survey pages into survey panels
-            var root = {
-                pages : []
+            let root = {
+                pages : [] as any
             };
 
-            var singlePage = {
+            //  TODO: somehow the titles (en + fr) must come from the parameter because we can re-use this method
+            let singlePage = {
                 name: "single_page",
                 title: {
                     en: "Review and send Privacy complaint form (federal institution)",
                     fr: "FR-Review and send—Privacy complaint form (federal institution)"
                 },
-                elements: []
+                elements: [] as any
             };
 
             for (var key in json_pdf) {
                 if (key == 'pages') {
                     for (var i = 0; i < json_pdf[key].length; i++) {
 
-                        var page = json_pdf[key][i];
+                        let page = json_pdf[key][i];
 
                         if (!page.hideOnPDF) {
 
                             //  Create a panel for each page
-                            var panel = {
+                            let panel = {
                                 name: page.name,
                                 type: 'panel',
                                 title: {
                                     en: page.title.en,
                                     fr: page.title.fr
                                 },
-                                elements: []
+                                elements: [] as any
                             };
+
+                            let tempArray = [] as any;
 
                             for (var j = 0; j < page.elements.length; j++) {
 
@@ -61,9 +70,11 @@ function exportToPDF(filename, json_pdf, lang) {
                                 var elements = getPanelElements(element);
 
                                 if (elements.length > 0) {
-                                    panel.elements.push(elements);
+                                    tempArray.push(elements);
                                 }
                             }
+
+                            panel.elements = tempArray;
 
                             singlePage.elements.push(panel);
                         }
@@ -105,9 +116,9 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
     surveyPDF.mode = "display";
 
     //  Adding the markdown
-    var converter = new showdown.Converter();
-    converter.simpleLineBreaks = true;
-    converter.tasklists = true;
+    const converter = new showdown.Converter();
+    converter.setOption('simpleLineBreaks', true);
+    converter.setOption('tasklists', true);
 
     surveyPDF
         .onTextMarkdown
@@ -130,7 +141,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 
             if (options.question.getType() == "file") {
 
-                var htmlQuestion = Survey.QuestionFactory.Instance.createQuestion("html", "html_question");
+                let htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion("html", "html_question");
 
                 if (options.question.value && options.question.value.length > 0) {
 
@@ -147,7 +158,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
                             htmlQuestion.html += fileItem.name + " (" + fileSizeInBytes + " B)";
                         }
                         else {
-                            size = Math.round(fileSizeInBytes / 1000, 0);
+                            size = Math.round(fileSizeInBytes / 1000);
                             htmlQuestion.html += fileItem.name + " (" + size + " KB)";
                         }
 
@@ -165,6 +176,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
                     }                   
                 }
 
+                //  TODO: jf
                 var flatHtml = options
                     .repository
                     .create(survey, htmlQuestion, options.controller, "html");
@@ -185,12 +197,12 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 
 function getPanelElements(element) {
 
-    var elements = [];
+    var elements = [] as any;
 
     if (!element.hideOnPDF) {
 
         if (element.type == 'panel') {
-            var panelElements = [];
+            var panelElements = [] as any;
 
             for (var j = 0; j < element.elements.length; j++) {
                 var tempElement = getPanelElements(element.elements[j]);

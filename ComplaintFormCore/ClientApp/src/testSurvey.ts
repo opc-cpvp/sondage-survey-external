@@ -13,77 +13,28 @@ declare global {
   }
 
 export class TestSurvey {
-    public init(): void {
-        // ////function saveSurveyToPdf(filename, surveyModel) {
 
-        // ////    var options = {
-        // ////        fontSize: 14,
-        // ////        margins: {
-        // ////            left: 10,
-        // ////            right: 10,
-        // ////            top: 10,
-        // ////            bot: 10
-        // ////        },
-        // ////        format: "a4",
-        // ////        fontName: 'times',
-        // ////        fontStyle: 'normal'
-        // ////    };
-
-        // ////    var surveyPDF = new SurveyPDF.SurveyPDF(json, options);
-        // ////    surveyPDF.data = surveyModel.data;
-        // ////    surveyPDF.save(filename);
-        // ////}
-
-        // ////function exportToPDF() {
-
-        // ////    //var storageSt = window
-        // ////    //    .localStorage
-        // ////    //    .getItem(storageName_Test) || "";
-
-        // ////    //var json = "/sample-data/survey_test.json";
-
-        // ////    //fetch(json)
-        // ////    //    .then(response => response.json())
-        // ////    //    .then(json => {
-
-        // ////    //       // survey = new Survey.Model(json);
-
-        // ////    //        var data = {};
-        // ////    //        if (storageSt) {
-        // ////    //            data = JSON.parse(storageSt);
-
-        // ////    //            survey.data = data;
-        // ////    //            saveSurveyToPdf("surveyResult.pdf", survey, json);
-        // ////    //        }
-        // ////    //    });
-
-        // ////    saveSurveyToPdf("surveyResult.pdf", survey, json);
-        // ////}
+    public init(jsonUrl: string, lang: string, token: string): void {
 
         function onCurrentPageChanged_saveState(survey) {
             SurveyLocalStorage.saveStateLocally(survey, SurveyLocalStorage.storageName_Test);
         }
 
-        // // Survey
-        // //.StylesManager
-        // //.applyTheme("default");
-
         SurveyInit.initSurvey();
 
-        const jsonUrl = "/sample-data/survey_pa_complaint.json";
+        //const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
         fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-                globalThis.survey = new Survey.Model(json);
-                const survey = globalThis.survey;
 
-                survey.complaintId = "@ViewBag.token";
+                const survey = new Survey.Model(json);
+                globalThis.survey = survey;
 
-                // survey.SurveyTemplateText().replaceText('<div><p>hgfhgf</p></div>', "question", "radiogroup");
+                survey.complaintId = token;
 
                 //  This needs to be here
-                survey.locale = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
+                survey.locale = lang;
 
                 SurveyInit.initSurveyModelEvents(survey);
 

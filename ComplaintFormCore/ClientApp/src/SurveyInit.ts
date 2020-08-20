@@ -1,5 +1,5 @@
 ﻿declare let $: any;
-declare let showdown: any;
+import * as showdown from "showdown";
 // declare let survey: { locale: string };
 
 import * as SurveyHelper from "./surveyHelper";
@@ -97,6 +97,7 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 }
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
+
     survey.onAfterRenderPage.add((sender, options) => {
 
         // Change page title to <h1>.
@@ -112,8 +113,8 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     // THIS IS THE SHOWDOWN MARKDOWN CODE***************
     // More details on this at https://github.com/showdownjs/showdown/wiki/Showdown-Options
     const converter = new showdown.Converter();
-    converter.simpleLineBreaks = true;
-    converter.tasklists = true;
+    converter.setOption('simpleLineBreaks', true);
+    converter.setOption('tasklists', true);
 
     survey
         .onTextMarkdown
@@ -173,7 +174,6 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
                     classes.materialDecorator = "";
                 }
             }
-
         });
 
     survey
@@ -199,7 +199,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         .onValidatedErrorsOnCurrentPage
         .add((sender, options) => {
             if (options.errors && options.errors.length > 0) {
-                $("#div_errors_list").html(buildErrorMessage(options.errors));
+                $("#div_errors_list").html(buildErrorMessage(options.errors, survey.locale));
                 $("#div_errors_list").show();
             } else {
                 $("#div_errors_list").html("");
@@ -272,8 +272,8 @@ export function showPreview(survey: Survey.SurveyModel): void {
 }
 
 export function startSurvey(survey: Survey.SurveyModel): void {
-    SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_PA);
 
+    SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_PA);
     survey.nextPage();
 }
 
@@ -283,12 +283,12 @@ export function endSession(): void {
 }
 
 //  This function will build a <section> with a list of errors to be displayed at the top of the page
-export function buildErrorMessage(errors): string {
+export function buildErrorMessage(errors, lang: string): string {
 
     let message = "<section role='alert' class='alert alert-danger'>";
     message += "<h2>";
 
-    if (survey.locale === "fr") {
+    if (lang === "fr") {
         message += "Le formulaire ne pouvait pas être soumis parce que ";
     } else {
         message += "The form could not be submitted because ";
@@ -297,13 +297,13 @@ export function buildErrorMessage(errors): string {
     message += errors.length;
 
     if (errors.length > 1) {
-        if (survey.locale === "fr") {
+        if (lang === "fr") {
             message += " erreurs ont été trouvée";
         } else {
             message += " errors where found";
         }
     } else {
-        if (survey.locale === "fr") {
+        if (lang === "fr") {
             message += " erreur a été trouvée";
         } else {
             message += " error was found";
@@ -327,7 +327,7 @@ export function buildErrorMessage(errors): string {
             message += "<a href='#" + value.errorOwner.inputId + "'>";
         }
 
-        if (survey.locale === "fr") {
+        if (lang === "fr") {
             message += "Erreur " + errorIndex + ": ";
         } else {
             message += "Error " + errorIndex + ": ";
@@ -345,18 +345,11 @@ export function buildErrorMessage(errors): string {
     return message;
 }
 
-export function switchPageTitleToH1(): void {
-    const pagetitle = $("h4.sv_page_title");
-
-    pagetitle.replaceWith(() => {
-        return "";
-        // return "<h1 class='sv_page_title'><span style='position: static; '><span style='position: static;'>" + $(this).text() + "</span></span></h1>";
-    });
-}
-
 export function switchPanelTitleToH2(): void {
-    $("h4.sv_p_title").replaceWith(() => {
-        return "";
-        // return `<h2>${$(this).text()}</h2>`;
-    });
+
+    // TODO: fix this
+    //$("h4.sv_p_title").replaceWith(() => {
+    //    return "";
+    //     //return `<h2>${$(target).text()}</h2>`;
+    //});
 }

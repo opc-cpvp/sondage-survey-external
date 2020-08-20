@@ -6,6 +6,7 @@ import { initSurveyFile, initSurveyFileModelEvents } from "./surveyFile";
 import { printProblemDetails, getTranslation } from "./surveyHelper";
 
 declare global {
+    //  This is required for the buttons in the html page to work
     var survey: Survey.SurveyModel;
 }
 
@@ -137,23 +138,22 @@ export class PaSurvey {
         exportToPDF(filename, json_pdf, lang);
     }
 
-    public init(): void {
+    public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
-        initSurveyFile();
-
-        const jsonUrl = "/sample-data/survey_pa_complaint.json";
+        initSurveyFile();   
 
         fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
 
-                globalThis.survey = new Survey.Model(json);
-                const survey = globalThis.survey;
+                //globalThis.survey = new Survey.Model(json);
+                const survey = new Survey.Model(json);
+                globalThis.survey = survey;
 
-                survey.complaintId = "@ViewBag.token";
+                survey.complaintId = token;
 
                 //  This needs to be here
-                survey.locale = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
+                survey.locale = lang;               
 
                 // Add events only applicable to this page **********************
 

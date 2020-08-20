@@ -12,7 +12,6 @@ export function initSurveyFile(): void {
         { name: "duplicateFileNameExceptionMessage:text" },
         { name: "multipleFileMaxSizeErrorMessage:text"   }
     ]);
-
 }
 
 export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {

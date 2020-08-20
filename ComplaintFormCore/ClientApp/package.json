@@ -23,7 +23,10 @@
     "abortcontroller-polyfill": "^1.5.0",
     "core-js": "^3.6.5",
     "jquery": "2.1.4",
-    "survey-vue": "1.7.23",
+    "jspdf": "1.5.3",
+    "showdown": "^1.9.1",
+    "survey-pdf": "^1.7.26",
+    "survey-vue": "1.7.26",
     "vue": "2.6.11",
     "vue-class-component": "7.2.5",
     "whatwg-fetch": "^3.4.0"

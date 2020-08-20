@@ -6,14 +6,16 @@ import * as SurveyInit from "./SurveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./testSurvey";
 import { PaSurvey } from "./PaSurvey";
+import * as SurveyPDF from "./surveyPDF";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
 
-    function initPaSurvey(): void;
-    function initTestSurvey(): void;
+    function initPaSurvey(lang: string, token: string): void;
+    function initTestSurvey(lang: string, token: string): void;
+    function exportToPDF(lang: string): void;
   }
 
 declare let Symbol;
@@ -42,14 +44,26 @@ declare let Symbol;
         globalThis.endSession = SurveyInit.endSession;
         globalThis.showPreview = SurveyInit.showPreview;
 
-        globalThis.initPaSurvey = () => {
+        globalThis.initPaSurvey = (lang, token) => {
             const paSurvey = new PaSurvey();
-            paSurvey.init();
+            const jsonUrl = "/sample-data/survey_pa_complaint.json";
+
+            paSurvey.init(jsonUrl, lang, token);
         };
 
-        globalThis.initTestSurvey = () => {
+        globalThis.exportToPDF = (lang) => {
+
+            //  TODO: somehow the json url must come from the parameter because we can re-use this method
+            const jsonUrl = "/sample-data/survey_pa_complaint.json";
+
+            SurveyPDF.exportToPDF("survey_export", jsonUrl, lang);
+        };
+
+        globalThis.initTestSurvey = (lang, token) => {
             const sampleSurvey = new TestSurvey();
-            sampleSurvey.init();
+            const jsonUrl = "/sample-data/survey_test_2.json";
+
+            sampleSurvey.init(jsonUrl, lang, token);
         };
     }
 

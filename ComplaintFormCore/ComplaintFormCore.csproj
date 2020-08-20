@@ -91,6 +91,7 @@
     <TypeScriptCompile Remove="ClientApp\src\surveyHelper.ts" />
     <TypeScriptCompile Remove="ClientApp\src\SurveyInit.ts" />
     <TypeScriptCompile Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,6 +99,7 @@
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
     <WebpackInputs Remove="ClientApp\src\SurveyInit.ts" />
     <WebpackInputs Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
   </ItemGroup>
 
@@ -118,6 +120,7 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Include="ClientApp\src\surveyPDF.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
