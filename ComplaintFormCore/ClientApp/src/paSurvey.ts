@@ -168,7 +168,7 @@ export class PaSurvey {
         initSurvey();
         initSurveyFile();
 
-        fetch(jsonUrl)
+        void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
                 //globalThis.survey = new Survey.Model(json);
@@ -312,7 +312,7 @@ export class PaSurvey {
                                 case 400:
                                 case 500:
                                     if (response.json) {
-                                        response.json().then(problem => {
+                                        void response.json().then(problem => {
                                             printProblemDetails(problem);
                                         });
                                     }
