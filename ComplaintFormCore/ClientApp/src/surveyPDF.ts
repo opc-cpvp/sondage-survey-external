@@ -13,47 +13,45 @@ const options = {
         bot: 10
     },
     format: "a4",
-    fontName: 'helvetica',
-    fontStyle: 'normal',
+    fontName: "helvetica",
+    fontStyle: "normal"
     //htmlRenderAs: "image",
-  
+
     //pagebreak: { mode: 'avoid-all' }      // this option avoid breaking the survey on an element
     //compress: true
 };
 
 export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
-
     fetch(jsonUrl)
         .then(response => response.json())
         .then(json_pdf => {
-
             //  The idea is to convert each survey pages into survey panels
             let root = {
-                pages : [] as any
+                pages: [] as any
             };
 
             //  TODO: somehow the titles (en + fr) must come from the parameter because we can re-use this method
             let singlePage = {
                 name: "single_page",
                 title: {
-                    en: "Review and send Privacy complaint form (federal institution)",
-                    fr: "FR-Review and send—Privacy complaint form (federal institution)"
+                    en:
+                        "Review and send Privacy complaint form (federal institution)",
+                    fr:
+                        "FR-Review and send—Privacy complaint form (federal institution)"
                 },
                 elements: [] as any
             };
 
             for (var key in json_pdf) {
-                if (key == 'pages') {
+                if (key == "pages") {
                     for (var i = 0; i < json_pdf[key].length; i++) {
-
                         let page = json_pdf[key][i];
 
                         if (!page.hideOnPDF) {
-
                             //  Create a panel for each page
                             let panel = {
                                 name: page.name,
-                                type: 'panel',
+                                type: "panel",
                                 title: {
                                     en: page.title.en,
                                     fr: page.title.fr
@@ -64,7 +62,6 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
                             let tempArray = [] as any;
 
                             for (var j = 0; j < page.elements.length; j++) {
-
                                 var element = page.elements[j];
 
                                 var elements = getPanelElements(element);
@@ -104,7 +101,6 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
 }
 
 function saveSurveyPDF(json, surveyModel, lang, filename) {
-
     //  From: https://embed.plnkr.co/qoxpmWp2XOUFlRDsk6ta/
 
     var surveyPDF = new SurveyPDF.SurveyPDF(json, options);
@@ -117,91 +113,87 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 
     //  Adding the markdown
     const converter = new showdown.Converter();
-    converter.setOption('simpleLineBreaks', true);
-    converter.setOption('tasklists', true);
+    converter.setOption("simpleLineBreaks", true);
+    converter.setOption("tasklists", true);
 
-    surveyPDF
-        .onTextMarkdown
-        .add(function (sender, options) {
+    surveyPDF.onTextMarkdown.add(function (sender, options) {
+        //convert the mardown text to html
+        var str = converter.makeHtml(options.text);
 
-            //convert the mardown text to html
-            var str = converter.makeHtml(options.text);
+        //remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
 
-            //remove root paragraphs <p></p>
-            str = str.substring(3);
-            str = str.substring(0, str.length - 4);
+        //set html
+        options.html = str;
+    });
 
-            //set html
-            options.html = str;
-        });
+    surveyPDF.onRenderQuestion.add(function (survey, options) {
+        if (options.question.getType() == "file") {
+            let htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion(
+                "html",
+                "html_question"
+            );
 
-    surveyPDF
-        .onRenderQuestion
-        .add(function (survey, options) {
+            if (options.question.value && options.question.value.length > 0) {
+                htmlQuestion.html = "<ol>";
 
-            if (options.question.getType() == "file") {
+                options.question.value.forEach(function (fileItem) {
+                    htmlQuestion.html += "<li>";
 
-                let htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion("html", "html_question");
+                    var fileSizeInBytes = fileItem.content || 0;
+                    var size = 0;
 
-                if (options.question.value && options.question.value.length > 0) {
-
-                    htmlQuestion.html = "<ol>";
-
-                    (options.question.value).forEach(function (fileItem) {
-
-                        htmlQuestion.html += "<li>";
-
-                        var fileSizeInBytes = fileItem.content || 0;
-                        var size = 0;
-
-                        if (fileSizeInBytes < 1000) {
-                            htmlQuestion.html += fileItem.name + " (" + fileSizeInBytes + " B)";
-                        }
-                        else {
-                            size = Math.round(fileSizeInBytes / 1000);
-                            htmlQuestion.html += fileItem.name + " (" + size + " KB)";
-                        }
-
-                        htmlQuestion.html += "</li>";
-                    });
-
-                    htmlQuestion.html += "</ol>";                   
-                }
-                else {
-                    if (lang == 'fr') {
-                        htmlQuestion.html += "Aucune pièce jointe n’a encore été téléchargée.";
+                    if (fileSizeInBytes < 1000) {
+                        htmlQuestion.html +=
+                            fileItem.name + " (" + fileSizeInBytes + " B)";
+                    } else {
+                        size = Math.round(fileSizeInBytes / 1000);
+                        htmlQuestion.html +=
+                            fileItem.name + " (" + size + " KB)";
                     }
-                    else {
-                        htmlQuestion.html += "No attachments have been uploaded yet.";
-                    }                   
-                }
 
-                //  TODO: jf
-                var flatHtml = options
-                    .repository
-                    .create(survey, htmlQuestion, options.controller, "html");
-
-                return new Promise(function (resolve) {
-                    flatHtml
-                        .generateFlats(options.point)
-                        .then(function (htmlBricks) {
-                            options.bricks = htmlBricks;
-                            resolve();
-                        });
+                    htmlQuestion.html += "</li>";
                 });
+
+                htmlQuestion.html += "</ol>";
+            } else {
+                if (lang == "fr") {
+                    htmlQuestion.html +=
+                        "Aucune pièce jointe n’a encore été téléchargée.";
+                } else {
+                    htmlQuestion.html +=
+                        "No attachments have been uploaded yet.";
+                }
             }
-        });
+
+            //  TODO: jf
+            var flatHtml = options.repository.create(
+                survey,
+                htmlQuestion,
+                options.controller,
+                "html"
+            );
+
+            return new Promise(function (resolve) {
+                flatHtml
+                    .generateFlats(options.point)
+                    .then(function (htmlBricks) {
+                        options.bricks = htmlBricks;
+                        resolve();
+                    });
+            });
+        }
+    });
 
     surveyPDF.save(filename);
 }
 
 function getPanelElements(element) {
-
     var elements = [] as any;
 
     if (!element.hideOnPDF) {
-
-        if (element.type == 'panel') {
+        if (element.type == "panel") {
             var panelElements = [] as any;
 
             for (var j = 0; j < element.elements.length; j++) {
@@ -213,11 +205,9 @@ function getPanelElements(element) {
 
             element.elements = panelElements;
             elements.push(element);
-        }
-        else if (element.type == 'html') {
+        } else if (element.type == "html") {
             //  do nothing
-        }
-        else {
+        } else {
             //  just add the element to the array
             elements.push(element);
         }

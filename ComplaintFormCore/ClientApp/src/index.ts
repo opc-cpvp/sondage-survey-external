@@ -16,13 +16,12 @@ declare global {
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function exportToPDF(lang: string): void;
-  }
+}
 
 declare let Symbol;
 
 (() => {
     function IsIE() {
-
         if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
             return true;
         }
@@ -51,8 +50,7 @@ declare let Symbol;
             paSurvey.init(jsonUrl, lang, token);
         };
 
-        globalThis.exportToPDF = (lang) => {
-
+        globalThis.exportToPDF = lang => {
             //  TODO: somehow the json url must come from the parameter because we can re-use this method
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 

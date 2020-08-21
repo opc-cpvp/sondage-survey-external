@@ -10,14 +10,15 @@ declare var SurveyPDF: any;
 
 declare global {
     var survey: Survey.SurveyModel;
-  }
+}
 
 export class TestSurvey {
-
     public init(jsonUrl: string, lang: string, token: string): void {
-
         function onCurrentPageChanged_saveState(survey) {
-            SurveyLocalStorage.saveStateLocally(survey, SurveyLocalStorage.storageName_Test);
+            SurveyLocalStorage.saveStateLocally(
+                survey,
+                SurveyLocalStorage.storageName_Test
+            );
         }
 
         SurveyInit.initSurvey();
@@ -27,7 +28,6 @@ export class TestSurvey {
         fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-
                 const survey = new Survey.Model(json);
                 globalThis.survey = survey;
 
@@ -43,7 +43,11 @@ export class TestSurvey {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(survey, SurveyLocalStorage.storageName_Test, defaultData);
+                SurveyLocalStorage.loadStateLocally(
+                    survey,
+                    SurveyLocalStorage.storageName_Test,
+                    defaultData
+                );
 
                 // Save the state back to local storage
                 onCurrentPageChanged_saveState(survey);
@@ -54,77 +58,98 @@ export class TestSurvey {
                 // //onCurrentPageChanged_saveState(survey);
 
                 // Add events only applicable to this page **********************
-                survey
-                    .onCompleting
-                    .add((sender, options) => {
+                survey.onCompleting.add((sender, options) => {
+                    options.allowComplete = false;
 
-                        options.allowComplete = false;
-
-                        const data2 = {
-                            "FilingComplaintOnOwnBehalf": "yourself",
-                            "RaisedPrivacyToAtipCoordinator": "fsdafasd",
-                            "WhichFederalGovernementInstitutionComplaintAgainst": "3",
-                            "NatureOfComplaint": [
-                                "NatureOfComplaintOther",
-                                "NatureOfComplaintDelay",
-                                "NatureOfComplaintExtensionOfTime",
-                                "NatureOfComplaintCollection"
-                            ],
-                            "IsEmployeeChoice": "general_public",
-                            "AdditionalComments": "iuyiuyuiyiuy",
-                            "Complainant_HaveYouSubmittedBeforeChoice": "no",
-                            "Complainant_FormOfAddress": "Mr.",
-                            "Complainant_FirstName": "jf",
-                            "Complainant_LastName": "brouillette",
-                            "Complainant_Email": "jf@hotmail.com",
-                            "Complainant_MailingAddress": "66",
-                            "Complainant_City": "gat",
-                            "Complainant_PostalCode": "J9A2V5",
-                            "Complainant_DayTimeNumber": "6135656667",
-                            "NeedsDisabilityAccommodationChoice": "yes",
-                            "DisabilityAccommodation": "iuyuiyiuyiuy",
-                            "Complainant_Country": "CA",
-                            "Complainant_ProvinceOrState": "2",
-                            "Reprensentative_FormOfAddress": "Mr.",
-                            "Reprensentative_FirstName": "",
-                            "Reprensentative_LastName": "brouillette",
-                            "Reprensentative_Email": "jf@hotmail.com",
-                            "Reprensentative_MailingAddress": "66",
-                            "Reprensentative_City": "gat",
-                            "Reprensentative_PostalCode": "J9A2V5",
-                            "Reprensentative_DayTimeNumber": "6135656667",
-                            "Documentation_type": "none",
-                            "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
-                            "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                            "DateSentRequests": "gfdgfd",
-                            "WordingOfRequest": "gdsfg",
-                            "MoreDetailsOfRequest": "oiuyoiuo",
-                            "DateOfFinalAnswer": "gfhfjgj",
-                            "DidNoRecordExistChoice": "yes",
-                            "InstitutionAgreedRequestOnInformalBasis": "not_sure",
-                            "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop",
-                            "InformationIsTrue": ["yesff"],
-                            "documentation_file_upload": [
-                                { "name": "test.txt", "type": "text/plain", "content": "10921680" },
-                                { "name": "test.txt", "type": "text/plain", "content": "10921680" },
-                                { "name": "layout.txt", "type": "text/plain", "content": "2735" },
-                                { "name": "New Text Document_one.txt", "type": "text/plain", "content": "4" }
-                            ]
-                        };
-
-                        const params = { "complaintId": sender.complaintId };
-                        const query = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join("&");
-                        const uri = `/api/PASurvey/Validate?${query}`;
-
-                        fetch(uri, {
-                            method: "POST",
-                            headers: {
-                                "Accept": "application/json",
-                                "Content-Type": "application/json; charset=utf-8"
+                    const data2 = {
+                        FilingComplaintOnOwnBehalf: "yourself",
+                        RaisedPrivacyToAtipCoordinator: "fsdafasd",
+                        WhichFederalGovernementInstitutionComplaintAgainst: "3",
+                        NatureOfComplaint: [
+                            "NatureOfComplaintOther",
+                            "NatureOfComplaintDelay",
+                            "NatureOfComplaintExtensionOfTime",
+                            "NatureOfComplaintCollection"
+                        ],
+                        IsEmployeeChoice: "general_public",
+                        AdditionalComments: "iuyiuyuiyiuy",
+                        Complainant_HaveYouSubmittedBeforeChoice: "no",
+                        Complainant_FormOfAddress: "Mr.",
+                        Complainant_FirstName: "jf",
+                        Complainant_LastName: "brouillette",
+                        Complainant_Email: "jf@hotmail.com",
+                        Complainant_MailingAddress: "66",
+                        Complainant_City: "gat",
+                        Complainant_PostalCode: "J9A2V5",
+                        Complainant_DayTimeNumber: "6135656667",
+                        NeedsDisabilityAccommodationChoice: "yes",
+                        DisabilityAccommodation: "iuyuiyiuyiuy",
+                        Complainant_Country: "CA",
+                        Complainant_ProvinceOrState: "2",
+                        Reprensentative_FormOfAddress: "Mr.",
+                        Reprensentative_FirstName: "",
+                        Reprensentative_LastName: "brouillette",
+                        Reprensentative_Email: "jf@hotmail.com",
+                        Reprensentative_MailingAddress: "66",
+                        Reprensentative_City: "gat",
+                        Reprensentative_PostalCode: "J9A2V5",
+                        Reprensentative_DayTimeNumber: "6135656667",
+                        Documentation_type: "none",
+                        WhatWouldResolveYourComplaint: "gsdgdfgsdf",
+                        SummarizeAttemptsToResolvePrivacyMatter:
+                            "gdfghjvbcvbcxvbxcvbxbcvb",
+                        DateSentRequests: "gfdgfd",
+                        WordingOfRequest: "gdsfg",
+                        MoreDetailsOfRequest: "oiuyoiuo",
+                        DateOfFinalAnswer: "gfhfjgj",
+                        DidNoRecordExistChoice: "yes",
+                        InstitutionAgreedRequestOnInformalBasis: "not_sure",
+                        SummarizeYourConcernsAndAnyStepsTaken: "poiuiop",
+                        InformationIsTrue: ["yesff"],
+                        documentation_file_upload: [
+                            {
+                                name: "test.txt",
+                                type: "text/plain",
+                                content: "10921680"
                             },
-                            body: JSON.stringify(data2)
+                            {
+                                name: "test.txt",
+                                type: "text/plain",
+                                content: "10921680"
+                            },
+                            {
+                                name: "layout.txt",
+                                type: "text/plain",
+                                content: "2735"
+                            },
+                            {
+                                name: "New Text Document_one.txt",
+                                type: "text/plain",
+                                content: "4"
+                            }
+                        ]
+                    };
 
-                        }).then(response => {
+                    const params = { complaintId: sender.complaintId };
+                    const query = Object.keys(params)
+                        .map(
+                            k =>
+                                `${encodeURIComponent(k)}=${encodeURIComponent(
+                                    params[k]
+                                )}`
+                        )
+                        .join("&");
+                    const uri = `/api/PASurvey/Validate?${query}`;
+
+                    fetch(uri, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify(data2)
+                    })
+                        .then(response => {
                             switch (response.status) {
                                 case 200:
                                     //  This will allowed the validation to pass and go to the next page
@@ -145,7 +170,9 @@ export class TestSurvey {
                                             }
 
                                             if (error.errors) {
-                                                SurveyHelper.printProblemDetails(error);
+                                                SurveyHelper.printProblemDetails(
+                                                    error
+                                                );
                                                 // // for (const [key, value] of Object.entries(error.errors)) {
                                                 // //     message += key + ':' + value + '\n';
                                                 // // }
@@ -161,116 +188,135 @@ export class TestSurvey {
                                 default:
                                     alert("oopsy");
                             }
-                        }).catch(error => {
+                        })
+                        .catch(error => {
                             console.warn(error);
                         });
-                    });
+                });
 
-                survey
-                    .onComplete
-                    .add((sender, options) => {
+                survey.onComplete.add((sender, options) => {
+                    // //const data = JSON.stringify(result.data, null, 3);
 
-                        // //const data = JSON.stringify(result.data, null, 3);
+                    // //const data = {
+                    // //    "FilingComplaintOnOwnBehalf": "yourself",
+                    // //    "RaisedPrivacyToAtipCoordinator": "yes"
+                    // //};
 
-                        // //const data = {
-                        // //    "FilingComplaintOnOwnBehalf": "yourself",
-                        // //    "RaisedPrivacyToAtipCoordinator": "yes"
-                        // //};
-
-                        const data = {
-                            "FilingComplaintOnOwnBehalf": "yourself",
-                            "RaisedPrivacyToAtipCoordinator": "yes",
-                            "WhichFederalGovernementInstitutionComplaintAgainst": "3",
-                            "NatureOfComplaint": [
-                                "NatureOfComplaintOther",
-                                "NatureOfComplaintDelay",
-                                "NatureOfComplaintExtensionOfTime",
-                                "NatureOfComplaintCollection"
-                            ],
-                            "IsEmployeeChoice": "general_public",
-                            "AdditionalComments": "iuyiuyuiyiuy",
-                            "Complainant_HaveYouSubmittedBeforeChoice": "no",
-                            "Complainant_title": "Mr.",
-                            "Complainant_FirstName": "jf",
-                            "Complainant_LastName": "brouillette",
-                            "Complainant_Email": "jf@hotmail.com",
-                            "Complainant_MailingAddress": "66",
-                            "Complainant_City": "gat",
-                            "Complainant_PostalCode": "J9A2V5",
-                            "Complainant_DayTimeNumber": "6135656667",
-                            "NeedsDisabilityAccommodationChoice": "yes",
-                            "DisabilityAccommodation": "iuyuiyiuyiuy",
-                            "Complainant_Country": "CA",
-                            "Complainant_ProvinceOrState": "2",
-                            "Reprensentative_title": "Mr.",
-                            "Reprensentative_FirstName": "jf",
-                            "Reprensentative_LastName": "brouillette",
-                            "Reprensentative_Email": "jf@hotmail.com",
-                            "Reprensentative_MailingAddress": "66",
-                            "Reprensentative_City": "gat",
-                            "Reprensentative_PostalCode": "J9A2V5",
-                            "Reprensentative_DayTimeNumber": "6135656667",
-                            "Documentation_type": "none",
-                            "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
-                            "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                            "DateSentRequests": "qwerewr",
-                            "WordingOfRequest": "hgdffgh",
-                            "MoreDetailsOfRequest": "oiuyoiuo",
-                            "DateOfFinalAnswer": "gfhfjgj",
-                            "DidNoRecordExistChoice": "yes",
-                            "InstitutionAgreedRequestOnInformalBasis": "not_sure",
-                            "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop",
-                            "documentation_file_upload": [
-                                { "name": "test.txt", "type": "text/plain", "content": "10921680" },
-                                { "name": "test.txt", "type": "text/plain", "content": "10921680" },
-                                { "name": "layout.txt", "type": "text/plain", "content": "2735" },
-                                { "name": "New Text Document_one.txt", "type": "text/plain", "content": "4" }
-                            ]
-                        };
-
-                        const dataToSend = JSON.stringify(data, null, 3);
-
-                        const xhr = new XMLHttpRequest();
-                        xhr.open("POST", `/api/CompletedSurvey/SurveyPA?complaintId=${sender.complaintId}`);
-                        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                        xhr.onload = xhr.onerror = () => {
-                            if (xhr.status === 200) {
-                                options.showDataSavingSuccess(); // you may pass a text parameter to show your own text
-                                // Or you may clear all messages:
-                                // options.showDataSavingClear();
-
-                                //  Hide the navigation buttons
-                                $("#div_navigation").hide();
-
-                                //  Update the file reference number
-                                // // $("#sp_survey_file_number").html(result.referenceNumber);
-
-                                // //survey.clear(true, true);
-                                // //clearLocalStorage(storageName_PA);
-                                // // saveStateLocally(survey, storageName_PA);
-
-                            } else {
-                                // Error
-                                options.showDataSavingError(); // you may pass a text parameter to show your own text
+                    const data = {
+                        FilingComplaintOnOwnBehalf: "yourself",
+                        RaisedPrivacyToAtipCoordinator: "yes",
+                        WhichFederalGovernementInstitutionComplaintAgainst: "3",
+                        NatureOfComplaint: [
+                            "NatureOfComplaintOther",
+                            "NatureOfComplaintDelay",
+                            "NatureOfComplaintExtensionOfTime",
+                            "NatureOfComplaintCollection"
+                        ],
+                        IsEmployeeChoice: "general_public",
+                        AdditionalComments: "iuyiuyuiyiuy",
+                        Complainant_HaveYouSubmittedBeforeChoice: "no",
+                        Complainant_title: "Mr.",
+                        Complainant_FirstName: "jf",
+                        Complainant_LastName: "brouillette",
+                        Complainant_Email: "jf@hotmail.com",
+                        Complainant_MailingAddress: "66",
+                        Complainant_City: "gat",
+                        Complainant_PostalCode: "J9A2V5",
+                        Complainant_DayTimeNumber: "6135656667",
+                        NeedsDisabilityAccommodationChoice: "yes",
+                        DisabilityAccommodation: "iuyuiyiuyiuy",
+                        Complainant_Country: "CA",
+                        Complainant_ProvinceOrState: "2",
+                        Reprensentative_title: "Mr.",
+                        Reprensentative_FirstName: "jf",
+                        Reprensentative_LastName: "brouillette",
+                        Reprensentative_Email: "jf@hotmail.com",
+                        Reprensentative_MailingAddress: "66",
+                        Reprensentative_City: "gat",
+                        Reprensentative_PostalCode: "J9A2V5",
+                        Reprensentative_DayTimeNumber: "6135656667",
+                        Documentation_type: "none",
+                        WhatWouldResolveYourComplaint: "gsdgdfgsdf",
+                        SummarizeAttemptsToResolvePrivacyMatter:
+                            "gdfghjvbcvbcxvbxcvbxbcvb",
+                        DateSentRequests: "qwerewr",
+                        WordingOfRequest: "hgdffgh",
+                        MoreDetailsOfRequest: "oiuyoiuo",
+                        DateOfFinalAnswer: "gfhfjgj",
+                        DidNoRecordExistChoice: "yes",
+                        InstitutionAgreedRequestOnInformalBasis: "not_sure",
+                        SummarizeYourConcernsAndAnyStepsTaken: "poiuiop",
+                        documentation_file_upload: [
+                            {
+                                name: "test.txt",
+                                type: "text/plain",
+                                content: "10921680"
+                            },
+                            {
+                                name: "test.txt",
+                                type: "text/plain",
+                                content: "10921680"
+                            },
+                            {
+                                name: "layout.txt",
+                                type: "text/plain",
+                                content: "2735"
+                            },
+                            {
+                                name: "New Text Document_one.txt",
+                                type: "text/plain",
+                                content: "4"
                             }
-                        };
-                        xhr.send(dataToSend);
+                        ]
+                    };
 
-                        console.log(dataToSend);
+                    const dataToSend = JSON.stringify(data, null, 3);
 
-                        //  Hide the navigation buttons
-                        $("#div_navigation").hide();
+                    const xhr = new XMLHttpRequest();
+                    xhr.open(
+                        "POST",
+                        `/api/CompletedSurvey/SurveyPA?complaintId=${sender.complaintId}`
+                    );
+                    xhr.setRequestHeader(
+                        "Content-Type",
+                        "application/json; charset=utf-8"
+                    );
+                    xhr.onload = xhr.onerror = () => {
+                        if (xhr.status === 200) {
+                            options.showDataSavingSuccess(); // you may pass a text parameter to show your own text
+                            // Or you may clear all messages:
+                            // options.showDataSavingClear();
 
-                        survey.clear(true, true);
-                        SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_Test);
-                    });
+                            //  Hide the navigation buttons
+                            $("#div_navigation").hide();
 
-                survey
-                    .onCurrentPageChanged
-                    .add(onCurrentPageChanged_saveState);
+                            //  Update the file reference number
+                            // // $("#sp_survey_file_number").html(result.referenceNumber);
+
+                            // //survey.clear(true, true);
+                            // //clearLocalStorage(storageName_PA);
+                            // // saveStateLocally(survey, storageName_PA);
+                        } else {
+                            // Error
+                            options.showDataSavingError(); // you may pass a text parameter to show your own text
+                        }
+                    };
+                    xhr.send(dataToSend);
+
+                    console.log(dataToSend);
+
+                    //  Hide the navigation buttons
+                    $("#div_navigation").hide();
+
+                    survey.clear(true, true);
+                    SurveyLocalStorage.clearLocalStorage(
+                        SurveyLocalStorage.storageName_Test
+                    );
+                });
+
+                survey.onCurrentPageChanged.add(onCurrentPageChanged_saveState);
 
                 $("#pdfPreviewBtn").click(() => {
-
                     const filename = "surveyResult.pdf";
 
                     const options = {
@@ -296,7 +342,7 @@ export class TestSurvey {
                 const app = new Vue({
                     el: `#surveyElement`,
                     data: {
-                        "survey": survey
+                        survey: survey
                     }
                 });
             });

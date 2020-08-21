@@ -7,10 +7,10 @@ import * as SurveyLocalStorage from "./SurveyLocalStorage";
 import * as Survey from "survey-vue";
 
 export function initSurvey(): void {
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("survey", { name: "complaintId:string", default: "" });
+    Survey.JsonObject.metaData.addProperty("survey", {
+        name: "complaintId:string",
+        default: ""
+    });
 
     //  Add a new property for each item choices (to the native text, value). This is used for checkboxes with addtional Html info
     //  but could be used for radiobutton as well.
@@ -19,47 +19,49 @@ export function initSurvey(): void {
     });
 
     // Register the function for use in SurveyJS expressions. This function validates that at least one selection was made in a <select>
-    Survey
-        .FunctionFactory
-        .Instance
-        .register("HasSelectedItem", SurveyHelper.HasSelectedItem);
+    Survey.FunctionFactory.Instance.register(
+        "HasSelectedItem",
+        SurveyHelper.HasSelectedItem
+    );
 
     // This is how we replace string from Survey.js (englishStrings or frenchSurveyStrings) for localization.
-    Survey.surveyLocalization.locales["en"].requiredError = "This field is required";
-    Survey.surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
+    Survey.surveyLocalization.locales["en"].requiredError =
+        "This field is required";
+    Survey.surveyLocalization.locales["fr"].requiredError =
+        "Ce champ est obligatoire";
 
     Survey.StylesManager.Enabled = false;
 
     // This is a survey property that will hold the information as to if the user has reached the 'Preview'
     // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
     // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("survey", { name: "passedPreviewPage:boolean", default: false });
+    Survey.JsonObject.metaData.addProperty("survey", {
+        name: "passedPreviewPage:boolean",
+        default: false
+    });
 
     // This is to hide page and panel we don't want to show on preview.
     // Pages or Panels that contains exclusively information html for example.
     // The reason why it is working for is because on preview, the pages become panels
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("panel", { name: "hideOnPreview:boolean", default: false });
+    Survey.JsonObject.metaData.addProperty("panel", {
+        name: "hideOnPreview:boolean",
+        default: false
+    });
 
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("page", { name: "hideOnPreview:boolean", default: false });
+    Survey.JsonObject.metaData.addProperty("page", {
+        name: "hideOnPreview:boolean",
+        default: false
+    });
 
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("panel", { name: "hideOnPDF:boolean", default: false });
+    Survey.JsonObject.metaData.addProperty("panel", {
+        name: "hideOnPDF:boolean",
+        default: false
+    });
 
-    Survey
-        .JsonObject
-        .metaData
-        .addProperty("page", { name: "hideOnPDF:boolean", default: false });
+    Survey.JsonObject.metaData.addProperty("page", {
+        name: "hideOnPDF:boolean",
+        default: false
+    });
 }
 
 export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
@@ -97,9 +99,7 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 }
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
-
     survey.onAfterRenderPage.add((sender, options) => {
-
         // Change page title to <h1>.
         // This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
         //     because the tag <h4> is not there anymore and during the preview, the page titles are being transformed into <h2>
@@ -113,119 +113,111 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     // THIS IS THE SHOWDOWN MARKDOWN CODE***************
     // More details on this at https://github.com/showdownjs/showdown/wiki/Showdown-Options
     const converter = new showdown.Converter();
-    converter.setOption('simpleLineBreaks', true);
-    converter.setOption('tasklists', true);
+    converter.setOption("simpleLineBreaks", true);
+    converter.setOption("tasklists", true);
 
-    survey
-        .onTextMarkdown
-        .add((sender, options) => {
+    survey.onTextMarkdown.add((sender, options) => {
+        // convert the mardown text to html
+        let str = converter.makeHtml(options.text);
 
-            // convert the mardown text to html
-            let str = converter.makeHtml(options.text);
+        // remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
 
-            // remove root paragraphs <p></p>
-            str = str.substring(3);
-            str = str.substring(0, str.length - 4);
+        // set html
+        options.html = str;
+    });
 
-            // set html
-            options.html = str;
-        });
+    survey.onUpdateQuestionCssClasses.add((sender, options) => {
+        const classes = options.cssClasses;
 
-    survey
-        .onUpdateQuestionCssClasses
-        .add((sender, options) => {
-
-            const classes = options.cssClasses;
-
-            //  If it is the preview mode...
-            if (sender.isDisplayMode === true) {
-
-                if (options.question.getType() === "html") {
-                    //  This will remove the html questions in Preview mode.
-                    classes.root += " sv-hidden";
-                } else if (options.question.getType() === "comment") {
-                    //  do not show the 'description' property
-                    classes.description += " sv-hidden";
-                } else if (options.question.getType() === "file") {
-                    classes.placeholderInput += " sv-hidden";
-                }
+        //  If it is the preview mode...
+        if (sender.isDisplayMode === true) {
+            if (options.question.getType() === "html") {
+                //  This will remove the html questions in Preview mode.
+                classes.root += " sv-hidden";
+            } else if (options.question.getType() === "comment") {
+                //  do not show the 'description' property
+                classes.description += " sv-hidden";
+            } else if (options.question.getType() === "file") {
+                classes.placeholderInput += " sv-hidden";
             }
+        }
 
-            //  Add the css class label-danger
-            classes.error.locationTop += " label-danger";
+        //  Add the css class label-danger
+        classes.error.locationTop += " label-danger";
 
-            if (options.question.getType() === "comment") {
-                // This is a little strange but for 'comment' the root is <textarea>
-                classes.root = "form-control";
-            } else {
+        if (options.question.getType() === "comment") {
+            // This is a little strange but for 'comment' the root is <textarea>
+            classes.root = "form-control";
+        } else {
+            classes.root += " form-group";
 
-                classes.root += " form-group";
+            if (options.question.getType() === "file") {
+                // Hide the file decorator
+                classes.fileDecorator += " sv-hidden";
 
-                if (options.question.getType() === "file") {
-
-                    // Hide the file decorator
-                    classes.fileDecorator += " sv-hidden";
-
-                    // Hide the 'Clean' button
-                    classes.removeButton = "sv-hidden";
-                } else if (options.question.getType() === "dropdown") {
-                    classes.control += " form-control";
-                } else if (options.question.getType() === "radiogroup") {
-                    classes.materialDecorator = "";
-                }
+                // Hide the 'Clean' button
+                classes.removeButton = "sv-hidden";
+            } else if (options.question.getType() === "dropdown") {
+                classes.control += " form-control";
+            } else if (options.question.getType() === "radiogroup") {
+                classes.materialDecorator = "";
             }
-        });
+        }
+    });
 
-    survey
-        .onUpdatePanelCssClasses
-        .add((sender, options) => {
-            const classes = options.cssClasses;
+    survey.onUpdatePanelCssClasses.add((sender, options) => {
+        const classes = options.cssClasses;
 
-            if (sender.isDisplayMode === true && options.panel.hideOnPreview === true) {
+        if (
+            sender.isDisplayMode === true &&
+            options.panel.hideOnPreview === true
+        ) {
+            //  This is to hide panel we don't want to show on preview.
+            //  Panels that contains information html for example.
+            //  It also hides the 'pages'! The reason is because on preview, the pages become panels
+            //  and therefore going thru this code.
+            classes.panel.container = "sv-hidden";
+        } else {
+            //  This is a class found in GoC and was used in the original project.
+            //  It adds a border around a panel and a different backgroud color
+            classes.panel.container += " well";
+        }
+    });
 
-                //  This is to hide panel we don't want to show on preview.
-                //  Panels that contains information html for example.
-                //  It also hides the 'pages'! The reason is because on preview, the pages become panels
-                //  and therefore going thru this code.
-                classes.panel.container = "sv-hidden";
-            } else {
-                //  This is a class found in GoC and was used in the original project.
-                //  It adds a border around a panel and a different backgroud color
-                classes.panel.container += " well";
-            }
-        });
+    survey.onValidatedErrorsOnCurrentPage.add((sender, options) => {
+        if (options.errors && options.errors.length > 0) {
+            $("#div_errors_list").html(
+                buildErrorMessage(options.errors, survey.locale)
+            );
+            $("#div_errors_list").show();
+        } else {
+            $("#div_errors_list").html("");
+            $("#div_errors_list").hide();
+        }
+    });
 
-    survey
-        .onValidatedErrorsOnCurrentPage
-        .add((sender, options) => {
-            if (options.errors && options.errors.length > 0) {
-                $("#div_errors_list").html(buildErrorMessage(options.errors, survey.locale));
-                $("#div_errors_list").show();
-            } else {
-                $("#div_errors_list").html("");
-                $("#div_errors_list").hide();
-            }
-        });
-
-    survey
-        .onGetQuestionTitle.add((sender, options) => {
-            //  This is to add * at the beginning of a required question. The property requiredText
-            //  is set as 'required' later in the code
-            if (options.question.owner.isRequired) {
-                options.title = "<span class='sv_q_required_text'>&ast; </span>" + options.title;
-            }
-        });
+    survey.onGetQuestionTitle.add((sender, options) => {
+        //  This is to add * at the beginning of a required question. The property requiredText
+        //  is set as 'required' later in the code
+        if (options.question.owner.isRequired) {
+            options.title =
+                "<span class='sv_q_required_text'>&ast; </span>" +
+                options.title;
+        }
+    });
 
     //  Use for our custom navigation
-    survey
-        .onCurrentPageChanged
-        .add((sender, options) => {
-            onCurrentPageChanged_updateNavButtons(sender);
-        });
+    survey.onCurrentPageChanged.add((sender, options) => {
+        onCurrentPageChanged_updateNavButtons(sender);
+    });
 }
 
 //  Function for updating (show/hide) the navigation buttons
-export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel): void {
+export function onCurrentPageChanged_updateNavButtons(
+    survey: Survey.SurveyModel
+): void {
     //  NOTES:
     //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage
     //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
@@ -237,30 +229,31 @@ export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel
     //        ? "inline"
     //        : "none";
 
-    const startButton = document.getElementById("btnStart") ?? new HTMLElement();
-    startButton.style.display = survey.isFirstPage && !survey.isDisplayMode
-        ? "inline"
-        : "none";
+    const startButton =
+        document.getElementById("btnStart") ?? new HTMLElement();
+    startButton.style.display =
+        survey.isFirstPage && !survey.isDisplayMode ? "inline" : "none";
 
-    const previousButton = document.getElementById("btnSurveyPrev") ?? new HTMLElement();
-    previousButton.style.display = !survey.isFirstPage
-        ? "inline"
-        : "none";
+    const previousButton =
+        document.getElementById("btnSurveyPrev") ?? new HTMLElement();
+    previousButton.style.display = !survey.isFirstPage ? "inline" : "none";
 
-    const nextButton = document.getElementById("btnSurveyNext") ?? new HTMLElement();
-    nextButton.style.display = !survey.isFirstPage && !survey.isLastPage
-        ? "inline"
-        : "none";
+    const nextButton =
+        document.getElementById("btnSurveyNext") ?? new HTMLElement();
+    nextButton.style.display =
+        !survey.isFirstPage && !survey.isLastPage ? "inline" : "none";
 
-    const showPreviewButton = document.getElementById("btnShowPreview") ?? new HTMLElement();
-    showPreviewButton.style.display = !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true)
-        ? "inline"
-        : "none";
+    const showPreviewButton =
+        document.getElementById("btnShowPreview") ?? new HTMLElement();
+    showPreviewButton.style.display =
+        !survey.isDisplayMode &&
+        (survey.isLastPage || survey.passedPreviewPage === true)
+            ? "inline"
+            : "none";
 
-    const completeButton = document.getElementById("btnComplete") ?? new HTMLElement();
-    completeButton.style.display = survey.isDisplayMode
-        ? "inline"
-        : "none";
+    const completeButton =
+        document.getElementById("btnComplete") ?? new HTMLElement();
+    completeButton.style.display = survey.isDisplayMode ? "inline" : "none";
 }
 
 export function showPreview(survey: Survey.SurveyModel): void {
@@ -272,7 +265,6 @@ export function showPreview(survey: Survey.SurveyModel): void {
 }
 
 export function startSurvey(survey: Survey.SurveyModel): void {
-
     SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_PA);
     survey.nextPage();
 }
@@ -284,7 +276,6 @@ export function endSession(): void {
 
 //  This function will build a <section> with a list of errors to be displayed at the top of the page
 export function buildErrorMessage(errors, lang: string): string {
-
     let message = "<section role='alert' class='alert alert-danger'>";
     message += "<h2>";
 
@@ -315,7 +306,6 @@ export function buildErrorMessage(errors, lang: string): string {
     message += "<ul>";
 
     $.each(errors, (key: string, value) => {
-
         const errorIndex = key + 1;
 
         message += "<li>";
@@ -346,7 +336,6 @@ export function buildErrorMessage(errors, lang: string): string {
 }
 
 export function switchPanelTitleToH2(): void {
-
     // TODO: fix this
     //$("h4.sv_p_title").replaceWith(() => {
     //    return "";

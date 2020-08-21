@@ -24,12 +24,12 @@ export function HasSelectedItem(params) {
 
 // This function will build a <section> with a list of errors to be displayed at the top of the page
 export function buildValidationErrorMessage(problem) {
-
     let message = "<section role='alert' class='alert alert-danger'>";
     message += "<h2>";
 
     if (survey.locale === "fr") {
-        message += "Le formulaire ne pouvait pas être soumis parce que des erreurs ont été trouvée";
+        message +=
+            "Le formulaire ne pouvait pas être soumis parce que des erreurs ont été trouvée";
     } else {
         message += "The form could not be submitted because error(s) was found";
     }
@@ -50,20 +50,15 @@ export function buildValidationErrorMessage(problem) {
 
     if (problem.errors) {
         // //for (const [key, value] of Object.entries(problem.errors)) {
-
         // //    message += "<li>";
-
         // //    if (survey.locale == "fr") {
         // //        message += "Erreur " + errorIndex + ": ";
         // //    }
         // //    else {
         // //        message += "Error " + errorIndex + ": ";
         // //    }
-
         // //    message += key + " - " + value;
-
         // //    message += "</li>";
-
         // //    errorIndex = errorIndex + 1;
         // //}
     }
