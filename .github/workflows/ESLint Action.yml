@@ -30,4 +30,4 @@ jobs:
     # Run eslint
     - name: Run ESLint
       working-directory: ./ComplaintFormCore/ClientApp/src  
-      run: eslint .
+      run: npx eslint .
