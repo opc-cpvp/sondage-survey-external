@@ -4,22 +4,22 @@ import {
     saveStateLocally,
     storageName_PA,
     loadStateLocally
-} from "./SurveyLocalStorage";
+} from "../surveyLocalStorage";
 import {
     initSurvey,
     initSurveyModelEvents,
     initSurveyModelProperties,
     onCurrentPageChanged_updateNavButtons
-} from "./SurveyInit";
-import { initSurveyFile, initSurveyFileModelEvents } from "./surveyFile";
-import { printProblemDetails, getTranslation } from "./surveyHelper";
+} from "../surveyInit";
+import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
+import { printProblemDetails, getTranslation } from "../surveyHelper";
 
 declare global {
     //  This is required for the buttons in the html page to work
     var survey: Survey.SurveyModel;
 }
 
-declare function exportToPDF(s: string, s2: string, s3: string): void;
+//declare function exportToPDF(s: string, s2: string, s3: string): void;
 
 // This is the total file sizes
 const multipleFileMaxSize = 26214400;
@@ -154,16 +154,6 @@ export class PaSurvey {
         return totalBytes;
     }
 
-    private showPDF() {
-        //  TODO: Find a good pdf file name
-        const filename = "surveyResultToPDF.pdf";
-        const json_pdf = "/sample-data/survey_pa_complaint.json";
-        const lang =
-            "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
-
-        exportToPDF(filename, json_pdf, lang);
-    }
-
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
         initSurveyFile();
@@ -211,7 +201,7 @@ export class PaSurvey {
                             options.allowComplete = true;
                         } else {
                             const validationResponse = JSON.parse(xhr.response);
-                            printProblemDetails(validationResponse);
+                            printProblemDetails(validationResponse, sender.locale);
                         }
                     };
                     xhr.send(data);
@@ -313,7 +303,7 @@ export class PaSurvey {
                                 case 500:
                                     if (response.json) {
                                         void response.json().then(problem => {
-                                            printProblemDetails(problem);
+                                            printProblemDetails(problem, sender.locale);
                                         });
                                     }
 
@@ -407,9 +397,7 @@ export class PaSurvey {
                             multipleFileMaxSize > 0 &&
                             totalBytes > multipleFileMaxSize
                         ) {
-                            options.error = getTranslation(
-                                options.question.multipleFileMaxSizeErrorMessage
-                            );
+                            options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, survey.locale);
                             // return false;
                         }
 
@@ -460,7 +448,7 @@ export class PaSurvey {
                                     case 500:
                                         if (response.json) {
                                             response.json().then(problem => {
-                                                printProblemDetails(problem);
+                                                printProblemDetails(problem, sender.locale);
                                             });
                                         } else {
                                             alert("oopsy");

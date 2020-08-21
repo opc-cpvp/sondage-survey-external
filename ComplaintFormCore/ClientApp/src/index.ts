@@ -4,9 +4,11 @@ import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 
 import * as SurveyInit from "./SurveyInit";
 import * as Survey from "survey-vue";
-import { TestSurvey } from "./testSurvey";
-import { PaSurvey } from "./PaSurvey";
+import { TestSurvey } from "./tests/testSurvey";
+import { PaSurvey } from "./pa/PaSurvey";
 import * as SurveyPDF from "./surveyPDF";
+import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
+import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -16,6 +18,7 @@ declare global {
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function exportToPDF(lang: string): void;
+
 }
 
 declare let Symbol;
@@ -45,16 +48,21 @@ declare let Symbol;
 
         globalThis.initPaSurvey = (lang, token) => {
             const paSurvey = new PaSurvey();
+            const widgetCheckboxHtml = new WidgetCheckboxHtml();
+            const widgetCommentHtml = new WidgetCommentHtml();
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             paSurvey.init(jsonUrl, lang, token);
+            widgetCheckboxHtml.init();
+            widgetCommentHtml.init();
         };
 
         globalThis.exportToPDF = lang => {
             //  TODO: somehow the json url must come from the parameter because we can re-use this method
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
+            const filename = "survey_export";
 
-            SurveyPDF.exportToPDF("survey_export", jsonUrl, lang);
+            SurveyPDF.exportToPDF(filename, jsonUrl, lang);
         };
 
         globalThis.initTestSurvey = (lang, token) => {

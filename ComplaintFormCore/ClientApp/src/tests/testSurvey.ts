@@ -2,9 +2,9 @@
 import * as Survey from "survey-vue";
 declare let $: any; // import $ from "jquery";
 
-import * as SurveyInit from "./SurveyInit";
-import * as SurveyHelper from "./surveyHelper";
-import * as SurveyLocalStorage from "./SurveyLocalStorage";
+import * as SurveyInit from "../SurveyInit";
+import * as SurveyHelper from "../surveyHelper";
+import * as SurveyLocalStorage from "../SurveyLocalStorage";
 
 declare let SurveyPDF: any;
 
@@ -170,12 +170,7 @@ export class TestSurvey {
                                             }
 
                                             if (error.errors) {
-                                                SurveyHelper.printProblemDetails(
-                                                    error
-                                                );
-                                                // // for (const [key, value] of Object.entries(error.errors)) {
-                                                // //     message += key + ':' + value + '\n';
-                                                // // }
+                                                SurveyHelper.printProblemDetails(error, survey.locale);
                                             }
 
                                             alert(message);

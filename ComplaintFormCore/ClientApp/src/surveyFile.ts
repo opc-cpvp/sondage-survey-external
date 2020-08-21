@@ -14,8 +14,10 @@ export function initSurveyFile(): void {
 }
 
 export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
+
     survey.onAfterRenderQuestion.add((sender, options) => {
         if (options.question.getType() === "file") {
+
             //  This is to build the file preview, we're not using the native one
             const container = document.createElement("div");
             container.setAttribute("id", "div_file_" + options.question.name);
@@ -60,9 +62,7 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                 // It is way easier then setting up errors on the question and asking the
                 // user to remove one of the file.
                 alert(
-                    getTranslation(
-                        options.question.duplicateFileNameExceptionMessage
-                    )
+                    getTranslation(options.question.duplicateFileNameExceptionMessage, sender.locale)
                 );
 
                 //  The first part can be just about anything but a
@@ -117,7 +117,7 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         case 500:
                             if (response.json) {
                                 response.json().then(problem => {
-                                    printProblemDetails(problem);
+                                    printProblemDetails(problem, sender.locale);
                                 });
                             } else {
                                 alert("oopsy");
@@ -148,7 +148,7 @@ export function updateFilePreview(
     container.innerHTML = "";
 
     const title = document.createElement("h3");
-    title.innerHTML = getTranslation(question.itemListTitle);
+    title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
     container.append(title);
 
     if (question.value && question.value.length > 0) {
@@ -194,7 +194,7 @@ export function updateFilePreview(
                             case 500:
                                 if (response.json) {
                                     response.json().then(problem => {
-                                        printProblemDetails(problem);
+                                        printProblemDetails(problem, survey.locale);
                                     });
                                 }
                                 return response;
@@ -225,16 +225,14 @@ export function updateFilePreview(
             const buttonRemove = document.createElement("button");
             buttonRemove.setAttribute("type", "button");
             buttonRemove.className = "btn sv_q_file_remove_button";
-            buttonRemove.innerText = getTranslation(
-                question.itemListRemoveText
-            );
+            buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
 
             if (survey.isDisplayMode === true) {
                 buttonRemove.setAttribute("disabled", "disabled");
             }
 
             buttonRemove.onclick = () => {
-                if (confirm(getTranslation(question.confirmRemoveMessage))) {
+                if (confirm(getTranslation(question.confirmRemoveMessage, survey.locale))) {
                     question.removeFile({ name: fileItem.name });
                 }
             };
@@ -250,9 +248,7 @@ export function updateFilePreview(
         container.append(listView);
     } else {
         const titleElement = document.createElement("p");
-        titleElement.innerHTML = getTranslation(
-            question.itemListNoAttachmentsText
-        );
+        titleElement.innerHTML = getTranslation(question.itemListNoAttachmentsText, survey.locale);
         container.append(titleElement);
     }
 }
