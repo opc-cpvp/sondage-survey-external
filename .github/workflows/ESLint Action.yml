@@ -1,4 +1,4 @@
-# This is a basic workflow to help you get started with Actions
+# This action is one of the controls for ITSG-33 --> Annex 3A --> SA-11 (1) # Static Code Analysis
 
 name: Run ESLint on Pull Requests or direct commits on Master
 
