@@ -92,6 +92,8 @@
     <TypeScriptCompile Remove="ClientApp\src\SurveyInit.ts" />
     <TypeScriptCompile Remove="ClientApp\src\SurveyLocalStorage.ts" />
     <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -101,6 +103,9 @@
     <WebpackInputs Remove="ClientApp\src\SurveyLocalStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
+    <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
+    <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
+    <WebpackInputs Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -112,15 +117,18 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="ClientApp\src\SurveyInit.ts">
+    <Content Include="ClientApp\src\surveyInit.ts">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
-    <Content Include="ClientApp\src\SurveyLocalStorage.ts">
+    <Content Include="ClientApp\src\surveyLocalStorage.ts">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="ClientApp\src\surveyPDF.ts" />
+    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetCommentHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
