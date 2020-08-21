@@ -20,8 +20,8 @@ module.exports = {
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
     ],
     rules: {
-        "@typescript-eslint/no-unsafe-call": 1,
-        "@typescript-eslint/no-unsafe-member-access": 1,
+        "@typescript-eslint/no-unsafe-call": 0,
+        "@typescript-eslint/no-unsafe-member-access": 0,
         // "max-lines-per-function": ["error", {
         //     "max": 30,
         //     "skipBlankLines": true,
