@@ -26,12 +26,12 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
         .then(response => response.json())
         .then(json_pdf => {
             //  The idea is to convert each survey pages into survey panels
-            let root = {
+            const root = {
                 pages: [] as any
             };
 
             //  TODO: somehow the titles (en + fr) must come from the parameter because we can re-use this method
-            let singlePage = {
+            const singlePage = {
                 name: "single_page",
                 title: {
                     en:
@@ -42,14 +42,14 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
                 elements: [] as any
             };
 
-            for (var key in json_pdf) {
+            for (const key in json_pdf) {
                 if (key == "pages") {
-                    for (var i = 0; i < json_pdf[key].length; i++) {
-                        let page = json_pdf[key][i];
+                    for (let i = 0; i < json_pdf[key].length; i++) {
+                        const page = json_pdf[key][i];
 
                         if (!page.hideOnPDF) {
                             //  Create a panel for each page
-                            let panel = {
+                            const panel = {
                                 name: page.name,
                                 type: "panel",
                                 title: {
@@ -59,12 +59,12 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
                                 elements: [] as any
                             };
 
-                            let tempArray = [] as any;
+                            const tempArray = [] as any;
 
-                            for (var j = 0; j < page.elements.length; j++) {
-                                var element = page.elements[j];
+                            for (let j = 0; j < page.elements.length; j++) {
+                                const element = page.elements[j];
 
-                                var elements = getPanelElements(element);
+                                const elements = getPanelElements(element);
 
                                 if (elements.length > 0) {
                                     tempArray.push(elements);
@@ -81,15 +81,15 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
 
             root.pages.push(singlePage);
 
-            let newJson = JSON.stringify(root);
+            const newJson = JSON.stringify(root);
 
-            var survey_pdf = new Survey.Model(newJson);
+            const survey_pdf = new Survey.Model(newJson);
 
             //  Getting the data from browser local storage
-            var storageSt = window.localStorage.getItem(storageName_PA) || "";
+            const storageSt = window.localStorage.getItem(storageName_PA) || "";
 
             if (storageSt) {
-                var res = JSON.parse(storageSt);
+                const res = JSON.parse(storageSt);
 
                 if (res.data) {
                     survey_pdf.data = res.data;
@@ -103,7 +103,7 @@ export function exportToPDF(filename: string, jsonUrl: string, lang: string) {
 function saveSurveyPDF(json, surveyModel, lang, filename) {
     //  From: https://embed.plnkr.co/qoxpmWp2XOUFlRDsk6ta/
 
-    var surveyPDF = new SurveyPDF.SurveyPDF(json, options);
+    const surveyPDF = new SurveyPDF.SurveyPDF(json, options);
     surveyPDF.locale = lang;
     surveyPDF.data = surveyModel.data;
     surveyPDF.showQuestionNumbers = "off";
@@ -118,7 +118,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 
     surveyPDF.onTextMarkdown.add(function (sender, options) {
         //convert the mardown text to html
-        var str = converter.makeHtml(options.text);
+        let str = converter.makeHtml(options.text);
 
         //remove root paragraphs <p></p>
         str = str.substring(3);
@@ -130,7 +130,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 
     surveyPDF.onRenderQuestion.add(function (survey, options) {
         if (options.question.getType() == "file") {
-            let htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion(
+            const htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion(
                 "html",
                 "html_question"
             );
@@ -141,8 +141,8 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
                 options.question.value.forEach(function (fileItem) {
                     htmlQuestion.html += "<li>";
 
-                    var fileSizeInBytes = fileItem.content || 0;
-                    var size = 0;
+                    const fileSizeInBytes = fileItem.content || 0;
+                    let size = 0;
 
                     if (fileSizeInBytes < 1000) {
                         htmlQuestion.html +=
@@ -168,7 +168,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
             }
 
             //  TODO: jf
-            var flatHtml = options.repository.create(
+            const flatHtml = options.repository.create(
                 survey,
                 htmlQuestion,
                 options.controller,
@@ -190,14 +190,14 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
 }
 
 function getPanelElements(element) {
-    var elements = [] as any;
+    const elements = [] as any;
 
     if (!element.hideOnPDF) {
         if (element.type == "panel") {
-            var panelElements = [] as any;
+            const panelElements = [] as any;
 
-            for (var j = 0; j < element.elements.length; j++) {
-                var tempElement = getPanelElements(element.elements[j]);
+            for (let j = 0; j < element.elements.length; j++) {
+                const tempElement = getPanelElements(element.elements[j]);
                 if (tempElement.length > 0) {
                     panelElements.push(tempElement);
                 }

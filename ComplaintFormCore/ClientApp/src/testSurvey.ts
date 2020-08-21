@@ -6,7 +6,7 @@ import * as SurveyInit from "./SurveyInit";
 import * as SurveyHelper from "./surveyHelper";
 import * as SurveyLocalStorage from "./SurveyLocalStorage";
 
-declare var SurveyPDF: any;
+declare let SurveyPDF: any;
 
 declare global {
     var survey: Survey.SurveyModel;
