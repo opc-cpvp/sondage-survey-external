@@ -1,8 +1,8 @@
 extraction:
   csharp:
     index:
-      dotnet:
-        version: 3.1.301
+      buildless: true
+      nuget_restore: false
   javascript:
     index:
       include: "ComplaintFormCore/ClientApp"
