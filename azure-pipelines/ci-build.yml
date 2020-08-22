@@ -1,0 +1,72 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - azure-pipelines/*
+    - ComplaintFormCore/*
+
+pr: none
+
+pool:
+  vmImage: "windows-2019"
+  demands:
+  - npm
+  - msbuild
+
+variables:
+  BuildPlatform: 'any cpu'
+  BuildConfiguration: 'release'
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .NET Core sdk 3.1.301'
+  inputs:
+    version: 3.1.301
+
+- task: DotNetCoreCLI@2
+  displayName: Restore
+  inputs:
+    command: restore
+    projects: '**/*.csproj'
+    vstsFeed: 'ae37b9cd-7264-4cde-ba95-d67ef601a4ce/032a6fcc-4f1f-41d6-8133-52a3bea76c78'
+
+- task: DotNetCoreCLI@2
+  displayName: Build
+  inputs:
+    projects: '**/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/*[Tt]ests/*.csproj'
+    arguments: '--configuration $(BuildConfiguration)'
+
+- task: Npm@1
+  displayName: 'npm install'
+  inputs:
+    workingDir: ComplaintFormCore/ClientApp
+    verbose: false
+
+- task: Npm@1
+  displayName: 'npm run eslint'
+  inputs:
+    command: custom
+    workingDir: ComplaintFormCore/ClientApp
+    verbose: false
+    customCommand: 'run eslint'
+
+- task: MSBuild@1
+  displayName: 'Build solution **/*.sln'
+  inputs:
+    platform: '$(BuildPlatform)'
+    configuration: '$(BuildConfiguration)'
+    msbuildArguments: '/p:DeployOnBuild=true /p:WebPublishMethod=package /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
