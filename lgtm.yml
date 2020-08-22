@@ -1,0 +1,8 @@
+extraction:
+  csharp:
+    index:
+      dotnet:
+        version: 3.1.301
+  javascript:
+    index:
+      include: "ComplaintFormCore/ClientApp"
