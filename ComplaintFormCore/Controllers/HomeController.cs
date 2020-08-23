@@ -19,6 +19,8 @@ namespace ComplaintFormCore.Controllers
             : base(modelAccessor)
         {
             _logger = logger;
+            
+            var unusedVariable = "";
 
             //  The token should be coming from the Complaint table
             string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
