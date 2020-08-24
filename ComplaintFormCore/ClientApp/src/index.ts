@@ -2,7 +2,7 @@
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 
-import * as SurveyInit from "./SurveyInit";
+import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
@@ -18,7 +18,7 @@ declare global {
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function exportToPDF(lang: string): void;
-
+    function checkBoxInfoPopupEvent(checkbox): void;
 }
 
 declare let Symbol;
@@ -64,6 +64,10 @@ declare let Symbol;
 
             SurveyPDF.exportToPDF(filename, jsonUrl, lang);
         };
+
+        globalThis.checkBoxInfoPopupEvent = checkbox => {
+            SurveyInit.checkBoxInfoPopup(checkbox);
+        }
 
         globalThis.initTestSurvey = (lang, token) => {
             const sampleSurvey = new TestSurvey();

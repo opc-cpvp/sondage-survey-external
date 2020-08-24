@@ -1,6 +1,7 @@
 ﻿declare let $: any;
+import { ProblemDetails } from "./problemDetails";
 
-export function getTranslation(questionProperty, lang:string) {
+export function getTranslation(questionProperty, lang: string) {
     if (lang === "fr" && questionProperty.fr) {
         return questionProperty.fr;
     } else if (questionProperty.en) {
@@ -17,7 +18,7 @@ export function HasSelectedItem(params) {
 }
 
 // This function will build a <section> with a list of errors to be displayed at the top of the page
-export function buildValidationErrorMessage(problem, lang: string) {
+export function buildValidationErrorMessage(problem: ProblemDetails, lang: string) {
     let message = "<section role='alert' class='alert alert-danger'>";
     message += "<h2>";
 
@@ -31,39 +32,73 @@ export function buildValidationErrorMessage(problem, lang: string) {
     message += "</h2>";
 
     if (problem.title) {
-        message += problem.title + "\n";
+        message += problem.title + "</br>";
     }
 
     if (problem.detail) {
-        message += problem.detail + "\n";
+        message += problem.detail + "</br>";
     }
 
-    message += "<ul>";
-
-    let errorIndex = 1;
+    message += "<ol>";
 
     if (problem.errors) {
-        problem.errors.forEach(function (key, value) {
+
+        Object.keys(problem.errors).forEach(function (key) {
+
+            let value = problem.errors[key];
+
             message += "<li>";
-            if (lang == "fr") {
-                message += "Erreur " + errorIndex + ": ";
+
+            if (value.errorOwner) {
+                //  This is a validation error
+
+                if (value.errorOwner.getType() === "radiogroup") {
+                    //  We are selecting the first option to href to
+                    message += "<a href='#" + value.errorOwner.inputId + "_0'>";
+                } else {
+                    message += "<a href='#" + value.errorOwner.inputId + "'>";
+                }
+
+                message += value.errorOwner.title;
+                message += " - " + value.getText();
+                message += "</a>";
+            }
+            else if (value.type) {
+                //  This is an unhandled exception
+                message += value.message;
             }
             else {
-                message += "Error " + errorIndex + ": ";
+                //  This is anything else coming the server that is of type ProblemDetails
+                message += value;
             }
-            message += key + " - " + value;
+
             message += "</li>";
-            errorIndex = errorIndex + 1;
         });
     }
 
-    message += "</ul>";
+    message += "</ol>";
     message += "</section>";
 
     return message;
 }
 
-export function printProblemDetails(problem, lang:string) {
-    $("#div_errors_list").html(buildValidationErrorMessage(problem, lang));
-    $("#div_errors_list").show();
+export function printProblemDetails(problem: ProblemDetails, lang: string) {
+
+    const errorSection = document.getElementById("div_errors_list");
+
+    if (errorSection && problem) {
+        errorSection.innerHTML = buildValidationErrorMessage(problem, lang);
+        errorSection.style.display = 'block';
+    }
 }
+
+export function clearProblemDetails() {
+
+    const errorSection = document.getElementById("div_errors_list");
+
+    if (errorSection) {
+        errorSection.innerHTML = "";
+        errorSection.style.display = 'none';
+    }
+}
+

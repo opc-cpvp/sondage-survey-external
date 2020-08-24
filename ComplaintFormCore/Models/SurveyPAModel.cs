@@ -131,10 +131,8 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page 6: page_details_description_of_concerns
         /// </summary>
-        [Required]
         public string DidNoRecordExistChoice { get; set; }
 
-        [Required]
         public bool? DidNoRecordExist
         {
             get 
@@ -169,7 +167,6 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page 6: page_details_description_of_concerns
         /// </summary>
-        [Required]
         public string InstitutionAgreedRequestOnInformalBasis { get; set; }
 
         /// <summary>

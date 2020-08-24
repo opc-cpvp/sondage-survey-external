@@ -19,8 +19,6 @@ declare global {
     var survey: Survey.SurveyModel;
 }
 
-//declare function exportToPDF(s: string, s2: string, s3: string): void;
-
 // This is the total file sizes
 const multipleFileMaxSize = 26214400;
 
@@ -161,7 +159,7 @@ export class PaSurvey {
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-                //globalThis.survey = new Survey.Model(json);
+
                 const survey = new Survey.Model(json);
                 globalThis.survey = survey;
 
@@ -189,7 +187,7 @@ export class PaSurvey {
                     xhr.open(
                         "POST",
                         "/api/PASurvey/Validate?complaintId=" +
-                            sender.complaintId,
+                        sender.complaintId,
                         false
                     );
                     xhr.setRequestHeader(
@@ -354,15 +352,13 @@ export class PaSurvey {
                 });
 
                 survey.onAfterRenderQuestion.add((survey, options) => {
-                    if (
-                        options.question.getType() === "html" &&
-                        options.question.name === "documentation_info"
-                    ) {
+                    if (options.question.getType() === "html" && options.question.name === "documentation_info") {
                         this.buildDocumentationInfoSection(survey, options);
-                    } else if (
-                        options.question.getType() === "file" &&
-                        options.question.value
-                    ) {
+                    }
+                    else if (options.question.getType() === "file" && options.question.value) {
+
+
+
                         // Getting the total size of all uploaded files
                         const totalBytes = this.getTotalFileSize(
                             survey,
@@ -372,8 +368,13 @@ export class PaSurvey {
                         const sizeInMB = (totalBytes / 1000000).toFixed(2);
 
                         // Setting up the <meter> values
-                        $("#sp_total").html(sizeInMB);
-                        $("#meter_upload_total_mb").val(totalBytes);
+                        const spanTotal = document.getElementById("sp_total");
+                        if (spanTotal != null)
+                            spanTotal.innerHTML = sizeInMB;
+
+                        const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
+                        if (meterElement != null)
+                            meterElement.value = totalBytes;
                     }
                 });
 
@@ -383,20 +384,11 @@ export class PaSurvey {
                 });
 
                 survey.onValidateQuestion.add((sender, options) => {
-                    if (
-                        options.question.getType() === "file" &&
-                        options.question.value
-                    ) {
+                    if (options.question.getType() === "file" && options.question.value) {
                         // Getting the total size of all uploaded files
-                        const totalBytes = this.getTotalFileSize(
-                            survey,
-                            options
-                        );
+                        const totalBytes = this.getTotalFileSize(survey, options);
 
-                        if (
-                            multipleFileMaxSize > 0 &&
-                            totalBytes > multipleFileMaxSize
-                        ) {
+                        if (multipleFileMaxSize > 0 && totalBytes > multipleFileMaxSize) {
                             options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, survey.locale);
                             // return false;
                         }
@@ -404,37 +396,29 @@ export class PaSurvey {
                         const sizeInMB = (totalBytes / 1000000).toFixed(2);
 
                         // Setting up the <meter> values
-                        $("#sp_total").html(sizeInMB);
-                        $("#meter_upload_total_mb").val(totalBytes);
+                        const spanTotal = document.getElementById("sp_total");
+                        if (spanTotal != null)
+                            spanTotal.innerHTML = sizeInMB;
+
+                        const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
+                        if (meterElement != null)
+                            meterElement.value = totalBytes;
                     }
                 });
 
                 survey.onServerValidateQuestions.add((sender, options) => {
-                    if (
-                        options.data["documentation_type"] &&
-                        (options.data["documentation_type"] === "upload" ||
-                            options.data["documentation_type"] === "both")
-                    ) {
+                    if (options.data["documentation_type"] && (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both")) {
+
                         //  Validating the documentation page if and only if there is documents to be validated
 
                         const params = { complaintId: sender.complaintId };
-                        const query = Object.keys(params)
-                            .map(
-                                k =>
-                                    `${encodeURIComponent(
-                                        k
-                                    )}=${encodeURIComponent(params[k])}`
-                            )
-                            .join("&");
-                        const uri =
-                            "/api/PASurvey/ValidateAttachments?" + query;
+                        const query = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join("&");
+                        const uri = "/api/PASurvey/ValidateAttachments?" + query;
 
                         fetch(uri, {
                             method: "POST",
                             headers: {
-                                Accept: "application/json",
-                                "Content-Type":
-                                    "application/json; charset=utf-8"
+                                Accept: "application/json", "Content-Type": "application/json; charset=utf-8"
                             },
                             body: JSON.stringify(options.data)
                         })

@@ -127,7 +127,7 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 -) Put a spinner when completing the survey since there is 2 api calls
 -) PDF: Try to have only one json to manage
-
+-) Add "maxLength": value to all the property that have a maximum in the json
 
 ### Mode details required or help required
 

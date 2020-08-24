@@ -1,10 +1,11 @@
-﻿declare let $: any;
+﻿//declare let $: any;
 import * as showdown from "showdown";
 // declare let survey: { locale: string };
 
 import * as SurveyHelper from "./surveyHelper";
-import * as SurveyLocalStorage from "./SurveyLocalStorage";
+import * as SurveyLocalStorage from "./surveyLocalStorage";
 import * as Survey from "survey-vue";
+import { ProblemDetails } from "./problemDetails";
 
 export function initSurvey(): void {
     Survey.JsonObject.metaData.addProperty("survey", {
@@ -187,14 +188,18 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     });
 
     survey.onValidatedErrorsOnCurrentPage.add((sender, options) => {
-        if (options.errors && options.errors.length > 0) {
-            $("#div_errors_list").html(
-                buildErrorMessage(options.errors, survey.locale)
-            );
-            $("#div_errors_list").show();
-        } else {
-            $("#div_errors_list").html("");
-            $("#div_errors_list").hide();
+
+        const errorSection = document.getElementById("div_errors_list");
+
+        if (errorSection) {
+            if (options.errors && options.errors.length > 0) {
+                const problem = new ProblemDetails();
+                problem.detail = "";
+                problem.errors = options.errors;
+                SurveyHelper.printProblemDetails(problem, survey.locale);
+            } else {
+                SurveyHelper.clearProblemDetails();
+            }
         }
     });
 
@@ -247,13 +252,15 @@ export function onCurrentPageChanged_updateNavButtons(
         document.getElementById("btnShowPreview") ?? new HTMLElement();
     showPreviewButton.style.display =
         !survey.isDisplayMode &&
-        (survey.isLastPage || survey.passedPreviewPage === true)
+            (survey.isLastPage || survey.passedPreviewPage === true)
             ? "inline"
             : "none";
 
     const completeButton =
         document.getElementById("btnComplete") ?? new HTMLElement();
     completeButton.style.display = survey.isDisplayMode ? "inline" : "none";
+
+    SurveyHelper.clearProblemDetails();
 }
 
 export function showPreview(survey: Survey.SurveyModel): void {
@@ -274,71 +281,47 @@ export function endSession(): void {
     window.location.href = url;
 }
 
-//  This function will build a <section> with a list of errors to be displayed at the top of the page
-export function buildErrorMessage(errors, lang: string): string {
-    let message = "<section role='alert' class='alert alert-danger'>";
-    message += "<h2>";
-
-    if (lang === "fr") {
-        message += "Le formulaire ne pouvait pas être soumis parce que ";
-    } else {
-        message += "The form could not be submitted because ";
-    }
-
-    message += errors.length;
-
-    if (errors.length > 1) {
-        if (lang === "fr") {
-            message += " erreurs ont été trouvée";
-        } else {
-            message += " errors where found";
-        }
-    } else {
-        if (lang === "fr") {
-            message += " erreur a été trouvée";
-        } else {
-            message += " error was found";
-        }
-    }
-
-    message += "</h2>";
-
-    message += "<ul>";
-
-    $.each(errors, (key: string, value) => {
-        const errorIndex = key + 1;
-
-        message += "<li>";
-
-        if (value.errorOwner.getType() === "radiogroup") {
-            //  We are selecting the first option to href to
-            message += "<a href='#" + value.errorOwner.inputId + "_0'>";
-        } else {
-            message += "<a href='#" + value.errorOwner.inputId + "'>";
-        }
-
-        if (lang === "fr") {
-            message += "Erreur " + errorIndex + ": ";
-        } else {
-            message += "Error " + errorIndex + ": ";
-        }
-
-        message += value.errorOwner.title;
-        message += " - " + value.getText();
-        message += "</a>";
-        message += "</li>";
-    });
-
-    message += "</ul>";
-    message += "</section>";
-
-    return message;
-}
-
 export function switchPanelTitleToH2(): void {
     // TODO: fix this
     //$("h4.sv_p_title").replaceWith(() => {
     //    return "";
     //     //return `<h2>${$(target).text()}</h2>`;
     //});
+}
+
+//  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
+//  It will also remove or add the item being chekced or unchecked from the json data
+export function checkBoxInfoPopup(checkbox) {
+
+    //  Getting the <div> with css class info-popup from the parent <div>
+    var infoPopupDiv = checkbox.closest(".sv_q_checkbox").querySelector('.info-popup');
+    var data = survey.data;
+
+    if (checkbox.checked) {
+
+        if (infoPopupDiv)
+            infoPopupDiv.style.display = 'block';
+
+        //  If the array object of the checkbox list is not set the create it
+        if (!data[checkbox.name]) {
+            data[checkbox.name] = [];
+        }
+
+        //  push the selected value
+        data[checkbox.name].push(checkbox.value);
+    }
+    else {
+
+        if (infoPopupDiv)
+            infoPopupDiv.style.display = 'none';
+
+        //  removing the un-checked item from the json object
+        for (var i = 0; i < data[checkbox.name].length; i++) {
+            if (data[checkbox.name][i] === checkbox.value) {
+                data[checkbox.name].splice(i, 1);
+            }
+        }
+    }
+
+    survey.data = data;
 }
