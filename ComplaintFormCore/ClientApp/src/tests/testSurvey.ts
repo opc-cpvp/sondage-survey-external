@@ -2,9 +2,9 @@
 import * as Survey from "survey-vue";
 declare let $: any; // import $ from "jquery";
 
-import * as SurveyInit from "../SurveyInit";
+import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
-import * as SurveyLocalStorage from "../SurveyLocalStorage";
+import * as SurveyLocalStorage from "../surveyLocalStorage";
 
 declare let SurveyPDF: any;
 

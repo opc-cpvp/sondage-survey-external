@@ -2,7 +2,7 @@
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 
-import * as SurveyInit from "./SurveyInit";
+import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";

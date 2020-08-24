@@ -3,7 +3,7 @@ import * as showdown from "showdown";
 // declare let survey: { locale: string };
 
 import * as SurveyHelper from "./surveyHelper";
-import * as SurveyLocalStorage from "./SurveyLocalStorage";
+import * as SurveyLocalStorage from "./surveyLocalStorage";
 import * as Survey from "survey-vue";
 
 export function initSurvey(): void {
