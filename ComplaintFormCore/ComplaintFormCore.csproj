@@ -82,16 +82,16 @@
     <None Remove="ClientApp\src\problemDetails.ts" />
     <None Remove="ClientApp\src\surveyFile.ts" />
     <None Remove="ClientApp\src\surveyHelper.ts" />
-    <None Remove="ClientApp\src\SurveyInit.ts" />
-    <None Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <None Remove="ClientApp\src\surveyInit.ts" />
+    <None Remove="ClientApp\src\surveyLocalStorage.ts" />
     <None Remove="ClientApp\src\testSurvey.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Remove="ClientApp\src\surveyFile.ts" />
     <TypeScriptCompile Remove="ClientApp\src\surveyHelper.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\SurveyInit.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\surveyInit.ts" />
+    <TypeScriptCompile Remove="ClientApp\src\surveyLocalStorage.ts" />
     <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
     <TypeScriptCompile Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
     <TypeScriptCompile Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
@@ -101,8 +101,8 @@
     <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
-    <WebpackInputs Remove="ClientApp\src\SurveyInit.ts" />
-    <WebpackInputs Remove="ClientApp\src\SurveyLocalStorage.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyInit.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyLocalStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
