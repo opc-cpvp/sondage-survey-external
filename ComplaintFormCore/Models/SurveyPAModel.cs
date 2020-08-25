@@ -569,7 +569,7 @@ namespace ComplaintFormCore.Models
                 {
                     phoneNumber = util.Parse(number, country);
                 }
-                catch (NumberParseException e)
+                catch
                 {
                     // This is not a number, return thats its not good
                     return false;

@@ -45,13 +45,11 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
 
         Object.keys(problem.errors).forEach(function (key) {
 
-            let value = problem.errors[key];
-
-            message += "<li>";
+            let value = problem.errors[key];            
 
             if (value.errorOwner) {
-                //  This is a validation error
-
+                //  This is a validation error from survey.js
+                message += "<li>";
                 if (value.errorOwner.getType() === "radiogroup") {
                     //  We are selecting the first option to href to
                     message += "<a href='#" + value.errorOwner.inputId + "_0'>";
@@ -62,17 +60,27 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
                 message += value.errorOwner.title;
                 message += " - " + value.getText();
                 message += "</a>";
+                message += "</li>";
+            }
+            else if (Array.isArray(value)) {
+                value.forEach(function (item) {
+                    message += "<li>";
+                    message += item;
+                    message += "</li>";
+                })
             }
             else if (value.type) {
                 //  This is an unhandled exception
+                message += "<li>";
                 message += value.message;
+                message += "</li>";
             }
             else {
                 //  This is anything else coming the server that is of type ProblemDetails
+                message += "<li>";
                 message += value;
-            }
-
-            message += "</li>";
+                message += "</li>";
+            }           
         });
     }
 
@@ -89,6 +97,8 @@ export function printProblemDetails(problem: ProblemDetails, lang: string) {
     if (errorSection && problem) {
         errorSection.innerHTML = buildValidationErrorMessage(problem, lang);
         errorSection.style.display = 'block';
+
+        window.scrollTo(0,0);
     }
 }
 

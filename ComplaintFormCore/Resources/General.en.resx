@@ -138,6 +138,12 @@
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FileMissing" xml:space="preserve">
+    <value>File {0} missing on the server.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File not found on the server.</value>
+  </data>
   <data name="NA" xml:space="preserve">
     <value>N/A</value>
   </data>
@@ -170,6 +176,9 @@
   </data>
   <data name="ThisFieldIsRequired" xml:space="preserve">
     <value>This field is required</value>
+  </data>
+  <data name="ValidationIssues" xml:space="preserve">
+    <value>Validation issues</value>
   </data>
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>

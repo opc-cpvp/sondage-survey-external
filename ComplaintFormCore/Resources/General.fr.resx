@@ -174,4 +174,13 @@
   <data name="AnswerLabelShort" xml:space="preserve">
     <value>R</value>
   </data>
+  <data name="FileMissing" xml:space="preserve">
+    <value>Fichier {0} introuvable sur le serveur.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Fichier introuvable sur le serveur.</value>
+  </data>
+  <data name="ValidationIssues" xml:space="preserve">
+    <value>Probleme de validation</value>
+  </data>
 </root>

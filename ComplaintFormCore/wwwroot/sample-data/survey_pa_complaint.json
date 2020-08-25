@@ -76,7 +76,6 @@
             "en": "Which federal government institution is your complaint againts?",
             "fr": "Quelle institution fédérale fait l’objet de votre plainte?"
           },
-          "requiredErrorText": "This field is required remove me",
           "isRequired": true,
           "validators": [
             {

@@ -206,7 +206,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     survey.onGetQuestionTitle.add((sender, options) => {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
-        if (options.question.owner.isRequired) {
+        if (options.question.isRequired) {
             options.title =
                 "<span class='sv_q_required_text'>&ast; </span>" +
                 options.title;

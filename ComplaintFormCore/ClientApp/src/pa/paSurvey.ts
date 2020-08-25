@@ -357,8 +357,6 @@ export class PaSurvey {
                     }
                     else if (options.question.getType() === "file" && options.question.value) {
 
-
-
                         // Getting the total size of all uploaded files
                         const totalBytes = this.getTotalFileSize(
                             survey,
@@ -407,7 +405,8 @@ export class PaSurvey {
                 });
 
                 survey.onServerValidateQuestions.add((sender, options) => {
-                    if (options.data["documentation_type"] && (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both")) {
+
+                    if (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both") {
 
                         //  Validating the documentation page if and only if there is documents to be validated
 
@@ -435,12 +434,12 @@ export class PaSurvey {
                                                 printProblemDetails(problem, sender.locale);
                                             });
                                         } else {
-                                            alert("oopsy");
+                                            console.warn(response);
                                         }
 
                                         break;
                                     default:
-                                        alert("oopsy");
+                                        console.warn(response);
                                 }
                             })
                             .catch(error => {

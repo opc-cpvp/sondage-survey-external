@@ -2,20 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
 using ComplaintFormCore.Exceptions;
 using ComplaintFormCore.Models;
 using ComplaintFormCore.Resources;
-using Hellang.Middleware.ProblemDetails;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Localization;
-using PhoneNumbers;
 
 namespace ComplaintFormCore.Web_Apis
 {
@@ -61,75 +52,95 @@ namespace ComplaintFormCore.Web_Apis
             //valid.Errors.Add("another mykey", new string[] { "more value1", "stuff" });
             //return BadRequest(valid);
 
-            List<SurveyFile> allFiles = files.Documentation_file_upload;
-
-            if(files.Documentation_file_upload_rep != null)
+            if (files.Documentation_type == "upload" || files.Documentation_type == "both")
             {
-                allFiles.AddRange(files.Documentation_file_upload_rep);
-            }
+                List<SurveyFile> allFiles = new List<SurveyFile>();
 
-            OPCProblemDetails problem = ValidateDocumentations(allFiles, files.Documentation_type, complaintId);
+                if(files.Documentation_file_upload != null)
+                {
+                    allFiles.AddRange(files.Documentation_file_upload);
+                }               
 
-            if (problem.Status != 200 || problem.Errors.Count > 0)
-            {
-                problem.Title = "Validation issues";
-                return BadRequest(problem);
+                if (files.Documentation_file_upload_rep != null)
+                {
+                    allFiles.AddRange(files.Documentation_file_upload_rep);
+                }
+
+                if (allFiles.Count > 0)
+                {
+                    long totalSizes = 0;
+                    long multipleFileMaxSize = 26214400;
+
+                    var folderName = Path.Combine("FileUploads", complaintId);
+                    var folderpath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+
+                    if (!Directory.Exists(folderpath))
+                    {
+                        Directory.CreateDirectory(folderpath);
+                    }
+
+                    DirectoryInfo directory = new DirectoryInfo(folderpath);
+
+                    FileInfo[] filesStored = directory.GetFiles();
+
+                    //  We need to make sure the list of files sent to us saved in local storage (in other words the files the users think he is 
+                    //  uploading) are all saved on the server properly with the right size
+                    OPCProblemDetails fileMissingProblem = new OPCProblemDetails
+                    {
+                        Status = 400,
+                        Detail = _localizer.GetLocalizedStringGeneral("FileNotFound"),
+                        Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                    };
+
+                    foreach (SurveyFile file in allFiles)
+                    {
+                        long.TryParse(file.content, out long fileSize);
+
+                        if (fileSize == 0 || filesStored.Where(f => f.Name == file.name && f.Length == fileSize).Any() == false)
+                        {
+                            fileMissingProblem.AddError(_localizer.GetLocalizedStringGeneral("FileNotFound"), string.Format(_localizer.GetLocalizedStringGeneral("FileMissing"), file.name));
+                        }
+                        else
+                        {
+                            //  We are adding to the total file size that we will process later
+                            totalSizes += fileSize;
+                        }
+                    }
+
+                    if (fileMissingProblem.Errors.Count > 0)
+                    {
+                        return BadRequest(fileMissingProblem);
+                    }
+
+                    //  Next step is to validate for total file size.
+                    if (totalSizes > multipleFileMaxSize)
+                    {
+                        OPCProblemDetails problem = new OPCProblemDetails
+                        {
+                            Detail = _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded"),
+                            Status = 400,
+                            Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                        };
+
+                        problem.Errors.Add(_localizer.GetLocalizedStringSubmission("Attachments"), new List<string>() { _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded") });
+
+                        return BadRequest(problem);
+                    }
+                }
+                else
+                {
+                    OPCProblemDetails problem = new OPCProblemDetails
+                    {
+                        Detail = "There is no files uploaded",
+                        Status = 400,
+                        Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                    };
+
+                    return BadRequest(problem);
+                }
             }
 
             return Ok();
-        }
-
-        private OPCProblemDetails ValidateDocumentations(List<SurveyFile> documentationFileUpload, string documentType, string complaintId)
-        {
-            OPCProblemDetails problems = new OPCProblemDetails();
-
-            if (documentType == "upload" || documentType == "both")
-            {
-                OPCProblemDetails attachmentSizeProblems = ValidateAttachmentsSize(documentationFileUpload, complaintId);
-
-                if (attachmentSizeProblems != null)
-                {
-                    problems.Errors.Union(attachmentSizeProblems.Errors);
-                }
-            }
-
-            return problems;
-        }
-
-        private OPCProblemDetails ValidateAttachmentsSize(List<SurveyFile> documentationFileUpload, string complaintId)
-        {
-            long totalSizes = 0;
-            long multipleFileMaxSize = 26214400;
-
-            var folderName = Path.Combine("FileUploads", complaintId);
-            var folderpath = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-            DirectoryInfo directory = new DirectoryInfo(folderpath);
-
-            foreach (var file in directory.GetFiles())
-            {
-                if (documentationFileUpload.Where(f => f.name == file.Name).Any())
-                {
-                    totalSizes += file.Length;
-                }
-            }
-
-            if (totalSizes > multipleFileMaxSize)
-            {
-                OPCProblemDetails problem = new OPCProblemDetails
-                {
-                    Detail = _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded"),
-                    Status = 400,
-                    Title = ""
-                };
-
-                problem.Errors.Add(_localizer.GetLocalizedStringSubmission("Attachments"), new List<string>() { _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded") });
-
-                return problem;
-            }
-
-            return null;
-        }
-
-      
+        }      
     }
 }
