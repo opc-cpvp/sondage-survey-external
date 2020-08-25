@@ -8,8 +8,8 @@ export class SampleSurvey {
         this._surveyModelUrl = surveyModelUrl;
     }
 
-    public init() {
-        fetch(this._surveyModelUrl)
+    public init(): void {
+        void fetch(this._surveyModelUrl)
             .then(response => response.json())
             .then(json => {
                 const survey = new Survey.Model(json);
@@ -23,11 +23,13 @@ export class SampleSurvey {
                 survey.css = myCss;
 
                 const app = new Vue({
-                    el: `#surveyElement`,
+                    el: "#surveyElement",
                     data: {
-                        survey: survey
+                        survey
                     }
                 });
+
+                return app;
             });
     }
 }

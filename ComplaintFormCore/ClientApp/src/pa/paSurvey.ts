@@ -15,8 +15,8 @@ import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
 import { printProblemDetails, getTranslation } from "../surveyHelper";
 
 declare global {
-    //  This is required for the buttons in the html page to work
-    var survey: Survey.SurveyModel;
+    // TODO: get rid of this global variable
+    var survey: Survey.SurveyModel; // eslint-disable-line no-var
 }
 
 // This is the total file sizes
@@ -30,7 +30,7 @@ export class PaSurvey {
 
         //if (survey.locale === "fr") {
         //    options.question.html +=
-        //        "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
+        //        "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
         //} else {
         //    options.question.html +=
         //        "<p>Based on your responses so far, you should attach the following documents with your complaint:</p>";
@@ -474,50 +474,50 @@ export class PaSurvey {
                 // };
 
                 const defaultData = {
-                    FilingComplaintOnOwnBehalf: "yourself",
-                    RaisedPrivacyToAtipCoordinator: "yes",
-                    WhichFederalGovernementInstitutionComplaintAgainst: "3",
-                    NatureOfComplaint: [
+                    "FilingComplaintOnOwnBehalf": "yourself",
+                    "RaisedPrivacyToAtipCoordinator": "yes",
+                    "WhichFederalGovernementInstitutionComplaintAgainst": "3",
+                    "NatureOfComplaint": [
                         "NatureOfComplaintOther",
                         "NatureOfComplaintDelay",
                         "NatureOfComplaintExtensionOfTime",
                         "NatureOfComplaintCollection"
                     ],
-                    IsEmployeeChoice: "general_public",
-                    AdditionalComments: "iuyiuyuiyiuy",
-                    complainant_HaveYouSubmittedBeforeChoice: "no",
-                    complainant_FormOfAddress: "Mr.",
-                    complainant_FirstName: "jf",
-                    complainant_LastName: "brouillette",
-                    complainant_Email: "jf@hotmail.com",
-                    complainant_MailingAddress: "66",
-                    complainant_City: "gat",
-                    complainant_PostalCode: "J9A2V5",
-                    complainant_DayTimeNumber: "6135656667",
-                    NeedsDisabilityAccommodationChoice: "yes",
-                    DisabilityAccommodation: "iuyuiyiuyiuy",
-                    complainant_Country: "CA",
-                    complainant_ProvinceOrState: "2",
-                    reprensentative_FormOfAddress: "Mr.",
-                    reprensentative_FirstName: "jf",
-                    reprensentative_LastName: "brouillette",
-                    reprensentative_Email: "jf@hotmail.com",
-                    reprensentative_MailingAddress: "66",
-                    reprensentative_City: "gat",
-                    reprensentative_PostalCode: "J9A2V5",
-                    reprensentative_DayTimeNumber: "6135656667",
-                    documentation_type: "none",
-                    WhatWouldResolveYourComplaint: "gsdgdfgsdf",
-                    SummarizeAttemptsToResolvePrivacyMatter:
+                    "IsEmployeeChoice": "general_public",
+                    "AdditionalComments": "iuyiuyuiyiuy",
+                    "complainant_HaveYouSubmittedBeforeChoice": "no",
+                    "complainant_FormOfAddress": "Mr.",
+                    "complainant_FirstName": "jf",
+                    "complainant_LastName": "brouillette",
+                    "complainant_Email": "jf@hotmail.com",
+                    "complainant_MailingAddress": "66",
+                    "complainant_City": "gat",
+                    "complainant_PostalCode": "J9A2V5",
+                    "complainant_DayTimeNumber": "6135656667",
+                    "NeedsDisabilityAccommodationChoice": "yes",
+                    "DisabilityAccommodation": "iuyuiyiuyiuy",
+                    "complainant_Country": "CA",
+                    "complainant_ProvinceOrState": "2",
+                    "reprensentative_FormOfAddress": "Mr.",
+                    "reprensentative_FirstName": "jf",
+                    "reprensentative_LastName": "brouillette",
+                    "reprensentative_Email": "jf@hotmail.com",
+                    "reprensentative_MailingAddress": "66",
+                    "reprensentative_City": "gat",
+                    "reprensentative_PostalCode": "J9A2V5",
+                    "reprensentative_DayTimeNumber": "6135656667",
+                    "documentation_type": "none",
+                    "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
+                    "SummarizeAttemptsToResolvePrivacyMatter":
                         "gdfghjvbcvbcxvbxcvbxbcvb",
-                    DateSentRequests: "qwerewr",
-                    WordingOfRequest: "hgdffgh",
-                    MoreDetailsOfRequest: "oiuyoiuo",
-                    DateOfFinalAnswer: "gfhfjgj",
-                    DidNoRecordExistChoice: "yes",
-                    InstitutionAgreedRequestOnInformalBasis: "not_sure",
-                    SummarizeYourConcernsAndAnyStepsTaken: "poiuiop"
-                };
+                    "DateSentRequests": "qwerewr",
+                    "WordingOfRequest": "hgdffgh",
+                    "MoreDetailsOfRequest": "oiuyoiuo",
+                    "DateOfFinalAnswer": "gfhfjgj",
+                    "DidNoRecordExistChoice": "yes",
+                    "InstitutionAgreedRequestOnInformalBasis": "not_sure",
+                    "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
+                };  
 
                 // Load the initial state
                 loadStateLocally(survey, storageName_PA, defaultData);

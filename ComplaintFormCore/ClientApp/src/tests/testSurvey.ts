@@ -9,7 +9,8 @@ import * as SurveyLocalStorage from "../surveyLocalStorage";
 declare let SurveyPDF: any;
 
 declare global {
-    var survey: Survey.SurveyModel;
+    // TODO: get rid of this global variable
+    var survey: Survey.SurveyModel; // eslint-disable-line no-var
 }
 
 export class TestSurvey {
