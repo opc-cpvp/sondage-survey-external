@@ -23,6 +23,145 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
+    // This function is to build the html for the question of type html documentation_info.
+    // I have tried to get this working in a more elegant way but no success
+    private updateDocumentationInfoSection(survey, options) {
+        //options.question.html = "<section class='alert alert-info col-md-12'>";
+
+        //if (survey.locale === "fr") {
+        //    options.question.html +=
+        //        "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
+        //} else {
+        //    options.question.html +=
+        //        "<p>Based on your responses so far, you should attach the following documents with your complaint:</p>";
+        //}
+
+        //options.question.html += "<ul>";
+
+        //options.question.html += "<li class='mrgn-bttm-sm'>";
+        //if (survey.locale === "fr") {
+        //    options.question.html +=
+        //        "une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)";
+        //} else {
+        //    options.question.html +=
+        //        "a copy of any written responses you received from the organization about your privacy concerns";
+        //}
+        //options.question.html += "</li>";
+
+        //options.question.html += "<li class='mrgn-bttm-sm'>";
+        //if (survey.locale === "fr") {
+        //    options.question.html +=
+        //        "une copie de votre demande à l’institution";
+        //} else {
+        //    options.question.html +=
+        //        "a copy of your request to the institution";
+        //}
+        //options.question.html += "</li>";
+
+        const ul_documentation_info = document.getElementById("ul_documentation_info");
+        if (ul_documentation_info == null)
+            return;
+
+
+        const htmlDiv = <HTMLElement>options.question.html;
+        if (htmlDiv == null)
+            return;
+
+        if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
+
+          
+            const liRaisedPrivacyToAtipCoordinator = ul_documentation_info.querySelector("raisedPrivacyToAtipCoordinator"); //mrgn-bttm-sm
+            
+            //options.question.html += "<li class='mrgn-bttm-sm'>";
+            //if (survey.locale === "fr") {
+            //    options.question.html +=
+            //        "une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution";
+            //} else {
+            //    options.question.html +=
+            //        "a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator";
+            //}
+            //options.question.html += "</li>";
+        }
+
+        if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
+            options.question.html += "<li class='mrgn-bttm-sm'>";
+            if (survey.locale === "fr") {
+                options.question.html +=
+                    "votre formulaire d’autorisation de représentation signé par le plaignant";
+            } else {
+                options.question.html +=
+                    "your representative authorization form signed by the complainant";
+            }
+            options.question.html += "</li>";
+        }
+
+        if (
+            survey.data["NatureOfComplaint"].filter(
+                x => x === "NatureOfComplaintDenialOfAccess"
+            ).length > 0
+        ) {
+            options.question.html += "<li class='mrgn-bttm-sm'>";
+            if (survey.locale === "fr") {
+                options.question.html +=
+                    "vos demandes d’accès et toute réponse reçue de l’institution";
+            } else {
+                options.question.html +=
+                    "your access request(s) and any reply(ies) received from the institution";
+            }
+            options.question.html += "</li>";
+        }
+
+        //options.question.html += "</ul>";
+
+        //if (survey.locale === "fr") {
+        //    options.question.html +=
+        //        "<p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p>";
+        //} else {
+        //    options.question.html +=
+        //        "<p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p>";
+        //}
+
+        //options.question.html += "</section>";
+    }
+
+    private onCurrentPageChanged_saveState(survey) {
+        saveStateLocally(survey, storageName_PA);
+    }
+
+    // This is to get the total number of bytes for both file uploads.
+    // We will compare with the max value later.
+    // Note that the file size is being stored in file.content
+    private getTotalFileSize(survey, options) {
+        let totalBytes = 0;
+
+        options.question.value.forEach(fileItem => {
+            totalBytes = totalBytes + parseInt(fileItem.content);
+        });
+
+        // We need to calculate the total size of all files for both file upload
+
+        if (options.question.name === "documentation_file_upload") {
+            const rep_file_upload = survey.getQuestionByName("documentation_file_upload_rep");
+
+            if (rep_file_upload && rep_file_upload.value) {
+                rep_file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content);
+                });
+            }
+        } else if (options.question.name === "documentation_file_upload_rep") {
+
+            const file_upload = survey.getQuestionByName("documentation_file_upload");
+
+            if (file_upload && file_upload.value) {
+                file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content);
+                });
+            }
+        }
+
+        return totalBytes;
+    }
+
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
         initSurveyFile();
@@ -57,7 +196,8 @@ export class PaSurvey {
                     const xhr = new XMLHttpRequest();
                     xhr.open(
                         "POST",
-                        `/api/PASurvey/Validate?complaintId=${sender.complaintId}`,
+                        "/api/PASurvey/Validate?complaintId=" +
+                        sender.complaintId,
                         false
                     );
                     xhr.setRequestHeader(
@@ -143,7 +283,7 @@ export class PaSurvey {
                     fetch(uri, {
                         method: "POST",
                         headers: {
-                            "Accept": "application/json",
+                            Accept: "application/json",
                             "Content-Type": "application/json; charset=utf-8"
                         },
                         body: JSON.stringify(sender.data)
@@ -221,35 +361,31 @@ export class PaSurvey {
                     // //xhr.send(data);
                 });
 
-                survey.onAfterRenderQuestion.add((survey, options) => {
+                survey.onAfterRenderQuestion.add((sender, options) => {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
-                        this.buildDocumentationInfoSection(survey, options);
-                    } else if (options.question.getType() === "file" && options.question.value) {
+                        this.updateDocumentationInfoSection(sender, options);
+                    }
+                    else if (options.question.getType() === "file" && options.question.value) {
 
                         // Getting the total size of all uploaded files
-                        const totalBytes = this.getTotalFileSize(
-                            survey,
-                            options
-                        );
+                        const totalBytes = this.getTotalFileSize(sender, options);
 
                         const sizeInMB = (totalBytes / 1000000).toFixed(2);
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null) {
+                        if (spanTotal != null)
                             spanTotal.innerHTML = sizeInMB;
-                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null) {
+                        if (meterElement != null)
                             meterElement.value = totalBytes;
-                        }
                     }
                 });
 
                 // Adding particular event for this page only
-                survey.onCurrentPageChanged.add((survey, options) => {
-                    this.onCurrentPageChanged_saveState(survey);
+                survey.onCurrentPageChanged.add((sender, options) => {
+                    this.onCurrentPageChanged_saveState(sender);
                 });
 
                 survey.onValidateQuestion.add((sender, options) => {
@@ -266,14 +402,12 @@ export class PaSurvey {
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null) {
+                        if (spanTotal != null)
                             spanTotal.innerHTML = sizeInMB;
-                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null) {
+                        if (meterElement != null)
                             meterElement.value = totalBytes;
-                        }
                     }
                 });
 
@@ -383,7 +517,7 @@ export class PaSurvey {
                     "DidNoRecordExistChoice": "yes",
                     "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                     "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
-                };
+                };  
 
                 // Load the initial state
                 loadStateLocally(survey, storageName_PA, defaultData);
@@ -401,138 +535,9 @@ export class PaSurvey {
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
-                        survey
+                        survey: survey
                     }
                 });
             });
-    }
-
-    // This function is to build the html for the question of type html documentation_info.
-    // I have tried to get this working in a more elegant way but no success
-    private buildDocumentationInfoSection(survey, options) {
-        options.question.html = "<section class='alert alert-info col-md-12'>";
-
-        if (survey.locale === "fr") {
-            options.question.html +=
-                "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
-        } else {
-            options.question.html +=
-                "<p>Based on your responses so far, you should attach the following documents with your complaint:</p>";
-        }
-
-        options.question.html += "<ul>";
-
-        options.question.html += "<li class='mrgn-bttm-sm'>";
-        if (survey.locale === "fr") {
-            options.question.html +=
-                "une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)";
-        } else {
-            options.question.html +=
-                "a copy of any written responses you received from the organization about your privacy concerns";
-        }
-        options.question.html += "</li>";
-
-        options.question.html += "<li class='mrgn-bttm-sm'>";
-        if (survey.locale === "fr") {
-            options.question.html +=
-                "une copie de votre demande à l’institution";
-        } else {
-            options.question.html +=
-                "a copy of your request to the institution";
-        }
-        options.question.html += "</li>";
-
-        if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution";
-            } else {
-                options.question.html +=
-                    "a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator";
-            }
-            options.question.html += "</li>";
-        }
-
-        if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "votre formulaire d’autorisation de représentation signé par le plaignant";
-            } else {
-                options.question.html +=
-                    "your representative authorization form signed by the complainant";
-            }
-            options.question.html += "</li>";
-        }
-
-        if (
-            survey.data["NatureOfComplaint"].filter(
-                x => x === "NatureOfComplaintDenialOfAccess"
-            ).length > 0
-        ) {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "vos demandes d’accès et toute réponse reçue de l’institution";
-            } else {
-                options.question.html +=
-                    "your access request(s) and any reply(ies) received from the institution";
-            }
-            options.question.html += "</li>";
-        }
-
-        options.question.html += "</ul>";
-
-        if (survey.locale === "fr") {
-            options.question.html +=
-                "<p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p>";
-        } else {
-            options.question.html +=
-                "<p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p>";
-        }
-
-        options.question.html += "</section>";
-    }
-
-    private onCurrentPageChanged_saveState(survey) {
-        saveStateLocally(survey, storageName_PA);
-    }
-
-    // This is to get the total number of bytes for both file uploads.
-    // We will compare with the max value later.
-    // Note that the file size is being stored in file.content
-    private getTotalFileSize(survey, options) {
-        let totalBytes = 0;
-
-        options.question.value.forEach(fileItem => {
-            totalBytes = totalBytes + parseInt(fileItem.content);
-        });
-
-        // We need to calculate the total size of all files for both file upload
-
-        if (options.question.name === "documentation_file_upload") {
-            const rep_file_upload = survey.getQuestionByName(
-                "documentation_file_upload_rep"
-            );
-
-            if (rep_file_upload && rep_file_upload.value) {
-                rep_file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
-                });
-            }
-        } else if (options.question.name === "documentation_file_upload_rep") {
-            const file_upload = survey.getQuestionByName(
-                "documentation_file_upload"
-            );
-
-            if (file_upload && file_upload.value) {
-                file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
-                });
-            }
-        }
-
-        return totalBytes;
     }
 }
