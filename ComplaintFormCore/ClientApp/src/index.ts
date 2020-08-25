@@ -67,7 +67,7 @@ declare let Symbol;
 
         globalThis.checkBoxInfoPopupEvent = checkbox => {
             SurveyInit.checkBoxInfoPopup(checkbox);
-        }
+        };
 
         globalThis.initTestSurvey = (lang, token) => {
             const sampleSurvey = new TestSurvey();

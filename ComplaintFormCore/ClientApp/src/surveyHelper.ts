@@ -1,4 +1,4 @@
-﻿declare let $: any;
+﻿//declare let $: any;
 import { ProblemDetails } from "./problemDetails";
 
 export function getTranslation(questionProperty, lang: string) {
@@ -45,7 +45,7 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
 
         Object.keys(problem.errors).forEach(function (key) {
 
-            let value = problem.errors[key];            
+            const value = problem.errors[key];
 
             if (value.errorOwner) {
                 //  This is a validation error from survey.js
@@ -67,7 +67,7 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
                     message += "<li>";
                     message += item;
                     message += "</li>";
-                })
+                });
             }
             else if (value.type) {
                 //  This is an unhandled exception
@@ -80,7 +80,7 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
                 message += "<li>";
                 message += value;
                 message += "</li>";
-            }           
+            }
         });
     }
 
@@ -96,9 +96,9 @@ export function printProblemDetails(problem: ProblemDetails, lang: string) {
 
     if (errorSection && problem) {
         errorSection.innerHTML = buildValidationErrorMessage(problem, lang);
-        errorSection.style.display = 'block';
+        errorSection.style.display = "block";
 
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 }
 
@@ -108,7 +108,6 @@ export function clearProblemDetails() {
 
     if (errorSection) {
         errorSection.innerHTML = "";
-        errorSection.style.display = 'none';
+        errorSection.style.display = "none";
     }
 }
-

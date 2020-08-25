@@ -5,9 +5,7 @@
     status: string;
     type: string;
     instance: string;
-    errors: any
-
-
+    errors: any;
 
     constructor(private problem?: ProblemDetails) {
         this.detail = "";

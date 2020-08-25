@@ -4,21 +4,21 @@ export class WidgetCheckboxHtml {
 
     public init() {
 
-        var widget = {
-            //the widget name. It should be unique and written in lowcase.
+        const widget = {
+            //  the widget name. It should be unique and written in lowcase.
             name: "checkboxwithhtmlinfo",
-            //the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder
+            //  the widget title. It is how it will appear on the toolbox of the SurveyJS Editor/Builder
             title: "Checkbox list with addtional Html info",
             iconName: "",
 
             widgetIsLoaded: function () {
-                //If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
+                //  If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
                 return true;
             },
 
             isFit: function (question) {
                 //  This is a match for checkboxes that have addtionnal Html information to show when an item is clicked and not in 'preview' mode
-                return question.getType() === 'checkbox' && question.hasHtmlAddtionalInfo && !question.isReadOnly;
+                return question.getType() === "checkbox" && question.hasHtmlAddtionalInfo && !question.isReadOnly;
             },
 
             activatedByChanged: function (activatedBy) {
@@ -33,47 +33,59 @@ export class WidgetCheckboxHtml {
             },
 
             isDefaultRender: false,
-            //htmlTemplate: "<div><input /><button></button></div>",
+            //  htmlTemplate: "<div><input /><button></button></div>",
 
-            //The main function, rendering and two-way binding
+            //  The main function, rendering and two-way binding
             afterRender: function (question, el) {
 
-                var outputHTML = "";
-                var allCheckboxes = question.choices;
+                let outputHTML = "";
+                const allCheckboxes = question.choices;
 
                 //  This is where each checkbox item is being created
 
                 allCheckboxes.forEach(function (row, index, rows) {
 
                     //  the checked flag is based on incoming (or existing) json data
-                    var isChecked = false;
-                    if (question.data && question.data.data && question.data.data[question.name] && question.data.data[question.name].includes(row.value)) {
+                    let isChecked = false;
+
+                    if (question.data && question.data.data && question.data.data[question.name]
+                        && question.data.data[question.name].includes(row.value)) {
                         isChecked = true;
                     }
 
-                    outputHTML += "<div class='sv_q_checkbox sv-q-col-1'>" +
-                        "   <label class='sv_q_checkbox_label'>" +
-                        "   <input type='checkbox' name='" + question.name + "' value='" + row.value + "' aria-required='true' aria-label='" + row.text + "' class='sv_q_checkbox_control_item' onclick='checkBoxInfoPopup(this)' ";
+                    outputHTML += "<div class='sv_q_checkbox sv-q-col-1'>";
+                    outputHTML += "<label class='sv_q_checkbox_label'>";
+                    outputHTML += "<input type = 'checkbox' name = '" + question.name + "' value = '" + row.value + "'";
+                    outputHTML += " aria-required='true' aria-label='" + row.text + "'";
+                    outputHTML += " class='sv_q_checkbox_control_item' ";
+                    outputHTML += " onclick = 'checkBoxInfoPopup(this)' ";
 
                     if (isChecked) {
-                        outputHTML = outputHTML + " checked "
+                        outputHTML += " checked "
                     }
 
-                    outputHTML = outputHTML + "/>";
+                    outputHTML += "/>"; // closing input tag
 
-                    outputHTML = outputHTML + "<span class='checkbox-material'><span class='check'></span></span >    <span class='sv_q_checkbox_control_label'><span style='position: static;'><span style='position: static;'>" + row.text + "</span></span></span>" +
-                        "   </label>";
+                    outputHTML += " <span class='checkbox-material'>";
+                    outputHTML += "<span class='check'></span>";
+                    outputHTML += "</span>";
+                    outputHTML += "<span class='sv_q_checkbox_control_label'>";
+                    outputHTML += "<span style='position: static;'>";
+                    outputHTML += "<span style='position: static;'>" + row.text + "</span>";
+                    outputHTML += "</span>";
+                    outputHTML += "</span>";
+                    outputHTML += "</label>";
 
                     //  question.isReadOnly means we are in 'Preview' mode so we don't want to display the additional information in preview
                     if (!question.isReadOnly && row.htmlAdditionalInfo) {
 
                         //  This is where we are adding the additionnal information. 
                         //  Putting the <div> wrapper here is probably better than putting it in the json
-                        outputHTML += "<div class='info-popup alert alert-info' style='display: " + (isChecked ? 'block' : 'none') + ";'>";
+                        outputHTML += "<div class='info-popup alert alert-info' style='display: " + (isChecked ? "block" : "none") + ";'>";
 
-                        var rowText = "";
+                        let rowText = "";
 
-                        if (question.survey.locale == 'fr' && row.htmlAdditionalInfo.fr) {
+                        if (question.survey.locale === "fr" && row.htmlAdditionalInfo.fr) {
                             rowText = row.htmlAdditionalInfo.fr;
                         }
                         else if (row.htmlAdditionalInfo.en) {
@@ -87,7 +99,7 @@ export class WidgetCheckboxHtml {
                         outputHTML += "</div>";
                     }
 
-                    outputHTML = outputHTML + "</div>";
+                    outputHTML += "</div>";
 
                 });
 
@@ -95,7 +107,7 @@ export class WidgetCheckboxHtml {
             }
         }
 
-        //Register our widget in singleton custom widget collection
+        //  Register our widget in singleton custom widget collection
         Survey.CustomWidgetCollection.Instance.addCustomWidget(widget, "customtype");
     }
 }

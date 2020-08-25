@@ -23,105 +23,36 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
-    // This function is to build the html for the question of type html documentation_info.
-    // I have tried to get this working in a more elegant way but no success
+    // This function is to update the html for the question of type html named 'documentation_info'.
+    // It will removed the hidden css on some of the <li> depending on some conditions
     private updateDocumentationInfoSection(survey, options) {
-        //options.question.html = "<section class='alert alert-info col-md-12'>";
-
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
-        //} else {
-        //    options.question.html +=
-        //        "<p>Based on your responses so far, you should attach the following documents with your complaint:</p>";
-        //}
-
-        //options.question.html += "<ul>";
-
-        //options.question.html += "<li class='mrgn-bttm-sm'>";
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)";
-        //} else {
-        //    options.question.html +=
-        //        "a copy of any written responses you received from the organization about your privacy concerns";
-        //}
-        //options.question.html += "</li>";
-
-        //options.question.html += "<li class='mrgn-bttm-sm'>";
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "une copie de votre demande à l’institution";
-        //} else {
-        //    options.question.html +=
-        //        "a copy of your request to the institution";
-        //}
-        //options.question.html += "</li>";
 
         const ul_documentation_info = document.getElementById("ul_documentation_info");
-        if (ul_documentation_info == null)
+        if (ul_documentation_info == null) {
             return;
-
-
-        const htmlDiv = <HTMLElement>options.question.html;
-        if (htmlDiv == null)
-            return;
+        }
 
         if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
 
-          
-            const liRaisedPrivacyToAtipCoordinator = ul_documentation_info.querySelector("raisedPrivacyToAtipCoordinator"); //mrgn-bttm-sm
-            
-            //options.question.html += "<li class='mrgn-bttm-sm'>";
-            //if (survey.locale === "fr") {
-            //    options.question.html +=
-            //        "une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution";
-            //} else {
-            //    options.question.html +=
-            //        "a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator";
-            //}
-            //options.question.html += "</li>";
+            const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
         }
 
         if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "votre formulaire d’autorisation de représentation signé par le plaignant";
-            } else {
-                options.question.html +=
-                    "your representative authorization form signed by the complainant";
+            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
             }
-            options.question.html += "</li>";
         }
 
-        if (
-            survey.data["NatureOfComplaint"].filter(
-                x => x === "NatureOfComplaintDenialOfAccess"
-            ).length > 0
-        ) {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "vos demandes d’accès et toute réponse reçue de l’institution";
-            } else {
-                options.question.html +=
-                    "your access request(s) and any reply(ies) received from the institution";
+        if (survey.data["NatureOfComplaint"].filter(x => x === "NatureOfComplaintDenialOfAccess").length > 0) {
+            const liNode = ul_documentation_info.querySelector(".natureOfComplaint");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
             }
-            options.question.html += "</li>";
         }
-
-        //options.question.html += "</ul>";
-
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "<p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p>";
-        //} else {
-        //    options.question.html +=
-        //        "<p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p>";
-        //}
-
-        //options.question.html += "</section>";
     }
 
     private onCurrentPageChanged_saveState(survey) {
@@ -135,7 +66,7 @@ export class PaSurvey {
         let totalBytes = 0;
 
         options.question.value.forEach(fileItem => {
-            totalBytes = totalBytes + parseInt(fileItem.content);
+            totalBytes = totalBytes + parseInt(fileItem.content, 10);
         });
 
         // We need to calculate the total size of all files for both file upload
@@ -145,7 +76,7 @@ export class PaSurvey {
 
             if (rep_file_upload && rep_file_upload.value) {
                 rep_file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
                 });
             }
         } else if (options.question.name === "documentation_file_upload_rep") {
@@ -154,7 +85,7 @@ export class PaSurvey {
 
             if (file_upload && file_upload.value) {
                 file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
                 });
             }
         }
@@ -215,59 +146,6 @@ export class PaSurvey {
                     xhr.send(data);
                 });
 
-                // //survey
-                // //    .onCompleting
-                // //    .add(function (sender, options) {
-
-                // //        options.allowComplete = true;
-
-                // //        //let data = JSON.stringify(sender.data, null, 3);
-
-                // //        var params = { 'complaintId': sender.complaintId }
-                // //        let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
-                // //        var uri = "/api/PASurvey/Validate?" + query;
-
-                // //        const validate = async () => {
-
-                // //            const response = await fetch(uri, {
-                // //                method: 'POST',
-                // //                headers: {
-                // //                    'Accept': 'application/json',
-                // //                    'Content-Type': 'application/json; charset=utf-8'
-                // //                },
-                // //                body: JSON.stringify(sender.data)
-
-                // //            });
-
-                // //            const validationResponse = await response;
-
-                // //            if (validationResponse.status === 200) {
-                // //                options.allowComplete = false;
-
-                // //            }
-                // //            else {
-                // //                if (validationResponse.json) {
-                // //                    validationResponse.json().then(function (error) {
-                // //                        printProblemDetails(error);
-                // //                    });
-                // //                }
-                // //                else {
-                // //                    alert("oopsy");
-                // //                }
-
-                // //                //return false;
-                // //            }
-                // //        }
-
-                // //        //    options.allowComplete = validate() === true;
-
-                // //        validate();
-                // //        //options.allowComplete = allowComplete;
-                // //        //validate().catch(function (error) {
-                // //        //    console.warn(error);
-                // //        //});
-                // //    });
-
                 survey.onComplete.add((sender, options) => {
                     const params = { complaintId: sender.complaintId };
                     const query = Object.keys(params)
@@ -292,17 +170,20 @@ export class PaSurvey {
                             switch (response.status) {
                                 case 200:
                                     //  Hide the navigation buttons
-                                    $("#div_navigation").hide();
+                                    const div_navigation = document.getElementById("div_navigation");
+                                    if (div_navigation) {
+                                        div_navigation.style.display = "none";
+                                    }
 
-                                    // //var response = JSON.parse(completeResponse);
+                                    //  Update the file reference number
+                                    response.json().then(function (responseData) {
 
-                                    // ////  Update the file reference number
-                                    // //completeResponse.json().then(function (response) {
-                                    // //    $("#sp_survey_file_number").html(response.referenceNumber);
-                                    // //});
+                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                        if (sp_survey_file_number) {
+                                            sp_survey_file_number.innerHTML = responseData.referenceNumber;
+                                        }
+                                    });
 
-                                    // //survey.clear(true, true);
-                                    // //clearLocalStorage(storageName_PA);
                                     saveStateLocally(survey, storageName_PA);
 
                                     console.log(sender.data);
@@ -322,47 +203,13 @@ export class PaSurvey {
                             }
                         })
                         .catch(error => {
-                            // console.warn("Could not upload the file");
                             console.warn(error);
                         });
-
-                    // //let data = JSON.stringify(sender.data, null, 3);
-
-                    // //var xhr = new XMLHttpRequest();
-                    // //xhr.open("POST", "/api/PASurvey/Complete?complaintId=" + sender.complaintId);
-                    // //xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                    // //xhr.onload = xhr.onerror = function (result) {
-
-                    // //    if (xhr.status === 200) {
-
-                    // //        //  Hide the navigation buttons
-                    // //        $("#div_navigation").hide();
-
-                    // //        //  Update the file reference number
-                    // //        var response = JSON.parse(xhr.response);
-                    // //        $("#sp_survey_file_number").html(response.referenceNumber);
-
-                    // //        //survey.clear(true, true);
-                    // //        //clearLocalStorage(storageName_PA);
-                    // //        saveStateLocally(survey, storageName_PA);
-
-                    // //        console.log(data);
-
-                    // //    } else if (xhr.status === 400) {
-
-                    // //        var response = JSON.parse(xhr.response);
-                    // //        alert(response.detail);
-                    // //    }
-                    // //    else {
-                    // //        //Error
-                    // //        options.showDataSavingError(); // you may pass a text parameter to show your own text
-                    // //    }
-                    // //};
-                    // //xhr.send(data);
                 });
 
                 survey.onAfterRenderQuestion.add((sender, options) => {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
+
                         this.updateDocumentationInfoSection(sender, options);
                     }
                     else if (options.question.getType() === "file" && options.question.value) {
@@ -374,12 +221,14 @@ export class PaSurvey {
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null)
+                        if (spanTotal != null) {
                             spanTotal.innerHTML = sizeInMB;
+                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null)
+                        if (meterElement != null) {
                             meterElement.value = totalBytes;
+                        }
                     }
                 });
 
@@ -402,12 +251,14 @@ export class PaSurvey {
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null)
+                        if (spanTotal != null) {
                             spanTotal.innerHTML = sizeInMB;
+                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null)
+                        if (meterElement != null) {
                             meterElement.value = totalBytes;
+                        }
                     }
                 });
 
@@ -517,7 +368,7 @@ export class PaSurvey {
                     "DidNoRecordExistChoice": "yes",
                     "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                     "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
-                };  
+                };
 
                 // Load the initial state
                 loadStateLocally(survey, storageName_PA, defaultData);
@@ -529,8 +380,8 @@ export class PaSurvey {
                 onCurrentPageChanged_updateNavButtons(survey);
 
                 // DICTIONNARY - this is just to show how to use localization
-                // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)");
-                // survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)");
+                // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)...");
+                // survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-...");
 
                 const app = new Vue({
                     el: "#surveyElement",

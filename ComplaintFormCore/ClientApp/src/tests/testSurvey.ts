@@ -24,7 +24,7 @@ export class TestSurvey {
 
         SurveyInit.initSurvey();
 
-        //const jsonUrl = "/sample-data/survey_pa_complaint.json";
+        // const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
         fetch(jsonUrl)
             .then(response => response.json())

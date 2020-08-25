@@ -1,6 +1,4 @@
-﻿//declare let $: any;
-import * as showdown from "showdown";
-// declare let survey: { locale: string };
+﻿import * as showdown from "showdown";
 
 import * as SurveyHelper from "./surveyHelper";
 import * as SurveyLocalStorage from "./surveyLocalStorage";
@@ -92,6 +90,7 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
     survey.showNavigationButtons = false;
     survey.showCompletedPage = true;
 
+    //  This is only working in code, not working directly in the json
     if (survey.locale === "fr") {
         survey.requiredText = "(obligatoire)";
     } else {
@@ -101,14 +100,8 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     survey.onAfterRenderPage.add((sender, options) => {
-        // Change page title to <h1>.
-        // This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
-        //     because the tag <h4> is not there anymore and during the preview, the page titles are being transformed into <h2>
-        // switchPageTitleToH1();
 
         window.document.title = options.page.title;
-
-        switchPanelTitleToH2();
     });
 
     // THIS IS THE SHOWDOWN MARKDOWN CODE***************
@@ -207,9 +200,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
-            options.title =
-                "<span class='sv_q_required_text'>&ast; </span>" +
-                options.title;
+            options.title = "<span class='sv_q_required_text'>&ast; </span>" + options.title;
         }
     });
 
@@ -281,26 +272,21 @@ export function endSession(): void {
     window.location.href = url;
 }
 
-export function switchPanelTitleToH2(): void {
-    // TODO: fix this
-    //$("h4.sv_p_title").replaceWith(() => {
-    //    return "";
-    //     //return `<h2>${$(target).text()}</h2>`;
-    //});
-}
-
 //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
 //  It will also remove or add the item being chekced or unchecked from the json data
 export function checkBoxInfoPopup(checkbox) {
 
     //  Getting the <div> with css class info-popup from the parent <div>
-    var infoPopupDiv = checkbox.closest(".sv_q_checkbox").querySelector('.info-popup');
-    var data = survey.data;
+    const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLInputElement;
+    const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
+    const data = survey.data;
 
     if (checkbox.checked) {
 
-        if (infoPopupDiv)
-            infoPopupDiv.style.display = 'block';
+        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+        if (infoPopupDiv) {
+            infoPopupDiv.style.display = "block";
+        }
 
         //  If the array object of the checkbox list is not set the create it
         if (!data[checkbox.name]) {
@@ -309,14 +295,15 @@ export function checkBoxInfoPopup(checkbox) {
 
         //  push the selected value
         data[checkbox.name].push(checkbox.value);
-    }
-    else {
+    } else {
 
-        if (infoPopupDiv)
-            infoPopupDiv.style.display = 'none';
+         //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+        if (infoPopupDiv) {
+            infoPopupDiv.style.display = "none";
+        }
 
         //  removing the un-checked item from the json object
-        for (var i = 0; i < data[checkbox.name].length; i++) {
+        for (let i = 0; i < data[checkbox.name].length; i++) {
             if (data[checkbox.name][i] === checkbox.value) {
                 data[checkbox.name].splice(i, 1);
             }
