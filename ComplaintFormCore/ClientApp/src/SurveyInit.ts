@@ -277,12 +277,11 @@ export function endSession(): void {
 export function checkBoxInfoPopup(checkbox): void {
 
     //  Getting the <div> with css class info-popup from the parent <div>
-    const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLInputElement;
+    const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
     const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
     const data = survey.data;
 
     if (checkbox.checked) {
-
         //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
         if (infoPopupDiv) {
             infoPopupDiv.style.display = "block";
@@ -296,7 +295,6 @@ export function checkBoxInfoPopup(checkbox): void {
         //  push the selected value
         data[checkbox.name].push(checkbox.value);
     } else {
-
         //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
         if (infoPopupDiv) {
             infoPopupDiv.style.display = "none";

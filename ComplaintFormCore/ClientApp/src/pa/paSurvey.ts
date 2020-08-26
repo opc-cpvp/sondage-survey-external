@@ -149,12 +149,7 @@ export class PaSurvey {
                 survey.onComplete.add((sender, options) => {
                     const params = { complaintId: sender.complaintId };
                     const query = Object.keys(params)
-                        .map(
-                            k =>
-                                `${encodeURIComponent(k)}=${encodeURIComponent(
-                                    params[k]
-                                )}`
-                        )
+                        .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
                         .join("&");
                     const uri = "/api/PASurvey/Complete?" + query;
 

@@ -37,14 +37,23 @@ namespace ComplaintFormCore.Web_Apis
         [HttpPost]
         public IActionResult Validate([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
         {
+            //ValidationProblemDetails valid = new ValidationProblemDetails();
+            //valid.Detail = "There is errors with the validation, see error list";
+            //valid.Title = "Validation errors";
+            //valid.Errors.Add("mykey", new string[] { "value1", "value2" });
+            //valid.Errors.Add("another mykey", new string[] { "more value1", "stuff" });
+            //return BadRequest(valid);
+
+            //throw new Exception("this is a test exception", new Exception("this is the inner exception"));
+
             return Ok();
         }
 
         [HttpPost]
         public IActionResult ValidateAttachments([FromBody] PAFilePageData files, [FromQuery] string complaintId)
         {
+            //throw new Exception("this is a test exception", new Exception("this is the inner exception"));
 
-            //throw new Exception("glkdfjgldfghldhg", new Exception("this is the inner exception"));
             //ValidationProblemDetails valid = new ValidationProblemDetails();
             //valid.Detail = "There is errors with the validation, see error list";
             //valid.Title = "Validation errors";

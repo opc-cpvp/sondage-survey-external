@@ -1,6 +1,8 @@
 ﻿import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
+import "details-polyfill";  //  Polyfill to open/close the <details> tags
+import "element-closest-polyfill";  //  Polyfill to use Element.closest
 
 import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";

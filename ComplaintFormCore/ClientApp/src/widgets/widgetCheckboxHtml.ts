@@ -21,7 +21,7 @@ export class WidgetCheckboxHtml {
                 return question.getType() === "checkbox" && question.hasHtmlAddtionalInfo && !question.isReadOnly;
             },
 
-            activatedByChanged (activatedBy) {
+            activatedByChanged () {
 
                 //  Add the new property 'hasHtmlInfo' at the checkbox level to indication that
                 //  this is a kind of checkbox with additionnal information displayed as html
@@ -43,7 +43,7 @@ export class WidgetCheckboxHtml {
 
                 //  This is where each checkbox item is being created
 
-                allCheckboxes.forEach((row, index, rows) => {
+                allCheckboxes.forEach((row) => {
 
                     //  the checked flag is based on incoming (or existing) json data
                     let isChecked = false;
@@ -58,7 +58,7 @@ export class WidgetCheckboxHtml {
                     outputHTML += "<input type = 'checkbox' name = '" + question.name + "' value = '" + row.value + "'";
                     outputHTML += " aria-required='true' aria-label='" + row.text + "'";
                     outputHTML += " class='sv_q_checkbox_control_item' ";
-                    outputHTML += " onclick = 'checkBoxInfoPopup(this)' ";
+                    outputHTML += " onchange = 'checkBoxInfoPopup(this)' ";
 
                     if (isChecked) {
                         outputHTML += " checked ";

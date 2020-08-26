@@ -119,6 +119,7 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 -) Test on Internet Explorer
 	- the whole file preview thing is not working as well as the html "meter" object
+	
 
 -) Put a spinner when completing the survey since there is 2 api calls
 -) PDF: Try to have only one json to manage
@@ -178,6 +179,11 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Attachments are missing
 	- Remove menu button when finished with the bugs
 29) Set the navigation buttons to be invisble by default
+30) IE;
+	- Details-summary tags not working. (fixed using a polyfill > details-polyfill)
+	- Chekcboxes with html don't work. 
+		i) Element.closest not supported by IE (fixed using the polyfill -> element-closest-polyfill)
+		2) Use onchange event instead of onclick on the input
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

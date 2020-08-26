@@ -29,7 +29,7 @@ export class WidgetCommentHtml {
             //  property - it means that it will activated if a property of the existing question type is set to particular value, for example inputType = "date"
             //  type - you are changing the behaviour of entire question type. For example render radiogroup question differently, have a fancy radio buttons
             //  customType - you are creating a new type, like in our example "textwithbutton"
-            activatedByChanged (activatedBy) {
+            activatedByChanged () {
 
                 //  Add new property(s)
                 Survey.JsonObject.metaData.addProperties("comment", [
@@ -44,7 +44,7 @@ export class WidgetCommentHtml {
             //  htmlTemplate: "<div></div>",
 
             //  The main function, rendering and two-way binding
-            afterRender (question, el) {
+            afterRender (question) {
 
                 // NOTE:    This is where we are setting the "description" property from the htmldescription.
                 //          At the moment I do not know why the html gets parse as html but it works! Magic.
@@ -52,7 +52,7 @@ export class WidgetCommentHtml {
 
                     let description = "";
 
-                    if (question.survey.locale == "fr" && question.htmldescription.fr) {
+                    if (question.survey.locale === "fr" && question.htmldescription.fr) {
                         description = question.htmldescription.fr;
                     } else if (question.htmldescription.en) {
                         description = question.htmldescription.en;
@@ -62,11 +62,6 @@ export class WidgetCommentHtml {
 
                     question.description = description;
                 }
-            },
-            //  Use it to destroy the widget. It is typically needed by jQuery widgets
-            willUnmount (question, el) {
-                //  We do not need to clear anything in our simple example
-                //  Here is the example to destroy the image picker
             }
         };
 

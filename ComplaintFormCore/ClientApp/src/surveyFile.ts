@@ -17,20 +17,15 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 
     survey.onAfterRenderQuestion.add((sender, options) => {
         if (options.question.getType() === "file") {
-
+            
             //  This is to build the file preview, we're not using the native one
             const container = document.createElement("div");
-            container.setAttribute("id", "div_file_" + options.question.name);
             container.className = "my-preview-container";
 
-            let fileElement = options.htmlElement.getElementsByClassName(
-                "sv_q_file"
-            )[0];
+            let fileElement = options.htmlElement.getElementsByClassName("sv_q_file")[0];
 
             if (!fileElement) {
-                fileElement = options.htmlElement.getElementsByClassName(
-                    "sv-file__decorator"
-                )[0];
+                fileElement = options.htmlElement.getElementsByClassName("sv-file__decorator")[0];
             }
 
             fileElement.append(container);
@@ -47,13 +42,10 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
     });
 
     survey.onUploadFiles.add((sender, options) => {
-        options.files.forEach(file => {
+        options.files.forEach((file: File) => {
             let newFilename = file.name;
 
-            if (
-                options.question.value &&
-                options.question.value.some(e => e.name === file.name)
-            ) {
+            if (options.question.value && options.question.value.some(e => e.name === file.name)) {
                 // Checking for files with the same name. We don't want that because when we
                 // 'removed' a file, all files with the same name are being deleted. This
                 // could be solved if the file property "storeDataAsText" was set to false
@@ -61,13 +53,12 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                 // the local storage. If a duplicate is found we are just adding a timstamp.
                 // It is way easier then setting up errors on the question and asking the
                 // user to remove one of the file.
-                alert(
-                    getTranslation(options.question.duplicateFileNameExceptionMessage, sender.locale)
-                );
+                alert(getTranslation(options.question.duplicateFileNameExceptionMessage, sender.locale));
 
                 //  The first part can be just about anything but a
                 //  timestamp is a sure way to avoid collisions
-                newFilename = new Date().getTime().toString() + "_" + file.name;
+                const fileNamePrefix = new Date().getTime().toString();
+                newFilename = `${fileNamePrefix}_${file.name}`;
             }
 
             const formData = new FormData();
@@ -75,14 +66,9 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 
             const params = { complaintId: sender.complaintId };
             const query = Object.keys(params)
-                .map(
-                    k =>
-                        `${encodeURIComponent(k)}=${encodeURIComponent(
-                            params[k]
-                        )}`
-                )
+                .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
                 .join("&");
-            const uri = "/api/File/Upload?" + query;
+            const uri = `/api/File/Upload?${query}`;
 
             fetch(uri, {
                 method: "POST",
@@ -116,16 +102,20 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         case 400:
                         case 500:
                             if (response.json) {
-                                response.json().then(problem => {
-                                    printProblemDetails(problem, sender.locale);
-                                });
+                                response.json()
+                                    .then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    })
+                                    .catch(error => {
+                                        console.warn(error);
+                                    });
                             } else {
-                                alert("oopsy");
+                                console.warn(response);
                             }
                             break;
 
                         default:
-                            alert("oopsy");
+                            console.warn(response);
                     }
                 })
                 .catch(error => {
@@ -140,13 +130,9 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 }
 
 //  This is to build a custom file preview container.
-export function updateFilePreview(
-    survey: Survey.SurveyModel,
-    question,
-    container
-): void {
+export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.QuestionFileModel, container: HTMLDivElement): void {
     container.innerHTML = "";
-
+    alert("3");
     const title = document.createElement("h3");
     title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
     container.append(title);
@@ -155,7 +141,7 @@ export function updateFilePreview(
         const listView = document.createElement("ol");
         let index = 0;
 
-        question.value.forEach(fileItem => {
+        question.value.forEach((fileItem: Survey.Question) => {
             const item = document.createElement("li");
 
             const span = document.createElement("span");
@@ -166,15 +152,14 @@ export function updateFilePreview(
             const button = document.createElement("div");
             button.className = "btn sv-btn sv-file__choose-btn";
 
-            const fileSizeInBytes = fileItem.content || 0;
+            const fileSizeInBytes = fileItem.content as number || 0;
             let size = 0;
 
             if (fileSizeInBytes < 1000) {
-                button.innerText =
-                    fileItem.name + " (" + fileSizeInBytes + " B)";
+                button.innerText = `${fileSizeInBytes} B`;
             } else {
                 size = Math.round(fileSizeInBytes / 1000);
-                button.innerText = fileItem.name + " (" + size + " KB)";
+                button.innerText = `${fileItem.name}(${size} KB`;
             }
 
             const buttonId = `btn_${question.name}_${index}`;
@@ -182,20 +167,18 @@ export function updateFilePreview(
             button.setAttribute("id", buttonId);
 
             button.onclick = () => {
-                fetch(
-                    "/api/File/Get?complaintId=" +
-                        survey.complaintId +
-                        "&filename=" +
-                        fileItem.name
-                )
+                fetch(`/api/File/Get?complaintId=${survey.complaintId as string}&filename=${fileItem.name}`)
                     .then(response => {
                         switch (response.status) {
                             case 400:
                             case 500:
                                 if (response.json) {
-                                    response.json().then(problem => {
-                                        printProblemDetails(problem, survey.locale);
-                                    });
+                                    response.json()
+                                        .then(problem => {
+                                            printProblemDetails(problem, survey.locale);
+                                        }).catch(error => {
+                                            console.warn(error);
+                                        });
                                 }
                                 return response;
 

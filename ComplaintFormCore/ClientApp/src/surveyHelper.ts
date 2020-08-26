@@ -17,82 +17,17 @@ export function HasSelectedItem(params): boolean {
 }
 
 // This function will build a <section> with a list of errors to be displayed at the top of the page
-export function buildValidationErrorMessage(problem: ProblemDetails, lang: string): string {
-    let message = "<section role='alert' class='alert alert-danger'>";
-    message += "<h2>";
-
-    if (lang === "fr") {
-        message +=
-            "Le formulaire ne pouvait pas être soumis parce que des erreurs ont été trouvée";
-    } else {
-        message += "The form could not be submitted because error(s) was found";
-    }
-
-    message += "</h2>";
-
-    if (problem.title) {
-        message += problem.title + "</br>";
-    }
-
-    if (problem.detail) {
-        message += problem.detail + "</br>";
-    }
-
-    message += "<ol>";
-
-    if (problem.errors) {
-
-        Object.keys(problem.errors).forEach(key => {
-
-            const value = problem.errors[key];
-
-            if (value.errorOwner) {
-                //  This is a validation error from survey.js
-                message += "<li>";
-                if (value.errorOwner.getType() === "radiogroup") {
-                    //  We are selecting the first option to href to
-                    message += "<a href='#" + value.errorOwner.inputId + "_0'>";
-                } else {
-                    message += "<a href='#" + value.errorOwner.inputId + "'>";
-                }
-
-                message += value.errorOwner.title;
-                message += " - " + value.getText();
-                message += "</a>";
-                message += "</li>";
-            } else if (Array.isArray(value)) {
-                value.forEach(item => {
-                    message += "<li>";
-                    message += item;
-                    message += "</li>";
-                });
-            } else if (value.type) {
-                //  This is an unhandled exception
-                message += "<li>";
-                message += value.message;
-                message += "</li>";
-            } else {
-                //  This is anything else coming the server that is of type ProblemDetails
-                message += "<li>";
-                message += value;
-                message += "</li>";
-            }
-        });
-    }
-
-    message += "</ol>";
-    message += "</section>";
-
-    return message;
-}
-
 export function printProblemDetails(problem: ProblemDetails, lang: string): void {
 
-    const errorSection = document.getElementById("div_errors_list");
+    const errorSection = document.getElementById("div_errors_list");  
 
     if (errorSection && problem) {
+
+        errorSection.innerHTML = "";
+
         const section = document.createElement("section");
-        section.classList.add("alert alert-danger");
+        section.classList.add("alert");
+        section.classList.add("alert-danger");
 
         const h2Title = document.createElement("H2");
         let textTitle;
@@ -101,10 +36,70 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
         } else {
             textTitle = document.createTextNode("The form could not be submitted because error(s) was found");
         }
-
+        h2Title.appendChild(textTitle);
         section.appendChild(h2Title);
 
-        errorSection.innerHTML = buildValidationErrorMessage(problem, lang);
+        if (problem.title) {
+            const title = document.createElement("p");
+            const titleText = document.createTextNode(problem.title);
+            title.appendChild(titleText);
+            section.appendChild(title);
+        }
+
+        if (problem.detail) {
+            const details = document.createElement("p");
+            const detailsText = document.createTextNode(problem.detail);
+            details.appendChild(detailsText);
+            section.appendChild(details);
+        }
+
+        const list = document.createElement("ol");
+
+        if (problem.errors) {
+
+            Object.keys(problem.errors).forEach(key => {
+
+                const value = problem.errors[key];
+
+                if (value.errorOwner) {
+                    //  This is a validation error from survey.js
+                    const li = document.createElement("li");
+                    const a = document.createElement("a");
+
+                    if (value.errorOwner.getType() === "radiogroup") {
+                        //  We are selecting the first option to href to
+                        a.setAttribute("href", "#" + value.errorOwner.inputId + "_0");
+                    } else {
+                        a.setAttribute("href", "#" + value.errorOwner.inputId);
+                    }
+
+                    a.innerHTML = value.errorOwner.title + " - " + value.getText();
+
+                    li.appendChild(a);
+                    list.appendChild(li);
+                } else if (Array.isArray(value)) {
+                    value.forEach(item => {
+                        const li = document.createElement("li");
+                        li.innerHTML = key + " - " + item;
+                        list.appendChild(li);
+                    });
+                } else if (value.type) {
+                    //  This is an unhandled exception
+                    const li = document.createElement("li");
+                    li.innerHTML = value.message;
+                    list.appendChild(li);
+                } else {
+                    //  This is anything else coming the server that is of type ProblemDetails
+                    const li = document.createElement("li");
+                    li.innerHTML = value;
+                    list.appendChild(li);
+                }
+            });
+        }
+
+        section.appendChild(list);
+
+        errorSection.appendChild(section);
         errorSection.style.display = "block";
 
         window.scrollTo(0, 0);
@@ -119,47 +114,4 @@ export function clearProblemDetails(): void {
         errorSection.innerHTML = "";
         errorSection.style.display = "none";
     }
-}
-
-export function addItemToPrint(item: string): string{
-    if (item && item.length > 0) {
-        return item + "</br>";
-    }
-
-    return "";
-}
-
-export function getLiValue(errors: any): string {
-
-    if (errors) {
-        Object.keys(errors).forEach(key => {
-            const value = errors[key];
-
-            if (value.errorOwner) {
-                //  This is a validation error from survey.js
-                if (value.errorOwner.getType() === "radiogroup") {
-                    //  We are selecting the first option to href to
-                    return "<a href='#" + value.errorOwner.inputId + "_0'>" + value.errorOwner.title + " - " + value.getText() + "</a>";
-                } else {
-                    return "<a href='#" + value.errorOwner.inputId + "'>" + value.errorOwner.title + " - " + value.getText() + "</a>";
-                }
-            } else if (Array.isArray(value)) {
-                value.forEach(item => {
-                    message += "<li>";
-                    message += item;
-                    message += "</li>";
-                });
-            } else if (value.type) {
-                //  This is an unhandled exception
-                return value.message;
-            } else {
-                //  This is anything else coming the server that is of type ProblemDetails
-                return value;
-            }
-        });
-    } else {
-        return "";
-    }
-
-
 }

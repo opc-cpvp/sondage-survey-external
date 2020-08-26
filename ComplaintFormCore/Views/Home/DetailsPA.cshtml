@@ -11,6 +11,7 @@
     {
         return Xsrf.GetAndStoreTokens(Context).RequestToken;
     }
+   
 }
 
 <div id="surveyElement" style="display:inline-block;width:100%;">
@@ -39,7 +40,10 @@
 
     <script src="~/dist/bundle.js"></script>
 
+
+
     <script type="text/javascript">
+
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
