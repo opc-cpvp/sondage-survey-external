@@ -2,7 +2,7 @@
 
 export class WidgetCommentHtml {
 
-    public init() {
+    public init(): void {
         const widget = {
             //  the widget name. It should be unique and written in lowcase.
             name: "commentwithhtmldescription",

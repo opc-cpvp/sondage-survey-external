@@ -274,7 +274,7 @@ export function endSession(): void {
 
 //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
 //  It will also remove or add the item being chekced or unchecked from the json data
-export function checkBoxInfoPopup(checkbox) {
+export function checkBoxInfoPopup(checkbox): void {
 
     //  Getting the <div> with css class info-popup from the parent <div>
     const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLInputElement;

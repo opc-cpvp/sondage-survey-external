@@ -102,7 +102,6 @@
     <TypeScriptCompile Remove="ClientApp\src\surveyLocalStorage.ts" />
     <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
     <TypeScriptCompile Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -115,7 +114,6 @@
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -138,7 +136,7 @@
     <Content Include="ClientApp\src\surveyPDF.ts" />
     <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
     <Content Include="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

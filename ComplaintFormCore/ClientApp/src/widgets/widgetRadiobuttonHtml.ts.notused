@@ -4,7 +4,7 @@ export class WidgetRadiobuttonHtml {
 
     //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
     //  It will also remove or add the item being chekced or unchecked from the json data
-    public radioButtonInfoPopup(elem) {
+    public radioButtonInfoPopup(elem): void {
 
         var parent = $(elem).closest("div");
         var data = survey.data;
@@ -38,7 +38,7 @@ export class WidgetRadiobuttonHtml {
         survey.data = data;
     }
 
-    public init() {
+    public init(): void {
 
         var widget = {
             //the widget name. It should be unique and written in lowcase.
