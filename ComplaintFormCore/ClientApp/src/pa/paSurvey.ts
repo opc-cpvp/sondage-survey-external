@@ -176,7 +176,7 @@ export class PaSurvey {
                                     }
 
                                     //  Update the file reference number
-                                    response.json().then(function (responseData) {
+                                    response.json().then(responseData => {
 
                                         const sp_survey_file_number = document.getElementById("sp_survey_file_number");
                                         if (sp_survey_file_number) {
@@ -211,8 +211,7 @@ export class PaSurvey {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
 
                         this.updateDocumentationInfoSection(sender, options);
-                    }
-                    else if (options.question.getType() === "file" && options.question.value) {
+                    } else if (options.question.getType() === "file" && options.question.value) {
 
                         // Getting the total size of all uploaded files
                         const totalBytes = this.getTotalFileSize(sender, options);
@@ -386,7 +385,7 @@ export class PaSurvey {
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
-                        survey: survey
+                        survey
                     }
                 });
             });

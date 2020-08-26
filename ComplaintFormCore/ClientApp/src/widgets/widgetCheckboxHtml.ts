@@ -11,17 +11,17 @@ export class WidgetCheckboxHtml {
             title: "Checkbox list with addtional Html info",
             iconName: "",
 
-            widgetIsLoaded: function () {
+            widgetIsLoaded () {
                 //  If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded
                 return true;
             },
 
-            isFit: function (question) {
+            isFit (question) {
                 //  This is a match for checkboxes that have addtionnal Html information to show when an item is clicked and not in 'preview' mode
                 return question.getType() === "checkbox" && question.hasHtmlAddtionalInfo && !question.isReadOnly;
             },
 
-            activatedByChanged: function (activatedBy) {
+            activatedByChanged (activatedBy) {
 
                 //  Add the new property 'hasHtmlInfo' at the checkbox level to indication that
                 //  this is a kind of checkbox with additionnal information displayed as html
@@ -36,14 +36,14 @@ export class WidgetCheckboxHtml {
             //  htmlTemplate: "<div><input /><button></button></div>",
 
             //  The main function, rendering and two-way binding
-            afterRender: function (question, el) {
+            afterRender (question, el) {
 
                 let outputHTML = "";
                 const allCheckboxes = question.choices;
 
                 //  This is where each checkbox item is being created
 
-                allCheckboxes.forEach(function (row, index, rows) {
+                allCheckboxes.forEach((row, index, rows) => {
 
                     //  the checked flag is based on incoming (or existing) json data
                     let isChecked = false;
@@ -61,7 +61,7 @@ export class WidgetCheckboxHtml {
                     outputHTML += " onclick = 'checkBoxInfoPopup(this)' ";
 
                     if (isChecked) {
-                        outputHTML += " checked "
+                        outputHTML += " checked ";
                     }
 
                     outputHTML += "/>"; // closing input tag
@@ -79,7 +79,7 @@ export class WidgetCheckboxHtml {
                     //  question.isReadOnly means we are in 'Preview' mode so we don't want to display the additional information in preview
                     if (!question.isReadOnly && row.htmlAdditionalInfo) {
 
-                        //  This is where we are adding the additionnal information. 
+                        //  This is where we are adding the additionnal information.
                         //  Putting the <div> wrapper here is probably better than putting it in the json
                         outputHTML += "<div class='info-popup alert alert-info' style='display: " + (isChecked ? "block" : "none") + ";'>";
 
@@ -87,11 +87,9 @@ export class WidgetCheckboxHtml {
 
                         if (question.survey.locale === "fr" && row.htmlAdditionalInfo.fr) {
                             rowText = row.htmlAdditionalInfo.fr;
-                        }
-                        else if (row.htmlAdditionalInfo.en) {
+                        } else if (row.htmlAdditionalInfo.en) {
                             rowText = row.htmlAdditionalInfo.en;
-                        }
-                        else {
+                        } else {
                             rowText = row.htmlAdditionalInfo;
                         }
 
@@ -105,7 +103,7 @@ export class WidgetCheckboxHtml {
 
                 el.innerHTML = outputHTML;
             }
-        }
+        };
 
         //  Register our widget in singleton custom widget collection
         Survey.CustomWidgetCollection.Instance.addCustomWidget(widget, "customtype");

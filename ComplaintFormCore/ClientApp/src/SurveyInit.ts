@@ -297,7 +297,7 @@ export function checkBoxInfoPopup(checkbox): void {
         data[checkbox.name].push(checkbox.value);
     } else {
 
-         //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
         if (infoPopupDiv) {
             infoPopupDiv.style.display = "none";
         }

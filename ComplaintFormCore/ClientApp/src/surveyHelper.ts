@@ -42,7 +42,7 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
 
     if (problem.errors) {
 
-        Object.keys(problem.errors).forEach(function (key) {
+        Object.keys(problem.errors).forEach(key => {
 
             const value = problem.errors[key];
 
@@ -60,21 +60,18 @@ export function buildValidationErrorMessage(problem: ProblemDetails, lang: strin
                 message += " - " + value.getText();
                 message += "</a>";
                 message += "</li>";
-            }
-            else if (Array.isArray(value)) {
-                value.forEach(function (item) {
+            } else if (Array.isArray(value)) {
+                value.forEach(item => {
                     message += "<li>";
                     message += item;
                     message += "</li>";
                 });
-            }
-            else if (value.type) {
+            } else if (value.type) {
                 //  This is an unhandled exception
                 message += "<li>";
                 message += value.message;
                 message += "</li>";
-            }
-            else {
+            } else {
                 //  This is anything else coming the server that is of type ProblemDetails
                 message += "<li>";
                 message += value;
@@ -94,15 +91,14 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
     const errorSection = document.getElementById("div_errors_list");
 
     if (errorSection && problem) {
-        const section = document.createElement("section") as HTMLElement;
+        const section = document.createElement("section");
         section.classList.add("alert alert-danger");
 
         const h2Title = document.createElement("H2");
         let textTitle;
         if (lang === "fr") {
             textTitle = document.createTextNode("Le formulaire ne pouvait pas être soumis parce que des erreurs ont été trouvée");
-        }
-        else {
+        } else {
             textTitle = document.createTextNode("The form could not be submitted because error(s) was found");
         }
 
@@ -136,7 +132,7 @@ export function addItemToPrint(item: string): string{
 export function getLiValue(errors: any): string {
 
     if (errors) {
-        Object.keys(errors).forEach(function (key) {
+        Object.keys(errors).forEach(key => {
             const value = errors[key];
 
             if (value.errorOwner) {
@@ -147,29 +143,23 @@ export function getLiValue(errors: any): string {
                 } else {
                     return "<a href='#" + value.errorOwner.inputId + "'>" + value.errorOwner.title + " - " + value.getText() + "</a>";
                 }
-            }
-            else if (Array.isArray(value)) {
-                value.forEach(function (item) {
+            } else if (Array.isArray(value)) {
+                value.forEach(item => {
                     message += "<li>";
                     message += item;
                     message += "</li>";
                 });
-            }
-            else if (value.type) {
+            } else if (value.type) {
                 //  This is an unhandled exception
                 return value.message;
-            }
-            else {
+            } else {
                 //  This is anything else coming the server that is of type ProblemDetails
                 return value;
             }
         });
+    } else {
+        return "";
     }
-    else {
-        return ""
-    };
 
 
-
-    
 }

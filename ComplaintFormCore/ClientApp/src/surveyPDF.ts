@@ -116,7 +116,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
     converter.setOption("simpleLineBreaks", true);
     converter.setOption("tasklists", true);
 
-    surveyPDF.onTextMarkdown.add(function (sender, options) {
+    surveyPDF.onTextMarkdown.add((sender, options) => {
         //  convert the mardown text to html
         let str = converter.makeHtml(options.text);
 
@@ -128,7 +128,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
         options.html = str;
     });
 
-    surveyPDF.onRenderQuestion.add(function (survey, options) {
+    surveyPDF.onRenderQuestion.add((survey, options) => {
         if (options.question.getType() === "file") {
 
             const htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion("html", "html_question");
@@ -136,7 +136,7 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
             if (options.question.value && options.question.value.length > 0) {
                 htmlQuestion.html = "<ol>";
 
-                options.question.value.forEach(function (fileItem) {
+                options.question.value.forEach(fileItem => {
                     htmlQuestion.html += "<li>";
 
                     const fileSizeInBytes = fileItem.content || 0;
@@ -165,10 +165,10 @@ function saveSurveyPDF(json, surveyModel, lang, filename) {
             //  TODO: jf
             const flatHtml = options.repository.create(survey,  htmlQuestion,  options.controller, "html");
 
-            return new Promise(function (resolve) {
+            return new Promise(resolve => {
                 flatHtml
                     .generateFlats(options.point)
-                    .then(function (htmlBricks) {
+                    .then(htmlBricks => {
                         options.bricks = htmlBricks;
                         resolve();
                     });

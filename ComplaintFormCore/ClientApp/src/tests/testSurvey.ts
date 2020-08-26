@@ -336,9 +336,9 @@ export class TestSurvey {
                 // ****Event *****************************************************
 
                 const app = new Vue({
-                    el: `#surveyElement`,
+                    el: "#surveyElement",
                     data: {
-                        survey: survey
+                        survey
                     }
                 });
             });

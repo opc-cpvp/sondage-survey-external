@@ -97,20 +97,20 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         case 200:
                             options.callback(
                                 "success",
-                                options.files.map(f => {
-                                    // We cannot store the file content in local storage because of
-                                    // the 5MB storage limit. The problem was with the file size
-                                    // e.g. without file content, there is no way to know the file
-                                    // size. The work around is to store the file size in the
-                                    // 'content' property.
+                                options.files.map(f =>
+                                // We cannot store the file content in local storage because of
+                                // the 5MB storage limit. The problem was with the file size
+                                // e.g. without file content, there is no way to know the file
+                                // size. The work around is to store the file size in the
+                                // 'content' property.
 
-                                    return {
+                                    ({
                                         file: new File([f], newFilename, {
                                             type: f.type
                                         }),
                                         content: f.size.toString()
-                                    };
-                                })
+                                    })
+                                )
                             );
                             break;
                         case 400:
