@@ -101,7 +101,7 @@ export class WidgetCheckboxHtml {
 
     //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
     //  It will also remove or add the item being chekced or unchecked from the json data
-    public checkBoxInfoPopup(checkbox): void {
+    public checkBoxInfoPopup(checkbox: HTMLInputElement): void {
 
         //  Getting the <div> with css class info-popup from the parent <div>
         const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
@@ -138,7 +138,3 @@ export class WidgetCheckboxHtml {
         survey.data = data;
     }
 }
-
-
-
-

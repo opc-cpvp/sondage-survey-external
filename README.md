@@ -8,7 +8,7 @@
 - I didn't find much on StackOverflow but here, I have found a lot of questions/answers https://github.com/surveyjs/survey-library/issues?q=
 - Here is the link to the question I've asked regarding hiding a page on preview: https://github.com/surveyjs/survey-library/issues/2268
 
-### Special lib used
+### Special libs & polyfills used
 
 a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js. 
 	It is used;
@@ -17,11 +17,11 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- the * at the beginning of required questions
 
 b) inputmask.js found at https://unpkg.com/inputmask@5.0.3/dist/inputmask.js. it is used for input mask such phone number or postal code (NOT USED YET)
+c)
 
-### On the Code 
-
-- All code for Survey.js is located in ~\wwwroot\js\survey\
-- I made a copy of survey.vue.js ~\wwwroot\js\survey\survey.vue.OPC.js because I made a few changes and I wanted to keed the original so you can compare with the original.
+### Added Nuget packages
+- Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
+- libphonenumber-csharp already in used in the original project
 
 ### Survey.js Custom Widget
 
@@ -88,10 +88,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 }
 ```
 
-### Added Nuget packages
-- Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
-- libphonenumber-csharp already in used in the original project
-
 ### TODO 
 
 -) Replace the div id="div_errors_list" in body
@@ -118,13 +114,12 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 
 -) Test on Internet Explorer
-	- the whole file preview thing is not working as well as the html "meter" object
-	
+	- the whole file preview thing is not working as well as the html "meter" object	
 
 -) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
 -) PDF: Try to have only one json to manage
 -) Add "maxLength": value to all the property that have a maximum in the json
--) Get rid of the 'survey' global variable 
+-) Get rid of the 'survey' global variable. That causes an issues with lint 
 
 ### Mode details required or help required
  

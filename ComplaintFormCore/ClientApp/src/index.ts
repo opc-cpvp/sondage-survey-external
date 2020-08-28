@@ -8,9 +8,9 @@ import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
-import * as SurveyPDF from "./surveyPDF";
 import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
+import { surveyPdfExport } from "./surveyPDF";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -68,8 +68,8 @@ declare let Symbol;
             //  TODO: somehow the json url must come from the parameter because we can re-use this method
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
             const filename = "survey_export";
-
-            SurveyPDF.exportToPDF(filename, jsonUrl, lang);
+            const pdfClass = new surveyPdfExport();
+            pdfClass.exportToPDF(filename, jsonUrl, lang);
         };
 
         globalThis.initTestSurvey = (lang, token) => {

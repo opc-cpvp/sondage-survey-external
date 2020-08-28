@@ -1,5 +1,5 @@
-﻿import { ProblemDetails } from "./problemDetails";
-import { MultiLanguagePropery } from "./multiLanguageProperty";
+﻿import { ProblemDetails } from "./models/problemDetails";
+import { MultiLanguagePropery } from "./models/multiLanguageProperty";
 import * as Survey from "survey-vue";
 
 export function getTranslation(questionProperty: MultiLanguagePropery, lang: string): string {

@@ -3,7 +3,7 @@
 import * as SurveyHelper from "./surveyHelper";
 import * as SurveyLocalStorage from "./surveyLocalStorage";
 import * as Survey from "survey-vue";
-import { ProblemDetails } from "./problemDetails";
+import { ProblemDetails } from "./models/problemDetails";
 
 export function initSurvey(): void {
     Survey.JsonObject.metaData.addProperty("survey", {
@@ -205,7 +205,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     });
 
     //  Use for our custom navigation
-    survey.onCurrentPageChanged.add((sender) => {
+    survey.onCurrentPageChanged.add(sender => {
         onCurrentPageChanged_updateNavButtons(sender);
     });
 }

@@ -111,7 +111,7 @@
           "name": "RaisedPrivacyToAtipCoordinator",
           "title": {
             "en": "Have you raised your privacy concerns in writing with the institution's [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>Access to Information and Privacy (ATIP) Coordinator</a>?",
-            "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
+            "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l'information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
           },
           "isRequired": true,
           "choices": [
