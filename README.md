@@ -121,10 +121,10 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 	- the whole file preview thing is not working as well as the html "meter" object
 	
 
--) Put a spinner when completing the survey since there is 2 api calls
+-) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
 -) PDF: Try to have only one json to manage
 -) Add "maxLength": value to all the property that have a maximum in the json
-
+-) Get rid of the 'survey' global variable 
 
 ### Mode details required or help required
  

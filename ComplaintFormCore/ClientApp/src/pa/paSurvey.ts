@@ -23,75 +23,6 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
-    // This function is to update the html for the question of type html named 'documentation_info'.
-    // It will removed the hidden css on some of the <li> depending on some conditions
-    private updateDocumentationInfoSection(survey, options) {
-
-        const ul_documentation_info = document.getElementById("ul_documentation_info");
-        if (ul_documentation_info == null) {
-            return;
-        }
-
-        if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
-
-            const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
-
-        if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
-
-        if (survey.data["NatureOfComplaint"].filter(x => x === "NatureOfComplaintDenialOfAccess").length > 0) {
-            const liNode = ul_documentation_info.querySelector(".natureOfComplaint");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
-    }
-
-    private onCurrentPageChanged_saveState(survey) {
-        saveStateLocally(survey, storageName_PA);
-    }
-
-    // This is to get the total number of bytes for both file uploads.
-    // We will compare with the max value later.
-    // Note that the file size is being stored in file.content
-    private getTotalFileSize(survey, options) {
-        let totalBytes = 0;
-
-        options.question.value.forEach(fileItem => {
-            totalBytes = totalBytes + parseInt(fileItem.content, 10);
-        });
-
-        // We need to calculate the total size of all files for both file upload
-
-        if (options.question.name === "documentation_file_upload") {
-            const rep_file_upload = survey.getQuestionByName("documentation_file_upload_rep");
-
-            if (rep_file_upload && rep_file_upload.value) {
-                rep_file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
-                });
-            }
-        } else if (options.question.name === "documentation_file_upload_rep") {
-
-            const file_upload = survey.getQuestionByName("documentation_file_upload");
-
-            if (file_upload && file_upload.value) {
-                file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
-                });
-            }
-        }
-
-        return totalBytes;
-    }
 
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
@@ -125,12 +56,7 @@ export class PaSurvey {
                     const data = JSON.stringify(sender.data, null, 3);
 
                     const xhr = new XMLHttpRequest();
-                    xhr.open(
-                        "POST",
-                        "/api/PASurvey/Validate?complaintId=" +
-                        sender.complaintId,
-                        false
-                    );
+                    xhr.open("POST", `/api/PASurvey/Validate?complaintId="${sender.complaintId as string}`, false);
                     xhr.setRequestHeader(
                         "Content-Type",
                         "application/json; charset=utf-8"
@@ -163,7 +89,7 @@ export class PaSurvey {
                     })
                         .then(response => {
                             switch (response.status) {
-                                case 200:
+                                case 200: {
                                     //  Hide the navigation buttons
                                     const div_navigation = document.getElementById("div_navigation");
                                     if (div_navigation) {
@@ -171,18 +97,21 @@ export class PaSurvey {
                                     }
 
                                     //  Update the file reference number
-                                    response.json().then(responseData => {
-
-                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-                                        if (sp_survey_file_number) {
-                                            sp_survey_file_number.innerHTML = responseData.referenceNumber;
-                                        }
-                                    });
+                                    void response.json()
+                                        .then(responseData => {
+                                            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                            if (sp_survey_file_number) {
+                                                sp_survey_file_number.innerHTML = responseData.referenceNumber;
+                                            }
+                                        }).catch(error => {
+                                            console.warn(error);
+                                        });
 
                                     saveStateLocally(survey, storageName_PA);
 
                                     console.log(sender.data);
                                     break;
+                                }
                                 case 400:
                                 case 500:
                                     if (response.json) {
@@ -281,14 +210,11 @@ export class PaSurvey {
                                         break;
                                     case 400:
                                     case 500:
-                                        if (response.json) {
-                                            response.json().then(problem => {
-                                                printProblemDetails(problem, sender.locale);
-                                            });
-                                        } else {
-                                            console.warn(response);
-                                        }
-
+                                        response.json().then(problem => {
+                                            printProblemDetails(problem, sender.locale);
+                                        }).catch(error => {
+                                            console.warn(error);
+                                        });
                                         break;
                                     default:
                                         console.warn(response);
@@ -384,5 +310,75 @@ export class PaSurvey {
                     }
                 });
             });
+    }
+
+    // This function is to update the html for the question of type html named 'documentation_info'.
+    // It will removed the hidden css on some of the <li> depending on some conditions
+    private updateDocumentationInfoSection(survey, options) {
+
+        const ul_documentation_info = document.getElementById("ul_documentation_info");
+        if (ul_documentation_info == null) {
+            return;
+        }
+
+        if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
+
+            const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+
+        if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
+            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+
+        if (survey.data["NatureOfComplaint"].filter(x => x === "NatureOfComplaintDenialOfAccess").length > 0) {
+            const liNode = ul_documentation_info.querySelector(".natureOfComplaint");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+    }
+
+    private onCurrentPageChanged_saveState(survey) {
+        saveStateLocally(survey, storageName_PA);
+    }
+
+    // This is to get the total number of bytes for both file uploads.
+    // We will compare with the max value later.
+    // Note that the file size is being stored in file.content
+    private getTotalFileSize(survey, options) {
+        let totalBytes = 0;
+
+        options.question.value.forEach(fileItem => {
+            totalBytes = totalBytes + parseInt(fileItem.content, 10);
+        });
+
+        // We need to calculate the total size of all files for both file upload
+
+        if (options.question.name === "documentation_file_upload") {
+            const rep_file_upload = survey.getQuestionByName("documentation_file_upload_rep");
+
+            if (rep_file_upload && rep_file_upload.value) {
+                rep_file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
+                });
+            }
+        } else if (options.question.name === "documentation_file_upload_rep") {
+
+            const file_upload = survey.getQuestionByName("documentation_file_upload");
+
+            if (file_upload && file_upload.value) {
+                file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
+                });
+            }
+        }
+
+        return totalBytes;
     }
 }

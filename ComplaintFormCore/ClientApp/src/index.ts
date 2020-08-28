@@ -57,6 +57,11 @@ declare let Symbol;
             paSurvey.init(jsonUrl, lang, token);
             widgetCheckboxHtml.init();
             widgetCommentHtml.init();
+
+            globalThis.checkBoxInfoPopupEvent = checkbox => {
+                //    const widgetCheckboxHtml = new WidgetCheckboxHtml();
+                widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
+            };
         };
 
         globalThis.exportToPDF = lang => {
@@ -65,10 +70,6 @@ declare let Symbol;
             const filename = "survey_export";
 
             SurveyPDF.exportToPDF(filename, jsonUrl, lang);
-        };
-
-        globalThis.checkBoxInfoPopupEvent = checkbox => {
-            SurveyInit.checkBoxInfoPopup(checkbox);
         };
 
         globalThis.initTestSurvey = (lang, token) => {

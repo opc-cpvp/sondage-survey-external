@@ -8,10 +8,10 @@ import * as SurveyLocalStorage from "../surveyLocalStorage";
 
 declare let SurveyPDF: any;
 
-declare global {
-    // TODO: get rid of this global variable
-    var survey: Survey.SurveyModel; // eslint-disable-line no-var
-}
+//declare global {
+//    // TODO: get rid of this global variable
+//    var survey: Survey.SurveyModel; // eslint-disable-line no-var
+//}
 
 export class TestSurvey {
     public init(jsonUrl: string, lang: string, token: string): void {
@@ -26,7 +26,7 @@ export class TestSurvey {
 
         // const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-        fetch(jsonUrl)
+        void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
                 const survey = new Survey.Model(json);

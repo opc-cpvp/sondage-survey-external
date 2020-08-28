@@ -200,20 +200,18 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
-            options.title = "<span class='sv_q_required_text'>&ast; </span>" + options.title;
+            options.title = `<span class='sv_q_required_text'>&ast;</span>${options.title as string}`;
         }
     });
 
     //  Use for our custom navigation
-    survey.onCurrentPageChanged.add((sender, options) => {
+    survey.onCurrentPageChanged.add((sender) => {
         onCurrentPageChanged_updateNavButtons(sender);
     });
 }
 
 //  Function for updating (show/hide) the navigation buttons
-export function onCurrentPageChanged_updateNavButtons(
-    survey: Survey.SurveyModel
-): void {
+export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel): void {
     //  NOTES:
     //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage
     //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
@@ -272,41 +270,4 @@ export function endSession(): void {
     window.location.href = url;
 }
 
-//  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
-//  It will also remove or add the item being chekced or unchecked from the json data
-export function checkBoxInfoPopup(checkbox): void {
 
-    //  Getting the <div> with css class info-popup from the parent <div>
-    const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
-    const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
-    const data = survey.data;
-
-    if (checkbox.checked) {
-        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
-        if (infoPopupDiv) {
-            infoPopupDiv.style.display = "block";
-        }
-
-        //  If the array object of the checkbox list is not set the create it
-        if (!data[checkbox.name]) {
-            data[checkbox.name] = [];
-        }
-
-        //  push the selected value
-        data[checkbox.name].push(checkbox.value);
-    } else {
-        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
-        if (infoPopupDiv) {
-            infoPopupDiv.style.display = "none";
-        }
-
-        //  removing the un-checked item from the json object
-        for (let i = 0; i < data[checkbox.name].length; i++) {
-            if (data[checkbox.name][i] === checkbox.value) {
-                data[checkbox.name].splice(i, 1);
-            }
-        }
-    }
-
-    survey.data = data;
-}

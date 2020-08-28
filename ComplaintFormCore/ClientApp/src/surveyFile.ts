@@ -17,7 +17,7 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 
     survey.onAfterRenderQuestion.add((sender, options) => {
         if (options.question.getType() === "file") {
-            
+
             //  This is to build the file preview, we're not using the native one
             const container = document.createElement("div");
             container.className = "my-preview-container";
@@ -132,7 +132,7 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 //  This is to build a custom file preview container.
 export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.QuestionFileModel, container: HTMLDivElement): void {
     container.innerHTML = "";
-    alert("3");
+
     const title = document.createElement("h3");
     title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
     container.append(title);

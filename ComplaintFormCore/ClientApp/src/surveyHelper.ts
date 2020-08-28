@@ -1,17 +1,19 @@
 ﻿import { ProblemDetails } from "./problemDetails";
+import { MultiLanguagePropery } from "./multiLanguageProperty";
+import * as Survey from "survey-vue";
 
-export function getTranslation(questionProperty, lang: string): string {
+export function getTranslation(questionProperty: MultiLanguagePropery, lang: string): string {
     if (lang === "fr" && questionProperty.fr) {
         return questionProperty.fr;
     } else if (questionProperty.en) {
         return questionProperty.en;
     } else {
-        return questionProperty;
+        return questionProperty.default;
     }
 }
 
 // Will return true if a dropdown has a selected item otherwise false.
-export function HasSelectedItem(params): boolean {
+export function HasSelectedItem(params: any[]): boolean {
     const value = params[0];
     return value !== "";
 }
@@ -19,7 +21,7 @@ export function HasSelectedItem(params): boolean {
 // This function will build a <section> with a list of errors to be displayed at the top of the page
 export function printProblemDetails(problem: ProblemDetails, lang: string): void {
 
-    const errorSection = document.getElementById("div_errors_list");  
+    const errorSection = document.getElementById("div_errors_list");
 
     if (errorSection && problem) {
 
@@ -59,39 +61,43 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
 
             Object.keys(problem.errors).forEach(key => {
 
-                const value = problem.errors[key];
+                const valueError = problem.errors[key];
 
-                if (value.errorOwner) {
+                if (valueError.errorOwner) {
+
+                    const question = valueError.errorOwner as Survey.Question;
+
                     //  This is a validation error from survey.js
                     const li = document.createElement("li");
                     const a = document.createElement("a");
 
-                    if (value.errorOwner.getType() === "radiogroup") {
+                    if (question.getType() === "radiogroup") {
                         //  We are selecting the first option to href to
-                        a.setAttribute("href", "#" + value.errorOwner.inputId + "_0");
+                        a.setAttribute("href", "#" + question.inputId + "_0");
                     } else {
-                        a.setAttribute("href", "#" + value.errorOwner.inputId);
+                        a.setAttribute("href", "#" + question.inputId);
                     }
 
-                    a.innerHTML = value.errorOwner.title + " - " + value.getText();
+                    a.innerHTML = `${question.title} - ${valueError.getText() as string}`;
 
                     li.appendChild(a);
                     list.appendChild(li);
-                } else if (Array.isArray(value)) {
-                    value.forEach(item => {
+                } else if (Array.isArray(valueError)) {
+                    //  This is ProblemDetails.Errors with multiple value for the same key
+                    valueError.forEach((item: string) => {
                         const li = document.createElement("li");
-                        li.innerHTML = key + " - " + item;
+                        li.innerHTML = `${key} - ${item}`;
                         list.appendChild(li);
                     });
-                } else if (value.type) {
+                } else if (valueError.type) {
                     //  This is an unhandled exception
                     const li = document.createElement("li");
-                    li.innerHTML = value.message;
+                    li.innerHTML = valueError.message;
                     list.appendChild(li);
                 } else {
                     //  This is anything else coming the server that is of type ProblemDetails
                     const li = document.createElement("li");
-                    li.innerHTML = value;
+                    li.innerHTML = valueError;
                     list.appendChild(li);
                 }
             });
