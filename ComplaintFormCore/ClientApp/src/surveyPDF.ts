@@ -71,6 +71,7 @@ export class surveyPdfExport {
         };
 
         originalSurvey.pages.forEach((page: Survey.PageModel) => {
+
             let hideOnPDF = page.getPropertyValue("hideOnPDF");
             if (!hideOnPDF) {
                 hideOnPDF = false;
@@ -86,65 +87,8 @@ export class surveyPdfExport {
                     elements: [] as any
                 };
 
-                page.questions.forEach((question: Survey.Question) => {
-
-                    if (question instanceof Survey.PanelModelBase) {
-
-                        const panelBase = question as Survey.PanelModelBase;
-
-                        hideOnPDF = panelBase.getPropertyValue("hideOnPDF");
-                        if (!hideOnPDF) {
-                            hideOnPDF = false;
-
-                            if (hideOnPDF === false) {
-                                //        panelBase.elements.forEach((panelElement: Survey.Question) => {
-                                //            //this.getPageOrPanelElements(elem);
-                                //            // elements.push(panelElement as Survey.SurveyElement);
-                                //            panel.elements.push(panelElement as Survey.Question);
-                                //        });
-                            }
-                        }
-                    }
-                    else if (question instanceof Survey.QuestionHtmlModel) {
-                        //  Do nothing
-                    }
-                    else if (question instanceof Survey.QuestionRadiogroupModel) {
-
-                        const radioGroup = question as Survey.QuestionRadiogroupModel;
-
-                        const newElement = {
-                            name: question.name,
-                            type: question.getType(),
-                            title: question.title,
-                            choices: radioGroup.choices
-                        };
-
-                        panel.elements.push(newElement);
-                    }
-                    else if (question instanceof Survey.QuestionDropdownModel) {
-
-                        const ddl = question as Survey.QuestionDropdownModel;
-
-                        const newElement = {
-                            name: question.name,
-                            type: question.getType(),
-                            title: question.title,
-                            choices: ddl.choices,
-                            choicesByUrl: ddl.choicesByUrl
-                        };
-
-                        panel.elements.push(newElement);
-                    }
-                    else {
-
-                        const newElement = {
-                            name: question.name,
-                            type: question.getType(),
-                            title: question.title
-                        };
-
-                        panel.elements.push(newElement);
-                    }
+                page.elements.forEach((element: Survey.IElement) => {
+                    this.setElements(panel, element);
                 });
 
                 singlePage.elements.push(panel);
@@ -154,6 +98,78 @@ export class surveyPdfExport {
         root.pages.push(singlePage);
 
         return JSON.stringify(root);
+    }
+
+    private setElements(panel: any, element: Survey.IElement): any {
+
+        if (element instanceof Survey.PanelModelBase) {
+
+            const panelBase = element as Survey.PanelModelBase;
+
+           // if (panelBase.visible) {
+
+                //  'hideOnPDF' is a custom property that the can be set in the json
+                let hideOnPDF = panelBase.getPropertyValue("hideOnPDF");
+                if (!hideOnPDF) {
+                    hideOnPDF = false;
+
+                    if (hideOnPDF === false) {
+                        panelBase.elements.forEach((panelElement: Survey.IElement) => {
+                            this.setElements(panel, panelElement);
+                        });
+                    }
+                }
+            //}
+        }
+        else {
+            let question = element as Survey.Question;
+
+            if (question instanceof Survey.QuestionHtmlModel) {
+                //  Do nothing
+            }
+            else if (question instanceof Survey.QuestionRadiogroupModel) {
+
+                const radioGroup = question as Survey.QuestionRadiogroupModel;
+
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    choices: radioGroup.choices,
+                    visibleIf: question.visibleIf
+                };
+
+                panel.elements.push(newElement);
+            }
+            else if (question instanceof Survey.QuestionDropdownModel) {
+
+                const ddl = question as Survey.QuestionDropdownModel;
+
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    choices: ddl.choices,
+                    choicesByUrl: ddl.choicesByUrl,
+                    visibleIf: question.visibleIf
+                };
+
+                panel.elements.push(newElement);
+            }
+            else {
+
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    visibleIf: question.visibleIf
+                };
+
+                panel.elements.push(newElement);
+            }
+        }
+
+        return;
     }
 
     private buildFilePreview(survey: SurveyPDF.SurveyPDF, options: SurveyPDF.AdornersOptions, lang: string) {

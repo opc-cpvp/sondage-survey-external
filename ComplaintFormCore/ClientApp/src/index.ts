@@ -49,19 +49,21 @@ declare let Symbol;
         globalThis.showPreview = SurveyInit.showPreview;
 
         globalThis.initPaSurvey = (lang, token) => {
-            const paSurvey = new PaSurvey();
-            const widgetCheckboxHtml = new WidgetCheckboxHtml();
-            const widgetCommentHtml = new WidgetCommentHtml();
+
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            paSurvey.init(jsonUrl, lang, token);
+            const widgetCheckboxHtml = new WidgetCheckboxHtml();
             widgetCheckboxHtml.init();
-            widgetCommentHtml.init();
 
-            globalThis.checkBoxInfoPopupEvent = checkbox => {
-                //    const widgetCheckboxHtml = new WidgetCheckboxHtml();
+            globalThis.checkBoxInfoPopupEvent = (checkbox) => {
                 widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
             };
+
+            const paSurvey = new PaSurvey();
+            paSurvey.init(jsonUrl, lang, token);
+
+            const widgetCommentHtml = new WidgetCommentHtml();
+            widgetCommentHtml.init();
         };
 
         globalThis.exportToPDF = lang => {
