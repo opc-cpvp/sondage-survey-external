@@ -156,10 +156,10 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
             let size = 0;
 
             if (fileSizeInBytes < 1000) {
-                button.innerText = `${fileSizeInBytes} B`;
+                button.innerText = `${fileItem.name} (${fileSizeInBytes} B)`;
             } else {
                 size = Math.round(fileSizeInBytes / 1000);
-                button.innerText = `${fileItem.name}(${size} KB`;
+                button.innerText = `${fileItem.name} (${size} KB)`;
             }
 
             const buttonId = `btn_${question.name}_${index}`;

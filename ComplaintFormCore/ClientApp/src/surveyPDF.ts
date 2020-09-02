@@ -106,20 +106,28 @@ export class surveyPdfExport {
 
             const panelBase = element as Survey.PanelModelBase;
 
-           // if (panelBase.visible) {
+            //  'hideOnPDF' is a custom property that the can be set in the json
+            let hideOnPDF = panelBase.getPropertyValue("hideOnPDF");
+            if (!hideOnPDF) {
+                hideOnPDF = false;
 
-                //  'hideOnPDF' is a custom property that the can be set in the json
-                let hideOnPDF = panelBase.getPropertyValue("hideOnPDF");
-                if (!hideOnPDF) {
-                    hideOnPDF = false;
+                if (hideOnPDF === false) {
 
-                    if (hideOnPDF === false) {
-                        panelBase.elements.forEach((panelElement: Survey.IElement) => {
-                            this.setElements(panel, panelElement);
-                        });
-                    }
+                    const innerPanel = {
+                        name: panelBase.name,
+                        type: "panel",
+                        title: panelBase.title,
+                        visibleIf: panelBase.visibleIf,
+                        elements: [] as any
+                    };
+
+                    panelBase.elements.forEach((panelElement: Survey.IElement) => {
+                        this.setElements(innerPanel, panelElement);
+                    });
+
+                    panel.elements.push(innerPanel);
                 }
-            //}
+            }
         }
         else {
             let question = element as Survey.Question;
@@ -156,6 +164,21 @@ export class surveyPdfExport {
 
                 panel.elements.push(newElement);
             }
+            else if (question instanceof Survey.QuestionCheckboxModel) {
+
+                const chk = question as Survey.QuestionCheckboxModel;
+
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    choices: chk.choices,
+                    choicesByUrl: chk.choicesByUrl,
+                    visibleIf: question.visibleIf
+                };
+
+                panel.elements.push(newElement);
+            }
             else {
 
                 const newElement = {
@@ -186,10 +209,10 @@ export class surveyPdfExport {
                 let size = 0;
 
                 if (fileSizeInBytes < 1000) {
-                    htmlQuestion.html += `${fileSizeInBytes} B`;
+                    htmlQuestion.html += `${fileItem.name} (${fileSizeInBytes} B)`;
                 } else {
                     size = Math.round(fileSizeInBytes / 1000);
-                    htmlQuestion.html += `${fileItem.name}(${size} KB`;
+                    htmlQuestion.html += `${fileItem.name} (${size} KB)`;
                 }
 
                 htmlQuestion.html += "</li>";
@@ -248,7 +271,19 @@ export class surveyPdfExport {
             options.html = str;
         });
 
+        surveyPDF.onRenderPanel.add((survey, options) => {
+            console.log(options.panel.name + ": " + options.panel.visibleIf);
+            if (options.panel.isVisible == false) {
+                 options.panel.delete();
+            }
+        });
+
         surveyPDF.onRenderQuestion.add((survey, options) => {
+
+            if (options.question.isVisible == false) {
+                options.question.clearValue();
+            }
+
             if (options.question.getType() === "file") {
                 return this.buildFilePreview(survey, options, lang);
             }

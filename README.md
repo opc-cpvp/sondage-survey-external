@@ -1,5 +1,12 @@
 # online-complaint-form-pa
 
+### ATTENTION/BE CAREFUll
+When updating the survey package (survey-vue) because these guys are not careful when updating. 
+I am not 100% sure of how they operate but it seems like code get moved around or deleted on their end.
+
+- Before 1.7.26... they have removed the property 'owner' in survey.onGetQuestionTitle. This was breaking our project.
+- From 1.7.26 to 1.7.28: our file upload module was missing the choose file button
+
 ### Where to find Documentation
 
 - https://surveyjs.io/Examples/Library is very complete in terms of examples
@@ -117,7 +124,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 	- the whole file preview thing is not working as well as the html "meter" object	
 
 -) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
--) PDF: Try to have only one json to manage
+-) PDF: 
+	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
+
 -) Add "maxLength": value to all the property that have a maximum in the json
 -) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
@@ -165,16 +174,20 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 27) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch. Used polyfill & fetch.js
 28) PDF;
 	- English is working, french not working (property mode had to be set on SurveyPDF object).
-	- Why do we have blank spaces (whole page) see first page. Options.compress: true seems to not include the answers? (Fix with new json)
-	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with new json)
-	- Hide html type questions (Fix with new json)
-	- Hide whole pages (Fix with new json)
+	- Why do we have blank spaces (whole page) see first page. Options.compress: true seems to not include the answers? (Fix with updated/modified json)
+	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with updated/modified json)
+	- Hide html type questions (Fix with updated/modified json)
+	- Hide whole pages (Fix with updated/modified json)
 	- Not exporting pdf in francais (property locale had to be set on SurveyPDF object)
 	- Make it not editable (property mode had to be set on SurveyPDF object)
 	- Remove question numbers (property showQuestionNumbers had to be set on SurveyPDF object)
 	- Markdown is not working (using surveyPDF.save(filename))
 	- Attachments are missing
 	- Remove menu button when finished with the bugs
+	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
+	- Try to have only one json to manage
+	- question not visible if still showing
+
 29) Set the navigation buttons to be invisble by default
 30) IE;
 	- Details-summary tags not working. (fixed using a polyfill > details-polyfill)

@@ -34,6 +34,7 @@ export class WidgetCheckboxHtml {
             },
 
             isDefaultRender: true,
+
             //htmlTemplate: "",
 
             //  The main function, rendering and two-way binding
@@ -88,7 +89,7 @@ export class WidgetCheckboxHtml {
                         <label class="sv_q_checkbox_label">
                         <input type = "checkbox" name = "${question.name}" value = "${row.value as string}"
                         aria-required="true" aria-label="${row.text}" id=${chk_id} ${checked}
-                        class="sv_q_checkbox_control_item chk_${question.name}" onchange = "checkBoxInfoPopup(this)"/>
+                        class="sv_q_checkbox_control_item chk_${question.name}" />
                         <span class="checkbox-material"><span class="check"></span></span>
                         <span class="sv_q_checkbox_control_label"><span style="position: static;">
                         <span style="position: static;">${row.text}</span></span></span>
@@ -97,13 +98,61 @@ export class WidgetCheckboxHtml {
 
                     //row.onPropertyChanged.add((sender, opt) => {
 
-                    //    const test = sender;
+                    //    const test = sender;onchange = "checkBoxInfoPopup(this)"
                     //});
                 });
 
                 outputHTML += `</fieldset>`;
-                el.innerHTML = outputHTML;
+               // outputHTML += `<script>`;
+                allCheckboxes.forEach((row: Survey.ItemValue) => {
+                    let chk_id = `chk${question.name}_${row.value as string}`;
+                    let chkItem = document.getElementById(chk_id);
+                    if (chkItem) {
+                        let checkbox = chkItem[0] as HTMLInputElement;
 
+                        checkbox.addEventListener('change', function () {
+
+                            //  Getting the <div> with css class info-popup from the parent <div>
+                            const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
+                            const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
+                            //const data = survey.data;
+
+                            if (checkbox.checked) {
+                                //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+                                if (infoPopupDiv) {
+                                    infoPopupDiv.style.display = "block";
+                                }
+
+                                //  If the array object of the checkbox list is not set the create it
+                                //if (!data[checkbox.name]) {
+                                //    data[checkbox.name] = [];
+                                //}
+
+                                //  push the selected value
+                                //data[checkbox.name].push(checkbox.value);
+
+                            } else {
+                                //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+                                if (infoPopupDiv) {
+                                    infoPopupDiv.style.display = "none";
+                                }
+
+                                //  removing the un-checked item from the json object
+                                //for (let i = 0; i < data[checkbox.name].length; i++) {
+                                //    if (data[checkbox.name][i] === checkbox.value) {
+                                //        data[checkbox.name].splice(i, 1);
+                                //    }
+                                //}
+                            }
+
+                    //survey.data = data;
+                        });
+                    }
+                    //outputHTML += `let el = document.getElementById("${chk_id}");`;
+                    //outputHTML += `el.addEventListener("onchange", checkBoxInfoPopup, false);`;
+                });
+               // outputHTML += `</script>`;
+                el.innerHTML = outputHTML;
 
 
                 //question.onAnyValueChanged(question.name);
@@ -113,26 +162,26 @@ export class WidgetCheckboxHtml {
                 //    const test = sender;
                 //});
 
-                question.onPropertyChanged.add((sender, opt) => {
+                //question.onPropertyChanged.add((sender, opt) => {
 
-                    const checkboxQuestion = sender as Survey.QuestionCheckboxModel;
-                    const thisSurvey = checkboxQuestion.setsurvey as Survey.VueSurveyModel;
-                    let data = thisSurvey.data[checkboxQuestion.name];
+                //    const checkboxQuestion = sender as Survey.QuestionCheckboxModel;
+                //    const thisSurvey = checkboxQuestion.setsurvey as Survey.VueSurveyModel;
+                //    let data = thisSurvey.data[checkboxQuestion.name];
 
-                    const allChoices = Array.prototype.slice.call(document.getElementsByClassName(`chk_${checkboxQuestion.name}`));
+                //    const allChoices = Array.prototype.slice.call(document.getElementsByClassName(`chk_${checkboxQuestion.name}`));
 
-                    data = [];
+                //    data = [];
 
-                    allChoices.forEach((selectedItem: HTMLInputElement) => {
+                //    allChoices.forEach((selectedItem: HTMLInputElement) => {
 
-                        if (selectedItem.checked) {
-                            data.push(selectedItem.value);
-                        }
-                    });
+                //        if (selectedItem.checked) {
+                //            data.push(selectedItem.value);
+                //        }
+                //    });
 
-                    thisSurvey.data[checkboxQuestion.name] = data;
-                    saveStateLocally(thisSurvey, storageName_PA);
-                });
+                //    //thisSurvey.data[checkboxQuestion.name] = data;
+                //    //saveStateLocally(thisSurvey, storageName_PA);
+                //});
 
                 //function onValueChangedCallback() {
 
@@ -170,41 +219,41 @@ export class WidgetCheckboxHtml {
 
     //  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
     //  It will also remove or add the item being chekced or unchecked from the json data
-    public checkBoxInfoPopup(checkbox: HTMLInputElement): void {
+    //public checkBoxInfoPopup(checkbox: HTMLInputElement): void {
 
-        //  Getting the <div> with css class info-popup from the parent <div>
-        const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
-        const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
-        //const data = this.survey.data;
+    //    //  Getting the <div> with css class info-popup from the parent <div>
+    //    const inputCheckbox = checkbox.closest(".sv_q_checkbox") as HTMLDivElement;
+    //    const infoPopupDiv = inputCheckbox.querySelector(".info-popup") as HTMLDivElement;
+    //    const data = survey.data;
 
-        if (checkbox.checked) {
-            //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
-            if (infoPopupDiv) {
-                infoPopupDiv.style.display = "block";
-            }
+    //    if (checkbox.checked) {
+    //        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+    //        if (infoPopupDiv) {
+    //            infoPopupDiv.style.display = "block";
+    //        }
 
-            //  If the array object of the checkbox list is not set the create it
-            //if (!data[checkbox.name]) {
-            //    data[checkbox.name] = [];
-            //}
+    //        //  If the array object of the checkbox list is not set the create it
+    //        if (!data[checkbox.name]) {
+    //            data[checkbox.name] = [];
+    //        }
 
-            ////  push the selected value
-            //data[checkbox.name].push(checkbox.value);
+    //        //  push the selected value
+    //        data[checkbox.name].push(checkbox.value);
 
-        } else {
-            //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
-            if (infoPopupDiv) {
-                infoPopupDiv.style.display = "none";
-            }
+    //    } else {
+    //        //  If infoPopupDiv is undefined it means there is no popup for this checkbox item
+    //        if (infoPopupDiv) {
+    //            infoPopupDiv.style.display = "none";
+    //        }
 
-            //  removing the un-checked item from the json object
-            //for (let i = 0; i < data[checkbox.name].length; i++) {
-            //    if (data[checkbox.name][i] === checkbox.value) {
-            //        data[checkbox.name].splice(i, 1);
-            //    }
-            //}
-        }
+    //        //  removing the un-checked item from the json object
+    //        for (let i = 0; i < data[checkbox.name].length; i++) {
+    //            if (data[checkbox.name][i] === checkbox.value) {
+    //                data[checkbox.name].splice(i, 1);
+    //            }
+    //        }
+    //    }
 
-        //this.survey.data = data;
-    }
+    //    survey.data = data;
+    //}
 }

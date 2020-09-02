@@ -55,9 +55,9 @@ declare let Symbol;
             const widgetCheckboxHtml = new WidgetCheckboxHtml();
             widgetCheckboxHtml.init();
 
-            globalThis.checkBoxInfoPopupEvent = (checkbox) => {
-                widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
-            };
+            //globalThis.checkBoxInfoPopupEvent = (checkbox) => {
+            //    widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
+            //};
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);
