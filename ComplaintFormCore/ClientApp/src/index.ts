@@ -4,18 +4,19 @@ import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill";  //  Polyfill to open/close the <details> tags
 import "element-closest-polyfill";  //  Polyfill to use Element.closest
 
-import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
 import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 import { surveyPdfExport } from "./surveyPDF";
+import * as SurveyNavigation from "./surveyNavigation";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
+    function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
 
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
@@ -44,9 +45,10 @@ declare let Symbol;
     }
 
     function main() {
-        globalThis.startSurvey = SurveyInit.startSurvey;
-        globalThis.endSession = SurveyInit.endSession;
-        globalThis.showPreview = SurveyInit.showPreview;
+        globalThis.startSurvey = SurveyNavigation.startSurvey;
+        globalThis.endSession = SurveyNavigation.endSession;
+        globalThis.showPreview = SurveyNavigation.showPreview;
+        globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
         globalThis.initPaSurvey = (lang, token) => {
 
@@ -55,9 +57,9 @@ declare let Symbol;
             const widgetCheckboxHtml = new WidgetCheckboxHtml();
             widgetCheckboxHtml.init();
 
-            //globalThis.checkBoxInfoPopupEvent = (checkbox) => {
+            // globalThis.checkBoxInfoPopupEvent = (checkbox) => {
             //    widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
-            //};
+            // };
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);

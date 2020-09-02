@@ -274,7 +274,7 @@ export class surveyPdfExport {
         surveyPDF.onRenderPanel.add((survey, options) => {
             console.log(options.panel.name + ": " + options.panel.visibleIf);
             if (options.panel.isVisible == false) {
-                 options.panel.delete();
+                options.panel.delete();
             }
         });
 

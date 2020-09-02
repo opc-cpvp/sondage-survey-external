@@ -5,8 +5,8 @@ declare let $: any; // import $ from "jquery";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyLocalStorage from "../surveyLocalStorage";
 import { printProblemDetails } from "../surveyHelper";
+import * as SurveyNavigation from "../surveyNavigation";
 
-declare let SurveyPDF: any;
 
 // declare global {
 //    // TODO: get rid of this global variable
@@ -54,7 +54,7 @@ export class TestSurvey {
                 onCurrentPageChanged_saveState(survey);
 
                 // Call the event to set the navigation buttons on page load
-                SurveyInit.onCurrentPageChanged_updateNavButtons(survey);
+                SurveyNavigation.onCurrentPageChanged_updateNavButtons(survey);
 
                 survey.onCompleting.add((sender, options) => {
                     options.allowComplete = false;

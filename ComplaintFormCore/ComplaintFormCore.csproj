@@ -72,6 +72,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\node_modules\ladda\css\" />
+    <Folder Include="ClientApp\node_modules\ladda\dist\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
@@ -93,6 +95,7 @@
     <None Remove="ClientApp\src\surveyHelper.ts" />
     <None Remove="ClientApp\src\surveyInit.ts" />
     <None Remove="ClientApp\src\surveyLocalStorage.ts" />
+    <None Remove="ClientApp\src\surveyNavigation.ts" />
     <None Remove="ClientApp\src\testSurvey.ts" />
   </ItemGroup>
 
@@ -112,6 +115,7 @@
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyInit.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyLocalStorage.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
