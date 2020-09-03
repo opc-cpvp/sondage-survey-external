@@ -128,58 +128,30 @@ export class surveyPdfExport {
                     panel.elements.push(innerPanel);
                 }
             }
-        }
-        else {
-            let question = element as Survey.Question;
+        } else {
+
+            const question = element as Survey.Question;
 
             if (question instanceof Survey.QuestionHtmlModel) {
                 //  Do nothing
-            }
-            else if (question instanceof Survey.QuestionRadiogroupModel) {
+                return;
 
-                const radioGroup = question as Survey.QuestionRadiogroupModel;
-
-                const newElement = {
-                    name: question.name,
-                    type: question.getType(),
-                    title: question.title,
-                    choices: radioGroup.choices,
-                    visibleIf: question.visibleIf
-                };
-
-                panel.elements.push(newElement);
-            }
-            else if (question instanceof Survey.QuestionDropdownModel) {
-
-                const ddl = question as Survey.QuestionDropdownModel;
+            } else if (question instanceof Survey.QuestionRadiogroupModel
+                || question instanceof Survey.QuestionDropdownModel
+                || question instanceof Survey.QuestionCheckboxModel) {
 
                 const newElement = {
                     name: question.name,
                     type: question.getType(),
                     title: question.title,
-                    choices: ddl.choices,
-                    choicesByUrl: ddl.choicesByUrl,
+                    choices: question.choices,
+                    choicesByUrl: question.choicesByUrl,
                     visibleIf: question.visibleIf
                 };
 
                 panel.elements.push(newElement);
-            }
-            else if (question instanceof Survey.QuestionCheckboxModel) {
 
-                const chk = question as Survey.QuestionCheckboxModel;
-
-                const newElement = {
-                    name: question.name,
-                    type: question.getType(),
-                    title: question.title,
-                    choices: chk.choices,
-                    choicesByUrl: chk.choicesByUrl,
-                    visibleIf: question.visibleIf
-                };
-
-                panel.elements.push(newElement);
-            }
-            else {
+            } else {
 
                 const newElement = {
                     name: question.name,
@@ -273,14 +245,14 @@ export class surveyPdfExport {
 
         surveyPDF.onRenderPanel.add((survey, options) => {
             console.log(options.panel.name + ": " + options.panel.visibleIf);
-            if (options.panel.isVisible == false) {
+            if (options.panel.isVisible === false) {
                 options.panel.delete();
             }
         });
 
         surveyPDF.onRenderQuestion.add((survey, options) => {
 
-            if (options.question.isVisible == false) {
+            if (options.question.isVisible === false) {
                 options.question.clearValue();
             }
 

@@ -114,16 +114,11 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
 
--) fetch 
-	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
-	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest (FIXED)
-
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 
 -) Test on Internet Explorer
 	- the whole file preview thing is not working as well as the html "meter" object	
 
--) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
 -) PDF: 
 	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
@@ -194,6 +189,11 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Chekcboxes with html don't work. 
 		i) Element.closest not supported by IE (fixed using the polyfill -> element-closest-polyfill)
 		2) Use onchange event instead of onclick on the input
+
+31) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
+32) Using fetch instead of ajax or XMLHttpRequest 
+	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
+	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest (FIXED)
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

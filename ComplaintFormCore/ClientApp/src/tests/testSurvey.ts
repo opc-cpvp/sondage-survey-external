@@ -47,7 +47,7 @@ export class TestSurvey {
                 SurveyLocalStorage.loadStateLocally(
                     survey,
                     SurveyLocalStorage.storageName_Test,
-                    defaultData
+                    JSON.stringify(defaultData)
                 );
 
                 // Save the state back to local storage

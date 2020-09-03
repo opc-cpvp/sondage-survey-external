@@ -96,8 +96,8 @@ export class PaSurvey {
                                 return response;
                         }
                     }).catch(error => {
-                            console.warn(error);
-                            Ladda.stopAll();
+                        console.warn(error);
+                        Ladda.stopAll();
                     });
                 });
 
@@ -320,7 +320,7 @@ export class PaSurvey {
                 };
 
                 // Load the initial state
-                loadStateLocally(survey, storageName_PA, defaultData);
+                loadStateLocally(survey, storageName_PA, JSON.stringify(defaultData));
 
                 // Save the state back to local storage
                 this.onCurrentPageChanged_saveState(survey);

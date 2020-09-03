@@ -26,10 +26,7 @@ export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel
     nextButton.style.display = !survey.isFirstPage && !survey.isLastPage ? "inline" : "none";
 
     const showPreviewButton = document.getElementById("btnShowPreview") ?? new HTMLElement();
-    showPreviewButton.style.display = !survey.isDisplayMode &&
-            (survey.isLastPage || survey.passedPreviewPage === true)
-            ? "inline"
-            : "none";
+    showPreviewButton.style.display = !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "none";
 
     const completeButton = document.getElementById("btnComplete") ?? new HTMLElement();
     completeButton.style.display = survey.isDisplayMode ? "inline" : "none";
@@ -46,7 +43,7 @@ export function showPreview(survey: Survey.SurveyModel): void {
 }
 
 export function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void {
-    var spinner = Ladda.create(button);
+    const spinner = Ladda.create(button);
     spinner.start();
 
     survey.doComplete();
@@ -60,20 +57,4 @@ export function startSurvey(survey: Survey.SurveyModel): void {
 export function endSession(): void {
     const url = "/Home/Index";
     window.location.href = url;
-}
-
-export function showProcessing() {
-    const waitingdiv = document.getElementById("waitingdiv");
-    if (waitingdiv) {
-        waitingdiv.style.display = "";
-    }
-
-    alert("This alert delay the execution");
-}
-
-export function hideProcessing() {
-    const waitingdiv = document.getElementById("waitingdiv");
-    if (waitingdiv) {
-        waitingdiv.style.display = "none";
-    }
 }

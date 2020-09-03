@@ -20,7 +20,7 @@ export function saveStateLocally(survey: Survey.SurveyModel, storageName: string
     window.localStorage.setItem(storageName, JSON.stringify(res));
 }
 
-export function loadStateLocally(survey: Survey.SurveyModel, storageName: string, defaultData: {}): void {
+export function loadStateLocally(survey: Survey.SurveyModel, storageName: string, defaultDataAsJsonString: string): void {
     // Here should be the code to load the data from your database
 
     const storageSt = window.localStorage.getItem(storageName) || "";
@@ -32,7 +32,7 @@ export function loadStateLocally(survey: Survey.SurveyModel, storageName: string
         // If nothing was found we set the default values for the json as well as set the current page to 0
         res = {
             currentPageNo: 0,
-            data: defaultData
+            data: JSON.parse(defaultDataAsJsonString)
         };
     }
 

@@ -100,8 +100,8 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 }
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
-    survey.onAfterRenderPage.add((sender, options) => {
 
+    survey.onAfterRenderPage.add((sender, options) => {
         window.document.title = options.page.title;
     });
 
