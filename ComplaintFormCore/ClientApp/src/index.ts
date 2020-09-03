@@ -1,4 +1,6 @@
-﻿import "core-js/es";
+﻿/// <reference path="../@types/survey-vue/survey.vue.d.ts" />
+
+import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill";  //  Polyfill to open/close the <details> tags
@@ -8,6 +10,7 @@ import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
 import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
+import { CheckboxWidget } from "./widgets/checkboxwidget";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
@@ -54,8 +57,10 @@ declare let Symbol;
 
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            const widgetCheckboxHtml = new WidgetCheckboxHtml();
-            widgetCheckboxHtml.init();
+            // const widgetCheckboxHtml = new WidgetCheckboxHtml();
+            // widgetCheckboxHtml.init();
+
+            CheckboxWidget.init();
 
             // globalThis.checkBoxInfoPopupEvent = (checkbox) => {
             //    widgetCheckboxHtml.checkBoxInfoPopup(checkbox);

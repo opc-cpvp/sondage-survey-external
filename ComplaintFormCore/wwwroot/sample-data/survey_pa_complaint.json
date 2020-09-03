@@ -245,6 +245,7 @@
       "elements": [
         {
           "type": "checkbox",
+          "renderAs": "checkboxwithhtmlinfo",
           "name": "NatureOfComplaint",
           "title": {
             "en": "Which of the following choices most accurately summarizes your complaint?",
@@ -252,7 +253,6 @@
           },
           "isRequired": true,
           "colCount": 1,
-          "hasHtmlAddtionalInfo": true,
           "choices": [
             {
               "value": "NatureOfComplaintDelay",
