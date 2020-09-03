@@ -33,13 +33,13 @@ export class PaSurvey {
             .then(response => response.json())
             .then(json => {
 
-                const survey = new Survey.Model(json);
-                globalThis.survey = survey;
+                const _survey = new Survey.Model(json);
+                globalThis.survey = _survey;
 
-                survey.complaintId = token;
+                _survey.complaintId = token;
 
                 //  This needs to be here
-                survey.locale = lang;
+                _survey.locale = lang;
 
                 // Add events only applicable to this page **********************
 
@@ -55,7 +55,7 @@ export class PaSurvey {
                 //  We are going to use this variable to handle if the validation has passed or not.
                 let isValidSurvey = false;
 
-                survey.onCompleting.add((sender, options) => {
+                _survey.onCompleting.add((sender, options) => {
 
                     if (isValidSurvey === true) {
                         options.allowComplete = true;
@@ -79,7 +79,7 @@ export class PaSurvey {
                                 //  Validation is good then we set the variable so the next call to doComplete()
                                 //  will bypass the validation
                                 isValidSurvey = true;
-                                survey.doComplete();
+                                _survey.doComplete();
                                 break;
                             }
                             case 400:
@@ -101,7 +101,7 @@ export class PaSurvey {
                     });
                 });
 
-                survey.onComplete.add((sender, options) => {
+                _survey.onComplete.add((sender, options) => {
 
                     const uri = `/api/PASurvey/Complete?complaintId="${sender.complaintId as string}`;
 
@@ -133,7 +133,7 @@ export class PaSurvey {
                                             console.warn(error);
                                         });
 
-                                    saveStateLocally(survey, storageName_PA);
+                                    saveStateLocally(_survey, storageName_PA);
 
                                     console.log(sender.data);
                                     Ladda.stopAll();
@@ -160,7 +160,7 @@ export class PaSurvey {
                         });
                 });
 
-                survey.onAfterRenderQuestion.add((sender, options) => {
+                _survey.onAfterRenderQuestion.add((sender, options) => {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
 
                         this.updateDocumentationInfoSection(sender);
@@ -181,21 +181,29 @@ export class PaSurvey {
                         if (meterElement != null) {
                             meterElement.value = totalBytes;
                         }
+
+                        //  This is for IE to work.
+                        //  See: https://css-tricks.com/html5-meter-element/
+                        const div_meter_upload = document.getElementById("div_meter_upload") as HTMLDivElement;
+                        if (div_meter_upload) {
+                            const percentage = ((totalBytes / multipleFileMaxSize) * 100).toFixed(0);
+                            div_meter_upload.style.width = `${percentage}%`;
+                        }
                     }
                 });
 
                 // Adding particular event for this page only
-                survey.onCurrentPageChanged.add((sender, options) => {
+                _survey.onCurrentPageChanged.add((sender, options) => {
                     this.onCurrentPageChanged_saveState(sender);
                 });
 
-                survey.onValidateQuestion.add((sender, options) => {
+                _survey.onValidateQuestion.add((sender, options) => {
                     if (options.question.getType() === "file" && options.question.value) {
                         // Getting the total size of all uploaded files
-                        const totalBytes = this.getTotalFileSize(survey, options);
+                        const totalBytes = this.getTotalFileSize(_survey, options);
 
                         if (multipleFileMaxSize > 0 && totalBytes > multipleFileMaxSize) {
-                            options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, survey.locale);
+                            options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, _survey.locale);
                             // return false;
                         }
 
@@ -211,10 +219,18 @@ export class PaSurvey {
                         if (meterElement != null) {
                             meterElement.value = totalBytes;
                         }
+
+                        //  This is for IE to work.
+                        //  See: https://css-tricks.com/html5-meter-element/
+                        const div_meter_upload = document.getElementById("div_meter_upload") as HTMLDivElement;
+                        if (div_meter_upload) {
+                            const percentage = ((totalBytes / multipleFileMaxSize) * 100).toFixed(0);
+                            div_meter_upload.style.width = `${percentage}%`;
+                        }
                     }
                 });
 
-                survey.onServerValidateQuestions.add((sender, options) => {
+                _survey.onServerValidateQuestions.add((sender, options) => {
 
                     if (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both") {
 
@@ -259,11 +275,11 @@ export class PaSurvey {
 
                 // ****Event *****************************************************
 
-                initSurveyModelEvents(survey);
+                initSurveyModelEvents(_survey);
 
-                initSurveyModelProperties(survey);
+                initSurveyModelProperties(_survey);
 
-                initSurveyFileModelEvents(survey);
+                initSurveyFileModelEvents(_survey);
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.
@@ -320,13 +336,13 @@ export class PaSurvey {
                 };
 
                 // Load the initial state
-                loadStateLocally(survey, storageName_PA, JSON.stringify(defaultData));
+                loadStateLocally(_survey, storageName_PA, JSON.stringify(defaultData));
 
                 // Save the state back to local storage
-                this.onCurrentPageChanged_saveState(survey);
+                this.onCurrentPageChanged_saveState(_survey);
 
                 // Call the event to set the navigation buttons on page load
-                SurveyNavigation.onCurrentPageChanged_updateNavButtons(survey);
+                SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
                 // DICTIONNARY - this is just to show how to use localization
                 // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)...");
@@ -335,7 +351,7 @@ export class PaSurvey {
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
-                        survey
+                        survey: _survey
                     }
                 });
             });

@@ -25,7 +25,7 @@ export function loadStateLocally(survey: Survey.SurveyModel, storageName: string
 
     const storageSt = window.localStorage.getItem(storageName) || "";
 
-    let res: { currentPageNo: number; data: {} };
+    let res: { currentPageNo: number; data: any };
     if (storageSt) {
         res = JSON.parse(storageSt); // Create the survey state for the demo. This line should be deleted in the real app.
     } else {

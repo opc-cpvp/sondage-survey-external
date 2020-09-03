@@ -5,7 +5,7 @@ When updating the survey package (survey-vue) because these guys are not careful
 I am not 100% sure of how they operate but it seems like code get moved around or deleted on their end.
 
 - Before 1.7.26... they have removed the property 'owner' in survey.onGetQuestionTitle. This was breaking our project.
-- From 1.7.26 to 1.7.28: our file upload module was missing the choose file button
+- From 1.7.26 to 1.7.28: our file upload module was missing the choose file button. This got fixed at their end.
 
 ### Where to find Documentation
 
@@ -23,7 +23,7 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- convert to html description found in 'comment' type questions
 		- the * at the beginning of required questions
 
-b) inputmask.js found at https://unpkg.com/inputmask@5.0.3/dist/inputmask.js. it is used for input mask such phone number or postal code (NOT USED YET)
+b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
 c)
 
 ### Added Nuget packages
@@ -126,6 +126,7 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html
+-) Refactor widget comment with html
 
 ### Mode details required or help required
  

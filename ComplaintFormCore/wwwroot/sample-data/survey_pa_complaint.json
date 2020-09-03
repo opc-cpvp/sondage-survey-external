@@ -1279,8 +1279,8 @@
           "name": "upload_total_mb",
           "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
           "html": {
-            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>",
-            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>"
+            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>",
+            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>"
           }
         },
         {

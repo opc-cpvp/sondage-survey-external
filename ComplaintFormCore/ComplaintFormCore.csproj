@@ -118,7 +118,6 @@
     <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
   </ItemGroup>
 
@@ -140,9 +139,13 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="ClientApp\src\surveyPDF.ts" />
-    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
     <Content Include="ClientApp\src\widgets\widgetCommentHtml.ts" />
     <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

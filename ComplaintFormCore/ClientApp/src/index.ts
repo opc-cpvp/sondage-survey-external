@@ -9,7 +9,6 @@ import "element-closest-polyfill";  //  Polyfill to use Element.closest
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
-import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
 import { CheckboxWidget } from "./widgets/checkboxwidget";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 import { surveyPdfExport } from "./surveyPDF";
@@ -57,14 +56,7 @@ declare let Symbol;
 
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            // const widgetCheckboxHtml = new WidgetCheckboxHtml();
-            // widgetCheckboxHtml.init();
-
             CheckboxWidget.init();
-
-            // globalThis.checkBoxInfoPopupEvent = (checkbox) => {
-            //    widgetCheckboxHtml.checkBoxInfoPopup(checkbox);
-            // };
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);

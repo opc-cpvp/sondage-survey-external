@@ -19,16 +19,21 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
         if (options.question.getType() === "file") {
 
             //  This is to build the file preview, we're not using the native one
+
+            //  First we create a div container to hold all of the attachments
             const container = document.createElement("div");
             container.className = "my-preview-container";
 
-            let fileElement = options.htmlElement.getElementsByClassName("sv_q_file")[0];
+            //  Then we find the root div for the file input
+            let rootDivElement = options.htmlElement.getElementsByClassName("sv_q_file")[0] as HTMLDivElement;
 
-            if (!fileElement) {
-                fileElement = options.htmlElement.getElementsByClassName("sv-file__decorator")[0];
+            if (!rootDivElement) {
+                //  TODO: figure out why this line of code ???
+                rootDivElement = options.htmlElement.getElementsByClassName("sv-file__decorator")[0] as HTMLDivElement;
             }
 
-            fileElement.append(container);
+            //  Then we add the file list container to the root div
+            rootDivElement.appendChild(container);
 
             options.question.onPropertyChanged.add((question, opt) => {
                 // Everytime a file gets uploaded or removed we are redrawing the file preview container.
@@ -135,7 +140,7 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
 
     const title = document.createElement("h3");
     title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
-    container.append(title);
+    container.appendChild(title);
 
     if (question.value && question.value.length > 0) {
         const listView = document.createElement("ol");
@@ -143,10 +148,6 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
 
         question.value.forEach((fileItem: Survey.Question) => {
             const item = document.createElement("li");
-
-            const span = document.createElement("span");
-            // span.className = "sv_q_file_preview";
-
             const div = document.createElement("div");
 
             const button = document.createElement("div");
@@ -203,7 +204,7 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
                     });
             };
 
-            div.append(button);
+            div.appendChild(button);
 
             const buttonRemove = document.createElement("button");
             buttonRemove.setAttribute("type", "button");
@@ -220,18 +221,18 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
                 }
             };
 
-            div.append(buttonRemove);
+            div.appendChild(buttonRemove);
 
-            span.appendChild(div);
-            item.appendChild(span);
+            item.appendChild(div);
 
             listView.appendChild(item);
         });
 
-        container.append(listView);
+        container.appendChild(listView);
+
     } else {
         const titleElement = document.createElement("p");
         titleElement.innerHTML = getTranslation(question.itemListNoAttachmentsText, survey.locale);
-        container.append(titleElement);
+        container.appendChild(titleElement);
     }
 }
