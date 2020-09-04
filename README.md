@@ -116,17 +116,14 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 
--) Test on Internet Explorer
-	- the whole file preview thing is not working as well as the html "meter" object	
-
 -) PDF: 
 	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
 -) Add "maxLength": value to all the property that have a maximum in the json
 -) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
-		-	There is a problem with the checkboxes with html
--) Refactor widget comment with html
+		-	There is a problem with the checkboxes with html (Fixed)
+
 
 ### Mode details required or help required
  
@@ -190,11 +187,13 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Chekcboxes with html don't work. 
 		i) Element.closest not supported by IE (fixed using the polyfill -> element-closest-polyfill)
 		2) Use onchange event instead of onclick on the input
+	- - the whole file preview thing is not working as well as the html "meter" object. Fixed it by adding a div inside the meter	
 
 31) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
 32) Using fetch instead of ajax or XMLHttpRequest 
 	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
 	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest (FIXED)
+33) Refactor widget comment with html
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

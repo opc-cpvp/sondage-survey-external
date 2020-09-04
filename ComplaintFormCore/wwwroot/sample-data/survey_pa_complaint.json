@@ -516,6 +516,7 @@
         {
           "type": "comment",
           "name": "SummarizeYourConcernsAndAnyStepsTaken",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
             "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
@@ -531,6 +532,7 @@
         {
           "type": "comment",
           "name": "SummarizeYourComplaintAndAnyStepsTaken",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
             "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
@@ -547,6 +549,7 @@
         {
           "type": "comment",
           "name": "WhatWouldResolveYourComplaint",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "What would resolve your concerns? (maximum 5,000 characters)",
             "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
@@ -561,6 +564,7 @@
         {
           "type": "comment",
           "name": "SummarizeAttemptsToResolvePrivacyMatter",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
             "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"

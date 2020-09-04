@@ -57,12 +57,10 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             CheckboxWidget.init();
+            WidgetCommentHtml.init();
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);
-
-            const widgetCommentHtml = new WidgetCommentHtml();
-            widgetCommentHtml.init();
         };
 
         globalThis.exportToPDF = lang => {
