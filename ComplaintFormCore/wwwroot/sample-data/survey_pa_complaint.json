@@ -111,7 +111,7 @@
           "name": "RaisedPrivacyToAtipCoordinator",
           "title": {
             "en": "Have you raised your privacy concerns in writing with the institution's [](http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp) <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>Access to Information and Privacy (ATIP) Coordinator</a>?",
-            "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
+            "fr": "Avez-vous fait part par écrit de vos préoccupations en matière de protection de la vie privée au [](https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp) <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>coordonnateur de l’accès à l'information et de la protection des renseignements personnels (AIPRP)</a> de l’institution?"
           },
           "isRequired": true,
           "choices": [
@@ -245,6 +245,7 @@
       "elements": [
         {
           "type": "checkbox",
+          "renderAs": "checkboxwithhtmlinfo",
           "name": "NatureOfComplaint",
           "title": {
             "en": "Which of the following choices most accurately summarizes your complaint?",
@@ -252,7 +253,6 @@
           },
           "isRequired": true,
           "colCount": 1,
-          "hasHtmlAddtionalInfo": true,
           "choices": [
             {
               "value": "NatureOfComplaintDelay",
@@ -516,6 +516,7 @@
         {
           "type": "comment",
           "name": "SummarizeYourConcernsAndAnyStepsTaken",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
             "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
@@ -531,6 +532,7 @@
         {
           "type": "comment",
           "name": "SummarizeYourComplaintAndAnyStepsTaken",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
             "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
@@ -547,6 +549,7 @@
         {
           "type": "comment",
           "name": "WhatWouldResolveYourComplaint",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "What would resolve your concerns? (maximum 5,000 characters)",
             "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
@@ -561,6 +564,7 @@
         {
           "type": "comment",
           "name": "SummarizeAttemptsToResolvePrivacyMatter",
+          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
             "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
@@ -1213,7 +1217,7 @@
               },
               "itemListNoAttachmentsText": {
                 "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
               },
               "duplicateFileNameExceptionMessage": {
                 "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
@@ -1265,7 +1269,7 @@
               },
               "itemListNoAttachmentsText": {
                 "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n’a encore été téléchargée."
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
               },
               "duplicateFileNameExceptionMessage": {
                 "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
@@ -1279,8 +1283,8 @@
           "name": "upload_total_mb",
           "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
           "html": {
-            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>",
-            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0'' value='0' max='26214400' class='full-width'></meter></span></div>"
+            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>",
+            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>"
           }
         },
         {

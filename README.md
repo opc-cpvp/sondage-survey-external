@@ -1,5 +1,12 @@
 # online-complaint-form-pa
 
+### ATTENTION/BE CAREFUll
+When updating the survey package (survey-vue) because these guys are not careful when updating. 
+I am not 100% sure of how they operate but it seems like code get moved around or deleted on their end.
+
+- Before 1.7.26... they have removed the property 'owner' in survey.onGetQuestionTitle. This was breaking our project.
+- From 1.7.26 to 1.7.28: our file upload module was missing the choose file button. This got fixed at their end.
+
 ### Where to find Documentation
 
 - https://surveyjs.io/Examples/Library is very complete in terms of examples
@@ -8,7 +15,7 @@
 - I didn't find much on StackOverflow but here, I have found a lot of questions/answers https://github.com/surveyjs/survey-library/issues?q=
 - Here is the link to the question I've asked regarding hiding a page on preview: https://github.com/surveyjs/survey-library/issues/2268
 
-### Special lib used
+### Special libs & polyfills used
 
 a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js. 
 	It is used;
@@ -16,12 +23,12 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- convert to html description found in 'comment' type questions
 		- the * at the beginning of required questions
 
-b) inputmask.js found at https://unpkg.com/inputmask@5.0.3/dist/inputmask.js. it is used for input mask such phone number or postal code (NOT USED YET)
+b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
+c)
 
-### On the Code 
-
-- All code for Survey.js is located in ~\wwwroot\js\survey\
-- I made a copy of survey.vue.js ~\wwwroot\js\survey\survey.vue.OPC.js because I made a few changes and I wanted to keed the original so you can compare with the original.
+### Added Nuget packages
+- Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
+- libphonenumber-csharp already in used in the original project
 
 ### Survey.js Custom Widget
 
@@ -45,7 +52,6 @@ Located in the code in ~\wwwroot\js\survey\
 other words, we are not using the style provided by Survey.js but rather the css for GoC. There is some custom css in ~\wwwroot\css\site.css
 
 ### Preview Problem
-	Still not fixed!!!
 
 	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
 		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
@@ -67,7 +73,7 @@ other words, we are not using the style provided by Survey.js but rather the css
 	The question level overwrites the survey level
 
 2)	The code to build the error box at the top of the page when thre is errors is in SurveyInit.js in function buildErrorMessage. 
-	There is probably a better to handle the construction of the <section>, specially for multilanguage sites but for now it is working.
+	There is probably a better to handle the construction of the "section", specially for multilanguage sites but for now it is working.
 
 ### Localization notes
 
@@ -89,17 +95,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 }
 ```
 
-### Added Nuget packages
-- Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
-- libphonenumber-csharp already in used in the original project
-
-### PDF
-- English is working, french not working. We need to find and add a font that accept unicode
-	https://surveyjs.answerdesk.io/ticket/details/t2748/export-survey-with-multiple-languages-not-working
-
 ### TODO 
 
--) Replace <div id="div_errors_list" style="display:none"></div> in body
+-) Replace the div id="div_errors_list" in body
 -) WCAG compliance, talk to Stephanie
 -) Complete page -> Page refresh problem
 -) Find a strategy to clear local storage. Put a timestamp on local storage?
@@ -116,24 +114,20 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 -) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
 
--) fetch 
-	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
-	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest.
-
 -) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 
--) Test on Internet Explorer
-	- fetch is not working, this is the first step
+-) PDF: 
+	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
--) Put a spinner when completing the survey since there is 2 api calls
--) PDF: Try to have only one json to manage
 -) Add "maxLength": value to all the property that have a maximum in the json
--) Set the navigation buttons to be invisble by default
+-) Get rid of the 'survey' global variable. That causes an issues with lint
+		-	There is a problem with the navigation
+		-	There is a problem with the checkboxes with html (Fixed)
+
 
 ### Mode details required or help required
-
-2) Add max width on text fields. Need to find out the max width for first name, last name and all those. ASK GAB 
-4) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
+ 
+1) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
 
 ### Fixed todos
 
@@ -145,13 +139,13 @@ then the section "Representative" info is missing
 5) Match the property names with the original project 
 6) Survey.StylesManager.Enabled = false
 7) The style on the 'comment' has crapped after disabling the native style (Survey.StylesManager.Enabled)
-8) The page & panel title <h> tag have been hard coded in Survey.vue.OPC.js. Need to find a way to not do that. 
+8) The page & panel title h tag have been hard coded in Survey.vue.OPC.js. Need to find a way to not do that. 
 	[Hint: look for SurveyTemplateText() but it only looks like it is avaialble for knockout]
 9) When selecting "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?" -> Someone else,
 then the section "Authorization form attachment(s)" info is missing when uploading files
 10) Return to the same question on page refresh or on language switching (DONE -> but need to implement logic to access/store data to the database)
 11) Fr & en property of elements (Stephanie). This is started in we are now using only 1 file (survey_pa_complaint.json).
-12) Some of the links/urls have not been set for french in <sections> when I add the "en" + "fr" parts
+12) Some of the links/urls have not been set for french in html "sections" when I add the "en" + "fr" parts
 13) Part-C, at the question 'Did the institution agree to process your request on an informal basis?', the 'htmldescription' is missing. 
 	I need to create another widget for radiobuttons, just like for the checkboxHtml. No need to custom widget.
 14) The logic for showing the information section in Part C section 4 needs to be checked to reproduce exactly the same behaviour
@@ -172,16 +166,34 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 26) Server side validation - work with Data annotation for SurveyPAModel
 27) Javascript fetch is not working, ask PL for solution. Replace ajax calls by fetch. Used polyfill & fetch.js
 28) PDF;
-	- Why do we have blank spaces (whole page) see first page. Options.compress: true seems to not include the answers? (Fix with new json)
-	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with new json)
-	- Hide html type questions (Fix with new json)
-	- Hide whole pages (Fix with new json)
+	- English is working, french not working (property mode had to be set on SurveyPDF object).
+	- Why do we have blank spaces (whole page) see first page. Options.compress: true seems to not include the answers? (Fix with updated/modified json)
+	- Fit more questions by page, now it looks like pages are broken down by pages (Fix with updated/modified json)
+	- Hide html type questions (Fix with updated/modified json)
+	- Hide whole pages (Fix with updated/modified json)
 	- Not exporting pdf in francais (property locale had to be set on SurveyPDF object)
 	- Make it not editable (property mode had to be set on SurveyPDF object)
 	- Remove question numbers (property showQuestionNumbers had to be set on SurveyPDF object)
 	- Markdown is not working (using surveyPDF.save(filename))
 	- Attachments are missing
 	- Remove menu button when finished with the bugs
+	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
+	- Try to have only one json to manage
+	- question not visible if still showing
+
+29) Set the navigation buttons to be invisble by default
+30) IE;
+	- Details-summary tags not working. (fixed using a polyfill > details-polyfill)
+	- Chekcboxes with html don't work. 
+		i) Element.closest not supported by IE (fixed using the polyfill -> element-closest-polyfill)
+		2) Use onchange event instead of onclick on the input
+	- - the whole file preview thing is not working as well as the html "meter" object. Fixed it by adding a div inside the meter	
+
+31) Put a spinner when completing the survey since there is 2 api calls. Bootstrap. Talk to Josh. Vue component. PBR client project
+32) Using fetch instead of ajax or XMLHttpRequest 
+	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
+	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest (FIXED)
+33) Refactor widget comment with html
 
 ### Postponed todo
 A) Explore survey Creator (POSTPONED)

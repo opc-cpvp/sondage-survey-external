@@ -1,19 +1,24 @@
-﻿import "core-js/es";
+﻿/// <reference path="../@types/survey-vue/survey.vue.d.ts" />
+
+import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
+import "details-polyfill";  //  Polyfill to open/close the <details> tags
+import "element-closest-polyfill";  //  Polyfill to use Element.closest
 
-import * as SurveyInit from "./surveyInit";
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
-import * as SurveyPDF from "./surveyPDF";
-import { WidgetCheckboxHtml } from "./widgets/widgetCheckboxHtml";
+import { CheckboxWidget } from "./widgets/checkboxwidget";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
+import { surveyPdfExport } from "./surveyPDF";
+import * as SurveyNavigation from "./surveyNavigation";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
+    function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
 
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
@@ -42,32 +47,29 @@ declare let Symbol;
     }
 
     function main() {
-        globalThis.startSurvey = SurveyInit.startSurvey;
-        globalThis.endSession = SurveyInit.endSession;
-        globalThis.showPreview = SurveyInit.showPreview;
+        globalThis.startSurvey = SurveyNavigation.startSurvey;
+        globalThis.endSession = SurveyNavigation.endSession;
+        globalThis.showPreview = SurveyNavigation.showPreview;
+        globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
         globalThis.initPaSurvey = (lang, token) => {
-            const paSurvey = new PaSurvey();
-            const widgetCheckboxHtml = new WidgetCheckboxHtml();
-            const widgetCommentHtml = new WidgetCommentHtml();
+
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
+            CheckboxWidget.init();
+            WidgetCommentHtml.init();
+
+            const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);
-            widgetCheckboxHtml.init();
-            widgetCommentHtml.init();
         };
 
         globalThis.exportToPDF = lang => {
             //  TODO: somehow the json url must come from the parameter because we can re-use this method
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
             const filename = "survey_export";
-
-            SurveyPDF.exportToPDF(filename, jsonUrl, lang);
+            const pdfClass = new surveyPdfExport();
+            pdfClass.exportToPDF(filename, jsonUrl, lang);
         };
-
-        globalThis.checkBoxInfoPopupEvent = checkbox => {
-            SurveyInit.checkBoxInfoPopup(checkbox);
-        }
 
         globalThis.initTestSurvey = (lang, token) => {
             const sampleSurvey = new TestSurvey();

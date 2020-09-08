@@ -1,11 +1,10 @@
-﻿//declare let $: any;
-import * as showdown from "showdown";
-// declare let survey: { locale: string };
+﻿import * as showdown from "showdown";
 
 import * as SurveyHelper from "./surveyHelper";
-import * as SurveyLocalStorage from "./surveyLocalStorage";
 import * as Survey from "survey-vue";
-import { ProblemDetails } from "./problemDetails";
+import { ProblemDetails } from "./models/problemDetails";
+import * as SurveyNavigation from "./surveyNavigation";
+
 
 export function initSurvey(): void {
     Survey.JsonObject.metaData.addProperty("survey", {
@@ -92,6 +91,7 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
     survey.showNavigationButtons = false;
     survey.showCompletedPage = true;
 
+    //  This is only working in code, not working directly in the json
     if (survey.locale === "fr") {
         survey.requiredText = "(obligatoire)";
     } else {
@@ -100,15 +100,9 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 }
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
+
     survey.onAfterRenderPage.add((sender, options) => {
-        // Change page title to <h1>.
-        // This way is not working, it's creating an error on Preview:  DOMException: Failed to execute 'insertBefore' on 'Node':
-        //     because the tag <h4> is not there anymore and during the preview, the page titles are being transformed into <h2>
-        // switchPageTitleToH1();
-
         window.document.title = options.page.title;
-
-        switchPanelTitleToH2();
     });
 
     // THIS IS THE SHOWDOWN MARKDOWN CODE***************
@@ -207,121 +201,12 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
-            options.title =
-                "<span class='sv_q_required_text'>&ast; </span>" +
-                options.title;
+            options.title = `<span class='sv_q_required_text'>&ast;</span>${options.title as string}`;
         }
     });
 
     //  Use for our custom navigation
-    survey.onCurrentPageChanged.add((sender, options) => {
-        onCurrentPageChanged_updateNavButtons(sender);
+    survey.onCurrentPageChanged.add(sender => {
+        SurveyNavigation.onCurrentPageChanged_updateNavButtons(sender);
     });
-}
-
-//  Function for updating (show/hide) the navigation buttons
-export function onCurrentPageChanged_updateNavButtons(
-    survey: Survey.SurveyModel
-): void {
-    //  NOTES:
-    //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage
-    //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
-
-    // document
-    //    .getElementById("btnEndSession")
-    //    .style
-    //    .display = !survey.isFirstPage || survey.isDisplayMode
-    //        ? "inline"
-    //        : "none";
-
-    const startButton =
-        document.getElementById("btnStart") ?? new HTMLElement();
-    startButton.style.display =
-        survey.isFirstPage && !survey.isDisplayMode ? "inline" : "none";
-
-    const previousButton =
-        document.getElementById("btnSurveyPrev") ?? new HTMLElement();
-    previousButton.style.display = !survey.isFirstPage ? "inline" : "none";
-
-    const nextButton =
-        document.getElementById("btnSurveyNext") ?? new HTMLElement();
-    nextButton.style.display =
-        !survey.isFirstPage && !survey.isLastPage ? "inline" : "none";
-
-    const showPreviewButton =
-        document.getElementById("btnShowPreview") ?? new HTMLElement();
-    showPreviewButton.style.display =
-        !survey.isDisplayMode &&
-            (survey.isLastPage || survey.passedPreviewPage === true)
-            ? "inline"
-            : "none";
-
-    const completeButton =
-        document.getElementById("btnComplete") ?? new HTMLElement();
-    completeButton.style.display = survey.isDisplayMode ? "inline" : "none";
-
-    SurveyHelper.clearProblemDetails();
-}
-
-export function showPreview(survey: Survey.SurveyModel): void {
-    //  Set the survey property that will hold the information as to if the user has reached the 'Preview'
-    survey.passedPreviewPage = true;
-
-    //  Calling the native showPreview method
-    survey.showPreview();
-}
-
-export function startSurvey(survey: Survey.SurveyModel): void {
-    SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_PA);
-    survey.nextPage();
-}
-
-export function endSession(): void {
-    const url = "/Home/Index";
-    window.location.href = url;
-}
-
-export function switchPanelTitleToH2(): void {
-    // TODO: fix this
-    //$("h4.sv_p_title").replaceWith(() => {
-    //    return "";
-    //     //return `<h2>${$(target).text()}</h2>`;
-    //});
-}
-
-//  This is to open the additional information div when a checkbox is being checked or hide it when the checkbox is un-checked.
-//  It will also remove or add the item being chekced or unchecked from the json data
-export function checkBoxInfoPopup(checkbox) {
-
-    //  Getting the <div> with css class info-popup from the parent <div>
-    var infoPopupDiv = checkbox.closest(".sv_q_checkbox").querySelector('.info-popup');
-    var data = survey.data;
-
-    if (checkbox.checked) {
-
-        if (infoPopupDiv)
-            infoPopupDiv.style.display = 'block';
-
-        //  If the array object of the checkbox list is not set the create it
-        if (!data[checkbox.name]) {
-            data[checkbox.name] = [];
-        }
-
-        //  push the selected value
-        data[checkbox.name].push(checkbox.value);
-    }
-    else {
-
-        if (infoPopupDiv)
-            infoPopupDiv.style.display = 'none';
-
-        //  removing the un-checked item from the json object
-        for (var i = 0; i < data[checkbox.name].length; i++) {
-            if (data[checkbox.name][i] === checkbox.value) {
-                data[checkbox.name].splice(i, 1);
-            }
-        }
-    }
-
-    survey.data = data;
 }

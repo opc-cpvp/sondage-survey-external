@@ -9,10 +9,11 @@ import {
     initSurvey,
     initSurveyModelEvents,
     initSurveyModelProperties,
-    onCurrentPageChanged_updateNavButtons
 } from "../surveyInit";
 import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
 import { printProblemDetails, getTranslation } from "../surveyHelper";
+import * as SurveyNavigation from "../surveyNavigation";
+import * as Ladda from "ladda";
 
 declare global {
     // TODO: get rid of this global variable
@@ -23,144 +24,6 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
-    // This function is to build the html for the question of type html documentation_info.
-    // I have tried to get this working in a more elegant way but no success
-    private updateDocumentationInfoSection(survey, options) {
-        //options.question.html = "<section class='alert alert-info col-md-12'>";
-
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "<p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p>";
-        //} else {
-        //    options.question.html +=
-        //        "<p>Based on your responses so far, you should attach the following documents with your complaint:</p>";
-        //}
-
-        //options.question.html += "<ul>";
-
-        //options.question.html += "<li class='mrgn-bttm-sm'>";
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)";
-        //} else {
-        //    options.question.html +=
-        //        "a copy of any written responses you received from the organization about your privacy concerns";
-        //}
-        //options.question.html += "</li>";
-
-        //options.question.html += "<li class='mrgn-bttm-sm'>";
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "une copie de votre demande à l’institution";
-        //} else {
-        //    options.question.html +=
-        //        "a copy of your request to the institution";
-        //}
-        //options.question.html += "</li>";
-
-        const ul_documentation_info = document.getElementById("ul_documentation_info");
-        if (ul_documentation_info == null)
-            return;
-
-
-        const htmlDiv = <HTMLElement>options.question.html;
-        if (htmlDiv == null)
-            return;
-
-        if (survey.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
-
-          
-            const liRaisedPrivacyToAtipCoordinator = ul_documentation_info.querySelector("raisedPrivacyToAtipCoordinator"); //mrgn-bttm-sm
-            
-            //options.question.html += "<li class='mrgn-bttm-sm'>";
-            //if (survey.locale === "fr") {
-            //    options.question.html +=
-            //        "une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution";
-            //} else {
-            //    options.question.html +=
-            //        "a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator";
-            //}
-            //options.question.html += "</li>";
-        }
-
-        if (survey.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "votre formulaire d’autorisation de représentation signé par le plaignant";
-            } else {
-                options.question.html +=
-                    "your representative authorization form signed by the complainant";
-            }
-            options.question.html += "</li>";
-        }
-
-        if (
-            survey.data["NatureOfComplaint"].filter(
-                x => x === "NatureOfComplaintDenialOfAccess"
-            ).length > 0
-        ) {
-            options.question.html += "<li class='mrgn-bttm-sm'>";
-            if (survey.locale === "fr") {
-                options.question.html +=
-                    "vos demandes d’accès et toute réponse reçue de l’institution";
-            } else {
-                options.question.html +=
-                    "your access request(s) and any reply(ies) received from the institution";
-            }
-            options.question.html += "</li>";
-        }
-
-        //options.question.html += "</ul>";
-
-        //if (survey.locale === "fr") {
-        //    options.question.html +=
-        //        "<p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p>";
-        //} else {
-        //    options.question.html +=
-        //        "<p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p>";
-        //}
-
-        //options.question.html += "</section>";
-    }
-
-    private onCurrentPageChanged_saveState(survey) {
-        saveStateLocally(survey, storageName_PA);
-    }
-
-    // This is to get the total number of bytes for both file uploads.
-    // We will compare with the max value later.
-    // Note that the file size is being stored in file.content
-    private getTotalFileSize(survey, options) {
-        let totalBytes = 0;
-
-        options.question.value.forEach(fileItem => {
-            totalBytes = totalBytes + parseInt(fileItem.content);
-        });
-
-        // We need to calculate the total size of all files for both file upload
-
-        if (options.question.name === "documentation_file_upload") {
-            const rep_file_upload = survey.getQuestionByName("documentation_file_upload_rep");
-
-            if (rep_file_upload && rep_file_upload.value) {
-                rep_file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
-                });
-            }
-        } else if (options.question.name === "documentation_file_upload_rep") {
-
-            const file_upload = survey.getQuestionByName("documentation_file_upload");
-
-            if (file_upload && file_upload.value) {
-                file_upload.value.forEach(fileItem => {
-                    totalBytes = totalBytes + parseInt(fileItem.content);
-                });
-            }
-        }
-
-        return totalBytes;
-    }
 
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
@@ -170,115 +33,77 @@ export class PaSurvey {
             .then(response => response.json())
             .then(json => {
 
-                const survey = new Survey.Model(json);
-                globalThis.survey = survey;
+                const _survey = new Survey.Model(json);
+                globalThis.survey = _survey;
 
-                survey.complaintId = token;
+                _survey.complaintId = token;
 
                 //  This needs to be here
-                survey.locale = lang;
+                _survey.locale = lang;
 
                 // Add events only applicable to this page **********************
 
                 // ISSUE WITH THE FLOW: When calling survey.onComplete the completed page shows right away. This is
-                // not desired. If the validation doesn't pas, we don't want to go to the completed page. So to do that,
+                // not desired. If the validation doesn't pass, we don't want to go to the completed page. So to do that,
                 // we call survey.onCompleting.
-                // The event onCompleting is fired before the survey is completed and the onComplete event is fired.
+                // The event onCompleting is fired before the survey is completed and the onComplete event is fired after.
                 // You can prevent the survey from completing by setting options.allowComplete to false
                 // sender - the survey object that fires the event.
                 // NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
                 //          This is because the call is waiting for options.allowComplete = true
-                survey.onCompleting.add((sender, options) => {
+
+                //  We are going to use this variable to handle if the validation has passed or not.
+                let isValidSurvey = false;
+
+                _survey.onCompleting.add((sender, options) => {
+
+                    if (isValidSurvey === true) {
+                        options.allowComplete = true;
+                        return;
+                    }
+
                     options.allowComplete = false;
 
-                    const data = JSON.stringify(sender.data, null, 3);
+                    const uri = `/api/PASurvey/Validate?complaintId="${sender.complaintId as string}`;
 
-                    const xhr = new XMLHttpRequest();
-                    xhr.open(
-                        "POST",
-                        "/api/PASurvey/Validate?complaintId=" +
-                        sender.complaintId,
-                        false
-                    );
-                    xhr.setRequestHeader(
-                        "Content-Type",
-                        "application/json; charset=utf-8"
-                    );
-                    xhr.onload = xhr.onerror = () => {
-                        if (xhr.status === 200) {
-                            options.allowComplete = true;
-                        } else {
-                            const validationResponse = JSON.parse(xhr.response);
-                            printProblemDetails(validationResponse, sender.locale);
+                    fetch(uri, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify(sender.data)
+                    }).then(response => {
+                        switch (response.status) {
+                            case 200: {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                                break;
+                            }
+                            case 400:
+                            case 500:
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
+                            default:
+                                Ladda.stopAll();
+                                return response;
                         }
-                    };
-                    xhr.send(data);
+                    }).catch(error => {
+                        console.warn(error);
+                        Ladda.stopAll();
+                    });
                 });
 
-                // //survey
-                // //    .onCompleting
-                // //    .add(function (sender, options) {
+                _survey.onComplete.add((sender, options) => {
 
-                // //        options.allowComplete = true;
-
-                // //        //let data = JSON.stringify(sender.data, null, 3);
-
-                // //        var params = { 'complaintId': sender.complaintId }
-                // //        let query = Object.keys(params).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k])).join('&');
-                // //        var uri = "/api/PASurvey/Validate?" + query;
-
-                // //        const validate = async () => {
-
-                // //            const response = await fetch(uri, {
-                // //                method: 'POST',
-                // //                headers: {
-                // //                    'Accept': 'application/json',
-                // //                    'Content-Type': 'application/json; charset=utf-8'
-                // //                },
-                // //                body: JSON.stringify(sender.data)
-
-                // //            });
-
-                // //            const validationResponse = await response;
-
-                // //            if (validationResponse.status === 200) {
-                // //                options.allowComplete = false;
-
-                // //            }
-                // //            else {
-                // //                if (validationResponse.json) {
-                // //                    validationResponse.json().then(function (error) {
-                // //                        printProblemDetails(error);
-                // //                    });
-                // //                }
-                // //                else {
-                // //                    alert("oopsy");
-                // //                }
-
-                // //                //return false;
-                // //            }
-                // //        }
-
-                // //        //    options.allowComplete = validate() === true;
-
-                // //        validate();
-                // //        //options.allowComplete = allowComplete;
-                // //        //validate().catch(function (error) {
-                // //        //    console.warn(error);
-                // //        //});
-                // //    });
-
-                survey.onComplete.add((sender, options) => {
-                    const params = { complaintId: sender.complaintId };
-                    const query = Object.keys(params)
-                        .map(
-                            k =>
-                                `${encodeURIComponent(k)}=${encodeURIComponent(
-                                    params[k]
-                                )}`
-                        )
-                        .join("&");
-                    const uri = "/api/PASurvey/Complete?" + query;
+                    const uri = `/api/PASurvey/Complete?complaintId="${sender.complaintId as string}`;
 
                     fetch(uri, {
                         method: "POST",
@@ -290,23 +115,30 @@ export class PaSurvey {
                     })
                         .then(response => {
                             switch (response.status) {
-                                case 200:
+                                case 200: {
                                     //  Hide the navigation buttons
-                                    $("#div_navigation").hide();
+                                    const div_navigation = document.getElementById("div_navigation");
+                                    if (div_navigation) {
+                                        div_navigation.style.display = "none";
+                                    }
 
-                                    // //var response = JSON.parse(completeResponse);
+                                    //  Update the file reference number
+                                    void response.json()
+                                        .then(responseData => {
+                                            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                            if (sp_survey_file_number) {
+                                                sp_survey_file_number.innerHTML = responseData.referenceNumber;
+                                            }
+                                        }).catch(error => {
+                                            console.warn(error);
+                                        });
 
-                                    // ////  Update the file reference number
-                                    // //completeResponse.json().then(function (response) {
-                                    // //    $("#sp_survey_file_number").html(response.referenceNumber);
-                                    // //});
-
-                                    // //survey.clear(true, true);
-                                    // //clearLocalStorage(storageName_PA);
-                                    saveStateLocally(survey, storageName_PA);
+                                    saveStateLocally(_survey, storageName_PA);
 
                                     console.log(sender.data);
+                                    Ladda.stopAll();
                                     break;
+                                }
                                 case 400:
                                 case 500:
                                     if (response.json) {
@@ -314,58 +146,25 @@ export class PaSurvey {
                                             printProblemDetails(problem, sender.locale);
                                         });
                                     }
-
+                                    Ladda.stopAll();
                                     return response;
 
                                 default:
+                                    Ladda.stopAll();
                                     return response;
                             }
                         })
                         .catch(error => {
-                            // console.warn("Could not upload the file");
                             console.warn(error);
+                            Ladda.stopAll();
                         });
-
-                    // //let data = JSON.stringify(sender.data, null, 3);
-
-                    // //var xhr = new XMLHttpRequest();
-                    // //xhr.open("POST", "/api/PASurvey/Complete?complaintId=" + sender.complaintId);
-                    // //xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-                    // //xhr.onload = xhr.onerror = function (result) {
-
-                    // //    if (xhr.status === 200) {
-
-                    // //        //  Hide the navigation buttons
-                    // //        $("#div_navigation").hide();
-
-                    // //        //  Update the file reference number
-                    // //        var response = JSON.parse(xhr.response);
-                    // //        $("#sp_survey_file_number").html(response.referenceNumber);
-
-                    // //        //survey.clear(true, true);
-                    // //        //clearLocalStorage(storageName_PA);
-                    // //        saveStateLocally(survey, storageName_PA);
-
-                    // //        console.log(data);
-
-                    // //    } else if (xhr.status === 400) {
-
-                    // //        var response = JSON.parse(xhr.response);
-                    // //        alert(response.detail);
-                    // //    }
-                    // //    else {
-                    // //        //Error
-                    // //        options.showDataSavingError(); // you may pass a text parameter to show your own text
-                    // //    }
-                    // //};
-                    // //xhr.send(data);
                 });
 
-                survey.onAfterRenderQuestion.add((sender, options) => {
+                _survey.onAfterRenderQuestion.add((sender, options) => {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
-                        this.updateDocumentationInfoSection(sender, options);
-                    }
-                    else if (options.question.getType() === "file" && options.question.value) {
+
+                        this.updateDocumentationInfoSection(sender);
+                    } else if (options.question.getType() === "file" && options.question.value) {
 
                         // Getting the total size of all uploaded files
                         const totalBytes = this.getTotalFileSize(sender, options);
@@ -374,27 +173,37 @@ export class PaSurvey {
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null)
+                        if (spanTotal != null) {
                             spanTotal.innerHTML = sizeInMB;
+                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null)
+                        if (meterElement != null) {
                             meterElement.value = totalBytes;
+                        }
+
+                        //  This is for IE to work.
+                        //  See: https://css-tricks.com/html5-meter-element/
+                        const div_meter_upload = document.getElementById("div_meter_upload") as HTMLDivElement;
+                        if (div_meter_upload) {
+                            const percentage = ((totalBytes / multipleFileMaxSize) * 100).toFixed(0);
+                            div_meter_upload.style.width = `${percentage}%`;
+                        }
                     }
                 });
 
                 // Adding particular event for this page only
-                survey.onCurrentPageChanged.add((sender, options) => {
+                _survey.onCurrentPageChanged.add((sender, options) => {
                     this.onCurrentPageChanged_saveState(sender);
                 });
 
-                survey.onValidateQuestion.add((sender, options) => {
+                _survey.onValidateQuestion.add((sender, options) => {
                     if (options.question.getType() === "file" && options.question.value) {
                         // Getting the total size of all uploaded files
-                        const totalBytes = this.getTotalFileSize(survey, options);
+                        const totalBytes = this.getTotalFileSize(_survey, options);
 
                         if (multipleFileMaxSize > 0 && totalBytes > multipleFileMaxSize) {
-                            options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, survey.locale);
+                            options.error = getTranslation(options.question.multipleFileMaxSizeErrorMessage, _survey.locale);
                             // return false;
                         }
 
@@ -402,16 +211,26 @@ export class PaSurvey {
 
                         // Setting up the <meter> values
                         const spanTotal = document.getElementById("sp_total");
-                        if (spanTotal != null)
+                        if (spanTotal != null) {
                             spanTotal.innerHTML = sizeInMB;
+                        }
 
                         const meterElement = document.getElementById("meter_upload_total_mb") as HTMLMeterElement;
-                        if (meterElement != null)
+                        if (meterElement != null) {
                             meterElement.value = totalBytes;
+                        }
+
+                        //  This is for IE to work.
+                        //  See: https://css-tricks.com/html5-meter-element/
+                        const div_meter_upload = document.getElementById("div_meter_upload") as HTMLDivElement;
+                        if (div_meter_upload) {
+                            const percentage = ((totalBytes / multipleFileMaxSize) * 100).toFixed(0);
+                            div_meter_upload.style.width = `${percentage}%`;
+                        }
                     }
                 });
 
-                survey.onServerValidateQuestions.add((sender, options) => {
+                _survey.onServerValidateQuestions.add((sender, options) => {
 
                     if (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both") {
 
@@ -436,14 +255,11 @@ export class PaSurvey {
                                         break;
                                     case 400:
                                     case 500:
-                                        if (response.json) {
-                                            response.json().then(problem => {
-                                                printProblemDetails(problem, sender.locale);
-                                            });
-                                        } else {
-                                            console.warn(response);
-                                        }
-
+                                        response.json().then(problem => {
+                                            printProblemDetails(problem, sender.locale);
+                                        }).catch(error => {
+                                            console.warn(error);
+                                        });
                                         break;
                                     default:
                                         console.warn(response);
@@ -459,11 +275,11 @@ export class PaSurvey {
 
                 // ****Event *****************************************************
 
-                initSurveyModelEvents(survey);
+                initSurveyModelEvents(_survey);
 
-                initSurveyModelProperties(survey);
+                initSurveyModelProperties(_survey);
 
-                initSurveyFileModelEvents(survey);
+                initSurveyFileModelEvents(_survey);
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.
@@ -517,27 +333,97 @@ export class PaSurvey {
                     "DidNoRecordExistChoice": "yes",
                     "InstitutionAgreedRequestOnInformalBasis": "not_sure",
                     "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
-                };  
+                };
 
                 // Load the initial state
-                loadStateLocally(survey, storageName_PA, defaultData);
+                loadStateLocally(_survey, storageName_PA, JSON.stringify(defaultData));
 
                 // Save the state back to local storage
-                this.onCurrentPageChanged_saveState(survey);
+                this.onCurrentPageChanged_saveState(_survey);
 
                 // Call the event to set the navigation buttons on page load
-                onCurrentPageChanged_updateNavButtons(survey);
+                SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
                 // DICTIONNARY - this is just to show how to use localization
-                // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)-Privacy complaint form (federal institution)");
-                // survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-Privacy complaints form (federal institution)");
+                // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)...");
+                // survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-...");
 
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
-                        survey: survey
+                        survey: _survey
                     }
                 });
             });
+    }
+
+    // This function is to update the html for the question of type html named 'documentation_info'.
+    // It will removed the hidden css on some of the <li> depending on some conditions
+    private updateDocumentationInfoSection(surveyObj) {
+
+        const ul_documentation_info = document.getElementById("ul_documentation_info");
+        if (ul_documentation_info == null) {
+            return;
+        }
+
+        if (surveyObj.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
+
+            const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+
+        if (surveyObj.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
+            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+
+        if (surveyObj.data["NatureOfComplaint"].filter(x => x === "NatureOfComplaintDenialOfAccess").length > 0) {
+            const liNode = ul_documentation_info.querySelector(".natureOfComplaint");
+            if (liNode != null) {
+                liNode.classList.remove("sv-hidden");
+            }
+        }
+    }
+
+    private onCurrentPageChanged_saveState(surveyObj) {
+        saveStateLocally(surveyObj, storageName_PA);
+    }
+
+    // This is to get the total number of bytes for both file uploads.
+    // We will compare with the max value later.
+    // Note that the file size is being stored in file.content
+    private getTotalFileSize(surveyObj, options) {
+        let totalBytes = 0;
+
+        options.question.value.forEach(fileItem => {
+            totalBytes = totalBytes + parseInt(fileItem.content, 10);
+        });
+
+        // We need to calculate the total size of all files for both file upload
+
+        if (options.question.name === "documentation_file_upload") {
+            const rep_file_upload = surveyObj.getQuestionByName("documentation_file_upload_rep");
+
+            if (rep_file_upload && rep_file_upload.value) {
+                rep_file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
+                });
+            }
+        } else if (options.question.name === "documentation_file_upload_rep") {
+
+            const file_upload = surveyObj.getQuestionByName("documentation_file_upload");
+
+            if (file_upload && file_upload.value) {
+                file_upload.value.forEach(fileItem => {
+                    totalBytes = totalBytes + parseInt(fileItem.content, 10);
+                });
+            }
+        }
+
+        return totalBytes;
     }
 }

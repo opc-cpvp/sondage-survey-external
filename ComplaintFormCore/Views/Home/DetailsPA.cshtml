@@ -11,6 +11,7 @@
     {
         return Xsrf.GetAndStoreTokens(Context).RequestToken;
     }
+
 }
 
 <div id="surveyElement" style="display:inline-block;width:100%;">
@@ -21,25 +22,29 @@
 
 <center>
     <div id="div_navigation">
-        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
-        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary">@Localizer.GetLocalizedString("btnSurveyNext")</button>
-        <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary">@Localizer.GetLocalizedString("btnShowPreview")</button>
-        <button id="btnComplete" onclick="survey.doComplete();" class="btn btn-primary">@Localizer.GetLocalizedString("btnComplete")</button>
+        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnShowPreview")</button>
+        <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button" style="display: none">@Localizer.GetLocalizedString("btnComplete")</button>
         @*<button id="btnEndSession" onclick="endSession()" class="btn btn-primary">@Localizer.GetLocalizedString("btnEndSession")</button>*@
-        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary">Start</button>
-        <button id="pdfPreviewBtn" style="margin:10px" class="btn btn-primary" onclick="showPDF()">PDF Preview</button>
+        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary" style="display: none">Start</button>
+        @*<button id="pdfPreviewBtn" class="btn btn-primary" onclick="showPDF()" style="display: block">PDF Preview</button>*@
     </div>
 </center>
 
 @section CustomStyles {
     <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
 }
 
 @section CustomScripts {
 
     <script src="~/dist/bundle.js"></script>
 
+
+
     <script type="text/javascript">
+
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
@@ -49,9 +54,6 @@
             exportToPDF(lang);
         }
 
-        function checkBoxInfoPopup(inputElement) {
-            checkBoxInfoPopupEvent(inputElement);
-        }
     </script>
 }
 

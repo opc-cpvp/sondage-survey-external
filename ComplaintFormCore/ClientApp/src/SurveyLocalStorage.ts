@@ -3,10 +3,7 @@
 export const storageName_PA = "SurveyJS_LoadState_PA";
 export const storageName_Test = "SurveyJS_LoadState_Test";
 
-export function saveStateLocally(
-    survey: Survey.SurveyModel,
-    storageName: string
-): void {
+export function saveStateLocally(survey: Survey.SurveyModel, storageName: string): void {
     const res = {
         currentPageNo: survey.currentPageNo,
         data: survey.data
@@ -23,23 +20,19 @@ export function saveStateLocally(
     window.localStorage.setItem(storageName, JSON.stringify(res));
 }
 
-export function loadStateLocally(
-    survey: Survey.SurveyModel,
-    storageName: string,
-    defaultData: {}
-): void {
+export function loadStateLocally(survey: Survey.SurveyModel, storageName: string, defaultDataAsJsonString: string): void {
     // Here should be the code to load the data from your database
 
     const storageSt = window.localStorage.getItem(storageName) || "";
 
-    let res: { currentPageNo: number; data: {} };
+    let res: { currentPageNo: number; data: any };
     if (storageSt) {
         res = JSON.parse(storageSt); // Create the survey state for the demo. This line should be deleted in the real app.
     } else {
         // If nothing was found we set the default values for the json as well as set the current page to 0
         res = {
             currentPageNo: 0,
-            data: defaultData
+            data: JSON.parse(defaultDataAsJsonString)
         };
     }
 

@@ -1,18 +1,18 @@
-﻿import * as Survey from "survey-vue";
 import { Widget } from "./widget";
+import * as Survey from "survey-vue";
 
-export class WidgetCommentHtml extends Widget {
+export class CheckboxWidget extends Widget {
     private activatedBy = "property";
 
     constructor() {
         super(
-            "commentwithhtmldescription",
-            "Comment box with Html description"
+            "checkboxwithhtmlinfo",
+            "Checkbox list with addtional Html info"
         );
     }
 
     static init(): void {
-        const widget: WidgetCommentHtml = new WidgetCommentHtml();
+        const widget: CheckboxWidget = new CheckboxWidget();
 
         // If activatedBy isn't passed, it will default to property.
         Survey.CustomWidgetCollection.Instance.addCustomWidget(widget);
@@ -26,13 +26,13 @@ export class WidgetCommentHtml extends Widget {
     isFit(question: Survey.IQuestion): boolean {
         if (this.activatedBy === "property") {
             return (
-                question.renderAs === "commentwithhtmldescription" &&
-                question.getType() === "comment"
+                question.renderAs === "checkboxwithhtmlinfo" &&
+                question.getType() === "checkbox"
             );
         } else if (this.activatedBy === "type") {
-            return question.getType() === "comment";
+            return question.getType() === "checkbox";
         } else if (this.activatedBy === "customtype") {
-            return question.getType() === "commentwithhtmldescription";
+            return question.getType() === "checkboxwithhtmlinfo";
         }
         return false;
     }
@@ -47,22 +47,16 @@ export class WidgetCommentHtml extends Widget {
      */
     activatedByChanged(activatedBy: string): void {
         this.activatedBy = activatedBy;
-        Survey.JsonObject.metaData.removeProperty("comment", "renderAs");
+        Survey.JsonObject.metaData.removeProperty("checkbox", "renderAs");
         if (activatedBy === "property") {
-
-            Survey.JsonObject.metaData.addProperty("comment", {
+            Survey.JsonObject.metaData.addProperty("checkbox", {
                 name: "renderAs",
                 category: "general",
                 default: "standard",
-                choices: ["standard", "commentwithhtmldescription"]
+                choices: ["standard", "checkboxwithhtmlinfo"]
             });
-
-            Survey.JsonObject.metaData.addProperties("comment", [
-                { name: "htmldescription", default: "" }
-            ]);
-
         } else if (activatedBy === "customtype") {
-            Survey.JsonObject.metaData.addClass("commentwithhtmldescription", [], undefined, "comment");
+            Survey.JsonObject.metaData.addClass("checkboxwithhtmlinfo", [], undefined, "checkbox");
         }
     }
 
@@ -73,25 +67,38 @@ export class WidgetCommentHtml extends Widget {
      * @param el
      */
     afterRender(question: Survey.IQuestion, el: HTMLElement): void {
-        // NOTE:    This is where we are setting the "description" property from the htmldescription.
-        //          At the moment I do not know why the html gets parse as html but it works! Magic.
-
-        const commentQuestion: Survey.QuestionCommentModel = question as unknown as Survey.QuestionCommentModel;
+        const checkboxQuestion: Survey.QuestionCheckboxModel = question as unknown as Survey.QuestionCheckboxModel;
         const locale = question.getLocale();
 
-        if (commentQuestion.htmldescription) {
+        for(const choice of checkboxQuestion.choices) {
+            const item: Survey.ItemValue = choice as Survey.ItemValue;
 
-            let description = "";
-
-            if (locale === "fr" && commentQuestion.htmldescription.fr) {
-                description = commentQuestion.htmldescription.fr;
-            } else if (commentQuestion.htmldescription.en) {
-                description = commentQuestion.htmldescription.en;
-            } else {
-                description = commentQuestion.htmldescription;
+            // ignore choices without the additional info
+            if (!choice.htmlAdditionalInfo) {
+                continue;
             }
 
-            commentQuestion.description = description;
+            const input: HTMLInputElement | null = el.querySelector(`input[value="${item.value as string}"]`);
+            const container = input?.closest("div");
+
+            if (!input || !container) {
+                continue;
+            }
+
+            const additionalInfo = locale === "fr" ? choice.htmlAdditionalInfo.fr : choice.htmlAdditionalInfo.en;
+
+            // create / append the alert to the choice
+            const alert = document.createElement("div");
+            alert.className = "alert alert-info";
+            alert.innerHTML = additionalInfo;
+            alert.classList.add(input.checked ? "show" : "hidden");
+
+            input.onchange = (ev: Event) => {
+                alert.classList.toggle("hidden");
+                alert.classList.toggle("show");
+            };
+
+            container?.appendChild(alert);
         }
     }
 }

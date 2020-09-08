@@ -72,6 +72,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="ClientApp\node_modules\ladda\css\" />
+    <Folder Include="ClientApp\node_modules\ladda\dist\" />
     <Folder Include="wwwroot\dist\" />
   </ItemGroup>
 
@@ -87,11 +89,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\problemDetails.ts" />
     <None Remove="ClientApp\src\surveyFile.ts" />
     <None Remove="ClientApp\src\surveyHelper.ts" />
     <None Remove="ClientApp\src\surveyInit.ts" />
     <None Remove="ClientApp\src\surveyLocalStorage.ts" />
+    <None Remove="ClientApp\src\surveyNavigation.ts" />
     <None Remove="ClientApp\src\testSurvey.ts" />
   </ItemGroup>
 
@@ -102,20 +106,19 @@
     <TypeScriptCompile Remove="ClientApp\src\surveyLocalStorage.ts" />
     <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
     <TypeScriptCompile Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
     <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyInit.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyLocalStorage.ts" />
+    <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
     <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -136,9 +139,13 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="ClientApp\src\surveyPDF.ts" />
-    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
     <Content Include="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts" />
+    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -158,6 +165,22 @@
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
+    <TypeScriptTarget>ES2015</TypeScriptTarget>
+    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
+    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
+    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
   </PropertyGroup>
 
 </Project>

@@ -24,7 +24,7 @@ namespace ComplaintFormCore.Exceptions
             else
             {
                 Errors.Add(key, new List<string>() { value });
-            }            
+            }
         }
     }
 }
