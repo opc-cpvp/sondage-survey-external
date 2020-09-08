@@ -51,14 +51,6 @@ steps:
     workingDir: ComplaintFormCore/ClientApp
     verbose: false
 
-#- task: Npm@1
-#  displayName: 'npm run eslint'
-#  inputs:
-#    command: custom
-#    workingDir: ComplaintFormCore/ClientApp
-#    verbose: false
-#    customCommand: 'run eslint'
-
 - task: Npm@1
   displayName: 'npm run build'
   inputs:
