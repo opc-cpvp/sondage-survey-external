@@ -142,7 +142,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  Add the css class label-danger
         classes.error.locationTop += " label-danger";
 
-        if (options.question.getType() === "comment") {
+        if (options.question.getType() === "comment" || options.question.getType() === "text") {
             // This is a little strange but for 'comment' the root is <textarea>
             classes.root = "form-control";
         } else {

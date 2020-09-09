@@ -112,6 +112,48 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
     }
 }
 
+export function printWarningMessage(messageEn: string, messageFr: string, lang: string): void {
+
+    const errorSection = document.getElementById("div_errors_list");
+
+    if (errorSection) {
+
+        errorSection.innerHTML = "";
+
+        const section = document.createElement("section");
+        section.classList.add("alert");
+        section.classList.add("alert-warning");
+
+        const h2Title = document.createElement("H2");
+        let textTitle;
+        if (lang === "fr") {
+            textTitle = document.createTextNode("Message");
+        } else {
+            textTitle = document.createTextNode("Message");
+        }
+
+        h2Title.appendChild(textTitle);
+        section.appendChild(h2Title);
+
+        const messageParagraphe = document.createElement("p");
+
+        if (lang === "fr") {
+            const titleText = document.createTextNode(messageFr);
+            messageParagraphe.appendChild(titleText);
+        } else {
+            const titleText = document.createTextNode(messageEn);
+            messageParagraphe.appendChild(titleText);
+        }
+
+        section.appendChild(messageParagraphe);
+
+        errorSection.appendChild(section);
+        errorSection.style.display = "block";
+
+        window.scrollTo(0, 0);
+    }
+}
+
 export function clearProblemDetails(): void {
 
     const errorSection = document.getElementById("div_errors_list");

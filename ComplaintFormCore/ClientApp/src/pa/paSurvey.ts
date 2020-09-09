@@ -49,8 +49,6 @@ export class PaSurvey {
                 // The event onCompleting is fired before the survey is completed and the onComplete event is fired after.
                 // You can prevent the survey from completing by setting options.allowComplete to false
                 // sender - the survey object that fires the event.
-                // NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
-                //          This is because the call is waiting for options.allowComplete = true
 
                 //  We are going to use this variable to handle if the validation has passed or not.
                 let isValidSurvey = false;

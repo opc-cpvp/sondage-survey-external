@@ -13,6 +13,8 @@ import { CheckboxWidget } from "./widgets/checkboxwidget";
 import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
+import { PiaETool } from "./pia/piaE-ToolSurvey";
+import { WidgetRadioButtonHtml } from "./widgets/widgetRadioButtonHtml";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -22,6 +24,7 @@ declare global {
 
     function initPaSurvey(lang: string, token: string): void;
     function initTestSurvey(lang: string, token: string): void;
+    function initPiaETool(lang: string, token: string): void;
     function exportToPDF(lang: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 }
@@ -61,6 +64,17 @@ declare let Symbol;
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);
+        };
+
+        globalThis.initPiaETool = (lang, token) => {
+
+            const jsonUrl = "/sample-data/survey_pia_e_tool.json";
+
+            WidgetCommentHtml.init();
+            WidgetRadioButtonHtml.init();
+
+            const piaETool = new PiaETool();
+            piaETool.init(jsonUrl, lang, token);
         };
 
         globalThis.exportToPDF = lang => {
