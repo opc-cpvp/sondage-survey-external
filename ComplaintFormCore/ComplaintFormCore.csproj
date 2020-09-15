@@ -89,23 +89,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\%40types\survey-vue\survey.vue.d.ts" />
+    <None Remove="ClientApp\src\index.ts" />
+    <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
+    <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <None Remove="ClientApp\src\pa\paSurvey.ts" />
     <None Remove="ClientApp\src\problemDetails.ts" />
     <None Remove="ClientApp\src\surveyFile.ts" />
     <None Remove="ClientApp\src\surveyHelper.ts" />
     <None Remove="ClientApp\src\surveyInit.ts" />
     <None Remove="ClientApp\src\surveyLocalStorage.ts" />
     <None Remove="ClientApp\src\surveyNavigation.ts" />
+    <None Remove="ClientApp\src\surveyPDF.ts" />
     <None Remove="ClientApp\src\testSurvey.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Remove="ClientApp\src\surveyFile.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\surveyHelper.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\surveyInit.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\surveyLocalStorage.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\surveyPDF.ts" />
-    <TypeScriptCompile Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
+    <None Remove="ClientApp\src\tests\SampleSurvey.ts" />
+    <None Remove="ClientApp\src\tests\testSurvey.ts" />
   </ItemGroup>
 
   <ItemGroup>
@@ -122,30 +121,27 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="ClientApp\src\surveyFile.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="ClientApp\src\surveyHelper.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="ClientApp\src\surveyInit.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="ClientApp\src\surveyLocalStorage.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="ClientApp\src\surveyPDF.ts" />
-    <Content Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
-    <Content Include="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <Content Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
+    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
+    <TypeScriptCompile Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
+    <TypeScriptCompile Update="ClientApp\src\surveyFile.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\surveyHelper.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\SurveyInit.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Update="ClientApp\src\SurveyLocalStorage.ts">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
