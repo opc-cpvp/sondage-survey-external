@@ -40,115 +40,9 @@ export class PiaETool {
                 //  This needs to be here
                 _survey.locale = lang;
 
-                // The event onCompleting is fired before the survey is completed and the onComplete event is fired after.
-                // You can prevent the survey from completing by setting options.allowComplete to false
-
-                //  We are going to use this variable to handle if the validation has passed or not.
-                let isValidSurvey = false;
-
-                _survey.onCompleting.add((sender, options) => {
-
-                    if (isValidSurvey === true) {
-                        options.allowComplete = true;
-                        return;
-                    }
-
-                    options.allowComplete = false;
-
-                    const uri = `/api/PASurvey/Validate?complaintId="${sender.complaintId as string}`;
-
-                    fetch(uri, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                        body: JSON.stringify(sender.data)
-                    }).then(response => {
-                        switch (response.status) {
-                            case 200: {
-                                //  Validation is good then we set the variable so the next call to doComplete()
-                                //  will bypass the validation
-                                isValidSurvey = true;
-                                _survey.doComplete();
-                                break;
-                            }
-                            case 400:
-                            case 500:
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        SurveyHelper.printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            default:
-                                Ladda.stopAll();
-                                return response;
-                        }
-                    }).catch(error => {
-                        console.warn(error);
-                        Ladda.stopAll();
-                    });
-                });
-
                 _survey.onComplete.add((sender, options) => {
-
-                    const uri = `/api/PASurvey/Complete?complaintId="${sender.complaintId as string}`;
-
-                    fetch(uri, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                        body: JSON.stringify(sender.data)
-                    })
-                        .then(response => {
-                            switch (response.status) {
-                                case 200: {
-                                    //  Hide the navigation buttons
-                                    const div_navigation = document.getElementById("div_navigation");
-                                    if (div_navigation) {
-                                        div_navigation.style.display = "none";
-                                    }
-
-                                    //  Update the file reference number
-                                    void response.json()
-                                        .then(responseData => {
-                                            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-                                            if (sp_survey_file_number) {
-                                                sp_survey_file_number.innerHTML = responseData.referenceNumber;
-                                            }
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-
-                                    saveStateLocally(_survey, this.storageName_PIA);
-
-                                    console.log(sender.data);
-                                    Ladda.stopAll();
-                                    break;
-                                }
-                                case 400:
-                                case 500:
-                                    if (response.json) {
-                                        void response.json().then(problem => {
-                                            SurveyHelper.printProblemDetails(problem, sender.locale);
-                                        });
-                                    }
-                                    Ladda.stopAll();
-                                    return response;
-
-                                default:
-                                    Ladda.stopAll();
-                                    return response;
-                            }
-                        })
-                        .catch(error => {
-                            console.warn(error);
-                            Ladda.stopAll();
-                        });
+                    console.log(sender.data);
+                    Ladda.stopAll();
                 });
 
                 _survey.onCurrentPageChanging.add((sender, options) => {
@@ -200,6 +94,58 @@ export class PiaETool {
                     options.allowChanging = true;
                 });
 
+                _survey.onAfterRenderQuestion.add((sender, options) => {
+
+                    if (options.question.name === "PersonContact") {
+
+                        //  We are building a list of person contacts to use as choices for the
+                        //  dropdown type question PersonContact at question 2.1.9
+
+                        const personContact = options.question as Survey.QuestionDropdownModel;
+
+                        //  1) We add another individual item
+                        let otherName: string = "Another individual";
+                        if (sender.getLocale() === "fr") {
+                            otherName = "Autre individu";
+                        }
+
+                        const itemOther: Survey.ItemValue = new Survey.ItemValue("another", otherName);
+                        personContact.choices.push(itemOther);
+
+                        //  2) Question 2.1.5 - Who is the head of the government institution
+                        const headYourInstitutionFullname = survey.getQuestionByName("HeadYourInstitutionFullname") as Survey.QuestionTextModel;
+                        if (headYourInstitutionFullname) {
+                            const item: Survey.ItemValue = new Survey.ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
+                            personContact.choices.push(item);
+                        }
+
+                        //  3) Question 2.1.7 - Senior official or executive responsible
+                        const seniorOfficialFullname = survey.getQuestionByName("SeniorOfficialFullname") as Survey.QuestionTextModel;
+                        if (seniorOfficialFullname) {
+                            const item: Survey.ItemValue = new Survey.ItemValue(seniorOfficialFullname.value, seniorOfficialFullname.value);
+                            personContact.choices.push(item);
+                        }
+
+                        //  TODO:  there is more
+                    }
+                });
+
+                _survey.onValueChanged.add(function (sender, options) {
+
+                    //if (options.value) {
+                    //    if (options.name == "BehalfMultipleInstitutionOthers") {
+                    //        let hasOther = false;
+                    //        options.value.forEach((element) => {
+                    //            if (element.BehalfMultipleInstitutionOther === "other") {
+                    //                hasOther = true;
+
+                    //            }
+                    //        });
+                    //    }
+                    //}
+
+                });
+
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
                     saveStateLocally(sender, this.storageName_PIA);
@@ -209,7 +155,60 @@ export class PiaETool {
 
                 initSurveyModelProperties(_survey);
 
-                const defaultData  = { };
+                //const defaultData  = { };
+
+                const defaultData = {
+                    "ContactATIPQ1-8": "conduct_pia",
+                    "ContactATIPQ1-10": "conduct_pia",
+                    "HasLegalAuthority": true,
+                    "HeadYourInstitutionEmail": "jack@gmail.com",
+                    "HeadYourInstitutionFullname": "Jack Travis",
+                    "HeadYourInstitutionSection": "My section",
+                    "HeadYourInstitutionTitle": "Boss",
+                    "IsNewprogram": false,
+                    "IsProgamContractedOut": false,
+                    "IsProgramInvolvePersonalInformation": true,
+                    "IsTreasuryBoardApproval": true,
+                    "LeadInstitutionConsultedOther": "yes",
+                    "PersonalInfoUsedFor": "non_admin_purpose",
+                    "ProgamHasMajorChanges": true,
+                    "ProgramName": "ze programme",
+                    "SingleOrMultiInstitutionPIA": "multi",
+                    "SubjectOfPIA": "other",
+                    "addnamehere": "jgfjg",
+                    "SeniorOfficialEmail": "adam@yates.com",
+                    "SeniorOfficialFullname": "adam yates",
+                    "SeniorOfficialSection": "michelton",
+                    "SeniorOfficialTitle": "rider",
+                    "BehalfMultipleInstitutionOthers": [
+                        {
+                            "OtherInstitutionHeadFullname": "Hugo Roule",
+                            "OtherInstitutionEmail": "yougo@hotmail.com",
+                            "OtherInstitutionHeadTitle": "Rouleur",
+                            "BehalfMultipleInstitutionOther": "2",
+                            "OtherInstitutionSection": "Astana",
+                            "SeniorOfficialOtherFullname": "Julian Alapolak",
+                            "SeniorOfficialOtherTitle": "Puncheur",
+                            "SeniorOfficialOtherSection": "QuickStep",
+                            "SeniorOfficialOtherEmail": "juju@hotmail.com"
+                        },
+                        {
+                            "OtherInstitutionHeadTitle": "leader",
+                            "OtherInstitutionSection": "Astana",
+                            "BehalfMultipleInstitutionOther": "Mental Institution",
+                            "OtherInstitutionHeadFullname": "Lopez A",
+                            "OtherInstitutionEmail": "lopez@gmail.com",
+                            "SeniorOfficialOtherFullname": "Tadej Pogachar",
+                            "SeniorOfficialOtherTitle": "Sprinteur",
+                            "SeniorOfficialOtherSection": "UAE",
+                            "SeniorOfficialOtherEmail": "tadeg@mymail.ca"
+                        }
+                    ],
+                    "BehalfMultipleInstitutionLead": "1",
+                    "PersonContact": "adam yates",
+                    "NewOrUpdatedPIA": "new_pia",
+                    "name": "terter"
+                };
 
                 // Load the initial state
                 loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
@@ -217,7 +216,7 @@ export class PiaETool {
                 saveStateLocally(_survey, this.storageName_PIA);
 
                 // Save the state back to local storage
-                // this.onCurrentPageChanged_saveState(_survey);
+               //  this.onCurrentPageChanged_saveState(_survey);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);

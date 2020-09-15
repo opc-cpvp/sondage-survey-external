@@ -6,7 +6,6 @@
     font-weight: bold;
 }
 
-
 .sv_q_required_text {
     color: red;
 }
@@ -61,11 +60,6 @@
         }
 /* end progress bar ***********************/
 
-/*.sv_row {
-    min-width: 300px;
-}*/
-
-
 .alert, .label-danger {
     border-radius: 0;
     border-style: solid;
@@ -95,9 +89,10 @@
     margin: .67em 0;
 }
 
-/*.sv_row {
-    padding-bottom: 0.875em;
-}*/
+.sv_row {
+    padding-bottom: 0.25em;
+    padding-top: 0.25em;
+}
 
 /************** BOOLEAN ********************/
 .sv-boolean {
@@ -145,6 +140,7 @@
 .sv-boolean__label {
     cursor: pointer;
     float: left;
+    font-weight: normal;
 }
 
 [dir="rtl"] .sv-boolean__label, [style*="direction:rtl"] .sv-boolean__label {
@@ -171,4 +167,26 @@
 label.sv-boolean {
     font-weight: !important;
     padding-bottom: 3em;
+}
+
+.sv_matrix_cell {
+    vertical-align: top;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+table.sv_q_matrix_dynamic.thead {
+    display: none;
+}
+
+/*.sv_q_matrix_dynamic.sv_matrix_dynamic_button {
+    padding: 0.3em 2em;
+}*/
+
+sv_q_dd_other {
+    margin-top: 1em !important;
+}
+
+.sv_q_dd_other textarea {
+    width: 100% !important;
 }

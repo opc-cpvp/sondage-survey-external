@@ -25,10 +25,11 @@ export function initSurvey(): void {
     );
 
     // This is how we replace string from Survey.js (englishStrings or frenchSurveyStrings) for localization.
-    Survey.surveyLocalization.locales["en"].requiredError =
-        "This field is required";
-    Survey.surveyLocalization.locales["fr"].requiredError =
-        "Ce champ est obligatoire";
+    Survey.surveyLocalization.locales["en"].requiredError = "This field is required";
+    Survey.surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
+
+    Survey.surveyLocalization.locales["en"].otherItemText = "Other";
+    Survey.surveyLocalization.locales["fr"].otherItemText = "Autre";
 
     Survey.StylesManager.Enabled = false;
 
@@ -144,7 +145,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
 
         if (options.question.getType() === "comment" || options.question.getType() === "text") {
             // This is a little strange but for 'comment' the root is <textarea>
-            classes.root = "form-control";
+            classes.root += " form-control";
         } else {
             classes.root += " form-group";
 
@@ -158,6 +159,8 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
                 classes.control += " form-control";
             } else if (options.question.getType() === "radiogroup") {
                 classes.materialDecorator = "";
+            } else if (options.question.getType() === "matrixdynamic") {
+                classes.button += " btn btn-primary";
             }
         }
     });
@@ -202,6 +205,25 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
             options.title = `<span class='sv_q_required_text'>&ast;</span>${options.title as string}`;
+        }
+    });
+
+    survey.onAfterRenderQuestion.add((sender, options) => {
+
+        if (sender.isDisplayMode) {
+
+            //  We are hidding the description in 'Preview' mode
+
+            if (options.question.getType() === "boolean") {
+                const boolQuestion: Survey.QuestionBooleanModel = options.question;
+                boolQuestion.descriptionLocation = "hidden";
+            } else if (options.question.getType() === "radiogroup") {
+                const rbQuestion: Survey.QuestionRadiogroupModel = options.question;
+                rbQuestion.descriptionLocation = "hidden";
+            } else if (options.question.getType() === "comment") {
+                const cmtQuestion: Survey.QuestionCommentModel = options.question;
+                cmtQuestion.descriptionLocation = "hidden";
+            }
         }
     });
 

@@ -78,12 +78,6 @@ export class WidgetRadioButtonHtml extends Widget {
 
         const rbQuestion: Survey.QuestionRadiogroupModel = question as unknown as Survey.QuestionRadiogroupModel;
 
-        const surveyObject: Survey.SurveyModel = question.survey;
-        if (surveyObject.isDisplayMode) {
-            rbQuestion.description = "";
-            return;
-        }
-
         const locale = question.getLocale();
 
         if (rbQuestion.htmldescription) {

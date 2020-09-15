@@ -124,7 +124,7 @@
           "type": "html",
           "name": "start_info",
           "html": {
-            "en": "<section class='alert alert-info'><p>Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Exit the e-Tool</button></p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Exit the e-Tool</button></p></section>",
             "fr": ""
           },
           "visibleIf": "{HasLegalAuthority}  = false"
@@ -263,7 +263,7 @@
           "type": "html",
           "name": "start_info",
           "html": {
-            "en": "<section class='alert alert-info'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include Access to Information and Privacy (ATIP) coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy, and if there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include Access to Information and Privacy (ATIP) coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy, and if there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -301,23 +301,29 @@
           ]
         },
         {
-          "type": "text",
-          "inputType": "email",
-          "name": "UserEmailAddress",
-          "title": {
-            "en": "Please provide your email address. (1.6)",
-            "fr": ""
-          },
-          "isRequired": true,
-          "visibleIf": "{ContactATIP} contains 'receive_email'"
-        },
-        {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
-            "fr": ""
-          },
-          "visibleIf": "{ContactATIP} contains 'receive_email'"
+          "type": "panel",
+          "name": "panel_ContactATIP_email",
+          "visibleIf": "{ContactATIP} contains 'receive_email'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "text",
+              "inputType": "email",
+              "name": "UserEmailAddress",
+              "title": {
+                "en": "Please provide your email address. (1.6)",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "fr": ""
+              }
+            }
+          ]
         }
       ]
     },
@@ -370,7 +376,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -408,23 +414,29 @@
           ]
         },
         {
-          "type": "text",
-          "inputType": "email",
-          "name": "UserEmailAddress",
-          "title": {
-            "en": "Please provide your email address. (1.8)",
-            "fr": ""
-          },
-          "isRequired": true,
-          "visibleIf": "{ContactATIPQ1-8} contains 'receive_email'"
-        },
-        {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
-            "fr": ""
-          },
-          "visibleIf": "{ContactATIPQ1-8} contains 'receive_email'"
+          "type": "panel",
+          "name": "panel_ContactATIPQ1-8_email",
+          "visibleIf": "{ContactATIPQ1-8} contains 'receive_email'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "text",
+              "inputType": "email",
+              "name": "UserEmailAddress",
+              "title": {
+                "en": "Please provide your email address. (1.8)",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "fr": ""
+              }
+            }
+          ]
         }
       ]
     },
@@ -477,7 +489,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -515,30 +527,36 @@
           ]
         },
         {
-          "type": "text",
-          "inputType": "email",
-          "name": "UserEmailAddress",
-          "title": {
-            "en": "Please provide your email address. (1.10)",
-            "fr": ""
-          },
-          "isRequired": true,
-          "visibleIf": "{ContactATIPQ1-10} contains 'receive_email'"
-        },
-        {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
-            "fr": ""
-          },
-          "visibleIf": "{ContactATIPQ1-10} contains 'receive_email'"
+          "type": "panel",
+          "name": "panel_ContactATIPQ1-10_email",
+          "visibleIf": "{ContactATIPQ1-10} contains 'receive_email'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "text",
+              "inputType": "email",
+              "name": "UserEmailAddress",
+              "title": {
+                "en": "Please provide your email address. (1.10)",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "fr": ""
+              }
+            }
+          ]
         }
       ]
     },
     {
-      "name": "page_step_2",
+      "name": "page_step_2_1_q_2_1_1",
       "title": {
-        "en": "",
+        "en": "Introduction to the PIA - Question 2.1.1",
         "fr": ""
       },
       "elements": [
@@ -548,6 +566,781 @@
             "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked some questions about this PIA and your program or activity.</p><section>",
             "fr": ""
           }
+        },
+        {
+          "type": "radiogroup",
+          "name": "SingleOrMultiInstitutionPIA",
+          "renderAs": "radiobuttonwithhtmldescription",
+          "isRequired": true,
+          "title": {
+            "en": "Is this a single or multi-institutional PIA submission? (2.1.1)",
+            "fr": ""
+          },
+          "htmldescription": {
+            "en": "<p>A single institution PIA covers only the program or activity of one institution, either because only one institution administers the program or activity or because the PIA only addresses one institution&rsquo;s activities related to a multi-institutional program or activity. <br /> <br />A multi-institutional PIA addresses the activities of multiple institutions involved in administering a joint program or activity. According to the TBS Directive on Privacy Impact Assessment, in cases of joint programs or activities, an overarching or a multi-institutional PIA is favoured as it helps to reduce the chances of gaps or inconsistencies.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "This is a single PIA",
+                "fr": ""
+              },
+              "value": "single"
+            },
+            {
+              "text": {
+                "en": "This is a multi-institutional PIA",
+                "fr": ""
+              },
+              "value": "multi"
+            },
+            {
+              "text": {
+                "en": "This is a single PIA, but it relates to one or more PIAs conducted by other federal institutions.",
+                "fr": ""
+              },
+              "value": "single_related"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>As this is a multi-institutional PIA, please ensure it adequately describes the role of each institution with respect to the program or activity</p><section>",
+            "fr": ""
+          },
+          "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'"
+        },
+        {
+          "type": "panel",
+          "name": "panel_info_related_pia",
+          "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'single_related'",
+          "title": {
+            "en": "Information about the related PIA(s).",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "text",
+              "name": "RelatedPIANameInstitution",
+              "title": {
+                "en": "Name of institution: ",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "RelatedPIANameProgram",
+              "title": {
+                "en": "Name of program: ",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "RelatedPIADescription",
+              "title": {
+                "en": "Brief description of the relationship between the PIAs:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_2a",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.2A",
+        "fr": ""
+      },
+      "visibleIf": "[{SingleOrMultiInstitutionPIA}] anyof ['single','single_related']",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "BehalfSingleInstitution",
+          "title": {
+            "en": "On behalf of which institution are you submitting a PIA? Select from the drop-down list. If the institution is not listed, please select ”other”.",
+            "fr": ""
+          },
+
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "HasSelectedItem({institution}) = true"
+            }
+          ],
+          "choicesByUrl": {
+            "url": "/api/Institution/GetAll?lang={locale}&addOther=true",
+            "titleName": "name",
+            "valueName": "value"
+          }
+        },
+        {
+          "type": "text",
+          "name": "BehalfSingleInstitutionOther",
+          "title": {
+            "en": "Name of institution: ",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{BehalfSingleInstitution} = 9999"
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_2b",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.2B",
+        "fr": ""
+      },
+      "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "BehalfMultipleInstitutionLead",
+          "title": {
+            "en": "On behalf of which institution are you submitting a PIA?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Select the lead institution from the drop-down list. If the institution is not listed, please select ‘other’.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "validators": [
+            {
+              "type": "expression",
+              "expression": "HasSelectedItem({institution}) = true"
+            }
+          ],
+          "choicesByUrl": {
+            "url": "/api/Institution/GetAll?lang={locale}&addOther=true",
+            "titleName": "name",
+            "valueName": "value"
+          }
+        },
+        {
+          "type": "text",
+          "name": "BehalfMultipleInstitutionLeadOther",
+          "title": {
+            "en": "Name of institution: ",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{BehalfMultipleInstitutionLead} = 9999"
+        },
+        {
+          "type": "matrixdynamic",
+          "title": {
+            "en": "Other institutions involved in this PIA.",
+            "fr": ""
+          },
+          "description": {
+            "en": "Select all other institutions involved in this PIA. If any of the institutions are not listed, please select ‘other’.",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "valueName": "BehalfMultipleInstitutionOthers",
+          "isRequired": true,
+          "addRowText": {
+            "en": "Add institution",
+            "fr": ""
+          },
+          "removeRowText": {
+            "en": "Remove",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this item?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "BehalfMultipleInstitutionOther",
+              "cellType": "dropdown",
+              "title": " ",
+              "choicesByUrl": {
+                "url": "/api/Institution/GetAll?lang={locale}&addOther=false",
+                "titleName": "name",
+                "valueName": "value"
+              },
+              "hasOther": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_3",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.3",
+        "fr": ""
+      },
+      "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "LeadInstitutionConsultedOther",
+          "title": {
+            "en": "We would just like to confirm that the lead institution has, in fact, consulted with all other institutions involved in this multi-institutional PIA. (2.1.3)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>According to the TBS Directive on Privacy Impact Assessment, the lead institution is the one that has primary control over the personal information, or holds the authority for initiating the program or activity. If the program or activity is common to all government institutions, the lead institution should be the one that is either: <ul><li>responsible for delivering the program or activity across government</li><li>is the contracting authority for the program or activity</li><li>is the policy authority for the program or activity across government </li></ul></p><p>We recommend that the lead institution consult with the other institutions listed, to ensure a common understanding of the program or activity, to discuss any PIAs relating to the program or activity, and to confirm information regarding the program or activity. </p>",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "LeadInstitutionHasNotConsultedOtherReason",
+          "title": {
+            "en": "As per the TBS Directive on Privacy Impact Assessment, the lead institution should consult with the other institutions involved. Briefly explain why the lead institution has not consulted with the other institutions listed.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "maxLength": 5000,
+          "visibleIf": "{LeadInstitutionConsultedOther} contains 'no'"
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_4",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.4",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsTreasuryBoardApproval",
+          "title": {
+            "en": "Is your institution seeking Treasury Board approval as a part of the development of this program or activity? (2.1.4)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>According to the TBS Directive on Privacy Impact Assessment, government institutions seeking Treasury Board approval for programs or activities that involve personal information are responsible for:<ul><li>Making every reasonable effort to initiate the PIA at the earliest possible phase of project planning</li><li> Identifying whether a PIA has been completed in the body of the submission and, if a PIA was not completed because of the urgency or priority of the initiative, identifying the timelines for the completion of the PIA</li><li>Identifying in their project brief the measures taken or to be taken to address privacy issues and risks, where relevant, when seeking project approval from Treasury Board</li><li>Completing a PIA for the new or substantially modified program or activity that was approved by Treasury Board either before its implementation or within such time and subject to such conditions established by TBS</li></ul></p>",
+            "fr": ""
+          },
+          "showTitle": true,
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_5",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.5",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "panel",
+          "name": "pn_headInstitution",
+          "title": {
+            "en": "Head of the government institution or delegate",
+            "fr": ""
+          },
+          "description": {
+            "en": "Who is the head of the government institution or delegate for section 10 of the *Privacy Act* at **your institution**?",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "text",
+              "name": "HeadYourInstitutionFullname",
+              "title": {
+                "en": "Full name:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "HeadYourInstitutionTitle",
+              "title": {
+                "en": "Title",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "HeadYourInstitutionSection",
+              "title": {
+                "en": "Institution and section:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "HeadYourInstitutionEmail",
+              "title": {
+                "en": "Email address:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_6",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.6",
+        "fr": ""
+      },
+      "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "representatives_others",
+          "title": {
+            "en": "Head of the government institution or delegate",
+            "fr": ""
+          },
+          "description": {
+            "en": "Who is the head of the government institution or delegate for section 10 of the Privacy Act of each of the other government institution involved in the program or activity?",
+            "fr": ""
+          },
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "valueName": "BehalfMultipleInstitutionOthers",
+          "templateTitle": "{panel.BehalfMultipleInstitutionOther}",
+          "templateElements": [
+            {
+              "type": "text",
+              "valueName": "OtherInstitutionHeadFullname",
+              "title": {
+                "en": "Full name:",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "OtherInstitutionHeadTitle",
+              "title": {
+                "en": "Title",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "OtherInstitutionSection",
+              "title": {
+                "en": "Institution and section:",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "OtherInstitutionEmail",
+              "title": {
+                "en": "Email address:",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_7",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.7",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "panel",
+          "name": "pn_senior_official",
+          "title": {
+            "en": "Senior official or executive responsible",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Who is the senior official or executive responsible for the PIA or for the program or activity and the personal information it handles at <strong>your institution</strong>?</p><p>According to the TBS Directive on Privacy Impact Assessment, the senior official or executive is the official holding administrative responsibility for the completion of the PIA. Where an official is not specifically assigned, this responsibility will rest with the senior official or executive holding functional responsibility for the program or activity in question.</p>",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "text",
+              "name": "SeniorOfficialFullname",
+              "title": {
+                "en": "Full name:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "SeniorOfficialTitle",
+              "title": {
+                "en": "Title",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "SeniorOfficialSection",
+              "title": {
+                "en": "Institution and section:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "SeniorOfficialEmail",
+              "title": {
+                "en": "Email address:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_8",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.8",
+        "fr": ""
+      },
+      "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "panle_senior_officials_others",
+          "title": {
+            "en": "Senior official or executive responsible",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Who is the senior official or executive responsible for the PIA or for the program or activity and the personal information it handles within <strong>each of the other</strong> government institution involved in the program or activity?</p><p>According to the TBS Directive on Privacy Impact Assessment, the senior official or executive is the official holding administrative responsibility for the completion of the PIA. Where an official is not specifically assigned, this responsibility will rest with the senior official or executive holding functional responsibility for the program or activity in question.</p>",
+            "fr": ""
+          },
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "valueName": "BehalfMultipleInstitutionOthers",
+          "templateTitle": "{panel.BehalfMultipleInstitutionOther}",
+          "templateElements": [
+            {
+              "type": "text",
+              "valueName": "SeniorOfficialOtherFullname",
+              "title": {
+                "en": "Full name:",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "SeniorOfficialOtherTitle",
+              "title": {
+                "en": "Title",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "SeniorOfficialOtherSection",
+              "title": {
+                "en": "Institution and section:",
+                "fr": ""
+              }
+            },
+            {
+              "type": "text",
+              "valueName": "SeniorOfficialOtherEmail",
+              "title": {
+                "en": "Email address:",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_9",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.9",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "PersonContact",
+          "title": {
+            "en": "Who is the best person to contact if we have questions related to this PIA? Select the best response from the drop-down list.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "colCount": 0,
+          "choices": []
+        },
+        {
+          "type": "panel",
+          "name": "pn_another_contact",
+          "title": {
+            "en": "Another individual information",
+            "fr": ""
+          },
+          "visibleIf": "{PersonContact} contains 'another'",
+          "description": {
+            "en": "Please provide us with the name and contact information for whomever is the best person to contact",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "text",
+              "name": "AnotherContactFullname",
+              "title": {
+                "en": "Full name:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "AnotherContactTitle",
+              "title": {
+                "en": "Title",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "AnotherContactSection",
+              "title": {
+                "en": "Institution and section:",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "AnotherContactEmail",
+              "title": {
+                "en": "Email address:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_10",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.10",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "NewOrUpdatedPIA",
+          "title": {
+            "en": "Is this a new PIA, an update or addendum to a previously submitted PIA, or a new PIA that covers a phase of a program or activity for which one or more previous phases has already been conducted and submitted to the OPC?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that there will be a question coming about program or activity phases. Therefore if this the first PIA of a phased program or activity, you should select “New PIA”.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "New PIA",
+                "fr": ""
+              },
+              "value": "new_pia"
+            },
+            {
+              "text": {
+                "en": "Update or addendum to a previously submitted PIA",
+                "fr": ""
+              },
+              "value": "update_pia"
+            },
+            {
+              "text": {
+                "en": "New PIA that covers a phase of a program or activity for which one or more previous PIAs has already been submitted",
+                "fr": ""
+              },
+              "value": "new_pia_covers_already_submitted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_11_a",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.11 A",
+        "fr": ""
+      },
+      "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "UpdatePIANumberAssigned",
+          "title": {
+            "en": "You have chosen to update a previous PIA submission. Please indicate the PIA number assigned by the OPC to the previous submission. ",
+            "fr": ""
+          },
+          "description": {
+            "en": "OPC’s PIA file numbers take the form: PIA-00XXXX.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "I have (a) reference number(s) for the past PIA submission",
+                "fr": ""
+              },
+              "value": "update_pia_existing_reference_number"
+            },
+            {
+              "text": {
+                "en": "I do not have any reference numbers for the past PIA submission",
+                "fr": ""
+              },
+              "value": "update_pia_not_existing_reference_number"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "UpdatePIAAllReferenceNumbersAssigned",
+          "title": {
+            "en": "Please provide us with all reference numbers that you have for the past PIA submission:",
+            "fr": ""
+          },
+          "visibleIf": "{UpdatePIANumberAssigned} contains 'update_pia_existing_reference_number'",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_11_b",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.11 B",
+        "fr": ""
+      },
+      "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "Details",
+          "title": {
+            "en": "Now let us add some detail. Use the headings from your previous submission and list the sections that are being updated.",
+            "fr": ""
+          },
+          "description": {
+            "en": "This helps to both record and navigate exactly what has changed. Simply use the numbering schema and heading titles from your previous submission. Alternatively, you could indicate that the PIA has been rewritten entirely.",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_1_q_2_1_12",
+      "title": {
+        "en": "Introduction to the PIA - Question 2.1.12",
+        "fr": ""
+      },
+      "visibleIf": "{NewOrUpdatedPIA} contains 'new_pia_covers_already_submitted'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "NewPIANumberAssigned",
+          "title": {
+            "en": "You have indicated that this PIA covers a phase of a program or activity, and that PIAs for one or more previous phases have already been conducted and submitted to the OPC. Please indicate the PIA number assigned by the OPC to the previous submission(s).",
+            "fr": ""
+          },
+          "description": {
+            "en": "OPC’s PIA file numbers take the form: PIA-00XXXX.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "I have reference number(s) for the past PIA submission",
+                "fr": ""
+              },
+              "value": "new_pia_existing_reference_number"
+            },
+            {
+              "text": {
+                "en": "I do not have any reference numbers for the past PIA submission",
+                "fr": ""
+              },
+              "value": "new_pia_not_existing_reference_number"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "NewPIAAllReferenceNumbersAssigned",
+          "title": {
+            "en": "Please provide us with all reference numbers that you have for the past PIA submission:",
+            "fr": ""
+          },
+          "visibleIf": "{NewPIANumberAssigned} contains 'new_pia_existing_reference_number'",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_1",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.1",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "name": "name",
+          "type": "text",
+          "title": "Please enter your name:",
+          "placeHolder": "Jon Snow",
+          "isRequired": true
         }
       ]
     },

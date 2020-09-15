@@ -24,7 +24,7 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- the * at the beginning of required questions
 
 b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
-c)
+c) surveyjs-widget
 
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
@@ -124,6 +124,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html (Fixed)
 
+-) Matrixdynamic 
+		-	Other box need some style
+		-	Figure out the logic for duplicate selection
 
 ### Mode details required or help required
  
@@ -208,3 +211,106 @@ E) Backend error logging - need to ask soemone
 a) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";). It's not going
 	to work with our custom navigation AND also on page refresh or on language switching it returns to the start page which is not
 	what we want.
+
+### How to use the Survey widgets
+1) npm install surveyjs-widgets
+2) In *.cshtml file add if using select2 or tagbox 
+	```	    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	```
+
+3) In *.ts file
+	```
+	import * as widgets from "surveyjs-widgets";
+	```
+	...then
+	```
+	widgets.select2tagbox(Survey);
+	```
+
+
+### Editable strings in Survey
+
+```
+ Survey.surveyLocalization.locales["en"].otherItemText = "Other";
+ Survey.surveyLocalization.locales["fr"].otherItemText = "Autre";	
+```
+
+pagePrevText: "Previous",
+pageNextText: "Next",
+completeText: "Complete",
+previewText: "Preview",
+editText: "Edit",
+startSurveyText: "Start",
+otherItemText: "Other (describe)",
+noneItemText: "None",
+selectAllItemText: "Select All",
+progressText: "Page {0} of {1}",
+panelDynamicProgressText: "Record {0} of {1}",
+questionsProgressText: "Answered {0}/{1} questions",
+emptySurvey: "There is no visible page or question in the survey.",
+completingSurvey: "Thank you for completing the survey!",
+completingSurveyBefore:
+"Our records show that you have already completed this survey.",
+loadingSurvey: "Loading Survey...",
+optionsCaption: "Choose...",
+value: "value",
+requiredError: "Please answer the question.",
+requiredErrorInPanel: "Please answer at least one question.",
+requiredInAllRowsError: "Please answer questions in all rows.",
+numericError: "The value should be numeric.",
+textMinLength: "Please enter at least {0} characters.",
+textMaxLength: "Please enter less than {0} characters.",
+textMinMaxLength: "Please enter more than {0} and less than {1} characters.",
+minRowCountError: "Please fill in at least {0} rows.",
+minSelectError: "Please select at least {0} variants.",
+maxSelectError: "Please select no more than {0} variants.",
+numericMinMax:
+"The '{0}' should be equal or more than {1} and equal or less than {2}",
+numericMin: "The '{0}' should be equal or more than {1}",
+numericMax: "The '{0}' should be equal or less than {1}",
+invalidEmail: "Please enter a valid e-mail address.",
+invalidExpression: "The expression: {0} should return 'true'.",
+urlRequestError: "The request returned error '{0}'. {1}",
+urlGetChoicesError:
+"The request returned empty data or the 'path' property is incorrect",
+exceedMaxSize: "The file size should not exceed {0}.",
+otherRequiredError: "Please enter the other value.",
+uploadingFile:
+"Your file is uploading. Please wait several seconds and try again.",
+loadingFile: "Loading...",
+chooseFile: "Choose file(s)...",
+noFileChosen: "No file chosen",
+confirmDelete: "Do you want to delete the record?",
+keyDuplicationError: "This value should be unique.",
+addColumn: "Add column",
+addRow: "Add row",
+removeRow: "Remove",
+addPanel: "Add new",
+removePanel: "Remove",
+choices_Item: "item",
+matrix_column: "Column",
+matrix_row: "Row",
+savingData: "The results are saving on the server...",
+savingDataError: "An error occurred and we could not save the results.",
+savingDataSuccess: "The results were saved successfully!",
+saveAgainButton: "Try again",
+timerMin: "min",
+timerSec: "sec",
+timerSpentAll: "You have spent {0} on this page and {1} in total.",
+timerSpentPage: "You have spent {0} on this page.",
+timerSpentSurvey: "You have spent {0} in total.",
+timerLimitAll:
+"You have spent {0} of {1} on this page and {2} of {3} in total.",
+timerLimitPage: "You have spent {0} of {1} on this page.",
+timerLimitSurvey: "You have spent {0} of {1} in total.",
+cleanCaption: "Clean",
+clearCaption: "Clear",
+chooseFileCaption: "Choose file",
+removeFileCaption: "Remove this file",
+booleanCheckedLabel: "Yes",
+booleanUncheckedLabel: "No",
+confirmRemoveFile: "Are you sure that you want to remove this file: {0}?",
+confirmRemoveAllFiles: "Are you sure that you want to remove all files?",
+questionTitlePatternText: "Question Title",
