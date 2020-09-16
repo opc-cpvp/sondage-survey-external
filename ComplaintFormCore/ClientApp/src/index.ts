@@ -10,11 +10,9 @@ import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
 import { CheckboxWidget } from "./widgets/checkboxwidget";
-import { WidgetCommentHtml } from "./widgets/widgetCommentHtml";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
-import { WidgetRadioButtonHtml } from "./widgets/widgetRadioButtonHtml";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -60,7 +58,6 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             CheckboxWidget.init();
-            WidgetCommentHtml.init();
 
             const paSurvey = new PaSurvey();
             paSurvey.init(jsonUrl, lang, token);
@@ -69,10 +66,6 @@ declare let Symbol;
         globalThis.initPiaETool = (lang, token) => {
 
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
-
-            WidgetCommentHtml.init();
-            WidgetRadioButtonHtml.init();
-
             const piaETool = new PiaETool();
             piaETool.init(jsonUrl, lang, token);
         };

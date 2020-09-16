@@ -22,12 +22,11 @@
 
 <center>
     <div id="div_navigation">
-        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
-        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnSurveyNext")</button>
-        <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary" style="display: none">@Localizer.GetLocalizedString("btnShowPreview")</button>
-        <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button" style="display: none">@Localizer.GetLocalizedString("btnComplete")</button>
-        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary" style="display: none">Start</button>
-        @*<button id="pdfPreviewBtn" class="btn btn-primary" onclick="showPDF()" style="display: block">PDF Preview</button>*@
+        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnShowPreview")</button>
+        <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button hidden">@Localizer.GetLocalizedString("btnComplete")</button>
+        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary hidden">Start</button>
     </div>
 </center>
 

@@ -60,34 +60,41 @@ export class PiaETool {
 
                     options.allowChanging = false;
 
-                    if (options.isNextPage === true && options.oldCurrentPage && options.oldCurrentPage.name === "page_before_begin_q_0_1") {
+                    if (options.isNextPage === true && options.oldCurrentPage) {
 
-                        const hasLegalAuthority: Survey.Question = sender.getQuestionByName("HasLegalAuthority");
-                        if (hasLegalAuthority && hasLegalAuthority.value === false) {
-                            SurveyHelper.printWarningMessage("Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.", "", sender.getLocale());
-                            return;
-                        }
+                        //  We are going forward AND we are not at the starting page
 
-                    } else if (options.isNextPage === true && options.oldCurrentPage && options.oldCurrentPage.name === "page_step_1_q_1_6") {
+                        if (options.oldCurrentPage.name === "page_before_begin_q_0_1") {
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIP");
-                        if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                            return;
-                        }
-                    } else if (options.isNextPage === true && options.oldCurrentPage && options.oldCurrentPage.name === "page_step_1_q_1_8") {
+                            const hasLegalAuthority: Survey.Question = sender.getQuestionByName("HasLegalAuthority");
+                            if (hasLegalAuthority && hasLegalAuthority.value === false) {
+                                SurveyHelper.printWarningMessage("Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.", "", sender.getLocale());
+                                return;
+                            }
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
-                        if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                            return;
-                        }
-                    } else if (options.isNextPage === true && options.oldCurrentPage && options.oldCurrentPage.name === "page_step_1_q_1_10") {
+                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
-                        if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                            return;
+                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIP");
+                            if (contactATIP && contactATIP.value !== "conduct_pia") {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                                return;
+                            }
+
+                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
+
+                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
+                            if (contactATIP && contactATIP.value !== "conduct_pia") {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                                return;
+                            }
+
+                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
+
+                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
+                            if (contactATIP && contactATIP.value !== "conduct_pia") {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                                return;
+                            }
                         }
                     }
 
@@ -104,7 +111,7 @@ export class PiaETool {
                         const personContact = options.question as Survey.QuestionDropdownModel;
 
                         //  1) We add another individual item
-                        let otherName: string = "Another individual";
+                        let otherName = "Another individual";
                         if (sender.getLocale() === "fr") {
                             otherName = "Autre individu";
                         }
@@ -115,7 +122,8 @@ export class PiaETool {
                         //  2) Question 2.1.5 - Who is the head of the government institution
                         const headYourInstitutionFullname = survey.getQuestionByName("HeadYourInstitutionFullname") as Survey.QuestionTextModel;
                         if (headYourInstitutionFullname) {
-                            const item: Survey.ItemValue = new Survey.ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
+                            const item: Survey.ItemValue =
+                                new Survey.ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
                             personContact.choices.push(item);
                         }
 
@@ -130,22 +138,6 @@ export class PiaETool {
                     }
                 });
 
-                _survey.onValueChanged.add(function (sender, options) {
-
-                    //if (options.value) {
-                    //    if (options.name == "BehalfMultipleInstitutionOthers") {
-                    //        let hasOther = false;
-                    //        options.value.forEach((element) => {
-                    //            if (element.BehalfMultipleInstitutionOther === "other") {
-                    //                hasOther = true;
-
-                    //            }
-                    //        });
-                    //    }
-                    //}
-
-                });
-
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
                     saveStateLocally(sender, this.storageName_PIA);
@@ -154,8 +146,6 @@ export class PiaETool {
                 initSurveyModelEvents(_survey);
 
                 initSurveyModelProperties(_survey);
-
-                //const defaultData  = { };
 
                 const defaultData = {
                     "ContactATIPQ1-8": "conduct_pia",
@@ -175,7 +165,7 @@ export class PiaETool {
                     "ProgramName": "ze programme",
                     "SingleOrMultiInstitutionPIA": "multi",
                     "SubjectOfPIA": "other",
-                    "addnamehere": "jgfjg",
+                    "RelevantLegislationPolicies": "jgfjg",
                     "SeniorOfficialEmail": "adam@yates.com",
                     "SeniorOfficialFullname": "adam yates",
                     "SeniorOfficialSection": "michelton",
@@ -216,7 +206,7 @@ export class PiaETool {
                 saveStateLocally(_survey, this.storageName_PIA);
 
                 // Save the state back to local storage
-               //  this.onCurrentPageChanged_saveState(_survey);
+                //  this.onCurrentPageChanged_saveState(_survey);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);

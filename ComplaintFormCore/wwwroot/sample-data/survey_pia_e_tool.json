@@ -140,13 +140,12 @@
       "elements": [
         {
           "type": "comment",
-          "name": "addnamehere",
-          "renderAs": "commentwithhtmldescription",
+          "name": "RelevantLegislationPolicies",
           "title": {
             "en": "What is or will be your legal authority for this program or activity? List relevant legislation and policies, and applicable sections, as necessary. (0.2)",
             "fr": ""
           },
-          "htmldescription": {
+          "description": {
             "en": "<p>Ensure that your answer details your legal authority to collect and use personal information, and to disclose personal information (as applicable). If you are collecting personal information from another government institution, please include their legal authority to disclose that information to your institution. You may also wish to include their legal authority for initial collection. </p>",
             "fr": "<p></p>"
           },
@@ -337,12 +336,11 @@
         {
           "type": "radiogroup",
           "name": "PersonalInfoUsedFor",
-          "renderAs": "radiobuttonwithhtmldescription",
           "title": {
             "en": "Will the program or activity use personal information as part of a decision-making process that directly affects individuals, otherwise known as an administrative purpose? Or, will the program or activity use personal information for a purpose other than a decision-making process that directly affects individuals, otherwise known as a non-administrative purpose?",
             "fr": ""
           },
-          "htmldescription": {
+          "description": {
             "en": "<p>Examples of administrative uses of personal information include using personal information to:<ul><li>decide whether an individual can enter the country</li><li>determine whether an individual is eligible to receive a social service</li><li>investigate an individual for possible wrongdoing</li></ul></p><p>Examples of non-administrative uses of personal information include research or statistical purposes where an individual’s personal information is not used to make a decision that directly affects them. </p>",
             "fr": ""
           },
@@ -450,13 +448,12 @@
         {
           "type": "radiogroup",
           "name": "SubjectOfPIA",
-          "renderAs": "radiobuttonwithhtmldescription",
           "isRequired": true,
           "title": {
             "en": "Which of the following best describes the subject of your PIA?",
             "fr": ""
           },
-          "htmldescription": {
+          "description": {
             "en": "<p>Whereas PIAs concentrate on privacy compliance as well as risks to privacy posed by <strong>programs and activities</strong>, other assessments have different areas of focus. For example:<ol><li><strong>Security assessments and authorizations</strong> evaluate security practices and controls to establish the extent to which they are implemented correctly, achieving the desired outcome and whether related residual risk should be accepted</li><li><strong>Business impact assessments</strong> identify and prioritize an institution’s critical services and assets to allow for selection of suitable measures to address risks to the availability of those services and assets</li><li><strong>algorithmic impact assessments</strong> identify and mitigate risks associated with deploying an automated decision-making system</li></ol></p><p>If your initiative is not a program or activity, you should consider completing other formal assessments along with or instead of a PIA. If you need assistance scoping your PIA or determining which assessments may be appropriate, please contact your institution’s team responsible for privacy. You may also wish to contact the OPC’s Government Advisory Directorate.</p>",
             "fr": ""
           },
@@ -570,13 +567,12 @@
         {
           "type": "radiogroup",
           "name": "SingleOrMultiInstitutionPIA",
-          "renderAs": "radiobuttonwithhtmldescription",
           "isRequired": true,
           "title": {
             "en": "Is this a single or multi-institutional PIA submission? (2.1.1)",
             "fr": ""
           },
-          "htmldescription": {
+          "description": {
             "en": "<p>A single institution PIA covers only the program or activity of one institution, either because only one institution administers the program or activity or because the PIA only addresses one institution&rsquo;s activities related to a multi-institutional program or activity. <br /> <br />A multi-institutional PIA addresses the activities of multiple institutions involved in administering a joint program or activity. According to the TBS Directive on Privacy Impact Assessment, in cases of joint programs or activities, an overarching or a multi-institutional PIA is favoured as it helps to reduce the chances of gaps or inconsistencies.</p>",
             "fr": ""
           },

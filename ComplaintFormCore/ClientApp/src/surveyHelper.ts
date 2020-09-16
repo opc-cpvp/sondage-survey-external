@@ -106,7 +106,8 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
         section.appendChild(list);
 
         errorSection.appendChild(section);
-        errorSection.style.display = "block";
+        errorSection.classList.remove("hidden");
+        errorSection.classList.add("show");
 
         window.scrollTo(0, 0);
     }
@@ -127,28 +128,26 @@ export function printWarningMessage(messageEn: string, messageFr: string, lang: 
         const h2Title = document.createElement("H2");
         let textTitle;
         if (lang === "fr") {
-            textTitle = document.createTextNode("Message");
+            h2Title.innerText = "Message";
         } else {
-            textTitle = document.createTextNode("Message");
+            h2Title.innerText = "Message";
         }
 
-        h2Title.appendChild(textTitle);
         section.appendChild(h2Title);
 
         const messageParagraphe = document.createElement("p");
 
         if (lang === "fr") {
-            const titleText = document.createTextNode(messageFr);
-            messageParagraphe.appendChild(titleText);
+            messageParagraphe.innerText = messageFr;
         } else {
-            const titleText = document.createTextNode(messageEn);
-            messageParagraphe.appendChild(titleText);
+            messageParagraphe.innerText = messageEn;
         }
 
         section.appendChild(messageParagraphe);
 
         errorSection.appendChild(section);
-        errorSection.style.display = "block";
+        errorSection.classList.remove("hidden");
+        errorSection.classList.add("show");
 
         window.scrollTo(0, 0);
     }
@@ -160,6 +159,7 @@ export function clearProblemDetails(): void {
 
     if (errorSection) {
         errorSection.innerHTML = "";
-        errorSection.style.display = "none";
+        errorSection.classList.remove("show");
+        errorSection.classList.add("hidden");
     }
 }

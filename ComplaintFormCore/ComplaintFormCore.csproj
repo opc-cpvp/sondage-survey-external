@@ -119,13 +119,6 @@
     <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetRadioButtonHtml.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
-    <TypeScriptCompile Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
   </ItemGroup>
 
   <ItemGroup>

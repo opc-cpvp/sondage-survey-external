@@ -72,26 +72,20 @@ export class PaSurvey {
                         },
                         body: JSON.stringify(sender.data)
                     }).then(response => {
-                        switch (response.status) {
-                            case 200: {
-                                //  Validation is good then we set the variable so the next call to doComplete()
-                                //  will bypass the validation
-                                isValidSurvey = true;
-                                _survey.doComplete();
-                                break;
+                        if (response.ok === true) {
+                            //  Validation is good then we set the variable so the next call to doComplete()
+                            //  will bypass the validation
+                            isValidSurvey = true;
+                            _survey.doComplete();
+
+                        } else {
+                            if (response.json) {
+                                void response.json().then(problem => {
+                                    printProblemDetails(problem, sender.locale);
+                                });
                             }
-                            case 400:
-                            case 500:
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            default:
-                                Ladda.stopAll();
-                                return response;
+                            Ladda.stopAll();
+                            return response;
                         }
                     }).catch(error => {
                         console.warn(error);
@@ -112,44 +106,37 @@ export class PaSurvey {
                         body: JSON.stringify(sender.data)
                     })
                         .then(response => {
-                            switch (response.status) {
-                                case 200: {
-                                    //  Hide the navigation buttons
-                                    const div_navigation = document.getElementById("div_navigation");
-                                    if (div_navigation) {
-                                        div_navigation.style.display = "none";
-                                    }
-
-                                    //  Update the file reference number
-                                    void response.json()
-                                        .then(responseData => {
-                                            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-                                            if (sp_survey_file_number) {
-                                                sp_survey_file_number.innerHTML = responseData.referenceNumber;
-                                            }
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-
-                                    saveStateLocally(_survey, storageName_PA);
-
-                                    console.log(sender.data);
-                                    Ladda.stopAll();
-                                    break;
+                            if (response.ok === true) {
+                                //  Hide the navigation buttons
+                                const div_navigation = document.getElementById("div_navigation");
+                                if (div_navigation) {
+                                    div_navigation.style.display = "none";
                                 }
-                                case 400:
-                                case 500:
-                                    if (response.json) {
-                                        void response.json().then(problem => {
-                                            printProblemDetails(problem, sender.locale);
-                                        });
-                                    }
-                                    Ladda.stopAll();
-                                    return response;
 
-                                default:
-                                    Ladda.stopAll();
-                                    return response;
+                                //  Update the file reference number
+                                void response.json()
+                                    .then(responseData => {
+                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                        if (sp_survey_file_number) {
+                                            sp_survey_file_number.innerHTML = responseData.referenceNumber;
+                                        }
+                                    }).catch(error => {
+                                        console.warn(error);
+                                    });
+
+                                saveStateLocally(_survey, storageName_PA);
+
+                                console.log(sender.data);
+                                Ladda.stopAll();
+
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
                         })
                         .catch(error => {

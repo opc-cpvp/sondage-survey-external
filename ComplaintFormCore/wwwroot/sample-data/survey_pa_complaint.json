@@ -84,7 +84,7 @@
             }
           ],
           "choicesByUrl": {
-            "url": "/api/Institution?lang={locale}",
+            "url": "/api/Institution/GetAll?lang={locale}",
             "titleName": "name",
             "valueName": "value"
           }
@@ -516,7 +516,6 @@
         {
           "type": "comment",
           "name": "SummarizeYourConcernsAndAnyStepsTaken",
-          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "You indicated that in addition to concerns about your access request, you have other concerns. Please summarize these concerns.",
             "fr": "Vous avez indiqué qu’en plus de préoccupations au sujet de votre demande d’accès, vous aviez d’autres préoccupations. Veuillez résumer ces préoccupations."
@@ -524,7 +523,7 @@
           "isRequired": true,
           "maxLength": 5000,
           "visibleIf": "({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage')",
-          "htmldescription": {
+          "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
           }
@@ -532,7 +531,6 @@
         {
           "type": "comment",
           "name": "SummarizeYourComplaintAndAnyStepsTaken",
-          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your complaint and any steps you have taken to try to resolve it (maximum 5,000 characters)",
             "fr": "Résumez votre plainte et toutes les mesures que vous avez prises pour tenter de la résoudre (maximum 5 000 caractères)"
@@ -541,7 +539,7 @@
           "maxLength": 5000,
           "visibleIf": "!(({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage'))",
 
-          "htmldescription": {
+          "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
           }
@@ -549,14 +547,13 @@
         {
           "type": "comment",
           "name": "WhatWouldResolveYourComplaint",
-          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "What would resolve your concerns? (maximum 5,000 characters)",
             "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
           "isRequired": true,
-          "htmldescription": {
+          "description": {
             "en": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><p><ul><li>for an employee to receive training</li><li>a change in a practice</li><li>getting a specific piece of information</li></ul></p><p>Please note our Office does not have the power to fine organizations or award damages</p><div class='alert alert-info'><p>Note that our Commissioner does not have the power to force a government institution to take a specific action.</p><p>The Commissioner makes findings and recommendations and works with institutions to improve their management of personal information.</p><p>Our office does not have the power to fine institutions or seek damages for complaints. Also, we do not address criminal or civil culpability.</p></div>&nbsp;&nbsp;&nbsp;",
             "fr": "<p>Veuillez décrire les démarches ou les mesures correctives qui permettraient de résoudre votre problème. Par exemple: </p><p><ul><li>donner une formation à un employé</li><li>un changement de pratique</li><li>obtenir un renseignement précis</li></ul></p><p>Veuillez noter que le Commissariat n’a pas le pouvoir d’imposer des amendes aux organisations ou d’accorder des dommages-intérêts.</p><div class='alert alert-info'><p>Il est à noter que notre commissaire n’a pas le pouvoir de forcer une institution fédérale à prendre une mesure particulière.</p><p>Le commissaire formule des conclusions et des recommandations et collabore avec les institutions pour améliorer leur gestion des renseignements personnels.</p><p>Notre bureau n’a pas le pouvoir d’imposer des amendes aux institutions ou de réclamer des dommages-intérêts pour les plaintes. De plus, nous n’abordons pas la question de la responsabilité civile ou criminelle.</p></div>&nbsp;&nbsp;&nbsp;"
           }
@@ -564,14 +561,13 @@
         {
           "type": "comment",
           "name": "SummarizeAttemptsToResolvePrivacyMatter",
-          "renderAs": "commentwithhtmldescription",
           "title": {
             "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
             "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
           },
           "isRequired": true,
           "maxLength": 5000,
-          "htmldescription": {
+          "description": {
             "en": "<p>Note that you will be asked to attach copies of any related correspondence with the organization about your privacy concerns.</p><p>Please include:</p><p><ul><li>a description of your efforts (including a timeline)</li><li>a description of the result (if any)</li></ul></p>",
             "fr": "<p>Veuillez noter qu’on vous demandera de joindre des copies de toute correspondance connexe avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée.</p><p>Veuillez inclure:</p><p><ul><li>une description de vos efforts (y compris une chronologie)</li><li>une description du résultat (le cas échéant)</li></ul></p>"
           }
