@@ -236,8 +236,7 @@ export class PaSurvey {
                                 if (response.ok) {
                                     //  This will allowed the validation to pass and go to the next page
                                     options.complete();
-                                }
-                                else {
+                                } else {
                                     response.json().then(problem => {
                                         printProblemDetails(problem, sender.locale);
                                     }).catch(error => {

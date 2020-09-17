@@ -88,11 +88,11 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         options.callback(
                             "success",
                             options.files.map(f =>
-                                // We cannot store the file content in local storage because of
-                                // the 5MB storage limit. The problem was with the file size
-                                // e.g. without file content, there is no way to know the file
-                                // size. The work around is to store the file size in the
-                                // 'content' property.
+                            // We cannot store the file content in local storage because of
+                            // the 5MB storage limit. The problem was with the file size
+                            // e.g. without file content, there is no way to know the file
+                            // size. The work around is to store the file size in the
+                            // 'content' property.
 
                                 ({
                                     file: new File([f], newFilename, {
@@ -180,7 +180,7 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
                         const a = document.createElement("a");
-                       // a.style.display = "none";
+                        // a.style.display = "none";
                         a.classList.add("hidden");
                         a.href = url;
                         a.download = fileItem.name;

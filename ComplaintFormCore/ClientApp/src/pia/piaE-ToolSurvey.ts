@@ -183,21 +183,23 @@ export class PiaETool {
 
                             const behalfMultipleInstitutionOthers = _survey.getQuestionByValueName("BehalfMultipleInstitutionOthers");
                             if (behalfMultipleInstitutionOthers && behalfMultipleInstitutionOthers.value) {
-                                let arrayOfItem = behalfMultipleInstitutionOthers.value as any[];
+                                const arrayOfItem = behalfMultipleInstitutionOthers.value as any[];
                                 arrayOfItem.forEach(item => {
 
                                     //  Question 2.1.6 - Head of the government institution or delegate
                                     if (item.OtherInstitutionHeadFullname) {
                                         if (!personContact.choices.some(contact => contact.value === item.OtherInstitutionHeadFullname)) {
-                                            const itemOther: Survey.ItemValue = new Survey.ItemValue(item.OtherInstitutionHeadFullname, item.OtherInstitutionHeadFullname);
-                                            personContact.choices.push(itemOther);
+                                            const itemOtherInstitutionHeadFullname: Survey.ItemValue =
+                                                new Survey.ItemValue(item.OtherInstitutionHeadFullname, item.OtherInstitutionHeadFullname);
+                                            personContact.choices.push(itemOtherInstitutionHeadFullname);
                                         }
                                     }
 
                                     //  Question 2.1.8 - Senior official or executive responsible
                                     if (item.SeniorOfficialOtherFullname) {
                                         if (!personContact.choices.some(contact => contact.value === item.SeniorOfficialOtherFullname)) {
-                                            const itemSeniorOther: Survey.ItemValue = new Survey.ItemValue(item.SeniorOfficialOtherFullname, item.SeniorOfficialOtherFullname);
+                                            const itemSeniorOther: Survey.ItemValue =
+                                                new Survey.ItemValue(item.SeniorOfficialOtherFullname, item.SeniorOfficialOtherFullname);
                                             personContact.choices.push(itemSeniorOther);
                                         }
                                     }
