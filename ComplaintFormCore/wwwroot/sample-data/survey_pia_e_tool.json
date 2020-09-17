@@ -11,9 +11,57 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
-            "en": "<p><strong>What is a PIA?</strong><br />A privacy impact assessment (PIA) is a risk management process that helps institutions ensure legislative requirements are met, as well as identify and manage the impacts their programs and activities will have on individuals&rsquo; privacy. First and foremost, conducting a PIA is a means of helping to ensure compliance with: <br />&bull; legal requirements set out in the Privacy Act<br />&bull; the institution or program&rsquo;s enabling legislation<br />&bull; the requirements of Treasury Board of Canada Secretariat (TBS) and Government of Canada policies and directives<br />Programs and activities must comply with legal and policy requirements. The way they are designed should also incorporate best practices and minimize negative impacts on the privacy of individuals. For example, you should work to reduce the risk that an individual may suffer harm, such as identity theft, reputational damage, physical harm or distress, as a result of your program&rsquo;s handling of their personal information. A PIA may not eliminate such risks altogether, but should help to identify and manage them. There is often more than one way of designing a project. A PIA can help identify the least privacy intrusive way of achieving a legitimate aim.</p><p>A PIA report documents the PIA process.</p><p><strong>When is a PIA required?</strong><br />The TBS Directive on Privacy Impact Assessment outlines a number of requirements for a PIA, which you will see referenced throughout the e-Tool. A PIA is generally necessary if your program or activity may have an impact on the personal information of individuals. Specifically, the Directive on Privacy Impact Assessment requires that institutions conduct PIAs:<br />&bull; when personal information may be used as part of a decision-making process that directly affects the individual<br />&bull; when there are major changes to existing programs or activities where personal information may be used for an administrative purpose (meaning as part of a decision-making process that directly affects the individual) <br />&bull; when there are major changes to existing programs or activities as a result of contracting out or transferring programs or activities to another level of government or to the private sector</p><p><strong>How can the PIA e-Tool help?</strong><br />The PIA e-Tool is a web-based form that guides users through completion of a PIA report. The e-Tool will prompt the user to consider, assess and manage the risks to privacy posed by the initiative, and to document remaining risks for review by senior management and the Office of the Privacy Commissioner of Canada (OPC). The e-Tool enables users to present the PIA process they have undertaken in a report that is systematic, logical, and efficient.</p><p>The PIA e-Tool will produce a PIA report that includes the following sections:<br />&bull; Introduction<br />&bull; Program details and privacy analysis<br />&bull; Risk analysis<br />&bull; Risk mitigation action plan<br />&bull; Summary</p><p>In the process of conducting your PIA, you will likely need to seek out specific information on your program or activity or consult others before answering questions. Details may also become clear as your program is developed. To facilitate your PIA process you will be able to save changes in the e-Tool and return to your report later.</p><p>You can use the completed PIA report to manage and mitigate privacy risks within your institution&rsquo;s broader risk management framework. From time to time, you should review your PIA report and consider whether it should be updated to reflect new or substantial changes to your program or activity involving personal information.</p><p>Note that this tool is intended to allow federal government institutions to comply with the Directive on Privacy Impact Assessment.</p><p><strong>OPC&rsquo;s companion guide</strong><br />You may also wish to consult our office&rsquo;s supporting document Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process. It provides guidance to federal public sector institutions on how to comply with the Privacy Act and effectively manage privacy risks as part of the PIA process.</p>",
+            "en": "<p><strong>What is a PIA?</strong><p><p>A privacy impact assessment (PIA) is a risk management process that helps institutions ensure legislative requirements are met, as well as identify and manage the impacts their programs and activities will have on individuals&rsquo; privacy. First and foremost, conducting a PIA is a means of helping to ensure compliance with:</p><ul><li>legal requirements set out in the Privacy Act</li><li>the institution or program&rsquo;s enabling legislation</li><li>the requirements of Treasury Board of Canada Secretariat (TBS) and Government of Canada policies and directives</li></ul><p>Programs and activities must comply with legal and policy requirements. The way they are designed should also incorporate best practices and minimize negative impacts on the privacy of individuals. For example, you should work to reduce the risk that an individual may suffer harm, such as identity theft, reputational damage, physical harm or distress, as a result of your program&rsquo;s handling of their personal information. A PIA may not eliminate such risks altogether, but should help to identify and manage them. There is often more than one way of designing a project. A PIA can help identify the least privacy intrusive way of achieving a legitimate aim.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>A PIA report documents the PIA process.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>When is a PIA required?</strong></p><p>The TBS Directive on Privacy Impact Assessment outlines a number of requirements for a PIA, which you will see referenced throughout the e-Tool. A PIA is generally necessary if your program or activity may have an impact on the personal information of individuals. Specifically, the Directive on Privacy Impact Assessment requires that institutions conduct PIAs:</p><ul><li>when personal information may be used as part of a decision-making process that directly affects the individual</li><li>when there are major changes to existing programs or activities where personal information may be used for an administrative purpose (meaning as part of a decision-making process that directly affects the individual)</li><li>when there are major changes to existing programs or activities as a result of contracting out or transferring programs or activities to another level of government or to the private sector</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>How can the PIA e-Tool help?</strong></p><p>The PIA e-Tool is a web-based form that guides users through completion of a PIA report. The e-Tool will prompt the user to consider, assess and manage the risks to privacy posed by the initiative, and to document remaining risks for review by senior management and the Office of the Privacy Commissioner of Canada (OPC). The e-Tool enables users to present the PIA process they have undertaken in a report that is systematic, logical, and efficient.</p><p>The PIA e-Tool will produce a PIA report that includes the following sections:</p><ul><li>Introduction</li><li>Program details and privacy analysis</li><li>Risk analysis</li><li>Risk mitigation action plan</li><li>Summary</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>In the process of conducting your PIA, you will likely need to seek out specific information on your program or activity or consult others before answering questions. Details may also become clear as your program is developed. To facilitate your PIA process you will be able to save changes in the e-Tool and return to your report later.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>You can use the completed PIA report to manage and mitigate privacy risks within your institution&rsquo;s broader risk management framework. From time to time, you should review your PIA report and consider whether it should be updated to reflect new or substantial changes to your program or activity involving personal information.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Note that this tool is intended to allow federal government institutions to comply with the Directive on Privacy Impact Assessment.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>OPC&rsquo;s companion guide</strong></p><p>You may also wish to consult our office&rsquo;s supporting document Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process. It provides guidance to federal public sector institutions on how to comply with the Privacy Act and effectively manage privacy risks as part of the PIA process.</p>",
             "fr": ""
           }
         }
@@ -30,9 +78,57 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
-            "en": "<p><strong>Our role</strong><br />As per the Directive on Privacy Impact Assessment, institutions must provide their completed PIA reports to the OPC at the same time they provide them to TBS. After using the e-Tool, your completed PIA report will be emailed to the author and all signing authorities and automatically sent to the OPC. Our office will review the report and consider the privacy risks posed by the program or activity. We may provide written recommendations where we identify additional risks or gaps. The OPC reviews all PIA reports we receive. However, we use a triage process to determine which reports will be subject to a secondary review and formal recommendations. We may request supplementary documents or in-person meetings or site visits, where needed.</p><p><strong>What we don&rsquo;t do</strong><br />Notwithstanding the role of the OPC in the review of PIA reports, accountability for privacy compliance rests squarely with the heads of federal institutions or the official responsible for section 10 of the Privacy Act. The OPC does not approve, endorse or sign off on PIA reports or on government programs or activities.</p><p><strong>Get in touch</strong><br />If you have questions about the PIA process or the e-Tool, do not hesitate to contact our office&rsquo;s <a title='Government Advisory (GA)' href='https://www.priv.gc.ca/en/about-the-opc/who-we-are/organizational-structure/' target='_blank'>Government Advisory (GA)</a> Directorate. The OPC&rsquo;s GA Directorate provides advice to federal public sector institutions on specific programs and activities involving personal information. We provide advice through:<br />&bull; consultation <br />&bull; reviewing PIA reports, information sharing agreements, and notifications under s. 8(2)(m) and 9(4) of the Privacy Act <br />&bull; conducting advisory engagements<br />You can contact the OPC at any stage in your program&rsquo;s development for assistance in identifying compliance issues as well as risks to privacy and potential mitigation strategies. You can reach the GA Directorate by phone at 819-994-XXXX or by email at scg-ga@priv.gc.ca.</p><p>Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process includes more information on how the OPC&rsquo;s can help.</p>",
+            "en": "<p><strong>Our role</strong></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>As per the Directive on Privacy Impact Assessment, institutions must provide their completed PIA reports to the OPC at the same time they provide them to TBS. After using the e-Tool, your completed PIA report will be emailed to the author and all signing authorities and automatically sent to the OPC. Our office will review the report and consider the privacy risks posed by the program or activity. We may provide written recommendations where we identify additional risks or gaps. The OPC reviews all PIA reports we receive. However, we use a triage process to determine which reports will be subject to a secondary review and formal recommendations. We may request supplementary documents or in-person meetings or site visits, where needed.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>What we don't do</strong></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Notwithstanding the role of the OPC in the review of PIA reports, accountability for privacy compliance rests squarely with the heads of federal institutions or the official responsible for section 10 of the Privacy Act. The OPC does not approve, endorse or sign off on PIA reports or on government programs or activities.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Get in touch</strong></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>If you have questions about the PIA process or the e-Tool, do not hesitate to contact our office&rsquo;s <a title='Government Advisory (GA)' href='https://www.priv.gc.ca/en/about-the-opc/who-we-are/organizational-structure/' target='_blank'>Government Advisory (GA)</a> Directorate. The OPC&rsquo;s GA Directorate provides advice to federal public sector institutions on specific programs and activities involving personal information. We provide advice through:<ul><li>consultation</li><li>reviewing PIA reports, information sharing agreements, and notifications under s. 8(2)(m) and 9(4) of the Privacy Act</li><li>conducting advisory engagements</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>You can contact the OPC at any stage in your program&rsquo;s development for assistance in identifying compliance issues as well as risks to privacy and potential mitigation strategies. You can reach the GA Directorate by phone at 819-994-XXXX or by email at scg-ga@priv.gc.ca.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process includes more information on how the OPC&rsquo;s can help.</p>",
             "fr": ""
           }
         }
@@ -50,9 +146,8 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
-            "en": "<p><strong>In putting together your PIA report, consider the following best practices:</strong><br />&bull; Be specific<br />&bull; Avoid jargon and limit use of acronyms<br />&bull; Be concise &ndash; &ldquo;more content fewer words&rdquo;<br />&bull; Be action-oriented &ndash; what do you plan to do?<br />&bull; Use visual aids, such as tables or diagrams, where appropriate<br />&bull; Create an internal PIA inventory, so that PIAs are organized and accessible for your future reference</p>",
+            "en": "<p><strong>In putting together your PIA report, consider the following best practices:</strong></p><p><ul><li>Be specific</li><li>Avoid jargon and limit use of acronyms</li><li>Be concise &ndash; &ldquo;more content fewer words&rdquo;</li><li>Be action-oriented &ndash; what do you plan to do?</li><li>Use visual aids, such as tables or diagrams, where appropriate</li><li>Create an internal PIA inventory, so that PIAs are organized and accessible for your future reference</li></ul></p>",
             "fr": ""
           }
         }
@@ -69,7 +164,6 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
             "en": "To be developed and populated",
             "fr": ""
@@ -88,9 +182,43 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
-            "en": "<p><strong>Administrative purpose:</strong> According to the TBS Policy on Privacy Protection, an administrative use is the use of personal information about an individual 'in a decision making process that directly affects that individual.' This includes all uses of personal information for confirming identity (in other words, for authentication and verification purposes) and for determining eligibility of individuals for government programs.</p><p><strong>Appropriate senior official or executive of the government institution:</strong> According to the TBS Directive on Privacy Impact Assessment, this is the official holding administrative responsibility for the completion of the PIA. Where an official is not specifically assigned, this responsibility will rest with the senior official or executive holding functional responsibility for the program or activity in question.</p><p><strong>Official responsible for section 10 of the <em>Privacy Act</em>:</strong> According to the TBS Directive on Privacy Impact Assessment, this is the officer or employee that has been designated through a delegation order with the responsibilities of the head or the officer or employee who is performing those responsibilities in the name of the head with respect to section 10 of the Privacy Act. This section concerns the establishment of personal information banks (PIB) for the personal information under the control of the government institution.</p><p><strong>Personal information:</strong> The <em>Privacy Act</em> defines personal information as &ldquo;information about an identifiable individual that is recorded in any form&rdquo;. Examples of personal information include name, address, employment history, fingerprints, medical diagnoses and personal opinions.</p><p><strong>Privacy impact assessment:</strong> According to the TBS Directive on Privacy Impact Assessment, it is the policy process for identifying, assessing and mitigating privacy risks. Government institutions are to develop and maintain privacy impact assessments for all new or modified programs and activities that involve the use of personal information for an administrative purpose.</p><p><strong>Substantial modification:</strong> According to the TBS Directive on Privacy Impact Assessment, a substantial modification refers to a change or an amendment to the privacy practices related to a particular program or activity, which is reflected in a PIB description. This includes any change or amendment to the privacy practices related to activities that use automated or technological means to identify, create, analyze, compare, extract, cull, match or define personal information.</p>",
+            "en": "<p><strong>Administrative purpose:</strong> According to the TBS Policy on Privacy Protection, an administrative use is the use of personal information about an individual 'in a decision making process that directly affects that individual.' This includes all uses of personal information for confirming identity (in other words, for authentication and verification purposes) and for determining eligibility of individuals for government programs.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Appropriate senior official or executive of the government institution:</strong> According to the TBS Directive on Privacy Impact Assessment, this is the official holding administrative responsibility for the completion of the PIA. Where an official is not specifically assigned, this responsibility will rest with the senior official or executive holding functional responsibility for the program or activity in question.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Official responsible for section 10 of the <em>Privacy Act</em>:</strong> According to the TBS Directive on Privacy Impact Assessment, this is the officer or employee that has been designated through a delegation order with the responsibilities of the head or the officer or employee who is performing those responsibilities in the name of the head with respect to section 10 of the Privacy Act. This section concerns the establishment of personal information banks (PIB) for the personal information under the control of the government institution.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Personal information:</strong> The <em>Privacy Act</em> defines personal information as &ldquo;information about an identifiable individual that is recorded in any form&rdquo;. Examples of personal information include name, address, employment history, fingerprints, medical diagnoses and personal opinions.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Privacy impact assessment:</strong> According to the TBS Directive on Privacy Impact Assessment, it is the policy process for identifying, assessing and mitigating privacy risks. Government institutions are to develop and maintain privacy impact assessments for all new or modified programs and activities that involve the use of personal information for an administrative purpose.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>Substantial modification:</strong> According to the TBS Directive on Privacy Impact Assessment, a substantial modification refers to a change or an amendment to the privacy practices related to a particular program or activity, which is reflected in a PIB description. This includes any change or amendment to the privacy practices related to activities that use automated or technological means to identify, create, analyze, compare, extract, cull, match or define personal information.</p>",
             "fr": ""
           }
         }
@@ -117,12 +245,10 @@
             "en": "Do you have, or will you soon have, legal authority for this program or activity? (0.1)",
             "fr": ""
           },
-          "showTitle": true,
           "isRequired": true
         },
         {
           "type": "html",
-          "name": "start_info",
           "html": {
             "en": "<section class='alert alert-warning'><p>Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Exit the e-Tool</button></p></section>",
             "fr": ""
@@ -164,7 +290,6 @@
       "elements": [
         {
           "type": "html",
-          "name": "step_1_info",
           "html": {
             "en": "<section class='alert alert-info'><p>It is first important to determine whether a PIA is required for the program or activity in question.</p></section>",
             "fr": "<section class='alert alert-info'><p></p></section>"
@@ -260,7 +385,6 @@
       "elements": [
         {
           "type": "html",
-          "name": "start_info",
           "html": {
             "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution’s team responsible for privacy. This group may include Access to Information and Privacy (ATIP) coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy, and if there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
@@ -268,7 +392,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "ContactATIP",
+          "name": "ContactATIPQ16",
           "title": {
             "en": "Select",
             "fr": ""
@@ -302,7 +426,7 @@
         {
           "type": "panel",
           "name": "panel_ContactATIP_email",
-          "visibleIf": "{ContactATIP} contains 'receive_email'",
+          "visibleIf": "{ContactATIPQ16} contains 'receive_email'",
           "titleLocation": "hidden",
           "elements": [
             {
@@ -365,11 +489,12 @@
       ]
     },
     {
-      "name": "page_step_is_pa_required_q_1_8",
+      "name": "page_step_1_q_1_8",
       "title": {
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "visibleIf": "{PersonalInfoUsedFor} contains 'non_admin_purpose'",
       "elements": [
         {
           "type": "html",
@@ -380,7 +505,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "ContactATIPQ1-8",
+          "name": "ContactATIPQ18",
           "title": {
             "en": "Select",
             "fr": ""
@@ -413,8 +538,8 @@
         },
         {
           "type": "panel",
-          "name": "panel_ContactATIPQ1-8_email",
-          "visibleIf": "{ContactATIPQ1-8} contains 'receive_email'",
+          "name": "panel_ContactATIPQ18_email",
+          "visibleIf": "{ContactATIPQ18} contains 'receive_email'",
           "titleLocation": "hidden",
           "elements": [
             {
@@ -477,11 +602,12 @@
       ]
     },
     {
-      "name": "page_step_is_pa_required_q_1_10",
+      "name": "page_step_1_q_1_10",
       "title": {
         "en": "",
         "fr": ""
       },
+      "visibleIf": "{SubjectOfPIA} contains 'other'",
       "elements": [
         {
           "type": "html",
@@ -492,7 +618,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "ContactATIPQ1-10",
+          "name": "ContactATIPQ110",
           "title": {
             "en": "Select",
             "fr": ""
@@ -525,8 +651,8 @@
         },
         {
           "type": "panel",
-          "name": "panel_ContactATIPQ1-10_email",
-          "visibleIf": "{ContactATIPQ1-10} contains 'receive_email'",
+          "name": "panel_ContactATIPQ110_email",
+          "visibleIf": "{ContactATIPQ110} contains 'receive_email'",
           "titleLocation": "hidden",
           "elements": [
             {
@@ -916,7 +1042,7 @@
       "elements": [
         {
           "type": "paneldynamic",
-          "name": "representatives_others",
+          "name": "pnd_OtherInstitutionHead",
           "title": {
             "en": "Head of the government institution or delegate",
             "fr": ""
@@ -937,7 +1063,8 @@
               "title": {
                 "en": "Full name:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -945,7 +1072,8 @@
               "title": {
                 "en": "Title",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -953,7 +1081,8 @@
               "title": {
                 "en": "Institution and section:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -961,7 +1090,8 @@
               "title": {
                 "en": "Email address:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             }
           ]
         }
@@ -1057,7 +1187,8 @@
               "title": {
                 "en": "Full name:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -1065,7 +1196,8 @@
               "title": {
                 "en": "Title",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -1073,7 +1205,8 @@
               "title": {
                 "en": "Institution and section:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             },
             {
               "type": "text",
@@ -1081,7 +1214,8 @@
               "title": {
                 "en": "Email address:",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             }
           ]
         }
@@ -1262,7 +1396,7 @@
       "elements": [
         {
           "type": "comment",
-          "name": "Details",
+          "name": "DetailsPreviousSubmission",
           "title": {
             "en": "Now let us add some detail. Use the headings from your previous submission and list the sections that are being updated.",
             "fr": ""

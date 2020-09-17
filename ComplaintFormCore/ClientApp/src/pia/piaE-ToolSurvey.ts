@@ -40,6 +40,49 @@ export class PiaETool {
                 //  This needs to be here
                 _survey.locale = lang;
 
+                //  We are going to use this variable to handle if the validation has passed or not.
+                let isValidSurvey = false;
+
+                _survey.onCompleting.add((sender, options) => {
+
+                    if (isValidSurvey === true) {
+                        options.allowComplete = true;
+                        return;
+                    }
+
+                    options.allowComplete = false;
+
+                    const uri = `/api/PIASurvey/Validate?complaintId="${sender.complaintId as string}`;
+
+                    fetch(uri, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify(sender.data)
+                    }).then(response => {
+                        if (response.ok) {
+                            //  Validation is good then we set the variable so the next call to doComplete()
+                            //  will bypass the validation
+                            isValidSurvey = true;
+                            _survey.doComplete();
+
+                        } else {
+                            if (response.json) {
+                                void response.json().then(problem => {
+                                    SurveyHelper.printProblemDetails(problem, sender.locale);
+                                });
+                            }
+                            Ladda.stopAll();
+                            return response;
+                        }
+                    }).catch(error => {
+                        console.warn(error);
+                        Ladda.stopAll();
+                    });
+                });
+
                 _survey.onComplete.add((sender, options) => {
                     console.log(sender.data);
                     Ladda.stopAll();
@@ -58,43 +101,43 @@ export class PiaETool {
                     //  option.isPrevPage - commonly means, that end-user press the previous page button.
                     //              In general, it means that options.newCurrentPage is the previous page before options.oldCurrentPage
 
+                    //  We are checking if we are going forward AND we are not at the starting page
+                    if (!options.isNextPage || !options.oldCurrentPage) {
+                        return;
+                    }
+
                     options.allowChanging = false;
 
-                    if (options.isNextPage === true && options.oldCurrentPage) {
+                    if (options.oldCurrentPage.name === "page_before_begin_q_0_1") {
 
-                        //  We are going forward AND we are not at the starting page
+                        const hasLegalAuthority: Survey.Question = sender.getQuestionByName("HasLegalAuthority");
+                        if (hasLegalAuthority && hasLegalAuthority.value === false) {
+                            SurveyHelper.printWarningMessage("Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.", "", sender.getLocale());
+                            return;
+                        }
 
-                        if (options.oldCurrentPage.name === "page_before_begin_q_0_1") {
+                    } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
 
-                            const hasLegalAuthority: Survey.Question = sender.getQuestionByName("HasLegalAuthority");
-                            if (hasLegalAuthority && hasLegalAuthority.value === false) {
-                                SurveyHelper.printWarningMessage("Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.", "", sender.getLocale());
-                                return;
-                            }
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-6");
+                        if (contactATIP && contactATIP.value !== "conduct_pia") {
+                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            return;
+                        }
 
-                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
+                    } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
 
-                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIP");
-                            if (contactATIP && contactATIP.value !== "conduct_pia") {
-                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                                return;
-                            }
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
+                        if (contactATIP && contactATIP.value !== "conduct_pia") {
+                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            return;
+                        }
 
-                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
+                    } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
 
-                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
-                            if (contactATIP && contactATIP.value !== "conduct_pia") {
-                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                                return;
-                            }
-
-                        } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
-
-                            const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
-                            if (contactATIP && contactATIP.value !== "conduct_pia") {
-                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
-                                return;
-                            }
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
+                        if (contactATIP && contactATIP.value !== "conduct_pia") {
+                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            return;
                         }
                     }
 
@@ -109,6 +152,7 @@ export class PiaETool {
                         //  dropdown type question PersonContact at question 2.1.9
 
                         const personContact = options.question as Survey.QuestionDropdownModel;
+                        personContact.choices = [];
 
                         //  1) We add another individual item
                         let otherName = "Another individual";
@@ -120,7 +164,7 @@ export class PiaETool {
                         personContact.choices.push(itemOther);
 
                         //  2) Question 2.1.5 - Who is the head of the government institution
-                        const headYourInstitutionFullname = survey.getQuestionByName("HeadYourInstitutionFullname") as Survey.QuestionTextModel;
+                        const headYourInstitutionFullname = _survey.getQuestionByName("HeadYourInstitutionFullname") as Survey.QuestionTextModel;
                         if (headYourInstitutionFullname) {
                             const item: Survey.ItemValue =
                                 new Survey.ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
@@ -128,13 +172,38 @@ export class PiaETool {
                         }
 
                         //  3) Question 2.1.7 - Senior official or executive responsible
-                        const seniorOfficialFullname = survey.getQuestionByName("SeniorOfficialFullname") as Survey.QuestionTextModel;
+                        const seniorOfficialFullname = _survey.getQuestionByName("SeniorOfficialFullname") as Survey.QuestionTextModel;
                         if (seniorOfficialFullname) {
                             const item: Survey.ItemValue = new Survey.ItemValue(seniorOfficialFullname.value, seniorOfficialFullname.value);
                             personContact.choices.push(item);
                         }
 
-                        //  TODO:  there is more
+                        const singleOrMultiInstitutionPIA = _survey.getQuestionByName("SingleOrMultiInstitutionPIA") as Survey.QuestionRadiogroupModel;
+                        if (singleOrMultiInstitutionPIA.selectedItem && singleOrMultiInstitutionPIA.selectedItem.value === "multi") {
+
+                            const behalfMultipleInstitutionOthers = _survey.getQuestionByValueName("BehalfMultipleInstitutionOthers");
+                            if (behalfMultipleInstitutionOthers && behalfMultipleInstitutionOthers.value) {
+                                let arrayOfItem = behalfMultipleInstitutionOthers.value as any[];
+                                arrayOfItem.forEach(item => {
+
+                                    //  Question 2.1.6 - Head of the government institution or delegate
+                                    if (item.OtherInstitutionHeadFullname) {
+                                        if (!personContact.choices.some(contact => contact.value === item.OtherInstitutionHeadFullname)) {
+                                            const itemOther: Survey.ItemValue = new Survey.ItemValue(item.OtherInstitutionHeadFullname, item.OtherInstitutionHeadFullname);
+                                            personContact.choices.push(itemOther);
+                                        }
+                                    }
+
+                                    //  Question 2.1.8 - Senior official or executive responsible
+                                    if (item.SeniorOfficialOtherFullname) {
+                                        if (!personContact.choices.some(contact => contact.value === item.SeniorOfficialOtherFullname)) {
+                                            const itemSeniorOther: Survey.ItemValue = new Survey.ItemValue(item.SeniorOfficialOtherFullname, item.SeniorOfficialOtherFullname);
+                                            personContact.choices.push(itemSeniorOther);
+                                        }
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
 
@@ -148,8 +217,9 @@ export class PiaETool {
                 initSurveyModelProperties(_survey);
 
                 const defaultData = {
-                    "ContactATIPQ1-8": "conduct_pia",
-                    "ContactATIPQ1-10": "conduct_pia",
+                    "ContactATIPQ16": "conduct_pia",
+                    "ContactATIPQ18": "conduct_pia",
+                    "ContactATIPQ110": "conduct_pia",
                     "HasLegalAuthority": true,
                     "HeadYourInstitutionEmail": "jack@gmail.com",
                     "HeadYourInstitutionFullname": "Jack Travis",
@@ -197,7 +267,22 @@ export class PiaETool {
                     "BehalfMultipleInstitutionLead": "1",
                     "PersonContact": "adam yates",
                     "NewOrUpdatedPIA": "new_pia",
-                    "name": "terter"
+                    "name": "terter",
+                    "UserEmailAddress": "test@gmail.com",
+                    "BehalfSingleInstitution": "2",
+                    "BehalfSingleInstitutionOther": "Another institution",
+                    "RelatedPIANameInstitution": "related instituion",
+                    "RelatedPIANameProgram": "related program namexxxxx",
+                    "RelatedPIADescription": "related descriptiohjfj",
+                    "AnotherContactFullname": "Another full name",
+                    "AnotherContactTitle": "Another title",
+                    "AnotherContactSection": "Another section",
+                    "AnotherContactEmail": "anothercontact@gmail.com",
+                    "UpdatePIANumberAssigned": "update_pia_existing_reference_number",
+                    "UpdatePIAAllReferenceNumbersAssigned": "A3Rt67U8",
+                    "DetailsPreviousSubmission": "this is a bunch of details about the previous submission",
+                    "NewPIANumberAssigned": "new_pia_existing_reference_number",
+                    "NewPIAAllReferenceNumbersAssigned":"V13R5t9O"
                 };
 
                 // Load the initial state

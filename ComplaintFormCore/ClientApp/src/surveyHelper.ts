@@ -126,7 +126,7 @@ export function printWarningMessage(messageEn: string, messageFr: string, lang: 
         section.classList.add("alert-warning");
 
         const h2Title = document.createElement("H2");
-        let textTitle;
+
         if (lang === "fr") {
             h2Title.innerText = "Message";
         } else {

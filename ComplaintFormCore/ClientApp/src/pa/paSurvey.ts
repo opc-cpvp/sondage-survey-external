@@ -72,7 +72,7 @@ export class PaSurvey {
                         },
                         body: JSON.stringify(sender.data)
                     }).then(response => {
-                        if (response.ok === true) {
+                        if (response.ok) {
                             //  Validation is good then we set the variable so the next call to doComplete()
                             //  will bypass the validation
                             isValidSurvey = true;
@@ -106,11 +106,11 @@ export class PaSurvey {
                         body: JSON.stringify(sender.data)
                     })
                         .then(response => {
-                            if (response.ok === true) {
+                            if (response.ok) {
                                 //  Hide the navigation buttons
                                 const div_navigation = document.getElementById("div_navigation");
                                 if (div_navigation) {
-                                    div_navigation.style.display = "none";
+                                    div_navigation.classList.add("hidden");
                                 }
 
                                 //  Update the file reference number
@@ -233,21 +233,16 @@ export class PaSurvey {
                             body: JSON.stringify(options.data)
                         })
                             .then(response => {
-                                switch (response.status) {
-                                    case 200:
-                                        //  This will allowed the validation to pass and go to the next page
-                                        options.complete();
-                                        break;
-                                    case 400:
-                                    case 500:
-                                        response.json().then(problem => {
-                                            printProblemDetails(problem, sender.locale);
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-                                        break;
-                                    default:
-                                        console.warn(response);
+                                if (response.ok) {
+                                    //  This will allowed the validation to pass and go to the next page
+                                    options.complete();
+                                }
+                                else {
+                                    response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    }).catch(error => {
+                                        console.warn(error);
+                                    });
                                 }
                             })
                             .catch(error => {

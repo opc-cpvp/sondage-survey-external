@@ -1,11 +1,12 @@
 # online-complaint-form-pa
 
-### ATTENTION/BE CAREFUll
-When updating the survey package (survey-vue) because these guys are not careful when updating. 
+### Survey librairy update
+When updating the survey package (survey-vue) because these guys are not super careful when updating. 
 I am not 100% sure of how they operate but it seems like code get moved around or deleted on their end.
 
 - Before 1.7.26... they have removed the property 'owner' in survey.onGetQuestionTitle. This was breaking our project.
 - From 1.7.26 to 1.7.28: our file upload module was missing the choose file button. This got fixed at their end.
+- From 1.7.28 to 1.8.3: the choose file button is gone
 
 ### Where to find Documentation
 
@@ -24,7 +25,7 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- the * at the beginning of required questions
 
 b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
-c) surveyjs-widget
+	It is used for a loading/saving spinner
 
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
@@ -37,6 +38,7 @@ Located in the code in ~\wwwroot\js\survey\
 1) widgetCommentHtml
 - This is to be able to have the 'description' parsed as html.
 - Simply add the property 'htmldescription':'your html' to a 'comment' type question
+As of Survey 1.8.3 there is no need to use this widget. The 'description' property is parsing html.
 
 2) widgetCheckboxHtml
 - This is to display additional information under a checkbox when it is being checked. Plain text or html can be used.
@@ -56,13 +58,12 @@ other words, we are not using the style provided by Survey.js but rather the css
 	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
 		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
 		- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 
-			For other types of non required questions (such as radiogroup, dropdown or checkbox) it a TODO
 
-	Also, for all questions, the 'description' property is being hidden.
-	Also, for 'html' questions, during the preview, the actual html gets wiped out. 
+	Also, for all questions, the 'description' property is being hidden in the survey event onAfterRenderQuestion
+	Also, for 'html' questions, during the preview, the actual html gets wiped out in survey event onUpdateQuestionCssClasses
 
 	I have asked the guy at Survey.js. Here is the link to the question: https://github.com/surveyjs/survey-library/issues/2268
-	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview.
+	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview using onUpdatePanelCssClasses
 
 
 ### Error handling
@@ -72,7 +73,7 @@ other words, we are not using the style provided by Survey.js but rather the css
 	... and also at the question level by adding the property "requiredErrorText": "This field is required at the question level"
 	The question level overwrites the survey level
 
-2)	The code to build the error box at the top of the page when thre is errors is in SurveyInit.js in function buildErrorMessage. 
+2)	The code to build the error box at the top of the page when thre is errors is in SurveyHelper.js in function printProblemDetails. 
 	There is probably a better to handle the construction of the "section", specially for multilanguage sites but for now it is working.
 
 ### Localization notes
