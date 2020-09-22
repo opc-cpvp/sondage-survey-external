@@ -1466,12 +1466,422 @@
       },
       "elements": [
         {
-          "name": "name",
-          "type": "text",
-          "title": "Please enter your name:",
-          "placeHolder": "Jon Snow",
+          "name": "Overview",
+          "type": "comment",
+          "title": {
+            "en": "Please give us an overview of this program or activity.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure that the overview includes:<ul><li>Clear details regarding who is involved in the program or activity</li><li>What information is collected, used and disclosed</li><li>Why the program or activity has been developed</li><li>How the program or activity functions</li></ul></p><p>This information would typically be found in an executive summary. If you have already prepared an executive summary, you can copy and paste that text here. You may find it helpful to consult other documents such as your project proposal in completing this section of the PIA report.</p>",
+            "fr": ""
+          },
           "isRequired": true
         }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_2",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.2",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "ParticipationOptions",
+          "title": {
+            "en": "Please select the option that best describes participation in your program or activity.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Participation is mandatory for affected individuals. Participation is automatic; or, affected individuals may face penalties for non-participation",
+                "fr": ""
+              },
+              "value": "participation_mandatory_and_automatic"
+            },
+            {
+              "text": {
+                "en": "Participation is not mandatory, but participation is automatic. Individuals must ‘opt-out’ if they do not wish to participate",
+                "fr": ""
+              },
+              "value": "participation_not_mandatory_but_automatic"
+            },
+            {
+              "text": {
+                "en": "Participation is not mandatory, but becomes mandatory for certain activities (for example, a passport is necessary for travel outside of Canada),",
+                "fr": ""
+              },
+              "value": "participation_not_mandatory_but_can_be"
+            },
+            {
+              "text": {
+                "en": "Participation is voluntary or optional for individuals. Individuals must “opt-in” if they wish to participate",
+                "fr": ""
+              },
+              "value": "participation_voluntary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_3",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.3",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "OtherInitiatives",
+          "title": {
+            "en": "Are there other initiatives that this program or activity is related to?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "OtherInitiativesDescription",
+          "title": {
+            "en": "Please provide the name of the related initiative(s) and describe how this program or activity is related.",
+            "fr": ""
+          },
+          "visibleIf": "{OtherInitiatives} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_4",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.4",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "DurationOptions",
+          "title": {
+            "en": "Please describe the duration of the program or activity by selecting from the drop-down list. This program or activity is a...",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Pilot program or activity",
+                "fr": ""
+              },
+              "value": "pilot"
+            },
+            {
+              "text": {
+                "en": "One-time program or activity",
+                "fr": ""
+              },
+              "value": "one_time"
+            },
+            {
+              "text": {
+                "en": "Short-term program or activity",
+                "fr": ""
+              },
+              "value": "short_term"
+            },
+            {
+              "text": {
+                "en": "Long-term program or activity",
+                "fr": ""
+              },
+              "value": "long_term"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "DurationOptionsDescriptions",
+          "title": {
+            "en": "Please type in your answer(s)",
+            "fr": ""
+          },
+          "visibleIf": "{DurationOptions} contains 'long_term'",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_5",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.5",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsProgramRolledOutPhases",
+          "title": {
+            "en": "Is the program or activity being rolled out in multiple phases?",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_6",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.6",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsAnticipatedStartDate",
+          "title": {
+            "en": "Is there an anticipated start date to the program or activity?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "AnticipatedStartDate",
+          "title": {
+            "en": "Please provide the anticipated start date",
+            "fr": ""
+          },
+          "visibleIf": "{IsAnticipatedStartDate} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_7",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.7",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsAnticipatedEndDate",
+          "title": {
+            "en": "Is there an anticipated end date to the program or activity?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "AnticipatedEndDate",
+          "title": {
+            "en": "Please provide the anticipated end date",
+            "fr": ""
+          },
+          "visibleIf": "{IsAnticipatedEndDate} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_8",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.8",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsInvolveNewSoftware",
+          "title": {
+            "en": "Does your program or activity involve implementation of a new electronic system or the use of a new application or software, including collaborative software (or groupware), to support the program or activity in creating, collecting or handling personal information?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "InvolveNewSoftwareDescription",
+          "title": {
+            "en": "Please describe the new electronic system or the new application or software.",
+            "fr": ""
+          },
+          "visibleIf": "{IsInvolveNewSoftware} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_10",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.10",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesRequireModificationToIT",
+          "title": {
+            "en": "Does your program or activity require any modifications to information technology (IT) legacy systems?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "RequireModificationToITDescription",
+          "title": {
+            "en": "Please describe the required modifications to information technology (IT) legacy systems.",
+            "fr": ""
+          },
+          "visibleIf": "{DoesRequireModificationToIT} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_12",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.12",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HaschangesToBusinessRequirements",
+          "title": {
+            "en": "Are there any changes to your business requirements that will have an impact on the system, software or program application and, consequently, may affect the current access controls and privacy practices related to the creation, collection, retention, use, disclosure and disposition of personal information?",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "ChangesToBusinessRequirements",
+          "title": {
+            "en": "Please explain the changes to your business requirements that will have an impact",
+            "fr": ""
+          },
+          "visibleIf": "{HaschangesToBusinessRequirements} = true",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_13",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.13",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "WillITLegacySystemRetained",
+          "title": {
+            "en": "Are current IT legacy systems and services that will be retained, or those that will be substantially modified, compliant with privacy requirements?",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_14",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.14",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "AwarenessActivities",
+          "title": {
+            "en": "Please identify any awareness activities related to protection of privacy requirements in the new electronic environment.",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_2_2_q_2_2_15",
+      "title": {
+        "en": "2.2 – Introduction to the program or activity - Question 2.2.15",
+        "fr": "IsProgramRolledOutPhases"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Now let us tie the program or activity to the PIA. What is the scope of this PIA?</p><p>This section should explain exactly what the PIA covers as well as what areas are outside the scope and why. Ensure that your PIA report covers all aspects of the program or activity that may impact privacy.</p><p><strong>Tip: Scope your project well</strong><ul><li>At the OPC, we have seen PIAs scoped at the program architecture level so that very limited detail is included on individual programs or activities and their risks. Such PIAs have been scoped too broadly!</li><li>We have also seen PIAs scoped at the program or activity level where half of the program or activity (sometimes the riskier or more controversial part) is considered out of scope. These PIAs have been scoped too narrowly!</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "ScopeThisPhase",
+          "title": {
+            "en": "Describe what is in scope for this phase:",
+            "fr": ""
+          },
+          "visibleIf": "{IsProgramRolledOutPhases} = true",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "ScopeOtherPhases",
+          "title": {
+            "en": "Describe the scope of other phases (past or future):",
+            "fr": ""
+          },
+          "visibleIf": "{IsProgramRolledOutPhases} = true",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "NotInScopePia",
+          "title": {
+            "en": "Describe what is not in scope of the PIAs and justify the decision to not include this information:",
+            "fr": ""
+          },
+          "visibleIf": "{IsProgramRolledOutPhases} = true",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "ScopePia",
+          "title": {
+            "en": "Describe what is in scope:",
+            "fr": ""
+          },
+          "visibleIf": "{IsProgramRolledOutPhases} = false",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "NotInScope",
+          "title": {
+            "en": "Describe what is not in scope and justify the decision to not include this information:",
+            "fr": ""
+          },
+          "visibleIf": "{IsProgramRolledOutPhases} = false",
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3",
+      "title": {
+        "en": "Step 3 –Program or activity details",
+        "fr": ""
+      },
+      "elements": [
+
       ]
     },
     {
