@@ -37,34 +37,36 @@ namespace ComplaintFormCore.Web_Apis
             {
                 Value = "1",
                 EnglishName = "My Institution",
-                FrenchName = "Mon institution",
-                Name = language == "en" ? "My Institution" : "Mon institution"
+                FrenchName = "Mon institution"
             };
+
+            ins1.Name = language == "en" ? ins1.EnglishName : ins1.FrenchName;
 
             Institution ins2 = new Institution()
             {
                 Value = "2",
                 EnglishName = "Second Instit",
-                FrenchName = "Deuxieme institution",
-                Name = language == "en" ? "Second Instit" : "Deuxieme institution"
+                FrenchName = "Deuxieme institution"
             };
+
+            ins2.Name = language == "en" ? ins2.EnglishName : ins2.FrenchName;
 
             Institution ins3 = new Institution()
             {
                 Value = "3",
                 EnglishName = "Third",
-                FrenchName = "Troizieme",
-                Name = language == "en" ? "Third" : "Troizieme"
+                FrenchName = "Troizieme"
             };
+
+            ins3.Name = language == "en" ? ins3.EnglishName : ins3.FrenchName;
 
             Institution ins4 = new Institution()
             {
                 Value = "4",
                 EnglishName = "This is a very long institution name, and it goes on and on",
-                FrenchName = "Ceci est une institution avec un tres tres long nom, encore",
-                Name = language == "en" ? "This is a very long institution name, and it goes on and on" : "Ceci est une institution avec un tres tres long nom, encore"
+                FrenchName = "Ceci est une institution avec un tres tres long nom, encore"
             };
-
+            ins4.Name = language == "en" ? ins4.EnglishName : ins4.FrenchName;
 
             List<Institution> list = new List<Institution>();
 
@@ -77,11 +79,12 @@ namespace ComplaintFormCore.Web_Apis
             {
                 Institution otherInstitution = new Institution()
                 {
-                    Value = "9999",
+                    Value = Institution.OTHER_INSTITUTION_ID.ToString(),
                     EnglishName = "Other",
-                    FrenchName = "Autre",
-                    Name = language == "en" ? "Other" : "Autre"
+                    FrenchName = "Autre"
                 };
+
+                otherInstitution.Name = language == "en" ? otherInstitution.EnglishName : otherInstitution.FrenchName;
 
                 list.Add(otherInstitution);
             }
@@ -92,41 +95,9 @@ namespace ComplaintFormCore.Web_Apis
         [HttpGet]
         public Institution GetInstitution(string id)
         {
+            //  THIS IS NOT USED AT THE MOMENT
             string language = "en";
-            if (id == "1")
-            {
-                return new Institution()
-                {
-                    Value = "1",
-                    EnglishName = "My Institution",
-                    FrenchName = "Mon institution",
-                    Name = language == "en" ? "My Institution" : "Mon institution"
-                };
-            }
-            else if (id == "2")
-            {
-                return new Institution()
-                {
-                    Value = "2",
-                    EnglishName = "Second Instit",
-                    FrenchName = "Deuxieme institution",
-                    Name = language == "en" ? "Second Instit" : "Deuxieme institution"
-                };
-            }
-            else if (id == "3")
-            {
-                return new Institution()
-                {
-                    Value = "3",
-                    EnglishName = "Third",
-                    FrenchName = "Troizieme",
-                    Name = language == "en" ? "Third" : "Troizieme"
-                };
-            }
-            else
-            {
-                return null;
-            }
+            return new Institution();
         }
     }
 }

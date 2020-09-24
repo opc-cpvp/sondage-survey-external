@@ -213,16 +213,24 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         if (sender.isDisplayMode) {
 
             //  We are hidding the description in 'Preview' mode
-
-            if (options.question.getType() === "boolean") {
-                const boolQuestion: Survey.QuestionBooleanModel = options.question;
-                boolQuestion.descriptionLocation = "hidden";
-            } else if (options.question.getType() === "radiogroup") {
-                const rbQuestion: Survey.QuestionRadiogroupModel = options.question;
-                rbQuestion.descriptionLocation = "hidden";
-            } else if (options.question.getType() === "comment") {
-                const cmtQuestion: Survey.QuestionCommentModel = options.question;
-                cmtQuestion.descriptionLocation = "hidden";
+            switch (options.question.getType()) {
+                case "boolean": {
+                    const boolQuestion: Survey.QuestionBooleanModel = options.question;
+                    boolQuestion.descriptionLocation = "hidden";
+                    break;
+                }
+                case "radiogroup": {
+                    const rbQuestion: Survey.QuestionRadiogroupModel = options.question;
+                    rbQuestion.descriptionLocation = "hidden";
+                    break;
+                }
+                case "comment": {
+                    const cmtQuestion: Survey.QuestionCommentModel = options.question;
+                    cmtQuestion.descriptionLocation = "hidden";
+                    break;
+                }
+                default:
+                    break;
             }
         }
     });

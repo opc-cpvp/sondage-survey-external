@@ -118,7 +118,7 @@ export class PaSurvey {
                                     .then(responseData => {
                                         const sp_survey_file_number = document.getElementById("sp_survey_file_number");
                                         if (sp_survey_file_number) {
-                                            sp_survey_file_number.innerHTML = responseData.referenceNumber;
+                                            sp_survey_file_number.innerText = responseData.referenceNumber;
                                         }
                                     }).catch(error => {
                                         console.warn(error);

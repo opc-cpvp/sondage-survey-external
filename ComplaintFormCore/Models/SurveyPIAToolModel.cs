@@ -107,12 +107,9 @@ namespace ComplaintFormCore.Models
         {
             get
             {
-                if(string.IsNullOrWhiteSpace(BehalfSingleInstitution) == false)
+                if (int.TryParse(BehalfSingleInstitution, out int institutionId))
                 {
-                    if(int.TryParse(BehalfSingleInstitution, out int institutionId))
-                    {
-                        return institutionId;
-                    }
+                    return institutionId;
                 }
 
                 return null;
@@ -133,12 +130,9 @@ namespace ComplaintFormCore.Models
         {
             get
             {
-                if (string.IsNullOrWhiteSpace(BehalfMultipleInstitutionLead) == false)
+                if (int.TryParse(BehalfMultipleInstitutionLead, out int institutionId))
                 {
-                    if (int.TryParse(BehalfMultipleInstitutionLead, out int institutionId))
-                    {
-                        return institutionId;
-                    }
+                    return institutionId;
                 }
 
                 return null;
