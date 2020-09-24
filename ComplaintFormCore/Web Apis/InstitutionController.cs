@@ -81,9 +81,10 @@ namespace ComplaintFormCore.Web_Apis
                 {
                     Value = Institution.OTHER_INSTITUTION_ID.ToString(),
                     EnglishName = "Other",
-                    FrenchName = "Autre",
-                    Name = language == "en" ? "Other" : "Autre"
+                    FrenchName = "Autre"
                 };
+
+                otherInstitution.Name = language == "en" ? otherInstitution.EnglishName : otherInstitution.FrenchName;
 
                 list.Add(otherInstitution);
             }

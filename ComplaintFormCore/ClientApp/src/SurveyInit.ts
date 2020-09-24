@@ -214,18 +214,21 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
 
             //  We are hidding the description in 'Preview' mode
             switch (options.question.getType()) {
-                case "boolean":
+                case "boolean": {
                     const boolQuestion: Survey.QuestionBooleanModel = options.question;
                     boolQuestion.descriptionLocation = "hidden";
                     break;
-                case "radiogroup":
+                }
+                case "radiogroup": {
                     const rbQuestion: Survey.QuestionRadiogroupModel = options.question;
                     rbQuestion.descriptionLocation = "hidden";
                     break;
-                case "comment":
+                }
+                case "comment": {
                     const cmtQuestion: Survey.QuestionCommentModel = options.question;
                     cmtQuestion.descriptionLocation = "hidden";
                     break;
+                }
                 default:
                     break;
             }
