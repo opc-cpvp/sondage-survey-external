@@ -94,41 +94,9 @@ namespace ComplaintFormCore.Web_Apis
         [HttpGet]
         public Institution GetInstitution(string id)
         {
+            //  THIS IS NOT USED AT THE MOMENT
             string language = "en";
-            if (id == "1")
-            {
-                return new Institution()
-                {
-                    Value = "1",
-                    EnglishName = "My Institution",
-                    FrenchName = "Mon institution",
-                    Name = language == "en" ? "My Institution" : "Mon institution"
-                };
-            }
-            else if (id == "2")
-            {
-                return new Institution()
-                {
-                    Value = "2",
-                    EnglishName = "Second Instit",
-                    FrenchName = "Deuxieme institution",
-                    Name = language == "en" ? "Second Instit" : "Deuxieme institution"
-                };
-            }
-            else if (id == "3")
-            {
-                return new Institution()
-                {
-                    Value = "3",
-                    EnglishName = "Third",
-                    FrenchName = "Troizieme",
-                    Name = language == "en" ? "Third" : "Troizieme"
-                };
-            }
-            else
-            {
-                return null;
-            }
+            return new Institution();
         }
     }
 }
