@@ -910,7 +910,7 @@
       "elements": [
         {
           "type": "radiogroup",
-          "name": "LeadInstitutionConsultedOther",
+          "name": "HasLeadInstitutionConsultedOther",
           "title": {
             "en": "We would just like to confirm that the lead institution has, in fact, consulted with all other institutions involved in this multi-institutional PIA. (2.1.3)",
             "fr": ""
@@ -946,7 +946,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{LeadInstitutionConsultedOther} contains 'no'"
+          "visibleIf": "{HasLeadInstitutionConsultedOther} contains 'no'"
         }
       ]
     },
@@ -1466,7 +1466,7 @@
       },
       "elements": [
         {
-          "name": "Overview",
+          "name": "ProgramOverview",
           "type": "comment",
           "title": {
             "en": "Please give us an overview of this program or activity.",
