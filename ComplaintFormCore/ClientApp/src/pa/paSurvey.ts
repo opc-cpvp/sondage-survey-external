@@ -49,8 +49,6 @@ export class PaSurvey {
                 // The event onCompleting is fired before the survey is completed and the onComplete event is fired after.
                 // You can prevent the survey from completing by setting options.allowComplete to false
                 // sender - the survey object that fires the event.
-                // NOTE:   The api call needs to be done synchronously for the onComplete event to fire.
-                //          This is because the call is waiting for options.allowComplete = true
 
                 //  We are going to use this variable to handle if the validation has passed or not.
                 let isValidSurvey = false;
@@ -74,26 +72,20 @@ export class PaSurvey {
                         },
                         body: JSON.stringify(sender.data)
                     }).then(response => {
-                        switch (response.status) {
-                            case 200: {
-                                //  Validation is good then we set the variable so the next call to doComplete()
-                                //  will bypass the validation
-                                isValidSurvey = true;
-                                _survey.doComplete();
-                                break;
+                        if (response.ok) {
+                            //  Validation is good then we set the variable so the next call to doComplete()
+                            //  will bypass the validation
+                            isValidSurvey = true;
+                            _survey.doComplete();
+
+                        } else {
+                            if (response.json) {
+                                void response.json().then(problem => {
+                                    printProblemDetails(problem, sender.locale);
+                                });
                             }
-                            case 400:
-                            case 500:
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            default:
-                                Ladda.stopAll();
-                                return response;
+                            Ladda.stopAll();
+                            return response;
                         }
                     }).catch(error => {
                         console.warn(error);
@@ -114,44 +106,37 @@ export class PaSurvey {
                         body: JSON.stringify(sender.data)
                     })
                         .then(response => {
-                            switch (response.status) {
-                                case 200: {
-                                    //  Hide the navigation buttons
-                                    const div_navigation = document.getElementById("div_navigation");
-                                    if (div_navigation) {
-                                        div_navigation.style.display = "none";
-                                    }
-
-                                    //  Update the file reference number
-                                    void response.json()
-                                        .then(responseData => {
-                                            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-                                            if (sp_survey_file_number) {
-                                                sp_survey_file_number.innerHTML = responseData.referenceNumber;
-                                            }
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-
-                                    saveStateLocally(_survey, storageName_PA);
-
-                                    console.log(sender.data);
-                                    Ladda.stopAll();
-                                    break;
+                            if (response.ok) {
+                                //  Hide the navigation buttons
+                                const div_navigation = document.getElementById("div_navigation");
+                                if (div_navigation) {
+                                    div_navigation.classList.add("hidden");
                                 }
-                                case 400:
-                                case 500:
-                                    if (response.json) {
-                                        void response.json().then(problem => {
-                                            printProblemDetails(problem, sender.locale);
-                                        });
-                                    }
-                                    Ladda.stopAll();
-                                    return response;
 
-                                default:
-                                    Ladda.stopAll();
-                                    return response;
+                                //  Update the file reference number
+                                void response.json()
+                                    .then(responseData => {
+                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                        if (sp_survey_file_number) {
+                                            sp_survey_file_number.innerText = responseData.referenceNumber;
+                                        }
+                                    }).catch(error => {
+                                        console.warn(error);
+                                    });
+
+                                saveStateLocally(_survey, storageName_PA);
+
+                                console.log(sender.data);
+                                Ladda.stopAll();
+
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
                         })
                         .catch(error => {
@@ -248,21 +233,15 @@ export class PaSurvey {
                             body: JSON.stringify(options.data)
                         })
                             .then(response => {
-                                switch (response.status) {
-                                    case 200:
-                                        //  This will allowed the validation to pass and go to the next page
-                                        options.complete();
-                                        break;
-                                    case 400:
-                                    case 500:
-                                        response.json().then(problem => {
-                                            printProblemDetails(problem, sender.locale);
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-                                        break;
-                                    default:
-                                        console.warn(response);
+                                if (response.ok) {
+                                    //  This will allowed the validation to pass and go to the next page
+                                    options.complete();
+                                } else {
+                                    response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    }).catch(error => {
+                                        console.warn(error);
+                                    });
                                 }
                             })
                             .catch(error => {

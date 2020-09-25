@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "DetailsPA";
+    ViewData["Title"] = "PIA E-Tool";
 }
 
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -33,24 +33,18 @@
 @section CustomStyles {
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
-}
+   }
 
 @section CustomScripts {
 
     <script src="~/dist/bundle.js"></script>
-
-
 
     <script type="text/javascript">
 
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
-        initPaSurvey(lang, token);
-
-        function showPDF() {
-            exportToPDF(lang);
-        }
+        initPiaETool(lang, token);
 
     </script>
 }

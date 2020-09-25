@@ -23,7 +23,8 @@ namespace ComplaintFormCore.Controllers
             //  The token should be coming from the Complaint table
             string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
 
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });           
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PIA", Href = "/Home/PiaETool?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
         }
 
@@ -49,6 +50,12 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
+        public IActionResult PiaETool([FromQuery(Name = "token")] string token)
+        {
+            ViewBag.token = token;
+            return View();
+        }
+
         public IActionResult Test2()
         {
             return View();
@@ -60,8 +67,8 @@ namespace ComplaintFormCore.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SurveyFromBody([FromBody] SurveyPAModel model, [FromQuery] string surveyId)
         {
-            
-            
+
+
             return Json(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
 

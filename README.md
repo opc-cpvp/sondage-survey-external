@@ -1,11 +1,12 @@
 # online-complaint-form-pa
 
-### ATTENTION/BE CAREFUll
-When updating the survey package (survey-vue) because these guys are not careful when updating. 
+### Survey librairy update
+When updating the survey package (survey-vue) because these guys are not super careful when updating. 
 I am not 100% sure of how they operate but it seems like code get moved around or deleted on their end.
 
 - Before 1.7.26... they have removed the property 'owner' in survey.onGetQuestionTitle. This was breaking our project.
 - From 1.7.26 to 1.7.28: our file upload module was missing the choose file button. This got fixed at their end.
+- From 1.7.28 to 1.8.3: the choose file button is gone
 
 ### Where to find Documentation
 
@@ -24,7 +25,7 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 		- the * at the beginning of required questions
 
 b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
-c)
+	It is used for a loading/saving spinner
 
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
@@ -37,6 +38,7 @@ Located in the code in ~\wwwroot\js\survey\
 1) widgetCommentHtml
 - This is to be able to have the 'description' parsed as html.
 - Simply add the property 'htmldescription':'your html' to a 'comment' type question
+As of Survey 1.8.3 there is no need to use this widget. The 'description' property is parsing html.
 
 2) widgetCheckboxHtml
 - This is to display additional information under a checkbox when it is being checked. Plain text or html can be used.
@@ -56,13 +58,12 @@ other words, we are not using the style provided by Survey.js but rather the css
 	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
 		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
 		- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 
-			For other types of non required questions (such as radiogroup, dropdown or checkbox) it a TODO
 
-	Also, for all questions, the 'description' property is being hidden.
-	Also, for 'html' questions, during the preview, the actual html gets wiped out. 
+	Also, for all questions, the 'description' property is being hidden in the survey event onAfterRenderQuestion
+	Also, for 'html' questions, during the preview, the actual html gets wiped out in survey event onUpdateQuestionCssClasses
 
 	I have asked the guy at Survey.js. Here is the link to the question: https://github.com/surveyjs/survey-library/issues/2268
-	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview.
+	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview using onUpdatePanelCssClasses
 
 
 ### Error handling
@@ -72,7 +73,7 @@ other words, we are not using the style provided by Survey.js but rather the css
 	... and also at the question level by adding the property "requiredErrorText": "This field is required at the question level"
 	The question level overwrites the survey level
 
-2)	The code to build the error box at the top of the page when thre is errors is in SurveyInit.js in function buildErrorMessage. 
+2)	The code to build the error box at the top of the page when thre is errors is in SurveyHelper.js in function printProblemDetails. 
 	There is probably a better to handle the construction of the "section", specially for multilanguage sites but for now it is working.
 
 ### Localization notes
@@ -124,6 +125,9 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html (Fixed)
 
+-) Matrixdynamic 
+		-	Other box need some style
+		-	Figure out the logic for duplicate selection
 
 ### Mode details required or help required
  
@@ -208,3 +212,106 @@ E) Backend error logging - need to ask soemone
 a) Try to make use of the start properties of survey (survey.firstPageIsStarted = true; OR survey.startSurveyText = "Start";). It's not going
 	to work with our custom navigation AND also on page refresh or on language switching it returns to the start page which is not
 	what we want.
+
+### How to use the Survey widgets
+1) npm install surveyjs-widgets
+2) In *.cshtml file add if using select2 or tagbox 
+	```	    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.js"></script>
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	```
+
+3) In *.ts file
+	```
+	import * as widgets from "surveyjs-widgets";
+	```
+	...then
+	```
+	widgets.select2tagbox(Survey);
+	```
+
+
+### Editable strings in Survey
+
+```
+ Survey.surveyLocalization.locales["en"].otherItemText = "Other";
+ Survey.surveyLocalization.locales["fr"].otherItemText = "Autre";	
+```
+
+pagePrevText: "Previous",
+pageNextText: "Next",
+completeText: "Complete",
+previewText: "Preview",
+editText: "Edit",
+startSurveyText: "Start",
+otherItemText: "Other (describe)",
+noneItemText: "None",
+selectAllItemText: "Select All",
+progressText: "Page {0} of {1}",
+panelDynamicProgressText: "Record {0} of {1}",
+questionsProgressText: "Answered {0}/{1} questions",
+emptySurvey: "There is no visible page or question in the survey.",
+completingSurvey: "Thank you for completing the survey!",
+completingSurveyBefore:
+"Our records show that you have already completed this survey.",
+loadingSurvey: "Loading Survey...",
+optionsCaption: "Choose...",
+value: "value",
+requiredError: "Please answer the question.",
+requiredErrorInPanel: "Please answer at least one question.",
+requiredInAllRowsError: "Please answer questions in all rows.",
+numericError: "The value should be numeric.",
+textMinLength: "Please enter at least {0} characters.",
+textMaxLength: "Please enter less than {0} characters.",
+textMinMaxLength: "Please enter more than {0} and less than {1} characters.",
+minRowCountError: "Please fill in at least {0} rows.",
+minSelectError: "Please select at least {0} variants.",
+maxSelectError: "Please select no more than {0} variants.",
+numericMinMax:
+"The '{0}' should be equal or more than {1} and equal or less than {2}",
+numericMin: "The '{0}' should be equal or more than {1}",
+numericMax: "The '{0}' should be equal or less than {1}",
+invalidEmail: "Please enter a valid e-mail address.",
+invalidExpression: "The expression: {0} should return 'true'.",
+urlRequestError: "The request returned error '{0}'. {1}",
+urlGetChoicesError:
+"The request returned empty data or the 'path' property is incorrect",
+exceedMaxSize: "The file size should not exceed {0}.",
+otherRequiredError: "Please enter the other value.",
+uploadingFile:
+"Your file is uploading. Please wait several seconds and try again.",
+loadingFile: "Loading...",
+chooseFile: "Choose file(s)...",
+noFileChosen: "No file chosen",
+confirmDelete: "Do you want to delete the record?",
+keyDuplicationError: "This value should be unique.",
+addColumn: "Add column",
+addRow: "Add row",
+removeRow: "Remove",
+addPanel: "Add new",
+removePanel: "Remove",
+choices_Item: "item",
+matrix_column: "Column",
+matrix_row: "Row",
+savingData: "The results are saving on the server...",
+savingDataError: "An error occurred and we could not save the results.",
+savingDataSuccess: "The results were saved successfully!",
+saveAgainButton: "Try again",
+timerMin: "min",
+timerSec: "sec",
+timerSpentAll: "You have spent {0} on this page and {1} in total.",
+timerSpentPage: "You have spent {0} on this page.",
+timerSpentSurvey: "You have spent {0} in total.",
+timerLimitAll:
+"You have spent {0} of {1} on this page and {2} of {3} in total.",
+timerLimitPage: "You have spent {0} of {1} on this page.",
+timerLimitSurvey: "You have spent {0} of {1} in total.",
+cleanCaption: "Clean",
+clearCaption: "Clear",
+chooseFileCaption: "Choose file",
+removeFileCaption: "Remove this file",
+booleanCheckedLabel: "Yes",
+booleanUncheckedLabel: "No",
+confirmRemoveFile: "Are you sure that you want to remove this file: {0}?",
+confirmRemoveAllFiles: "Are you sure that you want to remove all files?",
+questionTitlePatternText: "Question Title",

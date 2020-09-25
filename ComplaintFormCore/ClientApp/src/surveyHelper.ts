@@ -106,7 +106,48 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
         section.appendChild(list);
 
         errorSection.appendChild(section);
-        errorSection.style.display = "block";
+        errorSection.classList.remove("hidden");
+        errorSection.classList.add("show");
+
+        window.scrollTo(0, 0);
+    }
+}
+
+export function printWarningMessage(messageEn: string, messageFr: string, lang: string): void {
+
+    const errorSection = document.getElementById("div_errors_list");
+
+    if (errorSection) {
+
+        errorSection.innerHTML = "";
+
+        const section = document.createElement("section");
+        section.classList.add("alert");
+        section.classList.add("alert-warning");
+
+        const h2Title = document.createElement("H2");
+
+        if (lang === "fr") {
+            h2Title.innerText = "Message";
+        } else {
+            h2Title.innerText = "Message";
+        }
+
+        section.appendChild(h2Title);
+
+        const messageParagraphe = document.createElement("p");
+
+        if (lang === "fr") {
+            messageParagraphe.innerText = messageFr;
+        } else {
+            messageParagraphe.innerText = messageEn;
+        }
+
+        section.appendChild(messageParagraphe);
+
+        errorSection.appendChild(section);
+        errorSection.classList.remove("hidden");
+        errorSection.classList.add("show");
 
         window.scrollTo(0, 0);
     }
@@ -118,6 +159,7 @@ export function clearProblemDetails(): void {
 
     if (errorSection) {
         errorSection.innerHTML = "";
-        errorSection.style.display = "none";
+        errorSection.classList.remove("show");
+        errorSection.classList.add("hidden");
     }
 }

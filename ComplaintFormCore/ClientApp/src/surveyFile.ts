@@ -84,43 +84,36 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                 body: formData
             })
                 .then(response => {
-                    switch (response.status) {
-                        case 200:
-                            options.callback(
-                                "success",
-                                options.files.map(f =>
-                                // We cannot store the file content in local storage because of
-                                // the 5MB storage limit. The problem was with the file size
-                                // e.g. without file content, there is no way to know the file
-                                // size. The work around is to store the file size in the
-                                // 'content' property.
+                    if (response.ok) {
+                        options.callback(
+                            "success",
+                            options.files.map(f =>
+                            // We cannot store the file content in local storage because of
+                            // the 5MB storage limit. The problem was with the file size
+                            // e.g. without file content, there is no way to know the file
+                            // size. The work around is to store the file size in the
+                            // 'content' property.
 
-                                    ({
-                                        file: new File([f], newFilename, {
-                                            type: f.type
-                                        }),
-                                        content: f.size.toString()
-                                    })
-                                )
-                            );
-                            break;
-                        case 400:
-                        case 500:
-                            if (response.json) {
-                                response.json()
-                                    .then(problem => {
-                                        printProblemDetails(problem, sender.locale);
-                                    })
-                                    .catch(error => {
-                                        console.warn(error);
-                                    });
-                            } else {
-                                console.warn(response);
-                            }
-                            break;
-
-                        default:
+                                ({
+                                    file: new File([f], newFilename, {
+                                        type: f.type
+                                    }),
+                                    content: f.size.toString()
+                                })
+                            )
+                        );
+                    } else {
+                        if (response.json) {
+                            response.json()
+                                .then(problem => {
+                                    printProblemDetails(problem, sender.locale);
+                                })
+                                .catch(error => {
+                                    console.warn(error);
+                                });
+                        } else {
                             console.warn(response);
+                        }
                     }
                 })
                 .catch(error => {
@@ -170,28 +163,25 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
             button.onclick = () => {
                 fetch(`/api/File/Get?complaintId=${survey.complaintId as string}&filename=${fileItem.name}`)
                     .then(response => {
-                        switch (response.status) {
-                            case 400:
-                            case 500:
-                                if (response.json) {
-                                    response.json()
-                                        .then(problem => {
-                                            printProblemDetails(problem, survey.locale);
-                                        }).catch(error => {
-                                            console.warn(error);
-                                        });
-                                }
-                                return response;
-
-                            default:
-                                return response;
+                        if (!response.ok) {
+                            if (response.json) {
+                                response.json()
+                                    .then(problem => {
+                                        printProblemDetails(problem, survey.locale);
+                                    }).catch(error => {
+                                        console.warn(error);
+                                    });
+                            }
                         }
+
+                        return response;
                     })
                     .then(resp => resp.blob())
                     .then(blob => {
                         const url = window.URL.createObjectURL(blob);
                         const a = document.createElement("a");
-                        a.style.display = "none";
+                        // a.style.display = "none";
+                        a.classList.add("hidden");
                         a.href = url;
                         a.download = fileItem.name;
                         document.body.appendChild(a);

@@ -9,27 +9,30 @@ export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel
     //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage
     //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
 
-    // document
-    //    .getElementById("btnEndSession")
-    //    .style
-    //    .display = !survey.isFirstPage || survey.isDisplayMode
-    //        ? "inline"
-    //        : "none";
-
     const startButton = document.getElementById("btnStart") ?? new HTMLElement();
-    startButton.style.display = survey.isFirstPage && !survey.isDisplayMode ? "inline" : "none";
+    startButton.classList.remove("hidden");
+    startButton.classList.remove("inline");
+    startButton.classList.add(survey.isFirstPage && !survey.isDisplayMode ? "inline" : "hidden");
 
     const previousButton = document.getElementById("btnSurveyPrev") ?? new HTMLElement();
-    previousButton.style.display = !survey.isFirstPage ? "inline" : "none";
+    previousButton.classList.remove("hidden");
+    previousButton.classList.remove("inline");
+    previousButton.classList.add(!survey.isFirstPage ? "inline" : "hidden");
 
     const nextButton = document.getElementById("btnSurveyNext") ?? new HTMLElement();
-    nextButton.style.display = !survey.isFirstPage && !survey.isLastPage ? "inline" : "none";
+    nextButton.classList.remove("hidden");
+    nextButton.classList.remove("inline");
+    nextButton.classList.add(!survey.isFirstPage && !survey.isLastPage ? "inline" : "hidden");
 
     const showPreviewButton = document.getElementById("btnShowPreview") ?? new HTMLElement();
-    showPreviewButton.style.display = !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "none";
+    showPreviewButton.classList.remove("hidden");
+    showPreviewButton.classList.remove("inline");
+    showPreviewButton.classList.add(!survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "hidden");
 
     const completeButton = document.getElementById("btnComplete") ?? new HTMLElement();
-    completeButton.style.display = survey.isDisplayMode ? "inline" : "none";
+    completeButton.classList.remove("hidden");
+    completeButton.classList.remove("inline");
+    completeButton.classList.add(survey.isDisplayMode ? "inline" : "hidden");
 
     SurveyHelper.clearProblemDetails();
 }

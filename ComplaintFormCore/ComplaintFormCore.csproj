@@ -94,6 +94,7 @@
     <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <None Remove="ClientApp\src\pa\paSurvey.ts" />
     <None Remove="ClientApp\src\problemDetails.ts" />
     <None Remove="ClientApp\src\surveyFile.ts" />
@@ -109,6 +110,7 @@
 
   <ItemGroup>
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
@@ -117,12 +119,6 @@
     <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\widgets\widgetCommentHtml.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\widgets\widgetCheckboxHtml.ts.notused" />
-    <TypeScriptCompile Include="ClientApp\src\widgets\widgetRadiobuttonHtml.ts.notused" />
   </ItemGroup>
 
   <ItemGroup>

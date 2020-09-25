@@ -122,11 +122,11 @@ namespace ComplaintFormCore
             {
                 endpoints.MapControllerRoute(name: "culture-route", pattern: "{culture=en}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "default",                    
+                    name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-          
+
         }
     }
 }
