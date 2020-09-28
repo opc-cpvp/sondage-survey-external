@@ -53,15 +53,15 @@ namespace SurveyToCS
         public string fr { get; set; }
     }
 
-    public class Column
-    {
-        public string name { get; set; }
-        public string cellType { get; set; }
+    //public class Column
+    //{
+    //    public string name { get; set; }
+    //    public string cellType { get; set; }
 
-        public bool isRequired { get; set; }
+    //    public bool isRequired { get; set; }
 
-        public Title title { get; set; }
-    }
+    //    public Title title { get; set; }
+    //}
 
     public class Choices
     {

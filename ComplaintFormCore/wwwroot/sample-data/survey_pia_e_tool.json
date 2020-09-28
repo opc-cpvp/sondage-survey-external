@@ -311,7 +311,6 @@
             "en": "Is this a new program or activity? (1.2)",
             "fr": ""
           },
-          "showTitle": true,
           "isRequired": true
         }
       ]
@@ -331,7 +330,6 @@
             "en": "Is this program or activity undergoing major changes? (1.3)",
             "fr": ""
           },
-          "showTitle": true,
           "description": {
             "en": "According to the TBS Directive on Privacy Impact Assessment, a substantial modification refers to a change or an amendment to the privacy practices related to a particular program or activity, which would have to be reflected in a PIB description. This includes any change or amendment to the privacy practices related to activities that use automated or technological means to identify, create, analyze, compare, extract, cull, match or define personal information. ",
             "fr": ""
@@ -345,7 +343,6 @@
             "en": "Is the program or activity being contracted out, or transferred to another level of government or to the private sector, in a way that will result in major changes that could affect individuals’ personal information or privacy? (1.4)",
             "fr": ""
           },
-          "showTitle": true,
           "isRequired": true
         }
       ]
@@ -364,7 +361,6 @@
             "en": "Will the program or activity involve personal information? (1.5)",
             "fr": ""
           },
-          "showTitle": true,
           "description": {
             "en": "The *Privacy Act* defines personal information as “information about an identifiable individual that is recorded in any form.” Examples of personal information include name, address, employment history, fingerprints, medical diagnoses and personal opinions.",
             "fr": ""
@@ -969,7 +965,6 @@
             "en": "<p>According to the TBS Directive on Privacy Impact Assessment, government institutions seeking Treasury Board approval for programs or activities that involve personal information are responsible for:<ul><li>Making every reasonable effort to initiate the PIA at the earliest possible phase of project planning</li><li> Identifying whether a PIA has been completed in the body of the submission and, if a PIA was not completed because of the urgency or priority of the initiative, identifying the timelines for the completion of the PIA</li><li>Identifying in their project brief the measures taken or to be taken to address privacy issues and risks, where relevant, when seeking project approval from Treasury Board</li><li>Completing a PIA for the new or substantially modified program or activity that was approved by Treasury Board either before its implementation or within such time and subject to such conditions established by TBS</li></ul></p>",
             "fr": ""
           },
-          "showTitle": true,
           "isRequired": true
         }
       ]

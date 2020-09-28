@@ -18,11 +18,11 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-           string json = @"C:\Users\jef_b\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-           
-            //ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+           string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
-             CreateValidators(json);
+            ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+           // string line = Console.ReadLine();
+            //CreateValidators(json);
         }
 
         private static void ConvertFromFile(string jsonFile, string _namespace, string className)
@@ -289,7 +289,7 @@ namespace SurveyToCS
                 csharp.Append("/// Page: ");
                 csharp.Append(page.name);
                 csharp.AppendLine("<br/>");
-            }            
+            }
 
             csharp.Append("/// Question ");
             csharp.AppendLine("<br/>");
@@ -301,12 +301,13 @@ namespace SurveyToCS
                 if (element.title.en.Length > 75)
                 {
                     csharp.Append(element.title.en.Substring(0, 75));
+                    csharp.Append("...");
                 }
                 else
                 {
                     csharp.Append(element.title.en);
-                }               
-                
+                }
+
                 csharp.AppendLine("<br/>");
             }
 
@@ -474,7 +475,7 @@ namespace SurveyToCS
                     }
 
                     //  Check if selected option is in the list of valid options
-                    if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null)
+                    if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null && element.choices.Count > 0)
                     {
                         //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
 
@@ -510,7 +511,7 @@ namespace SurveyToCS
                         csharp.AppendLine(").EmailAddress();");
                     }
 
-                    csharp.AppendLine();    
+                    csharp.AppendLine();
                 }
             }
         }

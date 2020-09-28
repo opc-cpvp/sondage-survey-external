@@ -12,6 +12,7 @@ import {
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
+import { testData } from "./pia_test_data";
 
 declare global {
     // TODO: get rid of this global variable
@@ -54,85 +55,14 @@ export class PiaETool {
 
                     const uri = `/api/PIASurvey/Validate?complaintId="${sender.complaintId as string}`;
 
-                    const testData = {
-                        "ContactATIPQ16": "conduct_pia333",
-                        "ContactATIPQ18": "conduct_pia",
-                        "ContactATIPQ110": "conduct_pia",
-                       // "HasLegalAuthority": true,
-                        "HeadYourInstitutionEmail": "jack@gmail.com",
-                        "HeadYourInstitutionFullname": "Jack Travis",
-                        "HeadYourInstitutionSection": "My section",
-                        "HeadYourInstitutionTitle": "Boss",
-                        "HasLeadInstitutionConsultedOther": "yes",
-                        "LeadInstitutionHasNotConsultedOtherReason": "lkgdfjgldjfg",
-                        "IsNewprogram": false,
-                        "IsProgamContractedOut": false,
-                        "IsProgramInvolvePersonalInformation": true,
-                        "IsTreasuryBoardApproval": true,
-                        "LeadInstitutionConsultedOther": "yes",
-                        "PersonalInfoUsedFor": "non_admin_purpose",
-                       // "ProgamHasMajorChanges": true,
-                        "ProgramName": "eeeeeee",
-                        "SingleOrMultiInstitutionPIA": "multi",
-                        "SubjectOfPIA": "other",
-                        "RelevantLegislationPolicies": "jgfjg",
-                        "SeniorOfficialEmail": "adam@yates.com",
-                        "SeniorOfficialFullname": "adam yates",
-                        "SeniorOfficialSection": "michelton",
-                        "SeniorOfficialTitle": "rider",
-                        "BehalfMultipleInstitutionOthers": [
-                            {
-                                "OtherInstitutionHeadFullname": "Hugo Roule",
-                                "OtherInstitutionEmail": "yougo@hotmail.com",
-                                "OtherInstitutionHeadTitle": "Rouleur",
-                                "BehalfMultipleInstitutionOther": "2",
-                                "OtherInstitutionSection": "Astana",
-                                "SeniorOfficialOtherFullname": "Julian Alapolak",
-                                "SeniorOfficialOtherTitle": "Puncheur",
-                                "SeniorOfficialOtherSection": "QuickStep",
-                                "SeniorOfficialOtherEmail": "juju@hotmail.com"
-                            },
-                            {
-                                "OtherInstitutionHeadTitle": "leader",
-                                "OtherInstitutionSection": "Astana",
-                                "BehalfMultipleInstitutionOther": "Mental Institution",
-                                "OtherInstitutionHeadFullname": "Lopez A",
-                                "OtherInstitutionEmail": "lopez@gmail.com",
-                                "SeniorOfficialOtherFullname": "Tadej Pogachar",
-                                "SeniorOfficialOtherTitle": "Sprinteur",
-                                "SeniorOfficialOtherSection": "UAE",
-                                "SeniorOfficialOtherEmail": "tadeg@mymail.ca"
-                            }
-                        ],
-                        "BehalfMultipleInstitutionLead": "1",
-                        "PersonContact": "another",
-                        "NewOrUpdatedPIA": "new_pia",
-                        "name": "terter",
-                        "UserEmailAddress": "test@gmail.com",
-                        "BehalfSingleInstitution": "2",
-                        "BehalfSingleInstitutionOther": "Another institution",
-                        "RelatedPIANameInstitution": "related instituion",
-                        "RelatedPIANameProgram": "related program namexxxxx",
-                        "RelatedPIADescription": "related descriptiohjfj",
-                        "AnotherContactFullname": "Another full name",
-                        "AnotherContactTitle": "Another title",
-                        "AnotherContactSection": "Another section",
-                        "AnotherContactEmail": "anothercontact@gmail.com",
-                        "UpdatePIANumberAssigned": "update_pia_existing_reference_number",
-                        "UpdatePIAAllReferenceNumbersAssigned": "A3Rt67U8",
-                        "DetailsPreviousSubmission": "this is a bunch of details about the previous submission",
-                        "NewPIANumberAssigned": "new_pia_existing_reference_number",
-                        "NewPIAAllReferenceNumbersAssigned": "V13R5t9O"
-                    };
-
                     fetch(uri, {
                         method: "POST",
                         headers: {
                             Accept: "application/json",
                             "Content-Type": "application/json; charset=utf-8"
                         },
-                        body: JSON.stringify(testData)
-                        //  body: JSON.stringify(sender.data)
+                        // body: JSON.stringify(testData)
+                        body: JSON.stringify(sender.data)
                     }).then(response => {
                         if (response.ok) {
                             //  Validation is good then we set the variable so the next call to doComplete()

@@ -16,7 +16,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_before_begin_q_0_2<br/>
         /// Question 0.2 <br/>
         /// What is or will be your legal authority for this program or activity? List <br/>
-        /// Required condition: {HasLegalAuthority} = true TODO
+        /// Required condition: {HasLegalAuthority} = true
         /// </summary>
         public string RelevantLegislationPolicies { get; set; }
 
@@ -37,8 +37,8 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_1_b<br/>
         /// Question 1.3<br/>
-        /// Is this program or activity undergoing major changes? (1.3)<br/>
-        /// Required condition: {IsNewprogram} = false TODO
+        /// Is this program or activity undergoing major changes?<br/>
+        /// Required condition: {IsNewprogram} = false
         /// </summary>
         public bool? ProgamHasMajorChanges { get; set; }
 
@@ -46,14 +46,14 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_1_b<br/>
         /// Question 1.4<br/>
         /// Is the program or activity being contracted out, or transferred to another <br/>
-        /// Required condition: {IsNewprogram} = false TODO
+        /// Required condition: {IsNewprogram} = false
         /// </summary>
         public bool? IsProgamContractedOut { get; set; }
 
         /// <summary>
         /// Page: page_step_1_q_1_5<br/>
         /// Question 1.5<br/>
-        /// Will the program or activity involve personal information? (1.5)<br/>
+        /// Will the program or activity involve personal information?<br/>
         /// </summary>
         public bool IsProgramInvolvePersonalInformation { get; set; }
 
@@ -107,7 +107,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_2_1_q_2_1_1<br/>
         /// Question 2.1.1<br/>
-        /// Is this a single or multi-institutional PIA submission? (2.1.1)<br/>
+        /// Is this a single or multi-institutional PIA submission?<br/>
         /// Possible choices: [single, multi, single_related]<br/>
         /// </summary>
         public string SingleOrMultiInstitutionPIA { get; set; }
@@ -144,7 +144,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_2a<br/>
         /// Question 2.1.2A<br/>
         /// Name of institution: <br/>
-        /// Required condition: {BehalfSingleInstitution} = 9999 TODO
+        /// Required condition: {BehalfSingleInstitution} = 9999
         /// </summary>
         public string BehalfSingleInstitutionOther { get; set; }
 
@@ -159,7 +159,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_2b<br/>
         /// Question 2.1.2A<br/>
         /// Name of institution: <br/>
-        /// Required condition: {BehalfMultipleInstitutionLead} = 9999 TODO
+        /// Required condition: {BehalfMultipleInstitutionLead} = 9999
         /// </summary>
         public string BehalfMultipleInstitutionLeadOther { get; set; }
 
@@ -173,7 +173,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_2_1_q_2_1_3<br/>
         /// Question 2.1.3<br/>
-        /// We would just like to confirm that the lead institution has, in fact, consu<br/>
+        /// We would just like to confirm that the lead institution has, in fact, consu...<br/>
         /// Possible choices: [yes, no]<br/>
         /// </summary>
         public string HasLeadInstitutionConsultedOther { get; set; }
@@ -182,7 +182,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_3<br/>
         /// Question 2.1.3<br/>
         /// As per the TBS Directive on Privacy Impact Assessment, the lead institution<br/>
-        /// Required condition: {HasLeadInstitutionConsultedOther} contains 'no' TODO
+        /// Required condition: {HasLeadInstitutionConsultedOther} contains 'no'
         /// </summary>
         public string LeadInstitutionHasNotConsultedOtherReason { get; set; }
 
@@ -253,7 +253,6 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_9<br/>
         /// Question 2.1.9<br/>
         /// Who is the best person to contact if we have questions related to this PIA?<br/>
-        /// Possible choices: []<br/>
         /// </summary>
         public string PersonContact { get; set; }
 
@@ -288,7 +287,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_2_1_q_2_1_10<br/>
         /// Question 2.1.10<br/>
-        /// Is this a new PIA, an update or addendum to a previously submitted PIA, or <br/>
+        /// Is this a new PIA, an update or addendum to a previously submitted PIA, or ...<br/>
         /// Possible choices: [new_pia, update_pia, new_pia_covers_already_submitted]<br/>
         /// </summary>
         public string NewOrUpdatedPIA { get; set; }
@@ -305,7 +304,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_11_a<br/>
         /// Question 2.1.11A<br/>
         /// Please provide us with all reference numbers that you have for the past PIA<br/>
-        /// Required condition: {UpdatePIANumberAssigned} contains 'update_pia_existing_reference_number' TODO
+        /// Required condition: {UpdatePIANumberAssigned} contains 'update_pia_existing_reference_number'
         /// </summary>
         public string UpdatePIAAllReferenceNumbersAssigned { get; set; }
 
@@ -328,43 +327,44 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_12<br/>
         /// Question 2.1.12<br/>
         /// Please provide us with all reference numbers that you have for the past PIA<br/>
-        /// Required condition: {NewPIANumberAssigned} contains 'new_pia_existing_reference_number' TODO
+        /// Required condition: {NewPIANumberAssigned} contains 'new_pia_existing_reference_number'
         /// </summary>
         public string NewPIAAllReferenceNumbersAssigned { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_1<br/>
-        /// Question <br/>
+        /// Question 2.2.1<br/>
         /// Please give us an overview of this program or activity.<br/>
         /// </summary>
         public string ProgramOverview { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_2<br/>
-        /// Question 2.2.1<br/>
+        /// Question 2.2.2<br/>
         /// Please select the option that best describes participation in your program <br/>
-        /// Possible choices: [participation_mandatory_and_automatic, participation_not_mandatory_but_automatic, participation_not_mandatory_but_can_be, participation_voluntary]<br/>
+        /// Possible choices: [participation_mandatory_and_automatic, participation_not_mandatory_but_automatic,
+        ///                     participation_not_mandatory_but_can_be, participation_voluntary]<br/>
         /// </summary>
         public string ParticipationOptions { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_3<br/>
-        /// Question <br/>
+        /// Question 2.2.3<br/>
         /// Are there other initiatives that this program or activity is related to?<br/>
         /// </summary>
         public bool OtherInitiatives { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_3<br/>
-        /// Question <br/>
+        /// Question 2.2.3<br/>
         /// Please provide the name of the related initiative(s) and describe how this <br/>
-        /// Required condition: {OtherInitiatives} = true TODO
+        /// Required condition: {OtherInitiatives} = true
         /// </summary>
         public string OtherInitiativesDescription { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_4<br/>
-        /// Question <br/>
+        /// Question 2.2.4<br/>
         /// Please describe the duration of the program or activity by selecting from t<br/>
         /// Possible choices: [pilot, one_time, short_term, long_term]<br/>
         /// </summary>
@@ -372,74 +372,74 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_4<br/>
-        /// Question <br/>
+        /// Question 2.2.4<br/>
         /// Please type in your answer(s)<br/>
-        /// Required condition: {DurationOptions} contains 'long_term' TODO
+        /// Required condition: {DurationOptions} contains 'long_term'
         /// </summary>
         public string DurationOptionsDescriptions { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_5<br/>
-        /// Question <br/>
+        /// Question 2.2.5<br/>
         /// Is the program or activity being rolled out in multiple phases?<br/>
         /// </summary>
         public bool IsProgramRolledOutPhases { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_6<br/>
-        /// Question <br/>
+        /// Question 2.2.6<br/>
         /// Is there an anticipated start date to the program or activity?<br/>
         /// </summary>
         public bool IsAnticipatedStartDate { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_6<br/>
-        /// Question <br/>
+        /// Question 2.2.6<br/>
         /// Please provide the anticipated start date<br/>
-        /// Required condition: {IsAnticipatedStartDate} = true TODO
+        /// Required condition: {IsAnticipatedStartDate} = true
         /// </summary>
         public string AnticipatedStartDate { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_7<br/>
-        /// Question <br/>
+        /// Question 2.2.7<br/>
         /// Is there an anticipated end date to the program or activity?<br/>
         /// </summary>
         public bool IsAnticipatedEndDate { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_7<br/>
-        /// Question <br/>
+        /// Question 2.2.7<br/>
         /// Please provide the anticipated end date<br/>
-        /// Required condition: {IsAnticipatedEndDate} = true TODO
+        /// Required condition: {IsAnticipatedEndDate} = true
         /// </summary>
         public string AnticipatedEndDate { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_8<br/>
-        /// Question <br/>
+        /// Question 2.2.8<br/>
         /// Does your program or activity involve implementation of a new electronic sy<br/>
         /// </summary>
         public bool IsInvolveNewSoftware { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_8<br/>
-        /// Question <br/>
+        /// Question 2.2.9<br/>
         /// Please describe the new electronic system or the new application or softwar<br/>
-        /// Required condition: {IsInvolveNewSoftware} = true TODO
+        /// Required condition: {IsInvolveNewSoftware} = true
         /// </summary>
         public string InvolveNewSoftwareDescription { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_10<br/>
-        /// Question <br/>
-        /// Does your program or activity require any modifications to information tech<br/>
+        /// Question 2.2.10<br/>
+        /// Does your program or activity require any modifications to information tech...<br/>
         /// </summary>
         public bool DoesRequireModificationToIT { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_10<br/>
-        /// Question <br/>
+        /// Question 2.2.11<br/>
         /// Please describe the required modifications to information technology (IT) l<br/>
         /// Required condition: {DoesRequireModificationToIT} = true TODO
         /// </summary>
@@ -447,68 +447,68 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_12<br/>
-        /// Question <br/>
+        /// Question 2.2.12<br/>
         /// Are there any changes to your business requirements that will have an impac<br/>
         /// </summary>
         public bool HaschangesToBusinessRequirements { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_12<br/>
-        /// Question <br/>
+        /// Question 2.2.12<br/>
         /// Please explain the changes to your business requirements that will have an <br/>
-        /// Required condition: {HaschangesToBusinessRequirements} = true TODO
+        /// Required condition: {HaschangesToBusinessRequirements} = true
         /// </summary>
         public string ChangesToBusinessRequirements { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_13<br/>
-        /// Question <br/>
+        /// Question 2.2.13<br/>
         /// Are current IT legacy systems and services that will be retained, or those <br/>
         /// </summary>
         public bool WillITLegacySystemRetained { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_14<br/>
-        /// Question <br/>
+        /// Question 2.2.14<br/>
         /// Please identify any awareness activities related to protection of privacy r<br/>
         /// </summary>
         public string AwarenessActivities { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_15<br/>
-        /// Question <br/>
+        /// Question 2.2.15<br/>
         /// Describe what is in scope for this phase:<br/>
-        /// Required condition: {IsProgramRolledOutPhases} = true TODO
+        /// Required condition: {IsProgramRolledOutPhases} = true
         /// </summary>
         public string ScopeThisPhase { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_15<br/>
-        /// Question <br/>
+        /// Question 2.2.15<br/>
         /// Describe the scope of other phases (past or future):<br/>
-        /// Required condition: {IsProgramRolledOutPhases} = true TODO
+        /// Required condition: {IsProgramRolledOutPhases} = true
         /// </summary>
         public string ScopeOtherPhases { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_15<br/>
-        /// Question <br/>
+        /// Question 2.2.15<br/>
         /// Describe what is not in scope of the PIAs and justify the decision to not i<br/>
-        /// Required condition: {IsProgramRolledOutPhases} = true TODO
+        /// Required condition: {IsProgramRolledOutPhases} = true
         /// </summary>
         public string NotInScopePia { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_15<br/>
-        /// Question <br/>
+        /// Question 2.2.15B<br/>
         /// Describe what is in scope:<br/>
-        /// Required condition: {IsProgramRolledOutPhases} = false TODO
+        /// Required condition: {IsProgramRolledOutPhases} = false
         /// </summary>
         public string ScopePia { get; set; }
 
         /// <summary>
         /// Page: page_step_2_2_q_2_2_15<br/>
-        /// Question <br/>
+        /// Question 2.2.15B<br/>
         /// Describe what is not in scope and justify the decision to not include this <br/>
         /// Required condition: {IsProgramRolledOutPhases} = false TODO
         /// </summary>
@@ -518,56 +518,55 @@ namespace ComplaintFormCore.Models
     public class BehalfMultipleInstitutionOthers
     {
         /// <summary>
-        /// Question <br/>
-        ///  <br/>
+        /// Question 2.1.2B<br/>
         /// </summary>
         public string BehalfMultipleInstitutionOther { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Full name:<br/>
+        /// Question 2.1.6<br/>
+        /// Head of the government institution or delegate - Full name:<br/>
         /// </summary>
         public string OtherInstitutionHeadFullname { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Title<br/>
+        /// Question 2.1.6<br/>
+        /// Head of the government institution or delegate - Title<br/>
         /// </summary>
         public string OtherInstitutionHeadTitle { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Institution and section:<br/>
+        /// Question 2.1.6<br/>
+        /// Head of the government institution or delegate - Institution and section:<br/>
         /// </summary>
         public string OtherInstitutionSection { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Email address:<br/>
+        /// Question 2.1.6<br/>
+        /// Head of the government institution or delegate - Email address:<br/>
         /// </summary>
         public string OtherInstitutionEmail { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Full name:<br/>
+        /// Question 2.1.8<br/>
+        /// Senior official or executive responsible - Full name:<br/>
         /// </summary>
         public string SeniorOfficialOtherFullname { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Title<br/>
+        /// Question 2.1.8<br/>
+        /// Senior official or executive responsible - Title<br/>
         /// </summary>
         public string SeniorOfficialOtherTitle { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Institution and section:<br/>
+        /// Question 2.1.8<br/>
+        /// Senior official or executive responsible - Institution and section:<br/>
         /// </summary>
         public string SeniorOfficialOtherSection { get; set; }
 
         /// <summary>
-        /// Question <br/>
-        /// Email address:<br/>
+        /// Question 2.1.8<br/>
+        /// Senior official or executive responsible - Email address:<br/>
         /// </summary>
         public string SeniorOfficialOtherEmail { get; set; }
 

@@ -44,7 +44,7 @@ namespace ComplaintFormCore.Models.pia
             RuleFor(x => x.ProgramName).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // IsNewprogram
-            RuleFor(x => x.IsNewprogram).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.IsNewprogram).NotNull().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // ProgamHasMajorChanges
             RuleFor(x => x.ProgamHasMajorChanges).NotEmpty().When(x => !x.IsNewprogram).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -160,7 +160,6 @@ namespace ComplaintFormCore.Models.pia
 
             // PersonContact
             RuleFor(x => x.PersonContact).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.PersonContact).Must(x => new List<string> { }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
             // AnotherContactFullname
             RuleFor(x => x.AnotherContactFullname).NotEmpty().When(x => x.PersonContact == "another").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -281,11 +280,11 @@ namespace ComplaintFormCore.Models.pia
             RuleFor(x => x.NotInScopePia).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // ScopePia
-            RuleFor(x => x.ScopePia).NotEmpty().When(x => x.IsProgramRolledOutPhases).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ScopePia).NotEmpty().When(x => x.IsProgramRolledOutPhases == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.ScopePia).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // NotInScope
-            RuleFor(x => x.NotInScope).NotEmpty().When(x => x.IsProgramRolledOutPhases).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NotInScope).NotEmpty().When(x => x.IsProgramRolledOutPhases == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.NotInScope).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
         }
     }
