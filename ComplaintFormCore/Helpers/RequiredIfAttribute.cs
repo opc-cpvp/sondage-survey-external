@@ -2,12 +2,12 @@
 
 namespace ComplaintFormCore.Helpers
 {
-    public class RequiredIfAttribute : ValidationAttribute
+    public class RequiredIf : ValidationAttribute
     {
         public string PropertyName { get; set; }
         public object Value { get; set; }
 
-        public RequiredIfAttribute(string propertyName, object value, string errorMessage = "")
+        public RequiredIf(string propertyName, object value, string errorMessage = "")
         {
             PropertyName = propertyName;
             ErrorMessage = errorMessage;
@@ -18,14 +18,14 @@ namespace ComplaintFormCore.Helpers
         {
             var instance = validationContext.ObjectInstance;
             var type = instance.GetType();
-            var proprtyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
+            var propertyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
 
-            if(proprtyvalue == null)
+            if(propertyvalue == null)
             {
                 return new ValidationResult(ErrorMessage);
             }
 
-            if (proprtyvalue.ToString() == Value.ToString() && value == null)
+            if (propertyvalue.ToString() == Value.ToString() && (value == null || string.IsNullOrWhiteSpace(value.ToString())))
             {
                 return new ValidationResult(ErrorMessage);
             }

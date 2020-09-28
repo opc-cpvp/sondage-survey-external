@@ -53,7 +53,7 @@ namespace ComplaintFormCore.Models
         public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
         [Required]
-        public int? InstitutionId 
+        public int? InstitutionId
         {
             get
             {
@@ -135,7 +135,7 @@ namespace ComplaintFormCore.Models
 
         public bool? DidNoRecordExist
         {
-            get 
+            get
             {
                 if (DidNoRecordExistChoice == "yes")
                 {
@@ -227,33 +227,33 @@ namespace ComplaintFormCore.Models
             }
         }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_FormOfAddress { get; set; }
 
         [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_FirstName { get; set; }
 
         [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_LastName { get; set; }
 
         [StringLength(100, ErrorMessage = "This field is over the 100 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_Email { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_MailingAddress { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_City { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_Country { get; set; }
 
         public string Reprensentative_ProvinceOrState { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_PostalCode { get; set; }
 
         public string Reprensentative_DayTimeNumber { get; set; }
@@ -298,7 +298,7 @@ namespace ComplaintFormCore.Models
 
         public string Complainant_DayTimeNumberExtension { get; set; }
 
-        public string Complainant_AltTelephoneNumber { get; set; }        
+        public string Complainant_AltTelephoneNumber { get; set; }
 
         public string Complainant_AltTelephoneNumberExtension { get; set; }
 
@@ -325,7 +325,7 @@ namespace ComplaintFormCore.Models
             }
         }
 
-        [RequiredIfAttribute(nameof(NeedsDisabilityAccommodation), true, "This field is required")]
+        [RequiredIf(nameof(NeedsDisabilityAccommodation), true, "This field is required")]
         public string DisabilityAccommodation { get; set; }
 
         [Required]
@@ -339,7 +339,7 @@ namespace ComplaintFormCore.Models
         public List<string> InformationIsTrue { get; set; }
 
         [Required]
-        public bool IsCertified 
+        public bool IsCertified
         {
             get
             {
@@ -601,19 +601,6 @@ namespace ComplaintFormCore.Models
             }
         }
     }
-
-    [Serializable]
-    public class SurveyFile 
-    {
-        public string name { get; set; }
-
-        public string type { get; set; }
-
-        public string content { get; set; }
-
-        public long size { get; set; }
-    }
-
 
     public enum NatureOfComplaintType
     {
