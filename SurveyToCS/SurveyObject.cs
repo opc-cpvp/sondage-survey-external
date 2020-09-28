@@ -14,13 +14,17 @@ namespace SurveyToCS
         public string name { get; set; }
         public Title title { get; set; }
 
-        //visibleIf
+        public string visibleIf { get; set; }
+
         public List<Element> elements { get; set; }
     }
 
     public class Element
     {
         public string type { get; set; }
+        public string inputType { get; set; }
+
+        public string cellType { get; set; }
         public Title title { get; set; }
         public string name { get; set; }
         public string valueName { get; set; }
@@ -34,7 +38,7 @@ namespace SurveyToCS
 
         public List<Element> templateElements { get; set; }
 
-        public List<Column> columns { get; set; }
+        public List<Element> columns { get; set; }
 
         public int? maxLength { get; set; }
 

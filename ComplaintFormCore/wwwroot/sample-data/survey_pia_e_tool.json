@@ -336,8 +336,7 @@
             "en": "According to the TBS Directive on Privacy Impact Assessment, a substantial modification refers to a change or an amendment to the privacy practices related to a particular program or activity, which would have to be reflected in a PIB description. This includes any change or amendment to the privacy practices related to activities that use automated or technological means to identify, create, analyze, compare, extract, cull, match or define personal information. ",
             "fr": ""
           },
-          "isRequired": true,
-          "visibleIf": "{IsNewprogram} = false"
+          "isRequired": true
         },
         {
           "type": "boolean",
@@ -347,8 +346,7 @@
             "fr": ""
           },
           "showTitle": true,
-          "isRequired": true,
-          "visibleIf": "{IsNewprogram} = false"
+          "isRequired": true
         }
       ]
     },
@@ -888,7 +886,10 @@
             {
               "name": "BehalfMultipleInstitutionOther",
               "cellType": "dropdown",
-              "title": " ",
+              "title": {
+                "en": " ",
+                "fr": " "
+              },
               "choicesByUrl": {
                 "url": "/api/Institution/GetAll?lang={locale}&addOther=false",
                 "titleName": "name",
@@ -1022,6 +1023,7 @@
             {
               "type": "text",
               "name": "HeadYourInstitutionEmail",
+              "inputtype": "email",
               "title": {
                 "en": "Email address:",
                 "fr": ""
@@ -1087,6 +1089,7 @@
             {
               "type": "text",
               "valueName": "OtherInstitutionEmail",
+              "inputtype": "email",
               "title": {
                 "en": "Email address:",
                 "fr": ""
@@ -1146,6 +1149,7 @@
             {
               "type": "text",
               "name": "SeniorOfficialEmail",
+              "inputtype": "email",
               "title": {
                 "en": "Email address:",
                 "fr": ""
@@ -1211,6 +1215,7 @@
             {
               "type": "text",
               "valueName": "SeniorOfficialOtherEmail",
+              "inputtype": "email",
               "title": {
                 "en": "Email address:",
                 "fr": ""
@@ -1282,6 +1287,7 @@
             {
               "type": "text",
               "name": "AnotherContactEmail",
+              "inputtype": "email",
               "title": {
                 "en": "Email address:",
                 "fr": ""

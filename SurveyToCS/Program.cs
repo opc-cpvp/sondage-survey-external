@@ -18,19 +18,20 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-            //ConvertFromFile("survey_pia_tool.json", "SurveyToCS", "Class1");
+           string json = @"C:\Users\jef_b\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+           
+            //ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
 
-            CreateValidators();
+             CreateValidators(json);
         }
 
         private static void ConvertFromFile(string jsonFile, string _namespace, string className)
         {
             // read file into a string and deserialize JSON to a type
-            //SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(@"C:\Users\jbrouillette\source\repos\SurveyToCS\SurveyToCS\survey_pa_complaint.json"));
-            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(@"C:\Users\jbrouillette\source\repos\SurveyToCS\SurveyToCS\survey_pia_e_tool.json"));
+            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
 
             StringBuilder csharp = new StringBuilder();
-            csharp.AppendLine("using System.ComponentModel.DataAnnotations;");
+           // csharp.AppendLine("using System.ComponentModel.DataAnnotations;");
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using System;");
             csharp.AppendLine();
@@ -41,20 +42,18 @@ namespace SurveyToCS
 
             csharp.Append("public class ");
             csharp.Append(className);
-            csharp.AppendLine(" : IValidatableObject");
+            //csharp.AppendLine(" : IValidatableObject");
             csharp.AppendLine("{");
-
-            int pageIndex = 1;
 
             foreach (var page in survey.pages)
             {
-                BuildProperty(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), pageIndex++);
+                BuildProperty(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
             }
 
-            csharp.AppendLine("public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)");
-            csharp.AppendLine("{");
-            csharp.AppendLine("throw new NotImplementedException();");
-            csharp.AppendLine("}");
+            //csharp.AppendLine("public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)");
+            //csharp.AppendLine("{");
+            //csharp.AppendLine("throw new NotImplementedException();");
+            //csharp.AppendLine("}");
 
             csharp.Append("}"); // end class
 
@@ -79,49 +78,19 @@ namespace SurveyToCS
             Console.ReadLine();
         }
 
-        private static void BuildProperty(StringBuilder csharp, List<Element> elements, int pageIndex)
+        private static void BuildProperty(StringBuilder csharp, List<Element> elements, Page pageObj)
         {
             foreach (var element in elements)
             {
                 if (element.type == "panel")
                 {
-                    BuildProperty(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), pageIndex);
+                    BuildProperty(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), pageObj);
                 }
                 else
                 {
-                    csharp.AppendLine("/// <summary>");
-                    csharp.Append("/// Page: ");
-                    csharp.Append(pageIndex.ToString());
-                    csharp.AppendLine("<br/>");
+                    BuildElementSummary(csharp, element, pageObj);
 
-                    csharp.Append("/// Question ");
-                    csharp.AppendLine("<br/>");
-
-                    if (element.title != null)
-                    {
-                        csharp.Append("/// ");
-                        csharp.Append(element.title.en);
-                        csharp.AppendLine("<br/>");
-                    }
-
-                    if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null)
-                    {
-                        csharp.Append("/// ");
-                        csharp.Append("Possible choices: [");
-
-                        csharp.AppendJoin(", ", element.choices.Select(c => c.value));
-
-                        csharp.AppendLine("]");
-                    }
-
-                    if (element.isRequired && !string.IsNullOrWhiteSpace(element.visibleIf))
-                    {
-                        csharp.Append("/// Required condition: TODO");
-                        csharp.AppendLine("<br/>");
-                    }
-
-                    csharp.AppendLine("/// </summary>");
-
+                    #region Attributes
                     //if (element.isRequired)
                     //{
                     //    if(string.IsNullOrWhiteSpace(element.visibleIf))
@@ -178,6 +147,7 @@ namespace SurveyToCS
                     //        csharp.AppendLine("[StringLength(100)]");
                     //    }
                     //}
+                    #endregion
 
                     csharp.Append("public ");
 
@@ -248,24 +218,7 @@ namespace SurveyToCS
                     {
                         foreach(var column in item.columns)
                         {
-                            csharp.AppendLine("/// <summary>");
-                            csharp.Append("/// ");
-
-                            if (column.title.en.Length > 75)
-                            {
-                                csharp.AppendLine(column.title.en.Substring(0, 75));
-                            }
-                            else
-                            {
-                                csharp.AppendLine(column.title.en);
-                            }
-
-                            csharp.AppendLine("/// </summary>");
-
-                            if (column.isRequired)
-                            {
-                                csharp.AppendLine("[Required]");
-                            }
+                            BuildElementSummary(csharp, column);
 
                             csharp.Append("public ");
 
@@ -295,15 +248,7 @@ namespace SurveyToCS
                     {
                         foreach (var templateItem in item.templateElements)
                         {
-                            csharp.AppendLine("/// <summary>");
-                            csharp.Append("/// ");
-                            csharp.AppendLine(templateItem.title.en);
-                            csharp.AppendLine("/// </summary>");
-
-                            if (templateItem.isRequired)
-                            {
-                                csharp.AppendLine("[Required]");
-                            }
+                            BuildElementSummary(csharp, templateItem);
 
                             csharp.Append("public ");
 
@@ -333,6 +278,56 @@ namespace SurveyToCS
 
                 csharp.Append("}");
             }
+        }
+
+        private static void BuildElementSummary(StringBuilder csharp, Element element, Page page = null)
+        {
+            csharp.AppendLine("/// <summary>");
+
+            if(page != null)
+            {
+                csharp.Append("/// Page: ");
+                csharp.Append(page.name);
+                csharp.AppendLine("<br/>");
+            }            
+
+            csharp.Append("/// Question ");
+            csharp.AppendLine("<br/>");
+
+            if (element.title != null)
+            {
+                csharp.Append("/// ");
+
+                if (element.title.en.Length > 75)
+                {
+                    csharp.Append(element.title.en.Substring(0, 75));
+                }
+                else
+                {
+                    csharp.Append(element.title.en);
+                }               
+                
+                csharp.AppendLine("<br/>");
+            }
+
+            if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null)
+            {
+                csharp.Append("/// ");
+                csharp.Append("Possible choices: [");
+
+                csharp.AppendJoin(", ", element.choices.Select(c => c.value));
+
+                csharp.Append("]");
+                csharp.AppendLine("<br/>");
+            }
+
+            if (element.isRequired && !string.IsNullOrWhiteSpace(element.visibleIf))
+            {
+                csharp.Append("/// Required condition: ");
+                csharp.AppendLine(element.visibleIf);
+            }
+
+            csharp.AppendLine("/// </summary>");
         }
 
         private static string CapitalizeFirstLetter(string str)
@@ -380,27 +375,27 @@ namespace SurveyToCS
         //    results.Errors.Cast<CompilerError>().ToList().ForEach(error => Console.WriteLine(error.ErrorText));
         //}
 
-        private static void CreateValidators()
+        private static void CreateValidators(string json)
         {
-            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(@"C:\Users\jbrouillette\source\repos\SurveyToCS\SurveyToCS\survey_pia_e_tool.json"));
+            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(json));
             StringBuilder csharp = new StringBuilder();
 
             foreach (var page in survey.pages)
             {
-                BuildValidator(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList());
+                BuildValidator(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
             }
 
             Console.WriteLine(csharp.ToString());
             Console.ReadLine();
         }
 
-        private static void BuildValidator(StringBuilder csharp, List<Element> elements)
+        private static void BuildValidator(StringBuilder csharp, List<Element> elements, Page parentPage, Element parentPanel = null)
         {
             foreach (var element in elements)
             {
                 if (element.type == "panel")
                 {
-                    BuildValidator(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList());
+                    BuildValidator(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), parentPage, element);
                 }
                 else
                 {
@@ -415,11 +410,38 @@ namespace SurveyToCS
                         csharp.Append(elementName);
                         csharp.Append(").NotEmpty()");
 
+                        string visibleIf = string.Empty;
+
+                        if (!string.IsNullOrWhiteSpace(parentPage.visibleIf))
+                        {
+                            visibleIf += parentPage.visibleIf;
+                        }
+
+                        if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf))
+                        {
+                            if (!string.IsNullOrWhiteSpace(visibleIf))
+                            {
+                                visibleIf += " && ";
+                            }
+
+                            visibleIf += parentPanel.visibleIf;
+                        }
+
                         if (!string.IsNullOrWhiteSpace(element.visibleIf))
                         {
                             //  There is a condition
+                            if (!string.IsNullOrWhiteSpace(visibleIf))
+                            {
+                                visibleIf += " && ";
+                            }
+
+                            visibleIf += element.visibleIf;
+                        }
+
+                        if (!string.IsNullOrWhiteSpace(visibleIf))
+                        {
                             csharp.Append(".When(_ => true/* TODO: ");
-                            csharp.Append(element.visibleIf);
+                            csharp.Append(visibleIf.Replace("contains", "==")); ;
                             csharp.Append("*/)");
                         }
 
@@ -451,8 +473,7 @@ namespace SurveyToCS
                         csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsOverCharacterLimit\")); ");
                     }
 
-
-
+                    //  Check if selected option is in the list of valid options
                     if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null)
                     {
                         //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
@@ -482,56 +503,14 @@ namespace SurveyToCS
                         csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
                     }
 
-                    csharp.AppendLine();
+                    if(element.inputType == "email")
+                    {
+                        csharp.Append("RuleFor(x => x.");
+                        csharp.Append(elementName);
+                        csharp.AppendLine(").EmailAddress();");
+                    }
 
-
-
-                    //csharp.Append("public ");
-
-                    //if (element.type == "boolean")
-                    //{
-                    //    if (element.isRequired && string.IsNullOrWhiteSpace(element.visibleIf))
-                    //    {
-                    //        //  If required AND there is no condition to make that field visible
-                    //        csharp.Append(" bool ");
-                    //    }
-                    //    else
-                    //    {
-                    //        csharp.Append(" bool? ");
-                    //    }
-
-                    //    csharp.Append(CapitalizeFirstLetter(element.name));
-                    //}
-                    //else if (element.type == "matrixdynamic")
-                    //{
-                    //    csharp.Append("List<");
-
-                    //    if (!string.IsNullOrWhiteSpace(element.name))
-                    //    {
-                    //        csharp.Append(CapitalizeFirstLetter(element.name));
-                    //        csharp.Append("> ");
-                    //        csharp.Append(CapitalizeFirstLetter(element.name));
-                    //    }
-                    //    else if (!string.IsNullOrWhiteSpace(element.valueName))
-                    //    {
-                    //        csharp.Append(CapitalizeFirstLetter(element.valueName));
-                    //        csharp.Append("> ");
-                    //        csharp.Append(CapitalizeFirstLetter(element.valueName));
-                    //    }
-                    //}
-                    //else if (element.type == "checkbox" || element.type == "file")
-                    //{
-                    //    csharp.Append("List<string> ");
-                    //    csharp.Append(CapitalizeFirstLetter(element.name));
-                    //}
-                    //else
-                    //{
-                    //    csharp.Append(" string ");
-                    //    csharp.Append(CapitalizeFirstLetter(element.name));
-                    //}
-
-                    //csharp.AppendLine(" { get; set; }");
-                    //csharp.AppendLine();
+                    csharp.AppendLine();    
                 }
             }
         }
