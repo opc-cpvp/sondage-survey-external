@@ -1,134 +1,317 @@
 {
   "pages": [
     {
-      "name": "page1",
+      "name": "page_start",
+      "title": {
+        "en": "Instructions - Privacy complaint form (private sector organization)",
+        "fr": ""
+      },
       "elements": [
         {
-          "type": "matrix",
-          "name": "Quality",
-          "title": "Please indicate if you agree or disagree with the following statements",
-          "columns": [
+          "type": "html",
+          "html": {
+            "en": "<p>Complete this <strong>online form</strong> to submit a privacy complaint about a business to the Office of the Privacy Commissioner of Canada.</p>",
+            "fr": "<p>Remplissez ce <strong>formulaire en ligne</strong> pour déposer une plainte concernant la protection de la vie privée visant une entreprise auprès du Commissariat à la protection de la vie privée du Canada.</p>"
+          }
+        },
+        {
+          "type": "panel",
+          "title": {
+            "en": "Filing out form",
+            "fr": "Remplir le formulaire"
+          },
+          "elements": [
             {
-              "value": 1,
-              "text": "Strongly Disagree"
+              "type": "html",
+              "html": {
+                "en": "<p><ul class='spaced-list'><li>Fill in the 3 sections of the form:<ul><li><strong>Part A: Jurisdiction</strong>, which asks questions to help us determine if we have jurisdiction, under the&nbsp;<em>Personal Information Protection and Electronic Documents Act</em>&nbsp;(PIPEDA) to address your concern</li><li><strong>Part B: Steps taken</strong>, which asks what you have done so far to try to resolve your concern</li><li><strong>Part C: Details and documents</strong>, which asks for details of your concern and supporting documents (like copies of correspondence with the organization&rsquo;s privacy officer)</li></ul></li><li>You can check your progress at the bottom of each screen</li><li>Use the &ldquo;Previous screen&rdquo; navigation button instead of your browser's 'back' button</li><li>Your session will expire after 2 hours of inactivity</li><li>Review and edit your complaint before submitting it</li><li>After submitting the complaint, you may download or print a copy</li></ul></p>",
+                "fr": "<p><ul class='spaced-list'><li>Remplissez les trois&nbsp;sections du formulaire&nbsp;:<ul><li><strong>Partie&nbsp;A&nbsp;: Comp&eacute;tence</strong>, qui pose des questions pour nous aider &agrave; d&eacute;terminer si nous avons comp&eacute;tence en vertu de la&nbsp;<em>Loi sur la protection des renseignements personnels et les documents &eacute;lectroniques</em>&nbsp;(LPRPDE), pour r&eacute;pondre &agrave; vos pr&eacute;occupations</li><li><strong>Partie&nbsp;B&nbsp;: Mesures prises</strong>, qui demande ce que vous avez fait jusqu&rsquo;&agrave; pr&eacute;sent pour tenter de r&eacute;soudre votre probl&egrave;me</li><li><strong>Partie&nbsp;C&nbsp;: D&eacute;tails et documents</strong>, qui demande des d&eacute;tails sur votre probl&egrave;me et les documents justificatifs (comme des copies de la correspondance avec l&rsquo;agent de la protection de la vie priv&eacute;e de l&rsquo;organisation)</li></ul></li><li>Vous pouvez v&eacute;rifier vos progr&egrave;s au bas de chaque &eacute;cran</li><li>Utilisez le bouton de navigation &laquo;&nbsp;&Eacute;cran pr&eacute;c&eacute;dent&nbsp;&raquo; au lieu du bouton &laquo;&nbsp;Pr&eacute;c&eacute;dent&nbsp;&raquo; de votre navigateur</li><li>Votre session expirera apr&egrave;s deux&nbsp;heures d&rsquo;inactivit&eacute;</li><li>Passez en revue votre plainte et modifiez-la avant de la soumettre</li><li>Apr&egrave;s avoir soumis la plainte, vous pouvez t&eacute;l&eacute;charger ou imprimer une copie</li></ul></p>"
+              }
             },
             {
-              "value": 2,
-              "text": "Disagree"
-            },
-            {
-              "value": 3,
-              "text": "Neutral"
-            },
-            {
-              "value": 4,
-              "text": "Agree"
-            },
-            {
-              "value": 5,
-              "text": "Strongly Agree"
-            }
-          ],
-          "rows": [
-            {
-              "value": "affordable",
-              "text": "Product is affordable"
-            },
-            {
-              "value": "does what it claims",
-              "text": "Product does what it claims"
-            },
-            {
-              "value": "better then others",
-              "text": "Product is better than other products on the market"
-            },
-            {
-              "value": "easy to use",
-              "text": "Product is easy to use"
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, the information will be deleted. You will have to start over.</p><section>",
+                "fr": "<section class='alert alert-info'><p>Vos renseignements ne seront pas enregistrés tant que vous n’aurez pas terminé l’étape finale « Soumettre la plainte ». Si vous mettez fin à votre session avant de soumettre la plainte, les renseignements seront supprimés. Vous devrez recommencer à zéro.</p><section>"
+              }
             }
           ]
-        },
-        {
-          "type": "rating",
-          "name": "satisfaction",
-          "title": "How satisfied are you with the Product?",
-          "minRateDescription": "Not Satisfied",
-          "maxRateDescription": "Completely satisfied"
-        },
-        {
-          "type": "rating",
-          "name": "recommend friends",
-          "visible": false,
-          "visibleIf": "{satisfaction} > 3",
-          "title": "How likely are you to recommend the Product to a friend or co-worker?",
-          "minRateDescription": "Will not recommend",
-          "maxRateDescription": "I will recommend"
-        },
-        {
-          "type": "comment",
-          "name": "suggestions",
-          "title": "What would make you more satisfied with the Product?"
+
         }
       ]
     },
     {
-      "name": "page2",
+      "name": "page_part_a_jurisdiction_province",
+      "title": {
+        "en": "Part A: Jurisdiction (Province or territory)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (province ou territoire) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
       "elements": [
         {
           "type": "radiogroup",
-          "name": "price to competitors",
-          "title": "Compared to our competitors, do you feel the Product is",
-          "choices": [
-            "Less expensive",
-            "Priced about the same",
-            "More expensive",
-            "Not sure"
-          ]
-        },
+          "name": "ProvinceIncidence",
+          "title": {
+            "en": "What province or territory did the incident or practice you are concerned about occur in?",
+            "fr": "Dans quelle province ou quel territoire l’incident ou la pratique qui vous préoccupe s’est-il produit?"
+          },
+          "description": {
+            "en": "If you're not sure, please tell us where you live.",
+            "fr": "En cas de doute, veuillez nous indiquer où vous habitez."
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "/api/Province?lang={locale}&addOther=true",
+            "titleName": "text",
+            "valueName": "value"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_a_jurisdiction_provincial",
+      "title": {
+        "en": "Part A: Jurisdiction (Provincial or territory)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (provinciale ou territoriale) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{ProvinceIncidence} anyof [1,2,3]",
+      "elements": [
         {
           "type": "radiogroup",
-          "name": "price",
-          "title": "Do you feel our current price is merited by our product?",
+          "name": "",
+          "title": {
+            "en": "Is your complaint about the handling of personal information by any of the following:",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par l’une ou l’autre des entités suivantes:"
+          },
+          "description": {
+            "en": "<ul><li>a provincial ministry, agency, board, commission or police force</li><li>a publically funded school, university or college</li><li>a local government institution such as a municipality, local police, library, school board, or transit commissions</li></ul>",
+            "fr": "<ul><li>un minist&egrave;re, un organisme, un conseil, une commission ou un service de police provinciaux</li><li>une &eacute;cole, une universit&eacute; ou un coll&egrave;ge financ&eacute; par les fonds publics</li><li>une institution gouvernementale locale, comme une municipalit&eacute;, un service de police local, une biblioth&egrave;que, un conseil scolaire ou une commission de transport en commun</li></ul>"
+          },
+          "isRequired": true,
           "choices": [
             {
-              "value": "correct",
-              "text": "Yes, the price is about right"
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
             },
             {
-              "value": "low",
-              "text": "No, the price is too low for your product"
-            },
-            {
-              "value": "high",
-              "text": "No, the price is too high for your product"
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
             }
           ]
         },
         {
-          "type": "multipletext",
-          "name": "pricelimit",
-          "title": "What is the... ",
-          "items": [
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "Is your complaint about the handling of personal information by a health practitioner (e.g. a doctor, nurse, pharmacist, chiropractor, psychologist, etc.) or a health clinic or hospital?",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par un praticien de la santé (médecin, infirmière, pharmacien, chiropraticien, psychologue, etc.), une clinique ou un hôpital?"
+          },
+          "isRequired": true,
+          "choices": [
             {
-              "name": "mostamount",
-              "title": "Most amount you would every pay for a product like ours"
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
             },
             {
-              "name": "leastamount",
-              "title": "The least amount you would feel comfortable paying"
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": " Is your complaint about the handling of personal information during or in relation to an independent medical exam conducted for an employer or insurance company (for example to determine fitness to work or eligibility for benefits)?",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels pendant ou en rapport avec un examen médical indépendant effectué pour un employeur ou une compagnie d’assurance (par exemple, pour déterminer l’aptitude au travail ou l’admissibilité aux prestations)?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "N/A",
+                "fr": "S.O."
+              },
+              "value": "not_applicable"
             }
           ]
         }
       ]
     },
     {
-      "name": "page3",
+      "name": "page_part_a_jurisdiction_particulars",
+      "title": {
+        "en": "Part A: Jurisdiction (Particulars)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (détails) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{ProvinceIncidence} anyof [6,9]",
       "elements": [
         {
-          "type": "text",
-          "name": "email",
-          "title": "Thank you for taking our survey. Your survey is almost complete, please enter your email address in the box below if you wish to participate in our drawing, then press the 'Submit' button."
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Handling of personal information in (PUT PROVINCE HERE IN CODE) may fall under provincial privacy laws instead of the&nbsp;<em>Personal Information Protection and Electronic Document Act (PIPEDA)</em>. To help us determine jurisdiction, please answer the questions below.</p><section>",
+            "fr": "<section class='alert alert-info'><p>Le traitement des renseignements personnels en Alberta peut relever des lois provinciales sur la protection des renseignements personnels plut&ocirc;t que de la&nbsp;<em>Loi sur la protection des renseignements personnels et les documents &eacute;lectroniques</em>&nbsp;(LPRPDE). Pour nous aider &agrave; d&eacute;terminer la comp&eacute;tence, veuillez r&eacute;pondre aux questions ci-dessous.</p><section>"
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "Does your complaint relate to the handling of personal information outside your province of residence?",
+            "fr": "Votre plainte concerne-t-elle le traitement de renseignements personnels à l’extérieur de votre province de résidence? "
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "Not sure",
+                "fr": "Ne sait pas"
+              },
+              "value": "not_sure"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "Is your complaint against any of the following types of organizations?",
+            "fr": "Votre plainte vise-t-elle l’un des types d’organisation suivants?"
+          },
+          "description": {
+            "en": "<ul><li>Airport or port</li><li>Bank</li><li>First nation band council</li><li>Interprovincial or international transportation company (freight or passenger, by land, water or air)</li><li>Off-shore drilling operation or organization involved in nuclear-related activity</li><li>Phone company, Internet service provider (ISP), or telecommunications infrastructure company</li><li>Radio or TV station</li></ul>",
+            "fr": "<ul><li>A&eacute;roport ou port</li><li>Banque</li><li>Conseil de bande d&rsquo;une Premi&egrave;re&nbsp;Nation</li><li>Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou a&eacute;rienne)</li><li>Activit&eacute; de forage en mer ou organisation participant &agrave; des activit&eacute;s li&eacute;es au nucl&eacute;aire</li><li>Entreprise de t&eacute;l&eacute;phonie, fournisseur de services Internet (FSI) ou entreprise d&rsquo;infrastructure de t&eacute;l&eacute;communications</li><li>Station de radio ou de t&eacute;l&eacute;vision</li></ul>"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "Did the Alberta Privacy Commissioner specifically refer you to the Office of the Privacy Commissioner of Canada?",
+            "fr": "Est-ce que le commissaire à la protection de la vie privée en Alberta vous a expressément renvoyé au Commissariat à la protection de la vie privée du Canada?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
         }
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "",
+            "fr": ""
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "elements": [
+
       ]
     }
   ]
