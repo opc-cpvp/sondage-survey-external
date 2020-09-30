@@ -11,7 +11,7 @@
           "type": "html",
           "html": {
             "en": "<p>Complete this <strong>online form</strong> to submit a privacy complaint about a business to the Office of the Privacy Commissioner of Canada.</p>",
-            "fr": "<p>Remplissez ce <strong>formulaire en ligne</strong> pour d�poser une plainte concernant la protection de la vie priv�e visant une entreprise aupr�s du Commissariat � la protection de la vie priv�e du Canada.</p>"
+            "fr": "<p>Remplissez ce <strong>formulaire en ligne</strong> pour déposer une plainte concernant la protection de la vie privée visant une entreprise auprès du Commissariat à la protection de la vie privée du Canada.</p>"
           }
         },
         {
@@ -24,27 +24,26 @@
             {
               "type": "html",
               "html": {
-                "en": "<p><ul class='spaced-list'><li>Fill in the 3 sections of the form:<ul><li><strong>Part A: Jurisdiction</strong>, which asks questions to help us determine if we have jurisdiction, under the&nbsp;<em>Personal Information Protection and Electronic Documents Act</em>&nbsp;(PIPEDA) to address your concern</li><li><strong>Part B: Steps taken</strong>, which asks what you have done so far to try to resolve your concern</li><li><strong>Part C: Details and documents</strong>, which asks for details of your concern and supporting documents (like copies of correspondence with the organization&rsquo;s privacy officer)</li></ul></li><li>You can check your progress at the bottom of each screen</li><li>Use the &ldquo;Previous screen&rdquo; navigation button instead of your browser's 'back' button</li><li>Your session will expire after 2 hours of inactivity</li><li>Review and edit your complaint before submitting it</li><li>After submitting the complaint, you may download or print a copy</li></ul></p>",
-                "fr": "<p><ul class='spaced-list'><li>Remplissez les trois&nbsp;sections du formulaire&nbsp;:<ul><li><strong>Partie&nbsp;A&nbsp;: Comp&eacute;tence</strong>, qui pose des questions pour nous aider &agrave; d&eacute;terminer si nous avons comp&eacute;tence en vertu de la&nbsp;<em>Loi sur la protection des renseignements personnels et les documents &eacute;lectroniques</em>&nbsp;(LPRPDE), pour r&eacute;pondre &agrave; vos pr&eacute;occupations</li><li><strong>Partie&nbsp;B&nbsp;: Mesures prises</strong>, qui demande ce que vous avez fait jusqu&rsquo;&agrave; pr&eacute;sent pour tenter de r&eacute;soudre votre probl&egrave;me</li><li><strong>Partie&nbsp;C&nbsp;: D&eacute;tails et documents</strong>, qui demande des d&eacute;tails sur votre probl&egrave;me et les documents justificatifs (comme des copies de la correspondance avec l&rsquo;agent de la protection de la vie priv&eacute;e de l&rsquo;organisation)</li></ul></li><li>Vous pouvez v&eacute;rifier vos progr&egrave;s au bas de chaque &eacute;cran</li><li>Utilisez le bouton de navigation &laquo;&nbsp;&Eacute;cran pr&eacute;c&eacute;dent&nbsp;&raquo; au lieu du bouton &laquo;&nbsp;Pr&eacute;c&eacute;dent&nbsp;&raquo; de votre navigateur</li><li>Votre session expirera apr&egrave;s deux&nbsp;heures d&rsquo;inactivit&eacute;</li><li>Passez en revue votre plainte et modifiez-la avant de la soumettre</li><li>Apr&egrave;s avoir soumis la plainte, vous pouvez t&eacute;l&eacute;charger ou imprimer une copie</li></ul></p>"
+                "en": "<p><ul class='spaced-list'><li>Fill in the 3 sections of the form:<ul><li><strong>Part A: Jurisdiction</strong>, which asks questions to help us determine if we have jurisdiction, under the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) to address your concern</li><li><strong>Part B: Steps taken</strong>, which asks what you have done so far to try to resolve your concern</li><li><strong>Part C: Details and documents</strong>, which asks for details of your concern and supporting documents (like copies of correspondence with the organization's privacy officer)</li></ul></li><li>You can check your progress at the bottom of each screen</li><li>Use the &ldquo;Previous screen&rdquo; navigation button instead of your browser's 'back' button</li><li>Your session will expire after 2 hours of inactivity</li><li>Review and edit your complaint before submitting it</li><li>After submitting the complaint, you may download or print a copy</li></ul></p>",
+                "fr": "<p><ul class='spaced-list'><li>Remplissez les trois sections du formulaire :<ul><li><strong>Partie A : Compétence</strong>, qui pose des questions pour nous aider à déterminer si nous avons compétence en vertu de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE), pour répondre à vos préoccupations</li><li><strong>Partie B : Mesures prises</strong>, qui demande ce que vous avez fait jusqu'à présent pour tenter de résoudre votre problème</li><li><strong>Partie C : Détails et documents</strong>, qui demande des détails sur votre problème et les documents justificatifs (comme des copies de la correspondance avec l'agent de la protection de la vie privée de l'organisation)</li></ul></li><li>Vous pouvez vérifier vos progrès au bas de chaque écran</li><li>Utilisez le bouton de navigation &laquo; écran précédent &raquo; au lieu du bouton &laquo; Précédent &raquo; de votre navigateur</li><li>Votre session expirera après deux heures d'inactivité</li><li>Passez en revue votre plainte et modifiez-la avant de la soumettre</li><li>Après avoir soumis la plainte, vous pouvez télécharger ou imprimer une copie</li></ul></p>"
               }
             },
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>Your information is not saved until you complete the final �Submit complaint� step. If you end your session before submitting, the information will be deleted. You will have to start over.</p><section>",
-                "fr": "<section class='alert alert-info'><p>Vos renseignements ne seront pas enregistr�s tant que vous n�aurez pas termin� l��tape finale � Soumettre la plainte �. Si vous mettez fin � votre session avant de soumettre la plainte, les renseignements seront supprim�s. Vous devrez recommencer � z�ro.</p><section>"
+                "en": "<section class='alert alert-info'><p>Your information is not saved until you complete the final “Submit complaint” step. If you end your session before submitting, the information will be deleted. You will have to start over.</p><section>",
+                "fr": "<section class='alert alert-info'><p>Vos renseignements ne seront pas enregistrés tant que vous n’aurez pas terminé l’étape finale « Soumettre la plainte ». Si vous mettez fin à votre session avant de soumettre la plainte, les renseignements seront supprimés. Vous devrez recommencer à zéro.</p><section>"
               }
             }
           ]
-
         }
       ]
     },
     {
       "name": "page_part_a_jurisdiction_province",
       "title": {
-        "en": "Part A: Jurisdiction (Province or territory)�Privacy complaint form (private sector organization)",
-        "fr": "Partie A : Comp�tence (province ou territoire) � Formulaire de plainte concernant la protection de la vie priv�e (organisation du secteur priv�)"
+        "en": "Part A: Jurisdiction (Province or territory)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (province ou territoire) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
       "elements": [
         {
@@ -52,11 +51,11 @@
           "name": "ProvinceIncidence",
           "title": {
             "en": "What province or territory did the incident or practice you are concerned about occur in?",
-            "fr": "Dans quelle province ou quel territoire l�incident ou la pratique qui vous pr�occupe s�est-il produit?"
+            "fr": "Dans quelle province ou quel territoire l’incident ou la pratique qui vous préoccupe s’est-il produit?"
           },
           "description": {
             "en": "If you're not sure, please tell us where you live.",
-            "fr": "En cas de doute, veuillez nous indiquer o� vous habitez."
+            "fr": "En cas de doute, veuillez nous indiquer où vous habitez."
           },
           "isRequired": true,
           "choicesByUrl": {
@@ -68,122 +67,26 @@
       ]
     },
     {
-      "name": "page_part_a_jurisdiction_provincial",
-      "title": {
-        "en": "Part A: Jurisdiction (Provincial or territory)�Privacy complaint form (private sector organization)",
-        "fr": "Partie A : Comp�tence (provinciale ou territoriale) � Formulaire de plainte concernant la protection de la vie priv�e (organisation du secteur priv�)"
-      },
-      "visibleIf": "{ProvinceIncidence} anyof [1,2,3]",
-      "elements": [
-        {
-          "type": "radiogroup",
-          "name": "",
-          "title": {
-            "en": "Is your complaint about the handling of personal information by any of the following:",
-            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par l�une ou l�autre des entit�s suivantes:"
-          },
-          "description": {
-            "en": "<ul><li>a provincial ministry, agency, board, commission or police force</li><li>a publically funded school, university or college</li><li>a local government institution such as a municipality, local police, library, school board, or transit commissions</li></ul>",
-            "fr": "<ul><li>un minist&egrave;re, un organisme, un conseil, une commission ou un service de police provinciaux</li><li>une &eacute;cole, une universit&eacute; ou un coll&egrave;ge financ&eacute; par les fonds publics</li><li>une institution gouvernementale locale, comme une municipalit&eacute;, un service de police local, une biblioth&egrave;que, un conseil scolaire ou une commission de transport en commun</li></ul>"
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Yes",
-                "fr": "Oui"
-              },
-              "value": "yes"
-            },
-            {
-              "text": {
-                "en": "No",
-                "fr": "Non"
-              },
-              "value": "no"
-            }
-          ]
-        },
-        {
-          "type": "radiogroup",
-          "name": "",
-          "title": {
-            "en": "Is your complaint about the handling of personal information by a health practitioner (e.g. a doctor, nurse, pharmacist, chiropractor, psychologist, etc.) or a health clinic or hospital?",
-            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par un praticien de la sant� (m�decin, infirmi�re, pharmacien, chiropraticien, psychologue, etc.), une clinique ou un h�pital?"
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Yes",
-                "fr": "Oui"
-              },
-              "value": "yes"
-            },
-            {
-              "text": {
-                "en": "No",
-                "fr": "Non"
-              },
-              "value": "no"
-            }
-          ]
-        },
-        {
-          "type": "radiogroup",
-          "name": "",
-          "title": {
-            "en": " Is your complaint about the handling of personal information during or in relation to an independent medical exam conducted for an employer or insurance company (for example to determine fitness to work or eligibility for benefits)?",
-            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels pendant ou en rapport avec un examen m�dical ind�pendant effectu� pour un employeur ou une compagnie d�assurance (par exemple, pour d�terminer l�aptitude au travail ou l�admissibilit� aux prestations)?"
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Yes",
-                "fr": "Oui"
-              },
-              "value": "yes"
-            },
-            {
-              "text": {
-                "en": "No",
-                "fr": "Non"
-              },
-              "value": "no"
-            },
-            {
-              "text": {
-                "en": "N/A",
-                "fr": "S.O."
-              },
-              "value": "not_applicable"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "name": "page_part_a_jurisdiction_particulars",
       "title": {
-        "en": "Part A: Jurisdiction (Particulars)�Privacy complaint form (private sector organization)",
-        "fr": "Partie A : Comp�tence (d�tails) � Formulaire de plainte concernant la protection de la vie priv�e (organisation du secteur priv�)"
+        "en": "Part A: Jurisdiction (Particulars)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (détails) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
-      "visibleIf": "{ProvinceIncidence} anyof [6,9]",
+      "visibleIf": "{ProvinceIncidence} anyof [2,6,9]",
       "elements": [
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p>Handling of personal information in (PUT PROVINCE HERE IN CODE) may fall under provincial privacy laws instead of the&nbsp;<em>Personal Information Protection and Electronic Document Act (PIPEDA)</em>. To help us determine jurisdiction, please answer the questions below.</p><section>",
-            "fr": "<section class='alert alert-info'><p>Le traitement des renseignements personnels en Alberta peut relever des lois provinciales sur la protection des renseignements personnels plut&ocirc;t que de la&nbsp;<em>Loi sur la protection des renseignements personnels et les documents &eacute;lectroniques</em>&nbsp;(LPRPDE). Pour nous aider &agrave; d&eacute;terminer la comp&eacute;tence, veuillez r&eacute;pondre aux questions ci-dessous.</p><section>"
+            "en": "<section class='alert alert-info'><p>Handling of personal information in { ProvinceIncidence } may fall under provincial privacy laws instead of the <em>Personal Information Protection and Electronic Document Act (PIPEDA)</em>. To help us determine jurisdiction, please answer the questions below.</p><section>",
+            "fr": "<section class='alert alert-info'><p>Le traitement des renseignements personnels { province_incidence_prefix_1 } { ProvinceIncidence } peut relever des lois provinciales sur la protection des renseignements personnels plut&ocirc;t que de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). Pour nous aider à déterminer la compétence, veuillez répondre aux questions ci-dessous.</p><section>"
           }
         },
         {
           "type": "radiogroup",
-          "name": "",
+          "name": "ComplaintAboutHandlingInformationOutsideProvince",
           "title": {
             "en": "Does your complaint relate to the handling of personal information outside your province of residence?",
-            "fr": "Votre plainte concerne-t-elle le traitement de renseignements personnels � l�ext�rieur de votre province de r�sidence? "
+            "fr": "Votre plainte concerne-t-elle le traitement de renseignements personnels à l’extérieur de votre province de résidence? "
           },
           "isRequired": true,
           "choices": [
@@ -212,14 +115,14 @@
         },
         {
           "type": "radiogroup",
-          "name": "",
+          "name": "IsAgainstFwub",
           "title": {
             "en": "Is your complaint against any of the following types of organizations?",
-            "fr": "Votre plainte vise-t-elle l�un des types d�organisation suivants?"
+            "fr": "Votre plainte vise-t-elle l’un des types d’organisation suivants?"
           },
           "description": {
-            "en": "<ul><li>Airport or port</li><li>Bank</li><li>First nation band council</li><li>Interprovincial or international transportation company (freight or passenger, by land, water or air)</li><li>Off-shore drilling operation or organization involved in nuclear-related activity</li><li>Phone company, Internet service provider (ISP), or telecommunications infrastructure company</li><li>Radio or TV station</li></ul>",
-            "fr": "<ul><li>A&eacute;roport ou port</li><li>Banque</li><li>Conseil de bande d&rsquo;une Premi&egrave;re&nbsp;Nation</li><li>Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou a&eacute;rienne)</li><li>Activit&eacute; de forage en mer ou organisation participant &agrave; des activit&eacute;s li&eacute;es au nucl&eacute;aire</li><li>Entreprise de t&eacute;l&eacute;phonie, fournisseur de services Internet (FSI) ou entreprise d&rsquo;infrastructure de t&eacute;l&eacute;communications</li><li>Station de radio ou de t&eacute;l&eacute;vision</li></ul>"
+            "en": "<p><ul><li>Airport or port</li><li>Bank</li><li>First nation band council</li><li>Interprovincial or international transportation company (freight or passenger, by land, water or air)</li><li>Off-shore drilling operation or organization involved in nuclear-related activity</li><li>Phone company, Internet service provider (ISP), or telecommunications infrastructure company</li><li>Radio or TV station</li></ul></p>",
+            "fr": "<p><ul><li>Aéroport ou port</li><li>Banque</li><li>Conseil de bande d'une Première Nation</li><li>Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou aérienne)</li><li>Activité de forage en mer ou organisation participant à des activités liées au nucléaire</li><li>Entreprise de téléphonie, fournisseur de services Internet (FSI) ou entreprise d'infrastructure de télécommunications</li><li>Station de radio ou de télévision</li></ul></p>"
           },
           "isRequired": true,
           "choices": [
@@ -241,10 +144,10 @@
         },
         {
           "type": "radiogroup",
-          "name": "",
+          "name": "DidOrganizationDirectComplaintToOpc",
           "title": {
-            "en": "Did the Alberta Privacy Commissioner specifically refer you to the Office of the Privacy Commissioner of Canada?",
-            "fr": "Est-ce que le commissaire � la protection de la vie priv�e en Alberta vous a express�ment renvoy� au Commissariat � la protection de la vie priv�e du Canada?"
+            "en": "Did the { ProvinceIncidence } Privacy Commissioner specifically refer you to the Office of the Privacy Commissioner of Canada?",
+            "fr": "Est-ce que le commissaire à la protection de la vie privée { province_incidence_prefix_1 } { ProvinceIncidence } vous a expressément renvoyé au Commissariat à la protection de la vie privée du Canada?"
           },
           "isRequired": true,
           "choices": [
@@ -261,6 +164,141 @@
                 "fr": "Non"
               },
               "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_a_jurisdiction_unable",
+      "title": {
+        "en": "Part A: Jurisdiction (Verify with { ProvinceIncidence } authority) — Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (vérifier auprès de l’autorité { ProvinceIncidence }) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "[{ProvinceIncidence}] anyof [2,6,9] and [{ComplaintAboutHandlingInformationOutsideProvince}] anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "We may not be able to investigate your complaint.",
+            "fr": "Il se peut que nous ne puissions pas enquêter sur votre plainte."
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint about a business in { ProvinceIncidence }</h2><p>Based on your answers it is very unlikely that the <i>Personal Information Protection and Electronic Documents Act</i>(PIPEDA) covers your complaint.</p><p>Usually, provincial privacy laws cover the handling of personal information by government and private sector organizations in <strong>{ ProvinceIncidence }</strong></p><p><h2>What you can do</h2></p><p>For more information or to file a complaint with the provincial government, consult the <a href='{province_link}'>Office of the Information and Privacy Commissioner for { ProvinceIncidence }.</a></p></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte concernant une entreprise { province_incidence_prefix_1 } { ProvinceIncidence }</h2><p>D’après vos réponses, il est très peu probable que la<i>Loi sur la protection des renseignements personnels et les documents électroniques</i>(LPRPDE) couvre votre plainte.</p><p>Habituellement, les lois sur la protection de la vie privée de la province régissent le traitement des renseignements personnels fournis par le gouvernement et les organisations du secteur privé { province_incidence_prefix_1 } <strong>{ ProvinceIncidence }</strong>.</p><p><h2>Ce que vous pouvez faire</h2></p><p>Pour obtenir de plus amples renseignements ou pour déposer une plainte auprès du gouvernement provincial, consultez le <a href='{province_link}'>Commissariat à l’information et à la protection de la vie privée { province_incidence_prefix_2 } { ProvinceIncidence }.</a></p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint with us, please <strong>do not file a complaint about the same matter with another organization</strong> at the same time. Usually, our office <strong>will not investigate</strong> your complaint <strong>until after</strong> you have tried other available ways to resolve your concern. Also, we will not investigate complaints that are outside our jurisdiction.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous souhaitez poursuivre votre plainte auprès de nous, veuillez <strong>ne pas déposer une plainte sur le même sujet auprès d’une autre organisation</strong> en même temps. En général, notre Commissariat <strong>n’enquêtera pas</strong> sur votre plainte <strong>avant que</strong> vous ayez essayé les autres moyens disponibles pour résoudre votre problème. De plus, nous n’enquêterons pas sur les plaintes qui ne relèvent pas de notre compétence.</p></section>"
+          }
+        }
+      ]
+
+    },
+    {
+      "name": "page_part_a_jurisdiction_provincial",
+      "title": {
+        "en": "Part A: Jurisdiction (Provincial or territory)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (provinciale ou territoriale) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{ProvinceIncidence} anyof [1,3,4,5,7,8]",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ComplaintAgainstHandlingOfInformation",
+          "title": {
+            "en": "Is your complaint about the handling of personal information by any of the following:",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par l’une ou l’autre des entités suivantes:"
+          },
+          "description": {
+            "en": "<p><ul><li>a provincial ministry, agency, board, commission or police force</li><li>a publically funded school, university or college</li><li>a local government institution such as a municipality, local police, library, school board, or transit commissions</li></ul></p>",
+            "fr": "<p><ul><li>un ministère, un organisme, un conseil, une commission ou un service de police provinciaux</li><li>une école, une université; ou un collège financé; par les fonds publics</li><li>une institution gouvernementale locale, comme une municipalité, un service de police local, une bibliothèque, un conseil scolaire ou une commission de transport en commun</li></ul></p>"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "HealthPractitioner",
+          "title": {
+            "en": "Is your complaint about the handling of personal information by a health practitioner (e.g. a doctor, nurse, pharmacist, chiropractor, psychologist, etc.) or a health clinic or hospital?",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels par un praticien de la santé (médecin, infirmière, pharmacien, chiropraticien, psychologue, etc.), une clinique ou un hôpital?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "IndependantPhysicalExam",
+          "title": {
+            "en": "Is your complaint about the handling of personal information during or in relation to an independent medical exam conducted for an employer or insurance company (for example to determine fitness to work or eligibility for benefits)?",
+            "fr": "Votre plainte concerne-t-elle le traitement des renseignements personnels pendant ou en rapport avec un examen médical indépendant effectué pour un employeur ou une compagnie d’assurance (par exemple, pour déterminer l’aptitude au travail ou l’admissibilité aux prestations)?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "N/A",
+                "fr": "S.O."
+              },
+              "value": "not_applicable"
             }
           ]
         }
