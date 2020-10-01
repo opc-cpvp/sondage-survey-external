@@ -163,3 +163,81 @@ export function clearProblemDetails(): void {
         errorSection.classList.add("hidden");
     }
 }
+
+export function getProvinceFrenchPrefix_au(provinceId: number): string {
+
+    switch (provinceId) {
+        case 1: //  Ontario
+        case 3: //  Nouvelle Ecosse
+        case 6: //  Columbie Britanique
+        case 8: //  Sasketchewan
+        case 9: //  Alberta
+        {
+            return "en ";
+        }
+        case 2: //  Quebec
+        case 4: //  Nouveau-Brunswick
+        case 5: //  Manitoba
+        case 11: //  Nunavut
+        case 12: //  Yukon
+        {
+            return "au ";
+        }
+        case 7: {
+            //  Ile du Prince Edouard
+            return "à l'";
+        }
+        case 10: {
+            //  Terre Neuve
+            return "à ";
+        }
+        case 13: {
+            //  Territoires Nord Ouest
+            return "aux ";
+        }
+        case 14: {
+            //  Autre
+            return "à l'";
+        }
+        default:
+            return "";
+    }
+}
+
+export function getProvinceFrenchPrefix_du(provinceId: number): string {
+
+    switch (provinceId) {
+        case 1: //  Ontario
+        case 9: //  Alberta
+        case 7: //  Ile du Prince Edouard
+        case 14: //  Autre
+        {
+            return "de l'";
+        }
+        case 2: //  Quebec
+        case 4: //  Nouveau-Brunswick
+        case 5: //  Manitoba
+        case 11:    //  Nunavut
+        case 12:    //  Yukon
+        {
+            return "du ";
+        }
+        case 8: //  Sasketchewan
+        case 6: //  Columbie Britanique
+        case 3: //  Nouvelle Ecosse
+        {
+            return "de la ";
+        }
+        case 10: {
+            //  Terre Neuve
+            return "de ";
+        }
+
+        case 13: {
+            //  Territoires Nord Ouest
+            return "des ";
+        }
+        default:
+            return "";
+    }
+}

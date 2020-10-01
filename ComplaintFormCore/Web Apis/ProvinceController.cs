@@ -39,7 +39,7 @@ namespace ComplaintFormCore.Web_Apis
 
                 if (addOther)
                 {
-                    provinces.Add(new Province { Value = "99", Text = "Autre (à l’étranger)" });
+                    provinces.Add(new Province { Value = "14", Text = "Autre (à l’étranger)" });
                 }
             }
             else
@@ -48,7 +48,7 @@ namespace ComplaintFormCore.Web_Apis
 
                 if (addOther)
                 {
-                    provinces.Add(new Province { Value = "99", Text = "Other (Outside of Canada)" });
+                    provinces.Add(new Province { Value = "14", Text = "Other (Outside of Canada)" });
                 }
             }
 

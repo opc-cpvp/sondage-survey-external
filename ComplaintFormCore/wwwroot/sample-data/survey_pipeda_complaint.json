@@ -1,4 +1,5 @@
 {
+
   "pages": [
     {
       "name": "page_start",
@@ -78,7 +79,7 @@
           "type": "html",
           "html": {
             "en": "<section class='alert alert-info'><p>Handling of personal information in { ProvinceIncidence } may fall under provincial privacy laws instead of the <em>Personal Information Protection and Electronic Document Act (PIPEDA)</em>. To help us determine jurisdiction, please answer the questions below.</p><section>",
-            "fr": "<section class='alert alert-info'><p>Le traitement des renseignements personnels { province_incidence_prefix_1 } { ProvinceIncidence } peut relever des lois provinciales sur la protection des renseignements personnels plut&ocirc;t que de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). Pour nous aider à déterminer la compétence, veuillez répondre aux questions ci-dessous.</p><section>"
+            "fr": "<section class='alert alert-info'><p>Le traitement des renseignements personnels { province_incidence_prefix_au }{ ProvinceIncidence } peut relever des lois provinciales sur la protection des renseignements personnels plut&ocirc;t que de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). Pour nous aider à déterminer la compétence, veuillez répondre aux questions ci-dessous.</p><section>"
           }
         },
         {
@@ -147,7 +148,7 @@
           "name": "DidOrganizationDirectComplaintToOpc",
           "title": {
             "en": "Did the { ProvinceIncidence } Privacy Commissioner specifically refer you to the Office of the Privacy Commissioner of Canada?",
-            "fr": "Est-ce que le commissaire à la protection de la vie privée { province_incidence_prefix_1 } { ProvinceIncidence } vous a expressément renvoyé au Commissariat à la protection de la vie privée du Canada?"
+            "fr": "Est-ce que le commissaire à la protection de la vie privée { province_incidence_prefix_au }{ ProvinceIncidence } vous a expressément renvoyé au Commissariat à la protection de la vie privée du Canada?"
           },
           "isRequired": true,
           "choices": [
@@ -170,7 +171,7 @@
       ]
     },
     {
-      "name": "page_part_a_jurisdiction_unable",
+      "name": "page_part_a_jurisdiction_unable_1",
       "title": {
         "en": "Part A: Jurisdiction (Verify with { ProvinceIncidence } authority) — Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (vérifier auprès de l’autorité { ProvinceIncidence }) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
@@ -188,13 +189,13 @@
           "type": "html",
           "html": {
             "en": "<section class='alert alert-info'><h2>Complaint about a business in { ProvinceIncidence }</h2><p>Based on your answers it is very unlikely that the <i>Personal Information Protection and Electronic Documents Act</i>(PIPEDA) covers your complaint.</p><p>Usually, provincial privacy laws cover the handling of personal information by government and private sector organizations in <strong>{ ProvinceIncidence }</strong></p><p><h2>What you can do</h2></p><p>For more information or to file a complaint with the provincial government, consult the <a href='{province_link}'>Office of the Information and Privacy Commissioner for { ProvinceIncidence }.</a></p></section>",
-            "fr": "<section class='alert alert-info'><h2>Plainte concernant une entreprise { province_incidence_prefix_1 } { ProvinceIncidence }</h2><p>D’après vos réponses, il est très peu probable que la<i>Loi sur la protection des renseignements personnels et les documents électroniques</i>(LPRPDE) couvre votre plainte.</p><p>Habituellement, les lois sur la protection de la vie privée de la province régissent le traitement des renseignements personnels fournis par le gouvernement et les organisations du secteur privé { province_incidence_prefix_1 } <strong>{ ProvinceIncidence }</strong>.</p><p><h2>Ce que vous pouvez faire</h2></p><p>Pour obtenir de plus amples renseignements ou pour déposer une plainte auprès du gouvernement provincial, consultez le <a href='{province_link}'>Commissariat à l’information et à la protection de la vie privée { province_incidence_prefix_2 } { ProvinceIncidence }.</a></p></section>"
+            "fr": "<section class='alert alert-info'><h2>Plainte concernant une entreprise { province_incidence_prefix_au }{ ProvinceIncidence }</h2><p>D’après vos réponses, il est très peu probable que la<i>Loi sur la protection des renseignements personnels et les documents électroniques</i>(LPRPDE) couvre votre plainte.</p><p>Habituellement, les lois sur la protection de la vie privée de la province régissent le traitement des renseignements personnels fournis par le gouvernement et les organisations du secteur privé { province_incidence_prefix_au } <strong>{ ProvinceIncidence }</strong>.</p><p><h2>Ce que vous pouvez faire</h2></p><p>Pour obtenir de plus amples renseignements ou pour déposer une plainte auprès du gouvernement provincial, consultez le <a href='{province_link}'>Commissariat à l’information et à la protection de la vie privée { province_incidence_prefix_du }{ ProvinceIncidence }.</a></p></section>"
           }
         },
         {
           "type": "html",
           "html": {
-            "en": "<p><h2>Ending your session</h2></p><p>If, If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
             "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
           }
         },
@@ -206,7 +207,6 @@
           }
         }
       ]
-
     },
     {
       "name": "page_part_a_jurisdiction_provincial",
@@ -214,7 +214,7 @@
         "en": "Part A: Jurisdiction (Provincial or territory)—Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (provinciale ou territoriale) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
-      "visibleIf": "{ProvinceIncidence} anyof [1,3,4,5,7,8]",
+      "visibleIf": "{ProvinceIncidence} anyof [1,3,4,5,7,8,10]",
       "elements": [
         {
           "type": "radiogroup",
@@ -305,22 +305,127 @@
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_part_a_jurisdiction_unable_2",
       "title": {
-        "en": "",
-        "fr": ""
+        "en": "Part A: Jurisdiction (Verify with { ProvinceIncidence } authority) — Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (vérifier auprès de l’autorité { province_incidence_prefix_au }{ ProvinceIncidence }) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "[{ProvinceIncidence}] anyof [1,3,4,5,7,8,10] and ({ComplaintAgainstHandlingOfInformation} contains ['yes'] or ({HealthPractitioner} contains 'yes' and {IndependantPhysicalExam} contains 'no'))",
+      "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{ProvinceIncidence} anyof [1,3,4,10]",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a business in { ProvinceIncidence }</h2><p>Based on your answers it is very unlikely that the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) covers your complaint.</p> <p>Usually, provincial privacy laws cover the handling of personal information by public bodies or health information custodians in <strong>{ ProvinceIncidence }</strong></p></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant une entreprise { province_incidence_prefix_au }{ ProvinceIncidence }</h2><p>Selon vos réponses, il est très peu probable que la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) couvre votre plainte.</p><p>En général, les lois sur la protection des renseignements personnels de la province régissent le traitement des renseignements personnels par les organismes publics ou les dépositaires de renseignements sur la santé  <strong>{ province_incidence_prefix_du }{ ProvinceIncidence }</strong>.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{ProvinceIncidence} anyof [5,8]",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a business in { ProvinceIncidence }</h2><p>Based on your answer, we recommend that you make your complaint to the <strong>Manitoba</strong> provincial government instead of our office.</p><p>Usually, provincial privacy laws cover the handling of personal information by public bodies or health information custodians in { ProvinceIncidence }.</p></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant une entreprise { province_incidence_prefix_au }{ ProvinceIncidence }</h2><p>Selon votre réponse, nous vous recommandons de déposer votre plainte auprès du gouvernement provincial { province_incidence_prefix_du }<strong>{ ProvinceIncidence }</strong> plutôt qu’auprès de notre bureau.</p><p>En général, les lois sur la protection des renseignements personnels de la province régissent le traitement des renseignements personnels par les organismes publics ou les dépositaires de renseignements sur la santé { province_incidence_prefix_du }{ ProvinceIncidence }.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{ProvinceIncidence} anyof [7]",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a business in { ProvinceIncidence }</h2><p>Based on your answer, we recommend that you make your complaint to the <strong>{ ProvinceIncidence }</strong> provincial government instead of our office.</p><p>Usually, provincial privacy laws cover the handling of personal information by public bodies in { ProvinceIncidence }.</p></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant une entreprise { province_incidence_prefix_au }{ ProvinceIncidence }</h2><p>Selon votre réponse, nous vous recommandons de déposer votre plainte auprès du gouvernement provincial <strong>{ province_incidence_prefix_du }{ ProvinceIncidence }</strong> plutôt qu’auprès de notre bureau.</p><p>En général, les lois sur la protection des renseignements personnels de la province régissent le traitement des renseignements personnels par les organismes publics { province_incidence_prefix_du }{ ProvinceIncidence }.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{ProvinceIncidence} anyof [1,3,4,10]",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>What you can do</h2><p>For more information or to file a complaint to the { ProvinceIncidence } provincial government, consult:<ul><li>with the <a href='{ link_province_opc }' target='_blank'>Information and Privacy Commissioner of { ProvinceIncidence }</a></li><li><a href='{link_similar_to_pipeda_en}' target='_blank'>provincial legislation deemed substantially similar to PIPEDA</a></li></ul></p></section>",
+
+            "fr": "<section class='alert alert-info'><h2>Ce que vous pouvez faire</h2><p>Pour obtenir de plus amples renseignements ou pour déposer une plainte auprès du gouvernement provincial { province_incidence_prefix_du }{ ProvinceIncidence }, veuillez consulter: <ul><li>le <a href='{ link_province_opc }' target='_blank'>Commissaire à l'information et à la protection de la vie privée { province_incidence_prefix_du }{ ProvinceIncidence }</a></li><li><a href='{link_similar_to_pipeda_fr}' target='_blank'>réputées essentiellement similaires à la LPRPDE</a></li></ul></p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{ProvinceIncidence} anyof [5,7,8]",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>What you can do</h2><p>For more information or to file a complaint with the { ProvinceIncidence } provincial government, consult the <a href='{ link_more_info }' target='_blank'>{ ProvinceIncidence } Ombudsman</a>.</p></section>",
+            "fr": "<section class='alert alert-info'><h2>Ce que vous pouvez faire</h2><p>Pour obtenir de plus amples renseignements ou pour déposer une plainte auprès du gouvernement provincial { province_incidence_prefix_du }{ ProvinceIncidence }, consultez le <a href='{ link_more_info }' target='_blank'>Commissaire à l'information et à la protection de la vie privée { province_incidence_prefix_du }{ ProvinceIncidence }</a>.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint with us, please <strong>do not file a complaint about the same matter with another organization</strong> at the same time. Usually, our office <strong>will not investigate</strong> your complaint <strong>until after</strong> you have tried other available ways to resolve your concern. Also, we will not investigate complaints that are outside our jurisdiction.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section class='alert alert-info'><p>Si vous souhaitez poursuivre votre plainte auprès de nous, veuillez <strong>ne pas déposer une plainte sur le même sujet auprès d’une autre organisation</strong> en même temps. En général, notre Commissariat <strong>n’enquêtera pas</strong> sur votre plainte <strong>avant que</strong> vous ayez essayé les autres moyens disponibles pour résoudre votre problème. De plus, nous n’enquêterons pas sur les plaintes qui ne relèvent pas de notre compétence.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_a_customer_or_employee",
+      "title": {
+        "en": "Part A: Jurisdiction (Customer or employee)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (client ou employé) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
       "elements": [
         {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <strong>type of personal information</strong> involved may affect whether the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) applies to your complaint. Please answer the question{ plural } below to help us determine jurisdiction.</p><section>",
+            "fr": "<section class='alert alert-info'><p>Le <strong>type de renseignements personnels</strong> en cause peut influer sur l’application de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE) à votre plainte. Veuillez répondre à la question suivante pour nous aider à déterminer la compétence.</p><section>"
+          }
+        },
+        {
           "type": "radiogroup",
-          "name": "",
+          "name": "EmployeeOrCustomer",
           "title": {
-            "en": "",
-            "fr": ""
+            "en": "Are you submitting the complaint as a customer or as an employee of the organization?",
+            "fr": "Déposez-vous la plainte en tant que client ou en tant qu’employé de l’organisation?"
           },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Customer",
+                "fr": "Client"
+              },
+              "value": "customer"
+            },
+            {
+              "text": {
+                "en": "An employee, former employee, or applicant for a job at the organization",
+                "fr": "Employé, ancien employé ou candidat à un emploi au sein de l’organisation"
+              },
+              "value": "employee"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "AgainstOrganizations",
+          "title": {
+            "en": "Is your complaint against any of the following types of organizations?",
+            "fr": "Votre plainte vise-t-elle l’un des types d’organisation suivants?"
+          },
+          "visibleIf": "{ProvinceIncidence} anyof [1,3,4,5,7,8,10]",
           "description": {
-            "en": "",
-            "fr": ""
+            "en": "<p><ul><li>Airport or port</li><li>Bank</li><li>First nation band council</li><li>Interprovincial or international transportation company (freight or passenger, by land, water or air)</li><li>Off-shore drilling operation or organization involved in nuclear-related activity</li><li>Phone company, Internet service provider (ISP), or telecommunications infrastructure company</li><li>Radio or TV station</li></ul></p>",
+            "fr": "<p><ul><li>Aéroport ou port</li><li>Banque</li><li>Conseil de bande d'une Première Nation</li><li>Entreprise de transport interprovincial ou international (marchandises ou passagers, par voie terrestre, maritime ou aérienne)</li><li>Activité de forage en mer ou organisation participant à des activités liées au nucléaire</li><li>Entreprise de téléphonie, fournisseur de services Internet (FSI) ou entreprise d'infrastructure de télécommunications</li><li>Station de radio ou de télévision</li></ul></p>"
           },
           "isRequired": true,
           "choices": [
@@ -343,10 +448,188 @@
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_part_a_jurisdiction_unable_3",
       "title": {
         "en": "",
-        "fr": ""
+        "fr": "Partie A : Compétence (s’adresser à l’employeur ou chercher des solutions de rechange) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf":  "{EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "We may not be able to investigate your complaint.",
+            "fr": "Il se peut que nous ne puissions pas enquêter sur votre plainte."
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Based on your answers it is very unlikely that the Personal Information Protection and Electronic Documents Act (PIPEDA) covers your complaint.Usually PIPEDA applies to the handling of employees’ personal information only if the organization is defined as a <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda_brief/#_fwub/' target='_blank'>“federal work, undertaking or business”</a>. Examples may include:</p><p><ul><li>airports, aircrafts or airlines</li><li>banks</li><li>inter-provincial or international transportation by land or water</li><li>telecommunications</li><li>offshore drilling operations</li><li>radio and television broadcasting</li></ul></p><h2>What you can do</h2><p>Depending on your concern, there may be help available at the provincial or territorial level. If your concerns relates to wrongful termination, denied benefits, workplace harassment or unfair discipline, you can seek information from authorities dealing with:</p><p><ul><li><a href='https://www.canada.ca/en/services/entreprises.html' target='_blank'>employment equity and human rights</a></li><li><a href='https://www.canada.ca/en/services/entreprises.html' target='_blank'>employment standards</a></li><li><a href='https://www.canada.ca/en/services/entreprises.html' target='_blank'>workplace health and safety regulationsl</a></li></ul></p><p>We also encourage you to consider raising your concern with the person responsible for privacy at your organization, often called the Privacy Officer.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Selon vos réponses, il est très peu probable que la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE) couvre votre plainte.</p><p>En général, la LPRPDE ne s'applique au traitement des renseignements personnels des employés que si l'organisation est définie comme une <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/lprpde_survol/' target='_blank'>« entreprise fédérale »</a>. En voici quelques exemples:</p><p><ul><li>les aéroports, les aéronefs ou les compagnies aériennes</li><li>les banques</li><li>le transport interprovincial ou international par voie terrestre ou maritime</li><li>les télécommunications</li><li>les activités de forage en mer</li><li>la radiodiffusion et la télédiffusion</li></ul></p><h2>Ce que vous pouvez faire</h2><p>Selon vos préoccupations, il se peut que de l’aide soit disponible à l’échelle provinciale ou territoriale. Si vos préoccupations ont trait à un congédiement injustifié, à un refus de prestations, à du harcèlement au travail ou à des mesures disciplinaires injustes, vous pouvez demander des renseignements aux autorités compétentes en:</p><p><ul><li><a href='https://www.canada.ca/fr/services/entreprises.html' target='_blank'>équité en matière d’emploi et droits de la personne</a></li><li><a href='https://www.canada.ca/fr/services/entreprises.html' target='_blank'>normes d’emploi</a></li><li><a href='https://www.canada.ca/fr/services/entreprises.html' target='_blank'>règlements sur la santé et la sécurité au travail</a></li></ul></p><p>Nous vous encourageons également à envisager de faire part de vos préoccupations à la personne responsable de la protection de la vie privée au sein de votre organisation, qui est souvent appelée l’agent de la protection de la vie privée.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint with us, please <strong>do not file a complaint about the same matter with another organization</strong> at the same time. Usually, our office <strong>will not investigate</strong> your complaint <strong>until after</strong> you have tried other available ways to resolve your concern. Also, we will not investigate complaints that are outside our jurisdiction.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous souhaitez poursuivre votre plainte auprès de nous, veuillez <strong>ne pas déposer une plainte sur le même sujet auprès d’une autre organisation</strong> en même temps. En général, notre Commissariat <strong>n’enquêtera pas</strong> sur votre plainte <strong>avant que</strong> vous ayez essayé les autres moyens disponibles pour résoudre votre problème. De plus, nous n’enquêterons pas sur les plaintes qui ne relèvent pas de notre compétence.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_a_competence",
+      "title": {
+        "en": "Part A: Jurisdiction (Organizations likely outside PIPEDA jurisdiction)—Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Compétence (organisations qui ne relèvent probablement pas de la LPRPDE) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) only applies to personal information handled by organizations during a commercial activity and the personal information of employees of certain organizations. Please answer the question below to determine if your complaint is within this scope.</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE) ne s’applique qu’aux renseignements personnels traités par les organisations dans le cadre d’une activité commerciale et aux renseignements personnels des employés de certaines organisations. Veuillez répondre à la question suivante pour déterminer si votre plainte s’inscrit dans ce champ d’application.</p></section>"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "Question3Answers",
+          "title": {
+            "en": "If your complaint is against any of the following types of organizations, please check all that apply.",
+            "fr": "Si votre plainte vise l’un des types d’organisation suivants, veuillez cocher ceux qui s’appliquent."
+          },
+          "choices": [
+            {
+              "value": "charity_non_profit",
+              "text": {
+                "en": "Charity or not-for-profit (other than credit-union, co-op housing, or daycare)",
+                "fr": "Organisme de bienfaisance ou sans but lucratif (autre qu’une caisse populaire, une coopérative d’habitation ou une garderie)"
+              }
+            },
+            {
+              "value": "condominium_corporation",
+              "text": {
+                "en": "Condominium corporation",
+                "fr": "Société d’immeuble en copropriété"
+              }
+            },
+            {
+              "value": "federal_government",
+              "text": {
+                "en": "Federal government institution",
+                "fr": "Institution fédérale"
+              }
+            },
+            {
+              "value": "first_nation",
+              "text": {
+                "en": "First Nation band council",
+                "fr": "Conseil de bande d’une Première Nation"
+              }
+            },
+            {
+              "value": "individual",
+              "text": {
+                "en": "Individual",
+                "fr": "Particulier"
+              }
+            },
+            {
+              "value": "journalism",
+              "text": {
+                "en": "Organization engaged in journalism (online or offline newspaper, magazine, radio or TV broadcaster)",
+                "fr": "Organisation faisant du journalisme (journal, magazine, radio ou télédiffuseur en ligne ou hors ligne)"
+              }
+            },
+            {
+              "value": "political_party",
+              "text": {
+                "en": "Political party",
+                "fr": "Parti politique"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_a_competence_info",
+      "title": {
+        "en": "fkhjkhjk",
+        "fr": "pioupiopuio"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{Question3Answers} contains ''",
+          "html": {
+            "en": "<section class='alert alert-info'><p>The <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA)</p></section>",
+            "fr": "<section class='alert alert-info'><p>La <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE)</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "fkhjkhjk",
+        "fr": "pioupiopuio"
       },
       "elements": [
 
