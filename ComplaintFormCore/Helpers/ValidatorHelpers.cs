@@ -39,7 +39,7 @@ namespace ComplaintFormCore.Helpers
             return true;
         }
 
-        public static bool IsUsorCanadianZipCode(string zipCode, string country)
+        public static bool IsValidZipCode(string zipCode, string country)
         {
             if (string.IsNullOrWhiteSpace(zipCode))
             {

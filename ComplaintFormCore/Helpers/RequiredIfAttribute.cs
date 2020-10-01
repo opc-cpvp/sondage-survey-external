@@ -18,14 +18,14 @@ namespace ComplaintFormCore.Helpers
         {
             var instance = validationContext.ObjectInstance;
             var type = instance.GetType();
-            var propertyvalue = type.GetProperty(PropertyName).GetValue(instance, null);
+            var propertyValue = type.GetProperty(PropertyName).GetValue(instance, null);
 
-            if(propertyvalue == null)
+            if(propertyValue == null)
             {
                 return new ValidationResult(ErrorMessage);
             }
 
-            if (propertyvalue.ToString() == Value.ToString() && (value == null || string.IsNullOrWhiteSpace(value.ToString())))
+            if (propertyValue.ToString() == Value.ToString() && (value is null || string.IsNullOrWhiteSpace(value.ToString())))
             {
                 return new ValidationResult(ErrorMessage);
             }
