@@ -12,6 +12,7 @@ import {
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
+import { testData } from "./pia_test_data";
 
 declare global {
     // TODO: get rid of this global variable
@@ -60,6 +61,7 @@ export class PiaETool {
                             Accept: "application/json",
                             "Content-Type": "application/json; charset=utf-8"
                         },
+                        // body: JSON.stringify(testData)
                         body: JSON.stringify(sender.data)
                     }).then(response => {
                         if (response.ok) {
@@ -284,7 +286,7 @@ export class PiaETool {
                     "UpdatePIAAllReferenceNumbersAssigned": "A3Rt67U8",
                     "DetailsPreviousSubmission": "this is a bunch of details about the previous submission",
                     "NewPIANumberAssigned": "new_pia_existing_reference_number",
-                    "NewPIAAllReferenceNumbersAssigned":"V13R5t9O"
+                    "NewPIAAllReferenceNumbersAssigned": "V13R5t9O"
                 };
 
                 // Load the initial state

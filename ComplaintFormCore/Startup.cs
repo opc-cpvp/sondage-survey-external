@@ -22,6 +22,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using Newtonsoft;
+using FluentValidation.AspNetCore;
 
 namespace ComplaintFormCore
 {
@@ -61,7 +62,7 @@ namespace ComplaintFormCore
             });
 
             services.AddControllersWithViews();
-            services.AddMvc();
+            services.AddMvc(setup => { }).AddFluentValidation();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");
             services.Configure<RequestLocalizationOptions>(options =>

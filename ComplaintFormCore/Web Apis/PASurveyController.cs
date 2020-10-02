@@ -68,7 +68,7 @@ namespace ComplaintFormCore.Web_Apis
                 if(files.Documentation_file_upload != null)
                 {
                     allFiles.AddRange(files.Documentation_file_upload);
-                }               
+                }
 
                 if (files.Documentation_file_upload_rep != null)
                 {
@@ -92,13 +92,13 @@ namespace ComplaintFormCore.Web_Apis
 
                     FileInfo[] filesStored = directory.GetFiles();
 
-                    //  We need to make sure the list of files sent to us saved in local storage (in other words the files the users think he is 
+                    //  We need to make sure the list of files sent to us saved in local storage (in other words the files the users think he is
                     //  uploading) are all saved on the server properly with the right size
                     OPCProblemDetails fileMissingProblem = new OPCProblemDetails
                     {
                         Status = 400,
-                        Detail = _localizer.GetLocalizedStringGeneral("FileNotFound"),
-                        Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                        Detail = _localizer.GetLocalizedStringSharedResource("FileNotFound"),
+                        Title = _localizer.GetLocalizedStringSharedResource("ValidationIssues")
                     };
 
                     foreach (SurveyFile file in allFiles)
@@ -107,7 +107,7 @@ namespace ComplaintFormCore.Web_Apis
 
                         if (fileSize == 0 || filesStored.Where(f => f.Name == file.name && f.Length == fileSize).Any() == false)
                         {
-                            fileMissingProblem.AddError(_localizer.GetLocalizedStringGeneral("FileNotFound"), string.Format(_localizer.GetLocalizedStringGeneral("FileMissing"), file.name));
+                            fileMissingProblem.AddError(_localizer.GetLocalizedStringSharedResource("FileNotFound"), string.Format(_localizer.GetLocalizedStringSharedResource("FileMissing"), file.name));
                         }
                         else
                         {
@@ -126,12 +126,12 @@ namespace ComplaintFormCore.Web_Apis
                     {
                         OPCProblemDetails problem = new OPCProblemDetails
                         {
-                            Detail = _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded"),
+                            Detail = _localizer.GetLocalizedStringSharedResource("SizeOfFilesExceeded"),
                             Status = 400,
-                            Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                            Title = _localizer.GetLocalizedStringSharedResource("ValidationIssues")
                         };
 
-                        problem.Errors.Add(_localizer.GetLocalizedStringSubmission("Attachments"), new List<string>() { _localizer.GetLocalizedStringSubmission("SizeOfFilesExceeded") });
+                        problem.Errors.Add(_localizer.GetLocalizedStringSharedResource("Attachments"), new List<string>() { _localizer.GetLocalizedStringSharedResource("SizeOfFilesExceeded") });
 
                         return BadRequest(problem);
                     }
@@ -142,7 +142,7 @@ namespace ComplaintFormCore.Web_Apis
                     {
                         Detail = "There is no files uploaded",
                         Status = 400,
-                        Title = _localizer.GetLocalizedStringGeneral("ValidationIssues")
+                        Title = _localizer.GetLocalizedStringSharedResource("ValidationIssues")
                     };
 
                     return BadRequest(problem);
@@ -150,6 +150,6 @@ namespace ComplaintFormCore.Web_Apis
             }
 
             return Ok();
-        }      
+        }
     }
 }

@@ -9,34 +9,42 @@ namespace ComplaintFormCore.Resources
 {
     public class SharedLocalizer
     {
-        private readonly IStringLocalizer _localizerSubmission;
+        //private readonly IStringLocalizer _localizerSubmission;
         private readonly IStringLocalizer _localizerGeneral;
-        private readonly IStringLocalizer _localizerResource;
+       // private readonly IStringLocalizer _localizerResource;
+        private readonly IStringLocalizer _localizerSharedResource;
 
         public SharedLocalizer(IStringLocalizerFactory factory)
         {
             var type = typeof(SharedResources);
             var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
-            _localizerSubmission = factory.Create("Submission", assemblyName.Name);
+           // _localizerSubmission = factory.Create("Submission", assemblyName.Name);
             _localizerGeneral = factory.Create("General", assemblyName.Name);
-            _localizerResource = factory.Create("Resource", assemblyName.Name);
+            //_localizerResource = factory.Create("Resource", assemblyName.Name);
+
+            _localizerSharedResource = factory.Create("SharedResource", assemblyName.Name);
         }
 
-        public LocalizedString this[string key] => _localizerSubmission[key];
+        //public LocalizedString this[string key] => _localizerSubmission[key];
 
-        public LocalizedString GetLocalizedStringSubmission(string key)
-        {
-            return _localizerSubmission[key];
-        }
+        //public LocalizedString GetLocalizedStringSubmission(string key)
+        //{
+        //    return _localizerSubmission[key];
+        //}
 
-        public LocalizedString GetLocalizedStringGeneral(string key)
-        {
-            return _localizerGeneral[key];
-        }
+        //public LocalizedString GetLocalizedStringGeneral(string key)
+        //{
+        //    return _localizerGeneral[key];
+        //}
 
-        public LocalizedString GetLocalizedStringResource(string key)
+        //public LocalizedString GetLocalizedStringResource(string key)
+        //{
+        //    return _localizerResource[key];
+        //}
+
+        public LocalizedString GetLocalizedStringSharedResource(string key)
         {
-            return _localizerResource[key];
+            return _localizerSharedResource[key];
         }
     }
 }
