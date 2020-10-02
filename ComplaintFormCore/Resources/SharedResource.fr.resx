@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Attachments" xml:space="preserve">
+    <value>Pièces jointes</value>
+  </data>
   <data name="btnComplete" xml:space="preserve">
     <value>FR-Complete</value>
   </data>
@@ -135,7 +138,22 @@
   <data name="btnSurveyPrev" xml:space="preserve">
     <value>Écran précédent</value>
   </data>
-  <data name="Test" xml:space="preserve">
-    <value>gkjldflgjfsdlgjsldfjg</value>
+  <data name="FieldIsRequired" xml:space="preserve">
+    <value>Ce champ est obligatoire.</value>
+  </data>
+  <data name="FileMissing" xml:space="preserve">
+    <value>Fichier {0} introuvable sur le serveur.</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>Fichier introuvable sur le serveur.</value>
+  </data>
+  <data name="SelectedValueNotValid" xml:space="preserve">
+    <value>Item choisi n'est pas valide</value>
+  </data>
+  <data name="SizeOfFilesExceeded" xml:space="preserve">
+    <value>La taille de vos fichiers dépasse le maximum de 25 Mo alloué.</value>
+  </data>
+  <data name="ValidationIssues" xml:space="preserve">
+    <value>Probleme de validation</value>
   </data>
 </root>

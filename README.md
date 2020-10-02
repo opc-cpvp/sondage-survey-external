@@ -30,17 +30,13 @@ b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
 - libphonenumber-csharp already in used in the original project
+- FluentValidator
 
 ### Survey.js Custom Widget
 
 Located in the code in ~\wwwroot\js\survey\
 
-1) widgetCommentHtml
-- This is to be able to have the 'description' parsed as html.
-- Simply add the property 'htmldescription':'your html' to a 'comment' type question
-As of Survey 1.8.3 there is no need to use this widget. The 'description' property is parsing html.
-
-2) widgetCheckboxHtml
+1) widgetCheckboxHtml
 - This is to display additional information under a checkbox when it is being checked. Plain text or html can be used.
 - To use it, add the property 'hasHtmlAddtionalInfo' : 'true' to a checkbox question AND for the desired items (choices), add the property 'htmlAdditionalInfo':'your html'
 - Each check box item is being constructed in the function 'afterRender'.
@@ -55,15 +51,15 @@ other words, we are not using the style provided by Survey.js but rather the css
 
 ### Preview Problem
 
-	In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
-		- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
-		- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 
+In order for survey to show the preview at the end we must set survey.showPreviewBeforeComplete property. The options are showAnsweredQuestions or showAllQuestions. 
+	- showAllQuestions will show all questions including 'html' type question. I don't think it make sens to display html question.
+	- showAnsweredQuestions will only show the question that we answered. Problem is if we want the user to see the empty answers. 
 
-	Also, for all questions, the 'description' property is being hidden in the survey event onAfterRenderQuestion
-	Also, for 'html' questions, during the preview, the actual html gets wiped out in survey event onUpdateQuestionCssClasses
+Also, for all questions, the 'description' property is being hidden in the survey event onAfterRenderQuestion
+Also, for 'html' questions, during the preview, the actual html gets wiped out in survey event onUpdateQuestionCssClasses
 
-	I have asked the guy at Survey.js. Here is the link to the question: https://github.com/surveyjs/survey-library/issues/2268
-	Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview using onUpdatePanelCssClasses
+I have asked the guy at Survey.js. Here is the link to the question: https://github.com/surveyjs/survey-library/issues/2268
+Hopefully he can implement something soon. I finally found a solution to hide whole pages on preview using onUpdatePanelCssClasses
 
 
 ### Error handling
@@ -74,60 +70,37 @@ other words, we are not using the style provided by Survey.js but rather the css
 	The question level overwrites the survey level
 
 2)	The code to build the error box at the top of the page when thre is errors is in SurveyHelper.js in function printProblemDetails. 
-	There is probably a better to handle the construction of the "section", specially for multilanguage sites but for now it is working.
+	There is probably a better way to handle the construction of the "section", specially for multilanguage sites but for now it is working.
 
 ### Localization notes
 
 a) Files needs to be saved as UTF-8 in order for the accents to be displayed properly
 
-### Survey Templates
-
-#### Page
- ```
- {
-    "name": "page_name",
-    "title": {
-    "en": "page_title_en",
-    "fr": "page_title_fr"
-    },
-    "elements": [
-
-    ]
-}
-```
-
 ### TODO 
 
--) Replace the div id="div_errors_list" in body
--) WCAG compliance, talk to Stephanie
--) Complete page -> Page refresh problem
--) Find a strategy to clear local storage. Put a timestamp on local storage?
--) Make sure the css classes are the same on the checkboxes & the radio buttons
--) JS Error: 
-	Uncaught TypeError: Cannot read property 'length' of undefined
-    at Function.ChoicesRestfull.unregisterSameRequests (choicesRestfull.ts:76)
-    at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
-    at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
-
--) Log JS exceptions using a web api. console.write
--) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
+1) Replace the div id="div_errors_list" in body
+2) WCAG compliance, talk to Stephanie
+3) Complete page -> Page refresh problem
+4) Find a strategy to clear local storage. Put a timestamp on local storage?
+5) Make sure the css classes are the same on the checkboxes & the radio buttons
+6) Log JS exceptions using a web api. console.write
+7) (PA) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
--) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
+8) (PA) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
-
--) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
-
--) PDF: 
+9) PDF: 
 	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
--) Add "maxLength": value to all the property that have a maximum in the json
--) Get rid of the 'survey' global variable. That causes an issues with lint
+10) Add "maxLength": value to all the property that have a maximum in the json
+11) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html (Fixed)
 
--) Matrixdynamic 
+12) Matrixdynamic 
 		-	Other box need some style
 		-	Figure out the logic for duplicate selection
+
+13) The bundle.js is getting to 40Mb. Figure out what makes it so big.
 
 ### Mode details required or help required
  
@@ -198,14 +171,22 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	- Is not working syncro oncompleting and it cannot reach onComplete. Work around: use XMLHttpRequest async = false in oncompleting.
 	- Also, I cannot get the ReferenceNumber property from the response. Work around: use XMLHttpRequest (FIXED)
 33) Refactor widget comment with html
+34) JS Error: 
+	Uncaught TypeError: Cannot read property 'length' of undefined
+    at Function.ChoicesRestfull.unregisterSameRequests (choicesRestfull.ts:76)
+    at ChoicesRestfull.onLoad (choicesRestfull.ts:359)
+    at XMLHttpRequest.xhr.onload (choicesRestfull.ts:197)
+	This is exception seems to have dissapeared.
+35) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
+	Localization is done in the Validator classes and it is working.
 
 ### Postponed todo
-A) Explore survey Creator (POSTPONED)
-B) The navigation panel is the native of and should be replaced (POSTPONED)
-C) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
-D) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic. There is
+a) Explore survey Creator (POSTPONED)
+b) The navigation panel is the native of and should be replaced (POSTPONED)
+c) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
+d) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic. There is
 	no need for this just now.
-E) Backend error logging - need to ask soemone
+e) Backend error logging - need to ask soemone
 
 ### Won't fix or implement'
 
@@ -238,80 +219,75 @@ a) Try to make use of the start properties of survey (survey.firstPageIsStarted 
  Survey.surveyLocalization.locales["fr"].otherItemText = "Autre";	
 ```
 
-pagePrevText: "Previous",
-pageNextText: "Next",
-completeText: "Complete",
-previewText: "Preview",
-editText: "Edit",
-startSurveyText: "Start",
-otherItemText: "Other (describe)",
-noneItemText: "None",
-selectAllItemText: "Select All",
-progressText: "Page {0} of {1}",
-panelDynamicProgressText: "Record {0} of {1}",
-questionsProgressText: "Answered {0}/{1} questions",
-emptySurvey: "There is no visible page or question in the survey.",
-completingSurvey: "Thank you for completing the survey!",
-completingSurveyBefore:
-"Our records show that you have already completed this survey.",
-loadingSurvey: "Loading Survey...",
-optionsCaption: "Choose...",
-value: "value",
-requiredError: "Please answer the question.",
-requiredErrorInPanel: "Please answer at least one question.",
-requiredInAllRowsError: "Please answer questions in all rows.",
-numericError: "The value should be numeric.",
-textMinLength: "Please enter at least {0} characters.",
-textMaxLength: "Please enter less than {0} characters.",
-textMinMaxLength: "Please enter more than {0} and less than {1} characters.",
-minRowCountError: "Please fill in at least {0} rows.",
-minSelectError: "Please select at least {0} variants.",
-maxSelectError: "Please select no more than {0} variants.",
-numericMinMax:
-"The '{0}' should be equal or more than {1} and equal or less than {2}",
-numericMin: "The '{0}' should be equal or more than {1}",
-numericMax: "The '{0}' should be equal or less than {1}",
-invalidEmail: "Please enter a valid e-mail address.",
-invalidExpression: "The expression: {0} should return 'true'.",
-urlRequestError: "The request returned error '{0}'. {1}",
-urlGetChoicesError:
-"The request returned empty data or the 'path' property is incorrect",
-exceedMaxSize: "The file size should not exceed {0}.",
-otherRequiredError: "Please enter the other value.",
-uploadingFile:
-"Your file is uploading. Please wait several seconds and try again.",
-loadingFile: "Loading...",
-chooseFile: "Choose file(s)...",
-noFileChosen: "No file chosen",
-confirmDelete: "Do you want to delete the record?",
-keyDuplicationError: "This value should be unique.",
-addColumn: "Add column",
-addRow: "Add row",
-removeRow: "Remove",
-addPanel: "Add new",
-removePanel: "Remove",
-choices_Item: "item",
-matrix_column: "Column",
-matrix_row: "Row",
-savingData: "The results are saving on the server...",
-savingDataError: "An error occurred and we could not save the results.",
-savingDataSuccess: "The results were saved successfully!",
-saveAgainButton: "Try again",
-timerMin: "min",
-timerSec: "sec",
-timerSpentAll: "You have spent {0} on this page and {1} in total.",
-timerSpentPage: "You have spent {0} on this page.",
-timerSpentSurvey: "You have spent {0} in total.",
-timerLimitAll:
-"You have spent {0} of {1} on this page and {2} of {3} in total.",
-timerLimitPage: "You have spent {0} of {1} on this page.",
-timerLimitSurvey: "You have spent {0} of {1} in total.",
-cleanCaption: "Clean",
-clearCaption: "Clear",
-chooseFileCaption: "Choose file",
-removeFileCaption: "Remove this file",
-booleanCheckedLabel: "Yes",
-booleanUncheckedLabel: "No",
-confirmRemoveFile: "Are you sure that you want to remove this file: {0}?",
-confirmRemoveAllFiles: "Are you sure that you want to remove all files?",
-questionTitlePatternText: "Question Title",
+- pagePrevText: "Previous",
+- pageNextText: "Next",
+- completeText: "Complete",
+- previewText: "Preview",
+- editText: "Edit",
+- startSurveyText: "Start",
+- otherItemText: "Other (describe)",
+- noneItemText: "None",
+- selectAllItemText: "Select All",
+- progressText: "Page {0} of {1}",
+- panelDynamicProgressText: "Record {0} of {1}",
+- questionsProgressText: "Answered {0}/{1} questions",
+- emptySurvey: "There is no visible page or question in the survey.",
+- completingSurvey: "Thank you for completing the survey!",
+- completingSurveyBefore: "Our records show that you have already completed this survey.",
+- loadingSurvey: "Loading Survey...",
+- optionsCaption: "Choose...",
+- value: "value",
+- requiredError: "Please answer the question.",
+- requiredErrorInPanel: "Please answer at least one question.",
+- requiredInAllRowsError: "Please answer questions in all rows.",
+- numericError: "The value should be numeric.",
+- textMinLength: "Please enter at least {0} characters.",
+- textMaxLength: "Please enter less than {0} characters.",
+- textMinMaxLength: "Please enter more than {0} and less than {1} characters.",
+- minRowCountError: "Please fill in at least {0} rows.",
+- minSelectError: "Please select at least {0} variants.",
+- maxSelectError: "Please select no more than {0} variants.",
+- numericMinMax: "The '{0}' should be equal or more than {1} and equal or less than {2}",
+- numericMin: "The '{0}' should be equal or more than {1}",
+- numericMax: "The '{0}' should be equal or less than {1}",
+- invalidEmail: "Please enter a valid e-mail address.",
+- invalidExpression: "The expression: {0} should return 'true'.",
+- urlRequestError: "The request returned error '{0}'. {1}",
+- urlGetChoicesError: "The request returned empty data or the 'path' property is incorrect",
+- exceedMaxSize: "The file size should not exceed {0}.",
+- otherRequiredError: "Please enter the other value.",
+- uploadingFile: "Your file is uploading. Please wait several seconds and try again.",
+- loadingFile: "Loading...",
+- chooseFile: "Choose file(s)...",
+- noFileChosen: "No file chosen",
+- confirmDelete: "Do you want to delete the record?",
+- keyDuplicationError: "This value should be unique.",
+- addColumn: "Add column",
+- addRow: "Add row",
+- removeRow: "Remove",
+- addPanel: "Add new",
+- removePanel: "Remove",
+- choices_Item: "item",
+- matrix_column: "Column",
+- matrix_row: "Row",
+- savingData: "The results are saving on the server...",
+- savingDataError: "An error occurred and we could not save the results.",
+- savingDataSuccess: "The results were saved successfully!",
+- saveAgainButton: "Try again",
+- timerMin: "min",
+- timerSec: "sec",
+- timerSpentAll: "You have spent {0} on this page and {1} in total.",
+- timerSpentPage: "You have spent {0} on this page.",
+- timerSpentSurvey: "You have spent {0} in total.",
+- timerLimitAll: "You have spent {0} of {1} on this page and {2} of {3} in total.",
+- timerLimitPage: "You have spent {0} of {1} on this page.",
+- timerLimitSurvey: "You have spent {0} of {1} in total.",
+- cleanCaption: "Clean",
+- clearCaption: "Clear",
+- chooseFileCaption: "Choose file",
+- removeFileCaption: "Remove this file",
+- booleanCheckedLabel: "Yes",
+- booleanUncheckedLabel: "No",
+- confirmRemoveFile: "Are you sure that you want to remove this file: {0}?",
+- confirmRemoveAllFiles: "Are you sure that you want to remove all files?",
+- questionTitlePatternText: "Question Title"

@@ -53,7 +53,7 @@ namespace ComplaintFormCore.Models
         public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
         [Required]
-        public int? InstitutionId 
+        public int? InstitutionId
         {
             get
             {
@@ -135,7 +135,7 @@ namespace ComplaintFormCore.Models
 
         public bool? DidNoRecordExist
         {
-            get 
+            get
             {
                 if (DidNoRecordExistChoice == "yes")
                 {
@@ -227,33 +227,33 @@ namespace ComplaintFormCore.Models
             }
         }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_FormOfAddress { get; set; }
 
         [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_FirstName { get; set; }
 
         [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_LastName { get; set; }
 
         [StringLength(100, ErrorMessage = "This field is over the 100 characters limit.")]
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_Email { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_MailingAddress { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_City { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_Country { get; set; }
 
         public string Reprensentative_ProvinceOrState { get; set; }
 
-        [RequiredIfAttribute(nameof(IsOnOwnBehalf), false, "This field is required")]
+        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
         public string Reprensentative_PostalCode { get; set; }
 
         public string Reprensentative_DayTimeNumber { get; set; }
@@ -298,7 +298,7 @@ namespace ComplaintFormCore.Models
 
         public string Complainant_DayTimeNumberExtension { get; set; }
 
-        public string Complainant_AltTelephoneNumber { get; set; }        
+        public string Complainant_AltTelephoneNumber { get; set; }
 
         public string Complainant_AltTelephoneNumberExtension { get; set; }
 
@@ -325,7 +325,7 @@ namespace ComplaintFormCore.Models
             }
         }
 
-        [RequiredIfAttribute(nameof(NeedsDisabilityAccommodation), true, "This field is required")]
+        [RequiredIf(nameof(NeedsDisabilityAccommodation), true, "This field is required")]
         public string DisabilityAccommodation { get; set; }
 
         [Required]
@@ -339,7 +339,7 @@ namespace ComplaintFormCore.Models
         public List<string> InformationIsTrue { get; set; }
 
         [Required]
-        public bool IsCertified 
+        public bool IsCertified
         {
             get
             {
@@ -447,7 +447,7 @@ namespace ComplaintFormCore.Models
 
         private IEnumerable<ValidationResult> GetErrorsForComplainant()
         {
-            if (!IsEmailValid(Complainant_Email))
+            if (!ValidatorHelpers.IsEmailValid(Complainant_Email))
             {
                 yield return new ValidationResult("Please enter a valid email address.", new[] { nameof(Complainant_Email) });
             }
@@ -457,7 +457,7 @@ namespace ComplaintFormCore.Models
                 yield return new ValidationResult("This field is required.", new[] { Complainant_ProvinceOrState });
             }
 
-            if (!IsUsorCanadianZipCode(Complainant_PostalCode, Complainant_Country))
+            if (!ValidatorHelpers.IsValidZipCode(Complainant_PostalCode, Complainant_Country))
             {
                 yield return new ValidationResult("Please enter a valid postal code.", new[] { Complainant_PostalCode });
             }
@@ -472,7 +472,7 @@ namespace ComplaintFormCore.Models
 
             if (!string.IsNullOrWhiteSpace(Complainant_DayTimeNumber))
             {
-                if (!IsPhoneNumberValid(Complainant_DayTimeNumber, Complainant_Country))
+                if (!ValidatorHelpers.IsPhoneNumberValid(Complainant_DayTimeNumber, Complainant_Country))
                 {
                     yield return new ValidationResult("Please enter a valid phone number.", new[] { Complainant_DayTimeNumber });
                 }
@@ -480,7 +480,7 @@ namespace ComplaintFormCore.Models
 
             if (!string.IsNullOrWhiteSpace(Complainant_AltTelephoneNumber))
             {
-                if (!IsPhoneNumberValid(Complainant_AltTelephoneNumber, Complainant_Country))
+                if (!ValidatorHelpers.IsPhoneNumberValid(Complainant_AltTelephoneNumber, Complainant_Country))
                 {
                     yield return new ValidationResult("Please enter a valid phone number.", new[] { Complainant_AltTelephoneNumber });
                 }
@@ -500,7 +500,7 @@ namespace ComplaintFormCore.Models
 
         private IEnumerable<ValidationResult> GetErrorsForRepresentative()
         {
-            if (!IsEmailValid(Reprensentative_Email))
+            if (!ValidatorHelpers.IsEmailValid(Reprensentative_Email))
             {
                 yield return new ValidationResult("Please enter a valid email address.", new[] { nameof(Reprensentative_Email) });
             }
@@ -510,7 +510,7 @@ namespace ComplaintFormCore.Models
                 yield return new ValidationResult("This field is required.", new[] { Reprensentative_ProvinceOrState });
             }
 
-            if (!IsUsorCanadianZipCode(Reprensentative_PostalCode, Reprensentative_Country))
+            if (!ValidatorHelpers.IsValidZipCode(Reprensentative_PostalCode, Reprensentative_Country))
             {
                 yield return new ValidationResult("Please enter a valid postal code.", new[] { Reprensentative_PostalCode });
             }
@@ -525,7 +525,7 @@ namespace ComplaintFormCore.Models
 
             if (!string.IsNullOrWhiteSpace(Reprensentative_DayTimeNumber))
             {
-                if (!IsPhoneNumberValid(Reprensentative_DayTimeNumber, Reprensentative_Country))
+                if (!ValidatorHelpers.IsPhoneNumberValid(Reprensentative_DayTimeNumber, Reprensentative_Country))
                 {
                     yield return new ValidationResult("Please enter a valid phone number.", new[] { Reprensentative_DayTimeNumber });
                 }
@@ -533,7 +533,7 @@ namespace ComplaintFormCore.Models
 
             if (!string.IsNullOrWhiteSpace(Reprensentative_AltTelephoneNumber))
             {
-                if (!IsPhoneNumberValid(Reprensentative_AltTelephoneNumber, Reprensentative_Country))
+                if (!ValidatorHelpers.IsPhoneNumberValid(Reprensentative_AltTelephoneNumber, Reprensentative_Country))
                 {
                     yield return new ValidationResult("Please enter a valid phone number.", new[] { Reprensentative_AltTelephoneNumber });
                 }
@@ -550,70 +550,7 @@ namespace ComplaintFormCore.Models
                 yield return new ValidationResult("This field should only contain digits", new[] { Reprensentative_AltTelephoneNumberExtension });
             }
         }
-
-        private static readonly Regex _emailRegex = new Regex(@"^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", RegexOptions.Compiled);
-        private static readonly Regex _USZipRegEx = new Regex(@"^\d{5}(?:[-\s]\d{4})?$", RegexOptions.Compiled);
-        private static readonly Regex _CAZipRegEx = new Regex(@"^([ABCEGHJKLMNPRSTVXY]\d[ABCEGHJKLMNPRSTVWXYZ])\ {0,1}(\d[ABCEGHJKLMNPRSTVWXYZ]\d)$", RegexOptions.Compiled);
-        private static readonly Regex _phoneNumberRegex = new Regex(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", RegexOptions.Compiled);
-
-        private static bool IsEmailValid(string email) => !string.IsNullOrWhiteSpace(email) && _emailRegex.Match(email).Success;
-
-        private static bool IsPhoneNumberValid(string number, string country)
-        {
-            // Validate the phone number if the country is Canada or US
-            if (country == "CA" || country == "US")
-            {
-                var util = PhoneNumberUtil.GetInstance();
-                var phoneNumber = new PhoneNumber();
-                try
-                {
-                    phoneNumber = util.Parse(number, country);
-                }
-                catch
-                {
-                    // This is not a number, return thats its not good
-                    return false;
-                }
-                var phoneNumberIsValid = util.IsValidNumber(phoneNumber);
-                return phoneNumberIsValid;
-            }
-
-            return true;
-        }
-
-        private static bool IsUsorCanadianZipCode(string zipCode, string country)
-        {
-            if (string.IsNullOrWhiteSpace(zipCode))
-            {
-                return false;
-            }
-
-            // Canada or US? Check if valid
-            // Other, check if its not empty
-            switch (country)
-            {
-                case "CA":
-                    return _CAZipRegEx.Match(zipCode.ToUpper()).Success;
-                case "US":
-                    return _USZipRegEx.Match(zipCode.ToUpper()).Success;
-                default:
-                    return !string.IsNullOrEmpty(zipCode);
-            }
-        }
     }
-
-    [Serializable]
-    public class SurveyFile 
-    {
-        public string name { get; set; }
-
-        public string type { get; set; }
-
-        public string content { get; set; }
-
-        public long size { get; set; }
-    }
-
 
     public enum NatureOfComplaintType
     {
