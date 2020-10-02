@@ -18,11 +18,12 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-           string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json_pipeda = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
+            string json_pia = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
-            ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
-           // string line = Console.ReadLine();
-            //CreateValidators(json);
+            // ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+            // string line = Console.ReadLine();
+            CreateValidators(json_pia);
         }
 
         private static void ConvertFromFile(string jsonFile, string _namespace, string className)
@@ -405,45 +406,63 @@ namespace SurveyToCS
                     csharp.Append("// ");
                     csharp.AppendLine(elementName);
 
+                    string visibleIf = string.Empty;
+                    string condition = string.Empty;
+
+                    if (!string.IsNullOrWhiteSpace(parentPage.visibleIf))
+                    {
+                        visibleIf += parentPage.visibleIf;
+                    }
+
+                    if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf))
+                    {
+                        if (!string.IsNullOrWhiteSpace(visibleIf))
+                        {
+                            visibleIf += " && ";
+                        }
+
+                        visibleIf += parentPanel.visibleIf;
+                    }
+
+                    if (!string.IsNullOrWhiteSpace(element.visibleIf))
+                    {
+                        //  There is a condition
+                        if (!string.IsNullOrWhiteSpace(visibleIf))
+                        {
+                            visibleIf += " && ";
+                        }
+
+                        visibleIf += element.visibleIf;
+                    }
+
                     if (element.isRequired)
                     {
                         csharp.Append("RuleFor(x => x.");
                         csharp.Append(elementName);
                         csharp.Append(").NotEmpty()");
 
-                        string visibleIf = string.Empty;
-
-                        if (!string.IsNullOrWhiteSpace(parentPage.visibleIf))
-                        {
-                            visibleIf += parentPage.visibleIf;
-                        }
-
-                        if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf))
-                        {
-                            if (!string.IsNullOrWhiteSpace(visibleIf))
-                            {
-                                visibleIf += " && ";
-                            }
-
-                            visibleIf += parentPanel.visibleIf;
-                        }
-
-                        if (!string.IsNullOrWhiteSpace(element.visibleIf))
-                        {
-                            //  There is a condition
-                            if (!string.IsNullOrWhiteSpace(visibleIf))
-                            {
-                                visibleIf += " && ";
-                            }
-
-                            visibleIf += element.visibleIf;
-                        }
-
                         if (!string.IsNullOrWhiteSpace(visibleIf))
                         {
-                            csharp.Append(".When(_ => true/* TODO: ");
-                            csharp.Append(visibleIf.Replace("contains", "==")); ;
-                            csharp.Append("*/)");
+                            //{ProvinceIncidence} anyof [2,6,9] and [{ComplaintAboutHandlingInformationOutsideProvince}] anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'"
+
+                            if (visibleIf.Count(v => v == '{') == 1)
+                            {
+                                //  there is only 1 occurence of { which means only 1 condition
+                                //When(x => new List<string> { "2", "6", "9" }.Contains(x.ProvinceIncidence))
+                                if (visibleIf.Contains("anyof"))
+                                {
+                                    csharp.Append(".When(_ => true/* TODO: ");
+                                    csharp.Append(visibleIf.Replace("contains", "==")); ;
+                                    csharp.Append("*/)");
+                                }
+                                
+                            }
+                            else
+                            {
+                                csharp.Append(".When(_ => true/* TODO: ");
+                                csharp.Append(visibleIf.Replace("contains", "==")); ;
+                                csharp.Append("*/)");
+                            }
                         }
 
                         csharp.Append(".WithMessage(");
@@ -470,6 +489,13 @@ namespace SurveyToCS
                         csharp.Append(maxLength);
                         csharp.Append(")");
 
+                        if (!string.IsNullOrWhiteSpace(visibleIf))
+                        {
+                            csharp.Append(".When(_ => true/* TODO: ");
+                            csharp.Append(visibleIf.Replace("contains", "==")); ;
+                            csharp.Append("*/)");
+                        }
+
                         csharp.Append(".WithMessage(");
                         csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsOverCharacterLimit\")); ");
                     }
@@ -479,7 +505,15 @@ namespace SurveyToCS
                     {
                         //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
 
-                        csharp.Append("RuleFor(x => x.");
+                        if (element.type == "checkbox")
+                        {
+                            csharp.Append("RuleForEach(x => x.");
+                        }
+                        else
+                        {
+                            csharp.Append("RuleFor(x => x.");
+                        }
+
                         csharp.Append(elementName);
 
                         csharp.Append(").Must(x => new List<string> { ");
@@ -492,13 +526,20 @@ namespace SurveyToCS
                             csharp.Append(choice.value);
                             csharp.Append("\"");
 
-                            if (i < element.choices.Count)
+                            if (i < element.choices.Count - 1)
                             {
                                 csharp.Append(",");
                             }
                         }
 
                         csharp.Append("}.Contains(x))");
+
+                        if (!string.IsNullOrWhiteSpace(visibleIf))
+                        {
+                            csharp.Append(".When(_ => true/* TODO: ");
+                            csharp.Append(visibleIf.Replace("contains", "==")); ;
+                            csharp.Append("*/)");
+                        }
 
                         csharp.Append(".WithMessage(");
                         csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
@@ -514,6 +555,24 @@ namespace SurveyToCS
                     csharp.AppendLine();
                 }
             }
+        }
+
+        private string DecomposeVisibleIf(string visibleIf)
+        {
+            //"visibleIf": "{ProvinceIncidence} anyof [2,6,9] and {ComplaintAboutHandlingInformationOutsideProvince} anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'",
+
+            //"visibleIf": "{ProvinceIncidence} anyof [2,6,9]",
+
+            //"visibleIf": "{EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
+
+            //"visibleIf": "{EmployeeOrCustomer} = true",
+
+            if(visibleIf.Count(v => v == '{') == 1)
+            {
+                //  there is only 1 occurence of { which means only 1 condition
+            }
+
+            return "";
         }
     }
 }

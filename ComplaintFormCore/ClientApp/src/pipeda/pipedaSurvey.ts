@@ -5,6 +5,7 @@ import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
+import { testData_pipeda } from "./pipeda_test_data";
 
 declare global {
     // TODO: get rid of this global variable
@@ -43,7 +44,7 @@ export class PipedaTool {
 
                     options.allowComplete = false;
 
-                    const uri = `/api/PIPEDASurvey/Validate?complaintId="${sender.complaintId as string}`;
+                    const uri = `/api/PipedaSurvey/Validate?complaintId="${sender.complaintId as string}`;
 
                     fetch(uri, {
                         method: "POST",
@@ -51,6 +52,7 @@ export class PipedaTool {
                             Accept: "application/json",
                             "Content-Type": "application/json; charset=utf-8"
                         },
+                        // body: JSON.stringify(testData_pipeda)
                         body: JSON.stringify(sender.data)
                     }).then(response => {
                         if (response.ok) {

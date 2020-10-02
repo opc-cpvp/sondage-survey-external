@@ -7,6 +7,8 @@
         "en": "Instructions - Privacy complaint form (private sector organization)",
         "fr": ""
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
         {
           "type": "html",
@@ -176,6 +178,8 @@
         "en": "Part A: Jurisdiction (Verify with { ProvinceIncidence } authority) — Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (vérifier auprès de l’autorité { ProvinceIncidence }) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "[{ProvinceIncidence}] anyof [2,6,9] and [{ComplaintAboutHandlingInformationOutsideProvince}] anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'",
       "elements": [
         {
@@ -310,6 +314,8 @@
         "en": "Part A: Jurisdiction (Verify with { ProvinceIncidence } authority) — Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (vérifier auprès de l’autorité { province_incidence_prefix_au }{ ProvinceIncidence }) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "[{ProvinceIncidence}] anyof [1,3,4,5,7,8,10] and ({ComplaintAgainstHandlingOfInformation} contains ['yes'] or ({HealthPractitioner} contains 'yes' and {IndependantPhysicalExam} contains 'no'))",
       "elements": [
         {
@@ -453,7 +459,9 @@
         "en": "",
         "fr": "Partie A : Compétence (s’adresser à l’employeur ou chercher des solutions de rechange) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
-      "visibleIf":  "{EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "visibleIf": "{EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
       "elements": [
         {
           "type": "html",
@@ -566,6 +574,8 @@
         "en": "Part A: Jurisdiction (Verify with other organizations)—Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (vérifier auprès d’autres organisations) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
         {
           "type": "html",
