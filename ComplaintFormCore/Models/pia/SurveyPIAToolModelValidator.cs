@@ -60,7 +60,6 @@ namespace ComplaintFormCore.Models.pia
             RuleFor(x => x.ContactATIPQ16).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia", }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
             // UserEmailAddress
-            RuleFor(x => x.UserEmailAddress).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.UserEmailAddress).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             RuleFor(x => x.UserEmailAddress).EmailAddress();
 
@@ -286,6 +285,52 @@ namespace ComplaintFormCore.Models.pia
             // NotInScope
             RuleFor(x => x.NotInScope).NotEmpty().When(x => x.IsProgramRolledOutPhases == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.NotInScope).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WhyProgramNecessary
+            RuleFor(x => x.WhyProgramNecessary).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesMeasureEffectiveness
+
+            // HowMeasureEffectiveness
+            RuleFor(x => x.HowMeasureEffectiveness).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WhyNotMeasureEffectiveness
+            RuleFor(x => x.WhyNotMeasureEffectiveness).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // AssessProportionalityExplanation
+            RuleFor(x => x.AssessProportionalityExplanation).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DidConsiderLessIntrusiveSolution
+
+            // DescriptionConsiderLessIntrusiveSolution
+            RuleFor(x => x.DescriptionConsiderLessIntrusiveSolution).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WhyNotConsiderLessIntrusiveSolution
+            RuleFor(x => x.WhyNotConsiderLessIntrusiveSolution).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ContactATIPQ317
+            RuleFor(x => x.ContactATIPQ317).Must(x => new List<string> { "receive_email", "conduct_pia", }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // IsHeadYourInstitutionResponsibleWithPA
+
+            // ResponsibleComplianceWithPA
+            RuleFor(x => x.ResponsibleComplianceWithPA).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ListPoliciesAndProcedures
+            RuleFor(x => x.ListPoliciesAndProcedures).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesStaffReceivedTraining
+
+            // StaffReceivedTrainingDescription
+            RuleFor(x => x.StaffReceivedTrainingDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ProcessHandlingPrivacyComplaint
+            RuleFor(x => x.ProcessHandlingPrivacyComplaint).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no", }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // ProcessHandlingPrivacyComplaintDescription
+            RuleFor(x => x.ProcessHandlingPrivacyComplaintDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+
         }
     }
 }

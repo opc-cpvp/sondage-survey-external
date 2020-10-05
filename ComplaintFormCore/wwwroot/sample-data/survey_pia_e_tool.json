@@ -436,7 +436,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -549,7 +549,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -662,7 +662,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -1881,6 +1881,419 @@
         "en": "Step 3 –Program or activity details",
         "fr": ""
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{ NewOrUpdatedPIA } anyof ['new_pia', 'new_pia_covers_already_submitted']",
+          "html": {
+            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc.</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{ NewOrUpdatedPIA } contains 'update_pia'",
+          "html": {
+            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‘Skip this question’</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>It may be useful to assess your program or activity in the context of its potential impact on our right to privacy, and other fundamental rights and values, including freedom and democracy. This assessment should include asking probing questions about the need for the program or activity, its effectiveness, whether its impacts are in proportion to its purported benefits and whether there are less privacy invasive alternatives. While these questions are essential for assessing a high-risk initiative, they are useful questions to ask for any project.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children’s information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_1_q_3_1_2",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyProgramNecessary",
+          "title": {
+            "en": "Please describe why this program or activity is necessary.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>What specific need does the program or activity meet?</li><li>Is your proposed collection, use or disclosure of personal information rationally connected to a pressing and substantial public goal? Note: Do not simply reiterate the institutional mandate, for example, “law enforcement” or “border control.”</li><li>Is each piece of personal information necessary to achieve the goal?</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "DoesMeasureEffectiveness",
+          "title": {
+            "en": "Does your institution plan to measure the effectiveness of this program or activity?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_3",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowMeasureEffectiveness",
+          "visibleIf": "{ DoesMeasureEffectiveness } = true ",
+          "title": {
+            "en": "Please describe how the institution will measure the program or activity’s effectiveness.",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please ensure your response answers the following questions:<ul><li>Was the program or activity carefully designed to achieve the goal in question?</li><li>Can your institution demonstrate that the program or activity is effective in meeting the stated goal?</li></ul>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNotMeasureEffectiveness",
+          "visibleIf": "{ DoesMeasureEffectiveness } = false ",
+          "title": {
+            "en": "Please explain why your institution will not measure this program or activity’s effectiveness.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_4",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "AssessProportionalityExplanation",
+          "title": {
+            "en": "Please explain how the intrusion on privacy caused by the program or activity is proportional to the benefit gained. How did you assess proportionality?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Note, the more severe the impact on privacy, the more pressing and substantial the public goal should be.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_5",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DidConsiderLessIntrusiveSolution",
+          "title": {
+            "en": "Did your institution consider any less privacy intrusive solutions for this program or activity?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_6",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionConsiderLessIntrusiveSolution",
+          "visibleIf": "{ DidConsiderLessIntrusiveSolution } = true",
+          "title": {
+            "en": "Please describe any less privacy intrusive solutions you considered.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is there empirical evidence that other, less privacy intrusive means will not achieve the goal of the program or activity?</li><li>Why was the given option selected?</li></ul></p><p>If you did not consider any less privacy intrusive solutions, please explain why.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNotConsiderLessIntrusiveSolution",
+          "visibleIf": "{ DidConsiderLessIntrusiveSolution } = false",
+          "title": {
+            "en": "Please explain why your institution did not consider any less privacy intrusive solutions for this program or activity.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_7",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-warning'><p><strong>Note on high-risk programs and activities</strong></p><p>If your initiative is likely to be high risk (see risk factors below) and you cannot explain how its proposed collection, use or disclosure of personal information is rationally connected to a pressing and substantial public goal, the initiative should not go forward. In this case, your institution should review the initiative’s objectives and revisit whether it indeed has the legal authority to proceed. You should demonstrate that your high-risk program or activity is necessary, effective, proportional and minimally intrusive. You should ensure high-risk programs or activities pass all steps of the test above before proceeding with their implementation. We recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts, senior privacy advisors, or legal.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children’s information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "ContactATIPQ317",
+          "title": {
+            "en": "Select",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "I would like to quit and contact my ATIP group. I would like to receive an email summary of my interaction with the e-Tool.",
+                "fr": ""
+              },
+              "value": "receive_email"
+            },
+            {
+              "text": {
+                "en": "I have already discussed this program or activity with my ATIP group or senior officials, and am confident that a PIA needs to be conducted.",
+                "fr": ""
+              },
+              "value": "conduct_pia"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "panel_ContactATIPQ317_email",
+          "visibleIf": "{ContactATIPQ317} contains 'receive_email'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "text",
+              "inputType": "email",
+              "name": "UserEmailAddress",
+              "title": {
+                "en": "Please provide your email address.",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 3.1' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-4' target='_blank'>s. 3.1</a></li><li><strong>Relevant policy requirements</strong>: <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Policy on Privacy Protection</a> and <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accountability means</strong>: Put someone in charge of your institution’s handling of personal information and develop privacy policies, procedures and training.</li></ul>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_1",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsHeadYourInstitutionResponsibleWithPA",
+          "title": {
+            "en": "Is the following individual responsible for your institution’s compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Head of the government institution or delegate</p><p><strong>{ HeadYourInstitutionFullname }</strong></p></section></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "ResponsibleComplianceWithPA",
+          "visibleIf": "{IsHeadYourInstitutionResponsibleWithPA} = false",
+          "title": {
+            "en": "Who is responsible for your institution’s compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please provide the title of the individual. This individual is usually your institution’s ATIP coordinator, chief privacy officer, privacy management director, etc.</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_3",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ListPoliciesAndProcedures",
+          "title": {
+            "en": "Please list and briefly describe the policies and procedures that your institution has in place to protect privacy.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Some examples may include…</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_4_q_3_2_5",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesStaffReceivedTraining",
+          "title": {
+            "en": "Does your institution ensure that staff receive privacy-related training?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>If some but not all of your staff receive privacy-related training, you should answer “Yes” to this question. You will be given an opportunity to describe the training offered, including who receives training.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "StaffReceivedTrainingDescription",
+          "visibleIf": "{ DoesStaffReceivedTraining } = true",
+          "title": {
+            "en": "Please describe the privacy training that your staff receives.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>For example, who receives training, and at what frequency? Who does not receive training, and why are they exempt? What is the content of the training that staff receive?</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_6",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ProcessHandlingPrivacyComplaint",
+          "title": {
+            "en": "Does the institution have or intend to have a process for handling a privacy complaint or inquiry?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ProcessHandlingPrivacyComplaintDescription",
+          "visibleIf": "{ ProcessHandlingPrivacyComplaint } anyof ['yes_in_place', 'yes_not_established'] ",
+          "title": {
+            "en": "Please describe the process for handling a privacy complaint or inquiry.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "showSkipButton": true,
       "elements": [
 
       ]
@@ -1891,6 +2304,40 @@
         "en": "",
         "fr": ""
       },
+      "showSkipButton": true,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "showSkipButton": true,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "showSkipButton": true,
       "elements": [
 
       ]

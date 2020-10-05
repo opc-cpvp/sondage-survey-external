@@ -55,5 +55,13 @@ namespace ComplaintFormCore.Web_Apis
 
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult SendEmail([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
+        {
+
+
+            return Ok();
+        }
     }
 }

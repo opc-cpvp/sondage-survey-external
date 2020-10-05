@@ -4,11 +4,7 @@ import {
     saveStateLocally,
     loadStateLocally
 } from "../surveyLocalStorage";
-import {
-    initSurvey,
-    initSurveyModelEvents,
-    initSurveyModelProperties,
-} from "../surveyInit";
+import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
@@ -27,7 +23,12 @@ export class PiaETool {
 
     public init(jsonUrl: string, lang: string, token: string): void {
 
-        initSurvey();
+        SurveyInit.initSurvey();
+
+        Survey.JsonObject.metaData.addProperty("page", {
+            name: "showSkipButton:boolean",
+            default: false
+        });
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -120,25 +121,59 @@ export class PiaETool {
 
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-6");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ16");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+
+                            } else {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "french version of the message", sender.getLocale());
+                            }
+
                             return;
                         }
 
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ18");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+
+                            } else {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "french version of the message", sender.getLocale());
+                            }
+
                             return;
                         }
 
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
 
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ110");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+
+                            } else {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "french version of the message", sender.getLocale());
+                            }
+
+                            return;
+                        }
+                    } else if (options.oldCurrentPage.name === "page_step_3_1_q_3_1_7") {
+
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ317");
+                        if (contactATIP && contactATIP.value !== "conduct_pia") {
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+                            } else {
+                                SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "french version of the message", sender.getLocale());
+                            }
+
                             return;
                         }
                     }
@@ -214,11 +249,18 @@ export class PiaETool {
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
                     saveStateLocally(sender, this.storageName_PIA);
+
+                    //  Across all questions in Step 3, users who selected ‘Update or addendum’ in Question 2.1.10 should
+                    //  have a ‘Skip this question’ option that allows them to advance in the tool without answering the question
+                    const skipButton = document.getElementById("btnSkip") ?? new HTMLElement();
+                    skipButton.classList.remove("hidden");
+                    skipButton.classList.remove("inline");
+                    skipButton.classList.add(options.newCurrentPage && options.newCurrentPage.showSkipButton ? "inline" : "hidden");
                 });
 
-                initSurveyModelEvents(_survey);
+                SurveyInit.initSurveyModelEvents(_survey);
 
-                initSurveyModelProperties(_survey);
+                SurveyInit.initSurveyModelProperties(_survey);
 
                 const defaultData = {
                     "ContactATIPQ16": "conduct_pia",
@@ -307,5 +349,36 @@ export class PiaETool {
                     }
                 });
             });
+    }
+
+    public sendEmail(complaintId: string, data: string, locale: string): void {
+
+        const uri = `/api/PIASurvey/SendEmail?complaintId="${complaintId}`;
+
+        fetch(uri, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: data
+        }).then(response => {
+            if (response.ok) {
+
+                SurveyHelper.printWarningMessage("A summary has been sent to the email address provided", "french version of the message", locale);
+
+            } else {
+                if (response.json) {
+                    void response.json().then(problem => {
+                        SurveyHelper.printProblemDetails(problem, locale);
+                    });
+                }
+                Ladda.stopAll();
+                return response;
+            }
+        }).catch(error => {
+            console.warn(error);
+            Ladda.stopAll();
+        });
     }
 }

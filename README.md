@@ -101,6 +101,8 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 		-	Figure out the logic for duplicate selection
 
 13) The bundle.js is getting to 40Mb. Figure out what makes it so big.
+14) Build the preview page using the same logic as for pdf, e.g. creating a new survey. There is too much blank wasted spaces
+		with the existing one because we are hidding divs instead of not having them
 
 ### Mode details required or help required
  

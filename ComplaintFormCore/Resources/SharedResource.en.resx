@@ -130,6 +130,9 @@
   <data name="btnShowPreview" xml:space="preserve">
     <value>Preview</value>
   </data>
+  <data name="btnSkip" xml:space="preserve">
+    <value>Skip</value>
+  </data>
   <data name="btnStartSurvey" xml:space="preserve">
     <value>Start</value>
   </data>

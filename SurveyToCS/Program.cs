@@ -20,9 +20,9 @@ namespace SurveyToCS
         {
            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
-            ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+           // ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
            // string line = Console.ReadLine();
-            //CreateValidators(json);
+            CreateValidators(json);
         }
 
         private static void ConvertFromFile(string jsonFile, string _namespace, string className)
