@@ -20,12 +20,12 @@ namespace SurveyToCS
         {
            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
-           // ConvertFromFile(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
-           // string line = Console.ReadLine();
+            // CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+            // string line = Console.ReadLine();
             CreateValidators(json);
         }
 
-        private static void ConvertFromFile(string jsonFile, string _namespace, string className)
+        private static void CreateClassObject(string jsonFile, string _namespace, string className)
         {
             // read file into a string and deserialize JSON to a type
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
@@ -71,8 +71,6 @@ namespace SurveyToCS
             }
 
             csharp.AppendLine("}");// end namespace
-
-            //CreateClassFile(className, csharp.ToString());
 
             Console.WriteLine(csharp.ToString());
             Console.ReadLine();
@@ -336,46 +334,6 @@ namespace SurveyToCS
             return char.ToUpper(str[0]) + str.Substring(1);
         }
 
-        private static void CreateClassFile(string className, string text)
-        {
-            var folderName = "GeneratedClasses";
-            var pathToSave = Path.Combine(folderName, className + ".cs");
-
-
-            if (!Directory.Exists(pathToSave))
-            {
-                Directory.CreateDirectory(pathToSave);
-            }
-
-            File.WriteAllText(pathToSave, text);
-
-            //using (var stream = new FileStream(pathToSave, FileMode.Create))
-            //{
-            //    file.CopyTo(stream);
-            //}
-
-            //if (File.Exists(pathToSave))
-            //{
-            //    File.Delete(pathToSave);
-            //}
-
-            //File.Create(pathToSave);
-
-            //using (TextWriter tw = new StreamWriter(pathToSave))
-            //{
-            //    tw.WriteLine(text);
-            //}
-        }
-
-        //private static void Compile(string code)
-        //{
-        //    var csc = new CSharpCodeProvider(new Dictionary<string, string>() { { "CompilerVersion", "v3.5" } });
-        //    var parameters = new CompilerParameters(new[] { "mscorlib.dll", "System.Core.dll" }, "foo.exe", true);
-        //    parameters.GenerateExecutable = true;
-        //    CompilerResults results = csc.CompileAssemblyFromSource(parameters, code);
-        //    results.Errors.Cast<CompilerError>().ToList().ForEach(error => Console.WriteLine(error.ErrorText));
-        //}
-
         private static void CreateValidators(string json)
         {
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(json));
@@ -514,6 +472,73 @@ namespace SurveyToCS
                     csharp.AppendLine();
                 }
             }
+        }
+
+        private static void CreateTestData (string jsonFile)
+        {
+            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
+
+            StringBuilder csharp = new StringBuilder();
+
+            foreach (var page in survey.pages)
+            {
+                BuildPropertyData(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
+            }
+        }
+
+        private static string BuildPropertyData(StringBuilder csharp, List<Element> elements, Page pageObj)
+        {
+            foreach (var element in elements)
+            {
+                if (element.type == "panel")
+                {
+                    BuildPropertyData(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), pageObj);
+                }
+                else
+                {
+                    csharp.Append("\"");
+                    csharp.Append(CapitalizeFirstLetter(element.name));
+                    csharp.Append("\":");
+
+                    if (element.type == "boolean")
+                    {
+                        csharp.Append("true");
+                    }
+                    else if (element.type == "matrixdynamic")
+                    {
+                        //csharp.Append("List<");
+
+                        //if (!string.IsNullOrWhiteSpace(element.name))
+                        //{
+                        //    csharp.Append(CapitalizeFirstLetter(element.name));
+                        //    csharp.Append("> ");
+                        //    csharp.Append(CapitalizeFirstLetter(element.name));
+                        //}
+                        //else if (!string.IsNullOrWhiteSpace(element.valueName))
+                        //{
+                        //    csharp.Append(CapitalizeFirstLetter(element.valueName));
+                        //    csharp.Append("> ");
+                        //    csharp.Append(CapitalizeFirstLetter(element.valueName));
+                        //}
+                    }
+                    else if (element.type == "checkbox" || element.type == "file")
+                    {
+                        //csharp.Append("List<string> ");
+                        //csharp.Append(CapitalizeFirstLetter(element.name));
+                    }
+                    else
+                    {
+                        //csharp.Append(" string ");
+                        csharp.Append("\"");
+                        csharp.Append("some test data");
+                        csharp.Append("\"");
+                    }
+
+                    csharp.AppendLine();
+                }
+            }
+
+            return "";
         }
     }
 }

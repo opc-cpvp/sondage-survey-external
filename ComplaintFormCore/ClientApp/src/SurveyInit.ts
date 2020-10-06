@@ -168,10 +168,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     survey.onUpdatePanelCssClasses.add((sender, options) => {
         const classes = options.cssClasses;
 
-        if (
-            sender.isDisplayMode === true &&
-            options.panel.hideOnPreview === true
-        ) {
+        if (sender.isDisplayMode === true && options.panel.hideOnPreview === true) {
             //  This is to hide panel we don't want to show on preview.
             //  Panels that contains information html for example.
             //  It also hides the 'pages'! The reason is because on preview, the pages become panels
@@ -204,7 +201,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
-            options.title = `<span class='sv_q_required_text'>&ast;</span>${options.title as string}`;
+            options.title = `<span class='sv_q_required_text'>&ast;&nbsp;</span>${options.title as string}`;
         }
     });
 

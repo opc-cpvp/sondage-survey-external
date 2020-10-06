@@ -151,6 +151,15 @@
   <data name="FileNotFound" xml:space="preserve">
     <value>File not found on the server.</value>
   </data>
+  <data name="liStep_1" xml:space="preserve">
+    <value>Step 1</value>
+  </data>
+  <data name="liStep_2" xml:space="preserve">
+    <value>Step 2</value>
+  </data>
+  <data name="liStep_3" xml:space="preserve">
+    <value>Step 3</value>
+  </data>
   <data name="SelectedValueNotValid" xml:space="preserve">
     <value>Selected value is not valid</value>
   </data>

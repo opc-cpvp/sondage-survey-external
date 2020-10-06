@@ -8,7 +8,7 @@ import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
-import { testData } from "./pia_test_data";
+import { defaultData } from "./pia_test_data";
 
 declare global {
     // TODO: get rid of this global variable
@@ -25,6 +25,9 @@ export class PiaETool {
 
         SurveyInit.initSurvey();
 
+        //  This is a new concept. Users should be allowed to skip pages clicking the 'Skip' button in the
+        //  navigation panel. This button is only calling Survey.nextPage(). We just need a way to know if
+        //  a page has the 'Skip' button. So that is it: showSkipButton
         Survey.JsonObject.metaData.addProperty("page", {
             name: "showSkipButton:boolean",
             default: false
@@ -256,80 +259,15 @@ export class PiaETool {
                     skipButton.classList.remove("hidden");
                     skipButton.classList.remove("inline");
                     skipButton.classList.add(options.newCurrentPage && options.newCurrentPage.showSkipButton ? "inline" : "hidden");
+
+                    this.setNavigationBreadcrumbs(_survey);
                 });
 
                 SurveyInit.initSurveyModelEvents(_survey);
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
-                const defaultData = {
-                    "ContactATIPQ16": "conduct_pia",
-                    "ContactATIPQ18": "conduct_pia",
-                    "ContactATIPQ110": "conduct_pia",
-                    "HasLegalAuthority": true,
-                    "HeadYourInstitutionEmail": "jack@gmail.com",
-                    "HeadYourInstitutionFullname": "Jack Travis",
-                    "HeadYourInstitutionSection": "My section",
-                    "HeadYourInstitutionTitle": "Boss",
-                    "IsNewprogram": false,
-                    "IsProgamContractedOut": false,
-                    "IsProgramInvolvePersonalInformation": true,
-                    "IsTreasuryBoardApproval": true,
-                    "LeadInstitutionConsultedOther": "yes",
-                    "PersonalInfoUsedFor": "non_admin_purpose",
-                    "ProgamHasMajorChanges": true,
-                    "ProgramName": "ze programme",
-                    "SingleOrMultiInstitutionPIA": "multi",
-                    "SubjectOfPIA": "other",
-                    "RelevantLegislationPolicies": "jgfjg",
-                    "SeniorOfficialEmail": "adam@yates.com",
-                    "SeniorOfficialFullname": "adam yates",
-                    "SeniorOfficialSection": "michelton",
-                    "SeniorOfficialTitle": "rider",
-                    "BehalfMultipleInstitutionOthers": [
-                        {
-                            "OtherInstitutionHeadFullname": "Hugo Roule",
-                            "OtherInstitutionEmail": "yougo@hotmail.com",
-                            "OtherInstitutionHeadTitle": "Rouleur",
-                            "BehalfMultipleInstitutionOther": "2",
-                            "OtherInstitutionSection": "Astana",
-                            "SeniorOfficialOtherFullname": "Julian Alapolak",
-                            "SeniorOfficialOtherTitle": "Puncheur",
-                            "SeniorOfficialOtherSection": "QuickStep",
-                            "SeniorOfficialOtherEmail": "juju@hotmail.com"
-                        },
-                        {
-                            "OtherInstitutionHeadTitle": "leader",
-                            "OtherInstitutionSection": "Astana",
-                            "BehalfMultipleInstitutionOther": "Mental Institution",
-                            "OtherInstitutionHeadFullname": "Lopez A",
-                            "OtherInstitutionEmail": "lopez@gmail.com",
-                            "SeniorOfficialOtherFullname": "Tadej Pogachar",
-                            "SeniorOfficialOtherTitle": "Sprinteur",
-                            "SeniorOfficialOtherSection": "UAE",
-                            "SeniorOfficialOtherEmail": "tadeg@mymail.ca"
-                        }
-                    ],
-                    "BehalfMultipleInstitutionLead": "1",
-                    "PersonContact": "adam yates",
-                    "NewOrUpdatedPIA": "new_pia",
-                    "name": "terter",
-                    "UserEmailAddress": "test@gmail.com",
-                    "BehalfSingleInstitution": "2",
-                    "BehalfSingleInstitutionOther": "Another institution",
-                    "RelatedPIANameInstitution": "related instituion",
-                    "RelatedPIANameProgram": "related program namexxxxx",
-                    "RelatedPIADescription": "related descriptiohjfj",
-                    "AnotherContactFullname": "Another full name",
-                    "AnotherContactTitle": "Another title",
-                    "AnotherContactSection": "Another section",
-                    "AnotherContactEmail": "anothercontact@gmail.com",
-                    "UpdatePIANumberAssigned": "update_pia_existing_reference_number",
-                    "UpdatePIAAllReferenceNumbersAssigned": "A3Rt67U8",
-                    "DetailsPreviousSubmission": "this is a bunch of details about the previous submission",
-                    "NewPIANumberAssigned": "new_pia_existing_reference_number",
-                    "NewPIAAllReferenceNumbersAssigned": "V13R5t9O"
-                };
+                //  const defaultData = {};
 
                 // Load the initial state
                 loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
@@ -341,6 +279,8 @@ export class PiaETool {
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
+
+                this.setNavigationBreadcrumbs(_survey);
 
                 const app = new Vue({
                     el: "#surveyElement",
@@ -380,5 +320,66 @@ export class PiaETool {
             console.warn(error);
             Ladda.stopAll();
         });
+    }
+
+    public gotoSection(surveyObj: Survey.SurveyModel, section: number): void {
+
+        //  This is part of the navigation. When a user clicks on a breadcrums item it takes them
+        //  directly where they want.
+
+        if (section === 0) {
+            surveyObj.currentPage = 0;
+        } else if (section === 1) {
+            surveyObj.currentPage = 5;
+        } else if (section === 2) {
+            surveyObj.currentPage = 14;
+        } else if (section === 3) {
+            surveyObj.currentPage = 39;
+        }
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: Survey.VueSurveyModel): void {
+
+        //  TODO: Probably disable some items when the user has not gone thru all the question.
+
+        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
+
+        if (survey.isDisplayMode) {
+            ul_progress_navigation.className = "hidden";
+        } else {
+            ul_progress_navigation.className = "breadcrumb";
+        }
+
+        if (ul_progress_navigation) {
+
+            const items = document.getElementsByClassName("breadcrumb-item");
+
+            Array.from(items).forEach(li => {
+                //  Reset the original class on each <li> item
+                li.className = "breadcrumb-item";
+            });
+
+            if (surveyObj.currentPageNo < 5) {
+                const li = document.getElementById("li_breadcrumb_0");
+                if (li) {
+                    li.className += " active";
+                }
+            } else if (surveyObj.currentPageNo < 14) {
+                const li = document.getElementById("li_breadcrumb_1");
+                if (li) {
+                    li.className += " active";
+                }
+            } else if (surveyObj.currentPageNo < 39) {
+                const li = document.getElementById("li_breadcrumb_2");
+                if (li) {
+                    li.className += " active";
+                }
+            } else if (surveyObj.currentPageNo < 999) {
+                const li = document.getElementById("li_breadcrumb_3");
+                if (li) {
+                    li.className += " active";
+                }
+            }
+        }
     }
 }
