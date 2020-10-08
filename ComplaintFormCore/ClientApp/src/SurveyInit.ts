@@ -161,6 +161,8 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
                 classes.materialDecorator = "";
             } else if (options.question.getType() === "matrixdynamic") {
                 classes.button += " btn btn-primary";
+            } else if (options.question.getType() === "paneldynamic") {
+                classes.button += " btn btn-primary";
             }
         }
     });

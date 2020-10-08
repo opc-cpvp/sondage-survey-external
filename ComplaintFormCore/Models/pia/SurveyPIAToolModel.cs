@@ -67,10 +67,10 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_1_q_1_6<br/>
-        /// Question: <br/>
-        /// Please provide your email address. (1.6)<br/>
+        /// Question: 1.6<br/>
+        /// Please provide your email address.<br/>
         /// </summary>
-        public string UserEmailAddress { get; set; }
+        public string UserEmailAddress16 { get; set; }
 
         /// <summary>
         /// Page: page_step_1_q_1_7<br/>
@@ -89,6 +89,13 @@ namespace ComplaintFormCore.Models
         public string ContactATIPQ18 { get; set; }
 
         /// <summary>
+        /// Page: page_step_1_q_1_8<br/>
+        /// Question: 1.8<br/>
+        /// Please provide your email address.<br/>
+        /// </summary>
+        public string UserEmailAddress18 { get; set; }
+
+        /// <summary>
         /// Page: page_step_1_q_1_9<br/>
         /// Question: 1.9<br/>
         /// Which of the following best describes the subject of your PIA?<br/>
@@ -103,6 +110,13 @@ namespace ComplaintFormCore.Models
         /// Possible choices: [receive_email, no_email, conduct_pia]<br/>
         /// </summary>
         public string ContactATIPQ110 { get; set; }
+
+        /// <summary>
+        /// Page: page_step_1_q_1_10<br/>
+        /// Question: 1.10<br/>
+        /// Please provide your email address.<br/>
+        /// </summary>
+        public string UserEmailAddress110 { get; set; }
 
         /// <summary>
         /// Page: page_step_2_1_q_2_1_1<br/>
@@ -578,6 +592,13 @@ namespace ComplaintFormCore.Models
         public string ContactATIPQ317 { get; set; }
 
         /// <summary>
+        /// Page: page_step_3_1_q_3_1_7<br/>
+        /// Question: 3.1.7<br/>
+        /// Please provide your email address.<br/>
+        /// </summary>
+        public string UserEmailAddress317 { get; set; }
+
+        /// <summary>
         /// Page: page_step_3_2_q_3_2_1<br/>
         /// Question: 3.2.1<br/>
         /// Is the following individual responsible for your institution's compliance w...<br/>
@@ -626,6 +647,144 @@ namespace ComplaintFormCore.Models
         /// Please describe the process for handling a privacy complaint or inquiry.<br/>
         /// </summary>
         public string ProcessHandlingPrivacyComplaintDescription { get; set; }
+
+
+        /// <summary>
+        /// Page: page_step_3_3_1<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Have you undertaken a data minimization exercise?<br/>
+        /// Possible choices: [yes, not_yet_planned, no]<br/>
+        /// </summary>
+        public string HasDataMinimization { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_1<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please provide additional details about this exercise.<br/>
+        /// </summary>
+        public string DataMinimizationDetails { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_1<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please provide additional details about this exercise.<br/>
+        /// </summary>
+        public string DataMinimizationPlannedDetails { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_2<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Personal information element that your program or activity collects or crea...<br/>
+        /// </summary>
+        public List<PersonalInformationCategory> PersonalInformationCategory { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_4<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Is the context in which the personal information is collected and used sens...<br/>
+        /// </summary>
+        public bool? IsContextualSensitivities { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_4<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please provide more details about the context in which the personal informa...<br/>
+        /// </summary>
+        public string ContextualSensitivitiesDetails { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_5<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Will your institution be collecting any personal information in a physical ...<br/>
+        /// </summary>
+        public bool? IsInformationPhysicalFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_5<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please describe your collection of personal information in physical format....<br/>
+        /// </summary>
+        public string InformationPhysicalFormatDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_5<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Will your institution convert or copy any personal information in a physica...<br/>
+        /// </summary>
+        public bool? IsInformationPhysicalConvertedCopy { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_5<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please describe your conversion of personal information from a physical for...<br/>
+        /// </summary>
+        public string InformationPhysicalConvertedCopyDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_6<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Will your institution be collecting any personal information in an electron...<br/>
+        /// </summary>
+        public bool? IsPersonalInformationElectronicFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_6<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please describe your collection of personal information in electronic forma...<br/>
+        /// </summary>
+        public string PersonalInformationElectronicFormatDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_6<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Will your institution convert or copy any personal information in an electr...<br/>
+        /// </summary>
+        public bool? IsInformationElectronicConvertedCopy { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_6<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please describe your conversion of personal information from an electronic ...<br/>
+        /// </summary>
+        public string IsInformationElectronicConvertedCopyDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_8a<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Think now to how you collect personal information, in any format. Is there ...<br/>
+        /// </summary>
+        public bool? IsThereCollectNotIntended { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_8a<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Does your institution have policies or procedures in place to manage the in...<br/>
+        /// </summary>
+        public bool? DoesHavePoliciesProcedures { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_3_8a<br/>
+        /// Section: 3<br/>
+        /// Question <br/>
+        /// Please describe the policies or procedures in place to manage the inadverte...<br/>
+        /// </summary>
+        public string HavePoliciesProceduresDescription { get; set; }
 
     }
     public class BehalfMultipleInstitutionOthers
@@ -682,6 +841,28 @@ namespace ComplaintFormCore.Models
         /// Senior official or executive responsible - Email address:<br/>
         /// </summary>
         public string SeniorOfficialOtherEmail { get; set; }
+
+    }
+
+    public class PersonalInformationCategory
+    {
+        /// <summary>
+        /// Question <br/>
+        /// Category<br/>
+        /// </summary>
+        public string Category { get; set; }
+
+        /// <summary>
+        /// Question <br/>
+        /// Supplementary Information<br/>
+        /// </summary>
+        public string SupplementaryInformation { get; set; }
+
+        /// <summary>
+        /// Question <br/>
+        /// Personal information element<br/>
+        /// </summary>
+        public string PersonalInformationElement { get; set; }
 
     }
 }

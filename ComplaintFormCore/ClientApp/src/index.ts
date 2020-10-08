@@ -29,6 +29,7 @@ declare global {
     function checkBoxInfoPopupEvent(checkbox): void;
 
     function gotoSection(survey: Survey.SurveyModel, section: number): void;
+    function gotoPage(survey: Survey.SurveyModel, pageName: string): void;
 }
 
 declare let Symbol;
@@ -77,6 +78,14 @@ declare let Symbol;
 
             globalThis.gotoSection = (survey, section) => {
                 piaETool.gotoSection(survey, section);
+            };
+
+            globalThis.gotoPage = (survey, pageName) => {
+                piaETool.gotoPage(survey, pageName);
+            };
+
+            globalThis.nextPage = survey => {
+                piaETool.nextPage(survey);
             };
         };
 

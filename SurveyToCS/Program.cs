@@ -18,11 +18,11 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-           string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
-            // CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+            //CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
             // string line = Console.ReadLine();
-            CreateValidators(json);
+             CreateValidators(json);
         }
 
         private static void CreateClassObject(string jsonFile, string _namespace, string className)
@@ -31,7 +31,7 @@ namespace SurveyToCS
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
 
             StringBuilder csharp = new StringBuilder();
-           // csharp.AppendLine("using System.ComponentModel.DataAnnotations;");
+            // csharp.AppendLine("using System.ComponentModel.DataAnnotations;");
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using System;");
             csharp.AppendLine();
@@ -61,10 +61,11 @@ namespace SurveyToCS
 
             foreach (var page in survey.pages)
             {
-                survey_dynamic_elements.AddRange(page.elements.Where(e => _dynamicElements.Contains(e.type)).ToList());
+                //    survey_dynamic_elements.AddRange(page.elements.Where(e => _dynamicElements.Contains(e.type)).ToList());
+                GetDynamicElements(survey_dynamic_elements, page.elements);
             }
 
-            if(survey_dynamic_elements.Count > 0)
+            if (survey_dynamic_elements.Count > 0)
             {
                 csharp.AppendLine();
                 BuildDynamicProperties(csharp, survey_dynamic_elements);
@@ -210,11 +211,11 @@ namespace SurveyToCS
                 csharp.Append(dynamicItem.Key);
                 csharp.AppendLine("{");
 
-                foreach(var item in dynamicItem)
+                foreach (var item in dynamicItem)
                 {
                     if (item.type == "matrixdynamic")
                     {
-                        foreach(var column in item.columns)
+                        foreach (var column in item.columns)
                         {
                             BuildElementSummary(csharp, column);
 
@@ -274,7 +275,7 @@ namespace SurveyToCS
                     }
                 }
 
-                csharp.Append("}");
+                csharp.AppendLine("}");
             }
         }
 
@@ -282,11 +283,18 @@ namespace SurveyToCS
         {
             csharp.AppendLine("/// <summary>");
 
-            if(page != null)
+            if (page != null)
             {
                 csharp.Append("/// Page: ");
                 csharp.Append(page.name);
                 csharp.AppendLine("<br/>");
+
+                if (!string.IsNullOrWhiteSpace(page.section))
+                {
+                    csharp.Append("/// Section: ");
+                    csharp.Append(page.section);
+                    csharp.AppendLine("<br/>");
+                }
             }
 
             csharp.Append("/// Question ");
@@ -350,6 +358,11 @@ namespace SurveyToCS
 
         private static void BuildValidator(StringBuilder csharp, List<Element> elements, Page parentPage, Element parentPanel = null)
         {
+            if(parentPage.name == "page_step_3_3_1")
+            {
+
+            }
+
             foreach (var element in elements)
             {
                 if (element.type == "panel")
@@ -412,12 +425,12 @@ namespace SurveyToCS
                     {
                         int maxLength = 5000;
 
-                        if(element.type == "text")
+                        if (element.type == "text")
                         {
                             maxLength = 100;
                         }
 
-                        if(element.maxLength != null)
+                        if (element.maxLength != null)
                         {
                             maxLength = (int)element.maxLength;
                         }
@@ -462,7 +475,7 @@ namespace SurveyToCS
                         csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
                     }
 
-                    if(element.inputType == "email")
+                    if (element.inputType == "email")
                     {
                         csharp.Append("RuleFor(x => x.");
                         csharp.Append(elementName);
@@ -474,7 +487,7 @@ namespace SurveyToCS
             }
         }
 
-        private static void CreateTestData (string jsonFile)
+        private static void CreateTestData(string jsonFile)
         {
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
 
@@ -539,6 +552,24 @@ namespace SurveyToCS
             }
 
             return "";
+        }
+
+        private static void GetDynamicElements(List<Element> survey_dynamic_elements, List<Element> page_or_panel_elements)
+        {
+            foreach (var element in page_or_panel_elements)
+            {
+                if (element.type == "panel")
+                {
+                    GetDynamicElements(survey_dynamic_elements, element.elements);
+                }
+                else
+                {
+                    if (_dynamicElements.Contains(element.type))
+                    {
+                        survey_dynamic_elements.Add(element);
+                    }
+                }
+            }
         }
     }
 }

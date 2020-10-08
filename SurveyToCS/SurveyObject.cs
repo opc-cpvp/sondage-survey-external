@@ -16,6 +16,8 @@ namespace SurveyToCS
 
         public string visibleIf { get; set; }
 
+        public string section { get; set; }
+
         public List<Element> elements { get; set; }
     }
 

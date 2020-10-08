@@ -33,6 +33,11 @@ export class PiaETool {
             default: false
         });
 
+        Survey.JsonObject.metaData.addProperty("page", {
+            name: "section:number",
+            default: false
+        });
+
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
@@ -274,9 +279,6 @@ export class PiaETool {
 
                 saveStateLocally(_survey, this.storageName_PIA);
 
-                // Save the state back to local storage
-                //  this.onCurrentPageChanged_saveState(_survey);
-
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
@@ -290,6 +292,17 @@ export class PiaETool {
                 });
             });
     }
+
+    //  This is a nextPage() function just for this page
+    public nextPage(survey: Survey.SurveyModel): void {
+
+        if (survey.currentPage.name === "page_step_3_3_7") {
+            this.gotoPage(survey, "page_step_3_3_5");
+        }
+        else {
+            SurveyNavigation.nextPage(survey);
+        }
+    };
 
     public sendEmail(complaintId: string, data: string, locale: string): void {
 
@@ -327,58 +340,71 @@ export class PiaETool {
         //  This is part of the navigation. When a user clicks on a breadcrums item it takes them
         //  directly where they want.
 
-        if (section === 0) {
-            surveyObj.currentPage = 0;
-        } else if (section === 1) {
-            surveyObj.currentPage = 5;
-        } else if (section === 2) {
-            surveyObj.currentPage = 14;
-        } else if (section === 3) {
-            surveyObj.currentPage = 39;
+        //  Filter to get the first page with the desired section
+        const page = surveyObj.pages.filter(x => x.getPropertyValue("section") == section && x.isVisible === true)[0];
+        if (page) {
+            surveyObj.currentPage = page;
+            this.setNavigationBreadcrumbs(surveyObj);
         }
     }
 
-    private setNavigationBreadcrumbs(surveyObj: Survey.VueSurveyModel): void {
+    public gotoPage(surveyObj: Survey.SurveyModel, pageName: string): void {
+
+        const page = surveyObj.getPageByName(pageName) as Survey.PageModel;
+        if (page) {
+            surveyObj.currentPage = page;
+        }
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: Survey.SurveyModel): void {
 
         //  TODO: Probably disable some items when the user has not gone thru all the question.
 
         const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
 
-        if (survey.isDisplayMode) {
-            ul_progress_navigation.className = "hidden";
-        } else {
-            ul_progress_navigation.className = "breadcrumb";
+        if (!ul_progress_navigation) {
+            return;
         }
 
-        if (ul_progress_navigation) {
+        if (survey.isDisplayMode) {
+            //  We do not show the navigation bar in preview mode
+            ul_progress_navigation.className = "hidden";
+            return;
+        }
 
-            const items = document.getElementsByClassName("breadcrumb-item");
+        ul_progress_navigation.className = "breadcrumb";
 
-            Array.from(items).forEach(li => {
-                //  Reset the original class on each <li> item
-                li.className = "breadcrumb-item";
-            });
+        if (surveyObj.currentPage.section === null) {
+            //  If for any reasons we forget to add the section property in the json at least nothing will happen
+            return;
+        }
 
-            if (surveyObj.currentPageNo < 5) {
-                const li = document.getElementById("li_breadcrumb_0");
-                if (li) {
-                    li.className += " active";
-                }
-            } else if (surveyObj.currentPageNo < 14) {
-                const li = document.getElementById("li_breadcrumb_1");
-                if (li) {
-                    li.className += " active";
-                }
-            } else if (surveyObj.currentPageNo < 39) {
-                const li = document.getElementById("li_breadcrumb_2");
-                if (li) {
-                    li.className += " active";
-                }
-            } else if (surveyObj.currentPageNo < 999) {
-                const li = document.getElementById("li_breadcrumb_3");
-                if (li) {
-                    li.className += " active";
-                }
+        const items = document.getElementsByClassName("breadcrumb-item");
+
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
+
+        if (surveyObj.currentPage.section === 0) {
+            const li = document.getElementById("li_breadcrumb_0");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 1) {
+            const li = document.getElementById("li_breadcrumb_1");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 2) {
+            const li = document.getElementById("li_breadcrumb_2");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 3) {
+            const li = document.getElementById("li_breadcrumb_3");
+            if (li) {
+                li.className += " active";
             }
         }
     }

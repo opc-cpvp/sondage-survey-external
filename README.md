@@ -106,7 +106,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 
 ### Mode details required or help required
  
-1) The alert-label-error when a question is not answered is not displaying properly. It is just CSS.
 
 ### Fixed todos
 
