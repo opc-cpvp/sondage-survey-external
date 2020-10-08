@@ -1,14 +1,7 @@
 import Vue from "vue";
 import * as Survey from "survey-vue";
-import {
-    saveStateLocally,
-    loadStateLocally
-} from "../surveyLocalStorage";
-import {
-    initSurvey,
-    initSurveyModelEvents,
-    initSurveyModelProperties,
-} from "../surveyInit";
+import { saveStateLocally, loadStateLocally } from "../surveyLocalStorage";
+import { initSurvey, initSurveyModelEvents, initSurveyModelProperties } from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
@@ -20,19 +13,15 @@ declare global {
 }
 
 export class PiaETool {
-
     //  TODO: Figure out if we want to store those const in surveyLocalStorage.ts or in each files
     private storageName_PIA = "SurveyJS_LoadState_PIA";
 
-
     public init(jsonUrl: string, lang: string, token: string): void {
-
         initSurvey();
 
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-
                 const _survey = new Survey.Model(json);
                 globalThis.survey = _survey;
 
@@ -45,7 +34,6 @@ export class PiaETool {
                 let isValidSurvey = false;
 
                 _survey.onCompleting.add((sender, options) => {
-
                     if (isValidSurvey === true) {
                         options.allowComplete = true;
                         return;
@@ -63,26 +51,27 @@ export class PiaETool {
                         },
                         // body: JSON.stringify(testData)
                         body: JSON.stringify(sender.data)
-                    }).then(response => {
-                        if (response.ok) {
-                            //  Validation is good then we set the variable so the next call to doComplete()
-                            //  will bypass the validation
-                            isValidSurvey = true;
-                            _survey.doComplete();
-
-                        } else {
-                            if (response.json) {
-                                void response.json().then(problem => {
-                                    SurveyHelper.printProblemDetails(problem, sender.locale);
-                                });
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        SurveyHelper.printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
+                        })
+                        .catch(error => {
+                            console.warn(error);
                             Ladda.stopAll();
-                            return response;
-                        }
-                    }).catch(error => {
-                        console.warn(error);
-                        Ladda.stopAll();
-                    });
+                        });
                 });
 
                 _survey.onComplete.add((sender, options) => {
@@ -91,7 +80,6 @@ export class PiaETool {
                 });
 
                 _survey.onCurrentPageChanging.add((sender, options) => {
-
                     //  The event is fired before the current page changes to another page.
                     //  Typically it happens when a user click the 'Next' or 'Prev' buttons.
                     //  sender - the survey object that fires the event.
@@ -111,34 +99,43 @@ export class PiaETool {
                     options.allowChanging = false;
 
                     if (options.oldCurrentPage.name === "page_before_begin_q_0_1") {
-
                         const hasLegalAuthority: Survey.Question = sender.getQuestionByName("HasLegalAuthority");
                         if (hasLegalAuthority && hasLegalAuthority.value === false) {
-                            SurveyHelper.printWarningMessage("Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC’s e-Tool once you have determined your legal authority for this program or activity.", "", sender.getLocale());
+                            SurveyHelper.printWarningMessage(
+                                "Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPCï¿½s e-Tool once you have determined your legal authority for this program or activity.",
+                                "",
+                                sender.getLocale()
+                            );
                             return;
                         }
-
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
-
                         const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-6");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            SurveyHelper.printWarningMessage(
+                                "a message is needed here to tell the user to quit the tool...",
+                                "",
+                                sender.getLocale()
+                            );
                             return;
                         }
-
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
-
                         const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            SurveyHelper.printWarningMessage(
+                                "a message is needed here to tell the user to quit the tool...",
+                                "",
+                                sender.getLocale()
+                            );
                             return;
                         }
-
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
-
                         const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage("a message is needed here to tell the user to quit the tool...", "", sender.getLocale());
+                            SurveyHelper.printWarningMessage(
+                                "a message is needed here to tell the user to quit the tool...",
+                                "",
+                                sender.getLocale()
+                            );
                             return;
                         }
                     }
@@ -147,9 +144,7 @@ export class PiaETool {
                 });
 
                 _survey.onAfterRenderQuestion.add((sender, options) => {
-
                     if (options.question.name === "PersonContact") {
-
                         //  We are building a list of person contacts to use as choices for the
                         //  dropdown type question PersonContact at question 2.1.9
 
@@ -166,10 +161,14 @@ export class PiaETool {
                         personContact.choices.push(itemOther);
 
                         //  2) Question 2.1.5 - Who is the head of the government institution
-                        const headYourInstitutionFullname = _survey.getQuestionByName("HeadYourInstitutionFullname") as Survey.QuestionTextModel;
+                        const headYourInstitutionFullname = _survey.getQuestionByName(
+                            "HeadYourInstitutionFullname"
+                        ) as Survey.QuestionTextModel;
                         if (headYourInstitutionFullname) {
-                            const item: Survey.ItemValue =
-                                new Survey.ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
+                            const item: Survey.ItemValue = new Survey.ItemValue(
+                                headYourInstitutionFullname.value,
+                                headYourInstitutionFullname.value
+                            );
                             personContact.choices.push(item);
                         }
 
@@ -180,19 +179,21 @@ export class PiaETool {
                             personContact.choices.push(item);
                         }
 
-                        const singleOrMultiInstitutionPIA = _survey.getQuestionByName("SingleOrMultiInstitutionPIA") as Survey.QuestionRadiogroupModel;
+                        const singleOrMultiInstitutionPIA = _survey.getQuestionByName(
+                            "SingleOrMultiInstitutionPIA"
+                        ) as Survey.QuestionRadiogroupModel;
                         if (singleOrMultiInstitutionPIA.selectedItem && singleOrMultiInstitutionPIA.selectedItem.value === "multi") {
-
                             const behalfMultipleInstitutionOthers = _survey.getQuestionByValueName("BehalfMultipleInstitutionOthers");
                             if (behalfMultipleInstitutionOthers && behalfMultipleInstitutionOthers.value) {
                                 const arrayOfItem = behalfMultipleInstitutionOthers.value as any[];
                                 arrayOfItem.forEach(item => {
-
                                     //  Question 2.1.6 - Head of the government institution or delegate
                                     if (item.OtherInstitutionHeadFullname) {
                                         if (!personContact.choices.some(contact => contact.value === item.OtherInstitutionHeadFullname)) {
-                                            const itemOtherInstitutionHeadFullname: Survey.ItemValue =
-                                                new Survey.ItemValue(item.OtherInstitutionHeadFullname, item.OtherInstitutionHeadFullname);
+                                            const itemOtherInstitutionHeadFullname: Survey.ItemValue = new Survey.ItemValue(
+                                                item.OtherInstitutionHeadFullname,
+                                                item.OtherInstitutionHeadFullname
+                                            );
                                             personContact.choices.push(itemOtherInstitutionHeadFullname);
                                         }
                                     }
@@ -200,8 +201,10 @@ export class PiaETool {
                                     //  Question 2.1.8 - Senior official or executive responsible
                                     if (item.SeniorOfficialOtherFullname) {
                                         if (!personContact.choices.some(contact => contact.value === item.SeniorOfficialOtherFullname)) {
-                                            const itemSeniorOther: Survey.ItemValue =
-                                                new Survey.ItemValue(item.SeniorOfficialOtherFullname, item.SeniorOfficialOtherFullname);
+                                            const itemSeniorOther: Survey.ItemValue = new Survey.ItemValue(
+                                                item.SeniorOfficialOtherFullname,
+                                                item.SeniorOfficialOtherFullname
+                                            );
                                             personContact.choices.push(itemSeniorOther);
                                         }
                                     }
