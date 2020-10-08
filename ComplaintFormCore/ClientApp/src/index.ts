@@ -3,8 +3,8 @@
 import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
-import "details-polyfill";  //  Polyfill to open/close the <details> tags
-import "element-closest-polyfill";  //  Polyfill to use Element.closest
+import "details-polyfill"; //  Polyfill to open/close the <details> tags
+import "element-closest-polyfill"; //  Polyfill to use Element.closest
 
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
@@ -54,7 +54,6 @@ declare let Symbol;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
         globalThis.initPaSurvey = (lang, token) => {
-
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             CheckboxWidget.init();
@@ -64,7 +63,6 @@ declare let Symbol;
         };
 
         globalThis.initPiaETool = (lang, token) => {
-
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
             const piaETool = new PiaETool();
             piaETool.init(jsonUrl, lang, token);
