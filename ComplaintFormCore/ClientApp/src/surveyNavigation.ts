@@ -27,7 +27,9 @@ export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel
     const showPreviewButton = document.getElementById("btnShowPreview") ?? new HTMLElement();
     showPreviewButton.classList.remove("hidden");
     showPreviewButton.classList.remove("inline");
-    showPreviewButton.classList.add(!survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "hidden");
+    showPreviewButton.classList.add(
+        !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "hidden"
+    );
 
     const completeButton = document.getElementById("btnComplete") ?? new HTMLElement();
     completeButton.classList.remove("hidden");

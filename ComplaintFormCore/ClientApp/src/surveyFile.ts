@@ -14,10 +14,8 @@ export function initSurveyFile(): void {
 }
 
 export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
-
     survey.onAfterRenderQuestion.add((sender, options) => {
         if (options.question.getType() === "file") {
-
             //  This is to build the file preview, we're not using the native one
 
             //  First we create a div container to hold all of the attachments
@@ -88,11 +86,11 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         options.callback(
                             "success",
                             options.files.map(f =>
-                            // We cannot store the file content in local storage because of
-                            // the 5MB storage limit. The problem was with the file size
-                            // e.g. without file content, there is no way to know the file
-                            // size. The work around is to store the file size in the
-                            // 'content' property.
+                                // We cannot store the file content in local storage because of
+                                // the 5MB storage limit. The problem was with the file size
+                                // e.g. without file content, there is no way to know the file
+                                // size. The work around is to store the file size in the
+                                // 'content' property.
 
                                 ({
                                     file: new File([f], newFilename, {
@@ -104,7 +102,8 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
                         );
                     } else {
                         if (response.json) {
-                            response.json()
+                            response
+                                .json()
                                 .then(problem => {
                                     printProblemDetails(problem, sender.locale);
                                 })
@@ -146,7 +145,7 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
             const button = document.createElement("div");
             button.className = "btn sv-btn sv-file__choose-btn";
 
-            const fileSizeInBytes = fileItem.content as number || 0;
+            const fileSizeInBytes = (fileItem.content as number) || 0;
             let size = 0;
 
             if (fileSizeInBytes < 1000) {
@@ -165,10 +164,12 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
                     .then(response => {
                         if (!response.ok) {
                             if (response.json) {
-                                response.json()
+                                response
+                                    .json()
                                     .then(problem => {
                                         printProblemDetails(problem, survey.locale);
-                                    }).catch(error => {
+                                    })
+                                    .catch(error => {
                                         console.warn(error);
                                     });
                             }
@@ -219,7 +220,6 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
         });
 
         container.appendChild(listView);
-
     } else {
         const titleElement = document.createElement("p");
         titleElement.innerHTML = getTranslation(question.itemListNoAttachmentsText, survey.locale);
