@@ -1,0 +1,13 @@
+{
+    "eslint.enable": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.workingDirectories": [
+        {
+            "directory": "ComplaintFormCore/ClientApp",
+            "changeProcessCWD": true
+        }
+    ],
+    "eslint.format.enable": true
+}

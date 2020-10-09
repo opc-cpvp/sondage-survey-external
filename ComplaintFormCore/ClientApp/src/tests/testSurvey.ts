@@ -7,7 +7,6 @@ import * as SurveyLocalStorage from "../surveyLocalStorage";
 import { printProblemDetails } from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 
-
 // declare global {
 //    // TODO: get rid of this global variable
 //    var survey: Survey.SurveyModel; // eslint-disable-line no-var
@@ -16,10 +15,7 @@ import * as SurveyNavigation from "../surveyNavigation";
 export class TestSurvey {
     public init(jsonUrl: string, lang: string, token: string): void {
         function onCurrentPageChanged_saveState(survey) {
-            SurveyLocalStorage.saveStateLocally(
-                survey,
-                SurveyLocalStorage.storageName_Test
-            );
+            SurveyLocalStorage.saveStateLocally(survey, SurveyLocalStorage.storageName_Test);
         }
 
         SurveyInit.initSurvey();
@@ -44,11 +40,7 @@ export class TestSurvey {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(
-                    survey,
-                    SurveyLocalStorage.storageName_Test,
-                    JSON.stringify(defaultData)
-                );
+                SurveyLocalStorage.loadStateLocally(survey, SurveyLocalStorage.storageName_Test, JSON.stringify(defaultData));
 
                 // Save the state back to local storage
                 onCurrentPageChanged_saveState(survey);
@@ -63,10 +55,7 @@ export class TestSurvey {
 
                     const xhr = new XMLHttpRequest();
                     xhr.open("POST", `/api/PASurvey/Validate?complaintId="${sender.complaintId as string}`, false);
-                    xhr.setRequestHeader(
-                        "Content-Type",
-                        "application/json; charset=utf-8"
-                    );
+                    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
                     xhr.onload = xhr.onerror = () => {
                         if (xhr.status === 200) {
                             options.allowComplete = true;

@@ -5,10 +5,7 @@ export class CheckboxWidget extends Widget {
     private activatedBy = "property";
 
     constructor() {
-        super(
-            "checkboxwithhtmlinfo",
-            "Checkbox list with addtional Html info"
-        );
+        super("checkboxwithhtmlinfo", "Checkbox list with addtional Html info");
     }
 
     static init(): void {
@@ -25,10 +22,7 @@ export class CheckboxWidget extends Widget {
      */
     isFit(question: Survey.IQuestion): boolean {
         if (this.activatedBy === "property") {
-            return (
-                question.renderAs === "checkboxwithhtmlinfo" &&
-                question.getType() === "checkbox"
-            );
+            return question.renderAs === "checkboxwithhtmlinfo" && question.getType() === "checkbox";
         } else if (this.activatedBy === "type") {
             return question.getType() === "checkbox";
         } else if (this.activatedBy === "customtype") {
@@ -67,10 +61,10 @@ export class CheckboxWidget extends Widget {
      * @param el
      */
     afterRender(question: Survey.IQuestion, el: HTMLElement): void {
-        const checkboxQuestion: Survey.QuestionCheckboxModel = question as unknown as Survey.QuestionCheckboxModel;
+        const checkboxQuestion: Survey.QuestionCheckboxModel = (question as unknown) as Survey.QuestionCheckboxModel;
         const locale = question.getLocale();
 
-        for(const choice of checkboxQuestion.choices) {
+        for (const choice of checkboxQuestion.choices) {
             const item: Survey.ItemValue = choice as Survey.ItemValue;
 
             // ignore choices without the additional info
