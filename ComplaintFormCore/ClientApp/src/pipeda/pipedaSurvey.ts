@@ -13,17 +13,14 @@ declare global {
 }
 
 export class PipedaTool {
-
     private storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
 
     public init(jsonUrl: string, lang: string, token: string): void {
-
         SurveyInit.initSurvey();
 
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-
                 const _survey = new Survey.Model(json);
                 globalThis.survey = _survey;
 
@@ -36,7 +33,6 @@ export class PipedaTool {
                 let isValidSurvey = false;
 
                 _survey.onCompleting.add((sender, options) => {
-
                     if (isValidSurvey === true) {
                         options.allowComplete = true;
                         return;
@@ -54,26 +50,27 @@ export class PipedaTool {
                         },
                         // body: JSON.stringify(testData_pipeda)
                         body: JSON.stringify(sender.data)
-                    }).then(response => {
-                        if (response.ok) {
-                            //  Validation is good then we set the variable so the next call to doComplete()
-                            //  will bypass the validation
-                            isValidSurvey = true;
-                            _survey.doComplete();
-
-                        } else {
-                            if (response.json) {
-                                void response.json().then(problem => {
-                                    SurveyHelper.printProblemDetails(problem, sender.locale);
-                                });
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        SurveyHelper.printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
+                        })
+                        .catch(error => {
+                            console.warn(error);
                             Ladda.stopAll();
-                            return response;
-                        }
-                    }).catch(error => {
-                        console.warn(error);
-                        Ladda.stopAll();
-                    });
+                        });
                 });
 
                 _survey.onComplete.add((sender, options) => {
@@ -82,7 +79,6 @@ export class PipedaTool {
                 });
 
                 _survey.onCurrentPageChanging.add((sender, options) => {
-
                     //  The event is fired before the current page changes to another page.
                     //  Typically it happens when a user click the 'Next' or 'Prev' buttons.
                     //  sender - the survey object that fires the event.
@@ -103,16 +99,17 @@ export class PipedaTool {
                     options.allowChanging = true;
                 });
 
-                _survey.onAfterRenderQuestion.add((sender, options) => {
-
-                });
+                _survey.onAfterRenderQuestion.add((sender, options) => {});
 
                 survey.onAfterRenderPage.add((sender, options) => {
-
-                    const pagesRequiringProvinceTranslations = ["page_part_a_jurisdiction_unable_1", "page_part_a_jurisdiction_particulars", "page_part_a_customer_or_employee", "page_part_a_jurisdiction_unable_2"];
+                    const pagesRequiringProvinceTranslations = [
+                        "page_part_a_jurisdiction_unable_1",
+                        "page_part_a_jurisdiction_particulars",
+                        "page_part_a_customer_or_employee",
+                        "page_part_a_jurisdiction_unable_2"
+                    ];
 
                     if (pagesRequiringProvinceTranslations.some(p => p === options.page.name)) {
-
                         //  Set the french province prefixes for those pages.
 
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
@@ -120,19 +117,23 @@ export class PipedaTool {
                             const selectedProvinceId = Number(selectedProvinceQuestion.value);
 
                             //  en, au, à...
-                            _survey.setVariable("province_incidence_prefix_au", SurveyHelper.getProvinceFrenchPrefix_au(selectedProvinceId));
+                            _survey.setVariable(
+                                "province_incidence_prefix_au",
+                                SurveyHelper.getProvinceFrenchPrefix_au(selectedProvinceId)
+                            );
 
                             //  de, du, de la...
-                            _survey.setVariable("province_incidence_prefix_du", SurveyHelper.getProvinceFrenchPrefix_du(selectedProvinceId));
+                            _survey.setVariable(
+                                "province_incidence_prefix_du",
+                                SurveyHelper.getProvinceFrenchPrefix_du(selectedProvinceId)
+                            );
                         }
                     }
 
                     if (options.page.name === "page_part_a_jurisdiction_unable_1") {
-
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
 
                         if (selectedProvinceQuestion.value) {
-
                             //  We are setting some dynamic urls depending on the province of incidence selected by the user.
 
                             const selectedProvinceId = selectedProvinceQuestion.value as number;
@@ -144,62 +145,79 @@ export class PipedaTool {
                                 } else {
                                     _survey.setVariable("province_link", "https://www.cai.gouv.qc.ca/english/");
                                 }
-
                             } else if (selectedProvinceId === 6) {
                                 //  B.C.
                                 _survey.setVariable("province_link", "https://www.oipc.bc.ca/for-the-public/");
                             } else if (selectedProvinceId === 9) {
                                 //  Alberta
-                                _survey.setVariable("province_link", "https://www.oipc.ab.ca/action-items/request-a-review-file-a-complaint.aspx");
+                                _survey.setVariable(
+                                    "province_link",
+                                    "https://www.oipc.ab.ca/action-items/request-a-review-file-a-complaint.aspx"
+                                );
                             }
                         }
                     } else if (options.page.name === "page_part_a_jurisdiction_unable_2") {
-
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
                         if (selectedProvinceQuestion.value) {
-
                             //  We are setting some dynamic urls depending on the province of incidence selected by the user.
 
                             const selectedProvinceId = selectedProvinceQuestion.value as number;
 
-                            _survey.setVariable("link_similar_to_pipeda_en", "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/r_o_p/provincial-legislation-deemed-substantially-similar-to-pipeda/");
+                            _survey.setVariable(
+                                "link_similar_to_pipeda_en",
+                                "https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/r_o_p/provincial-legislation-deemed-substantially-similar-to-pipeda/"
+                            );
 
-                            _survey.setVariable("link_similar_to_pipeda_fr", "https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/r_o_p/lois-provinciales-essentiellement-similaires-a-la-lprpde/");
+                            _survey.setVariable(
+                                "link_similar_to_pipeda_fr",
+                                "https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/r_o_p/lois-provinciales-essentiellement-similaires-a-la-lprpde/"
+                            );
 
-                            if (selectedProvinceId === 1) {  //  Ontario
+                            if (selectedProvinceId === 1) {
+                                //  Ontario
                                 if (sender.locale === "fr") {
-                                    _survey.setVariable("link_province_opc", "https://www.ipc.on.ca/protection-de-la-vie-privee-particuliers/proteger-sa-vie-privee-2/?lang=fr");
+                                    _survey.setVariable(
+                                        "link_province_opc",
+                                        "https://www.ipc.on.ca/protection-de-la-vie-privee-particuliers/proteger-sa-vie-privee-2/?lang=fr"
+                                    );
                                 } else {
                                     _survey.setVariable("link_province_opc", "https://www.ipc.on.ca/privacy/filing-a-privacy-complaint/");
                                 }
-                            } else if (selectedProvinceId === 3) {    //  Nova Scotia
+                            } else if (selectedProvinceId === 3) {
+                                //  Nova Scotia
                                 if (sender.locale === "fr") {
                                     survey.setVariable("link_province_opc", "https://foipop.ns.ca/publictools");
                                 } else {
                                     survey.setVariable("link_province_opc", "https://foipop.ns.ca/publictools");
                                 }
-                            } else if (selectedProvinceId === 4) {     //  New Brunswick
+                            } else if (selectedProvinceId === 4) {
+                                //  New Brunswick
 
                                 if (sender.locale === "fr") {
                                     survey.setVariable("link_province_opc", "https://oic-bci.ca/?lang=fr");
                                 } else {
                                     _survey.setVariable("link_province_opc", "http://www.beta-theta.com/information-and-privacy.html");
                                 }
-                            } else if (selectedProvinceId === 5) {   // Manitoba
+                            } else if (selectedProvinceId === 5) {
+                                // Manitoba
                                 if (sender.locale === "fr") {
                                     _survey.setVariable("link_more_info", "https://www.ombudsman.mb.ca/info/access-and-privacy-fr.html");
                                 } else {
-                                    _survey.setVariable("link_more_info", "https://www.ombudsman.mb.ca/info/access-and-privacy-division.html");
+                                    _survey.setVariable(
+                                        "link_more_info",
+                                        "https://www.ombudsman.mb.ca/info/access-and-privacy-division.html"
+                                    );
                                 }
-                            } else if (selectedProvinceId === 7) {   // PEI
+                            } else if (selectedProvinceId === 7) {
+                                // PEI
 
                                 survey.setVariable("link_more_info", "https://www.assembly.pe.ca/");
-
-                            } else if (selectedProvinceId === 8) {   // Saskatchewan
+                            } else if (selectedProvinceId === 8) {
+                                // Saskatchewan
 
                                 _survey.setVariable("link_more_info", "https://oipc.sk.ca/");
-
-                            } else if (selectedProvinceId === 10) {    // Newfound land
+                            } else if (selectedProvinceId === 10) {
+                                // Newfound land
 
                                 survey.setVariable("link_province_opc", "https://www.oipc.nl.ca/public/investigations/privacy");
                             }
@@ -228,7 +246,7 @@ export class PipedaTool {
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
-                const defaultData = { };
+                const defaultData = {};
 
                 // Load the initial state
                 SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIPEDA, JSON.stringify(defaultData));

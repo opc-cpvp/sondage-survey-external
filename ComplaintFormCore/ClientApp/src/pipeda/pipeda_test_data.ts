@@ -1,5 +1,4 @@
 ﻿export const testData_pipeda = {
-
     AgainstOrganizations: "no",
     ComplaintAgainstHandlingOfInformation: "no",
     EmployeeOrCustomer: "employee",
@@ -13,6 +12,6 @@
         "first_nation",
         "individual",
         "journalism",
-        "political_party",
+        "political_party"
     ]
 };

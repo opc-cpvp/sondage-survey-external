@@ -157,22 +157,21 @@ export function clearProblemDetails(): void {
 }
 
 export function getProvinceFrenchPrefix_au(provinceId: number): string {
-
     switch (provinceId) {
         case 1: //  Ontario
         case 3: //  Nouvelle Ecosse
         case 6: //  Columbie Britanique
         case 8: //  Sasketchewan
-        case 9: //  Alberta
-        {
+        case 9: {
+            //  Alberta
             return "en ";
         }
         case 2: //  Quebec
         case 4: //  Nouveau-Brunswick
         case 5: //  Manitoba
         case 11: //  Nunavut
-        case 12: //  Yukon
-        {
+        case 12: {
+            //  Yukon
             return "au ";
         }
         case 7: {
@@ -197,27 +196,26 @@ export function getProvinceFrenchPrefix_au(provinceId: number): string {
 }
 
 export function getProvinceFrenchPrefix_du(provinceId: number): string {
-
     switch (provinceId) {
         case 1: //  Ontario
         case 9: //  Alberta
         case 7: //  Ile du Prince Edouard
-        case 14: //  Autre
-        {
+        case 14: {
+            //  Autre
             return "de l'";
         }
         case 2: //  Quebec
         case 4: //  Nouveau-Brunswick
         case 5: //  Manitoba
-        case 11:    //  Nunavut
-        case 12:    //  Yukon
-        {
+        case 11: //  Nunavut
+        case 12: {
+            //  Yukon
             return "du ";
         }
         case 8: //  Sasketchewan
         case 6: //  Columbie Britanique
-        case 3: //  Nouvelle Ecosse
-        {
+        case 3: {
+            //  Nouvelle Ecosse
             return "de la ";
         }
         case 10: {

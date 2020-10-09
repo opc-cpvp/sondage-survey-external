@@ -71,7 +71,6 @@ declare let Symbol;
         };
 
         globalThis.initPipeda = (lang, token) => {
-
             const jsonUrl = "/sample-data/survey_pipeda_complaint.json";
             const pipedaTool = new PipedaTool();
             pipedaTool.init(jsonUrl, lang, token);
