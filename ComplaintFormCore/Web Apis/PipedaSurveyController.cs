@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ComplaintFormCore.Exceptions;
 using ComplaintFormCore.Models;
 using ComplaintFormCore.Models.pia;
+using ComplaintFormCore.Models.pipeda;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,19 +15,19 @@ namespace ComplaintFormCore.Web_Apis
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class PIASurveyController : ControllerBase
+    public class PipedaSurveyController : ControllerBase
     {
         private readonly SharedLocalizer _localizer;
 
-        public PIASurveyController(IStringLocalizerFactory factory)
+        public PipedaSurveyController(IStringLocalizerFactory factory)
         {
             _localizer = new SharedLocalizer(factory);
         }
 
         [HttpPost]
-        public IActionResult Validate([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
+        public IActionResult Validate([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
         {
-            var validator = new SurveyPIAToolModelValidator(_localizer);
+            var validator = new SurveyPipedaModelValidator(_localizer);
             var results = validator.Validate(model);
 
             if (!results.IsValid)
