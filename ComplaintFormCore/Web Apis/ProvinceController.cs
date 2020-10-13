@@ -23,12 +23,12 @@ namespace ComplaintFormCore.Web_Apis
                 language = lang;
             }
 
-            List<Province> provinces = new List<Province>();
+            var provinces = new List<Province>();
 
             var addOtherArg = HttpContext.Request.Query.Where(k => k.Key == "addOther").Select(v => v.Value).FirstOrDefault();
-            bool addOther = false;
+            var addOther = false;
 
-            if (string.IsNullOrWhiteSpace(addOtherArg) == false)
+            if (!string.IsNullOrWhiteSpace(addOtherArg))
             {
                 bool.TryParse(addOtherArg, out addOther);
             }
