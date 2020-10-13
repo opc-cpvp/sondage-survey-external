@@ -201,7 +201,7 @@ export class PipedaTool {
                 SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIPEDA);
 
                 // Save the state back to local storage
-                //  this.onCurrentPageChanged_saveState(_survey);
+                // this.onCurrentPageChanged_saveState(_survey);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
