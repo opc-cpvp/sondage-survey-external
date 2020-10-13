@@ -15,17 +15,14 @@ declare global {
 }
 
 export class PipedaTool {
-
     private storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
 
     public init(jsonUrl: string, lang: string, token: string): void {
-
         SurveyInit.initSurvey();
 
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-
                 const _survey = new Survey.Model(json);
                 globalThis.survey = _survey;
 
@@ -38,7 +35,6 @@ export class PipedaTool {
                 let isValidSurvey = false;
 
                 _survey.onCompleting.add((sender, options) => {
-
                     if (isValidSurvey === true) {
                         options.allowComplete = true;
                         return;
@@ -56,26 +52,27 @@ export class PipedaTool {
                         },
                         // body: JSON.stringify(testData_pipeda)
                         body: JSON.stringify(sender.data)
-                    }).then(response => {
-                        if (response.ok) {
-                            //  Validation is good then we set the variable so the next call to doComplete()
-                            //  will bypass the validation
-                            isValidSurvey = true;
-                            _survey.doComplete();
-
-                        } else {
-                            if (response.json) {
-                                void response.json().then(problem => {
-                                    SurveyHelper.printProblemDetails(problem, sender.locale);
-                                });
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        SurveyHelper.printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
+                        })
+                        .catch(error => {
+                            console.warn(error);
                             Ladda.stopAll();
-                            return response;
-                        }
-                    }).catch(error => {
-                        console.warn(error);
-                        Ladda.stopAll();
-                    });
+                        });
                 });
 
                 _survey.onComplete.add((sender, options) => {
@@ -84,7 +81,6 @@ export class PipedaTool {
                 });
 
                 _survey.onCurrentPageChanging.add((sender, options) => {
-
                     //  The event is fired before the current page changes to another page.
                     //  Typically it happens when a user click the 'Next' or 'Prev' buttons.
                     //  sender - the survey object that fires the event.
@@ -105,16 +101,17 @@ export class PipedaTool {
                     options.allowChanging = true;
                 });
 
-                _survey.onAfterRenderQuestion.add((sender, options) => {
-
-                });
+                _survey.onAfterRenderQuestion.add((sender, options) => {});
 
                 survey.onAfterRenderPage.add((sender, options) => {
-
-                    const pagesRequiringProvinceTranslations = ["page_part_a_jurisdiction_unable_1", "page_part_a_jurisdiction_particulars", "page_part_a_customer_or_employee", "page_part_a_jurisdiction_unable_2"];
+                    const pagesRequiringProvinceTranslations = [
+                        "page_part_a_jurisdiction_unable_1",
+                        "page_part_a_jurisdiction_particulars",
+                        "page_part_a_customer_or_employee",
+                        "page_part_a_jurisdiction_unable_2"
+                    ];
 
                     if (pagesRequiringProvinceTranslations.some(p => p === options.page.name)) {
-
                         //  Set the french province prefixes for those pages.
 
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
@@ -130,11 +127,9 @@ export class PipedaTool {
                     }
 
                     if (options.page.name === "page_part_a_jurisdiction_unable_1") {
-
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
 
                         if (selectedProvinceQuestion.value) {
-
                             //  We are setting some dynamic urls depending on the province of incidence selected by the user.
 
                             const selectedProvinceId = selectedProvinceQuestion.value as number;
@@ -146,11 +141,9 @@ export class PipedaTool {
                             }
                         }
                     } else if (options.page.name === "page_part_a_jurisdiction_unable_2") {
-
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
 
                         if (selectedProvinceQuestion.value) {
-
                             //  We are setting some dynamic urls depending on the province of incidence selected by the user.
 
                             const selectedProvinceId = selectedProvinceQuestion.value as number;
@@ -188,7 +181,7 @@ export class PipedaTool {
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
-                const defaultData = { };
+                const defaultData = {};
 
                 // Load the initial state
                 SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIPEDA, JSON.stringify(defaultData));
