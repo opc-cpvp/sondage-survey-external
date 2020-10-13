@@ -791,7 +791,7 @@
         "fr": ""
       },
       "section": 2,
-      "visibleIf": "[{SingleOrMultiInstitutionPIA}] anyof ['single','single_related']",
+      "visibleIf": "{SingleOrMultiInstitutionPIA} anyof ['single','single_related']",
       "elements": [
         {
           "type": "dropdown",
@@ -1937,7 +1937,7 @@
         },
         {
           "type": "html",
-          "visibleIf": "{ NewOrUpdatedPIA } contains 'update_pia'",
+          "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
           "html": {
             "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‘Skip this question’</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
             "fr": ""

@@ -8,12 +8,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace SurveyToCS
 {
     class Program
     {
-        private static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "radiogroup", "boolean", "panel", "file", "checkbox", "matrixdynamic" };
+        private static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "radiogroup", "boolean", "panel", "file", "checkbox" };
         private static readonly List<string> _dynamicElements = new List<string>() { "matrixdynamic", "paneldynamic" };
 
         static void Main(string[] args)
@@ -22,8 +23,10 @@ namespace SurveyToCS
 
             //CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
             // string line = Console.ReadLine();
-             CreateValidators(json);
+             CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models"}, "ComplaintFormCore.Models", "SurveyPIAToolModel");
         }
+
+        #region Properties
 
         private static void CreateClassObject(string jsonFile, string _namespace, string className)
         {
@@ -31,7 +34,6 @@ namespace SurveyToCS
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
 
             StringBuilder csharp = new StringBuilder();
-            // csharp.AppendLine("using System.ComponentModel.DataAnnotations;");
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using System;");
             csharp.AppendLine();
@@ -42,7 +44,6 @@ namespace SurveyToCS
 
             csharp.Append("public class ");
             csharp.Append(className);
-            //csharp.AppendLine(" : IValidatableObject");
             csharp.AppendLine("{");
 
             foreach (var page in survey.pages)
@@ -50,18 +51,12 @@ namespace SurveyToCS
                 BuildProperty(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
             }
 
-            //csharp.AppendLine("public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)");
-            //csharp.AppendLine("{");
-            //csharp.AppendLine("throw new NotImplementedException();");
-            //csharp.AppendLine("}");
-
             csharp.Append("}"); // end class
 
             List<Element> survey_dynamic_elements = new List<Element>();
 
             foreach (var page in survey.pages)
             {
-                //    survey_dynamic_elements.AddRange(page.elements.Where(e => _dynamicElements.Contains(e.type)).ToList());
                 GetDynamicElements(survey_dynamic_elements, page.elements);
             }
 
@@ -88,65 +83,6 @@ namespace SurveyToCS
                 else
                 {
                     BuildElementSummary(csharp, element, pageObj);
-
-                    #region Attributes
-                    //if (element.isRequired)
-                    //{
-                    //    if(string.IsNullOrWhiteSpace(element.visibleIf))
-                    //    {
-                    //        csharp.AppendLine("[Required]");
-                    //    }
-                    //    else
-                    //    {
-                    //        //[RequiredIf(nameof(IsNewprogram), false, "This field is required")]
-                    //        csharp.AppendLine("[RequiredIf(\"nameof(property)\", \"value to valid against\", \"error message\")] // TODO: VERIFY THIS");
-                    //    }
-                    //}
-
-                    //if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null)
-                    //{
-                    //    //[IsInList(new string[] { "receive_email", "no_email", "conduct_pia" }, "Invalid value. Possible values: receive_email, no_email, conduct_pia")]
-
-                    //    csharp.Append("[IsInList(new string[] {");
-
-                    //    for(int i=0; i<element.choices.Count;i++)
-                    //    {
-                    //        var choice = element.choices[i];
-
-                    //        csharp.Append("\"");
-                    //        csharp.Append(choice.value);
-                    //        csharp.Append("\"");
-
-                    //        if (i < element.choices.Count)
-                    //        {
-                    //            csharp.Append(",");
-                    //        }
-                    //    }
-
-                    //    csharp.Append("}, \"Invalid value. Possible choices: ");
-                    //    csharp.AppendJoin(", ", element.choices.Select(c => c.value));
-                    //    csharp.AppendLine("\")]");
-                    //}
-
-                    //if (element.maxLength != null)
-                    //{
-                    //    csharp.Append("[StringLength(");
-                    //    csharp.Append(((int)element.maxLength).ToString());
-                    //    csharp.AppendLine(")]");
-                    //}
-                    //else
-                    //{
-                    //    //  Adding default length values
-                    //    if (element.type == "comment")
-                    //    {
-                    //        csharp.AppendLine("[StringLength(5000)]");
-                    //    }
-                    //    else if (element.type == "text")
-                    //    {
-                    //        csharp.AppendLine("[StringLength(100)]");
-                    //    }
-                    //}
-                    #endregion
 
                     csharp.Append("public ");
 
@@ -337,155 +273,401 @@ namespace SurveyToCS
             csharp.AppendLine("/// </summary>");
         }
 
-        private static string CapitalizeFirstLetter(string str)
-        {
-            return char.ToUpper(str[0]) + str.Substring(1);
-        }
+        #endregion
 
-        private static void CreateValidators(string json)
+        #region Validators
+        private static void CreateValidators(string jsonFileLocation, List<string> usings, string _namespace, string className)
         {
-            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(json));
+            SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFileLocation));
+
+            //  Get a list of dynamic properties, from the matrixdynamic and the paneldynamic.
+            //  Then if there is such items, we create the classes validators
+            List<Element> survey_dynamic_elements = new List<Element>();
+            foreach (var page in survey.pages)
+            {
+                GetDynamicElements(survey_dynamic_elements, page.elements);
+            }
+
             StringBuilder csharp = new StringBuilder();
+            csharp.AppendLine("using System.Collections.Generic;");
+            csharp.AppendLine("using FluentValidation;");
+
+            foreach(string item in usings)
+            {
+                csharp.Append("using ");
+                csharp.Append(item);
+                csharp.AppendLine(";");
+            }
+
+            csharp.AppendLine();
+
+            csharp.Append("namespace ");
+            csharp.AppendLine(_namespace);
+            csharp.AppendLine("{");
+
+            //  STEP 1: Create the class(s) implementing AbstractValidator
+
+            //  Create the main class validator
+            csharp.Append("public partial class ");
+            csharp.Append(className);
+            csharp.Append("Validator: AbstractValidator<");
+            csharp.Append(className);
+            csharp.Append(">");
+            csharp.AppendLine("{");
+
+            //  constructor
+            csharp.Append("public ");
+            csharp.Append(className);
+            csharp.Append("Validator(SharedLocalizer _localizer)");
+            csharp.AppendLine("{");
+
+            csharp.AppendLine("ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;");
+            csharp.AppendLine();
 
             foreach (var page in survey.pages)
             {
-                BuildValidator(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
+                //  We don't want to deal with the non-html elements just now
+                BuildPageValidator(csharp, page.elements.Where(e => e.type != "html").ToList(), page);
             }
+
+            if (survey_dynamic_elements.Count > 0)
+            {
+                SetDynamicValidators(csharp, survey_dynamic_elements);
+            }
+
+            csharp.AppendLine("}"); // end constructor
+            csharp.AppendLine("}"); // end main class
+
+            if (survey_dynamic_elements.Count > 0)
+            {
+                BuildDynamicValidators(csharp, survey_dynamic_elements);
+            }
+
+            csharp.AppendLine("}");// end namespace
 
             Console.WriteLine(csharp.ToString());
             Console.ReadLine();
         }
 
-        private static void BuildValidator(StringBuilder csharp, List<Element> elements, Page parentPage, Element parentPanel = null)
+        private static void BuildPageValidator(StringBuilder csharp, List<Element> elements, Page parentPage, Element parentPanel = null)
         {
-            if(parentPage.name == "page_step_3_3_1")
-            {
-
-            }
-
             foreach (var element in elements)
             {
                 if (element.type == "panel")
                 {
-                    BuildValidator(csharp, element.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), parentPage, element);
+                    BuildPageValidator(csharp, element.elements.Where(e => e.type != "html").ToList(), parentPage, element);
                 }
                 else
                 {
-                    string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
-
-                    csharp.Append("// ");
-                    csharp.AppendLine(elementName);
-
-                    if (element.isRequired)
-                    {
-                        csharp.Append("RuleFor(x => x.");
-                        csharp.Append(elementName);
-                        csharp.Append(").NotEmpty()");
-
-                        string visibleIf = string.Empty;
-
-                        if (!string.IsNullOrWhiteSpace(parentPage.visibleIf))
-                        {
-                            visibleIf += parentPage.visibleIf;
-                        }
-
-                        if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf))
-                        {
-                            if (!string.IsNullOrWhiteSpace(visibleIf))
-                            {
-                                visibleIf += " && ";
-                            }
-
-                            visibleIf += parentPanel.visibleIf;
-                        }
-
-                        if (!string.IsNullOrWhiteSpace(element.visibleIf))
-                        {
-                            //  There is a condition
-                            if (!string.IsNullOrWhiteSpace(visibleIf))
-                            {
-                                visibleIf += " && ";
-                            }
-
-                            visibleIf += element.visibleIf;
-                        }
-
-                        if (!string.IsNullOrWhiteSpace(visibleIf))
-                        {
-                            csharp.Append(".When(_ => true/* TODO: ");
-                            csharp.Append(visibleIf.Replace("contains", "==")); ;
-                            csharp.Append("*/)");
-                        }
-
-                        csharp.Append(".WithMessage(");
-                        csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsRequired\")); ");
-                    }
-
-                    if (element.type == "comment" || element.type == "text")
-                    {
-                        int maxLength = 5000;
-
-                        if (element.type == "text")
-                        {
-                            maxLength = 100;
-                        }
-
-                        if (element.maxLength != null)
-                        {
-                            maxLength = (int)element.maxLength;
-                        }
-
-                        csharp.Append("RuleFor(x => x.");
-                        csharp.Append(elementName);
-                        csharp.Append(").Length(0,");
-                        csharp.Append(maxLength);
-                        csharp.Append(")");
-
-                        csharp.Append(".WithMessage(");
-                        csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsOverCharacterLimit\")); ");
-                    }
-
-                    //  Check if selected option is in the list of valid options
-                    if ((element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown") && element.choices != null && element.choices.Count > 0)
-                    {
-                        //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
-
-                        csharp.Append("RuleFor(x => x.");
-                        csharp.Append(elementName);
-
-                        csharp.Append(").Must(x => new List<string> { ");
-
-                        for (int i = 0; i < element.choices.Count; i++)
-                        {
-                            var choice = element.choices[i];
-
-                            csharp.Append("\"");
-                            csharp.Append(choice.value);
-                            csharp.Append("\"");
-
-                            if (i < element.choices.Count)
-                            {
-                                csharp.Append(",");
-                            }
-                        }
-
-                        csharp.Append("}.Contains(x))");
-
-                        csharp.Append(".WithMessage(");
-                        csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
-                    }
-
-                    if (element.inputType == "email")
-                    {
-                        csharp.Append("RuleFor(x => x.");
-                        csharp.Append(elementName);
-                        csharp.AppendLine(").EmailAddress();");
-                    }
-
-                    csharp.AppendLine();
+                    BuildElementValidator(csharp, element, parentPage, parentPanel);
                 }
             }
         }
+
+        private static void BuildElementValidator(StringBuilder csharp, Element element, Page parentPage = null, Element parentPanel = null)
+        {
+            string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
+
+            csharp.Append("// ");
+            csharp.Append(elementName);
+
+            if (parentPage != null)
+            {
+                csharp.Append(" (Page: ");
+                csharp.Append(parentPage.name);
+                csharp.Append(")");
+            }
+
+            csharp.AppendLine();
+
+            string visibleIf = GetVisibleIf(element, parentPage, parentPanel);
+
+            if (element.isRequired)
+            {
+                BuildRequiredValidator(csharp, elementName, visibleIf);
+            }
+
+            if (type == "comment" || type == "text")
+            {
+                BuildMaxLengthValidator(csharp, element, visibleIf);
+            }
+
+            //  Check if selected option is in the list of valid options
+            if ((type == "checkbox" || type == "radiogroup" || type == "dropdown") && element.choices != null && element.choices.Count > 0)
+            {
+                BuildListValidator(csharp, element, visibleIf);
+            }
+
+            if (element.inputType == "email")
+            {
+                csharp.Append("RuleFor(x => x.");
+                csharp.Append(elementName);
+                csharp.AppendLine(").EmailAddress();");
+            }
+
+            csharp.AppendLine();
+        }
+
+        private static void SetDynamicValidators(StringBuilder csharp, List<Element> dynamicElements)
+        {
+            var groupedByValueName = from item in dynamicElements
+                                     group item by item.valueName into newGroup
+                                     orderby newGroup.Key
+                                     select newGroup;
+
+            foreach (var dynamicItem in groupedByValueName)
+            {
+                //RuleForEach(x => x.PersonalInformationCategory).SetValidator(new PersonalInformationCategoryValidator(_localizer));
+                csharp.Append("RuleForEach(x => x.");
+                csharp.Append(dynamicItem.Key);
+                csharp.Append(").SetValidator(new ");
+                csharp.Append(dynamicItem.Key);
+                csharp.AppendLine("Validator(_localizer));");
+            }
+        }
+
+        private static void BuildDynamicValidators(StringBuilder csharp, List<Element> dynamicElements)
+        {
+            var groupedByValueName = from item in dynamicElements
+                                     group item by item.valueName into newGroup
+                                     orderby newGroup.Key
+                                     select newGroup;
+
+            foreach (var dynamicItem in groupedByValueName)
+            {
+                csharp.Append("public partial class ");
+                csharp.Append(dynamicItem.Key);
+                csharp.Append("Validator: AbstractValidator<");
+                csharp.Append(dynamicItem.Key);
+                csharp.Append(">");
+                csharp.AppendLine("{");
+
+                //  constructor
+                csharp.Append("public ");
+                csharp.Append(dynamicItem.Key);
+                csharp.Append("Validator(SharedLocalizer _localizer)");
+                csharp.AppendLine("{");
+
+                csharp.AppendLine("ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;");
+                csharp.AppendLine();
+
+                foreach (var element in dynamicItem)
+                {
+                    if (element.type == "matrixdynamic")
+                    {
+                        foreach (var column in element.columns)
+                        {
+                            BuildElementValidator(csharp, column);
+                        }
+                    }
+                    else if (element.type == "paneldynamic")
+                    {
+                        foreach (var templateItem in element.templateElements)
+                        {
+                            BuildElementValidator(csharp, templateItem);
+                        }
+                    }
+                }
+
+                csharp.AppendLine("}"); // end constructor
+                csharp.AppendLine("}"); // end class
+            }
+        }
+
+        private static string GetVisibleIfFullCondition(Element element, Page parentPage, Element parentPanel = null)
+        {
+            string visibleIf = string.Empty;
+
+            if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
+            {
+                visibleIf += parentPage.visibleIf;
+            }
+
+            if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf))
+            {
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    visibleIf += " and ";
+                }
+
+                visibleIf += parentPanel.visibleIf;
+            }
+
+            if (!string.IsNullOrWhiteSpace(element.visibleIf))
+            {
+                //  There is a condition
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    visibleIf += " and ";
+                }
+
+                visibleIf += element.visibleIf;
+            }
+
+            if(string.IsNullOrWhiteSpace(visibleIf) == false)
+            {
+                return "_ => true/* TODO: " + visibleIf + "*/";
+            }
+
+            return string.Empty;
+
+        }
+        private static string GetVisibleIf(Element element, Page parentPage, Element parentPanel = null)
+        {
+            string visibleIfFullCondition = GetVisibleIfFullCondition(element, parentPage, parentPanel);
+
+            string visibleIf = string.Empty;
+
+            if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf) && parentPage.visibleIf.Count(f => f == '{') == 1
+                && (parentPage.visibleIf.Contains("contains") || parentPage.visibleIf.Contains("=")))
+            {
+                visibleIf += "x => x." + parentPage.visibleIf.Replace("{", "").Replace("}", "").Replace("=", "==").Replace("contains", "==").Replace("'", "\"");
+            }
+
+            if (parentPanel != null && !string.IsNullOrWhiteSpace(parentPanel.visibleIf) && parentPanel.visibleIf.Count(f => f == '{') == 1
+                && (parentPanel.visibleIf.Contains("contains") || parentPanel.visibleIf.Contains("=")))
+            {
+                if (string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    visibleIf += "x => x.";
+                }
+                else
+                {
+                    visibleIf += " && x.";
+                }
+
+                visibleIf += parentPanel.visibleIf.Replace("{", "").Replace("}", "").Replace("=", "==").Replace("contains", "==").Replace("'", "\"");
+            }
+
+            if (!string.IsNullOrWhiteSpace(element.visibleIf) && element.visibleIf.Count(f => f == '{') == 1
+                && (element.visibleIf.Contains("contains") || element.visibleIf.Contains("=")))
+            {
+                if (string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    visibleIf += "x => x.";
+                }
+                else
+                {
+                    visibleIf += " && x.";
+                }
+
+                visibleIf += element.visibleIf.Replace("{", "").Replace("}", "").Replace("=", "==").Replace("contains", "==").Replace("'", "\"");
+            }
+
+            if(string.IsNullOrWhiteSpace(visibleIf) && string.IsNullOrWhiteSpace(visibleIfFullCondition) == false)
+            {
+                return visibleIfFullCondition;
+            }
+
+            return visibleIf;
+        }
+
+        private static void BuildRequiredValidator(StringBuilder csharp, string elementName, string visibleIf)
+        {
+            csharp.Append("RuleFor(x => x.");
+            csharp.Append(elementName);
+            csharp.Append(").NotEmpty()");
+
+            if (!string.IsNullOrWhiteSpace(visibleIf))
+            {
+                ////{ProvinceIncidence} anyof [2,6,9] and [{ComplaintAboutHandlingInformationOutsideProvince}] anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'"
+
+
+                csharp.Append(".When( ");
+                csharp.Append(visibleIf); ;
+                csharp.Append(")");
+            }
+
+            csharp.Append(".WithMessage(");
+            csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsRequired\")); ");
+        }
+
+        private static void BuildMaxLengthValidator(StringBuilder csharp, Element element, string visibleIf)
+        {
+            int maxLength = 5000;
+            string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
+
+            if (type == "text")
+            {
+                maxLength = 100;
+            }
+
+            if (element.maxLength != null)
+            {
+                maxLength = (int)element.maxLength;
+            }
+
+            csharp.Append("RuleFor(x => x.");
+            csharp.Append(elementName);
+            csharp.Append(").Length(0,");
+            csharp.Append(maxLength);
+            csharp.Append(")");
+
+            if (!string.IsNullOrWhiteSpace(visibleIf))
+            {
+                csharp.Append(".When( ");
+                csharp.Append(visibleIf); ;
+                csharp.Append(")");
+            }
+
+            csharp.Append(".WithMessage(");
+            csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"FieldIsOverCharacterLimit\")); ");
+        }
+
+        private static void BuildListValidator(StringBuilder csharp, Element element, string visibleIf)
+        {
+            //  Check if selected option is in the list of valid options
+
+            //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
+
+            string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
+
+            if (type == "checkbox")
+            {
+                csharp.Append("RuleForEach(x => x.");
+            }
+            else
+            {
+                csharp.Append("RuleFor(x => x.");
+            }
+
+            csharp.Append(elementName);
+
+            csharp.Append(").Must(x => new List<string> { ");
+
+            for (int i = 0; i < element.choices.Count; i++)
+            {
+                var choice = element.choices[i];
+
+                csharp.Append("\"");
+                csharp.Append(choice.value);
+                csharp.Append("\"");
+
+                if (i < element.choices.Count - 1)
+                {
+                    csharp.Append(",");
+                }
+            }
+
+            csharp.Append("}.Contains(x))");
+
+            if (!string.IsNullOrWhiteSpace(visibleIf))
+            {
+                csharp.Append(".When( ");
+                csharp.Append(visibleIf); ;
+                csharp.Append(")");
+            }
+
+            csharp.Append(".WithMessage(");
+            csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
+        }
+
+        #endregion
+
+        #region Test Data
 
         private static void CreateTestData(string jsonFile)
         {
@@ -553,6 +735,7 @@ namespace SurveyToCS
 
             return "";
         }
+        #endregion
 
         private static void GetDynamicElements(List<Element> survey_dynamic_elements, List<Element> page_or_panel_elements)
         {
@@ -570,6 +753,31 @@ namespace SurveyToCS
                     }
                 }
             }
+        }
+
+        private static string CapitalizeFirstLetter(string str)
+        {
+            return char.ToUpper(str[0]) + str.Substring(1);
+        }
+    }
+
+    public class VisibleIfCondition
+    {
+        public string Property { get; set; }
+        public string Operator { get; set; }
+
+        public string Value { get; set; }
+
+        public VisibleIfCondition(string visibleIf)
+        {
+            //x => x.HasLegalAuthority
+
+            //  {HasLegalAuthority}  = false
+            //  {ContactATIPQ16} contains 'receive_email'
+            //  {SingleOrMultiInstitutionPIA} anyof ['single','single_related']
+            //  {IsInformationPhysicalFormat} = true and {IsInformationPhysicalConvertedCopy} = true
+            //  {ProvinceIncidence} anyof [2,6,9] and {ComplaintAboutHandlingInformationOutsideProvince} anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'"
+
         }
     }
 }
