@@ -119,10 +119,16 @@ export class PipedaTool {
                             const selectedProvinceId = Number(selectedProvinceQuestion.value);
 
                             //  en, au, à...
-                            _survey.setVariable("province_incidence_prefix_au", PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Au);
+                            _survey.setVariable(
+                                "province_incidence_prefix_au",
+                                PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Au
+                            );
 
                             //  de, du, de la...
-                            _survey.setVariable("province_incidence_prefix_du", PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Du);
+                            _survey.setVariable(
+                                "province_incidence_prefix_du",
+                                PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Du
+                            );
                         }
                     }
 
@@ -157,12 +163,18 @@ export class PipedaTool {
                             }
                         }
                     } else if (options.page.name === "page_part_a_customer_or_employee") {
-
                         const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
 
                         if (selectedProvinceQuestion.value) {
                             const selectedProvinceId = selectedProvinceQuestion.value;
-                            const nonParticularProvinces = [Province.Ontario, Province.NovaScotia, Province.NewBrunswick, Province.Manitoba, Province.PEI, Province.Saskatchewan];
+                            const nonParticularProvinces = [
+                                Province.Ontario,
+                                Province.NovaScotia,
+                                Province.NewBrunswick,
+                                Province.Manitoba,
+                                Province.PEI,
+                                Province.Saskatchewan
+                            ];
 
                             if (nonParticularProvinces.some(p => p === selectedProvinceId)) {
                                 //  Referes to AnsweredOrganizationsQuestion()
