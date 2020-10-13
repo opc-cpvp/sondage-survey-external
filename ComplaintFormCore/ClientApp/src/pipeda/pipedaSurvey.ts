@@ -6,8 +6,8 @@ import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
 import { testData_pipeda } from "./pipeda_test_data";
-import { PipedaProvince, PipedaProvincesData } from "./pipedaProvince";
 import { Province } from "../surveyHelper";
+import { PipedaProvincesData } from "./pipedaProvinceData";
 
 declare global {
     // TODO: get rid of this global variable
