@@ -1,4 +1,5 @@
 import { PipedaProvince } from "./pipedaProvince";
+import { Province } from "../surveyHelper";
 
 export class PipedaProvinceData {
     public FrenchPrefix_Au = "";
@@ -8,9 +9,8 @@ export class PipedaProvinceData {
     public Link_more_info = "";
 }
 
-export const PipedaProvincesData: Record<number, PipedaProvince> = {
-    1: {
-        // Ontario
+export const PipedaProvincesData: Record<Province, PipedaProvince> = {
+    [Province.Ontario]: {
         French: {
             FrenchPrefix_Au: "en ",
             FrenchPrefix_Du: "de l'",
@@ -26,8 +26,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    2: {
-        // Quebec
+    [Province.Quebec]: {
         French: {
             FrenchPrefix_Au: "au ",
             FrenchPrefix_Du: "du ",
@@ -43,8 +42,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: "https://www.cai.gouv.qc.ca/english/"
         }
     },
-    3: {
-        // NovaScotia
+    [Province.NovaScotia]: {
         French: {
             FrenchPrefix_Au: "en ",
             FrenchPrefix_Du: "de la ",
@@ -60,8 +58,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    4: {
-        // NewBrunswick
+    [Province.NewBrunswick]: {
         French: {
             FrenchPrefix_Au: "au ",
             FrenchPrefix_Du: "du ",
@@ -77,8 +74,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    5: {
-        // Manitoba
+    [Province.Manitoba]: {
         French: {
             FrenchPrefix_Au: "au ",
             FrenchPrefix_Du: "du ",
@@ -94,8 +90,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    6: {
-        // British Columbia
+    [Province.BritishColumbia]: {
         French: {
             FrenchPrefix_Au: "en ",
             FrenchPrefix_Du: "de la ",
@@ -111,8 +106,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: "https://www.oipc.bc.ca/for-the-public/"
         }
     },
-    7: {
-        // PEI
+    [Province.PEI]: {
         French: {
             FrenchPrefix_Au: "à l'",
             FrenchPrefix_Du: "de l'",
@@ -128,8 +122,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    8: {
-        //  Saskatchewan
+    [Province.Saskatchewan]: {
         French: {
             FrenchPrefix_Au: "en ",
             FrenchPrefix_Du: "de la ",
@@ -145,8 +138,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    9: {
-        //  Alberta
+    [Province.Alberta]: {
         French: {
             FrenchPrefix_Au: "en ",
             FrenchPrefix_Du: "de l'",
@@ -162,8 +154,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: "https://www.oipc.ab.ca/action-items/request-a-review-file-a-complaint.aspx"
         }
     },
-    10: {
-        //  Newfoundland
+    [Province.Newfoundland]: {
         French: {
             FrenchPrefix_Au: "à ",
             FrenchPrefix_Du: "de ",
@@ -179,8 +170,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    11: {
-        //  Nunavut
+    [Province.Nunavut]: {
         French: {
             FrenchPrefix_Au: "au ",
             FrenchPrefix_Du: "du ",
@@ -196,8 +186,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    12: {
-        //  Yukon
+    [Province.Yukon]: {
         French: {
             FrenchPrefix_Au: "au ",
             FrenchPrefix_Du: "du ",
@@ -213,8 +202,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    13: {
-        //  NWT
+    [Province.NWT]: {
         French: {
             FrenchPrefix_Au: "aux ",
             FrenchPrefix_Du: "des ",
@@ -230,8 +218,7 @@ export const PipedaProvincesData: Record<number, PipedaProvince> = {
             Province_link: ""
         }
     },
-    14: {
-        //  Other
+    [Province.Other]: {
         French: {
             FrenchPrefix_Au: "à l'",
             FrenchPrefix_Du: "de l'",
