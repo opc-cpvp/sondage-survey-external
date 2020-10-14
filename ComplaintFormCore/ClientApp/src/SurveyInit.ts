@@ -5,7 +5,6 @@ import * as Survey from "survey-vue";
 import { ProblemDetails } from "./models/problemDetails";
 import * as SurveyNavigation from "./surveyNavigation";
 
-
 export function initSurvey(): void {
     Survey.JsonObject.metaData.addProperty("survey", {
         name: "complaintId:string",
@@ -19,10 +18,7 @@ export function initSurvey(): void {
     });
 
     // Register the function for use in SurveyJS expressions. This function validates that at least one selection was made in a <select>
-    Survey.FunctionFactory.Instance.register(
-        "HasSelectedItem",
-        SurveyHelper.HasSelectedItem
-    );
+    Survey.FunctionFactory.Instance.register("HasSelectedItem", SurveyHelper.HasSelectedItem);
 
     // This is how we replace string from Survey.js (englishStrings or frenchSurveyStrings) for localization.
     Survey.surveyLocalization.locales["en"].requiredError = "This field is required";
@@ -101,7 +97,6 @@ export function initSurveyModelProperties(survey: Survey.SurveyModel): void {
 }
 
 export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
-
     survey.onAfterRenderPage.add((sender, options) => {
         window.document.title = options.page.title;
     });
@@ -184,7 +179,6 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     });
 
     survey.onValidatedErrorsOnCurrentPage.add((sender, options) => {
-
         const errorSection = document.getElementById("div_errors_list");
 
         if (errorSection) {
@@ -208,9 +202,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
     });
 
     survey.onAfterRenderQuestion.add((sender, options) => {
-
         if (sender.isDisplayMode) {
-
             //  We are hidding the description in 'Preview' mode
             switch (options.question.getType()) {
                 case "boolean": {

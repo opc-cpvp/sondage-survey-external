@@ -1,15 +1,7 @@
 import Vue from "vue";
 import * as Survey from "survey-vue";
-import {
-    saveStateLocally,
-    storageName_PA,
-    loadStateLocally
-} from "../surveyLocalStorage";
-import {
-    initSurvey,
-    initSurveyModelEvents,
-    initSurveyModelProperties,
-} from "../surveyInit";
+import { saveStateLocally, storageName_PA, loadStateLocally } from "../surveyLocalStorage";
+import { initSurvey, initSurveyModelEvents, initSurveyModelProperties } from "../surveyInit";
 import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
 import { printProblemDetails, getTranslation } from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
@@ -24,7 +16,6 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
-
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
         initSurveyFile();
@@ -32,7 +23,6 @@ export class PaSurvey {
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json => {
-
                 const _survey = new Survey.Model(json);
                 globalThis.survey = _survey;
 
@@ -54,7 +44,6 @@ export class PaSurvey {
                 let isValidSurvey = false;
 
                 _survey.onCompleting.add((sender, options) => {
-
                     if (isValidSurvey === true) {
                         options.allowComplete = true;
                         return;
@@ -71,30 +60,30 @@ export class PaSurvey {
                             "Content-Type": "application/json; charset=utf-8"
                         },
                         body: JSON.stringify(sender.data)
-                    }).then(response => {
-                        if (response.ok) {
-                            //  Validation is good then we set the variable so the next call to doComplete()
-                            //  will bypass the validation
-                            isValidSurvey = true;
-                            _survey.doComplete();
-
-                        } else {
-                            if (response.json) {
-                                void response.json().then(problem => {
-                                    printProblemDetails(problem, sender.locale);
-                                });
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
                             }
+                        })
+                        .catch(error => {
+                            console.warn(error);
                             Ladda.stopAll();
-                            return response;
-                        }
-                    }).catch(error => {
-                        console.warn(error);
-                        Ladda.stopAll();
-                    });
+                        });
                 });
 
                 _survey.onComplete.add((sender, options) => {
-
                     const uri = `/api/PASurvey/Complete?complaintId="${sender.complaintId as string}`;
 
                     fetch(uri, {
@@ -114,13 +103,15 @@ export class PaSurvey {
                                 }
 
                                 //  Update the file reference number
-                                void response.json()
+                                void response
+                                    .json()
                                     .then(responseData => {
                                         const sp_survey_file_number = document.getElementById("sp_survey_file_number");
                                         if (sp_survey_file_number) {
                                             sp_survey_file_number.innerText = responseData.referenceNumber;
                                         }
-                                    }).catch(error => {
+                                    })
+                                    .catch(error => {
                                         console.warn(error);
                                     });
 
@@ -128,7 +119,6 @@ export class PaSurvey {
 
                                 console.log(sender.data);
                                 Ladda.stopAll();
-
                             } else {
                                 if (response.json) {
                                     void response.json().then(problem => {
@@ -147,10 +137,8 @@ export class PaSurvey {
 
                 _survey.onAfterRenderQuestion.add((sender, options) => {
                     if (options.question.getType() === "html" && options.question.name === "documentation_info") {
-
                         this.updateDocumentationInfoSection(sender);
                     } else if (options.question.getType() === "file" && options.question.value) {
-
                         // Getting the total size of all uploaded files
                         const totalBytes = this.getTotalFileSize(sender, options);
 
@@ -216,19 +204,20 @@ export class PaSurvey {
                 });
 
                 _survey.onServerValidateQuestions.add((sender, options) => {
-
                     if (options.data["documentation_type"] === "upload" || options.data["documentation_type"] === "both") {
-
                         //  Validating the documentation page if and only if there is documents to be validated
 
                         const params = { complaintId: sender.complaintId };
-                        const query = Object.keys(params).map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`).join("&");
+                        const query = Object.keys(params)
+                            .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
+                            .join("&");
                         const uri = "/api/PASurvey/ValidateAttachments?" + query;
 
                         fetch(uri, {
                             method: "POST",
                             headers: {
-                                Accept: "application/json", "Content-Type": "application/json; charset=utf-8"
+                                Accept: "application/json",
+                                "Content-Type": "application/json; charset=utf-8"
                             },
                             body: JSON.stringify(options.data)
                         })
@@ -237,11 +226,14 @@ export class PaSurvey {
                                     //  This will allowed the validation to pass and go to the next page
                                     options.complete();
                                 } else {
-                                    response.json().then(problem => {
-                                        printProblemDetails(problem, sender.locale);
-                                    }).catch(error => {
-                                        console.warn(error);
-                                    });
+                                    response
+                                        .json()
+                                        .then(problem => {
+                                            printProblemDetails(problem, sender.locale);
+                                        })
+                                        .catch(error => {
+                                            console.warn(error);
+                                        });
                                 }
                             })
                             .catch(error => {
@@ -303,8 +295,7 @@ export class PaSurvey {
                     "reprensentative_DayTimeNumber": "6135656667",
                     "documentation_type": "none",
                     "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
-                    "SummarizeAttemptsToResolvePrivacyMatter":
-                        "gdfghjvbcvbcxvbxcvbxbcvb",
+                    "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
                     "DateSentRequests": "qwerewr",
                     "WordingOfRequest": "hgdffgh",
                     "MoreDetailsOfRequest": "oiuyoiuo",
@@ -339,14 +330,12 @@ export class PaSurvey {
     // This function is to update the html for the question of type html named 'documentation_info'.
     // It will removed the hidden css on some of the <li> depending on some conditions
     private updateDocumentationInfoSection(surveyObj) {
-
         const ul_documentation_info = document.getElementById("ul_documentation_info");
         if (ul_documentation_info == null) {
             return;
         }
 
         if (surveyObj.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
-
             const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
             if (liNode != null) {
                 liNode.classList.remove("sv-hidden");
@@ -393,7 +382,6 @@ export class PaSurvey {
                 });
             }
         } else if (options.question.name === "documentation_file_upload_rep") {
-
             const file_upload = surveyObj.getQuestionByName("documentation_file_upload");
 
             if (file_upload && file_upload.value) {

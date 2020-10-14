@@ -20,11 +20,9 @@ export function HasSelectedItem(params: any[]): boolean {
 
 // This function will build a <section> with a list of errors to be displayed at the top of the page
 export function printProblemDetails(problem: ProblemDetails, lang: string): void {
-
     const errorSection = document.getElementById("div_errors_list");
 
     if (errorSection && problem) {
-
         errorSection.innerHTML = "";
 
         const section = document.createElement("section");
@@ -58,13 +56,10 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
         const list = document.createElement("ol");
 
         if (problem.errors) {
-
             Object.keys(problem.errors).forEach(key => {
-
                 const valueError = problem.errors[key];
 
                 if (valueError.errorOwner) {
-
                     const question = valueError.errorOwner as Survey.Question;
 
                     //  This is a validation error from survey.js
@@ -114,11 +109,9 @@ export function printProblemDetails(problem: ProblemDetails, lang: string): void
 }
 
 export function printWarningMessage(messageEn: string, messageFr: string, lang: string): void {
-
     const errorSection = document.getElementById("div_errors_list");
 
     if (errorSection) {
-
         errorSection.innerHTML = "";
 
         const section = document.createElement("section");
@@ -154,7 +147,6 @@ export function printWarningMessage(messageEn: string, messageFr: string, lang: 
 }
 
 export function clearProblemDetails(): void {
-
     const errorSection = document.getElementById("div_errors_list");
 
     if (errorSection) {
@@ -162,4 +154,21 @@ export function clearProblemDetails(): void {
         errorSection.classList.remove("show");
         errorSection.classList.add("hidden");
     }
+}
+
+export enum Province {
+    Ontario = 1,
+    Quebec = 2,
+    NovaScotia = 3,
+    NewBrunswick = 4,
+    Manitoba = 5,
+    BritishColumbia = 6,
+    PEI = 7,
+    Saskatchewan = 8,
+    Alberta = 9,
+    Newfoundland = 10,
+    Nunavut = 11,
+    Yukon = 12,
+    NWT = 13,
+    Other = 14
 }

@@ -23,14 +23,36 @@ namespace ComplaintFormCore.Web_Apis
                 language = lang;
             }
 
+            var provinces = new List<Province>();
+
+            var addOtherArg = HttpContext.Request.Query.Where(k => k.Key == "addOther").Select(v => v.Value).FirstOrDefault();
+            var addOther = false;
+
+            if (!string.IsNullOrWhiteSpace(addOtherArg))
+            {
+                bool.TryParse(addOtherArg, out addOther);
+            }
+
             if (language == "fr")
             {
-                return GetFrenchProvinces();
+                provinces.AddRange(GetFrenchProvinces().OrderBy(x => x.Text));
+
+                if (addOther)
+                {
+                    provinces.Add(new Province { Value = "14", Text = "Autre (à l’étranger)" });
+                }
             }
             else
             {
-                return GetProvinces();
+                provinces.AddRange(GetProvinces().OrderBy(x => x.Text));
+
+                if (addOther)
+                {
+                    provinces.Add(new Province { Value = "14", Text = "Other (Outside of Canada)" });
+                }
             }
+
+            return provinces;
         }
 
         private static List<Province> GetFrenchProvinces()

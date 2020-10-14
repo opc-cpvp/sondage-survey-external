@@ -1,6 +1,8 @@
 node_modules
 
-.eslintrc.js
+.eslintrc.json
+.huskyrc.json
+.lintstagedrc.json
 .prettierrc.json
 eslintrc.js
 package.json
