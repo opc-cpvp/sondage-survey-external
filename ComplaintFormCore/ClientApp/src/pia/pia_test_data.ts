@@ -39,7 +39,7 @@
     ContactATIPQ18: "conduct_pia",
     ContactATIPQ110: "conduct_pia",
     ContactATIPQ317: "conduct_pia",
-    DescriptionConsiderLessIntrusiveSolution: "",
+    DescriptionConsiderLessIntrusiveSolution: "fsdfsdfsdf",
     DetailsPreviousSubmission: "this is a bunch of details about the previous submission",
     DidConsiderLessIntrusiveSolution: false,
     DoesHavePoliciesProcedures: true,
@@ -80,19 +80,19 @@
     OtherInitiatives: true,
     OtherInitiativesDescription: "czxcZXC",
     ParticipationOptions: "participation_mandatory_and_automatic",
-    PersonalInformationCategory : [
+    PersonalInformationCategory: [
         {
             "Category": "address",
             "SupplementaryInformation": "gf;lkdsjgslkdfjgkldjfgjdklfgjdfg",
             "PersonalInformationElement": "Rouleur"
         },
         {
-            "Category": "Hugo Roule",
+            "Category": "d_o_b",
             "SupplementaryInformation": "yougogdfsgldfkg gldksfjgdfggdfgsdfgom",
             "PersonalInformationElement": "Rouleur"
         },
         {
-            "Category": "Hugo Roule",
+            "Category": "ethnic_origin",
             "SupplementaryInformation": "gouirtghuthguhtuhg",
             "PersonalInformationElement": "Rouleur"
         }
@@ -100,7 +100,7 @@
     PersonContact: "another",
     PersonalInfoUsedFor: "non_admin_purpose",
     ProcessHandlingPrivacyComplaint: "yes_in_place",
-    ProcessHandlingPrivacyComplaintDescription: "",
+    ProcessHandlingPrivacyComplaintDescription: "hfghfgh",
     ProgamHasMajorChanges: true,
     ProgramName: "ze programme",
     ProgramOverview: "cxzcZXCzxc",
@@ -109,7 +109,7 @@
     RelatedPIANameProgram: "related program namexxxxx",
     RelevantLegislationPolicies: "jgfjg",
     RequireModificationToITDescription: "gsdgfsfdgsfg",
-    ResponsibleComplianceWithPA: "",
+    ResponsibleComplianceWithPA: "hfghghfgh",
     ScopeOtherPhases: "gfhgfhfghgh",
     ScopeThisPhase: "fdsafsdf",
     SeniorOfficialEmail: "adam@yates.com",
@@ -122,8 +122,8 @@
     UpdatePIAAllReferenceNumbersAssigned: "A3Rt67U8",
     UpdatePIANumberAssigned: "update_pia_existing_reference_number",
     UserEmailAddress: "test@gmail.com",
-    WhyNotConsiderLessIntrusiveSolution: "",
-    WhyNotMeasureEffectiveness: "",
-    WhyProgramNecessary: "",
+    WhyNotConsiderLessIntrusiveSolution: "hfghfgh",
+    WhyNotMeasureEffectiveness: "hfghfhfhfghfg",
+    WhyProgramNecessary: "fdsfsdfd",
     WillITLegacySystemRetained: true
 };

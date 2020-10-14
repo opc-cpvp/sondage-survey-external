@@ -8,8 +8,8 @@
     "build:dev": "webpack --mode development",
     "build:watch": "webpack --watch --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "tslint": "tslint --project .",
-    "eslint": "eslint src"
+    "eslint": "eslint src",
+    "eslint:fix": "eslint src --fix"
   },
   "devDependencies": {
     "@types/jquery": "^2.0.54",
@@ -45,6 +45,7 @@
     "survey-core": "^1.8.3",
     "survey-pdf": "^1.8.3",
     "survey-vue": "^1.8.3",
+    "surveyjs-widgets": "^1.8.9",
     "vue": "2.6.11",
     "vue-class-component": "7.2.5",
     "whatwg-fetch": "^3.4.0"

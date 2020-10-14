@@ -1939,7 +1939,7 @@
           "type": "html",
           "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
           "html": {
-            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‘Skip this question’</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
+            "en": "<section class='alert alert-info'><p>In STEP 3, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‘Skip this question’</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
             "fr": ""
           }
         }
@@ -1971,7 +1971,6 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "comment",
@@ -1980,6 +1979,7 @@
             "en": "Please describe why this program or activity is necessary.",
             "fr": ""
           },
+          "isRequired": true,
           "description": {
             "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>What specific need does the program or activity meet?</li><li>Is your proposed collection, use or disclosure of personal information rationally connected to a pressing and substantial public goal? Note: Do not simply reiterate the institutional mandate, for example, “law enforcement” or “border control.”</li><li>Is each piece of personal information necessary to achieve the goal?</li></ul></p>",
             "fr": ""
@@ -1991,7 +1991,8 @@
           "title": {
             "en": "Does your institution plan to measure the effectiveness of this program or activity?",
             "fr": ""
-          }
+          },
+          "isRequired": true
         }
       ]
     },
@@ -2002,12 +2003,12 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "comment",
           "name": "HowMeasureEffectiveness",
           "visibleIf": "{DoesMeasureEffectiveness} = true ",
+          "isRequired": true,
           "title": {
             "en": "Please describe how the institution will measure the program or activity’s effectiveness.",
             "fr": ""
@@ -2021,6 +2022,7 @@
           "type": "comment",
           "name": "WhyNotMeasureEffectiveness",
           "visibleIf": "{DoesMeasureEffectiveness} = false ",
+          "isRequired": true,
           "title": {
             "en": "Please explain why your institution will not measure this program or activity’s effectiveness.",
             "fr": ""
@@ -2035,11 +2037,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "comment",
           "name": "AssessProportionalityExplanation",
+          "isRequired": true,
           "title": {
             "en": "Please explain how the intrusion on privacy caused by the program or activity is proportional to the benefit gained. How did you assess proportionality?",
             "fr": ""
@@ -2058,11 +2060,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "DidConsiderLessIntrusiveSolution",
+          "isRequired": true,
           "title": {
             "en": "Did your institution consider any less privacy intrusive solutions for this program or activity?",
             "fr": ""
@@ -2077,12 +2079,12 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "comment",
           "name": "DescriptionConsiderLessIntrusiveSolution",
           "visibleIf": "{DidConsiderLessIntrusiveSolution} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe any less privacy intrusive solutions you considered.",
             "fr": ""
@@ -2096,6 +2098,7 @@
           "type": "comment",
           "name": "WhyNotConsiderLessIntrusiveSolution",
           "visibleIf": "{DidConsiderLessIntrusiveSolution} = false",
+          "isRequired": true,
           "title": {
             "en": "Please explain why your institution did not consider any less privacy intrusive solutions for this program or activity.",
             "fr": ""
@@ -2112,7 +2115,6 @@
       "hideOnPreview": true,
       "hideOnPDF": true,
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "html",
@@ -2128,6 +2130,7 @@
             "en": "Select",
             "fr": ""
           },
+          "isRequired": true,
           "choices": [
             {
               "text": {
@@ -2181,7 +2184,6 @@
       "hideOnPreview": true,
       "hideOnPDF": true,
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "html",
@@ -2199,7 +2201,6 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
@@ -2211,7 +2212,8 @@
           "description": {
             "en": "<p><section class='alert alert-info'><p>Head of the government institution or delegate</p><p><strong>{ HeadYourInstitutionFullname }</strong></p></section></p>",
             "fr": ""
-          }
+          },
+          "isRequired": true
         },
         {
           "type": "comment",
@@ -2224,7 +2226,8 @@
           "description": {
             "en": "<p>Please provide the title of the individual. This individual is usually your institution’s ATIP coordinator, chief privacy officer, privacy management director, etc.</p>",
             "fr": ""
-          }
+          },
+          "isRequired": true
         }
       ]
     },
@@ -2235,11 +2238,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "comment",
           "name": "ListPoliciesAndProcedures",
+          "isRequired": true,
           "title": {
             "en": "Please list and briefly describe the policies and procedures that your institution has in place to protect privacy.",
             "fr": ""
@@ -2258,11 +2261,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "DoesStaffReceivedTraining",
+          "isRequired": true,
           "title": {
             "en": "Does your institution ensure that staff receive privacy-related training?",
             "fr": ""
@@ -2275,6 +2278,7 @@
         {
           "type": "comment",
           "name": "StaffReceivedTrainingDescription",
+          "isRequired": true,
           "visibleIf": "{DoesStaffReceivedTraining} = true",
           "title": {
             "en": "Please describe the privacy training that your staff receives.",
@@ -2294,11 +2298,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "radiogroup",
           "name": "ProcessHandlingPrivacyComplaint",
+          "isRequired": true,
           "title": {
             "en": "Does the institution have or intend to have a process for handling a privacy complaint or inquiry?",
             "fr": ""
@@ -2335,6 +2339,7 @@
           "type": "comment",
           "name": "ProcessHandlingPrivacyComplaintDescription",
           "visibleIf": "{ProcessHandlingPrivacyComplaint} anyof ['yes_in_place', 'yes_not_established'] ",
+          "isRequired": true,
           "title": {
             "en": "Please describe the process for handling a privacy complaint or inquiry.",
             "fr": ""
@@ -2351,7 +2356,6 @@
       "hideOnPreview": true,
       "hideOnPDF": true,
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "html",
@@ -2369,11 +2373,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "radiogroup",
           "name": "HasDataMinimization",
+          "isRequired": true,
           "title": {
             "en": "Have you undertaken a data minimization exercise?",
             "fr": ""
@@ -2410,6 +2414,7 @@
           "type": "comment",
           "name": "DataMinimizationDetails",
           "visibleIf": "{HasDataMinimization} contains 'yes'",
+          "isRequired": true,
           "title": {
             "en": "Please provide additional details about this exercise.",
             "fr": ""
@@ -2422,7 +2427,8 @@
           "title": {
             "en": "Please provide additional details about this exercise.",
             "fr": ""
-          }
+          },
+          "isRequired": true
         }
       ]
     },
@@ -2433,7 +2439,6 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "html",
@@ -2482,6 +2487,7 @@
                     "en": "Category",
                     "fr": ""
                   },
+                  "isRequired": true,
                   "choices": [
                     {
                       "text": {
@@ -2744,7 +2750,7 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
+
       "elements": [
         {
           "type": "paneldynamic",
@@ -2765,7 +2771,8 @@
               "title": {
                 "en": "Personal information element",
                 "fr": ""
-              }
+              },
+              "isRequired": true
             }
           ]
         }
@@ -2778,11 +2785,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "IsContextualSensitivities",
+          "isRequired": true,
           "title": {
             "en": "Is the context in which the personal information is collected and used sensitive? In other words, does the personal information have “contextual sensitivities?”",
             "fr": ""
@@ -2796,6 +2803,7 @@
           "type": "comment",
           "name": "ContextualSensitivitiesDetails",
           "visibleIf": "{IsContextualSensitivities} = true",
+          "isRequired": true,
           "title": {
             "en": "Please provide more details about the context in which the personal information is collected. ",
             "fr": ""
@@ -2814,11 +2822,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "IsInformationPhysicalFormat",
+          "isRequired": true,
           "title": {
             "en": "Will your institution be collecting any personal information in a physical format? (3.3.5A)",
             "fr": ""
@@ -2832,6 +2840,7 @@
           "type": "comment",
           "name": "InformationPhysicalFormatDescription",
           "visibleIf": "{IsInformationPhysicalFormat} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe your collection of personal information in physical format. (3.3.5B)",
             "fr": ""
@@ -2845,6 +2854,7 @@
           "type": "boolean",
           "name": "IsInformationPhysicalConvertedCopy",
           "visibleIf": "{IsInformationPhysicalFormat} = true",
+          "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in a physical format to an electronic format? (3.3.5C)",
             "fr": ""
@@ -2858,6 +2868,7 @@
           "type": "comment",
           "name": "InformationPhysicalConvertedCopyDescription",
           "visibleIf": "{IsInformationPhysicalFormat} = true and {IsInformationPhysicalConvertedCopy} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from a physical format to an electronic format. (3.3.5D)",
             "fr": ""
@@ -2876,11 +2887,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "IsPersonalInformationElectronicFormat",
+          "isRequired": true,
           "title": {
             "en": "Will your institution be collecting any personal information in an electronic format? (3.3.6A)",
             "fr": ""
@@ -2894,6 +2905,7 @@
           "type": "comment",
           "name": "PersonalInformationElectronicFormatDescription",
           "visibleIf": "{IsPersonalInformationElectronicFormat} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe your collection of personal information in electronic format. (3.3.6B)",
             "fr": ""
@@ -2907,6 +2919,7 @@
           "type": "boolean",
           "name": "IsInformationElectronicConvertedCopy",
           "visibleIf": "{IsPersonalInformationElectronicFormat} = true",
+          "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in an electronic format to a physical format? (3.3.6C)",
             "fr": ""
@@ -2920,6 +2933,7 @@
           "type": "comment",
           "name": "IsInformationElectronicConvertedCopyDescription",
           "visibleIf": "{IsPersonalInformationElectronicFormat} = true and {IsInformationElectronicConvertedCopy} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from an electronic format to a physical format. (3.3.6D)",
             "fr": ""
@@ -2939,6 +2953,7 @@
       },
       "section": 3,
       "visibleIf": "{IsPersonalInformationElectronicFormat} = false and {IsInformationPhysicalFormat} = false",
+      "isRequired": true,
       "elements": [
         {
           "type": "html",
@@ -2956,11 +2971,11 @@
         "fr": ""
       },
       "section": 3,
-      "showSkipButton": true,
       "elements": [
         {
           "type": "boolean",
           "name": "IsThereCollectNotIntended",
+          "isRequired": true,
           "title": {
             "en": "Think now to how you collect personal information, in any format. Is there a chance that you could inadvertently collect personal information that you did not intend to collect? (3.3.8A)",
             "fr": ""
@@ -2974,6 +2989,7 @@
           "type": "boolean",
           "name": "DoesHavePoliciesProcedures",
           "visibleIf": "{IsThereCollectNotIntended} = true",
+          "isRequired": true,
           "title": {
             "en": "Does your institution have policies or procedures in place to manage the inadvertent collection of personal information, as described in the previous question?",
             "fr": ""
@@ -2987,6 +3003,7 @@
           "type": "comment",
           "name": "HavePoliciesProceduresDescription",
           "visibleIf": "{DoesHavePoliciesProcedures} = true",
+          "isRequired": true,
           "title": {
             "en": "Please describe the policies or procedures in place to manage the inadvertent collection of personal information",
             "fr": ""
@@ -3000,7 +3017,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "showSkipButton": true,
+      "section": 3,
       "elements": [
         {
           "type": "html",
@@ -3009,6 +3026,200 @@
             "fr": ""
           }
         }
+      ]
+    },
+    {
+      "name": "page_step_3_4_1",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification  ",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsDirectlyFromIndividual",
+          "title": {
+            "en": "Do you collect the personal information directly from the individual for the primary purpose of this program or activity? (3.4.1)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_2",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false",
+      "section": 3,
+      "elements": [
+        {
+          "type": "tagbox",
+          "name": "WhereWhomInfoCollected",
+          "title": {
+            "en": "From where or whom is the personal information collected? Please select all that apply",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Directly from the individual by the institution for a primary purpose other than this program or activity (3.4.2)",
+                "fr": ""
+              },
+              "value": "directly"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by another federal government institution",
+                "fr": ""
+              },
+              "value": "federal"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by a provincial or territorial government",
+                "fr": ""
+              },
+              "value": "provincial"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by a third party that is not a provincial, territorial, or federal government institution",
+                "fr": ""
+              },
+              "value": "not_government"
+            },
+            {
+              "text": {
+                "en": "Indirectly (for example, from the internet or social media)",
+                "fr": ""
+              },
+              "value": "indirectly"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "WhereWhomInfoCollectedOtherDetails",
+          "title": {
+            "en": "Please type in your answer(s)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{WhereWhomInfoCollected} contains 'other'"
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_3_and_3_4_4",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} contains 'directly' and !({WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other'])",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsOriginalPurposeConsistent",
+          "title": {
+            "en": "You have indicated that you collect the personal information directly from the individual for the purpose other than this program or activity. Is the original purpose for which you collect this information consistent with the purpose of your program or activity? (3.4.3A)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "<p>Sections 7 and 8 of the <em>Privacy Act</em> provide that personal information may be used or disclosed by a government institution without the consent of the individual to whom it relates for a purpose directly related to the purpose(s) for which the information was obtained or compiled. Such related purposes are termed consistent uses.</p><p>For a use or disclosure to be consistent, it must have a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. A test of whether a proposed use or disclosure is “consistent” may be whether it would be reasonable for the individual who provided the information to expect that it would be used in the proposed manner. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out. <strong>Source</strong>: Treasury Board of Canada Secretariat</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "OriginalPurposeIsConsistentSummary",
+          "visibleIf": "{ IsOriginalPurposeConsistent } = true",
+          "title": {
+            "en": "You have indicated that the personal information collected by your institution, is used for a different use(s) that is consistent with the initial purpose for which it was collected. This is known as a secondary use. Please provide the analysis or a summary of the analysis that was conducted to determine that this use is a consistent use. (3.4.3B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "Interpret the definition of “consistent use” narrowly. A consistent use is defined as a use that has a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "OriginalPurposeIsNotConsistentJustification",
+          "visibleIf": "{ IsOriginalPurposeConsistent } = false",
+          "title": {
+            "en": "You have indicated that you collect the personal information directly from the individual for the purpose other than this program or activity and that the original purpose for which you collect this information is not consistent with the purpose of your program or activity. Please explain how your institution justifies this collection within the legal authorities previously outlined. (3.4.4)",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_5",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyCollectInfoOtherSource",
+          "title": {
+            "en": "You have indicated that you do not collect the personal information directly from the individual for the purposes of this program or activity. Please provide an explanation as to why your program or activity collects personal information from other source(s). (3.4.5)",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_6",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other']",
+      "section": 3,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+
       ]
     }
   ]

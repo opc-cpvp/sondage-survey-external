@@ -129,9 +129,6 @@
   <data name="btnShowPreview" xml:space="preserve">
     <value>FR-Preview</value>
   </data>
-  <data name="btnSkip" xml:space="preserve">
-    <value>Passer</value>
-  </data>
   <data name="btnStartSurvey" xml:space="preserve">
     <value>Commencé</value>
   </data>
