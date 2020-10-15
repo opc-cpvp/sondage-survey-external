@@ -7,6 +7,7 @@ import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
 import { defaultData } from "./pia_test_data";
 import * as widgets from "surveyjs-widgets";
+import * as SurveyFile from "../surveyFile";
 
 declare global {
     // TODO: get rid of this global variable
@@ -19,6 +20,7 @@ export class PiaETool {
 
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
+        SurveyFile.initSurveyFile();
 
         Survey.JsonObject.metaData.addProperty("page", {
             name: "section:number",
@@ -277,6 +279,8 @@ export class PiaETool {
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
+
+                SurveyFile.initSurveyFileModelEvents(_survey);
 
                 this.setNavigationBreadcrumbs(_survey);
 

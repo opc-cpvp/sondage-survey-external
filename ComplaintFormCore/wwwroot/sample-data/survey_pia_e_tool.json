@@ -2433,7 +2433,7 @@
       ]
     },
     {
-      "name": "page_step_3_3_2",
+      "name": "page_step_3_3_2_and_3_3_3",
       "title": {
         "en": "3.3 – Limiting collection",
         "fr": ""
@@ -2455,304 +2455,6 @@
           }
         },
         {
-          "type": "panel",
-          "name": "pn_PersonalInformationCategory",
-          "titleLocation": "hidden",
-          "elements": [
-            {
-              "type": "matrixdynamic",
-              "title": {
-                "en": "Personal information element that your program or activity collects or creates",
-                "fr": ""
-              },
-              "valueName": "PersonalInformationCategory",
-              "addRowText": {
-                "en": "Add category",
-                "fr": ""
-              },
-              "removeRowText": {
-                "en": "Remove",
-                "fr": ""
-              },
-              "confirmDelete": true,
-              "confirmDeleteText ": {
-                "en": "Are you sure you want to remove this item?",
-                "fr": ""
-              },
-              "columns": [
-                {
-                  "name": "Category",
-                  "cellType": "dropdown",
-                  "title": {
-                    "en": "Category",
-                    "fr": ""
-                  },
-                  "isRequired": true,
-                  "choices": [
-                    {
-                      "text": {
-                        "en": "Name",
-                        "fr": ""
-                      },
-                      "value": "name"
-                    },
-                    {
-                      "text": {
-                        "en": "Address",
-                        "fr": ""
-                      },
-                      "value": "address"
-                    },
-                    {
-                      "text": {
-                        "en": "Contact information",
-                        "fr": ""
-                      },
-                      "value": "contact_information"
-                    },
-                    {
-                      "text": {
-                        "en": "Information originating from social media",
-                        "fr": ""
-                      },
-                      "value": "from_social_media"
-                    },
-                    {
-                      "text": {
-                        "en": "Personal website(s)",
-                        "fr": ""
-                      },
-                      "value": "personal_website"
-                    },
-                    {
-                      "text": {
-                        "en": "Date of birth",
-                        "fr": ""
-                      },
-                      "value": "d_o_b"
-                    },
-                    {
-                      "text": {
-                        "en": "Current age",
-                        "fr": ""
-                      },
-                      "value": "current_age"
-                    },
-                    {
-                      "text": {
-                        "en": "Sex or gender",
-                        "fr": ""
-                      },
-                      "value": "sex_gender"
-                    },
-                    {
-                      "text": {
-                        "en": "Physical attributes (height, weight, hair colour, eye colour)",
-                        "fr": ""
-                      },
-                      "value": "physical_attribute"
-                    },
-                    {
-                      "text": {
-                        "en": "Marital status",
-                        "fr": ""
-                      },
-                      "value": "marital_status"
-                    },
-                    {
-                      "text": {
-                        "en": "Next of kin or family",
-                        "fr": ""
-                      },
-                      "value": "family"
-                    },
-                    {
-                      "text": {
-                        "en": "Racial identity",
-                        "fr": ""
-                      },
-                      "value": "racial_identity"
-                    },
-                    {
-                      "text": {
-                        "en": "Ethnic origin",
-                        "fr": ""
-                      },
-                      "value": "ethnic_origin"
-                    },
-                    {
-                      "text": {
-                        "en": "City, state or country of birth",
-                        "fr": ""
-                      },
-                      "value": "city_state_country"
-                    },
-                    {
-                      "text": {
-                        "en": "Citizenship",
-                        "fr": ""
-                      },
-                      "value": "citizenship"
-                    },
-                    {
-                      "text": {
-                        "en": "Opinions",
-                        "fr": ""
-                      },
-                      "value": "opinions"
-                    },
-                    {
-                      "text": {
-                        "en": "Group affiliations or association memberships",
-                        "fr": ""
-                      },
-                      "value": "affiliations_or_association"
-                    },
-                    {
-                      "text": {
-                        "en": "Religious beliefs or affiliations",
-                        "fr": ""
-                      },
-                      "value": "religious"
-                    },
-                    {
-                      "text": {
-                        "en": "Criminal records information",
-                        "fr": ""
-                      },
-                      "value": "criminal"
-                    },
-                    {
-                      "text": {
-                        "en": "Government-issued ID (SIN, passport, driver’s licence)",
-                        "fr": ""
-                      },
-                      "value": "government_issued_id"
-                    },
-                    {
-                      "text": {
-                        "en": "Employer name",
-                        "fr": ""
-                      },
-                      "value": "employer"
-                    },
-                    {
-                      "text": {
-                        "en": "Business ownership",
-                        "fr": ""
-                      },
-                      "value": "business"
-                    },
-                    {
-                      "text": {
-                        "en": "Travel history ",
-                        "fr": ""
-                      },
-                      "value": "travel"
-                    },
-                    {
-                      "text": {
-                        "en": "Recorded files such as text, photos, audio, video, etc.",
-                        "fr": ""
-                      },
-                      "value": "recorded_files"
-                    },
-                    {
-                      "text": {
-                        "en": "Log files about an individual’s transactions (device info, IP address, access time, etc.)",
-                        "fr": ""
-                      },
-                      "value": "transactions"
-                    },
-                    {
-                      "text": {
-                        "en": "Financial information",
-                        "fr": ""
-                      },
-                      "value": "financial"
-                    },
-                    {
-                      "text": {
-                        "en": "Medical information",
-                        "fr": ""
-                      },
-                      "value": "medical"
-                    },
-                    {
-                      "text": {
-                        "en": "Parental guardian",
-                        "fr": ""
-                      },
-                      "value": "parental_guardian"
-                    },
-                    {
-                      "text": {
-                        "en": "Substitute decision maker",
-                        "fr": ""
-                      },
-                      "value": "substitute_decision_maker"
-                    },
-                    {
-                      "text": {
-                        "en": "Allegations or suspicions",
-                        "fr": ""
-                      },
-                      "value": "allegations"
-                    },
-                    {
-                      "text": {
-                        "en": "Bodily samples",
-                        "fr": ""
-                      },
-                      "value": "bodily_samples"
-                    },
-                    {
-                      "text": {
-                        "en": "Physical biometrics (fingerprints, eye or face scan, DNA, etc.)",
-                        "fr": ""
-                      },
-                      "value": "physical_biometrics"
-                    },
-                    {
-                      "text": {
-                        "en": "Behavioural biometrics (signature, mannerisms, habits)",
-                        "fr": ""
-                      },
-                      "value": "behavioural_biometrics"
-                    },
-                    {
-                      "text": {
-                        "en": "Other",
-                        "fr": ""
-                      },
-                      "value": "other"
-                    }
-                  ]
-                },
-                {
-                  "cellType": "comment",
-                  "name": "SupplementaryInformation",
-                  "title": {
-                    "en": "Supplementary Information",
-                    "fr": ""
-                  }
-                }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "page_step_3_3_3",
-      "title": {
-        "en": "3.3 – Limiting collection",
-        "fr": ""
-      },
-      "section": 3,
-
-      "elements": [
-        {
           "type": "paneldynamic",
           "name": "pnd_PersonalInformationCategory",
           "title": {
@@ -2760,11 +2462,276 @@
             "fr": ""
           },
           "renderMode": "list",
-          "allowAddPanel": false,
-          "allowRemovePanel": false,
+          "allowAddPanel": true,
+          "allowRemovePanel": true,
+          "panelAddText ": {
+            "en": "Add category",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this item?",
+            "fr": ""
+          },
           "valueName": "PersonalInformationCategory",
-          "templateTitle": "{panel.Category}",
           "templateElements": [
+            {
+              "valueName": "Category",
+              "type": "dropdown",
+              "title": {
+                "en": "Category",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Name",
+                    "fr": ""
+                  },
+                  "value": "name"
+                },
+                {
+                  "text": {
+                    "en": "Address",
+                    "fr": ""
+                  },
+                  "value": "address"
+                },
+                {
+                  "text": {
+                    "en": "Contact information",
+                    "fr": ""
+                  },
+                  "value": "contact_information"
+                },
+                {
+                  "text": {
+                    "en": "Information originating from social media",
+                    "fr": ""
+                  },
+                  "value": "from_social_media"
+                },
+                {
+                  "text": {
+                    "en": "Personal website(s)",
+                    "fr": ""
+                  },
+                  "value": "personal_website"
+                },
+                {
+                  "text": {
+                    "en": "Date of birth",
+                    "fr": ""
+                  },
+                  "value": "d_o_b"
+                },
+                {
+                  "text": {
+                    "en": "Current age",
+                    "fr": ""
+                  },
+                  "value": "current_age"
+                },
+                {
+                  "text": {
+                    "en": "Sex or gender",
+                    "fr": ""
+                  },
+                  "value": "sex_gender"
+                },
+                {
+                  "text": {
+                    "en": "Physical attributes (height, weight, hair colour, eye colour)",
+                    "fr": ""
+                  },
+                  "value": "physical_attribute"
+                },
+                {
+                  "text": {
+                    "en": "Marital status",
+                    "fr": ""
+                  },
+                  "value": "marital_status"
+                },
+                {
+                  "text": {
+                    "en": "Next of kin or family",
+                    "fr": ""
+                  },
+                  "value": "family"
+                },
+                {
+                  "text": {
+                    "en": "Racial identity",
+                    "fr": ""
+                  },
+                  "value": "racial_identity"
+                },
+                {
+                  "text": {
+                    "en": "Ethnic origin",
+                    "fr": ""
+                  },
+                  "value": "ethnic_origin"
+                },
+                {
+                  "text": {
+                    "en": "City, state or country of birth",
+                    "fr": ""
+                  },
+                  "value": "city_state_country"
+                },
+                {
+                  "text": {
+                    "en": "Citizenship",
+                    "fr": ""
+                  },
+                  "value": "citizenship"
+                },
+                {
+                  "text": {
+                    "en": "Opinions",
+                    "fr": ""
+                  },
+                  "value": "opinions"
+                },
+                {
+                  "text": {
+                    "en": "Group affiliations or association memberships",
+                    "fr": ""
+                  },
+                  "value": "affiliations_or_association"
+                },
+                {
+                  "text": {
+                    "en": "Religious beliefs or affiliations",
+                    "fr": ""
+                  },
+                  "value": "religious"
+                },
+                {
+                  "text": {
+                    "en": "Criminal records information",
+                    "fr": ""
+                  },
+                  "value": "criminal"
+                },
+                {
+                  "text": {
+                    "en": "Government-issued ID (SIN, passport, driver’s licence)",
+                    "fr": ""
+                  },
+                  "value": "government_issued_id"
+                },
+                {
+                  "text": {
+                    "en": "Employer name",
+                    "fr": ""
+                  },
+                  "value": "employer"
+                },
+                {
+                  "text": {
+                    "en": "Business ownership",
+                    "fr": ""
+                  },
+                  "value": "business"
+                },
+                {
+                  "text": {
+                    "en": "Travel history ",
+                    "fr": ""
+                  },
+                  "value": "travel"
+                },
+                {
+                  "text": {
+                    "en": "Recorded files such as text, photos, audio, video, etc.",
+                    "fr": ""
+                  },
+                  "value": "recorded_files"
+                },
+                {
+                  "text": {
+                    "en": "Log files about an individual’s transactions (device info, IP address, access time, etc.)",
+                    "fr": ""
+                  },
+                  "value": "transactions"
+                },
+                {
+                  "text": {
+                    "en": "Financial information",
+                    "fr": ""
+                  },
+                  "value": "financial"
+                },
+                {
+                  "text": {
+                    "en": "Medical information",
+                    "fr": ""
+                  },
+                  "value": "medical"
+                },
+                {
+                  "text": {
+                    "en": "Parental guardian",
+                    "fr": ""
+                  },
+                  "value": "parental_guardian"
+                },
+                {
+                  "text": {
+                    "en": "Substitute decision maker",
+                    "fr": ""
+                  },
+                  "value": "substitute_decision_maker"
+                },
+                {
+                  "text": {
+                    "en": "Allegations or suspicions",
+                    "fr": ""
+                  },
+                  "value": "allegations"
+                },
+                {
+                  "text": {
+                    "en": "Bodily samples",
+                    "fr": ""
+                  },
+                  "value": "bodily_samples"
+                },
+                {
+                  "text": {
+                    "en": "Physical biometrics (fingerprints, eye or face scan, DNA, etc.)",
+                    "fr": ""
+                  },
+                  "value": "physical_biometrics"
+                },
+                {
+                  "text": {
+                    "en": "Behavioural biometrics (signature, mannerisms, habits)",
+                    "fr": ""
+                  },
+                  "value": "behavioural_biometrics"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "valueName": "SupplementaryInformation",
+              "title": {
+                "en": "Supplementary Information",
+                "fr": ""
+              }
+            },
             {
               "type": "comment",
               "valueName": "PersonalInformationElement",
@@ -2816,30 +2783,74 @@
       ]
     },
     {
+      "name": "page_step_pre_3_3_5",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "PersonalInformationPhysicalAndOrElectronicFormat",
+          "title": {
+            "en": "Will your institution be collecting any personal information in a physical format, in an electronic format or both?",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Physical",
+                "fr": ""
+              },
+              "value": "physical"
+            },
+            {
+              "text": {
+                "en": "Electronic",
+                "fr": ""
+              },
+              "value": "electronic"
+            },
+            {
+              "text": {
+                "en": "Physical and Electronic",
+                "fr": ""
+              },
+              "value": "both"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['both','physical']",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Physical format includes, but is not limited to:<ul><li>Paper records</li><li>Digitally on physical media storage (for example, USB drive, DVD)</li><li>Physical samples</li></ul></p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['both','electronic']",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Electronic format includes, but is not limited to:<ul><li>Information submitted online</li><li>Information received in a spreadsheet</li><li>Information received by email</li></ul></p></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
       "name": "page_step_3_3_5",
       "title": {
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical', 'both']",
       "section": 3,
       "elements": [
         {
-          "type": "boolean",
-          "name": "IsInformationPhysicalFormat",
-          "isRequired": true,
-          "title": {
-            "en": "Will your institution be collecting any personal information in a physical format? (3.3.5A)",
-            "fr": ""
-          },
-          "description": {
-            "en": "<p>This includes, but is not limited to:<ul><li>Paper records</li><li>Digitally on physical media storage (for example, USB drive, DVD)</li><li>Physical samples</li></ul></p>",
-            "fr": ""
-          }
-        },
-        {
           "type": "comment",
           "name": "InformationPhysicalFormatDescription",
-          "visibleIf": "{IsInformationPhysicalFormat} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your collection of personal information in physical format. (3.3.5B)",
@@ -2853,7 +2864,6 @@
         {
           "type": "boolean",
           "name": "IsInformationPhysicalConvertedCopy",
-          "visibleIf": "{IsInformationPhysicalFormat} = true",
           "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in a physical format to an electronic format? (3.3.5C)",
@@ -2867,7 +2877,7 @@
         {
           "type": "comment",
           "name": "InformationPhysicalConvertedCopyDescription",
-          "visibleIf": "{IsInformationPhysicalFormat} = true and {IsInformationPhysicalConvertedCopy} = true",
+          "visibleIf": "{IsInformationPhysicalConvertedCopy} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from a physical format to an electronic format. (3.3.5D)",
@@ -2886,25 +2896,12 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic', 'both']",
       "section": 3,
       "elements": [
         {
-          "type": "boolean",
-          "name": "IsPersonalInformationElectronicFormat",
-          "isRequired": true,
-          "title": {
-            "en": "Will your institution be collecting any personal information in an electronic format? (3.3.6A)",
-            "fr": ""
-          },
-          "description": {
-            "en": "<p>This includes, but is not limited to:<ul><li>Information submitted online</li><li>Information received in a spreadsheet</li><li>Information received by email</li></ul></p>",
-            "fr": ""
-          }
-        },
-        {
           "type": "comment",
           "name": "PersonalInformationElectronicFormatDescription",
-          "visibleIf": "{IsPersonalInformationElectronicFormat} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your collection of personal information in electronic format. (3.3.6B)",
@@ -2918,7 +2915,6 @@
         {
           "type": "boolean",
           "name": "IsInformationElectronicConvertedCopy",
-          "visibleIf": "{IsPersonalInformationElectronicFormat} = true",
           "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in an electronic format to a physical format? (3.3.6C)",
@@ -2932,7 +2928,7 @@
         {
           "type": "comment",
           "name": "IsInformationElectronicConvertedCopyDescription",
-          "visibleIf": "{IsPersonalInformationElectronicFormat} = true and {IsInformationElectronicConvertedCopy} = true",
+          "visibleIf": "{IsInformationElectronicConvertedCopy} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from an electronic format to a physical format. (3.3.6D)",
@@ -2940,25 +2936,6 @@
           },
           "description": {
             "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a “snapshot.” If information is purged after being copied, please indicate so.",
-            "fr": ""
-          }
-        }
-      ]
-    },
-    {
-      "name": "page_step_3_3_7",
-      "title": {
-        "en": "3.3 – Limiting collection (3.3.7)",
-        "fr": ""
-      },
-      "section": 3,
-      "visibleIf": "{IsPersonalInformationElectronicFormat} = false and {IsInformationPhysicalFormat} = false",
-      "isRequired": true,
-      "elements": [
-        {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-info'><p>You have indicated that you do not collect personal information in either physical or electronic format. Collection methods can generally be described as a part of one of these two formats. You will be returned to modify your answer(s). Note that by clicking ”yes” to either question, you will be given the opportunity in follow up questions to describe the collection and any modifications to the format post-collection.</p></section>",
             "fr": ""
           }
         }
@@ -3017,6 +2994,8 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "section": 3,
       "elements": [
         {
@@ -3145,7 +3124,7 @@
         {
           "type": "comment",
           "name": "OriginalPurposeIsConsistentSummary",
-          "visibleIf": "{ IsOriginalPurposeConsistent } = true",
+          "visibleIf": "{IsOriginalPurposeConsistent} = true",
           "title": {
             "en": "You have indicated that the personal information collected by your institution, is used for a different use(s) that is consistent with the initial purpose for which it was collected. This is known as a secondary use. Please provide the analysis or a summary of the analysis that was conducted to determine that this use is a consistent use. (3.4.3B)",
             "fr": ""
@@ -3159,7 +3138,7 @@
         {
           "type": "comment",
           "name": "OriginalPurposeIsNotConsistentJustification",
-          "visibleIf": "{ IsOriginalPurposeConsistent } = false",
+          "visibleIf": "{IsOriginalPurposeConsistent} = false",
           "title": {
             "en": "You have indicated that you collect the personal information directly from the individual for the purpose other than this program or activity and that the original purpose for which you collect this information is not consistent with the purpose of your program or activity. Please explain how your institution justifies this collection within the legal authorities previously outlined. (3.4.4)",
             "fr": ""
@@ -3189,7 +3168,7 @@
       ]
     },
     {
-      "name": "page_step_3_4_6",
+      "name": "page_step_3_4_6_A_and_C",
       "title": {
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
@@ -3197,13 +3176,554 @@
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other']",
       "section": 3,
       "elements": [
-
+        {
+          "type": "radiogroup",
+          "name": "FormalInformationSharingAgreement",
+          "title": {
+            "en": "You have indicated that you collect personal information from at least one third party. Do you capture, or intend to capture, this sharing of information in a formal information sharing agreement (ISA)? (3.4.6A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "An ISA could take the form of a letter of agreement, memoranda of understanding, etc. For more information on ISAs, see TBS’s Guidance on Preparing Information Sharing Agreements Involving Personal Information.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_already_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ThirdPartyCollectionDescription",
+          "visibleIf": "{FormalInformationSharingAgreement} = 'no'",
+          "title": {
+            "en": "In the absence of an information sharing agreement, please provide a description of the collection from the third party or third parties: (3.4.6C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><ul><li>How will you collect the personal information from the third party (that is, by what means or channels?)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic?</li></ul></p><p>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
+            "fr": ""
+          },
+          "isRequired": true
+        }
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_step_3_4_6B",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{FormalInformationSharingAgreement} = 'yes_already_in_place'",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "DocumentationRelevantISA",
+          "title": {
+            "en": "Please provide a copy (or copies) of relevant ISAs. (3.4.6B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload my ISA(s)",
+                "fr": ""
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Provide a link or multiple links to my publicly available ISA(s)",
+                "fr": ""
+              },
+              "value": "link"
+            },
+            {
+              "text": {
+                "en": "ISA(s) are not able to be provided",
+                "fr": ""
+              },
+              "value": "not_able"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "DocumentationRelevantISALink",
+          "title": {
+            "en": "Please enter a web URL that links to a copy or copies of relevant ISAs",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{DocumentationRelevantISA} = 'link'"
+        },
+        {
+          "type": "comment",
+          "name": "DocumentationISAMissingExplanation",
+          "visibleIf": "{DocumentationRelevantISA} = 'not_able'",
+          "title": {
+            "en": "Please explain why you are unable to provide a copy or copies of relevant ISAs",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "panel",
+          "name": "pnl_documentation_file_upload",
+          "visibleIf": "{DocumentationRelevantISA} = 'upload'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "file",
+              "name": "documentation_file_upload",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload my ISA(s)",
+                "fr": ""
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": ""
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+              "itemListTitle": {
+                "en": "Attached ISA(s)",
+                "fr": ""
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_7",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasExistingPIB",
+          "title": {
+            "en": "Is there an existing PIB that, in its current state, accurately describes the collection, use, and disclosure of personal information for this program or activity? (3.4.7)",
+            "fr": ""
+          },
+          "description": {
+            "en": "PIBs are descriptions of personal information under the control of a government institution that is organized and retrievable by an individual's name or by a number, symbol or other element that identifies that individual. The personal information described in a PIB has been used, is being used or is available for an administrative purpose. The PIB describes how personal information is collected, used, disclosed, retained and/or disposed of in the administration of an institution's program or activity.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_8",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "section": 3,
+      "visibleIf": "{HasExistingPIB} = true",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ExistingPIBDetails",
+          "title": {
+            "en": "You have indicated that an existing PIB covers this program or activity. Please provide the name(s) and number(s) of any relevant PIBs, as well as the current text of the PIB.(3.4.8)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_9",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "NoPIBStatusReason",
+          "title": {
+            "en": "You have indicated that there is not currently a PIB that accurately describes the collection, use, and disclosure of personal information for this program or activity. Please select the explanation that best describes the status of PIB(s) in relation to your program. (3.4.9)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "A new PIB is required to reflect the personal information in this program or activity",
+                "fr": ""
+              },
+              "value": "new_pib"
+            },
+            {
+              "text": {
+                "en": "An existing PIB can be updated to reflect the personal information in this program or activity",
+                "fr": ""
+              },
+              "value": "update_pib"
+            },
+            {
+              "text": {
+                "en": "The institution does not plan create or update any PIBs to reflect the personal information in this program or activity.",
+                "fr": ""
+              },
+              "value": "no_pib"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_10_a_b_c",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} anyof ['new_pib', 'update_pib']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasNewPIBWorkBegun",
+          "title": {
+            "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity. Has this work already begun? (3.4.10A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "NoPIBStatusExplanationType",
+          "visibleIf": "{HasNewPIBWorkBegun} = true",
+          "title": {
+            "en": "You have indicated that your institution has already begun working on either creating a new PIB or updating an existing PIB to reflect the personal information in this program or activity. Please provide the new or revised PIB description in the open text field below, or upload a copy. If the work is still in draft format, please indicate it. If your work is too preliminary to be shared, please provide information pertaining to the work on the PIB(s) (for example, work plan, next steps, etc.) in the open text field.(3.4.10B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Open text field",
+                "fr": ""
+              },
+              "value": "text_field"
+            },
+            {
+              "text": {
+                "en": "Upload",
+                "fr": ""
+              },
+              "value": "upload"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NoPIBStatusExplanationText",
+          "visibleIf": "{HasNewPIBWorkBegun} = true and {NoPIBStatusExplanationType} contains 'text_field'",
+          "titleLocation": "hidden",
+          "description": {
+            "en": "",
+            "fr": ""
+          }
+        },
+        {
+          "type": "file",
+          "name": "pib_documentation_file_upload",
+          "visibleIf": "{HasNewPIBWorkBegun} = true and {NoPIBStatusExplanationType} contains 'upload'",
+          "titleLocation": "hidden",
+          "description": {
+            "en": "Upload my PIB documents",
+            "fr": ""
+          },
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": true,
+          "maxSize": 0,
+          "needConfirmRemoveFile": true,
+          "storeDataAsText": false,
+          "showPreview": false,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+          "multipleFileMaxSizeErrorMessage": {
+            "en": "Maximum size of files 25MB allowed",
+            "fr": ""
+          },
+          "confirmRemoveMessage": {
+            "en": "Do you really want to remove this file?",
+            "fr": "Voulez-vous vraiment supprimer ce fichier?"
+          },
+          "itemListTitle": {
+            "en": "Attached ISA(s)",
+            "fr": ""
+          },
+          "itemListRemoveText": {
+            "en": "Remove",
+            "fr": "Supprimer"
+          },
+          "itemListNoAttachmentsText": {
+            "en": "No attachments have been uploaded yet.",
+            "fr": "Aucune pièce jointe n'a encore été téléchargée."
+          },
+          "duplicateFileNameExceptionMessage": {
+            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+          }
+        },
+        {
+          "type": "comment",
+          "name": "NoPIBStatusExplanationText",
+          "visibleIf": "{HasNewPIBWorkBegun} = false and {NoPIBStatusExplanationType} contains 'text_field'",
+          "title": {
+            "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity, but that this work has not yet begun. Please provide information pertaining to this effort (for example, work plan, next steps, etc.) (3.4.10C)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_10_d_e",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{NoPIBStatusReason} contains 'no_pib'",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyNoPlanToReflectNewConsistentPIB",
+          "visibleIf": "{IsOriginalPurposeConsistent} = true",
+          "title": {
+            "en": "You have indicated that the institution does not plan create or update any PIBs to reflect the personal information in this program or activity. You previously indicated that you collect the personal information directly from the individual for the purpose other than this program or activity that is consistent with the purpose of your program or activity. Section 11 of the Privacy Act requires that the descriptions of PIBs must include a statement of the consistent uses for which personal information may be used or disclosed. Given this, please explain why your institution does not plan to reflect this new consistent use in a PIB. (3.4.10D)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNoPIBExplanation",
+          "visibleIf": "{IsOriginalPurposeConsistent} = false",
+          "title": {
+            "en": "You have indicated that the institution does not plan to create or update any PIBs to reflect the personal information in this program or activity. Please explain why this is the case.(3.4.10E)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please include, in your answer, an explanation as to how the institution has met its obligations under 10(1) of the Privacy Act in relation to this program or activity. ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_11",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{NoPIBStatusReason} contains 'no_pib'",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "InstitutionNotifyIndividuals",
+          "title": {
+            "en": "Does your institution notify or intend to notify individuals of the purpose for which it collects, uses, or discloses their personal information through methods other than through Personal Information Banks (PIB) or through Privacy Notice Statements (PNS)? (3.4.11)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Individuals could include the public, program applicants, participants, etc.Examples include Info Source, publishing ISAs, PIA summaries, etc.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_already_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "no",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_11_a_b_c",
       "title": {
         "en": "",
+        "fr": ""
+      },
+      "visibleIf": "{IsOriginalPurposeConsistent} = false",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasPrivacyNoticeStatement",
+          "title": {
+            "en": "Will there be a privacy notice statement for this program or activity? (3.4.11A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that if your institution uses additional methods beyond a privacy notice statement (PNS) to inform the public about this program, you will still have the opportunity to describe these methods later. ",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "HasDraftFinalVersionPNSAvailable",
+          "visibleIf": "{HasPrivacyNoticeStatement} = true",
+          "title": {
+            "en": "Do you have draft or final versions of your PNS available to include in your PIA? (3.4.11B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that well-crafted PIA should include all peripheral documents, including PNS.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_12_and_13",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "InstitutionNotifyIndividualsDescription",
+          "visibleIf": "{  } contains ''",
+          "title": {
+            "en": "Please describe how you notify affected individuals and what information you convey to affected individuals about this program, aside from a PIB or PNS. (3.4.12A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "NotificationTime",
+          "title": {
+            "en": "At what point in time relative to the collection taking place will you notify individuals? (3.4.13)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond “After the collection has taken place” to this question.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Before collection takes place",
+                "fr": ""
+              },
+              "value": "before"
+            },
+            {
+              "text": {
+                "en": "At the time of collection",
+                "fr": ""
+              },
+              "value": "at"
+            },
+            {
+              "text": {
+                "en": "After the collection has taken place",
+                "fr": ""
+              },
+              "value": "after"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(1)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(1)</a> and <em>Regulations</em> <a title='s. 4(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-83-508/page-1.html#h-3' target='_blank'>s. 4(1) and (2)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.priv.gc.ca/en/privacy-topics/business-privacy/safeguards-and-breaches/safeguarding-personal-information/gd_rd_201406/' target='_blank'>Personal information retention and disposal: Principles and best practices</a> (OPC guide)</li><li><strong>What retention means</strong>: Only keep personal information for as long as you need.</li></ul>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
       "section": 3,

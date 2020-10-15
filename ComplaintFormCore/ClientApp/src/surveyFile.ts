@@ -197,22 +197,22 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
 
             div.appendChild(button);
 
-            const buttonRemove = document.createElement("button");
-            buttonRemove.setAttribute("type", "button");
-            buttonRemove.className = "btn sv_q_file_remove_button";
-            buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
+            if (!survey.isDisplayMode) {
+                //  If in 'Preview' mode we are not showing the remove buttons
 
-            if (survey.isDisplayMode === true) {
-                buttonRemove.setAttribute("disabled", "disabled");
+                const buttonRemove = document.createElement("button");
+                buttonRemove.setAttribute("type", "button");
+                buttonRemove.className = "btn sv_q_file_remove_button";
+                buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
+
+                buttonRemove.onclick = () => {
+                    if (confirm(getTranslation(question.confirmRemoveMessage, survey.locale))) {
+                        question.removeFile({ name: fileItem.name });
+                    }
+                };
+
+                div.appendChild(buttonRemove);
             }
-
-            buttonRemove.onclick = () => {
-                if (confirm(getTranslation(question.confirmRemoveMessage, survey.locale))) {
-                    question.removeFile({ name: fileItem.name });
-                }
-            };
-
-            div.appendChild(buttonRemove);
 
             item.appendChild(div);
 

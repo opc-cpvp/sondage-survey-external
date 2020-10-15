@@ -145,8 +145,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             classes.root += " form-group";
 
             if (options.question.getType() === "file") {
-                // Hide the file decorator
-                //  classes.fileDecorator += " sv-hidden";
+                classes.chooseFile += " btn btn-primary";
 
                 // Hide the 'Clean' button
                 classes.removeButton = "sv-hidden";
