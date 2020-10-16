@@ -1,26 +1,44 @@
-import { defaultBootstrapCss, surveyLocalization, JsonObject, StylesManager, Survey, SurveyModel } from "survey-vue";
+import { defaultBootstrapCss, surveyLocalization, JsonObject, Model, StylesManager, Survey, SurveyModel } from "survey-vue";
 import { Converter } from "showdown";
+import Vue from "vue";
 
 export abstract class SurveyBase extends Survey {
     protected readonly surveyUrl: string;
+    private readonly locale: "fr" | "en";
     private converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
     });
 
-    public constructor(surveyUrl: string) {
+    public constructor(surveyUrl: string, locale: "fr" | "en" = "en") {
         super();
         this.surveyUrl = surveyUrl;
-
-        this.setSurveyProperties();
-        this.setSurveyLocalizations();
-        this.registerSurveyCallbacks();
-
-        this.registerCustomProperties();
+        this.locale = locale;
     }
 
-    public async init(): Promise<void> {
-        await this.loadSurvey();
+    public init(): Promise<void> {
+        return fetch(this.surveyUrl)
+            .then(response => response.json())
+            .then(json => {
+                this.survey = new Model(json);
+
+                this.survey.locale = this.locale;
+
+                this.setSurveyProperties();
+                this.setSurveyLocalizations();
+                this.registerSurveyCallbacks();
+
+                this.registerCustomProperties();
+            });
+    }
+
+    public render(): void {
+        new Vue({
+            el: "#surveyElement",
+            data: {
+                survey: this.survey
+            }
+        });
     }
 
     private setSurveyProperties(): void {
@@ -43,16 +61,8 @@ export abstract class SurveyBase extends Survey {
         this.survey.questionErrorLocation = "top";
         this.survey.requiredText = this.survey.locale === "fr" ? "(obligatoire)" : "(required)";
         this.survey.showCompletedPage = true;
-        this.survey.showNavigationButtons = false;
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
-    }
-
-    private loadSurvey(): Promise<void> {
-        return fetch(this.surveyUrl).then(response => {
-            const json = response.json();
-            this.survey.fromJSON(json);
-        });
     }
 
     private setSurveyLocalizations(): void {
@@ -117,5 +127,14 @@ export abstract class SurveyBase extends Survey {
             name: "hideOnPreview:boolean",
             default: false
         });
+
+        JsonObject.metaData.addProperties("file", [
+            { name: "itemListTitle:text" },
+            { name: "itemListRemoveText:text" },
+            { name: "itemListNoAttachmentsText:text" },
+            { name: "confirmRemoveMessage:text" },
+            { name: "duplicateFileNameExceptionMessage:text" },
+            { name: "multipleFileMaxSizeErrorMessage:text" }
+        ]);
     }
 }

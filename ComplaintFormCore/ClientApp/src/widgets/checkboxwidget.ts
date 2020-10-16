@@ -1,5 +1,5 @@
 import { Widget } from "./widget";
-import * as Survey from "survey-vue";
+import { CustomWidgetCollection, ItemValue, IQuestion, JsonObject, QuestionCheckboxModel } from "survey-vue";
 
 export class CheckboxWidget extends Widget {
     private activatedBy = "property";
@@ -12,7 +12,7 @@ export class CheckboxWidget extends Widget {
         const widget: CheckboxWidget = new CheckboxWidget();
 
         // If activatedBy isn't passed, it will default to property.
-        Survey.CustomWidgetCollection.Instance.addCustomWidget(widget);
+        CustomWidgetCollection.Instance.addCustomWidget(widget);
     }
 
     /**
@@ -20,7 +20,7 @@ export class CheckboxWidget extends Widget {
      *
      * @param question
      */
-    isFit(question: Survey.IQuestion): boolean {
+    isFit(question: IQuestion): boolean {
         if (this.activatedBy === "property") {
             return question.renderAs === "checkboxwithhtmlinfo" && question.getType() === "checkbox";
         } else if (this.activatedBy === "type") {
@@ -41,16 +41,16 @@ export class CheckboxWidget extends Widget {
      */
     activatedByChanged(activatedBy: string): void {
         this.activatedBy = activatedBy;
-        Survey.JsonObject.metaData.removeProperty("checkbox", "renderAs");
+        JsonObject.metaData.removeProperty("checkbox", "renderAs");
         if (activatedBy === "property") {
-            Survey.JsonObject.metaData.addProperty("checkbox", {
+            JsonObject.metaData.addProperty("checkbox", {
                 name: "renderAs",
                 category: "general",
                 default: "standard",
                 choices: ["standard", "checkboxwithhtmlinfo"]
             });
         } else if (activatedBy === "customtype") {
-            Survey.JsonObject.metaData.addClass("checkboxwithhtmlinfo", [], undefined, "checkbox");
+            JsonObject.metaData.addClass("checkboxwithhtmlinfo", [], undefined, "checkbox");
         }
     }
 
@@ -60,12 +60,12 @@ export class CheckboxWidget extends Widget {
      * @param question
      * @param el
      */
-    afterRender(question: Survey.IQuestion, el: HTMLElement): void {
-        const checkboxQuestion: Survey.QuestionCheckboxModel = (question as unknown) as Survey.QuestionCheckboxModel;
+    afterRender(question: IQuestion, el: HTMLElement): void {
+        const checkboxQuestion: QuestionCheckboxModel = (question as unknown) as QuestionCheckboxModel;
         const locale = question.getLocale();
 
         for (const choice of checkboxQuestion.choices) {
-            const item: Survey.ItemValue = choice as Survey.ItemValue;
+            const item: ItemValue = choice;
 
             // ignore choices without the additional info
             if (!choice.htmlAdditionalInfo) {

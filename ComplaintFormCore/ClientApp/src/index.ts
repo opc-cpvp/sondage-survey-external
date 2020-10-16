@@ -9,6 +9,7 @@ import "element-closest-polyfill"; //  Polyfill to use Element.closest
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
+import { NewPaSurvey } from "./pa/newPaSurvey";
 import { CheckboxWidget } from "./widgets/checkboxwidget";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
@@ -20,7 +21,7 @@ declare global {
     function showPreview(survey: Survey.SurveyModel): void;
     function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
 
-    function initPaSurvey(lang: string, token: string): void;
+    function initPaSurvey(lang: "fr" | "en", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
     function exportToPDF(lang: string): void;
@@ -53,13 +54,17 @@ declare let Symbol;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
-        globalThis.initPaSurvey = (lang, token) => {
+        globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             CheckboxWidget.init();
 
-            const paSurvey = new PaSurvey();
-            paSurvey.init(jsonUrl, lang, token);
+            const paSurvey = new NewPaSurvey(jsonUrl, lang);
+            await paSurvey.init();
+            paSurvey.render();
+
+            /* const paSurvey = new PaSurvey();
+            paSurvey.init(jsonUrl, lang, token);*/
         };
 
         globalThis.initPiaETool = (lang, token) => {
