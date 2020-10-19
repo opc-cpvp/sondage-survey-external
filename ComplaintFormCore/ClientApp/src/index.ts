@@ -59,8 +59,8 @@ declare let Symbol;
 
             CheckboxWidget.init();
 
-            const paSurvey = new NewPaSurvey(jsonUrl, lang);
-            await paSurvey.init();
+            const paSurvey = new NewPaSurvey(lang, token);
+            await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.render();
 
             /* const paSurvey = new PaSurvey();

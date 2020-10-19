@@ -3,15 +3,13 @@ import { Converter } from "showdown";
 import Vue from "vue";
 
 export abstract class SurveyBase extends Survey {
-    protected readonly surveyUrl: string;
     private converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
     });
 
-    public constructor(surveyUrl: string, locale: "fr" | "en" = "en") {
+    public constructor(locale: "fr" | "en" = "en") {
         super();
-        this.surveyUrl = surveyUrl;
 
         this.survey = new Model();
         this.survey.locale = locale;
@@ -23,8 +21,8 @@ export abstract class SurveyBase extends Survey {
         this.registerCustomProperties();
     }
 
-    public init(): Promise<void> {
-        return fetch(this.surveyUrl)
+    public loadSurveyFromUrl(surveyUrl: string): Promise<void> {
+        return fetch(surveyUrl)
             .then(response => response.json())
             .then(json => {
                 this.survey.fromJSON(json);
