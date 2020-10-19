@@ -4,7 +4,6 @@ import Vue from "vue";
 
 export abstract class SurveyBase extends Survey {
     protected readonly surveyUrl: string;
-    private readonly locale: "fr" | "en";
     private converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
@@ -13,22 +12,22 @@ export abstract class SurveyBase extends Survey {
     public constructor(surveyUrl: string, locale: "fr" | "en" = "en") {
         super();
         this.surveyUrl = surveyUrl;
-        this.locale = locale;
+
+        this.survey = new Model();
+        this.survey.locale = locale;
+
+        this.setSurveyProperties();
+        this.setSurveyLocalizations();
+        this.registerSurveyCallbacks();
+
+        this.registerCustomProperties();
     }
 
     public init(): Promise<void> {
         return fetch(this.surveyUrl)
             .then(response => response.json())
             .then(json => {
-                this.survey = new Model(json);
-
-                this.survey.locale = this.locale;
-
-                this.setSurveyProperties();
-                this.setSurveyLocalizations();
-                this.registerSurveyCallbacks();
-
-                this.registerCustomProperties();
+                this.survey.fromJSON(json);
             });
     }
 
