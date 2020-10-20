@@ -5,7 +5,7 @@ import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
-import { defaultData } from "./pia_test_data";
+import { piaTestData } from "./pia_test_data";
 import * as widgets from "surveyjs-widgets";
 import * as SurveyFile from "../surveyFile";
 
@@ -270,7 +270,7 @@ export class PiaETool {
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
-                //  const defaultData = {};
+                const defaultData = {};
 
                 // Load the initial state
                 SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));

@@ -2461,6 +2461,7 @@
             "en": "Why do you need to collect or create each piece or category of personal information? What is the purpose?",
             "fr": ""
           },
+          "isRequired":  true,
           "renderMode": "list",
           "allowAddPanel": true,
           "allowRemovePanel": true,
@@ -2788,12 +2789,17 @@
         "en": "",
         "fr": ""
       },
+      "section": 3,
       "elements": [
         {
           "type": "radiogroup",
           "name": "PersonalInformationPhysicalAndOrElectronicFormat",
           "title": {
-            "en": "Will your institution be collecting any personal information in a physical format, in an electronic format or both?",
+            "en": "Will your institution be collecting any personal information in a physical or electronic format?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><strong>Physical format</strong> includes, but is not limited to:<ul><li>Paper records</li><li>Digitally on physical media storage (for example, USB drive, DVD)</li><li>Physical samples</li></ul></p><p><strong>Electronic format</strong> includes, but is not limited to:<ul><li>Information submitted online</li><li>Information received in a spreadsheet</li><li>Information received by email</li></ul></p></section></p>",
             "fr": ""
           },
           "isRequired": true,
@@ -2820,22 +2826,6 @@
               "value": "both"
             }
           ]
-        },
-        {
-          "type": "html",
-          "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['both','physical']",
-          "html": {
-            "en": "<section class='alert alert-info'><p>Physical format includes, but is not limited to:<ul><li>Paper records</li><li>Digitally on physical media storage (for example, USB drive, DVD)</li><li>Physical samples</li></ul></p></section>",
-            "fr": ""
-          }
-        },
-        {
-          "type": "html",
-          "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['both','electronic']",
-          "html": {
-            "en": "<section class='alert alert-info'><p>Electronic format includes, but is not limited to:<ul><li>Information submitted online</li><li>Information received in a spreadsheet</li><li>Information received by email</li></ul></p></section>",
-            "fr": ""
-          }
         }
       ]
     },
@@ -3010,7 +3000,7 @@
     {
       "name": "page_step_3_4_1",
       "title": {
-        "en": "3.4 – Direct collection and purpose identification  ",
+        "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
       "section": 3,
@@ -3018,6 +3008,7 @@
         {
           "type": "boolean",
           "name": "IsDirectlyFromIndividual",
+          "isRequired": true,
           "title": {
             "en": "Do you collect the personal information directly from the individual for the primary purpose of this program or activity? (3.4.1)",
             "fr": ""
@@ -3038,14 +3029,14 @@
           "type": "tagbox",
           "name": "WhereWhomInfoCollected",
           "title": {
-            "en": "From where or whom is the personal information collected? Please select all that apply",
+            "en": "From where or whom is the personal information collected? Please select all that apply (3.4.2)",
             "fr": ""
           },
           "isRequired": true,
           "choices": [
             {
               "text": {
-                "en": "Directly from the individual by the institution for a primary purpose other than this program or activity (3.4.2)",
+                "en": "Directly from the individual by the institution for a primary purpose other than this program or activity",
                 "fr": ""
               },
               "value": "directly"
@@ -3105,7 +3096,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} contains 'directly' and !({WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other'])",
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly']",
       "section": 3,
       "elements": [
         {
@@ -3234,7 +3225,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{FormalInformationSharingAgreement} = 'yes_already_in_place'",
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
       "section": 3,
       "elements": [
         {
@@ -3292,12 +3283,13 @@
         {
           "type": "panel",
           "name": "pnl_documentation_file_upload",
+          "isRequired": true,
           "visibleIf": "{DocumentationRelevantISA} = 'upload'",
           "titleLocation": "hidden",
           "elements": [
             {
               "type": "file",
-              "name": "documentation_file_upload",
+              "name": "Documentation_file_upload",
               "titleLocation": "hidden",
               "description": {
                 "en": "Upload my ISA(s)",
@@ -3351,6 +3343,7 @@
         {
           "type": "boolean",
           "name": "HasExistingPIB",
+          "isRequired": true,
           "title": {
             "en": "Is there an existing PIB that, in its current state, accurately describes the collection, use, and disclosure of personal information for this program or activity? (3.4.7)",
             "fr": ""
@@ -3374,6 +3367,7 @@
         {
           "type": "comment",
           "name": "ExistingPIBDetails",
+          "isRequired": true,
           "title": {
             "en": "You have indicated that an existing PIB covers this program or activity. Please provide the name(s) and number(s) of any relevant PIBs, as well as the current text of the PIB.(3.4.8)",
             "fr": ""
@@ -3436,6 +3430,7 @@
         {
           "type": "boolean",
           "name": "HasNewPIBWorkBegun",
+          "isRequired": true,
           "title": {
             "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity. Has this work already begun? (3.4.10A)",
             "fr": ""
@@ -3443,7 +3438,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "NoPIBStatusExplanationType",
+          "name": "PIBStatusExplanationType",
           "visibleIf": "{HasNewPIBWorkBegun} = true",
           "title": {
             "en": "You have indicated that your institution has already begun working on either creating a new PIB or updating an existing PIB to reflect the personal information in this program or activity. Please provide the new or revised PIB description in the open text field below, or upload a copy. If the work is still in draft format, please indicate it. If your work is too preliminary to be shared, please provide information pertaining to the work on the PIB(s) (for example, work plan, next steps, etc.) in the open text field.(3.4.10B)",
@@ -3468,61 +3463,68 @@
           ]
         },
         {
-          "type": "comment",
-          "name": "NoPIBStatusExplanationText",
-          "visibleIf": "{HasNewPIBWorkBegun} = true and {NoPIBStatusExplanationType} contains 'text_field'",
-          "titleLocation": "hidden",
-          "description": {
-            "en": "",
+          "type": "panel",
+          "name": "",
+          "visibleIf": "{HasNewPIBWorkBegun} = true",
+          "title": {
+            "en": "PIB description",
             "fr": ""
-          }
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "PIBStatusExplanationText",
+              "visibleIf": "{PIBStatusExplanationType} contains 'text_field'",
+              "titleLocation": "hidden",
+              "isRequired": true,
+              "description": {
+                "en": "",
+                "fr": ""
+              }
+            },
+            {
+              "type": "file",
+              "name": "PIB_documentation_file_upload",
+              "visibleIf": "{PIBStatusExplanationType} contains 'upload'",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload my PIB documents",
+                "fr": ""
+              },
+              "isRequired": true,
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": ""
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
         },
         {
-          "type": "file",
-          "name": "pib_documentation_file_upload",
-          "visibleIf": "{HasNewPIBWorkBegun} = true and {NoPIBStatusExplanationType} contains 'upload'",
-          "titleLocation": "hidden",
-          "description": {
-            "en": "Upload my PIB documents",
-            "fr": ""
-          },
-          "hasComment": false,
-          "allowMultiple": true,
-          "waitForUpload": true,
-          "maxSize": 0,
-          "needConfirmRemoveFile": true,
-          "storeDataAsText": false,
-          "showPreview": false,
-          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-          "multipleFileMaxSizeErrorMessage": {
-            "en": "Maximum size of files 25MB allowed",
-            "fr": ""
-          },
-          "confirmRemoveMessage": {
-            "en": "Do you really want to remove this file?",
-            "fr": "Voulez-vous vraiment supprimer ce fichier?"
-          },
-          "itemListTitle": {
-            "en": "Attached ISA(s)",
-            "fr": ""
-          },
-          "itemListRemoveText": {
-            "en": "Remove",
-            "fr": "Supprimer"
-          },
-          "itemListNoAttachmentsText": {
-            "en": "No attachments have been uploaded yet.",
-            "fr": "Aucune pièce jointe n'a encore été téléchargée."
-          },
-          "duplicateFileNameExceptionMessage": {
-            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-          }
-        },
-        {
           "type": "comment",
-          "name": "NoPIBStatusExplanationText",
-          "visibleIf": "{HasNewPIBWorkBegun} = false and {NoPIBStatusExplanationType} contains 'text_field'",
+          "name": "NoBeganPIBStatusExplanationText",
+          "visibleIf": "{HasNewPIBWorkBegun} = false",
+          "isRequired": true,
           "title": {
             "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity, but that this work has not yet begun. Please provide information pertaining to this effort (for example, work plan, next steps, etc.) (3.4.10C)",
             "fr": ""
@@ -3536,13 +3538,14 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{NoPIBStatusReason} contains 'no_pib'",
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib'",
       "section": 3,
       "elements": [
         {
           "type": "comment",
           "name": "WhyNoPlanToReflectNewConsistentPIB",
-          "visibleIf": "{IsOriginalPurposeConsistent} = true",
+          "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true",
+          "isRequired": true,
           "title": {
             "en": "You have indicated that the institution does not plan create or update any PIBs to reflect the personal information in this program or activity. You previously indicated that you collect the personal information directly from the individual for the purpose other than this program or activity that is consistent with the purpose of your program or activity. Section 11 of the Privacy Act requires that the descriptions of PIBs must include a statement of the consistent uses for which personal information may be used or disclosed. Given this, please explain why your institution does not plan to reflect this new consistent use in a PIB. (3.4.10D)",
             "fr": ""
@@ -3551,7 +3554,8 @@
         {
           "type": "comment",
           "name": "WhyNoPIBExplanation",
-          "visibleIf": "{IsOriginalPurposeConsistent} = false",
+          "visibleIf": "!({IsOriginalPurposeConsistent} = true)",
+          "isRequired": true,
           "title": {
             "en": "You have indicated that the institution does not plan to create or update any PIBs to reflect the personal information in this program or activity. Please explain why this is the case.(3.4.10E)",
             "fr": ""
@@ -3569,12 +3573,13 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{NoPIBStatusReason} contains 'no_pib'",
+      "visibleIf": "{HasExistingPIB} = true or {NoPIBStatusReason} anyof ['new_pib', 'update_pib'] or ({IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true)",
       "section": 3,
       "elements": [
         {
           "type": "radiogroup",
           "name": "InstitutionNotifyIndividuals",
+          "isRequired": true,
           "title": {
             "en": "Does your institution notify or intend to notify individuals of the purpose for which it collects, uses, or discloses their personal information through methods other than through Personal Information Banks (PIB) or through Privacy Notice Statements (PNS)? (3.4.11)",
             "fr": ""
@@ -3583,7 +3588,6 @@
             "en": "Individuals could include the public, program applicants, participants, etc.Examples include Info Source, publishing ISAs, PIA summaries, etc.",
             "fr": ""
           },
-          "isRequired": true,
           "choices": [
             {
               "text": {
@@ -3601,7 +3605,7 @@
             },
             {
               "text": {
-                "en": "no",
+                "en": "No",
                 "fr": ""
               },
               "value": "no"
@@ -3616,11 +3620,12 @@
         "en": "",
         "fr": ""
       },
-      "visibleIf": "{IsOriginalPurposeConsistent} = false",
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true)",
       "elements": [
         {
           "type": "boolean",
           "name": "HasPrivacyNoticeStatement",
+          "isRequired": true,
           "title": {
             "en": "Will there be a privacy notice statement for this program or activity? (3.4.11A)",
             "fr": ""
@@ -3634,6 +3639,7 @@
           "type": "boolean",
           "name": "HasDraftFinalVersionPNSAvailable",
           "visibleIf": "{HasPrivacyNoticeStatement} = true",
+          "isRequired": true,
           "title": {
             "en": "Do you have draft or final versions of your PNS available to include in your PIA? (3.4.11B)",
             "fr": ""
@@ -3642,6 +3648,42 @@
             "en": "Please note that well-crafted PIA should include all peripheral documents, including PNS.",
             "fr": ""
           }
+        },
+        {
+          "type": "paneldynamic",
+          "valueName": "PNSStatement",
+          "visibleIf": "{HasPrivacyNoticeStatement} = true and {HasDraftFinalVersionPNSAvailable} = true",
+          "title": {
+            "en": "Please provide a copy of the PNS for this program. If you have multiple statements to provide, please do so and provide a brief description of where an individual would encounter the notice (for example, on a paper form, on signs, etc.)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>At minimum, individuals should be provided with the following information:<ul><li>what personal information is being sought</li><li>for what purpose and with what authority</li><li>the consequences for not providing the information</li><li>how it will be used, disclosed and protected</li><li>for how long it will be retained</li><li>rights they may have to access and correct their information</li></ul></p>",
+            "fr": ""
+          },
+          "renderMode": "list",
+          "allowAddPanel": true,
+          "allowRemovePanel": true,
+          "panelAddText ": {
+            "en": "Add statement",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this item?",
+            "fr": ""
+          },
+          "templateElements": [
+            {
+              "type": "comment",
+              "valueName": "Description",
+              "title": {
+                "en": "Description:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
         }
       ]
     },
@@ -3651,13 +3693,13 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']",
+      "visibleIf": "({HasExistingPIB} = true and {InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']) or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true))",
       "section": 3,
       "elements": [
         {
           "type": "comment",
           "name": "InstitutionNotifyIndividualsDescription",
-          "visibleIf": "{  } contains ''",
+          "isRequired": true,
           "title": {
             "en": "Please describe how you notify affected individuals and what information you convey to affected individuals about this program, aside from a PIB or PNS. (3.4.12A)",
             "fr": ""

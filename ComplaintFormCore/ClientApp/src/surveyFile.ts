@@ -130,9 +130,11 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.QuestionFileModel, container: HTMLDivElement): void {
     container.innerHTML = "";
 
-    const title = document.createElement("h3");
-    title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
-    container.appendChild(title);
+    if (question.itemListTitle && question.itemListTitle.length > 0) {
+        const title = document.createElement("h3");
+        title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
+        container.appendChild(title);
+    }
 
     if (question.value && question.value.length > 0) {
         const listView = document.createElement("ol");
@@ -203,7 +205,12 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
                 const buttonRemove = document.createElement("button");
                 buttonRemove.setAttribute("type", "button");
                 buttonRemove.className = "btn sv_q_file_remove_button";
-                buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
+
+                if (question.itemListRemoveText && question.itemListRemoveText.length > 0) {
+                    buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
+                } else {
+                    buttonRemove.innerText = Survey.surveyLocalization.locales[survey.locale].removeRow;
+                }
 
                 buttonRemove.onclick = () => {
                     if (confirm(getTranslation(question.confirmRemoveMessage, survey.locale))) {

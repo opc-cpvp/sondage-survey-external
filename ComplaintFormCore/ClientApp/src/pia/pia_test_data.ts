@@ -1,4 +1,4 @@
-﻿export const defaultData = {
+﻿export const piaTestData = {
     AnotherContactEmail: "anothercontact@gmail.com",
     AnotherContactFullname: "Another full name",
     AnotherContactSection: "Another section",

@@ -23,6 +23,8 @@ namespace SurveyToCS
 
     public class Element
     {
+        public Page parent { get; set; }
+
         public string type { get; set; }
         public string inputType { get; set; }
 
