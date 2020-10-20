@@ -378,23 +378,23 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.InformationPhysicalFormatDescription).NotEmpty().When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.InformationPhysicalFormatDescription).Length(0, 5000).When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-            // IsInformationPhysicalConvertedCopy (Page: page_step_3_3_5)
-            RuleFor(x => x.IsInformationPhysicalConvertedCopy).NotEmpty().When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            // IsPhysicalConvertedToElectronic (Page: page_step_3_3_5)
+            RuleFor(x => x.IsPhysicalConvertedToElectronic).NotEmpty().When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // InformationPhysicalConvertedCopyDescription (Page: page_step_3_3_5)
-            RuleFor(x => x.InformationPhysicalConvertedCopyDescription).NotEmpty().When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsInformationPhysicalConvertedCopy == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.InformationPhysicalConvertedCopyDescription).Length(0, 5000).When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsInformationPhysicalConvertedCopy == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.InformationPhysicalConvertedCopyDescription).NotEmpty().When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsPhysicalConvertedToElectronic == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformationPhysicalConvertedCopyDescription).Length(0, 5000).When(x => new List<string>() { "physical", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsPhysicalConvertedToElectronic == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // PersonalInformationElectronicFormatDescription (Page: page_step_3_3_6)
             RuleFor(x => x.PersonalInformationElectronicFormatDescription).NotEmpty().When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.PersonalInformationElectronicFormatDescription).Length(0, 5000).When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-            // IsInformationElectronicConvertedCopy (Page: page_step_3_3_6)
-            RuleFor(x => x.IsInformationElectronicConvertedCopy).NotEmpty().When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            // IsElectronicConvertedToPhysical (Page: page_step_3_3_6)
+            RuleFor(x => x.IsElectronicConvertedToPhysical).NotEmpty().When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // IsInformationElectronicConvertedCopyDescription (Page: page_step_3_3_6)
-            RuleFor(x => x.IsInformationElectronicConvertedCopyDescription).NotEmpty().When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsInformationElectronicConvertedCopy == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.IsInformationElectronicConvertedCopyDescription).Length(0, 5000).When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsInformationElectronicConvertedCopy == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.IsInformationElectronicConvertedCopyDescription).NotEmpty().When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.IsInformationElectronicConvertedCopyDescription).Length(0, 5000).When(x => new List<string>() { "electronic", "both" }.Contains(x.PersonalInformationPhysicalAndOrElectronicFormat) && x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // IsThereCollectNotIntended (Page: page_step_3_3_8a)
             RuleFor(x => x.IsThereCollectNotIntended).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -513,6 +513,36 @@ namespace ComplaintFormCore.Models
             // NotificationTime (Page: page_step_3_4_12_and_13)
             RuleFor(x => x.NotificationTime).NotEmpty().When(x => (x.HasExistingPIB == true && (x.InstitutionNotifyIndividuals == "yes_already_in_place" || x.NoPIBStatusReason == "yes_not_established")) || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.NotificationTime).Must(x => new List<string> { "before", "at", "after" }.Contains(x)).When(x => (x.HasExistingPIB == true && (x.InstitutionNotifyIndividuals == "yes_already_in_place" || x.NoPIBStatusReason == "yes_not_established")) || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true))).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // HasLibraryArchiveCanadaApproved (Page: page_step_3_5_1)
+            RuleFor(x => x.HasLibraryArchiveCanadaApproved).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // RecordDispositionAuthorityIdentification (Page: page_step_3_5_1)
+            RuleFor(x => x.RecordDispositionAuthorityIdentification).NotEmpty().When(x => x.HasLibraryArchiveCanadaApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.RecordDispositionAuthorityIdentification).Length(0, 5000).When(x => x.HasLibraryArchiveCanadaApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HowLongRetainPersonalInformationInPhysicalFormat (Page: page_step_3_5_2)
+            RuleFor(x => x.HowLongRetainPersonalInformationInPhysicalFormat).NotEmpty().When(x => x.PersonalInformationPhysicalAndOrElectronicFormat == "physical" || x.PersonalInformationPhysicalAndOrElectronicFormat == "both" || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HowLongRetainPersonalInformationInPhysicalFormat).Length(0, 5000).When(x => x.PersonalInformationPhysicalAndOrElectronicFormat == "physical" || x.PersonalInformationPhysicalAndOrElectronicFormat == "both" || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HowLongRetainPersonalInformationInElectronicFormat (Page: page_step_3_5_3)
+            RuleFor(x => x.HowLongRetainPersonalInformationInElectronicFormat).NotEmpty().When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !x.IsElectronicConvertedToPhysical == true) || x.PersonalInformationPhysicalAndOrElectronicFormat == "both" || x.IsPhysicalConvertedToElectronic == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HowLongRetainPersonalInformationInElectronicFormat).Length(0, 5000).When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !x.IsElectronicConvertedToPhysical == true) || x.PersonalInformationPhysicalAndOrElectronicFormat == "both" || x.IsPhysicalConvertedToElectronic == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ControlsProceduresImplementation (Page: page_step_3_5_4)
+            RuleFor(x => x.ControlsProceduresImplementation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ControlsProceduresImplementation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // ControlsProceduresImplementationDescription (Page: page_step_3_5_4)
+            RuleFor(x => x.ControlsProceduresImplementationDescription).NotEmpty().When(x => x.ControlsProceduresImplementation == "yes_in_place" || x.ControlsProceduresImplementation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ControlsProceduresImplementationDescription).Length(0, 5000).When(x => x.ControlsProceduresImplementation == "yes_in_place" || x.ControlsProceduresImplementation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WillRetainInformationUnintentionally (Page: page_step_3_5_5)
+            RuleFor(x => x.WillRetainInformationUnintentionally).NotEmpty().When(x => x.IsThereCollectNotIntended == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // WillRetainInformationUnintentionallyDescription (Page: page_step_3_5_5)
+            RuleFor(x => x.WillRetainInformationUnintentionallyDescription).NotEmpty().When(x => x.IsThereCollectNotIntended == true && x.WillRetainInformationUnintentionally == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WillRetainInformationUnintentionallyDescription).Length(0, 5000).When(x => x.IsThereCollectNotIntended == true && x.WillRetainInformationUnintentionally == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).SetValidator(new BehalfMultipleInstitutionOthersValidator(_localizer)).When(x => x.SingleOrMultiInstitutionPIA == "multi");
 

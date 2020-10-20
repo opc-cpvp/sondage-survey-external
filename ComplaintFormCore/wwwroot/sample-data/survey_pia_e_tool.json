@@ -2461,7 +2461,7 @@
             "en": "Why do you need to collect or create each piece or category of personal information? What is the purpose?",
             "fr": ""
           },
-          "isRequired":  true,
+          "isRequired": true,
           "renderMode": "list",
           "allowAddPanel": true,
           "allowRemovePanel": true,
@@ -2853,7 +2853,7 @@
         },
         {
           "type": "boolean",
-          "name": "IsInformationPhysicalConvertedCopy",
+          "name": "IsPhysicalConvertedToElectronic",
           "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in a physical format to an electronic format? (3.3.5C)",
@@ -2867,7 +2867,7 @@
         {
           "type": "comment",
           "name": "InformationPhysicalConvertedCopyDescription",
-          "visibleIf": "{IsInformationPhysicalConvertedCopy} = true",
+          "visibleIf": "{IsPhysicalConvertedToElectronic} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from a physical format to an electronic format. (3.3.5D)",
@@ -2904,7 +2904,7 @@
         },
         {
           "type": "boolean",
-          "name": "IsInformationElectronicConvertedCopy",
+          "name": "IsElectronicConvertedToPhysical",
           "isRequired": true,
           "title": {
             "en": "Will your institution convert or copy any personal information in an electronic format to a physical format? (3.3.6C)",
@@ -2918,7 +2918,7 @@
         {
           "type": "comment",
           "name": "IsInformationElectronicConvertedCopyDescription",
-          "visibleIf": "{IsInformationElectronicConvertedCopy} = true",
+          "visibleIf": "{IsElectronicConvertedToPhysical} = true",
           "isRequired": true,
           "title": {
             "en": "Please describe your conversion of personal information from an electronic format to a physical format. (3.3.6D)",
@@ -3763,14 +3763,193 @@
       ]
     },
     {
-      "name": "page_step_3_5",
+      "name": "page_step_3_5_1",
       "title": {
-        "en": "3.4 – Direct collection and purpose identification",
+        "en": "3.5 – Retention",
         "fr": ""
       },
       "section": 3,
       "elements": [
-
+        {
+          "type": "boolean",
+          "name": "HasLibraryArchiveCanadaApproved",
+          "isRequired": true,
+          "title": {
+            "en": "Has Library and Archive Canada approved a records retention and disposal schedule that applies to the personal information collected, used, and/or disclosed as a part of this program or activity? (3.5.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you are unsure, consult with your Information Management officials to determine your authority to retain and dispose of the personal information. If your institution has submitted its request to LAC, please select ‘Yes’ and provide further detail in the open-text field provided.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "RecordDispositionAuthorityIdentification",
+          "isRequired": true,
+          "visibleIf": "{HasLibraryArchiveCanadaApproved} = true",
+          "title": {
+            "en": "Please identify the Record Disposition Authority (RDA).  (3.5.1)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_2",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical', 'both'] or {IsElectronicConvertedToPhysical} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowLongRetainPersonalInformationInPhysicalFormat",
+          "isRequired": true,
+          "title": {
+            "en": "How long do you retain personal information <strong>in physical format</strong> in order to fulfill the purpose for which it was collected? Please include retention minimums and maximums, and the rationale for them. If your retention differs for different elements or types of personal information, please specify. (3.5.2) ",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:<ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_3",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "visibleIf": "({PersonalInformationPhysicalAndOrElectronicFormat} contains 'electronic' and !({IsElectronicConvertedToPhysical} = true)) or {PersonalInformationPhysicalAndOrElectronicFormat} contains 'both' or {IsPhysicalConvertedToElectronic} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowLongRetainPersonalInformationInElectronicFormat",
+          "isRequired": true,
+          "title": {
+            "en": "How long do you retain personal information <strong>in electronic format</strong> in order to fulfill the purpose for which it was collected? Please include retention minimums and maximums, and the rationale for them. If your retention differs for different elements or types of personal information, please specify.  (3.5.3)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:</p><ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_4",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ControlsProceduresImplementation",
+          "isRequired": true,
+          "title": {
+            "en": "Have you implemented, or do you plan to implement, controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it? (3.5.4A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>If an institution intends to dispose of personal information that has been used for an administrative purpose prior to the expiration of the two-year minimum retention standard established by the Privacy Regulations, it must obtain the consent of the individual to whom the information relates, in writing, before doing so.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond &lsquo;No&rsquo; to this question.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ControlsProceduresImplementationDescription",
+          "isRequired": true,
+          "visibleIf": "{ControlsProceduresImplementation} anyof ['yes_in_place','yes_not_established']",
+          "title": {
+            "en": "Please briefly describe the controls and procedures that you have implemented, or plan to implement, to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the <em>Privacy Regulations</em>, to ensure individuals can access it.(3.5.4B)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_5",
+      "title": {
+        "en": "3.5 – Retention  {IsThereCollectNotIntended}",
+        "fr": ""
+      },
+      "visibleIf": "{IsThereCollectNotIntended} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "WillRetainInformationUnintentionally",
+          "isRequired": true,
+          "title": {
+            "en": "You previously indicated that it is possible that your institution could inadvertently collect personal information through this program or initiative. In such instances, are there circumstances in which you would retain the personal information that was collected unintentionally? (3.5.5A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WillRetainInformationUnintentionallyDescription",
+          "visibleIf": "{WillRetainInformationUnintentionally} = 'true'",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the circumstances in which you would retain the personal information that was inadvertently collected. Please include a rationale or justification for this decision.(3.5.5B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that retention of personal information for “just-in-case” future scenarios are counter to the <em>Privacy Act</em>.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individual’s personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul>",
+            "fr": ""
+          }
+        }
       ]
     },
     {

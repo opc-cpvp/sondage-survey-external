@@ -802,13 +802,13 @@ namespace ComplaintFormCore.Models
         /// Will your institution convert or copy any personal information in a physica...<br/>
         /// Survey question type: boolean
         /// </summary>
-        public bool? IsInformationPhysicalConvertedCopy { get; set; }
+        public bool? IsPhysicalConvertedToElectronic { get; set; }
 
         /// <summary>
         /// Page: page_step_3_3_5<br/>
         /// Section: 3<br/>
         /// Please describe your conversion of personal information from a physical for...<br/>
-        /// Required condition: {IsInformationPhysicalConvertedCopy} = true<br/>
+        /// Required condition: {IsPhysicalConvertedToElectronic} = true<br/>
         /// Survey question type: comment
         /// </summary>
         public string InformationPhysicalConvertedCopyDescription { get; set; }
@@ -827,13 +827,13 @@ namespace ComplaintFormCore.Models
         /// Will your institution convert or copy any personal information in an electr...<br/>
         /// Survey question type: boolean
         /// </summary>
-        public bool? IsInformationElectronicConvertedCopy { get; set; }
+        public bool? IsElectronicConvertedToPhysical { get; set; }
 
         /// <summary>
         /// Page: page_step_3_3_6<br/>
         /// Section: 3<br/>
         /// Please describe your conversion of personal information from an electronic ...<br/>
-        /// Required condition: {IsInformationElectronicConvertedCopy} = true<br/>
+        /// Required condition: {IsElectronicConvertedToPhysical} = true<br/>
         /// Survey question type: comment
         /// </summary>
         public string IsInformationElectronicConvertedCopyDescription { get; set; }
@@ -1101,6 +1101,73 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public string NotificationTime { get; set; }
 
+        /// <summary>
+        /// Page: page_step_3_5_1<br/>
+        /// Section: 3<br/>
+        /// Has Library and Archive Canada approved a records retention and disposal sc...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasLibraryArchiveCanadaApproved { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_1<br/>
+        /// Section: 3<br/>
+        /// Please identify the Record Disposition Authority (RDA).  (3.5.1)<br/>
+        /// Required condition: {HasLibraryArchiveCanadaApproved} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string RecordDispositionAuthorityIdentification { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_2<br/>
+        /// Section: 3<br/>
+        /// How long do you retain personal information <strong>in physical format</str...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string HowLongRetainPersonalInformationInPhysicalFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_3<br/>
+        /// Section: 3<br/>
+        /// How long do you retain personal information <strong>in electronic format</s...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string HowLongRetainPersonalInformationInElectronicFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_4<br/>
+        /// Section: 3<br/>
+        /// Have you implemented, or do you plan to implement, controls and procedures ...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ControlsProceduresImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_4<br/>
+        /// Section: 3<br/>
+        /// Please briefly describe the controls and procedures that you have implement...<br/>
+        /// Required condition: {ControlsProceduresImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ControlsProceduresImplementationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_5<br/>
+        /// Section: 3<br/>
+        /// You previously indicated that it is possible that your institution could in...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? WillRetainInformationUnintentionally { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_5_5<br/>
+        /// Section: 3<br/>
+        /// Please describe the circumstances in which you would retain the personal in...<br/>
+        /// Required condition: {WillRetainInformationUnintentionally} = 'true'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WillRetainInformationUnintentionallyDescription { get; set; }
 
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
