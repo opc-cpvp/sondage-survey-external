@@ -544,6 +544,38 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.WillRetainInformationUnintentionallyDescription).NotEmpty().When(x => x.IsThereCollectNotIntended == true && x.WillRetainInformationUnintentionally == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.WillRetainInformationUnintentionallyDescription).Length(0, 5000).When(x => x.IsThereCollectNotIntended == true && x.WillRetainInformationUnintentionally == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
+            // MechanismToCorrectPersonalInformation (Page: page_step_3_6_1_a)
+            RuleFor(x => x.MechanismToCorrectPersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToCorrectPersonalInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // NoMechanismToCorrectPersonalInformationExplanation (Page: page_step_3_6_1_a)
+            RuleFor(x => x.NoMechanismToCorrectPersonalInformationExplanation).NotEmpty().When(x => x.MechanismToCorrectPersonalInformation == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NoMechanismToCorrectPersonalInformationExplanation).Length(0, 5000).When(x => x.MechanismToCorrectPersonalInformation == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // MechanismToCorrectPersonalInformationDescription (Page: page_step_3_6_1_b_c)
+            RuleFor(x => x.MechanismToCorrectPersonalInformationDescription).NotEmpty().When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToCorrectPersonalInformationDescription).Length(0, 5000).When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WillProvideOpportunityToAddStatement (Page: page_step_3_6_1_b_c)
+            RuleFor(x => x.WillProvideOpportunityToAddStatement).NotEmpty().When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WillProvideOpportunityToAddStatement).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // NotProvideOpportunityToAddStatementExplanation (Page: page_step_3_6_1_b_c)
+            RuleFor(x => x.NotProvideOpportunityToAddStatementExplanation).NotEmpty().When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established" && x.WillProvideOpportunityToAddStatement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NotProvideOpportunityToAddStatementExplanation).Length(0, 5000).When(x => x.MechanismToCorrectPersonalInformation == "yes_in_place" || x.MechanismToCorrectPersonalInformation == "yes_not_established" && x.WillProvideOpportunityToAddStatement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // IsCollectInformationAuthoritativeSources (Page: page_step_3_6_2)
+            RuleFor(x => x.IsCollectInformationAuthoritativeSources).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.IsCollectInformationAuthoritativeSources).Must(x => new List<string> { "yes_in_all_collection", "yes_but_not_in_all_collection", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // CollectInformationAuthoritativeSourcesExplanation (Page: page_step_3_6_2)
+            RuleFor(x => x.CollectInformationAuthoritativeSourcesExplanation).NotEmpty().When(x => x.IsCollectInformationAuthoritativeSources == "yes_in_all_collection" || x.IsCollectInformationAuthoritativeSources == "yes_but_not_in_all_collection").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.CollectInformationAuthoritativeSourcesExplanation).Length(0, 5000).When(x => x.IsCollectInformationAuthoritativeSources == "yes_in_all_collection" || x.IsCollectInformationAuthoritativeSources == "yes_but_not_in_all_collection").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ProgramAccuracyDescription (Page: page_step_3_6_3)
+            RuleFor(x => x.ProgramAccuracyDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProgramAccuracyDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).SetValidator(new BehalfMultipleInstitutionOthersValidator(_localizer)).When(x => x.SingleOrMultiInstitutionPIA == "multi");
 
             RuleForEach(x => x.PersonalInformationCategory).SetValidator(new PersonalInformationCategoryValidator(_localizer));

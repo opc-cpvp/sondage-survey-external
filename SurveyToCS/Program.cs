@@ -31,6 +31,10 @@ namespace SurveyToCS
             {
                 CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPIAToolModel");
             }
+            else if(line == "t")
+            {
+                CreateTestData(json);
+            }
         }
 
         #region Properties
@@ -795,15 +799,35 @@ namespace SurveyToCS
         {
             SurveyObject survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(jsonFile));
 
+            foreach (var page in survey.pages)
+            {
+                AddParentPage(page, page.elements);
+            }
+
             StringBuilder csharp = new StringBuilder();
 
             foreach (var page in survey.pages)
             {
                 BuildPropertyData(csharp, page.elements.Where(e => _simpleTypeElements.Contains(e.type)).ToList(), page);
             }
+
+            List<Element> survey_dynamic_elements = new List<Element>();
+
+            foreach (var page in survey.pages)
+            {
+                GetDynamicElements(survey_dynamic_elements, page.elements);
+            }
+
+            if (survey_dynamic_elements.Count > 0)
+            {
+                BuildDynamicPropertyData(csharp, survey_dynamic_elements);
+            }
+
+            Console.WriteLine(csharp.ToString());
+            Console.ReadLine();
         }
 
-        private static string BuildPropertyData(StringBuilder csharp, List<Element> elements, Page pageObj)
+        private static void BuildPropertyData(StringBuilder csharp, List<Element> elements, Page pageObj)
         {
             foreach (var element in elements)
             {
@@ -813,50 +837,113 @@ namespace SurveyToCS
                 }
                 else
                 {
-                    csharp.Append("\"");
-                    csharp.Append(CapitalizeFirstLetter(element.name));
-                    csharp.Append("\":");
+                    string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
 
-                    if (element.type == "boolean")
-                    {
-                        csharp.Append("true");
-                    }
-                    else if (element.type == "matrixdynamic")
-                    {
-                        //csharp.Append("List<");
-
-                        //if (!string.IsNullOrWhiteSpace(element.name))
-                        //{
-                        //    csharp.Append(CapitalizeFirstLetter(element.name));
-                        //    csharp.Append("> ");
-                        //    csharp.Append(CapitalizeFirstLetter(element.name));
-                        //}
-                        //else if (!string.IsNullOrWhiteSpace(element.valueName))
-                        //{
-                        //    csharp.Append(CapitalizeFirstLetter(element.valueName));
-                        //    csharp.Append("> ");
-                        //    csharp.Append(CapitalizeFirstLetter(element.valueName));
-                        //}
-                    }
-                    else if (element.type == "checkbox" || element.type == "file")
-                    {
-                        //csharp.Append("List<string> ");
-                        //csharp.Append(CapitalizeFirstLetter(element.name));
-                    }
-                    else
-                    {
-                        //csharp.Append(" string ");
-                        csharp.Append("\"");
-                        csharp.Append("some test data");
-                        csharp.Append("\"");
-                    }
-
-                    csharp.AppendLine();
+                    csharp.Append(CapitalizeFirstLetter(elementName));
+                    csharp.Append(":");
+                    csharp.Append(GetPropertyValue(element));
+                    csharp.AppendLine(",");
                 }
             }
-
-            return "";
         }
+
+        private static void BuildDynamicPropertyData(StringBuilder csharp, List<Element> dynamicElements)
+        {
+            var groupedByValueName = from item in dynamicElements
+                                     group item by item.valueName into newGroup
+                                     orderby newGroup.Key
+                                     select newGroup;
+
+            foreach (var dynamicItem in groupedByValueName)
+            {
+                csharp.Append(dynamicItem.Key);
+                csharp.AppendLine(": [");
+
+                csharp.Append("{");
+                foreach (var element in dynamicItem)
+                {
+                    if (element.type == "matrixdynamic")
+                    {
+                        foreach(var column in element.columns)
+                        {
+                            csharp.AppendLine();
+                            csharp.Append(column.name);
+                            csharp.Append(":");
+                            csharp.Append(GetPropertyValue(column));
+                            csharp.Append(",");
+                        }
+                    }
+                    else if(element.type == "paneldynamic")
+                    {
+                        foreach (var column in element.templateElements)
+                        {
+                            csharp.AppendLine();
+                            csharp.Append(column.valueName);
+                            csharp.Append(":");
+                            csharp.Append(GetPropertyValue(column));
+                            csharp.Append(",");
+                        }
+                    }
+                }
+
+                csharp.AppendLine("},");
+                csharp.AppendLine("],");
+            }
+        }
+
+        private static string GetPropertyValue(Element element)
+        {
+            StringBuilder retVal = new StringBuilder();
+
+            if (element.type == "boolean")
+            {
+                retVal.Append("true");
+            }
+            else if (element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown")
+            {
+                retVal.Append("\"");
+
+                if (element.choices != null && element.choices.Count > 0)
+                {
+                    retVal.Append(element.choices[0].value);
+                }
+
+                retVal.Append("\"");
+            }
+            else if (element.type == "tagbox")
+            {
+                retVal.Append("[\"");
+
+                if (element.choices != null && element.choices.Count > 0)
+                {
+                    retVal.Append(element.choices[0].value);
+                }
+
+                retVal.Append("\"]");
+            }
+            else if (element.type == "file")
+            {
+                retVal.Append("[]");
+            }
+            else
+            {
+                retVal.Append("\"");
+
+                if (element.inputType == "email")
+                {
+                    retVal.Append(RandomText(10) + "@gmail.com");
+                }
+                else
+                {
+                    retVal.Append(RandomText(25));
+                }
+
+                retVal.Append("\"");
+            }
+
+            return retVal.ToString();
+        }
+
         #endregion
 
         private static void GetDynamicElements(List<Element> survey_dynamic_elements, List<Element> page_or_panel_elements)
@@ -880,6 +967,24 @@ namespace SurveyToCS
         private static string CapitalizeFirstLetter(string str)
         {
             return char.ToUpper(str[0]) + str.Substring(1);
+        }
+
+        private static string RandomText(int length)
+        {
+            StringBuilder str_build = new StringBuilder();
+            Random random = new Random();
+
+            char letter;
+
+            for (int i = 0; i < length; i++)
+            {
+                double flt = random.NextDouble();
+                int shift = Convert.ToInt32(Math.Floor(25 * flt));
+                letter = Convert.ToChar(shift + 65);
+                str_build.Append(letter);
+            }
+
+            return str_build.ToString();
         }
     }
 

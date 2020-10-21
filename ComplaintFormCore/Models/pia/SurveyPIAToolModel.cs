@@ -1169,6 +1169,70 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public string WillRetainInformationUnintentionallyDescription { get; set; }
 
+        /// <summary>
+        /// Page: page_step_3_6_1_a<br/>
+        /// Section: 3<br/>
+        /// Does your institution provide, or plan to provide, individuals with a mecha...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string MechanismToCorrectPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_1_a<br/>
+        /// Section: 3<br/>
+        /// Please explain why your institution does not intend to provide individuals ...<br/>
+        /// Required condition: {MechanismToCorrectPersonalInformation} contains 'no'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string NoMechanismToCorrectPersonalInformationExplanation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_1_b_c<br/>
+        /// Please describe the mechanism(s) by which individuals can or will be able t...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string MechanismToCorrectPersonalInformationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_1_b_c<br/>
+        /// Does your institution provide, or plan to provide, individuals the opportun...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string WillProvideOpportunityToAddStatement { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_1_b_c<br/>
+        /// Please explain why your institution does not intend to provide individuals ...<br/>
+        /// Required condition: {WillProvideOpportunityToAddStatement} contains 'no'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string NotProvideOpportunityToAddStatementExplanation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_2<br/>
+        /// Does your program collect personal information from authoritative sources?<br/>
+        /// Possible choices: [yes_in_all_collection, yes_but_not_in_all_collection, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string IsCollectInformationAuthoritativeSources { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_2<br/>
+        /// Please explain how you determined that your sources for personal informatio...<br/>
+        /// Required condition: {IsCollectInformationAuthoritativeSources} anyof ['yes_in_all_collection','yes_but_not_in_all_collection']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string CollectInformationAuthoritativeSourcesExplanation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_6_3<br/>
+        /// In addition to any information provided in the previous questions in this s...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ProgramAccuracyDescription { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<PersonalInformationCategory> PersonalInformationCategory { get; set; }

@@ -273,7 +273,7 @@ export class PiaETool {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
+                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(piaTestData));
 
                 SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIA);
 

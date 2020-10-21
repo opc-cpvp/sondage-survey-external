@@ -2355,12 +2355,12 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": 3.3,
       "elements": [
         {
           "type": "html",
           "html": {
-            "en": "<p><section class='alert alert-warning'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-5' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a title='Directive on Social Insurance Number' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=13342' target='_blank'>Directive on Social Insurance Number</a></li><li><strong>What limiting collection means</strong>: Only collect personal information if you need to.</li></ul></section></p>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-5' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a title='Directive on Social Insurance Number' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=13342' target='_blank'>Directive on Social Insurance Number</a></li><li><strong>What limiting collection means</strong>: Only collect personal information if you need to.</li></ul></section></p>",
             "fr": ""
           }
         }
@@ -2986,7 +2986,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": 3.4,
       "elements": [
         {
           "type": "html",
@@ -3751,12 +3751,12 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": 3.5,
       "elements": [
         {
           "type": "html",
           "html": {
-            "en": "<ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(1)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(1)</a> and <em>Regulations</em> <a title='s. 4(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-83-508/page-1.html#h-3' target='_blank'>s. 4(1) and (2)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.priv.gc.ca/en/privacy-topics/business-privacy/safeguards-and-breaches/safeguarding-personal-information/gd_rd_201406/' target='_blank'>Personal information retention and disposal: Principles and best practices</a> (OPC guide)</li><li><strong>What retention means</strong>: Only keep personal information for as long as you need.</li></ul>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(1)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(1)</a> and <em>Regulations</em> <a title='s. 4(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-83-508/page-1.html#h-3' target='_blank'>s. 4(1) and (2)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.priv.gc.ca/en/privacy-topics/business-privacy/safeguards-and-breaches/safeguarding-personal-information/gd_rd_201406/' target='_blank'>Personal information retention and disposal: Principles and best practices</a> (OPC guide)</li><li><strong>What retention means</strong>: Only keep personal information for as long as you need.</li></ul></p></section></p>",
             "fr": ""
           }
         }
@@ -3902,7 +3902,7 @@
     {
       "name": "page_step_3_5_5",
       "title": {
-        "en": "3.5 – Retention  {IsThereCollectNotIntended}",
+        "en": "3.5 – Retention",
         "fr": ""
       },
       "visibleIf": "{IsThereCollectNotIntended} = true",
@@ -3941,26 +3941,224 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": 3.6,
       "elements": [
         {
           "type": "html",
           "html": {
-            "en": "<ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individual’s personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individual’s personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul></p></section></p>",
             "fr": ""
           }
         }
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_step_3_6_1_a",
       "title": {
-        "en": "",
+        "en": "3.6 – Accuracy",
         "fr": ""
       },
       "section": 3,
       "elements": [
-
+        {
+          "type": "radiogroup",
+          "name": "MechanismToCorrectPersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution provide, or plan to provide, individuals with a mechanism to correct their personal information that is in the control of the institution in relation to this program or activity?",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NoMechanismToCorrectPersonalInformationExplanation",
+          "visibleIf": "{MechanismToCorrectPersonalInformation} = 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution does not intend to provide individuals with a mechanism to correct their personal information.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_1_b_c",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "visibleIf": "{MechanismToCorrectPersonalInformation} anyof ['yes_in_place', 'yes_not_established']",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "MechanismToCorrectPersonalInformationDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the mechanism(s) by which individuals can or will be able to correct their personal information that is in the control of the institution in relation to this program or activity.",
+            "fr": ""
+          },
+          "description": {
+            "en": "If personal information is stored in multiple locations (e.g. multiple systems for different purposes), please explain how the institution will ensure that corrections are applied to all instances of the personal information.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "WillProvideOpportunityToAddStatement",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution provide, or plan to provide, individuals the opportunity to add a statement to their personal information when you have refused their correction request?",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NotProvideOpportunityToAddStatementExplanation",
+          "visibleIf": "{WillProvideOpportunityToAddStatement} contains 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution does not intend to provide individuals with the opportunity to add a statement to their personal information when you have refused their correction request.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_2",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "IsCollectInformationAuthoritativeSources",
+          "isRequired": true,
+          "title": {
+            "en": "Does your program collect personal information from authoritative sources?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In the context of personal information, an authoritative source is a trusted and reliable source from which to collect information about a person. There are many authoritative sources, enabled by federal, provincial and territorial acts and regulations, that record information relating to an individual such as vital events, legal or professional status, and benefit entitlements. Social media websites cannot be considered an authoritative source in most cases, especially without verifying the accuracy of the information of the affected individual.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, in all collection",
+                "fr": ""
+              },
+              "value": "yes_in_all_collection"
+            },
+            {
+              "text": {
+                "en": "Yes, but not in all collection",
+                "fr": ""
+              },
+              "value": "yes_but_not_in_all_collection"
+            },
+            {
+              "text": {
+                "en": "No, not in any collection",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "CollectInformationAuthoritativeSourcesExplanation",
+          "isRequired": true,
+          "visibleIf": "{IsCollectInformationAuthoritativeSources} anyof ['yes_in_all_collection','yes_but_not_in_all_collection']",
+          "title": {
+            "en": "Please explain how you determined that your sources for personal information are authoritative.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_3",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ProgramAccuracyDescription",
+          "isRequired": true,
+          "title": {
+            "en": "In addition to any information provided in the previous questions in this section, how does your institution ensure data handled under the program or activity is accurate? How do you ensure it remains accurate?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7",
+      "title": {
+        "en": "3.7 – Disposal ",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(3)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(3)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='' target='_blank'>Personal information retention and disposal: Principles and best practices (OPC guide)</a></li><li><strong>What disposal means:</strong>: Use care to prevent unauthorized access when disposing of personal information.</li></ul></section>",
+            "fr": ""
+          }
+        }
       ]
     }
   ]
