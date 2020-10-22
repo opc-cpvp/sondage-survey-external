@@ -20,6 +20,10 @@ export class NewPaSurvey extends SurveyBase {
         this.survey.onComplete.add((sender: SurveyModel, options: any) => {
             this.handleOnComplete(sender, options);
         });
+
+        this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleOnValidateQuestion(sender, options);
+        });
     }
 
     private handleOnCompleting(sender: SurveyModel, options: any): void {
@@ -86,4 +90,6 @@ export class NewPaSurvey extends SurveyBase {
             */
         })();
     }
+
+    private handleOnValidateQuestion(sender: SurveyModel, options: any): void {}
 }
