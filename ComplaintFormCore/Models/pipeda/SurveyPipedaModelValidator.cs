@@ -13,7 +13,7 @@ namespace ComplaintFormCore.Models.pipeda
         {
             ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;
 
-            // ProvinceIncidence
+            // ProvinceIncidence (Page: page_part_a_jurisdiction_province)
             RuleFor(x => x.ProvinceIncidence).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.ProvinceIncidence).Must(x => new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
@@ -51,6 +51,19 @@ namespace ComplaintFormCore.Models.pipeda
 
             // Question3Answers
             RuleForEach(x => x.Question3Answers).Must(x => new List<string> { "charity_non_profit", "condominium_corporation", "federal_government", "first_nation", "individual", "journalism", "political_party" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // SubmittedComplaintToOtherBody (Page: page_part_b_another_body)
+            RuleFor(x => x.SubmittedComplaintToOtherBody).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // ComplaintStillOngoing (Page: page_part_b_status_other_complaint)
+            RuleFor(x => x.ComplaintStillOngoing).NotEmpty().When(x =>  x.SubmittedComplaintToOtherBody == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // AgainstTypeOrganizations (Page: page_part_b_means_recourse)
+            RuleForEach(x => x.AgainstTypeOrganizations).Must(x => new List<string> { "collection_agency", "insurance_company", "landlord", "lawyer", "do_not_call_list", "unsubscribe", "phone_internet_provider", "realtor", "your_employer" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // RaisedConcernToPrivacyOfficer (Page: page_part_b_privacy_officer)
+            RuleFor(x => x.RaisedConcernToPrivacyOfficer).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.RaisedConcernToPrivacyOfficer).Must(x => new List<string> { "yes", "no", "not_sure" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
         }
     }

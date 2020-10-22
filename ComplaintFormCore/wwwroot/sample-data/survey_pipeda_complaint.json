@@ -959,9 +959,10 @@
     {
       "name": "page_part_b_concerns_not_raised",
       "title": {
-        "en": "",
-        "fr": ""
+        "en": "Part B: Steps taken (Concerns not raised)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (préoccupations non soulevées) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "visibleIf": "{RaisedConcernToPrivacyOfficer} anyof ['no','not_sure']",
       "elements": [
         {
           "type": "html",
@@ -975,6 +976,13 @@
           "html": {
             "en": "<p><strong>What is your reason for not raising your concern in writing with the organization’s contact?</strong></p>",
             "fr": "<p><strong>Quelle est la raison pour laquelle vous n’avez pas fait part de vos préoccupations par écrit à la personne-ressource de l’organisation?</strong></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>If you have raised your concern with the organization’s contact for privacy issues, and you still have any of the following concerns, please click on any relevant choices below for further information.</strong></p>",
+            "fr": "<p><strong>Si vous avez fait part de vos préoccupations à la personne-ressource de l’organisation en matière de protection de la vie privée et que vous avez encore l’une des préoccupations suivantes, veuillez cliquer sur l’un des choix pertinents ci-dessous pour obtenir de plus amples renseignements.</strong></p>"
           }
         },
         {
@@ -1010,6 +1018,65 @@
           "html": {
             "en": "<details><summary>Think that our office is best positioned to consider the issue</summary><div><p>If you wish to just tell us about your concerns without writing to the organization, you can use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'>online form to share a privacy comment or an issue without filing a formal complaint</a>. At our Commissioner’s discretion, we can look into matters without a person making a complaint.</p></div></details>",
             "fr": "<details><summary>Je pense que votre Commissariat est le mieux placé pour examiner la question</summary><div><p>Si vous souhaitez simplement nous faire part de vos préoccupations sans écrire à l’organisation, vous pouvez utiliser notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=71d4b6e0-1d8e-4b73-bddf-657544aaeea2' target='_blank'>formulaire en ligne pour nous faire part d’un commentaire ou d’un problème relatif à la protection de la vie privée sans déposer de plainte officielle</a>. À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint without having raised your concerns with the organization, please be aware that we may decline to investigate your complaint.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous souhaitez poursuivre votre plainte sans avoir fait part de vos préoccupations à l’organisation, veuillez noter que nous pourrions refuser de faire enquête sur votre plainte.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_concerns_raised",
+      "title": {
+        "en": "Part B: Steps taken (Concerns raised with organization)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (préoccupations soulevées auprès de l’organisation) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{RaisedConcernToPrivacyOfficer} contains 'yes'",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>If you have raised your concern with the organization’s contact for privacy issues, and you still have any of the following concerns, please click on any relevant choices below for further information.</strong></p>",
+            "fr": "<p><strong>Si vous avez fait part de vos préoccupations à la personne-ressource de l’organisation en matière de protection de la vie privée et que vous avez encore l’une des préoccupations suivantes, veuillez cliquer sur l’un des choix pertinents ci-dessous pour obtenir de plus amples renseignements.</strong></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>The organization has not responded.</summary><p>Please allow some time for the organization to respond and resolve your issue before filing a complaint with us. Usually, it is reasonable to allow 3 to 5 weeks.</p></details>",
+            "fr": "<details><summary>L’organisation n’a pas répondu.</summary><div><p>Veuillez accorder un certain temps à l’organisation pour répondre et résoudre votre problème avant de déposer une plainte auprès de nous. En général, il est raisonnable de laisser de trois à cinq semaines.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>The organization has not made the changes you asked for or given you the information you are looking for.</summary><div><p>Please be sure to check that your correspondence with the organization was clear about the exact changes or information you were seeking. Consider making a final summary of your concerns and what you are seeking in case the organization did not fully understand.</p></div></details>",
+            "fr": "<details ><summary>L’organisation n’a pas apporté les changements que vous avez demandés ou ne vous a pas fourni les renseignements que vous cherchez.</summary><div><p>Veuillez vérifier que votre correspondance avec l’organisation était claire au sujet des changements ou des renseignements exacts que vous demandiez. Envisagez de faire un résumé final de vos préoccupations et de ce que vous cherchez au cas où l’organisation n’aurait pas bien compris.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>The organization has not compensated you for what happened.</summary><div><p>Please be aware that our office does not have the power to order compensation. Usually, people need to take legal action to pursue compensation. You may wish to consult a lawyer for more information.</p></div></details>",
+            "fr": "<details><summary>L’organisation ne vous a pas indemnisé pour ce qui s’est passé.</summary><div><p>Veuillez noter que notre Commissariat n’a pas le pouvoir d’ordonner une indemnisation. En règle générale, les gens doivent intenter une action en justice pour obtenir une indemnisation. Il peut être souhaitable de consulter un avocat pour obtenir de plus amples renseignements.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>The employee(s) responsible for what happened have not been held accountable.</summary><div><p>Generally, an organization is accountable for how its employees handle personal information. This could mean taking steps to prevent a similar problem in the future. The organization might change its systems, processes and training, or discipline the employee. The decision to discipline an employee is complex and must be made carefully by the institution. Our office cannot order disciplinary action.</p><p>Also, the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA) does not give complainants the right to know if an employee was disciplined and organizations will not usually release this information.</p></div></details>",
+            "fr": "<details><summary>Les employés responsables de ce qui s’est passé n’ont pas été tenus responsables.</summary><div><p>En général, une organisation est responsable de la façon dont ses employés traitent les renseignements personnels. Cela pourrait signifier de prendre des mesures pour éviter qu’un problème semblable ne se reproduise à l’avenir. L’organisation pourrait modifier ses systèmes, ses processus et sa formation ou prendre des mesures disciplinaires à l’égard des employés concernés. La décision de prendre des mesures disciplinaires à l’égard d’employés est complexe et doit être prise avec soin par l’institution. Notre Commissariat ne peut pas ordonner des mesures disciplinaires.</p><p>De plus, la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE) ne donne pas aux plaignants le droit de savoir si un employé a fait l’objet de mesures disciplinaires et, en général, les organisations ne communiquent pas cette information.</p></div></details>"
           }
         },
         {
