@@ -1,4 +1,14 @@
-import { defaultBootstrapCss, surveyLocalization, JsonObject, Model, StylesManager, Survey, SurveyModel } from "survey-vue";
+import {
+    defaultBootstrapCss,
+    surveyLocalization,
+    JsonObject,
+    Model,
+    PageModel,
+    Question,
+    StylesManager,
+    Survey,
+    SurveyModel
+} from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 
@@ -43,9 +53,11 @@ export abstract class SurveyBase extends Survey {
         StylesManager.applyTheme("bootstrap");
 
         // Override defaultBootstrapCss Properties
-        defaultBootstrapCss.navigationButton = "btn btn-primary";
+        defaultBootstrapCss.error.icon = "";
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
+        defaultBootstrapCss.navigationButton = "btn btn-primary";
+        defaultBootstrapCss.question.titleRequired = "required";
 
         // https://surveyjs.io/Documentation/Library?id=surveymodel#checkErrorsMode
         // check errors on every question value (i.e., answer) changing.
@@ -74,6 +86,14 @@ export abstract class SurveyBase extends Survey {
         this.survey.onTextMarkdown.add((sender: SurveyModel, options: any) => {
             this.handleOnTextMarkdown(sender, options);
         });
+
+        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderPage(sender, options);
+        });
+
+        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderQuestion(sender, options);
+        });
     }
 
     private handleOnTextMarkdown(sender: SurveyModel, options: any): void {
@@ -86,6 +106,42 @@ export abstract class SurveyBase extends Survey {
 
         // set html
         options.html = str;
+    }
+
+    private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
+        // Replaces the page title h4 with an h1
+        const htmlElement = options.htmlElement as HTMLElement;
+        const oldTitle = htmlElement.querySelector("h4") ?? htmlElement.querySelector("h1");
+
+        if (oldTitle === null) {
+            return;
+        }
+
+        const page = options.page as PageModel;
+
+        const newTitle = document.createElement("h1");
+        newTitle.innerText = page.title;
+
+        oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
+    }
+
+    private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        // Replaces the question title h5 with a label
+        const htmlElement = options.htmlElement as HTMLElement;
+        const oldTitle = htmlElement.querySelector("h5") ?? htmlElement.querySelector("label");
+
+        if (oldTitle === null) {
+            return;
+        }
+
+        const question = options.question as Question;
+
+        const newTitle = document.createElement("label");
+        newTitle.setAttribute("for", question.inputId);
+        newTitle.className = oldTitle.className;
+        newTitle.innerHTML = oldTitle.innerHTML;
+
+        oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
     }
 
     // TODO: This method should actually be converted into a widget.
