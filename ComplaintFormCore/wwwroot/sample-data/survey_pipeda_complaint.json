@@ -650,10 +650,389 @@
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_part_b_another_body",
       "title": {
-        "en": "fkhjkhjk",
-        "fr": "pioupiopuio"
+        "en": "Part B: Steps taken (Complaint with another body)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (plainte auprès d’un autre organisme) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>It is important to show what you have done to address your concerns with the organization involved. Usually, our office <strong>will not investigate</strong> your complaint <strong>until after</strong> you have tried other available ways to resolve your concern.</p><section>",
+            "fr": "<section class='alert alert-info'><p>Il est important de montrer ce que vous avez fait pour résoudre votre problème avec l’organisation concernée. En général, notre Commissariat <strong>n’enquêtera pas</strong> sur votre plainte <strong>avant que</strong> vous ayez essayé les autres moyens disponibles pour résoudre votre problème.</p><section>"
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "SubmittedComplaintToOtherBody",
+          "isRequired": true,
+          "title": {
+            "en": "Have you filed a complaint about your concerns with another body (other than the organization your complaint is against)?",
+            "fr": "Avez-vous déposé une plainte au sujet de vos préoccupations auprès d’un autre organisme (autre que l’organisation visée par votre plainte)?"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_status_other_complaint",
+      "title": {
+        "en": "Part B: Steps taken (Status of other complaint)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (état d’une autre plainte) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{SubmittedComplaintToOtherBody} = true",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "ComplaintStillOngoing",
+          "isRequired": true,
+          "title": {
+            "en": "Is that complaint process still ongoing?",
+            "fr": "La plainte est-elle toujours en cours de traitement?"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_covered_other_complaint",
+      "title": {
+        "en": "Part B: Steps taken (Complaint covered by other complaint)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (plainte visée par une autre plainte) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{SubmittedComplaintToOtherBody} = true and {ComplaintStillOngoing} = true",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Usually, <strong>our office does not investigate if:</strong></p><ul><li>a matter could be better dealt with, either initially or completely, by other means provided for under federal or provincial law</li><li>a complainant has not first tried all grievance or review processes that are reasonably available</li><li>a complainant did not file a complaint with us within a reasonable period</li></ul></p></section>",
+            "fr": "<section class='alert alert-info'><p>En général, <strong>notre Commissariat n’enquête pas</strong></p><ul><li>s'il serait préférable de régler le problème, au départ ou complètement, par d'autres moyens prévus par le droit fédéral ou provincial</li><li>si le plaignant n'a pas d'abord essayé toutes les procédures de règlement des griefs ou d'examen raisonnablement disponibles</li><li>si le plaignant n'a pas déposé de plainte auprès de nous dans un délai raisonnable</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Complaint covering the same concerns</h2><p>If your complaint to another body covers any of your concerns with your personal information, please end this session and complete that complaint process first. You can return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<h2>Plainte portant sur les mêmes préoccupations</h2><p>Si votre plainte auprès d’un autre organisme porte sur l’une ou l’autre de vos préoccupations concernant vos renseignements personnels, veuillez mettre fin à cette session et suivre cette procédure de plainte en premier. Vous pouvez revenir déposer une plainte plus tard.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Complaint \"not\" covering the same concerns</h2><p>If your complaint to the other body is not about your concerns with the handling of personal information, you can continue your complaint with us. You will need to describe your other complaint later in this form.</p>",
+
+            "fr": "<h2>Plainte ne portant « pas » sur les mêmes préoccupations</h2><p>Si votre plainte auprès de l’autre organisme ne porte pas sur vos préoccupations concernant le traitement des renseignements personnels, vous pouvez poursuivre votre plainte auprès de nous. Vous devrez décrire votre autre plainte plus loin dans ce formulaire.</p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_means_recourse",
+      "title": {
+        "en": "Part B: Steps taken (Organizations with other means of recourse)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (organisations disposant d’autres moyens de recours) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Depending on the type of organization, you may need to take more steps to resolve your concerns before filing a complaint with us. Please answer the questions below.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Selon le type d’organisation, vous devrez peut-être prendre d’autres mesures pour résoudre votre problème avant de déposer une plainte auprès de nous. Veuillez répondre aux questions suivantes.</p></section>"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "AgainstTypeOrganizations",
+          "title": {
+            "en": "If your complaint is against any of the following types of organizations, please check all that apply.",
+            "fr": "Si votre plainte vise l’un des types d’organisation suivants, veuillez cocher ceux qui s’appliquent."
+          },
+          "choices": [
+            {
+              "value": "collection_agency",
+              "text": {
+                "en": "Collection Agency",
+                "fr": "Agence de recouvrement"
+              }
+            },
+            {
+              "value": "insurance_company",
+              "text": {
+                "en": "Insurance company",
+                "fr": "Compagnie d’assurance"
+              }
+            },
+            {
+              "value": "landlord",
+              "text": {
+                "en": "Landlord or co-op housing",
+                "fr": "Propriétaire ou coopérative d’habitation"
+              }
+            },
+            {
+              "value": "lawyer",
+              "text": {
+                "en": "Lawyer",
+                "fr": "Avocat"
+              }
+            },
+            {
+              "value": "do_not_call_list",
+              "text": {
+                "en": "An organization for calling you even though you are on the national 'Do Not Call list'",
+                "fr": "Organisation qui vous appelle, alors que vous figurez sur la liste nationale de numéros exclus"
+              }
+            },
+            {
+              "value": "unsubscribe",
+              "text": {
+                "en": "An organization for sending you an unsolicited marketing email (Spam) without a working 'unsubscribe' link",
+                "fr": "Organisation qui vous envoie un courriel de marketing non sollicité (pourriel) sans lien de désabonnement fonctionnel"
+              }
+            },
+            {
+              "value": "phone_internet_provider",
+              "text": {
+                "en": "Phone or Internet Service Provider",
+                "fr": "Fournisseur de services téléphoniques ou Internet"
+              }
+            },
+            {
+              "value": "realtor",
+              "text": {
+                "en": "Realtor",
+                "fr": "Agent immobilier"
+              }
+            },
+            {
+              "value": "your_employer",
+              "text": {
+                "en": "Your Employer",
+                "fr": "Votre employeur"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_processes",
+      "title": {
+        "en": "Part B: Steps taken (Different complaint process)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (procédure de plainte différente) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Based on your answer to the last question, there may be:</p><ul><li>more steps you should consider before filing a complaint with us</li><li>another complaint process that is better for your concerns</li></ul><p>Please read the notice(s) below carefully before deciding whether to continue to file a complaint with us.</p>",
+            "fr": "<p>D’après votre réponse à la dernière question, il y a peut-être :</p><ul><li>plus d’étapes à envisager avant de déposer une plainte auprès de nous</li><li>un autre processus de plainte mieux adapté à vos préoccupations</li></ul><p>Veuillez lire attentivement les avis ci-dessous avant de décider s’il y a lieu de poursuivre le dépôt de plainte auprès de nous.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'collection_agency'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a collection agency</h2><p>Collection agencies are subject to consumer protection regulations enforced by consumer affairs offices, as well as being subject to the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA).</p><p>Consumer affairs offices enforce rules about collection agencies’ conduct, such as how and when they can contact people, and how much proof of the debt they need to show. Your provincial or territorial consumer affairs office may be better able to address your concerns if your issue goes beyond privacy.</p><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li>make a complaint to your <a href='http://www.consumerhandbook.ca/en/contacts/provincial-territorial-offices' target='_blank'>provincial or territorial consumer affairs office</a></li><li>raise your concerns in writing with the agency's designated contact for privacy (otherwise, we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>Then you can file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of your provincial or territorial consumer affairs office, or</li><li>you are dissatisfied with the results after using the consumer affairs office’s complaint process or contacting the agency</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant une agence de recouvrement</h2><p>Les agences de recouvrement sont assujetties aux règlements sur la protection des consommateurs appliqués par les bureaux de protection des consommateurs, ainsi qu’à la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE).</p><p>Les bureaux de protection des consommateurs appliquent les règles de conduite des agences de recouvrement, notamment en ce qui concerne la façon dont elles peuvent communiquer avec les gens et le moment où elles peuvent le faire, et la quantité de preuves de dettes qu’elles doivent présenter. Le bureau de protection des consommateurs de votre province ou territoire pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection des renseignements personnels.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li>déposer une plainte auprès du <a href='http://www.guideduconsommateur.ca/fr/contacts/provincial-territorial-offices' target='_blank'>bureau de protection des consommateurs de votre province ou territoire</a></li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de l’agence en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez alors déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat du bureau de protection des consommateurs de votre province ou territoire, ou</li><li>vous êtes insatisfait des résultats après avoir utilisé la procédure de traitement des plaintes du bureau de protection des consommateurs ou après avoir communiqué avec l’agence</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'insurance_company'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against an insurance company</h2><p>Insurance companies must follow insurance laws and regulations, as well as following the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA). Most insurance companies are required to be members of an independent dispute resolution service.</p><p>Two independent complaint resolution bodies, overseen by the Canadian Council of Insurance Regulators, address consumer complaints.</p><ul><li>For car and auto insurance complaints: General Insurance OmbudService (GIO)</li><li>For life and health insurance (including disability and travel insurance) complaints: OmbudService for Life and Health Insurance (OLHI)</li></ul><p>These bodies can address complaints about a wide range of insurance issues including the handling of claims.</p><h2>What you can do</h2><p>Before filing a complaint with us, if your complaint is about privacy concerns during the handling of a claim, you may:</p><ul><li><a href='https://www.giocanada.org/' target='_blank'>make a complaint to the General Insurance OmbudService</a>;</li><li><a href='https://www.olhi.ca/' target='_blank'>make a complaint to the OmbudService for Life &amp; Health Insurance</a>;</li><li>raise your concerns in writing with the insurance company's designated contact for privacy (otherwise, we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a>;</li></ul><p>You may file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of both complaint resolution bodies</li><li>you are dissatisfied with the results after using the complaint processes or writing to your insurance company</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant une compagnie d’assurance</h2><p>Les compagnies d’assurance doivent respecter les lois et règlements en matière d’assurance, ainsi que la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). La plupart des compagnies d’assurance sont tenues d’être membres d’un service indépendant de règlement des différends.</p><p>Deux organismes indépendants de règlement des plaintes, supervisés par le Conseil canadien des responsables de la réglementation d’assurance, traitent les plaintes des consommateurs.</p><ul><li>Pour les plaintes relatives à l’assurance automobile : Service de conciliation en assurance de dommages (SCAD)</li><li>Pour les plaintes relatives à l’assurance-vie et à l’assurance-maladie (y compris l’assurance-invalidité et l’assurance-voyage) : Ombudsman des assurances de personnes (OAP)</li></ul><p>Ces organismes peuvent traiter les plaintes concernant un large éventail de questions liées à l’assurance, y compris le traitement des demandes d’indemnisation.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, si votre plainte porte sur des préoccupations relatives à la protection de la vie privée pendant le traitement d’une demande d’indemnisation, vous pouvez :</p><ul><li><a href='https://scadcanada.org/' target='_blank'>déposer une plainte auprès du Service de conciliation en assurance de dommages</a>;</li><li><a href='https://www.oapcanada.ca/' target='_blank'>déposer une plainte auprès de l’Ombudsman des assurances de personnes</a>;</li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie d’assurance en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a>;</li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat des deux organismes de règlement des plaintes</li><li>vous êtes insatisfait des résultats après avoir utilisé les procédures de traitement des plaintes ou après avoir écrit à votre compagnie d’assurance</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'landlord'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a landlord</h2><p>Landlords must follow provincial and territorial tenancy regulations, enforced by their residential tenancies regulatory body, as well as following the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA). These bodies can address a wide range of landlord-tenant issues, including the handling of personal information and privacy.</p><p>Your provincial or territorial regulatory body may be better able to address your concerns, if your issue goes beyond privacy.</p><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li>make a complaint to your provincial or territorial tenancies regulatory body</li><li>raise your concerns in writing with your landlord’s (or co-op board’s) designated contact for privacy (otherwise we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>You can file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of tenancies regulators</li><li>you are dissatisfied with the results after complaining through the regulator, or writing to the landlord</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant un propriétaire</h2><p>Les propriétaires doivent respecter les règlements provinciaux et territoriaux en matière de location, appliqués par leur organisme de réglementation de la location à usage d’habitation, ainsi que la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). Ces organismes peuvent traiter un large éventail de questions entre propriétaires et locataires, y compris le traitement des renseignements personnels et la protection de la vie privée.</p><p>L’organisme de réglementation de votre province ou territoire pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection de la vie privée.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li>déposer une plainte auprès de l’organisme de réglementation de la location de votre province ou territoire</li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de votre propriétaire (ou conseil d’administration de coopérative) en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat des organismes de réglementation de la location</li><li>vous êtes insatisfait des résultats après avoir porté plainte auprès de l’organisme de réglementation ou après avoir écrit au propriétaire</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'lawyer'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a lawyer</h2><p>Lawyers must follow professional conduct standards, set by their provincial or territorial law society, as well as following the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA).</p><p>Law societies oversee rules of professional conduct, including privacy issues. A law society may be better able to address your concerns if your issue goes beyond privacy.</p><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li><a href='https://flsc.ca/about-us/our-members-canadas-law-societies/' target='_blank'>make a complaint to your provincial or territorial law society</a></li><li>raise your concerns in writing with the law firm’s designated contact for privacy (otherwise, we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>You can file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of your provincial or territorial law society</li><li>you are dissatisfied with the results after using the complaint process, or writing to the law firm</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant un avocat</h2><p>Les avocats doivent respecter les normes de conduite professionnelle établies par leur barreau provincial ou territorial, ainsi que la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE).</p><p>Les barreaux supervisent les règles de conduite professionnelle, y compris les questions relatives à la protection de la vie privée. Un barreau pourrait être mieux en mesure de répondre à vos préoccupations, si votre problème va au-delà de la protection des renseignements personnels.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li><a href='https://flsc.ca/fr/a-propos-de-nous/les-ordres-professionnels-de-juristes-du-canada/' target='_blank'>déposer une plainte auprès du barreau de votre province ou territoire</a></li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée du barreau en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat du barreau de votre province ou territoire</li><li>vous êtes insatisfait des résultats après avoir utilisé les procédures de traitement des plaintes ou après avoir écrit au cabinet d’avocats</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'do_not_call_list'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint about telemarketing or unwanted calls, despite being on the 'Do not call list'</h2><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li><a href='https://lnnte-dncl.gc.ca/en#forConsumers' target='_blank'>make a complaint to the Canada’s national “Do not call list”</a></li><li>raise your concerns in writing with the phone company or Internet service provider's designated contact for privacy (otherwise, we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>You can file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of the national “Do not call list” complaint process</li><li>you are dissatisfied with the results after completing that process, or after raising your concerns in writing to the organization directly</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant les appels de télémarketing ou non sollicités, malgré le fait de figurer sur la liste de numéros exclus</h2><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li><a href='https://lnnte-dncl.gc.ca/fr#consomateur' target='_blank'>déposer une plainte auprès de la liste nationale de numéros de télécommunication exclus du Canada</a></li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie de téléphone ou du fournisseur de services Internet en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat de la procédure de traitement des plaintes relative à la liste nationale de numéros de télécommunication exclus</li><li>vous êtes insatisfait des résultats après avoir suivi cette procédure ou après avoir fait part de vos préoccupations par écrit directement à l’organisation</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'unsubscribe'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint about unsolicited marketing emails or texts (spam) without a link to unsubscribe</h2><h2>What you can do</h2><p>If your complaint is against an organization <strong>you don’t have an ongoing relationship with</strong>, you can: <a href='http://fightspam.gc.ca/eic/site/030.nsf/frm-eng/MMCN-9EZV6S' target='_blank'>make your complaint to the National Spam Reporting Centre</a>. The centre gathers information to help enforce Canada's Anti-Spam Legislation (CASL).</p><p>If your complaint is against an organization <strong>you have an ongoing relationship with</strong>, you can file a complaint with us.</p></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant des courriels ou des messages textes de marketing non sollicités (pourriels) sans lien pour se désabonner</h2><h2>Ce que vous pouvez faire</h2><p>Si votre plainte vise une organisation avec laquelle <strong>vous n’avez pas de relation continue</strong>, vous pouvez : <a href='https://www.fightspam.gc.ca/eic/site/030.nsf/frm-fra/MMCN-9EZV6S' target='_blank'>déposer votre plainte auprès du Centre national de notification des pourriels</a>. Le centre recueille de l’information pour aider à faire appliquer la Loi canadienne anti-pourriel (LCAP).</p><p>Si votre plainte vise une organisation avec laquelle <strong>vous avez une relation continue</strong>, vous pouvez déposer une plainte auprès de nous.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'phone_internet_provider'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a phone or Internet service provider</h2><p>Phone and Internet service providers must follow rules set by the Canadian Radio-television and Telecommunications Commission (CRTC), as well as following the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA). People may make complaints about Canadian telecommunications and television services to the Commission for Complaints for Telecom-television Services (CCTS).</p><p>The commission handles a wide range of consumer complaints about phone and Internet service, and may be better able to address your concerns if your issue goes beyond privacy.</p><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li><a href='https://www.ccts-cprst.ca/for-consumers/complaints/' target='_blank'>make a complaint to the Commission for Complaints for Telecom-television Services</a></li><li>raise your concerns in writing with the phone company or Internet service provider's designated contact for privacy (otherwise we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>You may file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the commission’s mandate</li><li>you are dissatisfied with the results after bringing your issue to the commission, or after writing to your service provider</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant un fournisseur de services téléphoniques ou Internet</h2><p>Les fournisseurs de services téléphoniques ou Internet doivent respecter les règles établies par le Conseil de la radiodiffusion et des télécommunications canadiennes (CRTC), ainsi que la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). Les gens peuvent déposer des plaintes au sujet des services canadiens de télécommunications et de télévision auprès de la Commission des plaintes relatives aux services de télécom-télévision (CPRST).</p><p>La Commission traite un large éventail de plaintes de consommateurs au sujet des services téléphoniques et Internet, et pourrait être mieux en mesure de répondre à vos préoccupations si votre problème va au-delà de la protection des renseignements personnels.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li><a href='https://www.ccts-cprst.ca/fr/pour-les-consommateurs/plaintes/' target='_blank'>déposer une plainte auprès de la Commission des plaintes relatives aux services de télécom-télévision</a></li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de la compagnie de téléphone ou du fournisseur de services Internet en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat de la Commission</li><li>vous êtes insatisfait des résultats après avoir présenté votre problème à la Commission ou après avoir écrit à votre fournisseur de services</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{AgainstTypeOrganizations} contains 'realtor'",
+          "html": {
+            "en": "<section class='alert alert-info'><h2>Complaint against a realtor</h2><p>Realtors must follow provincial and territorial real estate regulations, enforced by real estate regulatory bodies, as well as following the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA).</p><p>Real estate regulatory bodies oversee professional conduct, and may therefore be better able to address your concerns if your issue goes beyond privacy.</p><h2>What you can do</h2><p>Before filing a complaint with us, you may:</p><ul><li>make a complaint to your provincial or territorial real estate regulatory body</li><li>raise your concerns in writing with the realtor's designated contact for privacy (otherwise, we may not investigate): <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>Tips for raising your privacy concern with a business</a></li></ul><p>You can file a complaint with us, <strong>if</strong>:</p><ul><li>your concerns fall outside the mandate of the regulatory body</li><li>you are dissatisfied with the results after using the complaint process, or after writing to the realtor</li></ul></section>",
+            "fr": "<section class='alert alert-info'><h2>Plainte visant un agent immobilier</h2><p>Les agents immobiliers doivent se conformer aux règlements provinciaux et territoriaux sur l’immobilier, appliqués par les organismes de réglementation immobilière, ainsi qu’à la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE).</p><p>Les organismes de réglementation immobilière supervisent la conduite professionnelle et pourraient donc être mieux en mesure de répondre à vos préoccupations si votre problème va au-delà de la protection de la vie privée.</p><h2>Ce que vous pouvez faire</h2><p>Avant de déposer une plainte auprès de nous, vous pouvez :</p><ul><li>déposer une plainte auprès de l’organisme de réglementation immobilière de votre province ou territoire</li><li>faire part de vos préoccupations par écrit à la personne-ressource désignée de l’agent immobilier en matière de protection de la vie privée (autrement, il se peut que nous ne fassions pas enquête) : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos préoccupations concernant la protection de la vie privée à une entreprise</a></li></ul><p>Vous pouvez déposer une plainte auprès de nous, <strong>si</strong> :</p><ul><li>vos préoccupations ne relèvent pas du mandat de l’organisme de réglementation</li><li>vous êtes insatisfait des résultats après avoir utilisé la procédure de traitement des plaintes ou après avoir écrit à l’agent immobilier</li></ul></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint with us, please <strong>do not file a complaint about the same matter with another organization</strong> at the same time. Usually, our office <strong>will not investigate</strong> your complaint <strong>until after</strong> you have tried other available ways to resolve your concern. Also, we will not investigate complaints that are outside our jurisdiction.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous souhaitez poursuivre votre plainte auprès de nous, veuillez <strong>ne pas déposer une plainte sur le même sujet auprès d’une autre organisation</strong> en même temps. En général, notre Commissariat <strong>n’enquêtera pas</strong> sur votre plainte <strong>avant que</strong> vous ayez essayé les autres moyens disponibles pour résoudre votre problème. De plus, nous n’enquêterons pas sur les plaintes qui ne relèvent pas de notre compétence.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_privacy_officer",
+      "title": {
+        "en": "Part B: Steps taken (Writing to the organization’s privacy officer)—Privacy complaint form (private sector organization)",
+        "fr": "Partie B : Mesures prises (écrire à l’agent de la protection de la vie privée de l’organisation) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "RaisedConcernToPrivacyOfficer",
+          "title": {
+            "en": "Have you raised your concern in writing with the organization’s contact for privacy issues (often called the privacy officer)?",
+            "fr": "Avez-vous fait part de vos préoccupations par écrit à la personne-ressource de l’organisation chargée des questions relatives à la protection de la vie privée (souvent appelée l’agent de protection de la vie privée)?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "Not sure",
+                "fr": "Ne sait pas"
+              },
+              "value": "not_sure"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Before filing a complaint with our office, we encourage you to try addressing your concerns directly with the organisation. Often you can resolve privacy concerns by <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business/' target='_blank'>writing to or speaking with the organization’s privacy contact</a>.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Avant de déposer une plainte auprès de notre Commissariat, nous vous encourageons à essayer de faire part de vos préoccupations directement à l’organisation. Souvent, vous pouvez résoudre les problèmes de protection de la vie privée en <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/renseignements-et-conseils-pour-les-particuliers/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>écrivant à la personne-ressource de l’organisation ou en parlant avec elle</a>.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_concerns_not_raised",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Organizations must have processes to respond to complaints and questions about their handling of personal information, as set out in the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA). Usually organizations will have a different contact for privacy (often called the privacy officer), than for general customer service or other complaints.</p><p>If you have not raised your issue in writing with this contact, we strongly encourage you to do so before filing a complaint with us. In almost all cases, we are able to investigate <strong>only</strong> if you have already taken this step.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Les organisations doivent disposer de processus pour répondre aux plaintes et aux questions concernant leur traitement des renseignements personnels, conformément à la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE). En général, les organisations ont une personne-ressource en matière de protection de la vie privée (souvent appelée l’agent de la protection de la vie privée) qui est différente de celle chargée du service à la clientèle en général ou d’autres plaintes.</p><p>Si vous n’avez pas soulevé votre problème par écrit auprès de cette personne-ressource, nous vous encourageons fortement à le faire avant de déposer une plainte auprès de nous. Dans presque tous les cas, nous ne pouvons enquêter <strong>que</strong> si vous avez déjà pris cette mesure.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><strong>What is your reason for not raising your concern in writing with the organization’s contact?</strong></p>",
+            "fr": "<p><strong>Quelle est la raison pour laquelle vous n’avez pas fait part de vos préoccupations par écrit à la personne-ressource de l’organisation?</strong></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>Not sure if the organization has a privacy officer, or how to find that person</summary><div><p>Organizations subject to PIPEDA must have a process for handling people’s privacy concerns. Usually there is a different contact for privacy than for general customer service or other complaints. To find this contact, we suggest looking in the footer of the organization's website where many organizations post a 'privacy policy'. Contact information is usually near the bottom of the policy. If this does not help, you can write to the senior management or legal department (legal contact information can often be found in an organization's terms and conditions). Address your letter or email: 'To the attention of the Privacy Officer.'</p></div></details>",
+            "fr": "<details><summary>Je ne sais pas si l’organisation a un agent de protection de la vie privée ou comment trouver cette personne.</summary><div><p>Les organisations assujetties à la LPRPDE doivent disposer d’un processus pour traiter les préoccupations des gens en matière de protection de la vie privée. En général, la personne-ressource en matière de protection de la vie privée est différente de celle chargée du service à la clientèle en général ou d’autres plaintes. Pour trouver cette personne-ressource, nous vous suggérons de consulter le pied de page du site Web de l’organisation, où figure souvent la « politique de confidentialité ». Les coordonnées des personnes-ressources se trouvent habituellement près du bas de la politique. Si cela ne vous aide pas, vous pouvez écrire à la haute direction ou au service juridique (les coordonnées se trouvent souvent dans les conditions générales d’une organisation). Adressez ainsi votre lettre ou votre courriel : « À l’attention de l’agent de la protection de la vie privée. »</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>Not sure the organization will pay attention to you</summary><div><p>Organizations subject to PIPEDA must have a process to handle people’s privacy concerns. Raising your issue with the organization will often lead to resolving it, even if you have had past issues or the issue is broad and affects more than just one person. You can read our <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business' target='_blank'>tips on how to write an effective letter/email to a privacy officer</a>. Even if written communication does not resolve your concerns, it could be useful during the complaint process with our office.</p></div></details>",
+            "fr": "<details><summary>Je ne sais pas si l’organisation me portera attention</summary><div><p>Les organisations assujetties à la LPRPDE doivent disposer d’un processus pour traiter les préoccupations des gens en matière de protection de la vie privée. Le fait de soulever votre problème auprès de l’organisation débouchera souvent sur une résolution, même si vous avez déjà eu des problèmes par le passé ou si le problème est vaste et touche plusieurs personnes. Vous pouvez lire nos <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>conseils sur la façon d’écrire une lettre ou un courriel efficace à un agent de la protection de la vie privée</a>. Même si la communication écrite ne résout pas votre problème, elle pourrait être utile lors de la procédure de traitement des plaintes de notre Commissariat.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>Already spoken to them verbally</summary><div><p>A clearly-worded written request or complaint can be effective where verbal discussions have not been. Putting your concerns in writing reduces the risk of miscommunications, and creates a record of your attempts. You can read our tips on how to <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-business' target='_blank'>write an effective letter/email to a privacy officer</a>. If written communication does not resolve your issue, it will still create a strong starting point for a complaint to our office.</p></div></details>",
+            "fr": "<details><summary>Je lui ai déjà parlé verbalement</summary><div><p>Une demande ou une plainte par écrit clairement formulée peut être efficace lorsque les discussions verbales ne l’ont pas été. Le fait d’énumérer vos préoccupations par écrit réduit le risque de malentendus et permet de consigner vos tentatives. Vous pouvez lire nos <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>conseils sur la façon d’écrire une lettre ou un courriel efficace à un agent de la protection de la vie privée</a>. Si la communication écrite ne résout pas votre problème, elle constituera tout de même un bon point de départ pour déposer une plainte auprès de notre bureau.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>Wish to stay anonymous</summary><div><p>Please note that your name (except in extraordinary circumstances) and the details of your complaint will be shared with the organization that is the subject of the complaint.</p><p>We may, for the purpose of the investigation, share personal information with the organization and may collect personal information from that organization.</p><p>We do not otherwise disclose the information you provide unless such a disclosure is in accordance with the <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>subsection 8(2) of the <em>Privacy Act</em></a>, which is reserved for limited situations. In the case of such a disclosure, we will only disclose the information that is required and, wherever possible, will inform you.</p><p>The personal information you provide on our complaint form is protected under the <em>Access to Information Act and the Privacy Act</em>.</p><p>If you wish to just tell us about an issue, and not have your identity revealed, use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'>online form to share a privacy comment or an issue without filing a formal complaint</a>. At our Commissioner’s discretion, we can look into matters without a person making a complaint.</p></div></details>",
+            "fr": "<details><summary>Souhaite rester anonyme</summary><div><p>Veuillez noter que votre nom (sauf dans des circonstances extraordinaires) et les détails de votre plainte seront communiqués à l’organisation qui fait l’objet de la plainte.</p><p>Nous pouvons, aux fins de l’enquête, communiquer des renseignements personnels à l’organisation et recueillir des renseignements personnels auprès de cette organisation.</p><p>Nous ne divulguons pas autrement les renseignements que vous nous fournissez, à moins que cette divulgation soit conforme au <a href='https://laws.justice.gc.ca/fra/lois/P-21/page-2.html' target='_blank'>paragraphe 8(2) de la <em>Loi sur la protection des renseignements personnels</em></a>, qui est réservé à des situations limitées. Le cas échéant, le Commissariat ne communiquera que l’information nécessaire et, dans la mesure du possible, vous en avisera.</p><p>Les renseignements personnels que vous fournissez sur notre formulaire de plainte sont protégés en vertu de la <em>Loi sur l’accès à l’information et de la Loi sur la protection des renseignements personnels</em>.</p><p>Si vous souhaitez simplement nous parler d’un problème, et que votre identité ne soit pas révélée, utilisez notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=8791e46e-aead-4ddb-b87a-81799cb4bba9' target='_blank'>formulaire en ligne pour faire part d’un commentaire ou d’une question relative à la protection de la vie privée sans avoir à déposer une plainte officielle</a>. À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>Think that our office is best positioned to consider the issue</summary><div><p>If you wish to just tell us about your concerns without writing to the organization, you can use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'>online form to share a privacy comment or an issue without filing a formal complaint</a>. At our Commissioner’s discretion, we can look into matters without a person making a complaint.</p></div></details>",
+            "fr": "<details><summary>Je pense que votre Commissariat est le mieux placé pour examiner la question</summary><div><p>Si vous souhaitez simplement nous faire part de vos préoccupations sans écrire à l’organisation, vous pouvez utiliser notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=71d4b6e0-1d8e-4b73-bddf-657544aaeea2' target='_blank'>formulaire en ligne pour nous faire part d’un commentaire ou d’un problème relatif à la protection de la vie privée sans déposer de plainte officielle</a>. À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you wish to continue your complaint without having raised your concerns with the organization, please be aware that we may decline to investigate your complaint.</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous souhaitez poursuivre votre plainte sans avoir fait part de vos préoccupations à l’organisation, veuillez noter que nous pourrions refuser de faire enquête sur votre plainte.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_",
+      "title": {
+        "en": "",
+        "fr": ""
       },
       "elements": [
 
