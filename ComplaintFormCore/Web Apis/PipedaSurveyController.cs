@@ -47,5 +47,11 @@ namespace ComplaintFormCore.Web_Apis
 
             return Ok();
         }
+
+        [HttpPost]
+        public IActionResult Complete([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
+        {
+            return Ok(new { ReferenceNumber = Guid.NewGuid().ToString() });
+        }
     }
 }

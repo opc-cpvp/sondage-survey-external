@@ -14,6 +14,7 @@ import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
+import { storageName_PA, storageName_PIPEDA } from "./surveyLocalStorage";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -25,7 +26,7 @@ declare global {
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
     function initPipeda(lang: string, token: string): void;
-    function exportToPDF(lang: string): void;
+    function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 }
 
@@ -76,12 +77,20 @@ declare let Symbol;
             pipedaTool.init(jsonUrl, lang, token);
         };
 
-        globalThis.exportToPDF = lang => {
-            //  TODO: somehow the json url must come from the parameter because we can re-use this method
-            const jsonUrl = "/sample-data/survey_pa_complaint.json";
-            const filename = "survey_export";
+        globalThis.exportToPDF = (lang, complaintType) => {
+            let jsonUrl = "";
+            let filename = "";
             const pdfClass = new surveyPdfExport();
-            pdfClass.exportToPDF(filename, jsonUrl, lang);
+
+            if (complaintType === "pipeda") {
+                jsonUrl = "/sample-data/survey_pipeda_complaint.json";
+                filename = "survey_export_pipeda";
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PIPEDA);
+            } else if (complaintType === "pa") {
+                jsonUrl = "/sample-data/survey_pa_complaint.json";
+                filename = "survey_export_pa";
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA);
+            }
         };
 
         globalThis.initTestSurvey = (lang, token) => {

@@ -21,7 +21,7 @@ export class surveyPdfExport {
         // compress: true
     };
 
-    public exportToPDF(filename: string, jsonUrl: string, lang: string): void {
+    public exportToPDF(filename: string, jsonUrl: string, lang: string, storageName: string): void {
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json_pdf => {
@@ -29,7 +29,7 @@ export class surveyPdfExport {
                 const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang);
 
                 //  Getting the data from browser local storage
-                const storageSt = window.localStorage.getItem(storageName_PA) || "";
+                const storageSt = window.localStorage.getItem(storageName) || "";
 
                 if (storageSt) {
                     const res = JSON.parse(storageSt);

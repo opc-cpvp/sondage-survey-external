@@ -116,6 +116,320 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public string RaisedConcernToPrivacyOfficer { get; set; }
 
+        /// <summary>
+        /// Page: page_part_c_complaint_about_access<br/>
+        /// Is your complaint about being denied access to your personal information?<br/>
+        /// Possible choices: [yes, yes_and_other_concern, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string DeniedAccess { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_authorization_representative<br/>
+        /// Are you filing this complaint on your own behalf (or for a minor child you ...<br/>
+        /// Possible choices: [yourself, someone_else]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string FilingComplaintOnOwnBehalf { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// Which organization is your complaint against? (maximum 5,000 characters)<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string InstitutionComplaint { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// What date did you send your written access request to the organization? If ...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DateAccessRequests { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// What exact address(es) did you send your written access request (postal, em...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AddressesAccessRequest { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// Please describe each item (if any) from your access request that you have n...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ItemsNotReceived { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// Summarize your complaint (maximum 5,000 characters) <br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ComplaintSummary { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// Please provide details for each complaint you have made to another body inc...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ComplaintToOtherBodyDetails { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// What would resolve your concerns? (maximum 5,000 characters)<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WhatWouldResolveYourComplaint { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_details_complaint<br/>
+        /// Summarize your attempts to resolve the privacy matter with the organization...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string EffortsTakenToResolve { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Have you submitted a complaint in the past with the Office of the Privacy C...<br/>
+        /// Possible choices: [yes, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string Complainant_HaveYouSubmittedBeforeChoice { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Preferred form of address<br/>
+        /// Possible choices: [Mr., Mrs., Ms., Other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Complainant_FormOfAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// First name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_FirstName { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Last name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_LastName { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// E-mail address (yourname@domain.com)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_Email { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Mailing address<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_MailingAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// City<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_City { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Country<br/>
+        /// Possible choices: [/api/Country?lang={locale}]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Complainant_Country { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Province/Territory<br/>
+        /// Possible choices: [/api/Province?lang={locale}]<br/>
+        /// Required condition: {complainant_Country} = 'CA'<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Complainant_ProvinceOrState { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Postal code<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_PostalCode { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Daytime telephone number (123-456-7890)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_DayTimeNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_DayTimeNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Alternate telephone number (123-456-7890)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_AltTelephoneNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_AltTelephoneNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Preferred form of address<br/>
+        /// Possible choices: [Mr., Mrs., Ms., Other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_FormOfAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// First name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_FirstName { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Last name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_LastName { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// E-mail address (yourname@domain.com)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_Email { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Mailing address<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_MailingAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// City<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_City { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Country<br/>
+        /// Possible choices: [/api/Country?lang={locale}]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_Country { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Province/Territory<br/>
+        /// Possible choices: [/api/Province?lang={locale}]<br/>
+        /// Required condition: {reprensentative_Country} = 'CA'<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_ProvinceOrState { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Postal code<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_PostalCode { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Daytime telephone number (123-456-7890)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_DayTimeNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_DayTimeNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Alternate telephone number (123-456-7890)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_AltTelephoneNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_AltTelephoneNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// We are committed to ensuring that clients with disabilities have equal acce...<br/>
+        /// Possible choices: [yes, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string NeedsDisabilityAccommodationChoice { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_complaint_representative<br/>
+        /// If yes, please describe what accommodation measures you are requesting and ...<br/>
+        /// Required condition: {NeedsDisabilityAccommodationChoice} contains 'yes'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DisabilityAccommodation { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_documentation<br/>
+        /// Do you wish to upload your supporting documents or send them by mail?<br/>
+        /// Possible choices: [upload, mail, both, none]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string DocumentationType { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_documentation<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> Documentation_file_upload_rep { get; set; }
+
+        /// <summary>
+        /// Page: page_part_c_documentation<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> Documentation_file_upload { get; set; }
+
+        /// <summary>
+        /// Page: <br/>
+        /// Please certify that the information you have given on this form is, to the ...<br/>
+        /// Possible choices: [yes]<br/>
+        /// Survey question type: checkbox
+        /// </summary>
+        public List<string> InformationIsTrue { get; set; }
+
     }
 }
 

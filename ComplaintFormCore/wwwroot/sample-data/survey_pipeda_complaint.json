@@ -381,6 +381,7 @@
         "en": "Part A: Jurisdiction (Customer or employee)—Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (client ou employé) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "visibleIf": "{ProvinceIncidence} <= 10",
       "elements": [
         {
           "type": "html",
@@ -461,7 +462,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "visibleIf": "{EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
+      "visibleIf": "{ProvinceIncidence} <= 10 and {EmployeeOrCustomer} contains 'employee' and {AgainstOrganizations} contains 'no'",
       "elements": [
         {
           "type": "html",
@@ -499,6 +500,7 @@
         "en": "Part A: Jurisdiction (Organizations likely outside PIPEDA jurisdiction)—Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (organisations qui ne relèvent probablement pas de la LPRPDE) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "visibleIf": "{ProvinceIncidence} <= 10",
       "elements": [
         {
           "type": "html",
@@ -574,6 +576,7 @@
         "en": "Part A: Jurisdiction (Verify with other organizations)—Privacy complaint form (private sector organization)",
         "fr": "Partie A : Compétence (vérifier auprès d’autres organisations) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "visibleIf": "{ProvinceIncidence} <= 10",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -1096,7 +1099,818 @@
       ]
     },
     {
-      "name": "page_part_b_",
+      "name": "page_part_c_complaint_about_access",
+      "title": {
+        "en": "Part C: Details (Complaint about access)—Privacy complaint form (private sector organization)",
+        "fr": "Partie C : Détails (plainte à propos de l’accès) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "DeniedAccess",
+          "title": {
+            "en": "Is your complaint about being denied access to your personal information?",
+            "fr": "Votre plainte porte-t-elle sur un refus d’accès à vos renseignements personnels?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": "Oui"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "Yes, as well as other concerns",
+                "fr": "Oui, ainsi que d’autres préoccupations"
+              },
+              "value": "yes_and_other_concern"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_c_access_rules",
+      "title": {
+        "en": "Part C: Details (Access rules)—Privacy complaint form (private sector organization)",
+        "fr": "Partie C : Détails (règles d’accès) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "visibleIf": "{DeniedAccess} anyof ['yes','yes_and_other_concern']",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Under the <em>Personal Information Protection and Electronic Document Act</em> (PIPEDA), individuals have a right to access their personal information that is held by an organization.</p></section>",
+            "fr": "<section class='alert alert-info'><p>En vertu de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE), les particuliers ont le droit d’accéder à leurs renseignements personnels détenus par une organisation.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "Before continuing with your complaint, please review the information below.",
+            "fr": "Avant de poursuivre votre plainte, veuillez passer en revue l’information ci-dessous."
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>How to make an access request to an organization</summary><p>You need to do the following to exercise your right to access your personal information held by an organization:</p><ul><li>Make your access request in writing to the organization</li><li>Provide enough details about your identity and what you are seeking to allow the organization to find your information<ul><li>Your request must be only for your own personal information</li><li>For details on the right of access for executors of a will, beneficiaries and representatives consult: <a href='https://www.priv.gc.ca/en/privacy-topics/access-to-personal-information/giving-individuals-access-to-their-personal-information/gd_fam_201402/' target='_blank'>Guidance on managing Family Member/Household Accounts</a></li></ul></li><li>Allow a minimum of 30 days for the organization to respond</li></ul><p>If your access request is time-sensitive, we strongly encourage you to make your access request separately from any other requests you are making to the organization. Also, you should narrow your access request as much as possible (for example by a period of time, or a specific type of document). For more details on making an access request, consult: <a href='https://www.priv.gc.ca/en/privacy-topics/access-to-personal-information/accessing-your-personal-information/#business' target='_blank'>How to access your personal information held by businesses </a>.</p><p>If you are not satisfied with the response, follow up with the organization directly, to explain what is missing, and give an opportunity for response.</p><p>If you make a complaint to our office, it must be done <strong>within 6 months</strong> of being denied access to your information.</p></details>",
+            "fr": "<details><summary>Comment présenter une demande d’accès à une organisation</summary><p>Vous devez faire ce qui suit pour exercer votre droit d’accès à vos renseignements personnels détenus par une organisation :</p><ul><li>Présentez votre demande d’accès par écrit à l’organisation</li><li>Fournissez suffisamment de détails sur votre identité et sur ce que vous cherchez pour permettre à l’organisation de trouver vos renseignements<ul><li>Votre demande ne doit être faite qu’à titre d’information personnelle.</li><li>Pour plus de détails sur le droit d’accès des exécuteurs testamentaires, les bénéficiaires et les représentants peuvent consulter : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/acces-aux-renseignements-personnels/permettre-aux-individus-d-avoir-acces-a-leurs-renseignements-personnels/gd_fam_201402/' target='_blank'>Guide sur la gestion des comptes des membres d’une famille ou d’un ménage</a></li></ul></li><li>Accordez au moins 30 jours à l’organisation pour répondre.</li></ul><p>Si votre demande d’accès est urgente, nous vous encourageons fortement à présenter votre demande d’accès séparément de toute autre demande que vous faites à l’organisation. De plus, vous devriez limiter autant que possible votre demande d’accès (par exemple, par période ou par type de document). Pour plus de détails sur la présentation d’une demande d’accès, veuillez consulter : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/acces-aux-renseignements-personnels/consulter-vos-renseignements-personnels/' target='_blank'>Comment avoir accès aux renseignements personnels vous concernant qui sont détenus par les entreprises </a>.</p><p>Si vous n’êtes pas satisfait de la réponse, communiquez directement avec l’organisation pour lui expliquer ce qui manque et lui donner l’occasion de répondre.</p><p>Si vous déposez une plainte auprès de notre Commissariat, vous devez le faire <strong>dans les six mois</strong> suivant le refus d’accès à vos renseignements personnels.</p></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>How the organization must respond to your request</summary><div><p>An organization subject to PIPEDA has the following obligations after it receives an access request:</p><ul><li>It must respond to your request within 30 days, or, within 60 days if it informs you in advance that more time is needed.</li><li>It must give you access to your own personal information. An organization is not required to give access to information which is not your personal information. For example:<ul><li>the names of particular employees (such as ones you interacted with, or who accessed your personal information)</li><li>information relating to someone who fraudulently impersonated you (such as recordings of the person, details of when and how the fraud took place or how it was detected)</li><li>voiceprints or images of other people (such as in recordings of calls or on surveillance video)</li><li>information about an organization's business decision-making processes or other internal processes</li></ul></li><li>It must give you access at little or no cost. Organizations are not required to provide access in the form you prefer. For example, organizations may invite you to review the information on their premises instead of making copies, or may provide a transcript of a call, not a recording.</li><li>It must apply any exemptions to the right of access appropriately. Organizations are allowed by law to withhold certain personal information. For example, organizations may withhold personal information that was collected to investigate a breach of an agreement or a violation of a law (if the person's knowledge of or consent for the collection would harm the investigation).</li></ul></div></details>",
+            "fr": "<details><summary>Comment l’organisation doit répondre à votre demande</summary><div><p>Une organisation assujettie à la LPRPDE a les obligations suivantes après avoir reçu une demande d’accès :</p><ul><li>Elle doit répondre à votre demande dans les 30 jours, ou dans les 60 jours si elle vous informe à l’avance qu’un délai supplémentaire est nécessaire.</li><li>Elle doit vous donner accès à vos renseignements personnels. Une organisation n’est pas tenue de vous donner accès à des renseignements qui ne font pas partie de vos renseignements personnels. Par exemple :<ul><li>les noms d’employés en particulier (comme ceux avec lesquels vous avez interagi ou qui ont accédé à vos renseignements personnels)</li><li>les renseignements relatifs à une personne qui s’est frauduleusement fait passer pour vous (tels que les enregistrements de la personne, les détails sur le moment où la fraude a été commise et la manière dont elle a été commise, ou sur la manière dont elle a été détectée)</li><li>les empreintes vocales ou les images d’autres personnes (comme dans les enregistrements d’appels ou sur vidéo de surveillance)</li><li>l’information sur les processus décisionnels opérationnels ou sur d’autres processus internes d’une organisation</li></ul></li><li>Elle doit vous permettre d’y accéder gratuitement ou à peu de frais. Les organisations ne sont pas tenues de fournir l’accès sous la forme que vous préférez. Par exemple, les organisations peuvent vous inviter à examiner les renseignements dans leurs locaux au lieu d’en faire des copies, ou peuvent fournir une transcription d’un appel, et non un enregistrement.</li><li>Elles doivent appliquer de manière appropriée toute dérogation au droit d’accès. Les organisations sont autorisées par la loi à refuser de communiquer certains renseignements personnels. Par exemple, des organisations peuvent refuser de communiquer des renseignements personnels qui ont été recueillis pour enquêter sur la violation d’une entente ou d’une loi (si le fait que la personne soit au courant de la collecte des renseignements ou y consente pourrait nuire à l’enquête).</li></ul></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<details><summary>What you need to file a complaint with us if you are still dissatisfied</summary><div><p>To make a complaint to us about an organization&rsquo;s handling of your access request, you will need these documents and information:</p><ul><li>a copy of your written request to the organization</li><li>the date you sent the request</li><li>the exact address (postal or email) you sent your request to</li><li>a copy of any response to your request from the organization</li></ul><p>If the organization provided a set of documents in response to your request, you do not need to include all of them. However, please attach any cover letter or emails from the organization, and any parts of the response that you are concerned about.</p><p>Without these documents and information, we will not be able to process your file.</p></div></details>",
+            "fr": "<details><summary>Ce dont vous avez besoin pour déposer une plainte auprès de nous si vous êtes toujours insatisfait</summary><div><p>Pour nous faire part d’une plainte au sujet du traitement de votre demande d’accès par une organisation, vous aurez besoin des documents et renseignements suivants :</p><ul><li>une copie de votre demande écrite à l’organisation</li><li>la date à laquelle vous avez envoyé la demande</li><li>l’adresse exacte (postale ou électronique) à laquelle vous avez envoyé votre demande</li><li>une copie de la réponse à votre demande de la part de l’organisation (le cas échéant)</li></ul><p>Si l’organisation a fourni un ensemble de documents en réponse à votre demande, vous n’avez pas besoin de les inclure tous. Toutefois, veuillez joindre toute lettre d’accompagnement ou tout courriel de l’organisation, ainsi que toute partie de la réponse qui vous préoccupe.</p><p>Sans ces documents et renseignements, nous ne serons pas en mesure de traiter votre dossier.</p></div></details>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h2>Ending your session</h2></p><p>If, based on any of the information above, you're not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p><h2>Fermeture de votre session</h2></p><p>Si, d’après l’un des renseignements ci-dessus, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.<p/><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<h2>Continuing with your complaint</h2><section class='alert alert-info'><p>If you have not taken all the necessary steps, please be aware that we may decline to investigate your complaint. If you wish to continue your complaint, you will need to attach copies of your correspondence with the organization at the end of this form</p></section>",
+            "fr": "<h2>Poursuite de votre plainte</h2><section><p>Si vous n’avez pas pris toutes les mesures nécessaires, veuillez noter que nous pourrions refuser de faire enquête sur votre plainte. Si vous souhaitez poursuivre votre plainte, vous devrez joindre des copies de votre correspondance avec l’organisation à la fin du présent formulaire.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_c_authorization_representative",
+      "title": {
+        "en": "Part A: Preliminary information (Authorization for Representative)-Privacy complaint form (private sector organization)",
+        "fr": "Partie A : Renseignements préliminaires (autorisation de représentation) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "FilingComplaintOnOwnBehalf",
+          "title": {
+            "en": "Are you filing this complaint on your own behalf (or for a minor child you are guardian of) or on behalf of someone else?",
+            "fr": "Déposez-vous cette plainte en votre propre nom (ou au nom d’un enfant mineur dont vous êtes le tuteur) ou au nom d’une autre personne?"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yourself (or minor child for whom you are legal guardian)",
+                "fr": "Vous-même (ou un enfant mineur dont vous êtes le tuteur légal) "
+              },
+              "value": "yourself"
+            },
+            {
+              "text": {
+                "en": "Someone else",
+                "fr": "Quelqu’un d’autre"
+              },
+              "value": "someone_else"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "name": "info_part_a_1",
+          "html": {
+            "en": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>You may only file a complaint on behalf of someone else if you are authorized to do so. Please use our representative authorization form: </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Authorization to act as a representative for a privacy complaint (PDF, 99 KB)</a><br><br><p>You must submit the completed form signed by the complainant as an attachment to your complaint.</p><p>We will not be able to process the complaint without the completed signed authorization form.</p></section>",
+            "fr": "<section class='alert alert-info' id='ownBehalfAuthForm'><p>Vous ne pouvez déposer une plainte au nom d’une autre personne que si vous y êtes autorisé. Veuillez utiliser notre formulaire d’autorisation de représentation : </p><br><a class='btn btn-default' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_f.pdf'>Autorisation de représentation par un tiers dans le cadre d’une plainte relative à la protection des renseignements personnels (PDF, 99&nbsp;Ko)</a><br><br><p>Vous devez joindre à votre plainte le formulaire dûment rempli et signé par le plaignant.</p><p>Nous ne serons pas en mesure de traiter la plainte sans le formulaire d’autorisation dûment rempli et signé.</p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_part_c_details_complaint",
+      "title": {
+        "en": "Part C: Details (Details of complaint)—Privacy complaint form (private sector organization)",
+        "fr": "Partie C : Détails (détails de la plainte) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-warning'><h2>Please read before continuing</h2><p>You are now getting to the section of the complaint form where you will need to provide details about your complaint. Please be aware&nbsp;<strong>that you will need to provide copies of your correspondence</strong>&nbsp;with the organization about your privacy concern as well as any documents related to a complaint filed with another body. We recommend you have them ready before continuing.</p></section>",
+            "fr": "<section class='alert alert-warning'><h2>Veuillez lire avant de continuer</h2><p>Vous accédez maintenant à la section du formulaire de plainte où vous devrez fournir des détails sur votre plainte. Veuillez noter <strong>que vous devrez fournir des copies de votre correspondance</strong> avec l’organisation au sujet de votre préoccupation en matière de protection de la vie privée ainsi que tout document relatif à une plainte déposée auprès d’un autre organisme. Nous vous recommandons de les avoir à portée de main avant de continuer.</p></section>"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "pnl_Organization",
+          "title": {
+            "en": "Organization",
+            "fr": "Organisation"
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "InstitutionComplaint",
+              "isRequired": true,
+              "title": {
+                "en": "Which organization is your complaint against? (maximum 5,000 characters)",
+                "fr": "Quelle est l’organisation visée par votre plainte? (maximum 5 000 caractères)"
+              },
+              "description": {
+                "en": "<p>Please identify by specific name and location and provide the legal name of the organization, if known.</p>",
+                "fr": "<p>Veuillez indiquer le nom et l’emplacement précis de l’organisation et fournir son nom légal, si vous le connaissez.</p>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_Access",
+          "title": {
+            "en": "Access to your personal information",
+            "fr": "Accès à vos renseignements personnels"
+          },
+          "visibleIf": "{DeniedAccess} anyof ['yes_and_other_concern', 'yes_and_other_concern']",
+          "elements": [
+            {
+              "type": "comment",
+              "name": "DateAccessRequests",
+              "isRequired": true,
+              "title": {
+                "en": "What date did you send your written access request to the organization? If you sent multiple requests, please list each one. (maximum 5,000 characters)",
+                "fr": "À quelle date avez-vous envoyé votre demande d’accès par écrit à l’organisation? Si vous avez envoyé plusieurs demandes, veuillez les énumérer toutes. (maximum 5 000 caractères)"
+              }
+            },
+            {
+              "type": "comment",
+              "name": "AddressesAccessRequest",
+              "isRequired": true,
+              "title": {
+                "en": "What exact address(es) did you send your written access request (postal, email, or URL, if you used an online form)? (maximum 5,000 characters)",
+                "fr": "À quelle(s) adresse(s) exacte(s) avez-vous envoyé votre demande d’accès par écrit (adresse postale, électronique ou URL si vous avez utilisé un formulaire en ligne)? (maximum 5 000 caractères)"
+              }
+            },
+            {
+              "type": "comment",
+              "name": "ItemsNotReceived",
+              "isRequired": true,
+              "title": {
+                "en": "Please describe each item (if any) from your access request that you have not received yet. (maximum 5,000 characters)",
+                "fr": "Veuillez décrire chaque élément (s’il y a lieu) de votre demande d’accès que vous n’avez pas encore reçu. (maximum 5 000 caractères)"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_Summary",
+          "title": {
+            "en": "Complaint Summary",
+            "fr": "Résumé de la plainte"
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "ComplaintSummary",
+              "isRequired": true,
+              "title": {
+                "en": "Summarize your complaint (maximum 5,000 characters) ",
+                "fr": "Résumez votre plainte (maximum 5 000 caractères)"
+              },
+              "description": {
+                "en": "<p>Please explain:</p><ul><li>what the organization did, or didn't do, with personal information that you are unhappy about.</li><li>the who, what, when, where, why of your complaint (please include specific dates).</li></ul><p>If your complaint is against more than one organization, please explain, in a separate paragraph, the exact complaint against each organization.</p>",
+                "fr": "<p>Veuillez expliquer:</p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec vos renseignements personnels, dont vous n’êtes pas satisfait.</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte (veuillez préciser les dates).</li></ul><p>Si votre plainte vise plusieurs organisations, veuillez expliquer dans un paragraphe distinct la plainte exacte visant chaque organisation.</p>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_details",
+          "title": {
+            "en": "Details about complaint to another body",
+            "fr": "Détails concernant les plaintes déposées auprès d’un autre organisme"
+          },
+          "visibleIf": "{SubmittedComplaintToOtherBody} = true",
+          "elements": [
+            {
+              "type": "comment",
+              "name": "ComplaintToOtherBodyDetails",
+              "isRequired": true,
+              "title": {
+                "en": "Please provide details for each complaint you have made to another body including: (maximum 5,000 characters)",
+                "fr": "Veuillez fournir des détails pour chaque plainte que vous avez déposée auprès d’un autre organisme, y compris : (maximum 5 000 caractères)"
+              },
+              "description": {
+                "en": "<p><ul><li>the name of the body</li><li>the content of the complaint</li><li>the date of the complaint</li><li>the current status of the complaint process (ongoing or completed)</li><li>any reference numbers</li><li>the outcome (if completed)</li></ul>Please note that you will be asked to attach supporting documents relating to this complaint (and its outcome, if completed).</p>",
+                "fr": "<p><ul><li>le nom de l’organisme</li><li>le contenu de la plainte</li><li>la date de la plainte</li><li>l’état actuel de la procédure de traitement de la plainte (en cours ou terminée)</li><li>tout numéro de référence</li><li>le résultat (si terminée)</li></ul><p>Veuillez noter qu’il vous sera demandé de joindre les pièces justificatives relatives à cette plainte (et à son résultat, si terminée).</p></p>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_resolution",
+          "title": {
+            "en": "Resolution",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "WhatWouldResolveYourComplaint",
+              "isRequired": true,
+              "title": {
+                "en": "What would resolve your concerns? (maximum 5,000 characters)",
+                "fr": "Qu’est-ce qui résoudrait votre problème? (maximum 5 000 caractères)"
+              },
+              "description": {
+                "en": "<p>Please describe any steps or remedies that would resolve your concerns. For example:</p><ul><li>for an employee to recieve training</li><li>a change in practice</li><li>getting a specific piece of information</li><li>an apology, etc.</li></ul><p>Please note our Office does not have the power for fine organizations or award damages.</p>",
+                "fr": "<p>Veuillez décrire les mesures ou les solutions qui permettraient de résoudre votre problème. Par exemple :</p><ul><li>donner une formation à un employé</li><li>un changement de pratique</li><li>obtenir un renseignement précis</li><li>des excuses, etc.</li></ul><p>Veuillez noter que le Commissariat n’a pas le pouvoir d’imposer des amendes aux organisations ou d’accorder des dommages-intérêts.</p>"
+              }
+            },
+            {
+              "type": "comment",
+              "name": "EffortsTakenToResolve",
+              "isRequired": true,
+              "title": {
+                "en": "Summarize your attempts to resolve the privacy matter with the organization. (maximum 5,000 characters)",
+                "fr": "Résumez vos tentatives pour résoudre le problème concernant la protection de la vie privée avec l’organisation. (maximum 5 000 caractères)"
+              },
+              "description": {
+                "en": "<p>Please include:</p><ul><li>a description of your efforts (including a timeline)</li><li>specific address(es) (postal, email, or URL) you used to raise your privacy concerns in writing with the organization</li><li>a description of the result (if any)</li></ul><p>If you have not attempted to resolve the matter with the organization, please explain why not.</p><p>Please note that you will be asked to attach copies of any related correspondence with the organization about your privacy concerns</p>",
+                "fr": "<p>Veuillez inclure :</p><ul><li>une description de vos efforts (y compris une chronologie)</li><li>les adresses précises (postale, électronique ou URL) que vous avez utilisées pour faire part de vos préoccupations en matière de protection de la vie privée par écrit à l’organisation</li><li>une description du résultat (le cas échéant)</li></ul><p>Si vous n’avez pas tenté de résoudre le problème avec l’organisation, veuillez expliquer pourquoi.</p><p>Veuillez noter qu’on vous demandera de joindre des copies de toute correspondance connexe avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée.</p>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_c_complaint_representative",
+      "title": {
+        "en": "Part C: Details (Complainant/Representative information)—Privacy complaint form (private sector organization)",
+        "fr": "Partie C : Détails (information sur le plaignant ou le représentant) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "panel",
+          "name": "complainant_PreviousComplaint",
+          "title": {
+            "en": "Instructions",
+            "fr": "Instructions"
+          },
+          "hideOnPreview": true,
+          "hideOnPDF": true,
+          "elements": [
+            {
+              "type": "html",
+              "html": {
+                "en": "<p>Please put the complainant's information in the Complainant section below, and your information as their representative in the Representative section below.</p><p><a class='btn btn-default mrgn-bttm-md' target='_blank' href='https://www.priv.gc.ca/media/2437/authorization_e.pdf'>Authorization to act as a representative for a privacy complaint (PDF, 99 KB)</a></p><p>You will have the opportunity to attach documents before submitting your complaint.</p>",
+                "fr": "<p>S'il vous plaît mettre l'information du plaignant dans la section du plaignant, et votre information en tant que leur représentant dans la section du représentant ci-bas.</p><p><a class='btn btn-default mrgn-bttm-md' target='_blank' href='https://www.priv.gc.ca/media/2438/authorization_f.pdf'>Autorisation de représentation par un tiers dans le cadre d’une plainte relative à la protection des renseignements personnels (PDF, 99 Ko)</a></p><p>Vous aurez la possibilité de joindre des documents avant de soumettre votre plainte.</p>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "complainant_PreviousComplaint",
+          "title": {
+            "en": "Previous Complaint",
+            "fr": "Plainte antérieure"
+          },
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "Complainant_HaveYouSubmittedBeforeChoice",
+              "title": {
+                "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
+                "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Yes",
+                    "fr": "Oui"
+                  },
+                  "value": "yes"
+                },
+                {
+                  "text": {
+                    "en": "No",
+                    "fr": "Non"
+                  },
+                  "value": "no"
+                }
+              ]
+            },
+            {
+              "type": "html",
+              "name": "Complainant_HaveYouSubmittedBefore_info",
+              "html": {
+                "en": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>",
+                "fr": "<section class='alert alert-info'><p>Nous demandons cela pour nous assurer d’avoir les coordonnées exactes des personnes qui déposent des plaintes. Veuillez noter que nous pouvons mettre à jour vos coordonnées relatives à toute plainte en cours auprès de notre Commissariat, en utilisant les renseignements que vous fournissez ci-dessous.</p></section>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_complainant_ComplaintInformation",
+          "title": {
+            "en": "Complaint Information",
+            "fr": "Renseignements sur le plaignant"
+          },
+          "description": {
+            "en": "Enter the information of the person making the complaint",
+            "fr": "Veuillez saisir les coordonnées de la personne qui dépose la plainte."
+          },
+          "elements": [
+            {
+              "type": "dropdown",
+              "name": "Complainant_FormOfAddress",
+              "title": {
+                "en": "Preferred form of address",
+                "fr": "Titre de civilité préféré"
+              },
+              "isRequired": true,
+              "colCount": 0,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Mr.",
+                    "fr": "M."
+                  },
+                  "value": "Mr."
+                },
+                {
+                  "text": {
+                    "en": "Mrs.",
+                    "fr": "Mme"
+                  },
+                  "value": "Mrs."
+                },
+                {
+                  "text": {
+                    "en": "Ms.",
+                    "fr": "Mlle"
+                  },
+                  "value": "Ms."
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "Other"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "Complainant_FirstName",
+              "title": {
+                "en": "First name",
+                "fr": "Prénom "
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Complainant_LastName",
+              "title": {
+                "en": "Last name",
+                "fr": "Nom de famille"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Complainant_Email",
+              "inputType": "email",
+              "title": {
+                "en": "E-mail address (yourname@domain.com)",
+                "fr": "Adresse électronique (votrenom@domaine.com)"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Complainant_MailingAddress",
+              "title": {
+                "en": "Mailing address",
+                "fr": "Adresse postale"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Complainant_City",
+              "title": {
+                "en": "City",
+                "fr": "Ville "
+              },
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "Complainant_Country",
+              "title": {
+                "en": "Country",
+                "fr": "Pays"
+              },
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({complainant_Country}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Country?lang={locale}",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "dropdown",
+              "name": "Complainant_ProvinceOrState",
+              "title": {
+                "en": "Province/Territory",
+                "fr": "Province ou territoire"
+              },
+              "isRequired": true,
+              "visibleIf": "{complainant_Country} = 'CA'",
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({complainant_ProvinceOrState}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Province?lang={locale}",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "Complainant_PostalCode",
+              "title": {
+                "en": "Postal code",
+                "fr": "Code postal"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Complainant_DayTimeNumber",
+              "inputType": "tel",
+              "title": {
+                "en": "Daytime telephone number (123-456-7890)",
+                "fr": "Numéro de téléphone pendant la journée (123-456-7890)"
+              },
+              "description": {
+                "en": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
+                "fr": "Veuillez entrer le numéro de téléphone où nous pourrons vous joindre pendant la journée du lundi au vendredi, de 8 h 30 à 16 h 30 (HE)."
+              }
+            },
+            {
+              "type": "text",
+              "name": "Complainant_DayTimeNumberExtension",
+              "title": {
+                "en": "Extension (digits only)",
+                "fr": "Prolongation (chiffres seulement)"
+              },
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "Complainant_AltTelephoneNumber",
+              "inputType": "tel",
+              "title": {
+                "en": "Alternate telephone number (123-456-7890)",
+                "fr": "Autre numéro de téléphone (123-456-7890)"
+              }
+            },
+            {
+              "type": "text",
+              "name": "Complainant_AltTelephoneNumberExtension",
+              "title": {
+                "en": "Extension (digits only)",
+                "fr": "Prolongation (chiffres seulement)"
+              },
+              "inputType": "number"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_ReprensentativeInformation",
+          "title": {
+            "en": "Reprensentative Information",
+            "fr": "Renseignements sur le représentant"
+          },
+          "description": {
+            "en": "Enter Representative Information",
+            "fr": "Entrer les renseignements sur le représentant"
+          },
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else'",
+          "elements": [
+            {
+              "type": "dropdown",
+              "name": "Reprensentative_FormOfAddress",
+              "title": {
+                "en": "Preferred form of address",
+                "fr": "Titre de civilité préféré"
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Mr.",
+                    "fr": "M."
+                  },
+                  "value": "Mr."
+                },
+                {
+                  "text": {
+                    "en": "Mrs.",
+                    "fr": "Mme"
+                  },
+                  "value": "Mrs."
+                },
+                {
+                  "text": {
+                    "en": "Ms.",
+                    "fr": "Mlle"
+                  },
+                  "value": "Ms."
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "Other"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_FirstName",
+              "title": {
+                "en": "First name",
+                "fr": "Prénom "
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_LastName",
+              "title": {
+                "en": "Last name",
+                "fr": "Nom de famille"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_Email",
+              "inputType": "email",
+              "title": {
+                "en": "E-mail address (yourname@domain.com)",
+                "fr": "Adresse électronique (votrenom@domaine.com)"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_MailingAddress",
+              "title": {
+                "en": "Mailing address",
+                "fr": "Adresse postale"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_City",
+              "title": {
+                "en": "City",
+                "fr": "Ville "
+              },
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "Reprensentative_Country",
+              "title": {
+                "en": "Country",
+                "fr": "Pays"
+              },
+              "isRequired": true,
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({reprensentative_Country}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Country?lang={locale}",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "dropdown",
+              "name": "Reprensentative_ProvinceOrState",
+              "title": {
+                "en": "Province/Territory",
+                "fr": "Province ou territoire"
+              },
+              "isRequired": true,
+              "visibleIf": "{reprensentative_Country} = 'CA'",
+              "validators": [
+                {
+                  "type": "expression",
+                  "expression": "HasSelectedItem({reprensentative_ProvinceOrState}) = true"
+                }
+              ],
+              "choicesByUrl": {
+                "url": "/api/Province?lang={locale}",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_PostalCode",
+              "title": {
+                "en": "Postal code",
+                "fr": "Code postal"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_DayTimeNumber",
+              "inputType": "tel",
+              "isRequired": true,
+              "title": {
+                "en": "Daytime telephone number (123-456-7890)",
+                "fr": "Numéro de téléphone pendant la journée (123-456-7890)"
+              },
+              "description": {
+                "en": "Please enter the Daytime Telephone Number as the best number to contact you from Monday to Friday, 8:30am to 4:30pm ET.",
+                "fr": "Veuillez entrer le numéro de téléphone où nous pourrons vous joindre pendant la journée du lundi au vendredi, de 8 h 30 à 16 h 30 (HE)."
+              }
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_DayTimeNumberExtension",
+              "title": {
+                "en": "Extension (digits only)",
+                "fr": "Prolongation (chiffres seulement)"
+              },
+              "inputType": "number"
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_AltTelephoneNumber",
+              "inputType": "tel",
+              "title": {
+                "en": "Alternate telephone number (123-456-7890)",
+                "fr": "Autre numéro de téléphone (123-456-7890)"
+              }
+            },
+            {
+              "type": "text",
+              "name": "Reprensentative_AltTelephoneNumberExtension",
+              "title": {
+                "en": "Extension (digits only)",
+                "fr": "Prolongation (chiffres seulement)"
+              },
+              "inputType": "number"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<div class='alert alert-info'><h2>Use of contact information</h2><p>Please note that OPC may use any of the contact information you have provided to contact you or your representative about your complaint. Please note that all methods of communication involve some risk that information may be misdirected or intercepted and manipulated. When communicating with you about personal information, we will take appropriate security measures following the <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=16578' target='_blank'>Policy  on Government Security</a>.</p></div>",
+            "fr": "<div class='alert alert-info'><h2>Utilisation des coordonnées</h2><p>Veuillez noter que le Commissariat peut utiliser les coordonnées que vous avez fournies pour communiquer avec vous ou votre représentant au sujet de votre plainte. Veuillez noter que toutes les méthodes de communication présentent le risque que les renseignements soient mal acheminés ou interceptés et manipulés. Lorsque nous communiquerons avec vous au sujet de renseignements personnels, nous prendrons les mesures de sécurité appropriées conformément à la <a href='https://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=16578' target='_blank'>Politique sur la sécurité du gouvernement</a>.</p></div>"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "pnl_complainant_accomodation",
+          "title": {
+            "en": "Accomodation",
+            "fr": "Mesures d’adaptation"
+          },
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "NeedsDisabilityAccommodationChoice",
+              "title": {
+                "en": "We are committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. Will you need accommodation measures for the complaint investigation process?",
+                "fr": "Nous veillons à ce que les clients handicapés aient un accès égal à tous nos services au public et puissent en tirer profit. Aurez-vous besoin de mesures d’adaptation dans le cadre du processus d’enquête sur la plainte?"
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Yes",
+                    "fr": "Oui"
+                  },
+                  "value": "yes"
+                },
+                {
+                  "text": {
+                    "en": "No",
+                    "fr": "Non"
+                  },
+                  "value": "no"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "DisabilityAccommodation",
+              "title": {
+                "en": "If yes, please describe what accommodation measures you are requesting and the reason.",
+                "fr": "Si vous avez répondu « Oui », veuillez décrire les mesures d’adaptation que vous demandez et en donner la raison"
+              },
+              "description": {
+                "en": "If you are unable to do so in writing, please <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Contact OPC’s Information Centre</a> for assistance.",
+                "fr": "Si vous ne pouvez pas le faire par écrit, veuillez <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>communiquer avec le Centre d’information du Commissariat</a> pour obtenir de l’aide."
+              },
+              "isRequired": true,
+              "visibleIf": "{NeedsDisabilityAccommodationChoice} contains 'yes'"
+
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_part_b_means_recourse",
       "title": {
         "en": "",
         "fr": ""
@@ -1104,6 +1918,252 @@
       "elements": [
 
       ]
+    },
+    {
+      "name": "page_part_c_documentation",
+      "title": {
+        "en": "Part C: Details (Documentation)—Privacy complaint form (private sector organization)",
+        "fr": "Partie C : Détails (documentation) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "name": "documentation_info",
+          "html": {
+            "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul id='ul_documentation_info'><li>a copy of any written responses you received from the organization</li><li class='raisedConcernToPrivacyOfficer hidden'>a copy of your correspondence with the organization about your privacy concerns, including your attempts to escalate your concerns to the organization’s privacy contact (often called the privacy officer)</li><li class='deniedAccess hidden'>a copy of your access request to the organization</li><li class='deniedAccess hidden'>a copy of the organization's replies to your access request, including any cover letter(s) sent with a response, and any parts of the response you have concerns with (you don’t need to provide the full set of documents sent by the organization if it is not relevant to your complaint)</li><li class='submittedComplaintToOtherBody hidden'>a copy of your complaint to another body, if that complaint includes concerns about the handling of personal information (if you do not want to provide the full text you can provide a partial copy, including the part related to the handling of personal information, or a detailed explanation of your concern)</li><li class='complaintStillOngoing hidden'>a copy of any correspondence or report you received on the conclusion of the complaint process made to another body. (if you do not want to provide the full text, you can provide a partial copy, including the part related to the handling of personal information)</li><li class='filingComplaintOnOwnBehalf hidden'>your representative authorization form signed by the complainant</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
+            "fr": "<section class='alert alert-info col-md-12'><p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p><ul id='ul_documentation_info'><li>une copie des réponses par écrit que vous avez reçues de l’organisation (le cas échéant)</li><li>une copie de votre correspondance avec l’organisation au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations à la personne-ressource de l’organisation en matière de protection de la vie privée (souvent appelée l’agent de la protection de la vie privée)</li><li>une copie de votre demande d’accès à l’organisation</li><li>une copie des réponses de l’organisation à votre demande d’accès, y compris toute lettre d’accompagnement d’une réponse, et toute partie de la réponse qui vous préoccupe (vous n’avez pas à fournir l’ensemble des documents envoyés par l’organisation si ceux-ci ne sont pas pertinents pour votre plainte)</li><li>une copie de votre plainte auprès d’un autre organisme, si cette plainte comprend des préoccupations au sujet du traitement des renseignements personnels (si vous ne voulez pas fournir le texte intégral, vous pouvez fournir une copie partielle, y compris la partie relative au traitement des renseignements personnels, ou une explication détaillée de vos préoccupations)</li><li>une copie de toute correspondance ou de tout rapport que vous avez reçue sur la conclusion de la procédure de plainte adressée à un autre organisme (si vous ne voulez pas fournir le texte intégral, vous pouvez fournir une copie partielle, y compris la partie relative au traitement des renseignements personnels)</li></ul><p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p></section>"
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "DocumentationType",
+          "title": {
+            "en": "Do you wish to upload your supporting documents or send them by mail?",
+            "fr": "Souhaitez-vous télécharger vos documents à l’appui ou les envoyer par la poste?"
+          },
+          "isRequired": true,
+          "colCount": 1,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload them",
+                "fr": "Les télécharger"
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Send them by mail",
+                "fr": "Les envoyer par la poste"
+              },
+              "value": "mail"
+            },
+            {
+              "text": {
+                "en": "Both",
+                "fr": "Les deux"
+              },
+              "value": "both"
+            },
+            {
+              "text": {
+                "en": "I have no supporting documents to provide",
+                "fr": "Je n’ai pas de documents à l’appui à fournir"
+              },
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Please be aware that we might need documents to support your allegation before we can accept a complaint. If you wish to continue your complaint without demonstrating that you have raised your concerns with the organization, please be aware that we may decline to investigate your complaint.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Veuillez noter qu’il se peut que nous ayons besoin de documents à l’appui de votre allégation pour pouvoir accepter une plainte. Si vous souhaitez poursuivre votre plainte sans avoir démontré que vous avez fait part de vos préoccupations à l’organisation, veuillez noter que nous pourrions refuser de faire enquête sur votre plainte.</p></section>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{DocumentationType} anyof ['upload','both']",
+          "html": {
+            "en": "<p><h2>Uploading supporting documents</h2></p><p><div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div></p>",
+            "fr": "<p><h2>Téléchargement des documents à l’appui</h2></p><div class='alert alert-info'><p>Nous acceptons les types de fichiers suivants : doc, docx, xls, xls, xlsx, ppt, pptx, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif et tiff.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Vous pouvez télécharger des fichiers jusqu’à un total de 25 Mo.</p></div></p>"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "pnl_file_upload_rep",
+          "title": {
+            "en": "Authorization form attachment(s)",
+            "fr": "Pièces jointes au formulaire d’autorisation"
+          },
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and {DocumentationType} anyof ['upload','both']",
+          "elements": [
+            {
+              "type": "file",
+              "name": "Documentation_file_upload_rep",
+              "isRequired":  true,
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload the representative authorization form signed by the complainant.",
+                "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": "FR - Maximum size of files 25MB allowed"
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+              "itemListTitle": {
+                "en": "Attached",
+                "fr": "Fichier joint au formulaire d’autorisation"
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnl_file_upload",
+          "title": {
+            "en": "Attachments",
+            "fr": "Pièces jointes"
+          },
+          "visibleIf": "{DocumentationType} anyof ['upload','both']",
+          "elements": [
+            {
+              "type": "file",
+              "name": "Documentation_file_upload",
+              "isRequired": true,
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload a file to attach to your complaint",
+                "fr": "Téléchargez un fichier à joindre à votre plainte"
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "needConfirmRemoveFile": true,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": "FR - Maximum size of files 25MB allowed"
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+              "itemListTitle": {
+                "en": "Attached",
+                "fr": "En pièce jointe"
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "name": "upload_total_mb",
+          "visibleIf": "{DocumentationType} anyof ['upload','both']",
+          "html": {
+            "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>",
+            "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>"
+          }
+        },
+        {
+          "type": "panel",
+          "name": "pnl_send_mail",
+          "hideOnPreview": true,
+          "title": {
+            "en": "Sending documents by mail",
+            "fr": "Envoi de documents par la poste"
+          },
+          "visibleIf": "{DocumentationType} anyof ['mail','both']",
+          "elements": [
+            {
+              "type": "html",
+              "name": "documentation_uploading_file_types",
+              "html": {
+                "en": "<div class='alert alert-info'><p>If you send your supporting documents by mail, please include the <strong>reference number</strong> that you will get when you submit this online complaint form.</p><p>We cannot process a complaint until all relevant information is received. If we do not receive the supporting documents <strong>within 45 days</strong>, no further action will be taken.</p><h4>Mailing address</h4><address>Office of the Privacy Commissioner of Canada<br>30 Victoria Street<br>Gatineau, QC  K1A 1H3</address></div></p>",
+                "fr": "<div class='alert alert-info'><p>Si vous envoyez vos documents à l’appui par la poste, veuillez indiquer le <strong>numéro de référence</strong> que vous obtiendrez lorsque vous soumettrez ce formulaire de plainte en ligne.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Si nous ne recevons pas les documents à l’appui <strong>dans les 45&nbsp;jours</strong>, aucune autre mesure ne sera prise.</p><h3>Adresse postale</h3><address>Commissariat à la protection de la vie privée du Canada<br>30, rue Victoria<br>Gatineau (Québec)  K1A&nbsp;1H3</address></div></p>"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "",
+      "title": {
+        "en": "Confirmation",
+        "fr": "Confirmation"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "InformationIsTrue",
+          "title": {
+            "en": "Please certify that the information you have given on this form is, to the best of your knowledge, true, accurate and complete.",
+            "fr": "Veuillez attester que les renseignements que vous avez fournis dans ce formulaire sont, à votre connaissance, véridiques, exacts et complets."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "yes",
+              "text": {
+                "en": "I certify",
+                "fr": "Je certifie"
+              }
+            }
+          ]
+        },
+        {
+          "type": "html",
+          "name": "InformationIsTrue_info",
+          "html": {
+            "en": "<section class='alert alert-info col-md-12'><p>After submitting your complaint, you will be able to use the next screen to:</p><ul><li>download and print a summary of your complaint</li><li>file a different type of complaint about the same institution</li><li>file the same type of complaint about another institution</li><li>file a different type of complaint about another institution</li></ul></section>",
+            "fr": "<section class='alert alert-info col-md-12'><p>Après avoir soumis votre plainte, vous pourrez utiliser l’écran suivant pour:</p><ul><li>télécharger et imprimer un résumé de votre dossier de plainte</li><li>déposer un autre type de plainte concernant la même institution</li><li>déposer le même type de plainte concernant une autre institution</li><li>déposer un autre type de plainte concernant une autre institution</li></ul></section>"
+          }
+        }
+      ]
     }
-  ]
+  ],
+  "completedHtml": {
+    "en": "<h1>Completed—Privacy complaint form (private sector organization)</h1><p>You have sent the Office of the Privacy Commissioner (OPC) an online privacy complaint about a private sector organization. Your temporary file number is <span id='sp_survey_file_number'></span>. You will receive an email soon to confirm its receipt. We will review your information and will try to contact you, if appropriate, as soon as possible.</p><div class='alert alert-info'><p>We cannot process a complaint until all relevant information is received. All supporting documents must be received <strong>within 45 days</strong> or no further action will be taken.</p></div><h2>Download a summary of your complaint</h2><p>You can download a summary to save or print</p><button type='button' onclick='showPDF()' class='btn btn-primary piwik_download'>Download a summary of your complaint</button><h2>File another complaint</h2><p><a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/file-a-complaint-about-a-business/'>File the same type of complaint about a business</a> (you will need to register again to file a different type of complaint about another business)</p><h2>Related content</h2><ul><li><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/privacy-act-compliance-help/gd_exp_pa/' target='_blank'>Guide: What to expect during a complaint investigation under the <em>Privacy Act</em></a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/' target='_blank'><em>Privacy Act</em></a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/the-federal-government-and-your-personal-information/' target='_blank'>The federal government and your personal information</a></li><li><a href='http://www.tbs-sct.gc.ca/atip-aiprp/apps/coords/index-eng.asp' target='_blank'>List of Access to Information and Privacy Coordinators by institution</a></li><li><a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/raising-your-privacy-concern-with-an-organization/tips-for-raising-your-privacy-concern-with-a-federal-government-institution/' target='_blank'>Tips for raising your privacy concern with a federal government institution</a></li></ul>",
+    "fr": "<h1>Remplie – Formulaire de plainte sur la protection de la vie privée (organisation du secteur privé)</h1><p>Vous avez envoyé au Commissariat à la protection de la vie privée du Canada (Commissariat) un formulaire de plainte en ligne au sujet d’une organisation du secteur privé. Votre numéro de dossier temporaire est le <span id='sp_survey_file_number'></span>. Vous recevrez bientôt un courriel confirmant sa réception. Nous examinerons vos renseignements et tenterons de communiquer avec vous, le cas échéant, dès que possible.</p><div class='alert alert-info'><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Toutes les pièces justificatives doivent être reçues<strong>dans les 45 jours</strong>; sinon, aucune autre mesure ne sera prise.</p></div><h2>Téléchargez un résumé de votre plainte</h2><p>Vous pouvez télécharger un résumé pour l’enregistrer ou l’imprimer</p><button type='button' onclick='showPDF()' class='btn btn-primary piwik_download'>Téléchargez un résumé de votre plainte</button><h2>Déposer une autre plainte</h2><p><a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/deposer-une-plainte-visant-une-entreprise/'>Déposer une plainte relative à la protection de la vie privée visant une entreprise</a> (vous devrez vous inscrire de nouveau pour déposer un autre type de plainte visant une autre entreprise)</p><h2>Contenu connexe</h2><ul><li><a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/deposer-une-plainte-visant-une-entreprise/guide/' target='_blank'>Guide sur le processus de traitement des plaintes en vertu de la LPRPDE</a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents &eacute;lectroniques</em>&nbsp;(LPRPDE)</a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/les-entreprises-et-vos-renseignements-personnels/' target='_blank'>Les entreprises et vos renseignements personnels</a></li><li><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-organisation/conseils-pour-faire-part-de-vos-preoccupations-concernant-la-protection-de-la-vie-privee-a-une-entreprise/' target='_blank'>Conseils pour faire part de vos pr&eacute;occupations concernant la protection de la vie priv&eacute;e &agrave; une entreprise</a></li></ul>"
+  }
 }
