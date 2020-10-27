@@ -1,5 +1,5 @@
 import { Widget } from "./widget";
-import { CustomWidgetCollection, ItemValue, IQuestion, JsonObject, QuestionCheckboxModel } from "survey-vue";
+import { CustomWidgetCollection, ItemValue, Question, JsonObject, QuestionCheckboxModel } from "survey-vue";
 
 export class CheckboxWidget extends Widget {
     private activatedBy = "property";
@@ -20,7 +20,7 @@ export class CheckboxWidget extends Widget {
      *
      * @param question
      */
-    isFit(question: IQuestion): boolean {
+    isFit(question: Question): boolean {
         if (this.activatedBy === "property") {
             return question.renderAs === "checkboxwithhtmlinfo" && question.getType() === "checkbox";
         } else if (this.activatedBy === "type") {
@@ -60,7 +60,7 @@ export class CheckboxWidget extends Widget {
      * @param question
      * @param el
      */
-    afterRender(question: IQuestion, el: HTMLElement): void {
+    afterRender(question: Question, el: HTMLElement): void {
         const checkboxQuestion: QuestionCheckboxModel = (question as unknown) as QuestionCheckboxModel;
         const locale = question.getLocale();
 
