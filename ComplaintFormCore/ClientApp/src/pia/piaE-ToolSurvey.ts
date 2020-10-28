@@ -1,11 +1,13 @@
 import Vue from "vue";
 import * as Survey from "survey-vue";
-import { saveStateLocally, loadStateLocally } from "../surveyLocalStorage";
-import { initSurvey, initSurveyModelEvents, initSurveyModelProperties } from "../surveyInit";
+import * as SurveyLocalStorage from "../surveyLocalStorage";
+import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
-import { testData } from "./pia_test_data";
+import { piaTestData } from "./pia_test_data";
+import * as widgets from "surveyjs-widgets";
+import * as SurveyFile from "../surveyFile";
 
 declare global {
     // TODO: get rid of this global variable
@@ -13,11 +15,19 @@ declare global {
 }
 
 export class PiaETool {
-    //  TODO: Figure out if we want to store those const in surveyLocalStorage.ts or in each files
+    // TODO: Figure out if we want to store those const in surveyLocalStorage.ts or in each files
     private storageName_PIA = "SurveyJS_LoadState_PIA";
 
     public init(jsonUrl: string, lang: string, token: string): void {
-        initSurvey();
+        SurveyInit.initSurvey();
+        SurveyFile.initSurveyFile();
+
+        Survey.JsonObject.metaData.addProperty("page", {
+            name: "section:number",
+            default: false
+        });
+
+        widgets.select2tagbox(Survey);
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -109,33 +119,67 @@ export class PiaETool {
                             return;
                         }
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_6") {
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-6");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ16");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage(
-                                "a message is needed here to tell the user to quit the tool...",
-                                "",
-                                sender.getLocale()
-                            );
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+                            } else {
+                                SurveyHelper.printWarningMessage(
+                                    "a message is needed here to tell the user to quit the tool...",
+                                    "french version of the message",
+                                    sender.getLocale()
+                                );
+                            }
+
                             return;
                         }
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_8") {
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-8");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ18");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage(
-                                "a message is needed here to tell the user to quit the tool...",
-                                "",
-                                sender.getLocale()
-                            );
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+                            } else {
+                                SurveyHelper.printWarningMessage(
+                                    "a message is needed here to tell the user to quit the tool...",
+                                    "french version of the message",
+                                    sender.getLocale()
+                                );
+                            }
+
                             return;
                         }
                     } else if (options.oldCurrentPage.name === "page_step_1_q_1_10") {
-                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ1-10");
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ110");
                         if (contactATIP && contactATIP.value !== "conduct_pia") {
-                            SurveyHelper.printWarningMessage(
-                                "a message is needed here to tell the user to quit the tool...",
-                                "",
-                                sender.getLocale()
-                            );
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+                            } else {
+                                SurveyHelper.printWarningMessage(
+                                    "a message is needed here to tell the user to quit the tool...",
+                                    "french version of the message",
+                                    sender.getLocale()
+                                );
+                            }
+
+                            return;
+                        }
+                    } else if (options.oldCurrentPage.name === "page_step_3_1_q_3_1_7") {
+                        const contactATIP: Survey.Question = sender.getQuestionByName("ContactATIPQ317");
+                        if (contactATIP && contactATIP.value !== "conduct_pia") {
+                            if (contactATIP.value === "receive_email") {
+                                // Send an email to the user
+                                this.sendEmail(sender.complaintId as string, JSON.stringify(sender.data), sender.getLocale());
+                            } else {
+                                SurveyHelper.printWarningMessage(
+                                    "a message is needed here to tell the user to quit the tool...",
+                                    "french version of the message",
+                                    sender.getLocale()
+                                );
+                            }
+
                             return;
                         }
                     }
@@ -205,6 +249,7 @@ export class PiaETool {
                                                 item.SeniorOfficialOtherFullname,
                                                 item.SeniorOfficialOtherFullname
                                             );
+
                                             personContact.choices.push(itemSeniorOther);
                                         }
                                     }
@@ -216,92 +261,28 @@ export class PiaETool {
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    saveStateLocally(sender, this.storageName_PIA);
+                    SurveyLocalStorage.saveStateLocally(sender, this.storageName_PIA);
+
+                    this.setNavigationBreadcrumbs(_survey);
                 });
 
-                initSurveyModelEvents(_survey);
+                SurveyInit.initSurveyModelEvents(_survey);
 
-                initSurveyModelProperties(_survey);
+                SurveyInit.initSurveyModelProperties(_survey);
 
-                const defaultData = {
-                    "ContactATIPQ16": "conduct_pia",
-                    "ContactATIPQ18": "conduct_pia",
-                    "ContactATIPQ110": "conduct_pia",
-                    "HasLegalAuthority": true,
-                    "HeadYourInstitutionEmail": "jack@gmail.com",
-                    "HeadYourInstitutionFullname": "Jack Travis",
-                    "HeadYourInstitutionSection": "My section",
-                    "HeadYourInstitutionTitle": "Boss",
-                    "IsNewprogram": false,
-                    "IsProgamContractedOut": false,
-                    "IsProgramInvolvePersonalInformation": true,
-                    "IsTreasuryBoardApproval": true,
-                    "LeadInstitutionConsultedOther": "yes",
-                    "PersonalInfoUsedFor": "non_admin_purpose",
-                    "ProgamHasMajorChanges": true,
-                    "ProgramName": "ze programme",
-                    "SingleOrMultiInstitutionPIA": "multi",
-                    "SubjectOfPIA": "other",
-                    "RelevantLegislationPolicies": "jgfjg",
-                    "SeniorOfficialEmail": "adam@yates.com",
-                    "SeniorOfficialFullname": "adam yates",
-                    "SeniorOfficialSection": "michelton",
-                    "SeniorOfficialTitle": "rider",
-                    "BehalfMultipleInstitutionOthers": [
-                        {
-                            "OtherInstitutionHeadFullname": "Hugo Roule",
-                            "OtherInstitutionEmail": "yougo@hotmail.com",
-                            "OtherInstitutionHeadTitle": "Rouleur",
-                            "BehalfMultipleInstitutionOther": "2",
-                            "OtherInstitutionSection": "Astana",
-                            "SeniorOfficialOtherFullname": "Julian Alapolak",
-                            "SeniorOfficialOtherTitle": "Puncheur",
-                            "SeniorOfficialOtherSection": "QuickStep",
-                            "SeniorOfficialOtherEmail": "juju@hotmail.com"
-                        },
-                        {
-                            "OtherInstitutionHeadTitle": "leader",
-                            "OtherInstitutionSection": "Astana",
-                            "BehalfMultipleInstitutionOther": "Mental Institution",
-                            "OtherInstitutionHeadFullname": "Lopez A",
-                            "OtherInstitutionEmail": "lopez@gmail.com",
-                            "SeniorOfficialOtherFullname": "Tadej Pogachar",
-                            "SeniorOfficialOtherTitle": "Sprinteur",
-                            "SeniorOfficialOtherSection": "UAE",
-                            "SeniorOfficialOtherEmail": "tadeg@mymail.ca"
-                        }
-                    ],
-                    "BehalfMultipleInstitutionLead": "1",
-                    "PersonContact": "adam yates",
-                    "NewOrUpdatedPIA": "new_pia",
-                    "name": "terter",
-                    "UserEmailAddress": "test@gmail.com",
-                    "BehalfSingleInstitution": "2",
-                    "BehalfSingleInstitutionOther": "Another institution",
-                    "RelatedPIANameInstitution": "related instituion",
-                    "RelatedPIANameProgram": "related program namexxxxx",
-                    "RelatedPIADescription": "related descriptiohjfj",
-                    "AnotherContactFullname": "Another full name",
-                    "AnotherContactTitle": "Another title",
-                    "AnotherContactSection": "Another section",
-                    "AnotherContactEmail": "anothercontact@gmail.com",
-                    "UpdatePIANumberAssigned": "update_pia_existing_reference_number",
-                    "UpdatePIAAllReferenceNumbersAssigned": "A3Rt67U8",
-                    "DetailsPreviousSubmission": "this is a bunch of details about the previous submission",
-                    "NewPIANumberAssigned": "new_pia_existing_reference_number",
-                    "NewPIAAllReferenceNumbersAssigned": "V13R5t9O"
-                };
+                const defaultData = {};
 
                 // Load the initial state
-                loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
+                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
 
-                saveStateLocally(_survey, this.storageName_PIA);
-
-                // Save the state back to local storage
-                //  this.onCurrentPageChanged_saveState(_survey);
+                SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIA);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
+
+                SurveyFile.initSurveyFileModelEvents(_survey);
+
+                this.setNavigationBreadcrumbs(_survey);
 
                 const app = new Vue({
                     el: "#surveyElement",
@@ -310,5 +291,119 @@ export class PiaETool {
                     }
                 });
             });
+    }
+
+    //  This is a nextPage() function just for this page
+    public nextPage(surveyObj: Survey.SurveyModel): void {
+        if (surveyObj.currentPage.name === "page_step_3_3_7") {
+            this.gotoPage(surveyObj, "page_step_3_3_5");
+        } else {
+            SurveyNavigation.nextPage(surveyObj);
+        }
+    }
+
+    public sendEmail(complaintId: string, data: string, locale: string): void {
+        const uri = `/api/PIASurvey/SendEmail?complaintId="${complaintId}`;
+
+        fetch(uri, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: data
+        })
+            .then(response => {
+                if (response.ok) {
+                    SurveyHelper.printWarningMessage(
+                        "A summary has been sent to the email address provided",
+                        "french version of the message",
+                        locale
+                    );
+                } else {
+                    if (response.json) {
+                        void response.json().then(problem => {
+                            SurveyHelper.printProblemDetails(problem, locale);
+                        });
+                    }
+                    Ladda.stopAll();
+                    return response;
+                }
+            })
+            .catch(error => {
+                console.warn(error);
+                Ladda.stopAll();
+            });
+    }
+
+    public gotoSection(surveyObj: Survey.SurveyModel, section: number): void {
+        //  This is part of the navigation. When a user clicks on a breadcrums item it takes them
+        //  directly where they want.
+
+        //  Filter to get the first page with the desired section
+        const page = surveyObj.pages.filter(x => x.getPropertyValue("section") === section && x.isVisible === true)[0];
+        if (page) {
+            surveyObj.currentPage = page;
+            this.setNavigationBreadcrumbs(surveyObj);
+        }
+    }
+
+    public gotoPage(surveyObj: Survey.SurveyModel, pageName: string): void {
+        const page = surveyObj.getPageByName(pageName);
+        if (page) {
+            surveyObj.currentPage = page;
+        }
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: Survey.SurveyModel): void {
+        //  TODO: Probably disable some items when the user has not gone thru all the question.
+
+        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
+
+        if (!ul_progress_navigation) {
+            return;
+        }
+
+        if (survey.isDisplayMode) {
+            //  We do not show the navigation bar in preview mode
+            ul_progress_navigation.className = "hidden";
+            return;
+        }
+
+        ul_progress_navigation.className = "breadcrumb";
+
+        if (surveyObj.currentPage.section === null) {
+            //  If for any reasons we forget to add the section property in the json at least nothing will happen
+            return;
+        }
+
+        const items = document.getElementsByClassName("breadcrumb-item");
+
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
+
+        if (surveyObj.currentPage.section === 0) {
+            const li = document.getElementById("li_breadcrumb_0");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 1) {
+            const li = document.getElementById("li_breadcrumb_1");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 2) {
+            const li = document.getElementById("li_breadcrumb_2");
+            if (li) {
+                li.className += " active";
+            }
+        } else if (surveyObj.currentPage.section === 3) {
+            const li = document.getElementById("li_breadcrumb_3");
+            if (li) {
+                li.className += " active";
+            }
+        }
     }
 }

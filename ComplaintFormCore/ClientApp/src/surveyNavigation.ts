@@ -59,6 +59,14 @@ export function startSurvey(survey: Survey.SurveyModel): void {
     survey.nextPage();
 }
 
+export function prevPage(survey: Survey.SurveyModel): void {
+    survey.prevPage();
+}
+
+export function nextPage(survey: Survey.SurveyModel): void {
+    survey.nextPage();
+}
+
 export function endSession(): void {
     const url = "/Home/Index";
     window.location.href = url;

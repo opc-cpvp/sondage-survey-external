@@ -145,8 +145,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             classes.root += " form-group";
 
             if (options.question.getType() === "file") {
-                // Hide the file decorator
-                //  classes.fileDecorator += " sv-hidden";
+                classes.chooseFile += " btn btn-primary";
 
                 // Hide the 'Clean' button
                 classes.removeButton = "sv-hidden";
@@ -155,6 +154,8 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             } else if (options.question.getType() === "radiogroup") {
                 classes.materialDecorator = "";
             } else if (options.question.getType() === "matrixdynamic") {
+                classes.button += " btn btn-primary";
+            } else if (options.question.getType() === "paneldynamic") {
                 classes.button += " btn btn-primary";
             }
         }
@@ -195,7 +196,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
         //  This is to add * at the beginning of a required question. The property requiredText
         //  is set as 'required' later in the code
         if (options.question.isRequired) {
-            options.title = `<span class='sv_q_required_text'>&ast;</span>${options.title as string}`;
+            options.title = `<span class='sv_q_required_text'>&ast;&nbsp;</span>${options.title as string}`;
         }
     });
 

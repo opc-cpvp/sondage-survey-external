@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ComplaintFormCore.Exceptions;
+﻿using ComplaintFormCore.Exceptions;
 using ComplaintFormCore.Models;
-using ComplaintFormCore.Models.pia;
 using ComplaintFormCore.Resources;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 
@@ -43,6 +37,14 @@ namespace ComplaintFormCore.Web_Apis
 
                 return BadRequest(valid);
             }
+
+            return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult SendEmail([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
+        {
+
 
             return Ok();
         }

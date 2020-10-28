@@ -18,6 +18,8 @@ import { storageName_PA, storageName_PIPEDA } from "./surveyLocalStorage";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
+    function prevPage(survey: Survey.SurveyModel): void;
+    function nextPage(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
     function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
@@ -28,6 +30,9 @@ declare global {
     function initPipeda(lang: string, token: string): void;
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
+
+    function gotoSection(survey: Survey.SurveyModel, section: number): void;
+    function gotoPage(survey: Survey.SurveyModel, pageName: string): void;
 }
 
 declare let Symbol;
@@ -52,6 +57,8 @@ declare let Symbol;
 
     function main() {
         globalThis.startSurvey = SurveyNavigation.startSurvey;
+        globalThis.prevPage = SurveyNavigation.prevPage;
+        globalThis.nextPage = SurveyNavigation.nextPage;
         globalThis.endSession = SurveyNavigation.endSession;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
@@ -69,6 +76,18 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
             const piaETool = new PiaETool();
             piaETool.init(jsonUrl, lang, token);
+
+            globalThis.gotoSection = (survey, section) => {
+                piaETool.gotoSection(survey, section);
+            };
+
+            globalThis.gotoPage = (survey, pageName) => {
+                piaETool.gotoPage(survey, pageName);
+            };
+
+            globalThis.nextPage = survey => {
+                piaETool.nextPage(survey);
+            };
         };
 
         globalThis.initPipeda = (lang, token) => {

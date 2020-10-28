@@ -1,5 +1,5 @@
 {
-    "name": "page_part_b_means_recourse",
+    "name": "page_template",
     "title": {
     "en": "",
     "fr": ""
@@ -72,14 +72,6 @@
     "html": {
         "en": "",
         "fr": ""
-    }
-}
-------------------------------
-{
-    "type": "html",
-    "html": {
-        "en": "<section class='alert alert-info'></section>",
-        "fr": "<section class='alert alert-info'></section>"
     }
 }
 

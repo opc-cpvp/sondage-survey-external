@@ -6,6 +6,7 @@
         "en": "What is the Office of the Privacy Commissioner of Canada’s privacy impact assessment e-Tool?",
         "fr": ""
       },
+      "section": 0,
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -73,6 +74,7 @@
         "en": "What is the OPC’s role in the privacy impact assessment process?",
         "fr": ""
       },
+      "section": 0,
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -141,6 +143,7 @@
         "en": "PIA report writing best practices",
         "fr": ""
       },
+      "section": 0,
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -159,6 +162,7 @@
         "en": "Privacy notice",
         "fr": ""
       },
+      "section": 0,
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -177,6 +181,7 @@
         "en": "Definitions",
         "fr": ""
       },
+      "section": 0,
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -230,6 +235,7 @@
         "en": "Before you begin",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "html",
@@ -260,9 +266,10 @@
     {
       "name": "page_before_begin_q_0_2",
       "title": {
-        "en": "Question 1",
+        "en": "Before you begin",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "comment",
@@ -287,6 +294,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "html",
@@ -321,6 +329,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "visibleIf": "{IsNewprogram} = false",
       "elements": [
         {
@@ -353,6 +362,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "boolean",
@@ -375,6 +385,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "visibleIf": "{IsProgramInvolvePersonalInformation} = false",
       "elements": [
         {
@@ -426,7 +437,7 @@
             {
               "type": "text",
               "inputType": "email",
-              "name": "UserEmailAddress",
+              "name": "UserEmailAddress16",
               "title": {
                 "en": "Please provide your email address. (1.6)",
                 "fr": ""
@@ -436,7 +447,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -450,6 +461,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "radiogroup",
@@ -488,6 +500,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "visibleIf": "{PersonalInfoUsedFor} contains 'non_admin_purpose'",
       "elements": [
         {
@@ -539,7 +552,7 @@
             {
               "type": "text",
               "inputType": "email",
-              "name": "UserEmailAddress",
+              "name": "UserEmailAddress18",
               "title": {
                 "en": "Please provide your email address. (1.8)",
                 "fr": ""
@@ -549,7 +562,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -563,6 +576,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "elements": [
         {
           "type": "radiogroup",
@@ -598,9 +612,10 @@
     {
       "name": "page_step_1_q_1_10",
       "title": {
-        "en": "",
+        "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
+      "section": 1,
       "visibleIf": "{SubjectOfPIA} contains 'other'",
       "elements": [
         {
@@ -652,7 +667,7 @@
             {
               "type": "text",
               "inputType": "email",
-              "name": "UserEmailAddress",
+              "name": "UserEmailAddress110",
               "title": {
                 "en": "Please provide your email address. (1.10)",
                 "fr": ""
@@ -662,7 +677,7 @@
             {
               "type": "html",
               "html": {
-                "en": "<section class='alert alert-info'><p>A summary is sent to the email address provided</p></section>",
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
                 "fr": ""
               }
             }
@@ -676,6 +691,7 @@
         "en": "Introduction to the PIA - Question 2.1.1",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "html",
@@ -774,7 +790,8 @@
         "en": "Introduction to the PIA - Question 2.1.2A",
         "fr": ""
       },
-      "visibleIf": "[{SingleOrMultiInstitutionPIA}] anyof ['single','single_related']",
+      "section": 2,
+      "visibleIf": "{SingleOrMultiInstitutionPIA} anyof ['single','single_related']",
       "elements": [
         {
           "type": "dropdown",
@@ -815,6 +832,7 @@
         "en": "Introduction to the PIA - Question 2.1.2B",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -903,6 +921,7 @@
         "en": "Introduction to the PIA - Question 2.1.3",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -953,6 +972,7 @@
         "en": "Introduction to the PIA - Question 2.1.4",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -975,6 +995,7 @@
         "en": "Introduction to the PIA - Question 2.1.5",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "panel",
@@ -1035,6 +1056,7 @@
         "en": "Introduction to the PIA - Question 2.1.6",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -1101,6 +1123,7 @@
         "en": "Introduction to the PIA - Question 2.1.7",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "panel",
@@ -1161,6 +1184,7 @@
         "en": "Introduction to the PIA - Question 2.1.8",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -1227,6 +1251,7 @@
         "en": "Introduction to the PIA - Question 2.1.9",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "dropdown",
@@ -1299,6 +1324,7 @@
         "en": "Introduction to the PIA - Question 2.1.10",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "radiogroup",
@@ -1344,6 +1370,7 @@
         "en": "Introduction to the PIA - Question 2.1.11 A",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
       "elements": [
         {
@@ -1393,6 +1420,7 @@
         "en": "Introduction to the PIA - Question 2.1.11 B",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
       "elements": [
         {
@@ -1416,6 +1444,7 @@
         "en": "Introduction to the PIA - Question 2.1.12",
         "fr": ""
       },
+      "section": 2,
       "visibleIf": "{NewOrUpdatedPIA} contains 'new_pia_covers_already_submitted'",
       "elements": [
         {
@@ -1465,6 +1494,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.1",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "name": "ProgramOverview",
@@ -1487,6 +1517,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.2",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "dropdown",
@@ -1535,6 +1566,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.3",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1563,6 +1595,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.4",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "dropdown",
@@ -1621,6 +1654,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.5",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1639,6 +1673,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.6",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1667,6 +1702,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.7",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1695,6 +1731,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.8",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1723,6 +1760,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.10",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1751,6 +1789,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.12",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1779,6 +1818,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.13",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "boolean",
@@ -1797,6 +1837,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.14",
         "fr": ""
       },
+      "section": 2,
       "elements": [
         {
           "type": "comment",
@@ -1815,6 +1856,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.15",
         "fr": "IsProgramRolledOutPhases"
       },
+      "section": 2,
       "elements": [
         {
           "type": "html",
@@ -1878,21 +1920,2243 @@
     {
       "name": "page_step_3_1_q_3",
       "title": {
-        "en": "Step 3 –Program or activity details",
+        "en": "Step 3 – Program or activity details",
         "fr": ""
       },
+      "section": 3,
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
-
+        {
+          "type": "html",
+          "visibleIf": "{NewOrUpdatedPIA} anyof ['new_pia', 'new_pia_covers_already_submitted']",
+          "html": {
+            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc.</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
+          "html": {
+            "en": "<section class='alert alert-info'><p>In STEP 3, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‘Skip this question’</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development’s (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative’s intrusiveness.</p></section>",
+            "fr": ""
+          }
+        }
       ]
     },
     {
-      "name": "page_template",
+      "name": "page_step_3_1_q_3_1",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>It may be useful to assess your program or activity in the context of its potential impact on our right to privacy, and other fundamental rights and values, including freedom and democracy. This assessment should include asking probing questions about the need for the program or activity, its effectiveness, whether its impacts are in proportion to its purported benefits and whether there are less privacy invasive alternatives. While these questions are essential for assessing a high-risk initiative, they are useful questions to ask for any project.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children’s information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_1_q_3_1_2",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyProgramNecessary",
+          "title": {
+            "en": "Please describe why this program or activity is necessary.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>What specific need does the program or activity meet?</li><li>Is your proposed collection, use or disclosure of personal information rationally connected to a pressing and substantial public goal? Note: Do not simply reiterate the institutional mandate, for example, “law enforcement” or “border control.”</li><li>Is each piece of personal information necessary to achieve the goal?</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "DoesMeasureEffectiveness",
+          "title": {
+            "en": "Does your institution plan to measure the effectiveness of this program or activity?",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_3",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowMeasureEffectiveness",
+          "visibleIf": "{DoesMeasureEffectiveness} = true ",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe how the institution will measure the program or activity’s effectiveness.",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please ensure your response answers the following questions:<ul><li>Was the program or activity carefully designed to achieve the goal in question?</li><li>Can your institution demonstrate that the program or activity is effective in meeting the stated goal?</li></ul>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNotMeasureEffectiveness",
+          "visibleIf": "{DoesMeasureEffectiveness} = false ",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution will not measure this program or activity’s effectiveness.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_4",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "AssessProportionalityExplanation",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain how the intrusion on privacy caused by the program or activity is proportional to the benefit gained. How did you assess proportionality?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Note, the more severe the impact on privacy, the more pressing and substantial the public goal should be.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_5",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DidConsiderLessIntrusiveSolution",
+          "isRequired": true,
+          "title": {
+            "en": "Did your institution consider any less privacy intrusive solutions for this program or activity?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_6",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionConsiderLessIntrusiveSolution",
+          "visibleIf": "{DidConsiderLessIntrusiveSolution} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe any less privacy intrusive solutions you considered.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is there empirical evidence that other, less privacy intrusive means will not achieve the goal of the program or activity?</li><li>Why was the given option selected?</li></ul></p><p>If you did not consider any less privacy intrusive solutions, please explain why.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNotConsiderLessIntrusiveSolution",
+          "visibleIf": "{DidConsiderLessIntrusiveSolution} = false",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution did not consider any less privacy intrusive solutions for this program or activity.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_1_q_3_1_7",
+      "title": {
+        "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-warning'><p><strong>Note on high-risk programs and activities</strong></p><p>If your initiative is likely to be high risk (see risk factors below) and you cannot explain how its proposed collection, use or disclosure of personal information is rationally connected to a pressing and substantial public goal, the initiative should not go forward. In this case, your institution should review the initiative’s objectives and revisit whether it indeed has the legal authority to proceed. You should demonstrate that your high-risk program or activity is necessary, effective, proportional and minimally intrusive. You should ensure high-risk programs or activities pass all steps of the test above before proceeding with their implementation. We recommend that you contact your institution’s team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts, senior privacy advisors, or legal.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children’s information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "ContactATIPQ317",
+          "title": {
+            "en": "Select",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "I would like to quit and contact my ATIP group. I would like to receive an email summary of my interaction with the e-Tool.",
+                "fr": ""
+              },
+              "value": "receive_email"
+            },
+            {
+              "text": {
+                "en": "I have already discussed this program or activity with my ATIP group or senior officials, and am confident that a PIA needs to be conducted.",
+                "fr": ""
+              },
+              "value": "conduct_pia"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "panel_ContactATIPQ317_email",
+          "visibleIf": "{ContactATIPQ317} contains 'receive_email'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "text",
+              "inputType": "email",
+              "name": "UserEmailAddress317",
+              "title": {
+                "en": "Please provide your email address.",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>A summary will be send to the email address provided</p></section>",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 3.1' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-4' target='_blank'>s. 3.1</a></li><li><strong>Relevant policy requirements</strong>: <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Policy on Privacy Protection</a> and <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accountability means</strong>: Put someone in charge of your institution’s handling of personal information and develop privacy policies, procedures and training.</li></ul></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_1",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsHeadYourInstitutionResponsibleWithPA",
+          "title": {
+            "en": "Is the following individual responsible for your institution’s compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Head of the government institution or delegate</p><p><strong>{ HeadYourInstitutionFullname }</strong></p></section></p>",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "ResponsibleComplianceWithPA",
+          "visibleIf": "{IsHeadYourInstitutionResponsibleWithPA} = false",
+          "title": {
+            "en": "Who is responsible for your institution’s compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please provide the title of the individual. This individual is usually your institution’s ATIP coordinator, chief privacy officer, privacy management director, etc.</p>",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_3",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ListPoliciesAndProcedures",
+          "isRequired": true,
+          "title": {
+            "en": "Please list and briefly describe the policies and procedures that your institution has in place to protect privacy.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Some examples may include…</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_4_q_3_2_5",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesStaffReceivedTraining",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution ensure that staff receive privacy-related training?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>If some but not all of your staff receive privacy-related training, you should answer “Yes” to this question. You will be given an opportunity to describe the training offered, including who receives training.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "StaffReceivedTrainingDescription",
+          "isRequired": true,
+          "visibleIf": "{DoesStaffReceivedTraining} = true",
+          "title": {
+            "en": "Please describe the privacy training that your staff receives.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>For example, who receives training, and at what frequency? Who does not receive training, and why are they exempt? What is the content of the training that staff receive?</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_2_q_3_2_6",
+      "title": {
+        "en": "3.2 – Accountability",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ProcessHandlingPrivacyComplaint",
+          "isRequired": true,
+          "title": {
+            "en": "Does the institution have or intend to have a process for handling a privacy complaint or inquiry?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ProcessHandlingPrivacyComplaintDescription",
+          "visibleIf": "{ProcessHandlingPrivacyComplaint} anyof ['yes_in_place', 'yes_not_established'] ",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the process for handling a privacy complaint or inquiry.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-5' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a title='Directive on Social Insurance Number' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=13342' target='_blank'>Directive on Social Insurance Number</a></li><li><strong>What limiting collection means</strong>: Only collect personal information if you need to.</li></ul></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_1",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "HasDataMinimization",
+          "isRequired": true,
+          "title": {
+            "en": "Have you undertaken a data minimization exercise?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>This is to say, have you considered how to achieve the objectives of the program or activity while collecting the minimal amount of personal information? Have you systematically questioned your need for each piece or category of personal information?</p><p>Please note that you will have the opportunity to describe the purpose of collection for each personal information element and sub-element later; this question focuses on the data minimization exercise itself.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes",
+                "fr": ""
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "Not yet, but plan to",
+                "fr": ""
+              },
+              "value": "not_yet_planned"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "DataMinimizationDetails",
+          "visibleIf": "{HasDataMinimization} contains 'yes'",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide additional details about this exercise.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DataMinimizationPlannedDetails",
+          "visibleIf": "{HasDataMinimization} contains 'not_yet_planned'",
+          "title": {
+            "en": "Please provide additional details about this exercise.",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_2_and_3_3_3",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Please detail each personal information element that your program or activity collects or creates by selecting the category of personal information and entering the exact personal information element(s) that you will be collecting in that category. Use “Other” to describe any personal information elements that do not fit the categories provided. You can select each category more than once if necessary to accurately reflect all of the sub-elements.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>For example, if you are collecting address information, you may need to select “address” more than once, as you may need to type in “street number, street name, street type, postal code, city, province” as the personal information sub-elements to be collected.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "paneldynamic",
+          "name": "pnd_PersonalInformationCategory",
+          "title": {
+            "en": "Why do you need to collect or create each piece or category of personal information? What is the purpose?",
+            "fr": ""
+          },
+          "isRequired": true,
+          "renderMode": "list",
+          "allowAddPanel": true,
+          "allowRemovePanel": true,
+          "panelAddText ": {
+            "en": "Add category",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this item?",
+            "fr": ""
+          },
+          "valueName": "PersonalInformationCategory",
+          "templateElements": [
+            {
+              "valueName": "Category",
+              "type": "dropdown",
+              "title": {
+                "en": "Category",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Name",
+                    "fr": ""
+                  },
+                  "value": "name"
+                },
+                {
+                  "text": {
+                    "en": "Address",
+                    "fr": ""
+                  },
+                  "value": "address"
+                },
+                {
+                  "text": {
+                    "en": "Contact information",
+                    "fr": ""
+                  },
+                  "value": "contact_information"
+                },
+                {
+                  "text": {
+                    "en": "Information originating from social media",
+                    "fr": ""
+                  },
+                  "value": "from_social_media"
+                },
+                {
+                  "text": {
+                    "en": "Personal website(s)",
+                    "fr": ""
+                  },
+                  "value": "personal_website"
+                },
+                {
+                  "text": {
+                    "en": "Date of birth",
+                    "fr": ""
+                  },
+                  "value": "d_o_b"
+                },
+                {
+                  "text": {
+                    "en": "Current age",
+                    "fr": ""
+                  },
+                  "value": "current_age"
+                },
+                {
+                  "text": {
+                    "en": "Sex or gender",
+                    "fr": ""
+                  },
+                  "value": "sex_gender"
+                },
+                {
+                  "text": {
+                    "en": "Physical attributes (height, weight, hair colour, eye colour)",
+                    "fr": ""
+                  },
+                  "value": "physical_attribute"
+                },
+                {
+                  "text": {
+                    "en": "Marital status",
+                    "fr": ""
+                  },
+                  "value": "marital_status"
+                },
+                {
+                  "text": {
+                    "en": "Next of kin or family",
+                    "fr": ""
+                  },
+                  "value": "family"
+                },
+                {
+                  "text": {
+                    "en": "Racial identity",
+                    "fr": ""
+                  },
+                  "value": "racial_identity"
+                },
+                {
+                  "text": {
+                    "en": "Ethnic origin",
+                    "fr": ""
+                  },
+                  "value": "ethnic_origin"
+                },
+                {
+                  "text": {
+                    "en": "City, state or country of birth",
+                    "fr": ""
+                  },
+                  "value": "city_state_country"
+                },
+                {
+                  "text": {
+                    "en": "Citizenship",
+                    "fr": ""
+                  },
+                  "value": "citizenship"
+                },
+                {
+                  "text": {
+                    "en": "Opinions",
+                    "fr": ""
+                  },
+                  "value": "opinions"
+                },
+                {
+                  "text": {
+                    "en": "Group affiliations or association memberships",
+                    "fr": ""
+                  },
+                  "value": "affiliations_or_association"
+                },
+                {
+                  "text": {
+                    "en": "Religious beliefs or affiliations",
+                    "fr": ""
+                  },
+                  "value": "religious"
+                },
+                {
+                  "text": {
+                    "en": "Criminal records information",
+                    "fr": ""
+                  },
+                  "value": "criminal"
+                },
+                {
+                  "text": {
+                    "en": "Government-issued ID (SIN, passport, driver’s licence)",
+                    "fr": ""
+                  },
+                  "value": "government_issued_id"
+                },
+                {
+                  "text": {
+                    "en": "Employer name",
+                    "fr": ""
+                  },
+                  "value": "employer"
+                },
+                {
+                  "text": {
+                    "en": "Business ownership",
+                    "fr": ""
+                  },
+                  "value": "business"
+                },
+                {
+                  "text": {
+                    "en": "Travel history ",
+                    "fr": ""
+                  },
+                  "value": "travel"
+                },
+                {
+                  "text": {
+                    "en": "Recorded files such as text, photos, audio, video, etc.",
+                    "fr": ""
+                  },
+                  "value": "recorded_files"
+                },
+                {
+                  "text": {
+                    "en": "Log files about an individual’s transactions (device info, IP address, access time, etc.)",
+                    "fr": ""
+                  },
+                  "value": "transactions"
+                },
+                {
+                  "text": {
+                    "en": "Financial information",
+                    "fr": ""
+                  },
+                  "value": "financial"
+                },
+                {
+                  "text": {
+                    "en": "Medical information",
+                    "fr": ""
+                  },
+                  "value": "medical"
+                },
+                {
+                  "text": {
+                    "en": "Parental guardian",
+                    "fr": ""
+                  },
+                  "value": "parental_guardian"
+                },
+                {
+                  "text": {
+                    "en": "Substitute decision maker",
+                    "fr": ""
+                  },
+                  "value": "substitute_decision_maker"
+                },
+                {
+                  "text": {
+                    "en": "Allegations or suspicions",
+                    "fr": ""
+                  },
+                  "value": "allegations"
+                },
+                {
+                  "text": {
+                    "en": "Bodily samples",
+                    "fr": ""
+                  },
+                  "value": "bodily_samples"
+                },
+                {
+                  "text": {
+                    "en": "Physical biometrics (fingerprints, eye or face scan, DNA, etc.)",
+                    "fr": ""
+                  },
+                  "value": "physical_biometrics"
+                },
+                {
+                  "text": {
+                    "en": "Behavioural biometrics (signature, mannerisms, habits)",
+                    "fr": ""
+                  },
+                  "value": "behavioural_biometrics"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "valueName": "SupplementaryInformation",
+              "title": {
+                "en": "Supplementary Information",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "valueName": "PersonalInformationElement",
+              "title": {
+                "en": "Personal information element",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_4",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsContextualSensitivities",
+          "isRequired": true,
+          "title": {
+            "en": "Is the context in which the personal information is collected and used sensitive? In other words, does the personal information have “contextual sensitivities?”",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>There is no “bright line” separation of what is, and is not, sensitive information. Certain categories of information (such as health or financial) will generally be considered sensitive, but even non-sensitive information can become sensitive depending on the circumstances.</p><p>An individual piece of information considered non-sensitive on its own, could become sensitive depending on what it is capable of revealing when combined with other personal information about the individual. For example, the names of employees on a team may not be considered sensitive, but that same list, if it identified employees having a specific illness would be considered sensitive based on the context.</p><p>Conversely, in certain circumstances, personal information generally considered sensitive may become less so where other related information is already in the public domain, depending on the purpose for which such information is being made public and the nature of the relationship between the parties involved. For example, an individual’s political affiliation would become less sensitive if that person decided to run for office for that political party.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "ContextualSensitivitiesDetails",
+          "visibleIf": "{IsContextualSensitivities} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide more details about the context in which the personal information is collected. ",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation related to the information that you are providing in response to this question.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_pre_3_3_5",
       "title": {
         "en": "",
         "fr": ""
       },
+      "section": 3,
       "elements": [
+        {
+          "type": "radiogroup",
+          "name": "PersonalInformationPhysicalAndOrElectronicFormat",
+          "title": {
+            "en": "Will your institution be collecting any personal information in a physical or electronic format?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><strong>Physical format</strong> includes, but is not limited to:<ul><li>Paper records</li><li>Digitally on physical media storage (for example, USB drive, DVD)</li><li>Physical samples</li></ul></p><p><strong>Electronic format</strong> includes, but is not limited to:<ul><li>Information submitted online</li><li>Information received in a spreadsheet</li><li>Information received by email</li></ul></p></section></p>",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Physical",
+                "fr": ""
+              },
+              "value": "physical"
+            },
+            {
+              "text": {
+                "en": "Electronic",
+                "fr": ""
+              },
+              "value": "electronic"
+            },
+            {
+              "text": {
+                "en": "Physical and Electronic",
+                "fr": ""
+              },
+              "value": "both"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_5",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical', 'both']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "InformationPhysicalFormatDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe your collection of personal information in physical format. (3.3.5B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection. Please describe the collection schedule (when is information transferred – is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only. If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "IsPhysicalConvertedToElectronic",
+          "isRequired": true,
+          "title": {
+            "en": "Will your institution convert or copy any personal information in a physical format to an electronic format? (3.3.5C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>This includes, but is not limited to:<ul><li>Digitizing paper forms</li><li>Downloading information from physical media storage to electronic servers</li><li>Entering data collected physically into a spreadsheet</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "InformationPhysicalConvertedCopyDescription",
+          "visibleIf": "{IsPhysicalConvertedToElectronic} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe your conversion of personal information from a physical format to an electronic format. (3.3.5D)",
+            "fr": ""
+          },
+          "description": {
+            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a “snapshot.” If information is purged after being copied, please indicate it.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_6",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic', 'both']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "PersonalInformationElectronicFormatDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe your collection of personal information in electronic format. (3.3.6B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection.  Please describe the collection schedule (when is information transferred – is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only.  If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "IsElectronicConvertedToPhysical",
+          "isRequired": true,
+          "title": {
+            "en": "Will your institution convert or copy any personal information in an electronic format to a physical format? (3.3.6C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>This includes, but is not limited to:<ul><li>Printing information that was collected online</li><li>Copying information onto physical media storage (for example, USB drive, DVD)</li></ul></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "IsInformationElectronicConvertedCopyDescription",
+          "visibleIf": "{IsElectronicConvertedToPhysical} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe your conversion of personal information from an electronic format to a physical format. (3.3.6D)",
+            "fr": ""
+          },
+          "description": {
+            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a “snapshot.” If information is purged after being copied, please indicate so.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_3_8a",
+      "title": {
+        "en": "3.3 – Limiting collection",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsThereCollectNotIntended",
+          "isRequired": true,
+          "title": {
+            "en": "Think now to how you collect personal information, in any format. Is there a chance that you could inadvertently collect personal information that you did not intend to collect? (3.3.8A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Some examples of how this could occur:</p><ul><li>An individual types irrelevant personal information into an open text field on an online form</li><li>An individual provides irrelevant personal information by filling out a part of a form that does not apply to their application</li><li>One department provides another with a dataset for the purposes for data matching, and some entries will likely not result in a positive match</li></ul><p>Please note that by selecting “Yes”, you will have the opportunity later to discuss how you manage this inadvertent collection.</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "DoesHavePoliciesProcedures",
+          "visibleIf": "{IsThereCollectNotIntended} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution have policies or procedures in place to manage the inadvertent collection of personal information, as described in the previous question?",
+            "fr": ""
+          },
+          "description": {
+            "en": "These could include automatic or manual purging of information, returning information to the affected individual(s), etc. These can also include measures taken to prevent inadvertent collection, such as instructions to individuals to avoid providing irrelevant personal information.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "HavePoliciesProceduresDescription",
+          "visibleIf": "{DoesHavePoliciesProcedures} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the policies or procedures in place to manage the inadvertent collection of personal information",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.4,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What direct collection and purpose identification means</strong>: When you collect someone’s personal information, collect it directly from them whenever possible and tell them why you need it.</li></ul></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_1",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsDirectlyFromIndividual",
+          "isRequired": true,
+          "title": {
+            "en": "Do you collect the personal information directly from the individual for the primary purpose of this program or activity? (3.4.1)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_2",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false",
+      "section": 3,
+      "elements": [
+        {
+          "type": "tagbox",
+          "name": "WhereWhomInfoCollected",
+          "title": {
+            "en": "From where or whom is the personal information collected? Please select all that apply (3.4.2)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Directly from the individual by the institution for a primary purpose other than this program or activity",
+                "fr": ""
+              },
+              "value": "directly"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by another federal government institution",
+                "fr": ""
+              },
+              "value": "federal"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by a provincial or territorial government",
+                "fr": ""
+              },
+              "value": "provincial"
+            },
+            {
+              "text": {
+                "en": "Disclosed to the institution by a third party that is not a provincial, territorial, or federal government institution",
+                "fr": ""
+              },
+              "value": "not_government"
+            },
+            {
+              "text": {
+                "en": "Indirectly (for example, from the internet or social media)",
+                "fr": ""
+              },
+              "value": "indirectly"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "WhereWhomInfoCollectedOtherDetails",
+          "title": {
+            "en": "Please type in your answer(s)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{WhereWhomInfoCollected} contains 'other'"
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_3_and_3_4_4",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsOriginalPurposeConsistent",
+          "title": {
+            "en": "You have indicated that you collect the personal information directly from the individual for the purpose other than this program or activity. Is the original purpose for which you collect this information consistent with the purpose of your program or activity? (3.4.3A)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "<p>Sections 7 and 8 of the <em>Privacy Act</em> provide that personal information may be used or disclosed by a government institution without the consent of the individual to whom it relates for a purpose directly related to the purpose(s) for which the information was obtained or compiled. Such related purposes are termed consistent uses.</p><p>For a use or disclosure to be consistent, it must have a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. A test of whether a proposed use or disclosure is “consistent” may be whether it would be reasonable for the individual who provided the information to expect that it would be used in the proposed manner. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out. <strong>Source</strong>: Treasury Board of Canada Secretariat</p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "OriginalPurposeIsConsistentSummary",
+          "visibleIf": "{IsOriginalPurposeConsistent} = true",
+          "title": {
+            "en": "You have indicated that the personal information collected by your institution, is used for a different use(s) that is consistent with the initial purpose for which it was collected. This is known as a secondary use. Please provide the analysis or a summary of the analysis that was conducted to determine that this use is a consistent use. (3.4.3B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "Interpret the definition of “consistent use” narrowly. A consistent use is defined as a use that has a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "OriginalPurposeIsNotConsistentJustification",
+          "visibleIf": "{IsOriginalPurposeConsistent} = false",
+          "title": {
+            "en": "You have indicated that you collect the personal information directly from the individual for the purpose other than this program or activity and that the original purpose for which you collect this information is not consistent with the purpose of your program or activity. Please explain how your institution justifies this collection within the legal authorities previously outlined. (3.4.4)",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_5",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyCollectInfoOtherSource",
+          "title": {
+            "en": "You have indicated that you do not collect the personal information directly from the individual for the purposes of this program or activity. Please provide an explanation as to why your program or activity collects personal information from other source(s). (3.4.5)",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_6_A_and_C",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal', 'provincial', 'not_government', 'indirectly', 'other']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "FormalInformationSharingAgreement",
+          "title": {
+            "en": "You have indicated that you collect personal information from at least one third party. Do you capture, or intend to capture, this sharing of information in a formal information sharing agreement (ISA)? (3.4.6A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "An ISA could take the form of a letter of agreement, memoranda of understanding, etc. For more information on ISAs, see TBS’s Guidance on Preparing Information Sharing Agreements Involving Personal Information.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_already_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ThirdPartyCollectionDescription",
+          "visibleIf": "{FormalInformationSharingAgreement} = 'no'",
+          "title": {
+            "en": "In the absence of an information sharing agreement, please provide a description of the collection from the third party or third parties: (3.4.6C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><ul><li>How will you collect the personal information from the third party (that is, by what means or channels?)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic?</li></ul></p><p>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
+            "fr": ""
+          },
+          "isRequired": true
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_6B",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "DocumentationRelevantISA",
+          "title": {
+            "en": "Please provide a copy (or copies) of relevant ISAs. (3.4.6B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload my ISA(s)",
+                "fr": ""
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Provide a link or multiple links to my publicly available ISA(s)",
+                "fr": ""
+              },
+              "value": "link"
+            },
+            {
+              "text": {
+                "en": "ISA(s) are not able to be provided",
+                "fr": ""
+              },
+              "value": "not_able"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "DocumentationRelevantISALink",
+          "title": {
+            "en": "Please enter a web URL that links to a copy or copies of relevant ISAs",
+            "fr": ""
+          },
+          "isRequired": true,
+          "visibleIf": "{DocumentationRelevantISA} = 'link'"
+        },
+        {
+          "type": "comment",
+          "name": "DocumentationISAMissingExplanation",
+          "visibleIf": "{DocumentationRelevantISA} = 'not_able'",
+          "title": {
+            "en": "Please explain why you are unable to provide a copy or copies of relevant ISAs",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "panel",
+          "name": "pnl_documentation_file_upload",
+          "isRequired": true,
+          "visibleIf": "{DocumentationRelevantISA} = 'upload'",
+          "titleLocation": "hidden",
+          "elements": [
+            {
+              "type": "file",
+              "name": "Documentation_file_upload",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload my ISA(s)",
+                "fr": ""
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": ""
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+              "itemListTitle": {
+                "en": "Attached ISA(s)",
+                "fr": ""
+              },
+              "itemListRemoveText": {
+                "en": "Remove",
+                "fr": "Supprimer"
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_7",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasExistingPIB",
+          "isRequired": true,
+          "title": {
+            "en": "Is there an existing PIB that, in its current state, accurately describes the collection, use, and disclosure of personal information for this program or activity? (3.4.7)",
+            "fr": ""
+          },
+          "description": {
+            "en": "PIBs are descriptions of personal information under the control of a government institution that is organized and retrievable by an individual's name or by a number, symbol or other element that identifies that individual. The personal information described in a PIB has been used, is being used or is available for an administrative purpose. The PIB describes how personal information is collected, used, disclosed, retained and/or disposed of in the administration of an institution's program or activity.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_8",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "section": 3,
+      "visibleIf": "{HasExistingPIB} = true",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ExistingPIBDetails",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that an existing PIB covers this program or activity. Please provide the name(s) and number(s) of any relevant PIBs, as well as the current text of the PIB.(3.4.8)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_9",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "NoPIBStatusReason",
+          "title": {
+            "en": "You have indicated that there is not currently a PIB that accurately describes the collection, use, and disclosure of personal information for this program or activity. Please select the explanation that best describes the status of PIB(s) in relation to your program. (3.4.9)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "A new PIB is required to reflect the personal information in this program or activity",
+                "fr": ""
+              },
+              "value": "new_pib"
+            },
+            {
+              "text": {
+                "en": "An existing PIB can be updated to reflect the personal information in this program or activity",
+                "fr": ""
+              },
+              "value": "update_pib"
+            },
+            {
+              "text": {
+                "en": "The institution does not plan create or update any PIBs to reflect the personal information in this program or activity.",
+                "fr": ""
+              },
+              "value": "no_pib"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_10_a_b_c",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} anyof ['new_pib', 'update_pib']",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasNewPIBWorkBegun",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity. Has this work already begun? (3.4.10A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "PIBStatusExplanationType",
+          "visibleIf": "{HasNewPIBWorkBegun} = true",
+          "title": {
+            "en": "You have indicated that your institution has already begun working on either creating a new PIB or updating an existing PIB to reflect the personal information in this program or activity. Please provide the new or revised PIB description in the open text field below, or upload a copy. If the work is still in draft format, please indicate it. If your work is too preliminary to be shared, please provide information pertaining to the work on the PIB(s) (for example, work plan, next steps, etc.) in the open text field.(3.4.10B)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Open text field",
+                "fr": ""
+              },
+              "value": "text_field"
+            },
+            {
+              "text": {
+                "en": "Upload",
+                "fr": ""
+              },
+              "value": "upload"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "",
+          "visibleIf": "{HasNewPIBWorkBegun} = true",
+          "title": {
+            "en": "PIB description",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "PIBStatusExplanationText",
+              "visibleIf": "{PIBStatusExplanationType} contains 'text_field'",
+              "titleLocation": "hidden",
+              "isRequired": true,
+              "description": {
+                "en": "",
+                "fr": ""
+              }
+            },
+            {
+              "type": "file",
+              "name": "PIB_documentation_file_upload",
+              "visibleIf": "{PIBStatusExplanationType} contains 'upload'",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload my PIB documents",
+                "fr": ""
+              },
+              "isRequired": true,
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": true,
+              "maxSize": 0,
+              "storeDataAsText": false,
+              "showPreview": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "multipleFileMaxSizeErrorMessage": {
+                "en": "Maximum size of files 25MB allowed",
+                "fr": ""
+              },
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
 
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              }
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NoBeganPIBStatusExplanationText",
+          "visibleIf": "{HasNewPIBWorkBegun} = false",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that your institution plans to either create a new PIB or update an existing PIB to reflect the personal information in this program or activity, but that this work has not yet begun. Please provide information pertaining to this effort (for example, work plan, next steps, etc.) (3.4.10C)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_10_d_e",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib'",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhyNoPlanToReflectNewConsistentPIB",
+          "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that the institution does not plan create or update any PIBs to reflect the personal information in this program or activity. You previously indicated that you collect the personal information directly from the individual for the purpose other than this program or activity that is consistent with the purpose of your program or activity. Section 11 of the Privacy Act requires that the descriptions of PIBs must include a statement of the consistent uses for which personal information may be used or disclosed. Given this, please explain why your institution does not plan to reflect this new consistent use in a PIB. (3.4.10D)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WhyNoPIBExplanation",
+          "visibleIf": "!({IsOriginalPurposeConsistent} = true)",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that the institution does not plan to create or update any PIBs to reflect the personal information in this program or activity. Please explain why this is the case.(3.4.10E)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please include, in your answer, an explanation as to how the institution has met its obligations under 10(1) of the Privacy Act in relation to this program or activity. ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_11",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = true or {NoPIBStatusReason} anyof ['new_pib', 'update_pib'] or ({IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true)",
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "InstitutionNotifyIndividuals",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution notify or intend to notify individuals of the purpose for which it collects, uses, or discloses their personal information through methods other than through Personal Information Banks (PIB) or through Privacy Notice Statements (PNS)? (3.4.11)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Individuals could include the public, program applicants, participants, etc.Examples include Info Source, publishing ISAs, PIA summaries, etc.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_already_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_11_a_b_c",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true)",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasPrivacyNoticeStatement",
+          "isRequired": true,
+          "title": {
+            "en": "Will there be a privacy notice statement for this program or activity? (3.4.11A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that if your institution uses additional methods beyond a privacy notice statement (PNS) to inform the public about this program, you will still have the opportunity to describe these methods later. ",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "HasDraftFinalVersionPNSAvailable",
+          "visibleIf": "{HasPrivacyNoticeStatement} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Do you have draft or final versions of your PNS available to include in your PIA? (3.4.11B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that well-crafted PIA should include all peripheral documents, including PNS.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "paneldynamic",
+          "valueName": "PNSStatement",
+          "visibleIf": "{HasPrivacyNoticeStatement} = true and {HasDraftFinalVersionPNSAvailable} = true",
+          "title": {
+            "en": "Please provide a copy of the PNS for this program. If you have multiple statements to provide, please do so and provide a brief description of where an individual would encounter the notice (for example, on a paper form, on signs, etc.)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>At minimum, individuals should be provided with the following information:<ul><li>what personal information is being sought</li><li>for what purpose and with what authority</li><li>the consequences for not providing the information</li><li>how it will be used, disclosed and protected</li><li>for how long it will be retained</li><li>rights they may have to access and correct their information</li></ul></p>",
+            "fr": ""
+          },
+          "renderMode": "list",
+          "allowAddPanel": true,
+          "allowRemovePanel": true,
+          "panelAddText ": {
+            "en": "Add statement",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this item?",
+            "fr": ""
+          },
+          "templateElements": [
+            {
+              "type": "comment",
+              "valueName": "Description",
+              "title": {
+                "en": "Description:",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_4_12_and_13",
+      "title": {
+        "en": "3.4 – Direct collection and purpose identification",
+        "fr": ""
+      },
+      "visibleIf": "({HasExistingPIB} = true and {InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']) or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true))",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "InstitutionNotifyIndividualsDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe how you notify affected individuals and what information you convey to affected individuals about this program, aside from a PIB or PNS. (3.4.12A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "NotificationTime",
+          "title": {
+            "en": "At what point in time relative to the collection taking place will you notify individuals? (3.4.13)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond “After the collection has taken place” to this question.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Before collection takes place",
+                "fr": ""
+              },
+              "value": "before"
+            },
+            {
+              "text": {
+                "en": "At the time of collection",
+                "fr": ""
+              },
+              "value": "at"
+            },
+            {
+              "text": {
+                "en": "After the collection has taken place",
+                "fr": ""
+              },
+              "value": "after"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.5,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(1)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(1)</a> and <em>Regulations</em> <a title='s. 4(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-83-508/page-1.html#h-3' target='_blank'>s. 4(1) and (2)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.priv.gc.ca/en/privacy-topics/business-privacy/safeguards-and-breaches/safeguarding-personal-information/gd_rd_201406/' target='_blank'>Personal information retention and disposal: Principles and best practices</a> (OPC guide)</li><li><strong>What retention means</strong>: Only keep personal information for as long as you need.</li></ul></p></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_1",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasLibraryArchiveCanadaApproved",
+          "isRequired": true,
+          "title": {
+            "en": "Has Library and Archive Canada approved a records retention and disposal schedule that applies to the personal information collected, used, and/or disclosed as a part of this program or activity? (3.5.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you are unsure, consult with your Information Management officials to determine your authority to retain and dispose of the personal information. If your institution has submitted its request to LAC, please select ‘Yes’ and provide further detail in the open-text field provided.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "RecordDispositionAuthorityIdentification",
+          "isRequired": true,
+          "visibleIf": "{HasLibraryArchiveCanadaApproved} = true",
+          "title": {
+            "en": "Please identify the Record Disposition Authority (RDA).  (3.5.1)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_2",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical', 'both'] or {IsElectronicConvertedToPhysical} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowLongRetainPersonalInformationInPhysicalFormat",
+          "isRequired": true,
+          "title": {
+            "en": "How long do you retain personal information <strong>in physical format</strong> in order to fulfill the purpose for which it was collected? Please include retention minimums and maximums, and the rationale for them. If your retention differs for different elements or types of personal information, please specify. (3.5.2) ",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:<ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_3",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "visibleIf": "({PersonalInformationPhysicalAndOrElectronicFormat} contains 'electronic' and !({IsElectronicConvertedToPhysical} = true)) or {PersonalInformationPhysicalAndOrElectronicFormat} contains 'both' or {IsPhysicalConvertedToElectronic} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "HowLongRetainPersonalInformationInElectronicFormat",
+          "isRequired": true,
+          "title": {
+            "en": "How long do you retain personal information <strong>in electronic format</strong> in order to fulfill the purpose for which it was collected? Please include retention minimums and maximums, and the rationale for them. If your retention differs for different elements or types of personal information, please specify.  (3.5.3)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:</p><ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_4",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ControlsProceduresImplementation",
+          "isRequired": true,
+          "title": {
+            "en": "Have you implemented, or do you plan to implement, controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it? (3.5.4A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>If an institution intends to dispose of personal information that has been used for an administrative purpose prior to the expiration of the two-year minimum retention standard established by the Privacy Regulations, it must obtain the consent of the individual to whom the information relates, in writing, before doing so.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond &lsquo;No&rsquo; to this question.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "ControlsProceduresImplementationDescription",
+          "isRequired": true,
+          "visibleIf": "{ControlsProceduresImplementation} anyof ['yes_in_place','yes_not_established']",
+          "title": {
+            "en": "Please briefly describe the controls and procedures that you have implemented, or plan to implement, to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the <em>Privacy Regulations</em>, to ensure individuals can access it.(3.5.4B)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_5_5",
+      "title": {
+        "en": "3.5 – Retention",
+        "fr": ""
+      },
+      "visibleIf": "{IsThereCollectNotIntended} = true",
+      "section": 3,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "WillRetainInformationUnintentionally",
+          "isRequired": true,
+          "title": {
+            "en": "You previously indicated that it is possible that your institution could inadvertently collect personal information through this program or initiative. In such instances, are there circumstances in which you would retain the personal information that was collected unintentionally? (3.5.5A)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "WillRetainInformationUnintentionallyDescription",
+          "visibleIf": "{WillRetainInformationUnintentionally} = 'true'",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the circumstances in which you would retain the personal information that was inadvertently collected. Please include a rationale or justification for this decision.(3.5.5B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that retention of personal information for “just-in-case” future scenarios are counter to the <em>Privacy Act</em>.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.6,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individual’s personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul></p></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_1_a",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "section": 3,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "MechanismToCorrectPersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution provide, or plan to provide, individuals with a mechanism to correct their personal information that is in the control of the institution in relation to this program or activity?",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NoMechanismToCorrectPersonalInformationExplanation",
+          "visibleIf": "{MechanismToCorrectPersonalInformation} = 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution does not intend to provide individuals with a mechanism to correct their personal information.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_1_b_c",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "visibleIf": "{MechanismToCorrectPersonalInformation} anyof ['yes_in_place', 'yes_not_established']",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "MechanismToCorrectPersonalInformationDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the mechanism(s) by which individuals can or will be able to correct their personal information that is in the control of the institution in relation to this program or activity.",
+            "fr": ""
+          },
+          "description": {
+            "en": "If personal information is stored in multiple locations (e.g. multiple systems for different purposes), please explain how the institution will ensure that corrections are applied to all instances of the personal information.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "WillProvideOpportunityToAddStatement",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution provide, or plan to provide, individuals the opportunity to add a statement to their personal information when you have refused their correction request?",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NotProvideOpportunityToAddStatementExplanation",
+          "visibleIf": "{WillProvideOpportunityToAddStatement} contains 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why your institution does not intend to provide individuals with the opportunity to add a statement to their personal information when you have refused their correction request.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_2",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "IsCollectInformationAuthoritativeSources",
+          "isRequired": true,
+          "title": {
+            "en": "Does your program collect personal information from authoritative sources?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>In the context of personal information, an authoritative source is a trusted and reliable source from which to collect information about a person. There are many authoritative sources, enabled by federal, provincial and territorial acts and regulations, that record information relating to an individual such as vital events, legal or professional status, and benefit entitlements. Social media websites cannot be considered an authoritative source in most cases, especially without verifying the accuracy of the information of the affected individual.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.</p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, in all collection",
+                "fr": ""
+              },
+              "value": "yes_in_all_collection"
+            },
+            {
+              "text": {
+                "en": "Yes, but not in all collection",
+                "fr": ""
+              },
+              "value": "yes_but_not_in_all_collection"
+            },
+            {
+              "text": {
+                "en": "No, not in any collection",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "CollectInformationAuthoritativeSourcesExplanation",
+          "isRequired": true,
+          "visibleIf": "{IsCollectInformationAuthoritativeSources} anyof ['yes_in_all_collection','yes_but_not_in_all_collection']",
+          "title": {
+            "en": "Please explain how you determined that your sources for personal information are authoritative.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_6_3",
+      "title": {
+        "en": "3.6 – Accuracy",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "ProgramAccuracyDescription",
+          "isRequired": true,
+          "title": {
+            "en": "In addition to any information provided in the previous questions in this section, how does your institution ensure data handled under the program or activity is accurate? How do you ensure it remains accurate?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7",
+      "title": {
+        "en": "3.7 – Disposal ",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(3)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(3)</a></li><li><strong>Relevant policy requirements and other references</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='' target='_blank'>Personal information retention and disposal: Principles and best practices (OPC guide)</a></li><li><strong>What disposal means:</strong>: Use care to prevent unauthorized access when disposing of personal information.</li></ul></section>",
+            "fr": ""
+          }
+        }
       ]
     }
   ]
