@@ -114,7 +114,7 @@ export class TestSurvey {
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
-                        survey
+                        survey: survey
                     }
                 });
             });
