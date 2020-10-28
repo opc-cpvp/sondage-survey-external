@@ -8,6 +8,7 @@ import * as Ladda from "ladda";
 import { testData_pipeda } from "./pipeda_test_data";
 import { Province } from "../surveyHelper";
 import { PipedaProvincesData } from "./pipedaProvinceData";
+import * as SurveyFile from "../surveyFile";
 
 declare global {
     // TODO: get rid of this global variable
@@ -17,6 +18,8 @@ declare global {
 export class PipedaTool {
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
+
+        SurveyFile.initSurveyFile();
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -241,6 +244,8 @@ export class PipedaTool {
                 SurveyInit.initSurveyModelEvents(_survey);
 
                 SurveyInit.initSurveyModelProperties(_survey);
+
+                SurveyFile.initSurveyFileModelEvents(_survey);
 
                 const defaultData = {};
 

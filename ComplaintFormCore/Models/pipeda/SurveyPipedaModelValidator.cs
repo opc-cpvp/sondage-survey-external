@@ -1,9 +1,6 @@
 ﻿using ComplaintFormCore.Resources;
 using FluentValidation;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ComplaintFormCore.Models.pipeda
 {
@@ -216,9 +213,11 @@ namespace ComplaintFormCore.Models.pipeda
             RuleFor(x => x.DocumentationType).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.DocumentationType).Must(x => new List<string> { "upload", "mail", "both", "none" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
-            // documentation_file_upload_rep (Page: page_part_c_documentation)
+            // Documentation_file_upload_rep (Page: page_part_c_documentation)
+            RuleFor(x => x.Documentation_file_upload_rep).NotEmpty().When(x => x.FilingComplaintOnOwnBehalf == "someone_else" && (x.DocumentationType == "upload" || x.DocumentationType == "both")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
-            // documentation_file_upload (Page: page_part_c_documentation)
+            // Documentation_file_upload (Page: page_part_c_documentation)
+            RuleFor(x => x.Documentation_file_upload).NotEmpty().When(x => x.DocumentationType == "upload" || x.DocumentationType == "both").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // InformationIsTrue (Page: )
             RuleFor(x => x.InformationIsTrue).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));

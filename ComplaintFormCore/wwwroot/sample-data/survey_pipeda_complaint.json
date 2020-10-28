@@ -702,6 +702,8 @@
         "en": "Part B: Steps taken (Complaint covered by other complaint)—Privacy complaint form (private sector organization)",
         "fr": "Partie B : Mesures prises (plainte visée par une autre plainte) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "{SubmittedComplaintToOtherBody} = true and {ComplaintStillOngoing} = true",
       "elements": [
         {
@@ -823,6 +825,8 @@
         "en": "Part B: Steps taken (Different complaint process)—Privacy complaint form (private sector organization)",
         "fr": "Partie B : Mesures prises (procédure de plainte différente) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
         {
           "type": "html",
@@ -965,6 +969,8 @@
         "en": "Part B: Steps taken (Concerns not raised)—Privacy complaint form (private sector organization)",
         "fr": "Partie B : Mesures prises (préoccupations non soulevées) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "{RaisedConcernToPrivacyOfficer} anyof ['no','not_sure']",
       "elements": [
         {
@@ -1045,6 +1051,8 @@
         "en": "Part B: Steps taken (Concerns raised with organization)—Privacy complaint form (private sector organization)",
         "fr": "Partie B : Mesures prises (préoccupations soulevées auprès de l’organisation) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "{RaisedConcernToPrivacyOfficer} contains 'yes'",
       "elements": [
         {
@@ -1145,6 +1153,8 @@
         "en": "Part C: Details (Access rules)—Privacy complaint form (private sector organization)",
         "fr": "Partie C : Détails (règles d’accès) – Formulaire de plainte concernant la protection de la vie privée (organisation du secteur privé)"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "visibleIf": "{DeniedAccess} anyof ['yes','yes_and_other_concern']",
       "elements": [
         {
@@ -1284,7 +1294,7 @@
             "en": "Access to your personal information",
             "fr": "Accès à vos renseignements personnels"
           },
-          "visibleIf": "{DeniedAccess} anyof ['yes_and_other_concern', 'yes_and_other_concern']",
+          "visibleIf": "{DeniedAccess} anyof ['yes_and_other_concern', 'yes']",
           "elements": [
             {
               "type": "comment",
@@ -1547,6 +1557,15 @@
                 "en": "E-mail address (yourname@domain.com)",
                 "fr": "Adresse électronique (votrenom@domaine.com)"
               },
+              "validators": [
+                {
+                  "type": "email",
+                  "text": {
+                    "en": "Invalid E-mail address",
+                    "fr": "Adresse électronique non valide"
+                  }
+                }
+              ],
               "isRequired": true
             },
             {
@@ -1575,12 +1594,6 @@
                 "fr": "Pays"
               },
               "isRequired": true,
-              "validators": [
-                {
-                  "type": "expression",
-                  "expression": "HasSelectedItem({complainant_Country}) = true"
-                }
-              ],
               "choicesByUrl": {
                 "url": "/api/Country?lang={locale}",
                 "titleName": "text",
@@ -1596,12 +1609,6 @@
               },
               "isRequired": true,
               "visibleIf": "{complainant_Country} = 'CA'",
-              "validators": [
-                {
-                  "type": "expression",
-                  "expression": "HasSelectedItem({complainant_ProvinceOrState}) = true"
-                }
-              ],
               "choicesByUrl": {
                 "url": "/api/Province?lang={locale}",
                 "titleName": "text",
@@ -1907,16 +1914,6 @@
             }
           ]
         }
-      ]
-    },
-    {
-      "name": "page_part_b_means_recourse",
-      "title": {
-        "en": "",
-        "fr": ""
-      },
-      "elements": [
-
       ]
     },
     {

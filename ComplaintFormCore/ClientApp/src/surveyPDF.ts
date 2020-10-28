@@ -64,12 +64,9 @@ export class surveyPdfExport {
         };
 
         originalSurvey.pages.forEach((page: Survey.PageModel) => {
-            let hideOnPDF = page.getPropertyValue("hideOnPDF");
-            if (!hideOnPDF) {
-                hideOnPDF = false;
-            }
+            const hideOnPDF = page.getPropertyValue("hideOnPDF");
 
-            if (hideOnPDF === false) {
+            if (!hideOnPDF && page.isVisible) {
                 //  Create a panel for each page
                 const panel = {
                     name: page.name,
