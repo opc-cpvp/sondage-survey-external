@@ -14,6 +14,7 @@ import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
+import { PbrSurvey } from "./pbr/pbrSurvey";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -27,6 +28,8 @@ declare global {
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
     function initPipeda(lang: string, token: string): void;
+    function initPbr(lang: string, token: string): void;
+
     function exportToPDF(lang: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 
@@ -61,6 +64,12 @@ declare let Symbol;
         globalThis.endSession = SurveyNavigation.endSession;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
+
+        globalThis.initPbr = (lang, token) => {
+            const jsonUrl = "/sample-data/survey_pbr.json";
+            const pbrSurvey = new PbrSurvey();
+            pbrSurvey.init(jsonUrl, lang, token);
+        };
 
         globalThis.initPaSurvey = (lang, token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";

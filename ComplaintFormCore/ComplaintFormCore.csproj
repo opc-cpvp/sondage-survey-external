@@ -95,6 +95,7 @@
     <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <None Remove="ClientApp\src\pbr\pbrSurvey.ts" />
     <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <None Remove="ClientApp\src\pa\paSurvey.ts" />
     <None Remove="ClientApp\src\pia\pia_test_data.ts" />
@@ -114,6 +115,7 @@
 
   <ItemGroup>
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <WebpackInputs Remove="ClientApp\src\pbr\pbrSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\pia_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
