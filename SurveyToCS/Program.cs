@@ -20,7 +20,8 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
+            // string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 
             string line = Console.ReadLine();
             if (line == "c")
@@ -31,7 +32,7 @@ namespace SurveyToCS
             {
                 CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPIAToolModel");
             }
-            else if(line == "t")
+            else if (line == "t")
             {
                 CreateTestData(json);
             }
@@ -99,7 +100,7 @@ namespace SurveyToCS
 
                     //summary.AppendLine("/// </summary>");
 
-                    BuildDynamicProperty(csharp, dynamicItem.Key) ;
+                    BuildDynamicProperty(csharp, dynamicItem.Key);
                 }
             }
 
@@ -325,7 +326,7 @@ namespace SurveyToCS
                 csharp.Append("/// ");
                 csharp.Append("Possible choices: [");
 
-                if(element.choices != null)
+                if (element.choices != null)
                 {
                     csharp.AppendJoin(", ", element.choices.Select(c => c.value));
                 }
@@ -375,7 +376,7 @@ namespace SurveyToCS
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using FluentValidation;");
 
-            foreach(string item in usings)
+            foreach (string item in usings)
             {
                 csharp.Append("using ");
                 csharp.Append(item);
@@ -592,6 +593,10 @@ namespace SurveyToCS
         {
             string visibleIf = string.Empty;
 
+            string anyof_pattern = @"{[a-zA-Z_]+}\sanyof\s\[[a-zA-Z,'_]+\]";
+            string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
+            string property_pattern = @"({[a-zA-Z_]+})";
+
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {
                 visibleIf += parentPage.visibleIf;
@@ -618,20 +623,56 @@ namespace SurveyToCS
                 visibleIf += element.visibleIf;
             }
 
+            if (element.name == "SummarizeYourConcernsAndAnyStepsTaken")
+            {
+
+            }
+
             if (string.IsNullOrWhiteSpace(visibleIf) == false)
             {
-                return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").Replace("{", "x.").Replace("}", "").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
+                MatchCollection anyofs = Regex.Matches(visibleIf, anyof_pattern);
+
+                if (anyofs.Count > 0)
+                {
+                    string wholeVisibleIf = string.Empty;
+                    foreach (Match match_anyof in Regex.Matches(visibleIf, anyof_pattern))
+                    {
+                        //  {InstitutionAgreedRequestOnInformalBasis} anyof ['yes','not_sure']
+                        // x.NatureOfComplaint.Intersect(new List<string> { "NatureOfComplaintDelay", "NatureOfComplaintExtensionOfTime", "NatureOfComplaintDenialOfAccess", "NatureOfComplaintLanguage" }).Any()
+                        Regex rgx_property = new Regex(property_pattern);
+                        Match matchProperty = rgx_property.Match(match_anyof.Value);
+
+                        string replacement = "x." + matchProperty.Value.Replace("{", "").Replace("}", "") + ".Intersect";
+
+                        Regex rgx_items = new Regex(anyof_pattern_items);
+                        Match matchArray = rgx_items.Match(match_anyof.Value);
+
+                        replacement += "(new List<string>() {" + matchArray.Value.Replace("'", "\"").Replace("[", "").Replace("]", "");
+
+                        replacement += "}).Any()";
+
+                        visibleIf = visibleIf.Replace(match_anyof.Value, replacement);
+                    }
+
+
+                }
+
+                foreach (Match match_propery in Regex.Matches(visibleIf, property_pattern))
+                {
+                    visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+                }
+
+                return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
             }
 
             return string.Empty;
-
         }
 
         private static string GetVisibleIfFullCondition(Element element, Page parentPage, Element parentPanel = null)
         {
             string visibleIf = GetVisibleIfCondition(element, parentPage, parentPanel);
 
-            if(string.IsNullOrWhiteSpace(visibleIf) == false)
+            if (string.IsNullOrWhiteSpace(visibleIf) == false)
             {
                 return "x => true/* TODO: " + visibleIf + "*/";
             }
@@ -751,7 +792,7 @@ namespace SurveyToCS
             string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
             string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
-            if (type == "checkbox" || type== "tagbox")
+            if (type == "checkbox" || type == "tagbox")
             {
                 csharp.Append("RuleForEach(x => x.");
             }
@@ -864,7 +905,7 @@ namespace SurveyToCS
                 {
                     if (element.type == "matrixdynamic")
                     {
-                        foreach(var column in element.columns)
+                        foreach (var column in element.columns)
                         {
                             csharp.AppendLine();
                             csharp.Append(column.name);
@@ -873,7 +914,7 @@ namespace SurveyToCS
                             csharp.Append(",");
                         }
                     }
-                    else if(element.type == "paneldynamic")
+                    else if (element.type == "paneldynamic")
                     {
                         foreach (var column in element.templateElements)
                         {
