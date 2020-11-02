@@ -28,6 +28,7 @@ export class FileMeterWidget extends Widget {
     activatedByChanged(activatedBy: string): void {
         this.activatedBy = activatedBy;
         JsonObject.metaData.removeProperty("file", "showMeter");
+        JsonObject.metaData.removeProperty("file", "totalSize");
         if (activatedBy === "property") {
             JsonObject.metaData.addProperty("file", {
                 name: "showMeter:boolean",
@@ -79,8 +80,7 @@ export class FileMeterWidget extends Widget {
             }
 
             const totalSize = question.totalSize || 0;
-            const files = this.questionFiles.get(question) || [];
-            const size = files.reduce((previous, current) => previous + current.size, 0);
+            const size = this.getQuestionSize(question);
 
             if (size > totalSize) {
                 options.error = "The size of the files exceeds the total size";
@@ -102,7 +102,7 @@ export class FileMeterWidget extends Widget {
 
             this.questionFiles.set(question, files);
 
-            meter.value = files.reduce((previous, current) => previous + current.size, 0);
+            meter.value = this.getQuestionSize(question);
 
             this.updateHeader(header, question);
 
@@ -133,7 +133,7 @@ export class FileMeterWidget extends Widget {
 
             this.questionFiles.set(question, files);
 
-            meter.value = files.reduce((previous, current) => previous + current.size, 0);
+            meter.value = this.getQuestionSize(question);
 
             this.updateHeader(header, question);
 
@@ -155,13 +155,17 @@ export class FileMeterWidget extends Widget {
 
     private updateHeader(header: HTMLHeadingElement, question: Question): void {
         let totalSize: number = question.totalSize || 0;
-        const files = this.questionFiles.get(question) || [];
-        let size = files.reduce((previous, current) => previous + current.size, 0);
+        let size = this.getQuestionSize(question);
 
         // Convert bytes to megabytes
         totalSize = totalSize / 1048576;
         size = size / 1048576;
 
         header.innerText = `You have uploaded ${size.toFixed(1)} MB of files out of ${totalSize.toFixed(1)} MB allowed.`;
+    }
+
+    private getQuestionSize(question: Question): number {
+        const files = this.questionFiles.get(question) || [];
+        return files.reduce((previous, current) => previous + current.size, 0);
     }
 }
