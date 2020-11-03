@@ -4,7 +4,9 @@ import * as SurveyLocalStorage from "../surveyLocalStorage";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
-import * as SurveyFile from "../surveyFile";
+import * as SurveyIntlPhoneNumber from "../SurveyIntlPhoneNumber";
+import { pbr_test_data } from "./pbr_test_data";
+import * as SurveyHelper from "../surveyHelper";
 
 declare global {
     // TODO: get rid of this global variable
@@ -14,7 +16,7 @@ declare global {
 export class PbrSurvey {
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
-        SurveyFile.initSurveyFile();
+        SurveyIntlPhoneNumber.initIntlPhoneNumber();
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -28,7 +30,7 @@ export class PbrSurvey {
                 _survey.locale = lang;
 
                 //  We are going to use this variable to handle if the validation has passed or not.
-                const isValidSurvey = false;
+                let isValidSurvey = false;
 
                 _survey.onCompleting.add((sender, options) => {
                     if (isValidSurvey === true) {
@@ -37,6 +39,38 @@ export class PbrSurvey {
                     }
 
                     options.allowComplete = false;
+
+                    const uri = `/api/PBRSurvey/Validate?complaintId="${sender.complaintId as string}`;
+
+                    fetch(uri, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        // body: JSON.stringify(testData)
+                        body: JSON.stringify(sender.data)
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Validation is good then we set the variable so the next call to doComplete()
+                                //  will bypass the validation
+                                isValidSurvey = true;
+                                _survey.doComplete();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        SurveyHelper.printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
+                            }
+                        })
+                        .catch(error => {
+                            console.warn(error);
+                            Ladda.stopAll();
+                        });
                 });
 
                 _survey.onComplete.add((sender, options) => {
@@ -63,7 +97,7 @@ export class PbrSurvey {
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
-                SurveyFile.initSurveyFileModelEvents(_survey);
+                SurveyIntlPhoneNumber.initIntlPhoneNumberEvents(_survey);
 
                 const app = new Vue({
                     el: "#surveyElement",

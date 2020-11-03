@@ -96,6 +96,7 @@
     <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\pbr\pbrSurvey.ts" />
+    <None Remove="ClientApp\src\pbr\pbr_test_data.ts" />
     <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <None Remove="ClientApp\src\pa\paSurvey.ts" />
     <None Remove="ClientApp\src\pia\pia_test_data.ts" />
@@ -105,6 +106,7 @@
     <None Remove="ClientApp\src\surveyFile.ts" />
     <None Remove="ClientApp\src\surveyHelper.ts" />
     <None Remove="ClientApp\src\surveyInit.ts" />
+    <None Remove="ClientApp\src\SurveyIntlPhoneNumber.ts" />
     <None Remove="ClientApp\src\surveyLocalStorage.ts" />
     <None Remove="ClientApp\src\surveyNavigation.ts" />
     <None Remove="ClientApp\src\surveyPDF.ts" />
@@ -116,6 +118,7 @@
   <ItemGroup>
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbrSurvey.ts" />
+    <WebpackInputs Remove="ClientApp\src\pbr\pbr_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\pia_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
@@ -124,6 +127,7 @@
     <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyInit.ts" />
+    <WebpackInputs Remove="ClientApp\src\SurveyIntlPhoneNumber.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyLocalStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />

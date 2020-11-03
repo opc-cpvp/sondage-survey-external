@@ -27,6 +27,13 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
 	It is used for a loading/saving spinner
 
+c) intl-tel-input: https://github.com/jackocnr/intl-tel-input 
+	The librairy code has been added to the lib folder
+	-> npm i intl-tel-input --save (NO NEED TO NPM)
+
+	This is the typed definition
+	-> npm i @types/intl-tel-input
+
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
 - libphonenumber-csharp already in used in the original project
@@ -103,6 +110,10 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 13) The bundle.js is getting to 40Mb. Figure out what makes it so big.
 14) Build the preview page using the same logic as for pdf, e.g. creating a new survey. There is too much blank wasted spaces
 		with the existing one because we are hidding divs instead of not having them
+15) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
+	For now we're not using startWithNewLine. 
+	I have tried updating survey-vue to 1.8.12 but still not working.
+	When using Survey Creator however it is working fine.
 
 ### Mode details required or help required
  

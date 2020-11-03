@@ -1,11 +1,13 @@
 {
   "pages": [
     {
-      "name": "page_xxx",
+      "name": "page_information",
       "title": {
         "en": "PIPEDA Breach Report",
         "fr": "Formulaire : Rapport d'atteinte à la LPRPDE"
       },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
       "elements": [
         {
           "type": "html",
@@ -73,41 +75,7 @@
       ]
     },
     {
-      "name": "page_xxx",
-      "title": {
-        "en": "PIPEDA Breach Report",
-        "fr": "Rapport d'atteinte à la LPRPDE"
-      },
-      "elements": [
-        {
-          "type": "radiogroup",
-          "name": "",
-          "title": {
-            "en": "Title is missing",
-            "fr": ""
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Original report",
-                "fr": "Rapport initial"
-              },
-              "value": "original_report"
-            },
-            {
-              "text": {
-                "en": "Amended or updated report",
-                "fr": "Rapport modifié ou mis à jour"
-              },
-              "value": "amended_updated_report"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "page_xxx",
+      "name": "page_organization",
       "title": {
         "en": "PIPEDA Breach Report - Information about the organization",
         "fr": "Rapport d'atteinte à la LPRPDE - Renseignements de l'organisation"
@@ -115,25 +83,73 @@
       "elements": [
         {
           "type": "text",
-          "name": "",
+          "name": "OrganizationName",
           "title": {
-            "en": "Legal name of the organization:",
-            "fr": "Nom officiel de l'organisation:"
+            "en": "Legal name of the organization",
+            "fr": "Nom officiel de l'organisation"
           },
           "maxLength": 250,
           "isRequired": true
         },
         {
-          "type": "comment",
-          "name": "",
+          "type": "panel",
+          "name": "pnl_OranizationName",
           "title": {
-            "en": "Address of organization:",
-            "fr": "Adresse de l'organisation:"
-          }
+            "en": "Organization Address",
+            "fr": "Adresse de l'organisation"
+          },
+          "elements": [
+            {
+              "type": "text",
+              "name": "OrganizationCity",
+              "title": {
+                "en": "City",
+                "fr": "Ville"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "OrganizationStreet",
+              "title": {
+                "en": "Street",
+                "fr": "Rue"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "OrganizationProvince",
+              "title": {
+                "en": "Province/State",
+                "fr": "Province/territoire"
+              },
+              "isRequired": true,
+              "choicesByUrl": {
+                "url": "/api/Province?lang={locale}",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "OrganizationPostalCode",
+              "title": {
+                "en": "Postal code",
+                "fr": "Code postal"
+              },
+              "placeHolder": {
+                "en": "A1A1A1|00000",
+                "fr": "A1A1A1|00000"
+              },
+              "isRequired": true,
+              "maxLength":  10
+            }
+          ]
         },
         {
           "type": "panel",
-          "name": "",
+          "name": "pnl_RepresentativeType",
           "title": {
             "en": "Contact information",
             "fr": "Information du contact"
@@ -141,14 +157,10 @@
           "elements": [
             {
               "type": "radiogroup",
-              "name": "",
+              "name": "RepresentativeType",
               "title": {
-                "en": "Contact information of a person who can answer, on behalf of the organization, OPC's questions about the breach:",
-                "fr": "Coordonnées d'une personne qui peut répondre, au nom de l'organisation, aux questions duCommissariat au sujet de l'atteinte:"
-              },
-              "description": {
-                "en": "Please choose one:",
-                "fr": "Veuillez en choisir un:"
+                "en": "Contact information of a person who can answer, on behalf of the organization, OPC's questions about the breach",
+                "fr": "Coordonnées d'une personne qui peut répondre, au nom de l'organisation, aux questions duCommissariat au sujet de l'atteinte"
               },
               "isRequired": true,
               "choices": [
@@ -170,68 +182,42 @@
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactName",
               "title": {
-                "en": "Name:",
-                "fr": "Nom:"
+                "en": "Name",
+                "fr": "Nom"
               },
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactTitle",
               "title": {
-                "en": "Title/position:",
-                "fr": "Titre/poste:"
+                "en": "Title/position",
+                "fr": "Titre/poste"
               },
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactPhoneWithCountryCode",
               "title": {
-                "en": "Country code:",
-                "fr": "Code pays:"
-              },
-              "validators": [
-                {
-                  "type": "regex",
-                  "text": {
-                    "en": "Invalid country code",
-                    "fr": "Code pays invalide"
-                  },
-                  "regex": "^[\\d-+]+$"
-                }
-              ]
-            },
-            {
-              "type": "text",
-              "name": "",
-              "startWithNewLine": false,
-              "title": {
-                "en": "Telephone:",
+                "en": "Telephone",
                 "fr": "Téléphone"
               },
               "isRequired": true,
-              "validators": [
-                {
-                  "type": "regex",
-                  "text": {
-                    "en": "Invalid phone number",
-                    "fr": "Téléphone invalide"
-                  },
-                  "regex": "^[\\d-]+$"
-                }
-              ]
+              "isInternationalPhoneNumber": true,
+              "inputType":  "tel"
             },
             {
               "type": "text",
-              "name": "",
-              "startWithNewLine": false,
+              "name": "ContactPhoneExtension",
+              "startWithNewLine": true,
               "title": {
-                "en": "Extension:",
+                "en": "Extension",
                 "fr": "Poste"
               },
+              "inputType":  "number",
               "validators": [
                 {
                   "type": "numeric",
@@ -244,63 +230,44 @@
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactEmail",
               "title": {
-                "en": "Email:",
-                "fr": "Courriel:"
+                "en": "Email",
+                "fr": "Courriel"
+              },
+              "placeHolder": {
+                "en": "yourname@domain.com",
+                "fr": "votrenom@domain.com"
               },
               "validators": [
                 {
                   "type": "email"
                 }
               ],
-              "inputtype": "email",
+              "inputType": "email",
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactStreetAdress",
               "title": {
-                "en": "Street address:",
-                "fr": "Adresse municipale:"
+                "en": "Street address",
+                "fr": "Adresse municipale"
               },
               "isRequired": true
             },
             {
               "type": "text",
-              "name": "",
+              "name": "ContactCity",
               "title": {
-                "en": "City:",
-                "fr": "Ville:"
+                "en": "City",
+                "fr": "Ville"
               },
               "isRequired": true
             },
             {
               "type": "dropdown",
-              "name": "",
-              "title": {
-                "en": "Province/State:",
-                "fr": "Province/territoire:"
-              },
-              "isRequired": true,
-              "choicesByUrl": {
-                "url": "/api/Province?lang={locale}",
-                "titleName": "text",
-                "valueName": "value"
-              }
-            },
-            {
-              "type": "text",
-              "name": "",
-              "title": {
-                "en": "Postal code:",
-                "fr": "Code postal:"
-              },
-              "isRequired": true
-            },
-            {
-              "type": "dropdown",
-              "name": "",
+              "name": "ContactCountry",
               "title": {
                 "en": "Country",
                 "fr": "Pays"
@@ -311,13 +278,52 @@
                 "titleName": "text",
                 "valueName": "value"
               }
+            },
+            {
+              "type": "dropdown",
+              "name": "ContactProvince",
+              "visibleIf": "{ContactCountry} = 'CA'",
+              "title": {
+                "en": "Province/State",
+                "fr": "Province/territoire"
+              },
+              "isRequired": true,
+              "choicesByUrl": {
+                "url": "/api/Province?lang={locale}&addOther=true",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "ContactOtherProvince",
+              "visibleIf": "{ContactProvince} = 14",
+              "title": {
+                "en": "Other Province",
+                "fr": "Autre Province"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
+              "name": "ContactPostalCode",
+              "title": {
+                "en": "Postal code",
+                "fr": "Code postal"
+              },
+              "placeHolder": {
+                "en": "A1A1A1|00000",
+                "fr": "A1A1A1|00000"
+              },
+              "isRequired": true,
+              "maxLength": 10
             }
           ]
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_description_affected",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "apport d'atteinte à la LPRPDE - Description de l'atteinte"
@@ -332,11 +338,12 @@
         },
         {
           "type": "text",
-          "name": "",
+          "name": "NumberOfInvidualAffected",
           "title": {
-            "en": "Total affected:",
-            "fr": "Total des intéressés:"
+            "en": "Total number of individual affected",
+            "fr": "Nombre total des individus touchés"
           },
+          "inputType":  "number",
           "isRequired": true,
           "validators": [
             {
@@ -346,11 +353,12 @@
         },
         {
           "type": "text",
-          "name": "",
+          "name": "NumberOfCanadiansAffected",
           "title": {
-            "en": "Canadians affected:",
-            "fr": "Canadiens touchés:"
+            "en": "Total number of canadians affected",
+            "fr": "Nombre total de canadiens touchés"
           },
+          "inputType": "number",
           "validators": [
             {
               "type": "numeric"
@@ -359,16 +367,17 @@
         },
         {
           "type": "comment",
-          "name": "",
+          "name": "NumberAffectedComment",
           "title": {
-            "en": "Additional comments:",
-            "fr": "Commentaires:"
-          }
+            "en": "Additional comments",
+            "fr": "Commentaires"
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_description_dates",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "Rapport d'atteinte à la LPRPDE - Description de l'atteinte"
@@ -383,35 +392,36 @@
         },
         {
           "type": "text",
-          "inputType": "date",
-          "name": "",
+          "inputType":  "date",
+          "name": "DateBreachOccurrenceStart",
           "title": {
-            "en": "Start date of breach occurrence:",
-            "fr": "Date à laquelle l'atteinte a débuté:"
+            "en": "Start date of breach occurrence",
+            "fr": "Date à laquelle l'atteinte a débuté"
           },
-          "dateFormat": "mm/dd/yy",
           "isRequired": true
         },
         {
           "type": "text",
-          "name": "",
+          "name": "DateBreachOccurrenceEnd",
           "title": {
-            "en": "End date of breach occurrence:",
-            "fr": "Date à laquelle l'atteinte a pris fin:"
-          }
+            "en": "End date of breach occurrence",
+            "fr": "Date à laquelle l'atteinte a pris fin"
+          },
+          "inputType": "date"
         },
         {
           "type": "comment",
-          "name": "",
+          "name": "BreachOccurrenceComment",
           "title": {
-            "en": "Additional comments:",
-            "fr": "Commentaires:"
-          }
+            "en": "Additional comments",
+            "fr": "Commentaires"
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_description_type",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "Rapport d'atteinte à la LPRPDE - Description de l'atteinte"
@@ -419,9 +429,9 @@
       "elements": [
         {
           "type": "dropdown",
-          "name": "",
+          "name": "TypeOfBreach",
           "title": {
-            "en": "Type of breach:",
+            "en": "Type of breach",
             "fr": "Type d'atteinte"
           },
           "description": {
@@ -469,7 +479,7 @@
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_description_circumstances",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "Rapport d'atteinte à la LPRPDE - Description de l'atteinte"
@@ -477,21 +487,22 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "BreachCircumstanceDescription",
           "isRequired": true,
           "title": {
-            "en": "Description of the circumstances of the breach, and, if known, the cause:",
+            "en": "Description of the circumstances of the breach, and, if known, the cause",
             "fr": "Les circonstances de l'atteinte et, si elle est connue, sa cause"
           },
           "description": {
             "en": "<p><ol><li>Description of all organizations involved in the breach including their role(s) with respect tothe personal information in question,</li><li>How and why the breach occurred (please include some technical detail regarding the breach including anexplanation of the methodology of the attack if one took place),</li><li>When the breach was discovered,</li><li>Where the breach occurred,</li><li>Who may have had access to the personal information (to the extent known)</li></ol></p>",
             "fr": "<p><ol><li>description de toutes les organisations visées par l'atteinte y compris leur rôle en ce qui a trait aux renseignementspersonnels en question,</li><li>comment et pourquoi l'atteinte a eu lieu (veuillez inclure quelques détails techniques concernant l'atteinte y comprisune description de la méthode utilisée lors de l'attaque si celle-ci s'est produite),</li><li>quand l'atteinte a été découverte,</li><li>où l'atteinte a eu lieu,</li><li>qui peut avoir eu accès aux renseignements personnels (dans la mesure où ces personnes sont connues).</li></ol></p>"
-          }
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_descriptionsecurity",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "Rapport d'atteinte à la LPRPDE - Description de l'atteinte"
@@ -499,16 +510,17 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "SecuritySafeguardsDescription",
           "title": {
-            "en": "Description of relevant security safeguards in place at the time of the breach to prevent the type of incident that occurred:",
-            "fr": "Description des mesures de sécurité pertinentes en place au moment de l'atteinte afin d'empêcher le type d'incident qui a eu lieu :"
-          }
+            "en": "Description of relevant security safeguards in place at the time of the breach to prevent the type of incident that occurred",
+            "fr": "Description des mesures de sécurité pertinentes en place au moment de l'atteinte afin d'empêcher le type d'incident qui a eu lieu "
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_breach_description_subject",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
         "fr": "Rapport d'atteinte à la LPRPDE - "
@@ -516,21 +528,22 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "SubjectOfBreach",
           "isRequired": true,
           "title": {
-            "en": "Description of the personal information that is the subject of the breach to the extent known:",
-            "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue :"
+            "en": "Description of the personal information that is the subject of the breach to the extent known",
+            "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue "
           },
           "description": {
-            "en": "<p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><p><strong>IMPORTANT:</strong> This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p>",
-            "fr": "<p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><p><strong>IMPORTANT:</strong> Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p>"
-          }
+            "en": "<p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><p><section class='alert alert-warning'>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</section></p>",
+            "fr": "<p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><p><section class='alert alert-warning'>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</section></p>"
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_notification_steps",
       "title": {
         "en": "PIPEDA Breach Report - Notification",
         "fr": "Rapport d'atteinte à la LPRPDE - Avis"
@@ -546,13 +559,13 @@
         {
           "type": "html",
           "html": {
-            "en": "Description of the steps that the organization has taken or intends to take to notify affected individuals:",
-            "fr": "Description des mesures que l'organisation a prises ou a l'intention de prendre pour aviser lesintéressés:"
+            "en": "Description of the steps that the organization has taken or intends to take to notify affected individuals",
+            "fr": "Description des mesures que l'organisation a prises ou a l'intention de prendre pour aviser lesintéressés"
           }
         },
         {
           "type": "boolean",
-          "name": "",
+          "name": "IsAffectedNotified",
           "isRequired": true,
           "title": {
             "en": "Have affected individuals been notified?",
@@ -561,24 +574,26 @@
         },
         {
           "type": "text",
-          "name": "",
+          "name": "DateNotificationBegan",
           "title": {
-            "en": "Date notification began (or is planned):",
-            "fr": "Date à laquelle l'avis a débuté (ou est prévu):"
+            "en": "Date notification began (or is planned)",
+            "fr": "Date à laquelle l'avis a débuté (ou est prévu)"
           },
-          "isRequired": true
+          "isRequired": true,
+          "inputType": "date"
         },
         {
           "type": "text",
-          "name": "",
+          "name": "DateNotificationCompleted",
           "title": {
-            "en": "Date notification was completed:",
-            "fr": "Date à laquelle l'avis a pris fin:"
-          }
+            "en": "Date notification was completed",
+            "fr": "Date à laquelle l'avis a pris fin"
+          },
+          "inputType": "date"
         },
         {
           "type": "dropdown",
-          "name": "",
+          "name": "MethodOfNotification",
           "title": {
             "en": "Method of notification used for affected individuals",
             "fr": "Méthode de notification utilisée pour les intéressés"
@@ -616,17 +631,19 @@
         },
         {
           "type": "comment",
-          "name": "",
+          "name": "IndirectlyNotificationDescription",
           "isRequired": true,
+          "visibleIf": "{MethodOfNotification} = 'indirectly'",
           "title": {
-            "en": "If you have chosen to notify indirectly, describe the rationale for doing so as well as the type of indirect notification used (i.e. how it was delivered to the target audience):",
-            "fr": "Si vous avez choisi d'aviser indirectement les intéressés, veuillez décrire la raison pour ce faire, ainsi que le type d'avis indirect utilisé (c.-à-d. par quel moyen il a été livré à un public cible):"
-          }
+            "en": "If you have chosen to notify indirectly, describe the rationale for doing so as well as the type of indirect notification used (i.e. how it was delivered to the target audience)",
+            "fr": "Si vous avez choisi d'aviser indirectement les intéressés, veuillez décrire la raison pour ce faire, ainsi que le type d'avis indirect utilisé (c.-à-d. par quel moyen il a été livré à un public cible)"
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_notification_description",
       "title": {
         "en": "PIPEDA Breach Report - Notification",
         "fr": "Rapport d'atteinte à la LPRPDE - Avis"
@@ -634,66 +651,22 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "NotificationDescription",
           "isRequired": true,
           "title": {
-            "en": "Describe the form of notification:",
+            "en": "Describe the form of notification",
             "fr": "Décrivez la forme de l'avis"
           },
           "description": {
-            "en": "<p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p><p><strong>IMPORTANT:</strong> Do not include any identifying personal information.</p>",
-            "fr": "<p>(Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.)</p><p><strong>IMPORTANT:</strong> Ne pas inclure de renseignements personnels identificatoires.</p>"
-          }
+            "en": "<p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p><p><section class='alert alert-warning'>Do not include any identifying personal information.</section></p>",
+            "fr": "<p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p><p><section class='alert alert-warning'>Ne pas inclure de renseignements personnels identificatoires.</section></p>"
+          },
+          "maxLength": 2000
         }
       ]
     },
     {
-      "name": "page_xxx",
-      "title": {
-        "en": "PIPEDA Breach Report - Notification",
-        "fr": "Rapport d'atteinte à la LPRPDE - Avis"
-      },
-      "elements": [
-        {
-          "type": "file",
-          "name": "Documentation_file_upload",
-          "title": {
-            "en": "Attachment",
-            "fr": "Pièce jointes au formulaire"
-          },
-          "description": {
-            "en": "<p>If possible, please attach a copy of the notification (or script of notification) and confirm if the notification conforms to the requirements stipulated in the <a href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-64/index.html' target='_blank'>Regulations</a>.</p>",
-            "fr": "<p>Si possible, veuillez fournir une copie de l'avis (ou le scénario de l'avis) et veuillez confirmer que l'avis est conforme aux exigences prévues dans le <a href='https://laws-lois.justice.gc.ca/fra/lois/P-8.6/' target='_blank'>Règlement</a>.</p>"
-          },
-          "maxSize": 0,
-          "storeDataAsText": false,
-          "showPreview": false,
-          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-          "confirmRemoveMessage": {
-            "en": "Do you really want to remove this file?",
-            "fr": "Voulez-vous vraiment supprimer ce fichier?"
-          },
-          "itemListTitle": {
-            "en": "Attached",
-            "fr": "Fichier joint"
-          },
-          "itemListRemoveText": {
-            "en": "Remove",
-            "fr": "Supprimer"
-          },
-          "itemListNoAttachmentsText": {
-            "en": "No attachments have been uploaded yet.",
-            "fr": "Aucune pièce jointe n'a encore été téléchargée."
-          },
-          "duplicateFileNameExceptionMessage": {
-            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-          }
-        }
-      ]
-    },
-    {
-      "name": "page_xxx",
+      "name": "page_risk_mitigation_steps",
       "title": {
         "en": "PIPEDA Breach Report - Risk mitigation",
         "fr": "Rapport d'atteinte à la LPRPDE - Atténuation des risques"
@@ -701,42 +674,64 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "StepsReduceRisksDescription",
           "title": {
-            "en": "Description of any steps (apart from notification to affected individuals) taken by the organization to reduce the risk of harm to affected individuals, or to mitigate that harm:",
+            "en": "Description of any steps (apart from notification to affected individuals) taken by the organization to reduce the risk of harm to affected individuals, or to mitigate that harm",
             "fr": "Les mesures que l'organisation a prises (autres que la notification des intéressés) afin de réduire lerisque de préjudice à l'endroit des intéressés, ou afin d'atténuer un tel préjudice"
           },
-          "isRequired": true,
           "description": {
-            "en": "<p>For example, this can include:</p><p><ul><li>taking steps such as resetting passwords, offering credit monitoring services where appropriate, recoveringmisdirected information, seeking confirmation from unintended recipients that they have destroyed and not circulated the information; and</li><li>notifying third parties or organizations that can reduce the risk of harm, such as the police, paymentprocessors or credit card companies.</li></ul></p>",
-            "fr": "<p>Par exemple, ceci peut comprendre ce qui suit:</p><p><ul><li>prendre des mesures comme réinitialiser les mots de passe, offrir des services de surveillance du crédit le caséchéant, récupérer les renseignements envoyés à un mauvais destinataire, obtenir la confirmation despersonnes auxquelles les renseignements n'étaient pas destinés qu'elles ont détruits ces renseignements etqu'elles ne les ont pas diffusés;</li><li>aviser les tierces parties ou les organisations qui peuvent réduire le risque de préjudice, comme la police, lescentres de traitement des paiements ou les sociétés émettrices de cartes de crédit.</li></ul></p>"
-          }
-        }
-      ]
-    },
-    {
-      "name": "page_xxx",
-      "title": {
-        "en": "PIPEDA Breach Report - Risk mitigation",
-        "fr": "Rapport d'atteinte à la LPRPDE - Atténuation des risques"
-      },
-      "elements": [
-        {
-          "type": "comment",
-          "name": "",
-          "title": {
-            "en": "Description of any organizations and/or government institutions notified about the breach not mentioned above (for example, professional bodies or other privacy commissioners' offices):",
-            "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée ci-dessus (par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée):"
+            "en": "<p><section class='alert alert-info'><p>For example, this can include:</p><p><ul><li>taking steps such as resetting passwords, offering credit monitoring services where appropriate, recoveringmisdirected information, seeking confirmation from unintended recipients that they have destroyed and not circulated the information; and</li><li>notifying third parties or organizations that can reduce the risk of harm, such as the police, paymentprocessors or credit card companies.</li></ul></p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple, ceci peut comprendre ce qui suit:</p><p><ul><li>prendre des mesures comme réinitialiser les mots de passe, offrir des services de surveillance du crédit le caséchéant, récupérer les renseignements envoyés à un mauvais destinataire, obtenir la confirmation despersonnes auxquelles les renseignements n'étaient pas destinés qu'elles ont détruits ces renseignements etqu'elles ne les ont pas diffusés;</li><li>aviser les tierces parties ou les organisations qui peuvent réduire le risque de préjudice, comme la police, lescentres de traitement des paiements ou les sociétés émettrices de cartes de crédit.</li></ul></p></section></p>"
           },
-          "description": {
-            "en": "<p>Name of organization(s):</p><p>Date(s) notified:</p>",
-            "fr": "<p>Nom de l'organisation:</p><p>Date de l'avis:</p>"
-          }
+          "isRequired": true,
+          "maxLength": 2000
+        }
+
+      ]
+    },
+    {
+      "name": "page_risk_mitigation_organization",
+      "title": {
+        "en": "PIPEDA Breach Report - Risk mitigation",
+        "fr": "Rapport d'atteinte à la LPRPDE - Atténuation des risques"
+      },
+      "elements": [
+        {
+          "type": "matrixdynamic",
+          "name": "OrganizationDescription",
+          "title": {
+            "en": "Description of any organizations and/or government institutions notified about the breach not mentioned above (for example, professional bodies or other privacy commissioners' offices)",
+            "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée ci-dessus (par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée)"
+          },
+          "isRequired": true,
+          "cellType": "dropdown",
+          "columns": [
+            {
+              "name": "Name",
+              "cellType": "text",
+              "title": {
+                "en": "Organization name",
+                "fr": "Nom de l'organisation"
+              }
+            },
+            {
+              "name": "DateNotified",
+              "title": {
+                "en": "Date notified",
+                "fr": "Date de l'avis"
+              },
+              "cellType": "text",
+              "inputType": "date"
+            }
+          ],
+          "rowCount": 1,
+          "minRowCount": 1,
+          "maxRowCount": 10
         }
       ]
     },
     {
-      "name": "page_xxx",
+      "name": "page_risk_mitigation",
       "title": {
         "en": "PIPEDA Breach Report - Risk mitigation",
         "fr": "Rapport d'atteinte à la LPRPDE - Atténuation des risques"
@@ -744,17 +739,22 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "StepsReduceRisksFuture",
           "title": {
-            "en": "Description of the steps taken to reduce the risk of a similar event occurring in the future:",
-            "fr": "Description des mesures qui ont été prises afin de réduire le risque qu'un événement similaire se produise à l'avenir:"
+            "en": "Description of the steps taken to reduce the risk of a similar event occurring in the future",
+            "fr": "Description des mesures qui ont été prises afin de réduire le risque qu'un événement similaire se produise à l'avenir"
           },
           "description": {
             "en": "<p>For example:</p><p><ul><li>an experienced IT security firm has been hired to review the organization's security program and weare committed to making any recommended improvements;</li><li>all new contracts with web service providers will include the following quality control provisions ... ,</li><li>a privacy training module has been developed and is now mandatory for all staff;</li><li>all laptops will be encrypted;</li><li>software change management protocol has been updated; etc.</li></ul></p>",
             "fr": "<p>Par exemple:</p><p><ul><li>un cabinet expert en Tl a été embauché afin d'examiner le programme de sécurité d'une organisation etcelle-ci s'est engagée à apporter toute amélioration recommandée;</li><li>tous les nouveaux contrats conclus avec des fournisseurs de service Web comprendront les dispositions decontrôle de la qualité suivantes ... ;</li><li>un module de formation sur la protection des renseignements personnels a été élaboré et est maintenantobligatoire pour tout le personnel;</li><li>tous les ordinateurs portables seront cryptés;</li><li>le protocole de gestion des modifications du logiciel a été mis à jour; etc.</li></ul></p>"
-          }
+          },
+          "maxLength": 2000
         }
       ]
     }
-  ]
+  ],
+  "completedHtml": {
+    "en": "<section class='alert alert-info'><p>Should you require additional information about breach reporting requirements under PIPEDA, please see our office's guidance entitled <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-breaches/respond-to-a-privacy-breach-at-your-business/gd_pb_201810/' target='_blank'>What you need to know about mandatory reporting of breaches of security safeguards</a>.</p></section>",
+    "fr": "<section class='alert alert-info'><p>Si vous souhaitez obtenir des renseignements supplémentaires sur les exigences en matière de déclaration aux termes de la LPRPDE, veuillez consulter le document d'orientation du Commissariat intitulé : <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/protection-des-renseignements-personnels-pour-les-entreprises/mesures-de-securite-et-atteintes/atteintes-a-la-vie-privee/comment-reagir-a-une-atteinte-a-la-vie-privee-dans-votre-entreprise/gd_pb_201810/' target='_blank'>Ce que vous devez savoir sur la déclaration obligatoire des atteintes aux mesures de sécurité</a>.</p></section>"
+  }
 }

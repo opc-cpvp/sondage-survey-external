@@ -20,16 +20,16 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json = @"C:\Users\jbrouillette\source\repos\temp\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 
             string line = Console.ReadLine();
             if (line == "c")
             {
-                CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+                CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPBRModel");
             }
             else if (line == "v")
             {
-                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPIAToolModel");
+                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPBRModel");
             }
             else if(line == "t")
             {
@@ -79,7 +79,7 @@ namespace SurveyToCS
                 csharp.AppendLine();
 
                 var groupedByValueName = from item in survey_dynamic_elements
-                                         group item by item.valueName into newGroup
+                                         group item by item.valueName != null ? item.valueName : item.name into newGroup
                                          orderby newGroup.Key
                                          select newGroup;
 
@@ -172,6 +172,11 @@ namespace SurveyToCS
                         csharp.Append("List<SurveyFile> ");
                         csharp.Append(CapitalizeFirstLetter(elementName));
                     }
+                    else if (element.type == "text" && element.inputType == "date")
+                    {
+                        csharp.Append(" DateTime? ");
+                        csharp.Append(CapitalizeFirstLetter(elementName));
+                    }
                     else
                     {
                         csharp.Append(" string ");
@@ -202,7 +207,7 @@ namespace SurveyToCS
         private static void BuildDynamicPropertyClasses(StringBuilder csharp, List<Element> dynamicElements)
         {
             var groupedByValueName = from item in dynamicElements
-                                     group item by item.valueName into newGroup
+                                     group item by item.valueName != null ? item.valueName : item.name into newGroup
                                      orderby newGroup.Key
                                      select newGroup;
 
@@ -224,14 +229,18 @@ namespace SurveyToCS
 
                             if (column.cellType == "boolean")
                             {
-                                if (column.isRequired)
-                                {
-                                    csharp.Append(" bool ");
-                                }
-                                else
-                                {
+                                //if (column.isRequired)
+                                //{
+                                //    csharp.Append(" bool ");
+                                //}
+                                //else
+                                //{
                                     csharp.Append(" bool? ");
-                                }
+                                //}
+                            }
+                            else if(column.inputType == "date")
+                            {
+                                csharp.Append(" DateTime? ");
                             }
                             else
                             {
@@ -254,14 +263,18 @@ namespace SurveyToCS
 
                             if (templateItem.type == "boolean")
                             {
-                                if (templateItem.isRequired)
-                                {
-                                    csharp.Append(" bool ");
-                                }
-                                else
-                                {
+                                //if (templateItem.isRequired)
+                                //{
+                                //    csharp.Append(" bool ");
+                                //}
+                                //else
+                                //{
                                     csharp.Append(" bool? ");
-                                }
+                                //}
+                            }
+                            else if (templateItem.inputType == "date")
+                            {
+                                csharp.Append(" DateTime? ");
                             }
                             else
                             {
@@ -471,7 +484,7 @@ namespace SurveyToCS
                 BuildRequiredValidator(csharp, elementName, visibleIf);
             }
 
-            if (type == "comment" || type == "text")
+            if (type == "comment" || (type == "text" && element.inputType != "date"))
             {
                 BuildMaxLengthValidator(csharp, element, visibleIf);
             }
@@ -495,7 +508,7 @@ namespace SurveyToCS
         private static void SetDynamicValidators(StringBuilder csharp, List<Element> dynamicElements)
         {
             var groupedByValueName = from item in dynamicElements
-                                     group item by item.valueName into newGroup
+                                     group item by item.valueName != null ? item.valueName : item.name into newGroup
                                      orderby newGroup.Key
                                      select newGroup;
 
@@ -543,7 +556,7 @@ namespace SurveyToCS
         private static void BuildDynamicValidatorClasses(StringBuilder csharp, List<Element> dynamicElements)
         {
             var groupedByValueName = from item in dynamicElements
-                                     group item by item.valueName into newGroup
+                                     group item by item.valueName != null ? item.valueName : item.name into newGroup
                                      orderby newGroup.Key
                                      select newGroup;
 
@@ -850,7 +863,7 @@ namespace SurveyToCS
         private static void BuildDynamicPropertyData(StringBuilder csharp, List<Element> dynamicElements)
         {
             var groupedByValueName = from item in dynamicElements
-                                     group item by item.valueName into newGroup
+                                     group item by item.valueName != null ? item.valueName : item.name into newGroup
                                      orderby newGroup.Key
                                      select newGroup;
 
@@ -893,51 +906,77 @@ namespace SurveyToCS
 
         private static string GetPropertyValue(Element element)
         {
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
             StringBuilder retVal = new StringBuilder();
 
-            if (element.type == "boolean")
+            if (type == "boolean")
             {
                 retVal.Append("true");
             }
-            else if (element.type == "checkbox" || element.type == "radiogroup" || element.type == "dropdown")
+            else if (type == "checkbox" || type == "radiogroup" || type == "dropdown")
             {
                 retVal.Append("\"");
 
                 if (element.choices != null && element.choices.Count > 0)
                 {
-                    retVal.Append(element.choices[0].value);
+                    var rand = new Random();
+                    retVal.Append(element.choices[rand.Next(0, element.choices.Count - 1)].value);
                 }
 
                 retVal.Append("\"");
             }
-            else if (element.type == "tagbox")
+            else if (type == "tagbox")
             {
                 retVal.Append("[\"");
 
                 if (element.choices != null && element.choices.Count > 0)
                 {
-                    retVal.Append(element.choices[0].value);
+                    var rand = new Random();
+                    retVal.Append(element.choices[rand.Next(0, element.choices.Count - 1)].value);
                 }
 
                 retVal.Append("\"]");
             }
-            else if (element.type == "file")
+            else if (type == "file")
             {
                 retVal.Append("[]");
             }
-            else
+            else if (type == "text")
             {
                 retVal.Append("\"");
 
-                if (element.inputType == "email")
+                if (element.inputType == "tel")
+                {
+                    var rand = new Random();
+                    retVal.Append("+1613-");
+                    retVal.Append(rand.Next(200, 700).ToString());
+                    retVal.Append("-");
+                    retVal.Append(rand.Next(1000, 9999).ToString());
+                }
+                else if (element.inputType == "date")
+                {
+                    retVal.Append(DateTime.Now.ToString("yyyy-MM-dd"));
+                }
+                else if (element.inputType == "email")
                 {
                     retVal.Append(RandomText(10) + "@gmail.com");
+                }
+                else if (element.inputType == "number")
+                {
+                    var rand = new Random();
+                    retVal.Append(rand.Next(200, 700).ToString());
                 }
                 else
                 {
                     retVal.Append(RandomText(25));
                 }
 
+                retVal.Append("\"");
+            }
+            else if (type == "comment")
+            {
+                retVal.Append("\"");
+                retVal.Append(RandomText(250));
                 retVal.Append("\"");
             }
 
