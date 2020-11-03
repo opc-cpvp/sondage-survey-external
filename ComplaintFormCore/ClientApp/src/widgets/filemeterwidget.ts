@@ -105,16 +105,6 @@ export class FileMeterWidget extends Widget {
             meter.value = this.getQuestionSize(question);
 
             this.updateHeader(header, question);
-
-            /*
-            options.callback(
-                "success",
-                options.files.map(file => ({
-                    file,
-                    content: "NOT_EMPTY"
-                }))
-            );
-            */
         });
 
         survey.onClearFiles.add((sender: SurveyModel, options: any) => {
@@ -122,22 +112,23 @@ export class FileMeterWidget extends Widget {
                 return;
             }
 
-            const files = this.questionFiles.get(question) || [];
-            const index = files.findIndex(f => f.name === options.fileName);
+            let files = this.questionFiles.get(question) || [];
 
-            if (index < 0) {
-                return;
+            if (options.fileName === null) {
+                files = [];
+            } else {
+                const index = files.findIndex(f => f.name === options.fileName);
+                if (index < 0) {
+                    return;
+                }
+                files.splice(index, 1);
             }
-
-            files.splice(index, 1);
 
             this.questionFiles.set(question, files);
 
             meter.value = this.getQuestionSize(question);
 
             this.updateHeader(header, question);
-
-            // options.callback("success");
         });
     }
 
