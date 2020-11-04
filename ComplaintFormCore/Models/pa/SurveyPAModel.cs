@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System;
 
 namespace ComplaintFormCore.Models.pa
 {
@@ -21,7 +19,7 @@ namespace ComplaintFormCore.Models.pa
         /// Possible choices: [/api/Institution/GetAll?lang={locale}]<br/>
         /// Survey question type: dropdown
         /// </summary>
-        public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
+        public int? WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
         /// <summary>
         /// Page: page_steps_taken_Writing_ATIP_Coordinator<br/>
@@ -180,7 +178,7 @@ namespace ComplaintFormCore.Models.pa
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// E-mail address (yourname@domain.com)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string Complainant_Email { get; set; }
 
@@ -213,7 +211,7 @@ namespace ComplaintFormCore.Models.pa
         /// Required condition: {Complainant_Country} = 'CA'<br/>
         /// Survey question type: dropdown
         /// </summary>
-        public string Complainant_ProvinceOrState { get; set; }
+        public int? Complainant_ProvinceOrState { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
@@ -225,30 +223,30 @@ namespace ComplaintFormCore.Models.pa
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Daytime telephone number (123-456-7890)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (tel)
         /// </summary>
         public string Complainant_DayTimeNumber { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Extension (digits only)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string Complainant_DayTimeNumberExtension { get; set; }
+        public int? Complainant_DayTimeNumberExtension { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Alternate telephone number (123-456-7890)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (tel)
         /// </summary>
         public string Complainant_AltTelephoneNumber { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Extension (digits only)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string Complainant_AltTelephoneNumberExtension { get; set; }
+        public int? Complainant_AltTelephoneNumberExtension { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
@@ -275,7 +273,7 @@ namespace ComplaintFormCore.Models.pa
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// E-mail address (yourname@domain.com)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string Reprensentative_Email { get; set; }
 
@@ -320,30 +318,30 @@ namespace ComplaintFormCore.Models.pa
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Daytime telephone number (123-456-7890)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (tel)
         /// </summary>
         public string Reprensentative_DayTimeNumber { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Extension (digits only)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string Reprensentative_DayTimeNumberExtension { get; set; }
+        public int? Reprensentative_DayTimeNumberExtension { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Alternate telephone number (123-456-7890)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (tel)
         /// </summary>
         public string Reprensentative_AltTelephoneNumber { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// Extension (digits only)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string Reprensentative_AltTelephoneNumberExtension { get; set; }
+        public int? Reprensentative_AltTelephoneNumberExtension { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
@@ -388,5 +386,7 @@ namespace ComplaintFormCore.Models.pa
         /// Survey question type: checkbox
         /// </summary>
         public List<string> InformationIsTrue { get; set; }
+
     }
 }
+

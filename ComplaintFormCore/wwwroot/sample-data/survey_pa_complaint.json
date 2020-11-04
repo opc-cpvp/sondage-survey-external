@@ -516,7 +516,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal', 'NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
+          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal','NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
           "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
@@ -531,7 +531,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal', 'NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
+          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal','NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
           "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
@@ -784,7 +784,9 @@
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "isRequired": true
+              "isRequired": true,
+              "placeHolder": "A1A1A1",
+              "maxLength": 7
             },
             {
               "type": "text",
@@ -962,7 +964,9 @@
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "isRequired": true
+              "isRequired": true,
+              "placeHolder": "A1A1A1",
+              "maxLength": 7
             },
             {
               "type": "text",
@@ -1132,7 +1136,7 @@
         {
           "type": "html",
           "name": "documentation_uploading_file_types",
-          "visibleIf": "{documentation_type} anyof ['upload','both']",
+          "visibleIf": "{Documentation_type} anyof ['upload','both']",
           "html": {
             "en": "<p><h2>Uploading supporting documents</h2></p><p><div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div></p>",
             "fr": "<p><h2>Téléchargement des documents à l’appui</h2></p><div class='alert alert-info'><p>Nous acceptons les types de fichiers suivants : doc, docx, xls, xls, xlsx, ppt, pptx, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif et tiff.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Vous pouvez télécharger des fichiers jusqu’à un total de 25 Mo.</p></div></p>"
@@ -1145,16 +1149,17 @@
             "en": "Authorization form attachment(s)",
             "fr": "Pièces jointes au formulaire d’autorisation"
           },
-          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({documentation_type} anyof ['upload','both'])",
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({Documentation_type} anyof ['upload','both'])",
           "elements": [
             {
               "type": "file",
-              "name": "documentation_file_upload_rep",
+              "name": "Documentation_file_upload_rep",
               "titleLocation": "hidden",
               "description": {
                 "en": "Upload the representative authorization form signed by the complainant.",
                 "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
               },
+              "isRequired":  true,
               "hasComment": false,
               "allowMultiple": true,
               "waitForUpload": true,
@@ -1196,16 +1201,17 @@
             "en": "Attachments",
             "fr": "Pièces jointes"
           },
-          "visibleIf": "{documentation_type} anyof ['upload','both']",
+          "visibleIf": "{Documentation_type} anyof ['upload','both']",
           "elements": [
             {
               "type": "file",
-              "name": "documentation_file_upload",
+              "name": "Documentation_file_upload",
               "titleLocation": "hidden",
               "description": {
                 "en": "Upload a file to attach to your complaint",
                 "fr": "Téléchargez un fichier à joindre à votre plainte"
               },
+              "isRequired": true,
               "hasComment": false,
               "allowMultiple": true,
               "waitForUpload": true,
@@ -1243,7 +1249,7 @@
         {
           "type": "html",
           "name": "upload_total_mb",
-          "visibleIf": "{documentation_type} anyof ['upload','both']",
+          "visibleIf": "{Documentation_type} anyof ['upload','both']",
           "html": {
             "en": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>",
             "fr": "<div class='alert alert-info col-sm-12 upload-block' style='display: block;'><h4>You have uploaded <span id='sp_total'>0.0</span> MB of files out of 25MB allowed</h4> <span><meter id='meter_upload_total_mb' min='0' value='0' max='26214400' class='full-width wb-init wb-meter-inited'><div id='div_meter_upload' style='width: 0%;'></div></meter></span></div>"
@@ -1257,7 +1263,7 @@
             "en": "Sending documents by mail",
             "fr": "Envoi de documents par la poste"
           },
-          "visibleIf": "{documentation_type} anyof ['mail','both']",
+          "visibleIf": "{Documentation_type} anyof ['mail','both']",
           "elements": [
             {
               "type": "html",
