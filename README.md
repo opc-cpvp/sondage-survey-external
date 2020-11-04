@@ -38,6 +38,7 @@ c) intl-tel-input: https://github.com/jackocnr/intl-tel-input
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
 - libphonenumber-csharp already in used in the original project
 - FluentValidator
+- Microsoft.AspNetCore.Mvc.NewtonsoftJson for JSON serialization/deserialization. And add in Startup ```services.AddControllersWithViews().AddNewtonsoftJson();```
 
 ### Survey.js Custom Widget
 

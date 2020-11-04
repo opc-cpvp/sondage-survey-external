@@ -48,8 +48,8 @@ export class PbrSurvey {
                             Accept: "application/json",
                             "Content-Type": "application/json; charset=utf-8"
                         },
-                        // body: JSON.stringify(testData)
-                        body: JSON.stringify(sender.data)
+                        body: JSON.stringify(pbr_test_data)
+                        // body: JSON.stringify(sender.data)
                     })
                         .then(response => {
                             if (response.ok) {

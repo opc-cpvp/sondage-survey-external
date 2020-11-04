@@ -142,45 +142,51 @@ namespace SurveyToCS
                 }
                 else
                 {
-                    string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+                    string elementName = CapitalizeFirstLetter(!string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name);
 
                     BuildElementSummary(csharp, element, pageObj);
 
                     csharp.Append("public ");
 
+                    //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
+                    //  and our validation doesn't work
+
                     if (element.type == "boolean")
                     {
-                        //  We always set the booleans to nullable, otherwise the default value of false is set on the property and our validation doesn't work
                         csharp.Append(" bool? ");
-
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                     }
                     else if (element.type == "matrixdynamic" || element.type == "paneldynamic")
                     {
                         csharp.Append("List<");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                         csharp.Append("> ");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                     }
                     else if (element.type == "checkbox" || element.type == "tagbox")
                     {
                         csharp.Append("List<string> ");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                     }
                     else if (element.type == "file")
                     {
                         csharp.Append("List<SurveyFile> ");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                     }
                     else if (element.type == "text" && element.inputType == "date")
                     {
                         csharp.Append(" DateTime? ");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
+                    }
+                    else if (element.type == "text" && element.inputType == "number")
+                    {
+                        csharp.Append(" int? ");
+                        csharp.Append(elementName);
                     }
                     else
                     {
                         csharp.Append(" string ");
-                        csharp.Append(CapitalizeFirstLetter(elementName));
+                        csharp.Append(elementName);
                     }
 
                     csharp.AppendLine(" { get; set; }");
@@ -191,8 +197,6 @@ namespace SurveyToCS
 
         private static void BuildDynamicProperty(StringBuilder csharp, string elementName)
         {
-            //csharp.AppendLine(summary);
-
             csharp.Append("public ");
 
             csharp.Append("List<");
@@ -227,20 +231,20 @@ namespace SurveyToCS
 
                             csharp.Append("public ");
 
+                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
+                            //  and our validation doesn't work
+
                             if (column.cellType == "boolean")
                             {
-                                //if (column.isRequired)
-                                //{
-                                //    csharp.Append(" bool ");
-                                //}
-                                //else
-                                //{
-                                    csharp.Append(" bool? ");
-                                //}
+                                csharp.Append(" bool? ");
                             }
                             else if(column.inputType == "date")
                             {
                                 csharp.Append(" DateTime? ");
+                            }
+                            else if (column.inputType == "number")
+                            {
+                                csharp.Append(" int? ");
                             }
                             else
                             {
@@ -261,20 +265,20 @@ namespace SurveyToCS
 
                             csharp.Append("public ");
 
+                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
+                            //  and our validation doesn't work
+
                             if (templateItem.type == "boolean")
                             {
-                                //if (templateItem.isRequired)
-                                //{
-                                //    csharp.Append(" bool ");
-                                //}
-                                //else
-                                //{
-                                    csharp.Append(" bool? ");
-                                //}
+                                csharp.Append(" bool? ");
                             }
                             else if (templateItem.inputType == "date")
                             {
                                 csharp.Append(" DateTime? ");
+                            }
+                            else if (templateItem.inputType == "number")
+                            {
+                                csharp.Append(" int? ");
                             }
                             else
                             {
@@ -359,7 +363,16 @@ namespace SurveyToCS
             }
 
             csharp.Append("/// Survey question type: ");
-            csharp.AppendLine(type);
+            csharp.Append(type);
+
+            if (!string.IsNullOrEmpty(element.inputType))
+            {
+                csharp.Append(" (");
+                csharp.Append(element.inputType);
+                csharp.Append(")");
+            }
+
+            csharp.AppendLine();
 
             csharp.AppendLine("/// </summary>");
         }
@@ -484,7 +497,12 @@ namespace SurveyToCS
                 BuildRequiredValidator(csharp, elementName, visibleIf);
             }
 
-            if (type == "comment" || (type == "text" && element.inputType != "date"))
+            if (type == "comment")
+            {
+                BuildMaxLengthValidator(csharp, element, visibleIf);
+            }
+
+            if (type == "text" && element.inputType != "date" && element.inputType != "number")
             {
                 BuildMaxLengthValidator(csharp, element, visibleIf);
             }
@@ -495,7 +513,7 @@ namespace SurveyToCS
                 BuildListValidator(csharp, element, visibleIf);
             }
 
-            if (element.inputType == "email")
+            if (type == "text" && element.inputType == "email")
             {
                 csharp.Append("RuleFor(x => x.");
                 csharp.Append(elementName);

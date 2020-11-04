@@ -47,7 +47,6 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.ContactPhoneWithCountryCode).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // ContactPhoneExtension (Page: page_organization)
-            RuleFor(x => x.ContactPhoneExtension).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // ContactEmail (Page: page_organization)
             RuleFor(x => x.ContactEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -78,10 +77,8 @@ namespace ComplaintFormCore.Models
 
             // NumberOfInvidualAffected (Page: page_breach_description_affected)
             RuleFor(x => x.NumberOfInvidualAffected).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.NumberOfInvidualAffected).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // NumberOfCanadiansAffected (Page: page_breach_description_affected)
-            RuleFor(x => x.NumberOfCanadiansAffected).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // NumberAffectedComment (Page: page_breach_description_affected)
             RuleFor(x => x.NumberAffectedComment).Length(0, 2000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));

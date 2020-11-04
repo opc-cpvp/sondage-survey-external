@@ -66,21 +66,21 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_organization<br/>
         /// Telephone<br/>
-        /// Survey question type: text
+        /// Survey question type: text (tel)
         /// </summary>
         public string ContactPhoneWithCountryCode { get; set; }
 
         /// <summary>
         /// Page: page_organization<br/>
         /// Extension<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string ContactPhoneExtension { get; set; }
+        public int? ContactPhoneExtension { get; set; }
 
         /// <summary>
         /// Page: page_organization<br/>
         /// Email<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string ContactEmail { get; set; }
 
@@ -133,16 +133,16 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_breach_description_affected<br/>
         /// Total number of individual affected<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string NumberOfInvidualAffected { get; set; }
+        public int? NumberOfInvidualAffected { get; set; }
 
         /// <summary>
         /// Page: page_breach_description_affected<br/>
         /// Total number of canadians affected<br/>
-        /// Survey question type: text
+        /// Survey question type: text (number)
         /// </summary>
-        public string NumberOfCanadiansAffected { get; set; }
+        public int? NumberOfCanadiansAffected { get; set; }
 
         /// <summary>
         /// Page: page_breach_description_affected<br/>
@@ -154,14 +154,14 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_breach_description_dates<br/>
         /// Start date of breach occurrence<br/>
-        /// Survey question type: text
+        /// Survey question type: text (date)
         /// </summary>
         public DateTime? DateBreachOccurrenceStart { get; set; }
 
         /// <summary>
         /// Page: page_breach_description_dates<br/>
         /// End date of breach occurrence<br/>
-        /// Survey question type: text
+        /// Survey question type: text (date)
         /// </summary>
         public DateTime? DateBreachOccurrenceEnd { get; set; }
 
@@ -211,14 +211,14 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_notification_steps<br/>
         /// Date notification began (or is planned)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (date)
         /// </summary>
         public DateTime? DateNotificationBegan { get; set; }
 
         /// <summary>
         /// Page: page_notification_steps<br/>
         /// Date notification was completed<br/>
-        /// Survey question type: text
+        /// Survey question type: text (date)
         /// </summary>
         public DateTime? DateNotificationCompleted { get; set; }
 
@@ -273,7 +273,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Date notified<br/>
-        /// Survey question type: text
+        /// Survey question type: text (date)
         /// </summary>
         public DateTime? DateNotified { get; set; }
 
