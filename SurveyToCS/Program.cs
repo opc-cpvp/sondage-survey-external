@@ -22,7 +22,8 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
+            //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
 
             string line = Console.ReadLine();
             if (line == "c")

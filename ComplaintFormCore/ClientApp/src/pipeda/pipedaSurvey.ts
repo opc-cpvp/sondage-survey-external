@@ -8,6 +8,7 @@ import * as Ladda from "ladda";
 import { testData_pipeda } from "./pipeda_test_data";
 import { Province } from "../surveyHelper";
 import { PipedaProvincesData } from "./pipedaProvinceData";
+import * as SurveyFile from "../surveyFile";
 
 declare global {
     // TODO: get rid of this global variable
@@ -15,10 +16,10 @@ declare global {
 }
 
 export class PipedaTool {
-    private storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
+
+        SurveyFile.initSurveyFile();
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -76,8 +77,55 @@ export class PipedaTool {
                 });
 
                 _survey.onComplete.add((sender, options) => {
-                    console.log(sender.data);
-                    Ladda.stopAll();
+                    const uri = `/api/PipedaSurvey/Complete?complaintId="${sender.complaintId as string}`;
+
+                    fetch(uri, {
+                        method: "POST",
+                        headers: {
+                            Accept: "application/json",
+                            "Content-Type": "application/json; charset=utf-8"
+                        },
+                        body: JSON.stringify(sender.data)
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                //  Hide the navigation buttons
+                                const div_navigation = document.getElementById("div_navigation");
+                                if (div_navigation) {
+                                    div_navigation.classList.add("hidden");
+                                }
+
+                                //  Update the file reference number
+                                void response
+                                    .json()
+                                    .then(responseData => {
+                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
+                                        if (sp_survey_file_number) {
+                                            sp_survey_file_number.innerText = responseData.referenceNumber;
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.warn(error);
+                                    });
+
+                                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA);
+
+                                console.log(sender.data);
+                                Ladda.stopAll();
+                            } else {
+                                if (response.json) {
+                                    void response.json().then(problem => {
+                                        SurveyHelper.printProblemDetails(problem, sender.locale);
+                                    });
+                                }
+                                Ladda.stopAll();
+                                return response;
+                            }
+                        })
+                        .catch(error => {
+                            console.warn(error);
+                            Ladda.stopAll();
+                        });
                 });
 
                 _survey.onCurrentPageChanging.add((sender, options) => {
@@ -101,7 +149,11 @@ export class PipedaTool {
                     options.allowChanging = true;
                 });
 
-                _survey.onAfterRenderQuestion.add((sender, options) => {});
+                _survey.onAfterRenderQuestion.add((sender, options) => {
+                    if (options.question.getType() === "html" && options.question.name === "documentation_info") {
+                        this.updateDocumentationInfoSection(sender);
+                    }
+                });
 
                 survey.onAfterRenderPage.add((sender, options) => {
                     const pagesRequiringProvinceTranslations = [
@@ -186,19 +238,21 @@ export class PipedaTool {
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    SurveyLocalStorage.saveStateLocally(sender, this.storageName_PIPEDA);
+                    SurveyLocalStorage.saveStateLocally(sender, SurveyLocalStorage.storageName_PIPEDA);
                 });
 
                 SurveyInit.initSurveyModelEvents(_survey);
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
+                SurveyFile.initSurveyFileModelEvents(_survey);
+
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIPEDA, JSON.stringify(defaultData));
+                SurveyLocalStorage.loadStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA, JSON.stringify(defaultData));
 
-                SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIPEDA);
+                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA);
 
                 // Save the state back to local storage
                 // this.onCurrentPageChanged_saveState(_survey);
@@ -213,5 +267,49 @@ export class PipedaTool {
                     }
                 });
             });
+    }
+
+    // This function is to update the html for the question of type html named 'documentation_info'.
+    // It will removed the hidden css on some of the <li> depending on some conditions
+    private updateDocumentationInfoSection(surveyObj) {
+        const ul_documentation_info = document.getElementById("ul_documentation_info");
+        if (ul_documentation_info == null) {
+            return;
+        }
+
+        if (surveyObj.data["RaisedConcernToPrivacyOfficer"] === "yes") {
+            const liNode = ul_documentation_info.querySelector(".raisedConcernToPrivacyOfficer");
+            if (liNode != null) {
+                liNode.classList.remove("hidden");
+            }
+        }
+
+        if (surveyObj.data["DeniedAccess"] === "yes_and_other_concern" || surveyObj.data["DeniedAccess"] === "yes") {
+            const liNode = ul_documentation_info.querySelector(".deniedAccess");
+            if (liNode != null) {
+                liNode.classList.remove("hidden");
+            }
+        }
+
+        if (surveyObj.data["SubmittedComplaintToOtherBody"] === true) {
+            const liNode = ul_documentation_info.querySelector(".submittedComplaintToOtherBody");
+            if (liNode != null) {
+                liNode.classList.remove("hidden");
+            }
+        }
+
+        if (surveyObj.data["ComplaintStillOngoing"] === true) {
+            const liNode = ul_documentation_info.querySelector(".complaintStillOngoing");
+            if (liNode != null) {
+                liNode.classList.remove("hidden");
+            }
+        }
+
+        if (surveyObj.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
+            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
+            if (liNode != null) {
+                liNode.classList.remove("hidden");
+            }
+        }
     }
 }
