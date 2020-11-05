@@ -57,6 +57,8 @@ export abstract class SurveyBase extends Survey {
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
+        defaultBootstrapCss.page.title = "sv_title";
+        defaultBootstrapCss.question.title = "sv_q_title";
         defaultBootstrapCss.question.titleRequired = "required";
 
         // https://surveyjs.io/Documentation/Library?id=surveymodel#checkErrorsMode
@@ -111,7 +113,7 @@ export abstract class SurveyBase extends Survey {
     private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
         // Replaces the page title h4 with an h1
         const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector("h4") ?? htmlElement.querySelector("h1");
+        const oldTitle = htmlElement.querySelector("h4.sv_title") ?? htmlElement.querySelector("h1.sv_title");
 
         if (oldTitle === null) {
             return;
@@ -120,6 +122,7 @@ export abstract class SurveyBase extends Survey {
         const page = options.page as PageModel;
 
         const newTitle = document.createElement("h1");
+        newTitle.className = oldTitle.className;
         newTitle.innerText = page.title;
 
         oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
@@ -128,7 +131,7 @@ export abstract class SurveyBase extends Survey {
     private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
         // Replaces the question title h5 with a label
         const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector("h5") ?? htmlElement.querySelector("label");
+        const oldTitle = htmlElement.querySelector("h5.sv_q_title") ?? htmlElement.querySelector("label.sv_q_title");
 
         if (oldTitle === null) {
             return;
