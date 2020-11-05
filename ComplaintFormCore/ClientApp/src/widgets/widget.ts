@@ -46,6 +46,11 @@ export abstract class Widget {
     afterRender(question: Question, el: HTMLElement): void {}
 
     /**
+     * Gets called after the widget has been added to the CustomWidgetCollection.
+     */
+    init(): void {}
+
+    /**
      * Use it to destroy the widget. It is typically needed by jQuery widgets.
      *
      * @param question
