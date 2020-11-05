@@ -1,6 +1,4 @@
-﻿/// <reference path="../@types/survey-vue/survey.vue.d.ts" />
-
-import "core-js/es";
+﻿import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill"; //  Polyfill to open/close the <details> tags
@@ -31,7 +29,7 @@ declare global {
     function initPipeda(lang: string, token: string): void;
     function initPbr(lang: string, token: string): void;
 
-    function exportToPDF(lang: string): void;
+    function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 
     function gotoSection(survey: Survey.SurveyModel, section: number): void;
