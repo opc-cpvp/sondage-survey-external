@@ -273,7 +273,7 @@ export class PiaETool {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
+                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(piaTestData));
 
                 SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIA);
 
@@ -379,31 +379,36 @@ export class PiaETool {
 
         const items = document.getElementsByClassName("breadcrumb-item");
 
-        Array.from(items).forEach(li => {
-            //  Reset the original class on each <li> item
-            li.className = "breadcrumb-item";
-        });
+        // Array.from(items).forEach(li => {
+        //    //  Reset the original class on each <li> item
+        //    li.className = "breadcrumb-item";
+        // });
 
-        if (surveyObj.currentPage.section === 0) {
-            const li = document.getElementById("li_breadcrumb_0");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 1) {
-            const li = document.getElementById("li_breadcrumb_1");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 2) {
-            const li = document.getElementById("li_breadcrumb_2");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 3) {
-            const li = document.getElementById("li_breadcrumb_3");
-            if (li) {
-                li.className += " active";
-            }
-        }
+        // const li = document.getElementById(`li_breadcrumb_${surveyObj.currentPage.section}`);
+        // if (li) {
+        //    li.className += " active";
+        // }
+
+        // if (surveyObj.currentPage.section === 0) {
+        //    const li = document.getElementById("li_breadcrumb_0");
+        //    if (li) {
+        //        li.className += " active";
+        //    }
+        // } else if (surveyObj.currentPage.section === 1) {
+        //    const li = document.getElementById("li_breadcrumb_1");
+        //    if (li) {
+        //        li.className += " active";
+        //    }
+        // } else if (surveyObj.currentPage.section === 2) {
+        //    const li = document.getElementById("li_breadcrumb_2");
+        //    if (li) {
+        //        li.className += " active";
+        //    }
+        // } else if (surveyObj.currentPage.section === 3) {
+        //    const li = document.getElementById("li_breadcrumb_3");
+        //    if (li) {
+        //        li.className += " active";
+        //    }
+        // }
     }
 }

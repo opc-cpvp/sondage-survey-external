@@ -3956,7 +3956,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
-      "section": 3,
+      "section": 3.6,
       "elements": [
         {
           "type": "radiogroup",
@@ -4008,6 +4008,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
+      "section": 3.6,
       "visibleIf": "{MechanismToCorrectPersonalInformation} anyof ['yes_in_place', 'yes_not_established']",
       "elements": [
         {
@@ -4073,6 +4074,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
+      "section": 3.6,
       "elements": [
         {
           "type": "radiogroup",
@@ -4128,6 +4130,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
+      "section": 3.6,
       "elements": [
         {
           "type": "comment",
@@ -4143,12 +4146,12 @@
     {
       "name": "page_step_3_7",
       "title": {
-        "en": "3.7 – Disposal ",
+        "en": "3.7 – Disposal",
         "fr": ""
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": 3.7,
       "elements": [
         {
           "type": "html",
@@ -4157,6 +4160,414 @@
             "fr": ""
           }
         }
+      ]
+    },
+    {
+      "name": "page_step_3_7_1",
+      "title": {
+        "en": "3.7 – Disposal",
+        "fr": ""
+      },
+      "section": 3.7,
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical', 'both'] or {IsElectronicConvertedToPhysical} = true",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ProcessDisposalPhysicalFormat",
+          "isRequired": true,
+
+          "title": {
+            "en": "Does the institution have, or intend to have, an established process by which to dispose of the personal information that you have collected in and/or converted to physical format? (3.7.1A)",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "ProcessDisposalDocumentationPhysicalFormat",
+          "isRequired": true,
+          "visibleIf": "{ProcessDisposalPhysicalFormat} anyof ['yes_in_place','yes_not_established']",
+          "title": {
+            "en": "Have you documented and made available to employees, or are planning to do so, the process by which you dispose of personal information in physical format? (3.7.1B)",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "DisposalPhysicalFormatDescription",
+          "isRequired": true,
+          "title": {
+            "en": "How will the institution dispose of the personal information in physical format? Please provide as much detail as possible.(3.7.1C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please use as much detail as possible, including details such as who is responsible for disposal, and whether there is a designated secure area for destroying documents.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7_2",
+      "title": {
+        "en": "3.7 – Disposal",
+        "fr": ""
+      },
+      "section": 3.7,
+      "visibleIf": "({PersonalInformationPhysicalAndOrElectronicFormat} = 'electronic' and !({IsElectronicConvertedToPhysical} = true)) or {IsPhysicalConvertedToElectronic} = true or {PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both']",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ProcessDisposalElectronicFormat",
+          "isRequired": true,
+          "visibleIf": "",
+          "title": {
+            "en": "Does your institution have or plan to have, an established process by which to dispose of the personal information that you have collected in electronic format or converted to electronic format?(3.7.2A)",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "ProcessDisposalDocumentationElectronicFormat",
+          "isRequired": true,
+          "visibleIf": "{ProcessDisposalElectronicFormat} anyof ['yes_in_place','yes_not_established']",
+          "title": {
+            "en": "Have you documented and made available to employees, or are planning to do so, the process by which you dispose of personal information in physical format?(3.7.2B)",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "DisposalElectronicFormatDescription",
+          "isRequired": true,
+          "title": {
+            "en": "How will the institution dispose of the personal information in electronic format? Please provide as much detail as possible.(3.7.2C)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please use as much detail as possible, including details such as who is responsible for disposal, and whether any back-up copies of media are subject to the same destruction.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7_3",
+      "title": {
+        "en": "3.7 – Disposal",
+        "fr": ""
+      },
+      "section": 3.7,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "TriggerProcessToDispose",
+          "isRequired": true,
+          "title": {
+            "en": "What triggers the process to dispose of the personal information, in all formats? (Is the process automated? Is a specific person assigned responsibility?) (3.7.3)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7_4",
+      "title": {
+        "en": "3.7 – Disposal",
+        "fr": ""
+      },
+      "section": 3.7,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "WillKeepRecordOfDisposal",
+          "isRequired": true,
+          "title": {
+            "en": "Do you keep, or plan to keep, a record of your disposal of personal information? (3.7.4)",
+            "fr": ""
+          },
+          "description": {
+            "en": "It is important to record your disposal of personal information because it helps to ensure that information is not accidentally disposed of early, and for accountability, if it is retained longer than it should have been. ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_7_5",
+      "title": {
+        "en": "3.7 – Disposal",
+        "fr": ""
+      },
+      "section": 3.7,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "EquipementDeviceDeleteStoredInformation",
+          "isRequired": true,
+          "title": {
+            "en": "When disposing of equipment or devices used for storing personal information (such as filing cabinets, computers, external hard drives, cellphones and audio tapes), do you, or do you plan to, first remove or delete any stored information? (3.7.5)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_8",
+      "title": {
+        "en": "3.8 – Limiting use",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.8,
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 7' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 7</a></li><li><strong>Relevant policy requirement</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What limiting use means:</strong>: Limit your use of individuals’ personal information.</li></ul></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_8_1",
+      "title": {
+        "en": "3.8 – Limiting use",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.8,
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "PopulationImpactedByUseOfPI",
+          "title": {
+            "en": "Please describe the population that will be impacted by the program or activity’s use of personal information.(3.8.1)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "The program’s use of personal information for internal administrative purposes affects certain employees",
+                "fr": ""
+              },
+              "value": "certain_employees"
+            },
+            {
+              "text": {
+                "en": "The program’s use of personal information for internal administrative purposes affects all employees",
+                "fr": ""
+              },
+              "value": "all_employees"
+            },
+            {
+              "text": {
+                "en": "The program’s use of personal information for external administrative purposes affects certain individuals",
+                "fr": ""
+              },
+              "value": "certain_individuals"
+            },
+            {
+              "text": {
+                "en": "The program’s use of personal information for external administrative purposes affects all individuals",
+                "fr": ""
+              },
+              "value": "all_individuals"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "PopulationImpactedByUseOfPIAdditionalInfo",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide additional details to further refine your answer. Examples include Canadian citizens, Government of Canada employees, etc.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_8_2",
+      "title": {
+        "en": "3.8 – Limiting use",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.8,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesFocusVulnerableGroups",
+          "title": {
+            "en": "Does the program or activity focus on vulnerable groups?",
+            "fr": ""
+          },
+          "isRequired": true,
+          "description": {
+            "en": "Vulnerable groups could include children, persons with disabilities, newcomers to Canada, senior citizens, etc. Please note that you will have the opportunity later to discuss the risks and mitigation related to focusing on vulnerable groups.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "FocusVulnerableGroupsDescription",
+          "visibleIf": "{DoesFocusVulnerableGroups} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a description of the vulnerable group(s) on which your program or activity focuses.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_8_3",
+      "title": {
+        "en": "3.8 – Limiting use",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.8,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_step_3_8",
+      "title": {
+        "en": "3.8 – Limiting use",
+        "fr": ""
+      },
+      "hideOnPreview": true,
+      "hideOnPDF": true,
+      "section": 3.8,
+      "elements": [
+
       ]
     }
   ]
