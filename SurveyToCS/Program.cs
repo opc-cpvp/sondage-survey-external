@@ -20,7 +20,8 @@ namespace SurveyToCS
 
         static void Main(string[] args)
         {
-            string json = @"C:\Users\jbrouillette\source\repos\temp\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
+            //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
 
             string line = Console.ReadLine();
             if (line == "c")
@@ -31,7 +32,7 @@ namespace SurveyToCS
             {
                 CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPBRModel");
             }
-            else if(line == "t")
+            else if (line == "t")
             {
                 CreateTestData(json);
             }
@@ -99,7 +100,7 @@ namespace SurveyToCS
 
                     //summary.AppendLine("/// </summary>");
 
-                    BuildDynamicProperty(csharp, dynamicItem.Key) ;
+                    BuildDynamicProperty(csharp, dynamicItem.Key);
                 }
             }
 
@@ -342,7 +343,7 @@ namespace SurveyToCS
                 csharp.Append("/// ");
                 csharp.Append("Possible choices: [");
 
-                if(element.choices != null)
+                if (element.choices != null)
                 {
                     csharp.AppendJoin(", ", element.choices.Select(c => c.value));
                 }
@@ -401,7 +402,7 @@ namespace SurveyToCS
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using FluentValidation;");
 
-            foreach(string item in usings)
+            foreach (string item in usings)
             {
                 csharp.Append("using ");
                 csharp.Append(item);
@@ -662,7 +663,7 @@ namespace SurveyToCS
         {
             string visibleIf = GetVisibleIfCondition(element, parentPage, parentPanel);
 
-            if(string.IsNullOrWhiteSpace(visibleIf) == false)
+            if (string.IsNullOrWhiteSpace(visibleIf) == false)
             {
                 return "x => true/* TODO: " + visibleIf + "*/";
             }
@@ -782,7 +783,7 @@ namespace SurveyToCS
             string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
             string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
-            if (type == "checkbox" || type== "tagbox")
+            if (type == "checkbox" || type == "tagbox")
             {
                 csharp.Append("RuleForEach(x => x.");
             }
@@ -895,7 +896,7 @@ namespace SurveyToCS
                 {
                     if (element.type == "matrixdynamic")
                     {
-                        foreach(var column in element.columns)
+                        foreach (var column in element.columns)
                         {
                             csharp.AppendLine();
                             csharp.Append(column.name);
@@ -904,7 +905,7 @@ namespace SurveyToCS
                             csharp.Append(",");
                         }
                     }
-                    else if(element.type == "paneldynamic")
+                    else if (element.type == "paneldynamic")
                     {
                         foreach (var column in element.templateElements)
                         {

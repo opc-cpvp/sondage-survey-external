@@ -1,8 +1,10 @@
 ﻿using ComplaintFormCore.Exceptions;
+using ComplaintFormCore.Models;
 using ComplaintFormCore.Models.pipeda;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System;
 
 namespace ComplaintFormCore.Web_Apis
 {
@@ -39,6 +41,12 @@ namespace ComplaintFormCore.Web_Apis
             }
 
             return Ok();
+        }
+
+        [HttpPost]
+        public IActionResult Complete([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
+        {
+            return Ok(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿import * as Survey from "survey-vue";
 
 export const storageName_PA = "SurveyJS_LoadState_PA";
+export const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
 export const storageName_Test = "SurveyJS_LoadState_Test";
 export const storageName_PBP = "SurveyJS_LoadState_PBR";
 
