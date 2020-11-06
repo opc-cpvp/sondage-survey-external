@@ -4,9 +4,9 @@ import * as SurveyLocalStorage from "../surveyLocalStorage";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
-import * as SurveyIntlPhoneNumber from "../SurveyIntlPhoneNumber";
 import { pbr_test_data } from "./pbr_test_data";
 import * as SurveyHelper from "../surveyHelper";
+import * as widgets from "surveyjs-widgets";
 
 declare global {
     // TODO: get rid of this global variable
@@ -16,7 +16,9 @@ declare global {
 export class PbrSurvey {
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
-        SurveyIntlPhoneNumber.initIntlPhoneNumber();
+
+        //  Initialize jqueryuidatepicker used for datepickers
+        widgets.jqueryuidatepicker(Survey);
 
         void fetch(jsonUrl)
             .then(response => response.json())
@@ -96,8 +98,6 @@ export class PbrSurvey {
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
-
-                SurveyIntlPhoneNumber.initIntlPhoneNumberEvents(_survey);
 
                 const app = new Vue({
                     el: "#surveyElement",

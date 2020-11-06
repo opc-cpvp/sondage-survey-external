@@ -27,12 +27,6 @@ a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/sh
 b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
 	It is used for a loading/saving spinner
 
-c) intl-tel-input: https://github.com/jackocnr/intl-tel-input 
-	The librairy code has been added to the lib folder
-	-> npm i intl-tel-input --save (NO NEED TO NPM)
-
-	This is the typed definition
-	-> npm i @types/intl-tel-input
 
 ### Added Nuget packages
 - Hellang.Middleware.ProblemDetails for error handling in Web Apis. This is to standardize the erro message format coming from API's
@@ -213,6 +207,9 @@ a) Try to make use of the start properties of survey (survey.firstPageIsStarted 
 	```	    
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+	```
+	```
+
 	```
 
 3) In *.ts file

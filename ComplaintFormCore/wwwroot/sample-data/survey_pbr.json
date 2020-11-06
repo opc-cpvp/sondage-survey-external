@@ -138,10 +138,6 @@
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "placeHolder": {
-                "en": "A1A1A1|00000",
-                "fr": "A1A1A1|00000"
-              },
               "isRequired": true,
               "maxLength":  10
             }
@@ -206,7 +202,6 @@
                 "fr": "Téléphone"
               },
               "isRequired": true,
-              "isInternationalPhoneNumber": true,
               "inputType":  "tel"
             },
             {
@@ -311,10 +306,6 @@
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "placeHolder": {
-                "en": "A1A1A1|00000",
-                "fr": "A1A1A1|00000"
-              },
               "isRequired": true,
               "maxLength": 10
             }
@@ -391,8 +382,7 @@
           }
         },
         {
-          "type": "text",
-          "inputType":  "date",
+          "type": "datepicker",
           "name": "DateBreachOccurrenceStart",
           "title": {
             "en": "Start date of breach occurrence",
@@ -401,13 +391,12 @@
           "isRequired": true
         },
         {
-          "type": "text",
+          "type": "datepicker",
           "name": "DateBreachOccurrenceEnd",
           "title": {
             "en": "End date of breach occurrence",
             "fr": "Date à laquelle l'atteinte a pris fin"
-          },
-          "inputType": "date"
+          }
         },
         {
           "type": "comment",
@@ -535,8 +524,8 @@
             "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue "
           },
           "description": {
-            "en": "<p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><p><section class='alert alert-warning'>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</section></p>",
-            "fr": "<p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><p><section class='alert alert-warning'>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</section></p>"
+            "en": "<p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><section class='alert alert-warning'><p>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p></section>",
+            "fr": "<p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><p><section class='alert alert-warning'><p>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p></section>"
           },
           "maxLength": 2000
         }
@@ -573,23 +562,21 @@
           }
         },
         {
-          "type": "text",
+          "type": "datepicker",
           "name": "DateNotificationBegan",
           "title": {
             "en": "Date notification began (or is planned)",
             "fr": "Date à laquelle l'avis a débuté (ou est prévu)"
           },
-          "isRequired": true,
-          "inputType": "date"
+          "isRequired": true
         },
         {
-          "type": "text",
+          "type": "datepicker",
           "name": "DateNotificationCompleted",
           "title": {
             "en": "Date notification was completed",
             "fr": "Date à laquelle l'avis a pris fin"
-          },
-          "inputType": "date"
+          }
         },
         {
           "type": "dropdown",
@@ -658,8 +645,8 @@
             "fr": "Décrivez la forme de l'avis"
           },
           "description": {
-            "en": "<p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p><p><section class='alert alert-warning'>Do not include any identifying personal information.</section></p>",
-            "fr": "<p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p><p><section class='alert alert-warning'>Ne pas inclure de renseignements personnels identificatoires.</section></p>"
+            "en": "<p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p><section class='alert alert-warning'><p>Do not include any identifying personal information.</p></section>",
+            "fr": "<p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p><section class='alert alert-warning'><p>Ne pas inclure de renseignements personnels identificatoires.</p></section>"
           },
           "maxLength": 2000
         }
@@ -720,13 +707,11 @@
                 "en": "Date notified",
                 "fr": "Date de l'avis"
               },
-              "cellType": "text",
-              "inputType": "date"
+              "cellType": "datepicker"
             }
           ],
           "rowCount": 1,
-          "minRowCount": 1,
-          "maxRowCount": 10
+          "minRowCount": 1
         }
       ]
     },
