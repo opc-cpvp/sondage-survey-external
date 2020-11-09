@@ -1,8 +1,12 @@
-import { SurveyModel } from "survey-vue";
+import { Event, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import { PaSurveyComplete } from "./paSurveyComplete";
 
 export class NewPaSurvey extends SurveyBase {
+    public onPaSurveyComplete: Event<(sender: SurveyModel, options: any) => any, any> = new Event<
+        (sender: SurveyModel, options: any) => any,
+        any
+    >();
+
     private authToken: string;
 
     public constructor(locale: "fr" | "en" = "en", authToken: string) {
@@ -13,24 +17,30 @@ export class NewPaSurvey extends SurveyBase {
     }
 
     private registerCallbacks(): void {
-        this.survey.onCompleting.add((sender: SurveyModel, options: any) => {
-            this.handleOnCompleting(sender, options);
+        this.survey.onServerValidateQuestions.add((sender: SurveyModel, options: any) => {
+            this.handleOnServerValidateQuestions(sender, options);
         });
 
         this.survey.onComplete.add((sender: SurveyModel, options: any) => {
             this.handleOnComplete(sender, options);
         });
 
-        this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
-            this.handleOnValidateQuestion(sender, options);
+        this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnUploadFiles(sender, options);
+        });
+
+        this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnClearFiles(sender, options);
         });
     }
 
-    private handleOnCompleting(sender: SurveyModel, options: any): void {
-        const validationUrl = `/api/PASurvey/Validate?complaintId="${this.authToken}`;
+    private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
+        if (!this.survey.isLastPage) {
+            options.complete();
+            return;
+        }
 
-        // prevent the survey from completing as we'll be handling the validation manually
-        options.allowComplete = false;
+        const validationUrl = `/api/PASurvey/Validate?complaintId=${this.authToken}`;
 
         void (async () => {
             // Validate the survey results
@@ -46,17 +56,19 @@ export class NewPaSurvey extends SurveyBase {
             if (!response.ok) {
                 const problem = await response.json();
                 // TODO: Replace this with something more generic
-                // printProblemDetails(problem, sender.locale);
+                // this.displayErrorSummary(questionErrors);
                 return;
             }
 
-            this.survey.doComplete();
+            options.complete();
         })();
     }
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PASurvey/Complete?complaintId="${this.authToken}`;
+            const completeUrl = `/api/PASurvey/Complete?complaintId=${this.authToken}`;
+
+            options.showDataSaving();
 
             // Complete the survey
             const response = await fetch(completeUrl, {
@@ -70,26 +82,50 @@ export class NewPaSurvey extends SurveyBase {
 
             if (!response.ok) {
                 const problem = await response.json();
+                options.showDataSavingError();
+                return;
+            }
+
+            const responseData = await response.json();
+            options.showDataSavingSuccess();
+            this.onPaSurveyComplete.fire(this.survey, { referenceNumber: responseData.referenceNumber });
+        })();
+    }
+
+    private handleOnUploadFiles(sender: SurveyModel, options: any): void {
+        void (async () => {
+            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}`;
+            const formData = new FormData();
+
+            options.files.forEach(file => {
+                formData.append(file.name, file);
+            });
+
+            // Complete the survey
+            const response = await fetch(uploadUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                const problem = await response.json();
                 // TODO: Replace this with something more generic
                 // printProblemDetails(problem, sender.locale);
                 return;
             }
 
             const responseData = await response.json();
-            const event = new PaSurveyComplete(responseData.referenceNumber);
-
-            dispatchEvent(event);
-
-            /*
-            const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-            if (sp_survey_file_number) {
-                sp_survey_file_number.innerText = responseData.referenceNumber;
-            }
-
-            saveStateLocally(_survey, storageName_PA);
-            */
+            options.callback(
+                "success",
+                options.files.map(file => ({
+                    file,
+                    content: responseData[file.name]
+                }))
+            );
         })();
     }
 
-    private handleOnValidateQuestion(sender: SurveyModel, options: any): void {}
+    private handleOnClearFiles(sender: SurveyModel, options: any): void {
+        options.callback("success");
+    }
 }

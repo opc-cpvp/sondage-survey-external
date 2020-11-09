@@ -7,6 +7,7 @@ import {
     Question,
     StylesManager,
     Survey,
+    SurveyError,
     SurveyModel
 } from "survey-vue";
 import { Converter } from "showdown";
@@ -18,7 +19,7 @@ export abstract class SurveyBase extends Survey {
         tasklists: true
     });
 
-    public constructor(locale: "fr" | "en" = "en") {
+    public constructor(locale: "en" | "fr" = "en") {
         super();
 
         this.survey = new Model();
@@ -29,6 +30,46 @@ export abstract class SurveyBase extends Survey {
         this.registerSurveyCallbacks();
 
         this.registerCustomProperties();
+    }
+
+    public displayErrorSummary(questionErrors: Map<Question, SurveyError[]>): void {
+        const currentPage = this.survey.currentPage as PageModel;
+        const summaryId = `${currentPage.name}-errors`;
+
+        document.getElementById(summaryId)?.remove();
+
+        if (!currentPage.hasErrors()) {
+            return;
+        }
+
+        const summary = document.createElement("section");
+        summary.id = summaryId;
+        summary.className = "alert alert-danger";
+
+        let index = 1;
+        const list = document.createElement("ul");
+        questionErrors.forEach((errors: SurveyError[], question: Question) => {
+            const title = document.createElement("div");
+            title.innerHTML = question.processedTitle;
+            for (const error of errors) {
+                const item = document.createElement("li");
+                const link = document.createElement("a");
+                link.href = `#${question.inputId}`;
+                link.innerText = `Error ${index++}: ${title.innerText} - ${error.getText()}`;
+                item.appendChild(link);
+                list.appendChild(item);
+            }
+        });
+
+        const header = document.createElement("h2");
+        header.innerText = `The form could not be submitted because ${index - 1} error(s) were found.`;
+
+        summary.appendChild(header);
+        summary.appendChild(list);
+
+        const pageTitle = document.querySelector(".sv_title");
+        pageTitle?.parentElement?.insertBefore(summary, pageTitle.nextSibling);
+        currentPage.scrollToTop();
     }
 
     public loadSurveyFromUrl(surveyUrl: string): Promise<void> {
@@ -90,11 +131,15 @@ export abstract class SurveyBase extends Survey {
         });
 
         this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderPage(sender, options);
+            // this.handleOnAfterRenderPage(sender, options);
         });
 
         this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderQuestion(sender, options);
+            // this.handleOnAfterRenderQuestion(sender, options);
+        });
+
+        this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnValidatedErrorsOnCurrentPage(sender, options);
         });
     }
 
@@ -113,7 +158,7 @@ export abstract class SurveyBase extends Survey {
     private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
         // Replaces the page title h4 with an h1
         const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector("h4.sv_title") ?? htmlElement.querySelector("h1.sv_title");
+        const oldTitle = htmlElement.querySelector(".sv_title");
 
         if (oldTitle === null) {
             return;
@@ -131,7 +176,7 @@ export abstract class SurveyBase extends Survey {
     private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
         // Replaces the question title h5 with a label
         const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector("h5.sv_q_title") ?? htmlElement.querySelector("label.sv_q_title");
+        const oldTitle = htmlElement.querySelector(".sv_q_title");
 
         if (oldTitle === null) {
             return;
@@ -145,6 +190,18 @@ export abstract class SurveyBase extends Survey {
         newTitle.innerHTML = oldTitle.innerHTML;
 
         oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
+    }
+
+    private handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
+        const page = options.page as PageModel;
+        const questions = options.questions as Question[];
+
+        const questionErrors = new Map<Question, SurveyError[]>();
+        for (const question of questions) {
+            questionErrors.set(question, question.errors);
+        }
+
+        this.displayErrorSummary(questionErrors);
     }
 
     // TODO: This method should actually be converted into a widget.
@@ -183,14 +240,5 @@ export abstract class SurveyBase extends Survey {
             name: "hideOnPreview:boolean",
             default: false
         });
-
-        JsonObject.metaData.addProperties("file", [
-            { name: "itemListTitle:text" },
-            { name: "itemListRemoveText:text" },
-            { name: "itemListNoAttachmentsText:text" },
-            { name: "confirmRemoveMessage:text" },
-            { name: "duplicateFileNameExceptionMessage:text" },
-            { name: "multipleFileMaxSizeErrorMessage:text" }
-        ]);
     }
 }
