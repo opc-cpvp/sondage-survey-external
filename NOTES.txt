@@ -26,6 +26,10 @@
     "en": "",
     "fr": ""
     },
+    "description": {
+        "en": "",
+        "fr": ""
+    },
     "isRequired": true,
     "choices": [
         {

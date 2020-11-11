@@ -21,12 +21,12 @@ namespace ComplaintFormCore.Web_Apis
         private List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
 
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string complaintId)
+        public async Task<IActionResult> Upload(string complaintId, string opcSurveyType, string subFolder)
         {
             try
             {
                 var file = Request.Form.Files[0];
-                var folderName = Path.Combine("FileUploads", complaintId);
+                var folderName = Path.Combine("FileUploads", opcSurveyType, subFolder, complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
                 var extension = Path.GetExtension(file.FileName);
@@ -81,7 +81,7 @@ namespace ComplaintFormCore.Web_Apis
                 //  TODO: Log this somewhere
                 return StatusCode(500, $"Internal server error: {ex}");
             }
-        }     
+        }
 
         /// <summary>
         /// Fetch a file associated to a complaint

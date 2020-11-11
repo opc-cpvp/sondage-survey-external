@@ -174,6 +174,9 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             //  This is a class found in GoC and was used in the original project.
             //  It adds a border around a panel and a different backgroud color
             classes.panel.container += " well";
+
+            //  Add the css class label-danger
+            classes.error.root += " label-danger";
         }
     });
 

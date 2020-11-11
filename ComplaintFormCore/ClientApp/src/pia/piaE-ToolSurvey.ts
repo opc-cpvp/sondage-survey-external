@@ -14,6 +14,79 @@ declare global {
     var survey: Survey.SurveyModel; // eslint-disable-line no-var
 }
 
+export const PartiesSharePersonalInformationArray = [
+    {
+        text: {
+            en: "Another program area within the same institution",
+            fr: ""
+        },
+        value: "same_institution"
+    },
+    {
+        text: {
+            en: "Another federal government institution",
+            fr: ""
+        },
+        value: "federal_government_institution"
+    },
+    {
+        text: {
+            en: "A provincial or territorial government in Canada",
+            fr: ""
+        },
+        value: "provincial_in_canada"
+    },
+    {
+        text: {
+            en: "A regional or municipal government in Canada",
+            fr: ""
+        },
+        value: "regional_in_canada"
+    },
+    {
+        text: {
+            en: "A government outside of Canada",
+            fr: ""
+        },
+        value: "government_outside_canada"
+    },
+    {
+        text: {
+            en: "A non-governmental organization in Canada (for example, a non-for-profit or registered charity)",
+            fr: ""
+        },
+        value: "non_governmental_organization_in_canada"
+    },
+    {
+        text: {
+            en: "A non-governmental organization outside of Canada",
+            fr: ""
+        },
+        value: "non_governmental_organization_outside_canada"
+    },
+    {
+        text: {
+            en: "A private-sector organization in Canada",
+            fr: ""
+        },
+        value: "private_sector_in_canada"
+    },
+    {
+        text: {
+            en: "A private-sector organization outside of Canada",
+            fr: ""
+        },
+        value: "private_sector_outside_canada"
+    },
+    {
+        text: {
+            en: "Other",
+            fr: ""
+        },
+        value: "other"
+    }
+];
+
 export class PiaETool {
     // TODO: Figure out if we want to store those const in surveyLocalStorage.ts or in each files
     private storageName_PIA = "SurveyJS_LoadState_PIA";
@@ -256,6 +329,33 @@ export class PiaETool {
                                 });
                             }
                         }
+                    } else if (options.question.name === "pnd_PurposeOfNotAllDisclosed") {
+                        //  For this question, we need to populate the dropdown named 'ReceivingParties' inside the
+                        //  paneldynamic 'pnd_PurposeOfDisclosure' with what the user has selected in a previous question.
+
+                        const pnd_PurposeOfDisclosure = options.question as Survey.QuestionPanelDynamicModel;
+                        if (pnd_PurposeOfDisclosure) {
+                            //  receivingParties is the dropdown to be populated
+                            const receivingParties = pnd_PurposeOfDisclosure.templateElements[1] as Survey.QuestionDropdownModel;
+                            if (receivingParties) {
+                                //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
+                                const partiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
+                                    "PartiesSharePersonalInformation"
+                                ) as Survey.QuestionMatrixDynamicModel;
+                                const arrayOfItem = partiesSharePersonalInformation[0].value as any[];
+                                arrayOfItem.forEach(item => {
+                                    const selectedItemObject = PartiesSharePersonalInformationArray.find(i => i.value === item.party);
+                                    if (selectedItemObject) {
+                                        const selectedItem: Survey.ItemValue = new Survey.ItemValue(
+                                            selectedItemObject.value,
+                                            sender.getLocale() === "fr" ? selectedItemObject.text.fr : selectedItemObject.text.en
+                                        );
+
+                                        receivingParties.choices.push(selectedItem);
+                                    }
+                                });
+                            }
+                        }
                     }
                 });
 
@@ -280,7 +380,7 @@ export class PiaETool {
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
-                SurveyFile.initSurveyFileModelEvents(_survey);
+                SurveyFile.initSurveyFileModelEvents(_survey, "pia");
 
                 this.setNavigationBreadcrumbs(_survey);
 
@@ -379,36 +479,15 @@ export class PiaETool {
 
         const items = document.getElementsByClassName("breadcrumb-item");
 
-        // Array.from(items).forEach(li => {
-        //    //  Reset the original class on each <li> item
-        //    li.className = "breadcrumb-item";
-        // });
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
 
-        // const li = document.getElementById(`li_breadcrumb_${surveyObj.currentPage.section}`);
-        // if (li) {
-        //    li.className += " active";
-        // }
-
-        // if (surveyObj.currentPage.section === 0) {
-        //    const li = document.getElementById("li_breadcrumb_0");
-        //    if (li) {
-        //        li.className += " active";
-        //    }
-        // } else if (surveyObj.currentPage.section === 1) {
-        //    const li = document.getElementById("li_breadcrumb_1");
-        //    if (li) {
-        //        li.className += " active";
-        //    }
-        // } else if (surveyObj.currentPage.section === 2) {
-        //    const li = document.getElementById("li_breadcrumb_2");
-        //    if (li) {
-        //        li.className += " active";
-        //    }
-        // } else if (surveyObj.currentPage.section === 3) {
-        //    const li = document.getElementById("li_breadcrumb_3");
-        //    if (li) {
-        //        li.className += " active";
-        //    }
-        // }
+        const section: string = surveyObj.currentPage.section;
+        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
+        if (li_breadcrumb) {
+            li_breadcrumb.className += " active";
+        }
     }
 }

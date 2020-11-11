@@ -250,7 +250,7 @@ export class PaSurvey {
 
                 initSurveyModelProperties(_survey);
 
-                initSurveyFileModelEvents(_survey);
+                initSurveyFileModelEvents(_survey, "pa");
 
                 //  TODO:   for now, in order to be able to use the checkboxes with addiotional htnl info, we
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.

@@ -238,16 +238,15 @@ export const piaTestData = {
     FormalInformationSharingAgreement: "yes_already_in_place",
     ThirdPartyCollectionDescription: "XWRADCEEVQSLKQKSUJQOCNTQT",
     DocumentationRelevantISA: "upload",
-    DocumentationRelevantISALink: "VCJSVTOAQHKIVDITUKEFHVFAA",
     DocumentationISAMissingExplanation: "LPJXGTFYURBYEOHBKONXCQLOK",
-    Documentation_file_upload: [],
+    ISAFiles: [],
     HasExistingPIB: true,
     ExistingPIBDetails: "VIFNYYFOYKITUCXMJCYBFXKLG",
     NoPIBStatusReason: "new_pib",
     HasNewPIBWorkBegun: true,
     PIBStatusExplanationType: "text_field",
     PIBStatusExplanationText: "NPIAEOKFPJWYTLHGQAKTAYGBI",
-    PIB_documentation_file_upload: [],
+    PIBFiles: [],
     NoBeganPIBStatusExplanationText: "KIOOKCBLVDKFPROOOVYAAFWVG",
     WhyNoPlanToReflectNewConsistentPIB: "NRFRWOYAVHXAHRRQLLKLXVKPR",
     WhyNoPIBExplanation: "SDBKDNNANLJSKMMTTVBTEGQRW",
@@ -272,6 +271,33 @@ export const piaTestData = {
     IsCollectInformationAuthoritativeSources: "yes_in_all_collection",
     CollectInformationAuthoritativeSourcesExplanation: "BIFOSVOUIVCOKYKWBXINNLMDU",
     ProgramAccuracyDescription: "TYITJWVUHTXQAJAWMEFESHFIB",
+    ProcessDisposalPhysicalFormat: "yes_not_established",
+    ProcessDisposalDocumentationPhysicalFormat: "yes_not_established",
+    DisposalPhysicalFormatDescription:
+        "EJVEIUXQDUAOYGIHMGLEACNRVFIUHGTWTSGDGCSPLHLVJEFNVGMBQBPBUEHCMDIVACTFYFAKMVRRQQHRATYBTRFSDEHCTPCIYOVGJANPFCOUIWJDVPCREH CHWBBUWXPVSJSCUBIYGIURDKKGUDFENKDQLNJIXSSHLRBXDHIUHCLVMKELPTYTRLIIFBPHQYBMOMFLJLCMUJWKXHEAJXRDSYPYISSCQBDHBYGAFRCERMXHOXJWWPXSHWSPWF",
+    ProcessDisposalElectronicFormat: "yes_in_place",
+    ProcessDisposalDocumentationElectronicFormat: "yes_in_place",
+    DisposalElectronicFormatDescription:
+        "WFFOVUBBASFKPHYRURJEJLKAWKIUYEBISHONQYKEPQLKINJWLTBSRMYLTFRLMFCUQWRISLAVGFNRAYQJAKIECIQFIDSLHYRJOPSLV BEYTFLLXGKTNIKBWWRIGLAOSONHNEDJGFMXFIKWVEHBRXXYNPMQWKFKBPGFQEXSCBNIUMUNMULBDXWTPOSWQMLVYCWPBEGQGNYPKODBUYECXEGDRMOCLACPPRJROELHOTUOYGJBKQCRIIWUVTXOPD",
+    TriggerProcessToDispose:
+        "OJQFQQSWAMBTILDBOCQQTHULITMUWYTSKCVLUCJFBSYVCEPXAYWACNHHOEVWDXABSHJFPRGMSKPAHXJEDOUWCSPVUOWPGLCDSXCT TKHISJHRXGYPTQSNCDYARMKBTPFGIMHIVPKSGLDRKXXNOGVOSNAPYCBGYGNCEBILYPTEGAHQYGPTOVLNTQMULQJSNDSAXANJOLOXLQISGJQRLHQCUYINNNYHGAQCGGRXSFFCHMCDHTOCAQHFMPEYRA",
+    WillKeepRecordOfDisposal: true,
+    EquipementDeviceDeleteStoredInformation: "yes_not_established",
+    PopulationImpactedByUseOfPI: "all_employees",
+    PopulationImpactedByUseOfPIAdditionalInfo:
+        "FWFPJIVXITTMHMIBXQJBVIURBJFQMVAFJBJUWXGBDWLRYNFGUPUMVNCWBMOADELLSOCGDMEYKHWXWDSMDXVVBNIUXMTKJFXXLYYKKY DHLVCNPDYXTBWEIOKEFGHPSSOEJYMWDHBDTOKFLUEUMUPIITOWNTEERMORGWEQQBTLYSJTEFSKBMDWDGUOKPJJCWLHYRXNPNDKADIPJURIATCEJQOYBOFBRKJCGCTMGFTMIRVYWFFOWAIITGWICX",
+    DoesFocusVulnerableGroups: true,
+    FocusVulnerableGroupsDescription:
+        "TYQLOPDEYQSQYGWRGSREEICCJMWTGUPIIIOGTSHLBHVAEYJQFXUMMSCKVNBCRIXEBJHPRQWNKGCWLBXKDGOHACVOFDJGQFTRJRXTQSXN BGBGPFXUOPYLTPDYNSJOGPVFMKNTCESJHAGSBPXYENRAGIXSNYFXJIGKJUSFRERJWODSJKWXTJKSXUYELTFCXUAXSUIFVSHYUHDQEEJDCHDYXNMOUOSXXPKBOEANBQBBCKWPQIYHKCAQQAAEIT",
+    SizePopulationImpacted: "small",
+    HowInstitutionUsePersonalInformation: "administration",
+    HowInstitutionUsePersonalInformationMoreDetails:
+        "RSCYJCFVQPBHEVCVAVYRUXMMGXUDYGKWKYJOSNMYDFJXUMMEVIOEIBDTGORLGBVJFDWFLNCMIYOONORTKPHQRFNIUPIDUBSBIASQPHSHG CUJMNFQWXBPTFRYPNJUFXQHGNFNVAEDWYKOKEVGJQGWYCGDHSABWXBHLMCYIRTWSWSUUCNLRCKORSIDGCFCYCFYWCDWBWXRVIDBJLHEFOJUMMPREYRFLRWPRSWSYPJTDRRIPGSUTBWKSJLJLL",
+    InstitutionUsePersonalInformation: ["consistent_purpose"],
+    PersonalInformationUsedFor: ["profiling_prediction"],
+    DoesUseDeIndentification: true,
+    UseDeIndentificationDescription:
+        "LEUPKTRWLQTVGVHFQEFQBQVBSPJUQEVJFKDWROAMKOJTYCVFHQHOYGFUISVTJVFHUJQUSKNBDRFMHBCPTENYVGJXFINXSFCOICYOLA MWDFKHBRNGPGAFIGKNARPKVOIXOQEEBNETRQUPVCWMTHHLFWGBQLNSJCAOWMRJNIFCBGNRKUQXUDPOGVRRKDMPYKJOPGSJKMYLBEKYJNPVTPWGMLHATYYJUPDQWXBEBHMIDDMBLSHVMQUIMCCDXS",
     BehalfMultipleInstitutionOthers: [
         {
             BehalfMultipleInstitutionOther: "GOCXVHWBFUCMCFXHJSRKPWQDS",
@@ -285,16 +311,47 @@ export const piaTestData = {
             SeniorOfficialOtherEmail: "GQNXUJYYWC@gmail.com"
         }
     ],
+    DocumentationRelevantISALinks: [
+        {
+            link: "http://DTYARDFVJY.com"
+        }
+    ],
     PersonalInformationCategory: [
         {
             Category: "name",
             SupplementaryInformation: "LEBDKQHHXTGLTUYNEYDPXOCHO",
+            PersonalInformationElement: "HLXRUWHKDBJNNNYHEKUYHNPYW"
+        },
+        {
+            Category: "from_social_media",
+            PersonalInformationElement: "HLXRUWHKDBJNNNYHEKUYHNPYW"
+        },
+        {
+            Category: "sex_gender",
             PersonalInformationElement: "HLXRUWHKDBJNNNYHEKUYHNPYW"
         }
     ],
     PNSStatement: [
         {
             Description: "IWNMKIPPTHDKYGIVNMVSCLXQM"
+        }
+    ],
+    PartiesSharePersonalInformation: [
+        {
+            Party: "same_institution",
+            Description: "utyurtyu"
+        },
+        {
+            Party: "government_outside_canada",
+            Description: "urtyurtyu"
+        },
+        {
+            Party: "non_governmental_organization_in_canada",
+            Description: "tyurtyu"
+        },
+        {
+            Party: "private_sector_outside_canada",
+            Description: "twertwert"
         }
     ]
 };
