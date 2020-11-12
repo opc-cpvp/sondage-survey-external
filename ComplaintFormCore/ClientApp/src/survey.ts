@@ -5,6 +5,7 @@ import {
     Model,
     PageModel,
     Question,
+    QuestionHtmlModel,
     StylesManager,
     Survey,
     SurveyError,
@@ -34,16 +35,17 @@ export abstract class SurveyBase extends Survey {
 
     public displayErrorSummary(questionErrors: Map<Question, SurveyError[]>): void {
         const currentPage = this.survey.currentPage as PageModel;
-        const summaryId = `${currentPage.name}-errors`;
 
-        document.getElementById(summaryId)?.remove();
+        let errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
+        if (errorsQuestion !== null) {
+            currentPage.removeQuestion(errorsQuestion);
+        }
 
         if (!currentPage.hasErrors()) {
             return;
         }
 
         const summary = document.createElement("section");
-        summary.id = summaryId;
         summary.className = "alert alert-danger";
 
         let index = 1;
@@ -67,8 +69,10 @@ export abstract class SurveyBase extends Survey {
         summary.appendChild(header);
         summary.appendChild(list);
 
-        const pageTitle = document.querySelector(".sv_title");
-        pageTitle?.parentElement?.insertBefore(summary, pageTitle.nextSibling);
+        errorsQuestion = new QuestionHtmlModel("errors");
+        errorsQuestion.html = summary.outerHTML;
+
+        currentPage.addQuestion(errorsQuestion, 0);
         currentPage.scrollToTop();
     }
 
@@ -102,9 +106,6 @@ export abstract class SurveyBase extends Survey {
         defaultBootstrapCss.question.title = "sv_q_title";
         defaultBootstrapCss.question.titleRequired = "required";
 
-        // https://surveyjs.io/Documentation/Library?id=surveymodel#checkErrorsMode
-        // check errors on every question value (i.e., answer) changing.
-        this.survey.checkErrorsMode = "onValueChanged";
         // onHidden -> survey clears the question value when the question becomes invisible.
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
         this.survey.clearInvisibleValues = "onHidden";
@@ -130,14 +131,6 @@ export abstract class SurveyBase extends Survey {
             this.handleOnTextMarkdown(sender, options);
         });
 
-        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
-            // this.handleOnAfterRenderPage(sender, options);
-        });
-
-        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
-            // this.handleOnAfterRenderQuestion(sender, options);
-        });
-
         this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
             this.handleOnValidatedErrorsOnCurrentPage(sender, options);
         });
@@ -155,45 +148,7 @@ export abstract class SurveyBase extends Survey {
         options.html = str;
     }
 
-    private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
-        // Replaces the page title h4 with an h1
-        const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector(".sv_title");
-
-        if (oldTitle === null) {
-            return;
-        }
-
-        const page = options.page as PageModel;
-
-        const newTitle = document.createElement("h1");
-        newTitle.className = oldTitle.className;
-        newTitle.innerText = page.title;
-
-        oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
-    }
-
-    private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
-        // Replaces the question title h5 with a label
-        const htmlElement = options.htmlElement as HTMLElement;
-        const oldTitle = htmlElement.querySelector(".sv_q_title");
-
-        if (oldTitle === null) {
-            return;
-        }
-
-        const question = options.question as Question;
-
-        const newTitle = document.createElement("label");
-        newTitle.setAttribute("for", question.inputId);
-        newTitle.className = oldTitle.className;
-        newTitle.innerHTML = oldTitle.innerHTML;
-
-        oldTitle.parentElement?.replaceChild(newTitle, oldTitle);
-    }
-
     private handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
-        const page = options.page as PageModel;
         const questions = options.questions as Question[];
 
         const questionErrors = new Map<Question, SurveyError[]>();
