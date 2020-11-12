@@ -207,7 +207,7 @@
             {
               "type": "text",
               "name": "ContactPhoneExtension",
-              "startWithNewLine": true,
+              "startWithNewLine": false,
               "title": {
                 "en": "Extension",
                 "fr": "Poste"

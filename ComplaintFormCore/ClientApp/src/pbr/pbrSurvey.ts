@@ -77,12 +77,18 @@ export class PbrSurvey {
 
                 _survey.onComplete.add((sender, options) => {
                     console.log(sender.data);
+
+                    const div_navigation = document.getElementById("div_navigation");
+                    if (div_navigation) {
+                        div_navigation.style.display = "none";
+                    }
+
                     Ladda.stopAll();
                 });
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    SurveyLocalStorage.saveStateLocally(sender, SurveyLocalStorage.storageName_PBP);
+                    SurveyLocalStorage.saveStateLocally(sender, SurveyLocalStorage.storageName_PBR);
                 });
 
                 SurveyInit.initSurveyModelEvents(_survey);
@@ -92,9 +98,9 @@ export class PbrSurvey {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, SurveyLocalStorage.storageName_PBP, JSON.stringify(defaultData));
+                SurveyLocalStorage.loadStateLocally(_survey, SurveyLocalStorage.storageName_PBR, JSON.stringify(defaultData));
 
-                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PBP);
+                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PBR);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);

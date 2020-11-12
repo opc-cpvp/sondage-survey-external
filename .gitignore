@@ -353,3 +353,4 @@ MigrationBackup/
 # ComplaintFormCore/wwwroot/lib
 ComplaintFormCore/wwwroot/dist
 node_modules
+/ComplaintFormCore/FileUploads/pia
