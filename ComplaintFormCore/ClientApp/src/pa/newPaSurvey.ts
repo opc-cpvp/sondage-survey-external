@@ -110,7 +110,7 @@ export class NewPaSurvey extends SurveyBase {
             if (!response.ok) {
                 const problem = await response.json();
                 // TODO: Replace this with something more generic
-                // printProblemDetails(problem, sender.locale);
+                // this.displayErrorSummary(questionErrors);
                 return;
             }
 
