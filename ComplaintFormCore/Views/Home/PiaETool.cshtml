@@ -22,22 +22,53 @@
 
 <center>
     <div id="div_navigation">
-        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
-        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnSurveyPrev" onclick="prevPage(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="nextPage(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyNext")</button>
         <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnShowPreview")</button>
         <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button hidden">@Localizer.GetLocalizedString("btnComplete")</button>
         <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary hidden">Start</button>
     </div>
 </center>
+<br />
+<ul class="breadcrumb" role="tablist" id="ul_pia_navigation">
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 0)" id="li_breadcrumb_0">
+        <p>Information</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 1)" id="li_breadcrumb_1">
+        <p>@Localizer.GetLocalizedString("liStep_1")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 2)" id="li_breadcrumb_2">
+        <p>@Localizer.GetLocalizedString("liStep_2")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 3)" id="li_breadcrumb_3">
+        <p>@Localizer.GetLocalizedString("liStep_3")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 3.3)" id="li_breadcrumb_3">
+        <p>@Localizer.GetLocalizedString("liStep_33")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 3.4)" id="li_breadcrumb_3">
+        <p>@Localizer.GetLocalizedString("liStep_34")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 3.5)" id="li_breadcrumb_3">
+        <p>@Localizer.GetLocalizedString("liStep_35")</p>
+    </li>
+    <li class="breadcrumb-item" onclick="gotoSection(survey, 3.6)" id="li_breadcrumb_3">
+        <p>@Localizer.GetLocalizedString("liStep_36")</p>
+    </li>
+</ul>
 
 @section CustomStyles {
     <link href="~/css/site.css" rel="stylesheet" />
     <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
-   }
+    <link href="~/css/breadcrumb.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+}
 
 @section CustomScripts {
 
     <script src="~/dist/bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.js"></script>
+
 
     <script type="text/javascript">
 

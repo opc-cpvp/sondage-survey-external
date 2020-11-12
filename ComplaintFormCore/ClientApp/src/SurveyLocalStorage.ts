@@ -1,6 +1,7 @@
 ﻿import * as Survey from "survey-vue";
 
 export const storageName_PA = "SurveyJS_LoadState_PA";
+export const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
 export const storageName_Test = "SurveyJS_LoadState_Test";
 
 export function saveStateLocally(survey: Survey.SurveyModel, storageName: string): void {

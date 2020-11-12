@@ -1,26 +1,28 @@
 ﻿using ComplaintFormCore.Exceptions;
 using ComplaintFormCore.Models;
+using ComplaintFormCore.Models.pipeda;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System;
 
 namespace ComplaintFormCore.Web_Apis
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class PIASurveyController : ControllerBase
+    public class PipedaSurveyController : ControllerBase
     {
         private readonly SharedLocalizer _localizer;
 
-        public PIASurveyController(IStringLocalizerFactory factory)
+        public PipedaSurveyController(IStringLocalizerFactory factory)
         {
             _localizer = new SharedLocalizer(factory);
         }
 
         [HttpPost]
-        public IActionResult Validate([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
+        public IActionResult Validate([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
         {
-            var validator = new SurveyPIAToolModelValidator(_localizer);
+            var validator = new SurveyPipedaModelValidator(_localizer);
             var results = validator.Validate(model);
 
             if (!results.IsValid)
@@ -42,11 +44,9 @@ namespace ComplaintFormCore.Web_Apis
         }
 
         [HttpPost]
-        public IActionResult SendEmail([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
+        public IActionResult Complete([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
         {
-
-
-            return Ok();
+            return Ok(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
     }
 }

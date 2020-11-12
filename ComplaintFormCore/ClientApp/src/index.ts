@@ -13,9 +13,13 @@ import { FileMeterWidget } from "./widgets/filemeterwidget";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
+import { PipedaTool } from "./pipeda/pipedaSurvey";
+import { storageName_PA, storageName_PIPEDA } from "./surveyLocalStorage";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
+    function prevPage(survey: Survey.SurveyModel): void;
+    function nextPage(survey: Survey.SurveyModel): void;
     function endSession(): void;
     function showPreview(survey: Survey.SurveyModel): void;
     function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
@@ -23,8 +27,12 @@ declare global {
     function initPaSurvey(lang: "fr" | "en", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
-    function exportToPDF(lang: string): void;
+    function initPipeda(lang: string, token: string): void;
+    function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
+
+    function gotoSection(survey: Survey.SurveyModel, section: number): void;
+    function gotoPage(survey: Survey.SurveyModel, pageName: string): void;
 }
 
 declare let Symbol;
@@ -49,6 +57,8 @@ declare let Symbol;
 
     function main() {
         globalThis.startSurvey = SurveyNavigation.startSurvey;
+        globalThis.prevPage = SurveyNavigation.prevPage;
+        globalThis.nextPage = SurveyNavigation.nextPage;
         globalThis.endSession = SurveyNavigation.endSession;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
@@ -79,14 +89,40 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
             const piaETool = new PiaETool();
             piaETool.init(jsonUrl, lang, token);
+
+            globalThis.gotoSection = (survey, section) => {
+                piaETool.gotoSection(survey, section);
+            };
+
+            globalThis.gotoPage = (survey, pageName) => {
+                piaETool.gotoPage(survey, pageName);
+            };
+
+            globalThis.nextPage = survey => {
+                piaETool.nextPage(survey);
+            };
         };
 
-        globalThis.exportToPDF = lang => {
-            //  TODO: somehow the json url must come from the parameter because we can re-use this method
-            const jsonUrl = "/sample-data/survey_pa_complaint.json";
-            const filename = "survey_export";
+        globalThis.initPipeda = (lang, token) => {
+            const jsonUrl = "/sample-data/survey_pipeda_complaint.json";
+            const pipedaTool = new PipedaTool();
+            pipedaTool.init(jsonUrl, lang, token);
+        };
+
+        globalThis.exportToPDF = (lang, complaintType) => {
+            let jsonUrl = "";
+            let filename = "";
             const pdfClass = new surveyPdfExport();
-            pdfClass.exportToPDF(filename, jsonUrl, lang);
+
+            if (complaintType === "pipeda") {
+                jsonUrl = "/sample-data/survey_pipeda_complaint.json";
+                filename = "survey_export_pipeda";
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PIPEDA);
+            } else if (complaintType === "pa") {
+                jsonUrl = "/sample-data/survey_pa_complaint.json";
+                filename = "survey_export_pa";
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA);
+            }
         };
 
         globalThis.initTestSurvey = (lang, token) => {

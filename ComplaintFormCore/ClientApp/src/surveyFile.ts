@@ -127,12 +127,14 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
 }
 
 //  This is to build a custom file preview container.
-export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.QuestionFileModel, container: HTMLDivElement): void {
+export function updateFilePreview(surveyObj: Survey.SurveyModel, question: Survey.QuestionFileModel, container: HTMLDivElement): void {
     container.innerHTML = "";
 
-    const title = document.createElement("h3");
-    title.innerHTML = getTranslation(question.itemListTitle, survey.locale);
-    container.appendChild(title);
+    if (question.itemListTitle && question.itemListTitle.length > 0) {
+        const title = document.createElement("h3");
+        title.innerHTML = getTranslation(question.itemListTitle, surveyObj.locale);
+        container.appendChild(title);
+    }
 
     if (question.value && question.value.length > 0) {
         const listView = document.createElement("ol");
@@ -197,22 +199,33 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
 
             div.appendChild(button);
 
-            const buttonRemove = document.createElement("button");
-            buttonRemove.setAttribute("type", "button");
-            buttonRemove.className = "btn sv_q_file_remove_button";
-            buttonRemove.innerText = getTranslation(question.itemListRemoveText, survey.locale);
+            if (!surveyObj.isDisplayMode) {
+                //  If in 'Preview' mode we are not showing the remove buttons
 
-            if (survey.isDisplayMode === true) {
-                buttonRemove.setAttribute("disabled", "disabled");
-            }
+                const buttonRemove = document.createElement("button");
+                buttonRemove.setAttribute("type", "button");
+                buttonRemove.className = "btn sv_q_file_remove_button";
 
-            buttonRemove.onclick = () => {
-                if (confirm(getTranslation(question.confirmRemoveMessage, survey.locale))) {
-                    question.removeFile({ name: fileItem.name });
+                if (question.itemListRemoveText && question.itemListRemoveText.length > 0) {
+                    buttonRemove.innerText = getTranslation(question.itemListRemoveText, surveyObj.locale);
+                } else if (Survey.surveyLocalization.locales[surveyObj.locale]) {
+                    //  This is strange but if the survey is in english
+                    //  Survey.surveyLocalization.locales[surveyObj.locale] is undefined.
+                    //  If in French then Survey.surveyLocalization.locales[surveyObj.locale] has values.
+                    buttonRemove.innerText = Survey.surveyLocalization.locales[surveyObj.locale].removeRow;
+                } else {
+                    buttonRemove.innerText = "Remove";
                 }
-            };
 
-            div.appendChild(buttonRemove);
+                buttonRemove.onclick = () => {
+                    //  We cannot use the file property 'needConfirmRemoveFile' because it is a custom preview
+                    if (confirm(getTranslation(question.confirmRemoveMessage, surveyObj.locale))) {
+                        question.removeFile({ name: fileItem.name });
+                    }
+                };
+
+                div.appendChild(buttonRemove);
+            }
 
             item.appendChild(div);
 
@@ -222,7 +235,7 @@ export function updateFilePreview(survey: Survey.SurveyModel, question: Survey.Q
         container.appendChild(listView);
     } else {
         const titleElement = document.createElement("p");
-        titleElement.innerHTML = getTranslation(question.itemListNoAttachmentsText, survey.locale);
+        titleElement.innerHTML = getTranslation(question.itemListNoAttachmentsText, surveyObj.locale);
         container.appendChild(titleElement);
     }
 }

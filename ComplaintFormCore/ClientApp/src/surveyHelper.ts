@@ -155,3 +155,20 @@ export function clearProblemDetails(): void {
         errorSection.classList.add("hidden");
     }
 }
+
+export enum Province {
+    Ontario = 1,
+    Quebec = 2,
+    NovaScotia = 3,
+    NewBrunswick = 4,
+    Manitoba = 5,
+    BritishColumbia = 6,
+    PEI = 7,
+    Saskatchewan = 8,
+    Alberta = 9,
+    Newfoundland = 10,
+    Nunavut = 11,
+    Yukon = 12,
+    NWT = 13,
+    Other = 14
+}
