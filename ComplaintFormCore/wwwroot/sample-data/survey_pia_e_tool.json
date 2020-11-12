@@ -3660,9 +3660,10 @@
           }
         },
         {
-          "type": "paneldynamic",
+          "type": "matrixdynamic",
           "valueName": "PNSStatement",
           "visibleIf": "{HasPrivacyNoticeStatement} = true and {HasDraftFinalVersionPNSAvailable} = true",
+          "isRequired": true,
           "title": {
             "en": "Please provide a copy of the PNS for this program. If you have multiple statements to provide, please do so and provide a brief description of where an individual would encounter the notice (for example, on a paper form, on signs, etc.)",
             "fr": ""
@@ -3671,27 +3672,18 @@
             "en": "<p>At minimum, individuals should be provided with the following information:<ul><li>what personal information is being sought</li><li>for what purpose and with what authority</li><li>the consequences for not providing the information</li><li>how it will be used, disclosed and protected</li><li>for how long it will be retained</li><li>rights they may have to access and correct their information</li></ul></p>",
             "fr": ""
           },
-          "renderMode": "list",
-          "allowAddPanel": true,
-          "allowRemovePanel": true,
-          "panelAddText ": {
-            "en": "Add statement",
+          "addRowText ": {
+            "en": "Add another PNS",
             "fr": ""
           },
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this item?",
-            "fr": ""
-          },
-          "templateElements": [
+          "columns": [
             {
-              "type": "comment",
-              "valueName": "Description",
+              "cellType": "comment",
+              "name": "Description",
               "title": {
                 "en": "Description:",
                 "fr": ""
-              },
-              "isRequired": true
+              }
             }
           ]
         }
@@ -3847,7 +3839,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:</p><ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul>",
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:</p><p><ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul></p>",
             "fr": ""
           }
         }
@@ -5010,6 +5002,7 @@
           "type": "comment",
           "name": "OtherPartiesSharePersonalInformation",
           "visibleIf": "{PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
+          "isRequired": true,
           "title": {
             "en": "Please type in your answer and provide sufficient detail to indicate the purpose of the organization",
             "fr": ""
@@ -5029,6 +5022,7 @@
         {
           "type": "paneldynamic",
           "name": "pnd_PartiesSharePIDescription",
+          "valueName": "PartiesSharePersonalInformation",
           "title": {
             "en": "Please describe the Party or parties to whom the information will be disclosed.(3.9.3B)",
             "fr": ""
@@ -5036,7 +5030,6 @@
           "isRequired": true,
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "valueName": "PartiesSharePersonalInformation",
           "templateTitle": "{panel.Party}",
           "templateElements": [
             {
@@ -5239,6 +5232,7 @@
         {
           "type": "paneldynamic",
           "name": "pnd_CopiesRelevantISAs",
+          "valueName": "PartiesSharePersonalInformation",
           "title": {
             "en": "Please provide a copy (or copies) of relevant ISAs.(3.9.6C)",
             "fr": ""
@@ -5246,7 +5240,6 @@
           "isRequired": true,
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "valueName": "PartiesSharePersonalInformation",
           "templateTitle": "{panel.Party}",
           "templateElements": [
             {

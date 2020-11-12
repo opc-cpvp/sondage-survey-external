@@ -516,7 +516,16 @@ namespace SurveyToCS
             {
                 csharp.Append("RuleFor(x => x.");
                 csharp.Append(elementName);
-                csharp.AppendLine(").EmailAddress();");
+                csharp.AppendLine(").EmailAddress()");
+
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    csharp.Append(".When( ");
+                    csharp.Append(visibleIf); ;
+                    csharp.Append(")");
+                }
+
+                csharp.AppendLine(";");
             }
 
             csharp.AppendLine();
@@ -554,35 +563,39 @@ namespace SurveyToCS
             return false;
         }
 
-        private static void BuildDynamicElementValidator(StringBuilder csharp, Element element, string childParameter)
+        private static void BuildDynamicElementValidator(StringBuilder csharp, Element element, string childParameter, string page_name)
         {
             string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
             string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
             csharp.Append("// ");
             csharp.Append(elementName);
-
+            csharp.Append(" (Page: ");
+            csharp.Append(page_name);
+            csharp.Append(")");
             csharp.AppendLine();
+
+            string visibleIf = GetVisibleIf(element, null, null);
 
             if (element.isRequired)
             {
                 csharp.Append(childParameter);
                 csharp.Append(".");
-                BuildRequiredValidator(csharp, elementName);
+                BuildRequiredValidator(csharp, elementName, visibleIf);
             }
 
             if (type == "comment")
             {
                 csharp.Append(childParameter);
                 csharp.Append(".");
-                BuildMaxLengthValidator(csharp, element);
+                BuildMaxLengthValidator(csharp, element, visibleIf);
             }
 
             if (type == "text" && element.inputType != "date" && element.inputType != "number")
             {
                 csharp.Append(childParameter);
                 csharp.Append(".");
-                BuildMaxLengthValidator(csharp, element);
+                BuildMaxLengthValidator(csharp, element, visibleIf);
             }
 
             //  Check if selected option is in the list of valid options
@@ -590,7 +603,7 @@ namespace SurveyToCS
             {
                 csharp.Append(childParameter);
                 csharp.Append(".");
-                BuildListValidator(csharp, element);
+                BuildListValidator(csharp, element, visibleIf);
             }
 
             if (type == "text" && element.inputType == "email")
@@ -599,7 +612,16 @@ namespace SurveyToCS
                 csharp.Append(".");
                 csharp.Append("RuleFor(x => x.");
                 csharp.Append(elementName);
-                csharp.AppendLine(").EmailAddress();");
+                csharp.AppendLine(").EmailAddress()");
+
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    csharp.Append(".When( ");
+                    csharp.Append(visibleIf); ;
+                    csharp.Append(")");
+                }
+
+                csharp.AppendLine(";");
             }
         }
 
@@ -636,7 +658,7 @@ namespace SurveyToCS
                             csharp.Append(dynamicItem.Key);
                             csharp.AppendLine(").ChildRules(child => {");
 
-                            BuildDynamicElementValidator(csharp, column, "child");
+                            BuildDynamicElementValidator(csharp, column, "child", element.parent.name);
 
                             csharp.Append("})");
 
@@ -664,7 +686,7 @@ namespace SurveyToCS
                             csharp.Append(dynamicItem.Key);
                             csharp.AppendLine(").ChildRules(child => {");
 
-                            BuildDynamicElementValidator(csharp, templateItem, "child");
+                            BuildDynamicElementValidator(csharp, templateItem, "child", element.parent.name);
 
                             csharp.Append("})");
 
