@@ -1,6 +1,4 @@
-﻿/// <reference path="../@types/survey-vue/survey.vue.d.ts" />
-
-import "core-js/es";
+﻿import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill"; //  Polyfill to open/close the <details> tags
@@ -11,6 +9,7 @@ import { TestSurvey } from "./tests/testSurvey";
 import { PaSurvey } from "./pa/PaSurvey";
 import { NewPaSurvey } from "./pa/newPaSurvey";
 import { CheckboxWidget } from "./widgets/checkboxwidget";
+import { FileMeterWidget } from "./widgets/filemeterwidget";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
@@ -58,8 +57,17 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             CheckboxWidget.init();
+            FileMeterWidget.init();
 
             const paSurvey = new NewPaSurvey(lang, token);
+
+            paSurvey.onPaSurveyComplete.add((survey: Survey.SurveyModel, options: any) => {
+                const fileNumber = document.getElementById("sp_survey_file_number");
+                if (fileNumber) {
+                    fileNumber.innerText = options.referenceNumber;
+                }
+            });
+
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.render();
 
