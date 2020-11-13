@@ -354,7 +354,4 @@ MigrationBackup/
 /ComplaintFormCore/wwwroot/dist
 node_modules
 /ComplaintFormCore/FileUploads/pia
-/ComplaintFormCore/wwwroot/lib/jqueryui
-/ComplaintFormCore/wwwroot/lib/jquery
-
-/ComplaintFormCore/wwwroot/lib/surveyjs-widgets
+/ComplaintFormCore/wwwroot/lib
