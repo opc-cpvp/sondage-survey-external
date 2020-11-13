@@ -43,7 +43,7 @@ namespace ComplaintFormCore.Web_Apis
         }
 
         [HttpPost]
-        public IActionResult Complete([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
+        public IActionResult Complete([FromBody] SurveyPBRModel model, [FromQuery] string complaintId)
         {
             //ValidationProblemDetails valid = new ValidationProblemDetails();
             //valid.Detail = "There is errors with the validation, see error list";
