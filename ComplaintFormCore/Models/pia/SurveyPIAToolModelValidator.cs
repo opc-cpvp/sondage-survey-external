@@ -651,6 +651,7 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.UseDeIndentificationDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // IsCollectionReasonOtherThanStorage (Page: page_step_3_9_1)
+            RuleFor(x => x.IsCollectionReasonOtherThanStorage).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // DisclosePersonalInformationMethod (Page: page_step_3_9_2)
             RuleFor(x => x.DisclosePersonalInformationMethod).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));

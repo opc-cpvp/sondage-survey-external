@@ -4833,6 +4833,7 @@
         {
           "type": "boolean",
           "name": "IsCollectionReasonOtherThanStorage",
+          "isRequired": true,
           "title": {
             "en": "Will the program area that is responsible for collection of the personal information disclose the personal information for reasons other than storage? (3.9.1)",
             "fr": ""
@@ -5488,6 +5489,205 @@
             "fr": ""
           }
         }
+      ]
+    },
+    {
+      "name": "page_step_3_10_1",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasSecurityDesignation",
+          "isRequired": true,
+          "title": {
+            "en": "Have you assigned a security designation to the personal information?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Descriptions of security designations for the federal government are available on the web. Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_2",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "visibleIf": "{HasSecurityDesignation} = true",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsSecurityDesignationSameToAllPICollected",
+          "isRequired": true,
+          "title": {
+            "en": "Is the security designation that has been assigned to the personal information the same for all of the personal information being collected?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_3",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "visibleIf": "{HasSecurityDesignation} = true",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "HighestSecurityDesignation",
+          "title": {
+            "en": "What is the *highest* security designation that you have assigned to the personal information?",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Protected A",
+                "fr": ""
+              },
+              "value": "protected_A"
+            },
+            {
+              "text": {
+                "en": "Protected B",
+                "fr": ""
+              },
+              "value": "protected_B"
+            },
+            {
+              "text": {
+                "en": "Protected C",
+                "fr": ""
+              },
+              "value": "protected_C"
+            },
+            {
+              "text": {
+                "en": "Classified",
+                "fr": ""
+              },
+              "value": "classified"
+            },
+            {
+              "text": {
+                "en": "Confidential",
+                "fr": ""
+              },
+              "value": "confidential"
+            },
+            {
+              "text": {
+                "en": "Secret",
+                "fr": ""
+              },
+              "value": "secret"
+            },
+            {
+              "text": {
+                "en": "Top Secret",
+                "fr": ""
+              },
+              "value": "top_secret"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "SecurityDesignationDescription",
+          "visibleIf": "{HighestSecurityDesignation} = 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Security Designation: ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_4_A",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "",
+          "title": {
+            "en": "Has your institution completed or plans to complete any security assessments for this program or activity? Select all that apply",
+            "fr": ""
+          },
+          "description": {
+            "en": "Examples may include Security Assessment and Authorization (SA&A), Security Assessment Report (SAR), Threat and Risk Assessment (TRA). Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‘No’ to this question.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already completed",
+                "fr": ""
+              },
+              "value": "yes_already_completed"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet completed",
+                "fr": ""
+              },
+              "value": "yes_not_completed"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_4B",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_step_3_10",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+
       ]
     },
     {
