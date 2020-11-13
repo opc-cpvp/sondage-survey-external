@@ -18,6 +18,8 @@ namespace SurveyToCS
         private static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "tagbox", "radiogroup", "boolean", "panel", "file", "checkbox" };
         private static readonly List<string> _dynamicElements = new List<string>() { "matrixdynamic", "paneldynamic" };
 
+        private static List<Element> _surveyAllElements;
+
         static void Main(string[] args)
         {
             //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
@@ -116,21 +118,6 @@ namespace SurveyToCS
 
             Console.WriteLine(csharp.ToString());
             Console.ReadLine();
-        }
-
-        private static void AddParentPage(Page pageObj, List<Element> elements)
-        {
-            foreach (var element in elements)
-            {
-                if (element.type == "panel")
-                {
-                    AddParentPage(pageObj, element.elements);
-                }
-                else
-                {
-                    element.parent = pageObj;
-                }
-            }
         }
 
         private static void BuildProperty(StringBuilder csharp, List<Element> elements, Page pageObj)
@@ -390,6 +377,12 @@ namespace SurveyToCS
                 AddParentPage(page, page.elements);
             }
 
+            _surveyAllElements = new List<Element>();
+            foreach (var page in survey.pages)
+            {
+                AddSurveyElement(_surveyAllElements, page, page.elements);
+            }
+
             //  Get a list of dynamic properties, from the matrixdynamic and the paneldynamic.
             //  Then if there is such items, we create the classes validators
             List<Element> survey_dynamic_elements = new List<Element>();
@@ -401,6 +394,7 @@ namespace SurveyToCS
             StringBuilder csharp = new StringBuilder();
             csharp.AppendLine("using System.Collections.Generic;");
             csharp.AppendLine("using FluentValidation;");
+            csharp.AppendLine("using System.Linq;");
 
             foreach (string item in usings)
             {
@@ -624,6 +618,10 @@ namespace SurveyToCS
         {
             string visibleIf = string.Empty;
 
+            string anyof_pattern = @"{[a-zA-Z_]+}\sanyof\s\[[a-zA-Z,'_]+\]";
+            string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
+            string property_pattern = @"({[a-zA-Z_]+})";
+
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {
                 visibleIf += parentPage.visibleIf;
@@ -652,11 +650,57 @@ namespace SurveyToCS
 
             if (string.IsNullOrWhiteSpace(visibleIf) == false)
             {
-                return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").Replace("{", "x.").Replace("}", "").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
+                MatchCollection anyofs = Regex.Matches(visibleIf, anyof_pattern);
+
+                if (anyofs.Count > 0)
+                {
+                    string wholeVisibleIf = string.Empty;
+                    foreach (Match match_anyof in Regex.Matches(visibleIf, anyof_pattern))
+                    {
+                        //  {InstitutionAgreedRequestOnInformalBasis} anyof ['yes','not_sure']
+                        // x.NatureOfComplaint.Intersect(new List<string> { "NatureOfComplaintDelay", "NatureOfComplaintExtensionOfTime", "NatureOfComplaintDenialOfAccess", "NatureOfComplaintLanguage" }).Any()
+                        Regex rgx_property = new Regex(property_pattern);
+                        Match matchProperty = rgx_property.Match(match_anyof.Value);
+
+                        //  Proerty {property} becomes propery
+                        string matchPropertyClean = matchProperty.Value.Replace("{", "").Replace("}", "");
+
+                        //  Find the conditional property
+                        Element conditonalProperty = _surveyAllElements.Where(x => x.name == matchPropertyClean).First();
+                        string replacement = string.Empty;
+
+                        if (conditonalProperty.type == "tagbox" || conditonalProperty.type == "checkbox")
+                        {
+                            //  tagbox & checkbox can have multiple choices so they are List<string> properties
+                            replacement = "x." + matchPropertyClean + ".Intersect";
+                        }
+                        else
+                        {
+                            //  This applies to type that has only one value selectable such as dropdown or radiogroup
+                            //  Very important to leave a space between the { property } otherwise the {} will be overwritten below
+                            replacement = "new List<string>() { x." + matchPropertyClean + " }.Intersect";
+                        }
+
+                        Regex rgx_items = new Regex(anyof_pattern_items);
+                        Match matchArray = rgx_items.Match(match_anyof.Value);
+
+                        replacement += "(new List<string>() {" + matchArray.Value.Replace("'", "\"").Replace("[", "").Replace("]", "");
+
+                        replacement += "}).Any()";
+
+                        visibleIf = visibleIf.Replace(match_anyof.Value, replacement);
+                    }
+                }
+
+                foreach (Match match_propery in Regex.Matches(visibleIf, property_pattern))
+                {
+                    visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+                }
+
+                return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
             }
 
             return string.Empty;
-
         }
 
         private static string GetVisibleIfFullCondition(Element element, Page parentPage, Element parentPanel = null)
@@ -932,7 +976,7 @@ namespace SurveyToCS
             {
                 retVal.Append("true");
             }
-            else if (type == "checkbox" || type == "radiogroup" || type == "dropdown")
+            else if (type == "radiogroup" || type == "dropdown")
             {
                 retVal.Append("\"");
 
@@ -944,7 +988,7 @@ namespace SurveyToCS
 
                 retVal.Append("\"");
             }
-            else if (type == "tagbox")
+            else if (type == "checkbox" || type == "tagbox")
             {
                 retVal.Append("[\"");
 
@@ -1003,6 +1047,36 @@ namespace SurveyToCS
         }
 
         #endregion
+
+        private static void AddParentPage(Page pageObj, List<Element> elements)
+        {
+            foreach (var element in elements)
+            {
+                if (element.type == "panel")
+                {
+                    AddParentPage(pageObj, element.elements);
+                }
+                else
+                {
+                    element.parent = pageObj;
+                }
+            }
+        }
+
+        private static void AddSurveyElement(List<Element> all_elements, Page pageObj, List<Element> elements)
+        {
+            foreach (var element in elements)
+            {
+                if (element.type == "panel")
+                {
+                    AddSurveyElement(all_elements, pageObj, element.elements);
+                }
+                else
+                {
+                    all_elements.Add(element);
+                }
+            }
+        }
 
         private static void GetDynamicElements(List<Element> survey_dynamic_elements, List<Element> page_or_panel_elements)
         {
