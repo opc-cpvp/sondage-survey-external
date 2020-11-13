@@ -6,6 +6,7 @@ import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
 import { printProblemDetails, getTranslation } from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
+import { paTestData } from "./pa_test_data";
 
 declare global {
     // TODO: get rid of this global variable
@@ -256,57 +257,12 @@ export class PaSurvey {
                 //          need to specify the array object type_complaint. There has to be a more elegant way of doing this.
                 // var defaultData  = { };
 
-                // var defaultData = {
-                //    "type_complaint": []
-                // };
-
                 const defaultData = {
-                    "FilingComplaintOnOwnBehalf": "yourself",
-                    "RaisedPrivacyToAtipCoordinator": "yes",
-                    "WhichFederalGovernementInstitutionComplaintAgainst": "3",
-                    "NatureOfComplaint": [
-                        "NatureOfComplaintOther",
-                        "NatureOfComplaintDelay",
-                        "NatureOfComplaintExtensionOfTime",
-                        "NatureOfComplaintCollection"
-                    ],
-                    "IsEmployeeChoice": "general_public",
-                    "AdditionalComments": "iuyiuyuiyiuy",
-                    "complainant_HaveYouSubmittedBeforeChoice": "no",
-                    "complainant_FormOfAddress": "Mr.",
-                    "complainant_FirstName": "jf",
-                    "complainant_LastName": "brouillette",
-                    "complainant_Email": "jf@hotmail.com",
-                    "complainant_MailingAddress": "66",
-                    "complainant_City": "gat",
-                    "complainant_PostalCode": "J9A2V5",
-                    "complainant_DayTimeNumber": "6135656667",
-                    "NeedsDisabilityAccommodationChoice": "yes",
-                    "DisabilityAccommodation": "iuyuiyiuyiuy",
-                    "complainant_Country": "CA",
-                    "complainant_ProvinceOrState": "2",
-                    "reprensentative_FormOfAddress": "Mr.",
-                    "reprensentative_FirstName": "jf",
-                    "reprensentative_LastName": "brouillette",
-                    "reprensentative_Email": "jf@hotmail.com",
-                    "reprensentative_MailingAddress": "66",
-                    "reprensentative_City": "gat",
-                    "reprensentative_PostalCode": "J9A2V5",
-                    "reprensentative_DayTimeNumber": "6135656667",
-                    "documentation_type": "none",
-                    "WhatWouldResolveYourComplaint": "gsdgdfgsdf",
-                    "SummarizeAttemptsToResolvePrivacyMatter": "gdfghjvbcvbcxvbxcvbxbcvb",
-                    "DateSentRequests": "qwerewr",
-                    "WordingOfRequest": "hgdffgh",
-                    "MoreDetailsOfRequest": "oiuyoiuo",
-                    "DateOfFinalAnswer": "gfhfjgj",
-                    "DidNoRecordExistChoice": "yes",
-                    "InstitutionAgreedRequestOnInformalBasis": "not_sure",
-                    "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
+                    "type_complaint": []
                 };
 
                 // Load the initial state
-                loadStateLocally(_survey, storageName_PA, JSON.stringify(defaultData));
+                loadStateLocally(_survey, storageName_PA, JSON.stringify(paTestData));
 
                 // Save the state back to local storage
                 this.onCurrentPageChanged_saveState(_survey);
