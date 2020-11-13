@@ -4523,7 +4523,7 @@
           "type": "boolean",
           "name": "DoesFocusVulnerableGroups",
           "title": {
-            "en": "Does the program or activity focus on vulnerable groups?",
+            "en": "Does the program or activity focus on vulnerable groups? (3.8.2)",
             "fr": ""
           },
           "isRequired": true,
@@ -4556,7 +4556,7 @@
           "type": "dropdown",
           "name": "SizePopulationImpacted",
           "title": {
-            "en": "Which of the following best describes the size of the population impacted by the program or activity’s collection, use, and disclosure of personal information?",
+            "en": "Which of the following best describes the size of the population impacted by the program or activity’s collection, use, and disclosure of personal information? (3.8.3)",
             "fr": ""
           },
           "description": {
@@ -4602,7 +4602,7 @@
           "type": "dropdown",
           "name": "HowInstitutionUsePersonalInformation",
           "title": {
-            "en": "How does the institution use personal information under the program or activity? Please select the best option; you will then be given the opportunity to provide additional detail.",
+            "en": "How does the institution use personal information under the program or activity? Please select the best option; you will then be given the opportunity to provide additional detail. (3.8.4)",
             "fr": ""
           },
           "isRequired": true,
@@ -4642,7 +4642,7 @@
           "name": "HowInstitutionUsePersonalInformationMoreDetails",
           "isRequired": true,
           "title": {
-            "en": "Please provide more detail. More specifically, how and for what purpose does your institution use personal information as part of this program or activity?",
+            "en": "Please provide more detail. More specifically, how and for what purpose does your institution use personal information as part of this program or activity? (3.8.5)",
             "fr": ""
           }
         }
@@ -4660,7 +4660,7 @@
           "type": "tagbox",
           "name": "InstitutionUsePersonalInformation",
           "title": {
-            "en": "Does your institution use the personal information:",
+            "en": "Does your institution use the personal information: (3.8.6)",
             "fr": ""
           },
           "isRequired": true,
