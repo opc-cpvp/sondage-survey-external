@@ -350,8 +350,8 @@ MigrationBackup/
 .ionide/
 /ComplaintFormCore/FileUploads/0f3ee945-def4-4288-8a03-9459bb4890da
 
-# ComplaintFormCore/wwwroot/lib
-/ComplaintFormCore/wwwroot/dist
+# ComplaintFormCore
 node_modules
-/ComplaintFormCore/FileUploads/pia
-/ComplaintFormCore/wwwroot/lib
+ComplaintFormCore/FileUploads/pia
+ComplaintFormCore/wwwroot/dist
+ComplaintFormCore/wwwroot/lib
