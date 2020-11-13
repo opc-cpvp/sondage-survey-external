@@ -88,6 +88,11 @@ export class NewPaSurvey extends SurveyBase {
 
             const responseData = await response.json();
             options.showDataSavingSuccess();
+
+            if (this.onPaSurveyComplete.isEmpty) {
+                return;
+            }
+
             this.onPaSurveyComplete.fire(this.survey, { referenceNumber: responseData.referenceNumber });
         })();
     }
