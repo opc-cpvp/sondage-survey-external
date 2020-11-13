@@ -6,5 +6,11 @@
       "library": "jqueryui@1.12.1",
       "destination": "wwwroot/lib/jqueryui/"
     }
-  ]
+  ,
+{
+  "provider": "jsdelivr",
+  "library": "surveyjs-widgets@1.8.13",
+  "destination": "wwwroot/lib/surveyjs-widgets/"
+}
+]
 }
