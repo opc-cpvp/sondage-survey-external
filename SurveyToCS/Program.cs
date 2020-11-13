@@ -796,17 +796,6 @@ namespace SurveyToCS
             return string.Empty;
         }
 
-                foreach (Match match_propery in Regex.Matches(visibleIf, property_pattern))
-                {
-                    visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
-                }
-
-                return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
-            }
-
-            return string.Empty;
-        }
-
         private static string GetVisibleIfFullCondition(Element element, Page parentPage, Element parentPanel = null)
         {
             string visibleIf = GetVisibleIfCondition(element, parentPage, parentPanel);
