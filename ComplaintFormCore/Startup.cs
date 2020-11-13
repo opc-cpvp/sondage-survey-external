@@ -61,7 +61,7 @@ namespace ComplaintFormCore
                 so.IdleTimeout = TimeSpan.FromSeconds(60);
             });
 
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddMvc(setup => { }).AddFluentValidation();
 
             services.AddLocalization(o => o.ResourcesPath = "Resources");

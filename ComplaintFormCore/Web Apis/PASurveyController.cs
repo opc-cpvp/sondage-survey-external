@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using ComplaintFormCore.Exceptions;
 using ComplaintFormCore.Models;
+using ComplaintFormCore.Models.pa;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -24,12 +25,12 @@ namespace ComplaintFormCore.Web_Apis
         [HttpPost]
         public IActionResult Complete([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
         {
-            //ValidationProblemDetails valid = new ValidationProblemDetails();
-            //valid.Detail = "There is errors with the validation, see error list";
-            //valid.Title = "Validation errors";
-            //valid.Errors.Add("mykey", new string[] { "value1", "value2" });
-            //valid.Errors.Add("another mykey", new string[] { "more value1", "stuff" });
-            //return BadRequest(valid);
+            OPCProblemDetails problems = _Validate(model);
+
+            if (problems != null)
+            {
+                return BadRequest(problems);
+            }
 
             return Ok(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
@@ -37,14 +38,12 @@ namespace ComplaintFormCore.Web_Apis
         [HttpPost]
         public IActionResult Validate([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
         {
-            //ValidationProblemDetails valid = new ValidationProblemDetails();
-            //valid.Detail = "There is errors with the validation, see error list";
-            //valid.Title = "Validation errors";
-            //valid.Errors.Add("mykey", new string[] { "value1", "value2" });
-            //valid.Errors.Add("another mykey", new string[] { "more value1", "stuff" });
-            //return BadRequest(valid);
+            OPCProblemDetails problems = _Validate(model);
 
-            //throw new Exception("this is a test exception", new Exception("this is the inner exception"));
+            if (problems != null)
+            {
+                return BadRequest(problems);
+            }
 
             return Ok();
         }
@@ -65,7 +64,7 @@ namespace ComplaintFormCore.Web_Apis
             {
                 List<SurveyFile> allFiles = new List<SurveyFile>();
 
-                if(files.Documentation_file_upload != null)
+                if (files.Documentation_file_upload != null)
                 {
                     allFiles.AddRange(files.Documentation_file_upload);
                 }
@@ -150,6 +149,39 @@ namespace ComplaintFormCore.Web_Apis
             }
 
             return Ok();
+        }
+
+        private OPCProblemDetails _Validate(SurveyPAModel model)
+        {
+            #region Test Data
+            //ValidationProblemDetails valid = new ValidationProblemDetails();
+            //valid.Detail = "There is errors with the validation, see error list";
+            //valid.Title = "Validation errors";
+            //valid.Errors.Add("mykey", new string[] { "value1", "value2" });
+            //valid.Errors.Add("another mykey", new string[] { "more value1", "stuff" });
+            //return BadRequest(valid);
+
+            //throw new Exception("this is a test exception", new Exception("this is the inner exception"));
+            #endregion
+
+            var validator = new SurveyPAModelValidator(_localizer);
+            var results = validator.Validate(model);
+
+            if (!results.IsValid)
+            {
+                OPCProblemDetails valid = new OPCProblemDetails();
+                valid.Detail = "There is errors with the validation, see error list";
+                valid.Title = "Validation errors";
+
+                foreach (var error in results.Errors)
+                {
+                    valid.AddError(error.PropertyName, error.ErrorMessage);
+                }
+
+                return valid;
+            }
+
+            return null;
         }
     }
 }
