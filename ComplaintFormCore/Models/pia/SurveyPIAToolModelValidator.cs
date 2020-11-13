@@ -662,7 +662,6 @@ namespace ComplaintFormCore.Models
 
             // OtherPartiesSharePersonalInformation (Page: page_step_3_9_3A)
             RuleFor(x => x.OtherPartiesSharePersonalInformation).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-            RuleFor(x => x.OtherPartiesSharePersonalInformation).Length(0, 5000).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // WillAllPICollectedBeDisclosed (Page: page_step_3_9_4)
 
@@ -747,6 +746,18 @@ namespace ComplaintFormCore.Models
                 child.RuleFor(x => x.Link).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             }).When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "link");
 
+            // OtherPartiesSharePersonalInformation
+            RuleForEach(x => x.OtherPartiesSharePersonalInformation).ChildRules(child => {
+                // Party (Page: page_step_3_9_3A)
+                child.RuleFor(x => x.Party).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other");
+
+            RuleForEach(x => x.OtherPartiesSharePersonalInformation).ChildRules(child => {
+                // PurposeOfDisclosure (Page: page_step_3_9_5B)
+                child.RuleFor(x => x.PurposeOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.PurposeOfDisclosure).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other" && x.WillAllPICollectedBeDisclosed == true);
+
             RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
                 // Party (Page: page_step_3_9_3A)
                 child.RuleFor(x => x.Party).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -760,12 +771,6 @@ namespace ComplaintFormCore.Models
             }).When(x => x.IsCollectionReasonOtherThanStorage == true && (x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other" || x.PartiesSharePersonalInformation.Count > 1));
 
             RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
-                // PurposeOfDisclosure (Page: page_step_3_9_5B)
-                child.RuleFor(x => x.PurposeOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-                child.RuleFor(x => x.PurposeOfDisclosure).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other" && x.WillAllPICollectedBeDisclosed == true);
-
-            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
                 // RelevantISASourceType (Page: page_step_3_9_6C)
                 child.RuleFor(x => x.RelevantISASourceType).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
                 child.RuleFor(x => x.RelevantISASourceType).Must(x => new List<string> { "upload", "link", "not_able" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
@@ -777,8 +782,8 @@ namespace ComplaintFormCore.Models
             }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
 
             RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
-                // DocumentationRelevantISALinks (Page: page_step_3_9_6C)
-                child.RuleFor(x => x.DocumentationRelevantISALinks).NotEmpty().When(x => x.RelevantISASourceType == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                // RelevantISALinks (Page: page_step_3_9_6C)
+                child.RuleFor(x => x.RelevantISALinks).NotEmpty().When(x => x.RelevantISASourceType == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
 
             RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {

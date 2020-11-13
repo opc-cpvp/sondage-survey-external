@@ -339,20 +339,14 @@ export class PiaETool {
                             const receivingParties = pnd_PurposeOfDisclosure.templateElements[1] as Survey.QuestionDropdownModel;
                             if (receivingParties) {
                                 //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
-                                const partiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
-                                    "PartiesSharePersonalInformation"
+                                const otherPartiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
+                                    "OtherPartiesSharePersonalInformation"
                                 ) as Survey.QuestionMatrixDynamicModel;
-                                const arrayOfItem = partiesSharePersonalInformation[0].value as any[];
+                                const arrayOfItem = otherPartiesSharePersonalInformation[0].value as any[];
                                 arrayOfItem.forEach(item => {
-                                    const selectedItemObject = PartiesSharePersonalInformationArray.find(i => i.value === item.party);
-                                    if (selectedItemObject) {
-                                        const selectedItem: Survey.ItemValue = new Survey.ItemValue(
-                                            selectedItemObject.value,
-                                            sender.getLocale() === "fr" ? selectedItemObject.text.fr : selectedItemObject.text.en
-                                        );
+                                    const selectedItem: Survey.ItemValue = new Survey.ItemValue(item.Party, item.Party);
 
-                                        receivingParties.choices.push(selectedItem);
-                                    }
+                                    receivingParties.choices.push(selectedItem);
                                 });
                             }
                         }

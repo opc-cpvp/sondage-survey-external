@@ -1332,7 +1332,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_3_8_2<br/>
         /// Section: 3.8<br/>
-        /// Does the program or activity focus on vulnerable groups?<br/>
+        /// Does the program or activity focus on vulnerable groups? (3.8.2)<br/>
         /// Survey question type: boolean
         /// </summary>
         public bool? DoesFocusVulnerableGroups { get; set; }
@@ -1375,7 +1375,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_3_8_6<br/>
         /// Section: 3.8<br/>
-        /// Does your institution use the personal information:<br/>
+        /// Does your institution use the personal information: (3.8.6)<br/>
         /// Survey question type: tagbox
         /// </summary>
         public List<string> InstitutionUsePersonalInformation { get; set; }
@@ -1419,14 +1419,6 @@ namespace ComplaintFormCore.Models
         /// Survey question type: tagbox
         /// </summary>
         public List<string> DisclosePersonalInformationMethod { get; set; }
-
-        /// <summary>
-        /// Page: page_step_3_9_3A<br/>
-        /// Section: 3.9<br/>
-        /// Please type in your answer and provide sufficient detail to indicate the pu...<br/>
-        /// Survey question type: comment
-        /// </summary>
-        public string OtherPartiesSharePersonalInformation { get; set; }
 
         /// <summary>
         /// Page: page_step_3_9_4<br/>
@@ -1496,10 +1488,54 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public List<SurveyFile> FlowChartFiles { get; set; }
 
+        /// <summary>
+        /// Page: page_step_3_10_1<br/>
+        /// Section: 3.10<br/>
+        /// Have you assigned a security designation to the personal information?<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasSecurityDesignation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_2<br/>
+        /// Section: 3.10<br/>
+        /// Is the security designation that has been assigned to the personal informat...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsSecurityDesignationSameToAllPICollected { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_3<br/>
+        /// Section: 3.10<br/>
+        /// What is the *highest* security designation that you have assigned to the pe...<br/>
+        /// Possible choices: [protected_A, protected_B, protected_C, classified, confidential, secret, top_secret, other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string HighestSecurityDesignation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_3<br/>
+        /// Section: 3.10<br/>
+        /// Security Designation: <br/>
+        /// Required condition: {HighestSecurityDesignation} = 'other'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SecurityDesignationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_4_A<br/>
+        /// Section: 3.10<br/>
+        /// Has your institution completed or plans to complete any security assessment...<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> CompleteSecuritySssessments { get; set; }
+
 
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }
+
+        public List<OtherPartiesSharePersonalInformation> OtherPartiesSharePersonalInformation { get; set; }
 
         public List<PartiesSharePersonalInformation> PartiesSharePersonalInformation { get; set; }
 
@@ -1575,6 +1611,21 @@ namespace ComplaintFormCore.Models
         public string Link { get; set; }
 
     }
+    public class OtherPartiesSharePersonalInformation
+    {
+        /// <summary>
+        /// Party or parties: <br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Party { get; set; }
+
+        /// <summary>
+        /// Purpose of disclosure<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PurposeOfDisclosure { get; set; }
+
+    }
     public class PartiesSharePersonalInformation
     {
         /// <summary>
@@ -1588,12 +1639,6 @@ namespace ComplaintFormCore.Models
         /// Survey question type: comment
         /// </summary>
         public string Description { get; set; }
-
-        /// <summary>
-        /// Purpose of disclosure<br/>
-        /// Survey question type: comment
-        /// </summary>
-        public string PurposeOfDisclosure { get; set; }
 
         /// <summary>
         /// Source<br/>
@@ -1613,7 +1658,16 @@ namespace ComplaintFormCore.Models
         /// Required condition: {panel.RelevantISASourceType} = 'link'<br/>
         /// Survey question type: matrixdynamic
         /// </summary>
-        public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }
+        public class RelevantISALinksObject
+        {
+            /// <summary>
+            /// Link (s)<br/>
+            /// Survey question type: text (url)
+            /// </summary>
+            public string Link { get; set; }
+
+        }
+        public List<RelevantISALinksObject> RelevantISALinks { get; set; }
 
         /// <summary>
         /// Please explain why you are unable to provide a copy or copies of relevant I...<br/>

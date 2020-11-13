@@ -4916,6 +4916,10 @@
             "fr": ""
           },
           "showHeader": false,
+          "addRowText": {
+            "en": "Add party",
+            "fr": ""
+          },
           "isRequired": true,
           "columns": [
             {
@@ -5000,14 +5004,31 @@
           "minRowCount": 1
         },
         {
-          "type": "comment",
-          "name": "OtherPartiesSharePersonalInformation",
+          "type": "matrixdynamic",
+          "valueName": "OtherPartiesSharePersonalInformation",
           "visibleIf": "{PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
           "isRequired": true,
+          "showHeader": false,
           "title": {
             "en": "Please type in your answer and provide sufficient detail to indicate the purpose of the organization",
             "fr": ""
-          }
+          },
+          "addRowText": {
+            "en": "Add party",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Party",
+              "cellType": "text",
+              "title": {
+                "en": "Party or parties: ",
+                "fr": ""
+              }
+            }
+          ],
+          "rowCount": 1,
+          "minRowCount": 1
         }
       ]
     },
@@ -5128,7 +5149,7 @@
           "isRequired": true,
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "valueName": "PartiesSharePersonalInformation",
+          "valueName": "OtherPartiesSharePersonalInformation",
           "templateTitle": "{panel.Party}",
           "templateElements": [
             {
@@ -5309,7 +5330,7 @@
             },
             {
               "type": "matrixdynamic",
-              "name": "DocumentationRelevantISALinks",
+              "name": "RelevantISALinks",
               "visibleIf": "{panel.RelevantISASourceType} = 'link'",
               "title": {
                 "en": "Please enter a web URL that links to a copy or copies of relevant ISAs",
@@ -5631,8 +5652,8 @@
       "section": 3.10,
       "elements": [
         {
-          "type": "radiogroup",
-          "name": "",
+          "type": "tagbox",
+          "name": "CompleteSecuritySssessments",
           "title": {
             "en": "Has your institution completed or plans to complete any security assessments for this program or activity? Select all that apply",
             "fr": ""

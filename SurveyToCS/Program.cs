@@ -89,20 +89,6 @@ namespace SurveyToCS
 
                 foreach (var dynamicItem in groupedByValueName)
                 {
-                    //StringBuilder summary = new StringBuilder();
-
-                    //summary.AppendLine("/// <summary>");
-
-                    //foreach (var item in dynamicItem)
-                    //{
-                    //    string elementName = !string.IsNullOrWhiteSpace(item.valueName) ? item.valueName : item.name;
-
-                    //    summary.Append("/// Property use for: ");
-                    //    summary.AppendLine(elementName);
-                    //}
-
-                    //summary.AppendLine("/// </summary>");
-
                     BuildDynamicProperty(csharp, dynamicItem.Key);
                 }
             }
@@ -216,83 +202,73 @@ namespace SurveyToCS
                     {
                         foreach (var column in item.columns)
                         {
-                            BuildElementSummary(csharp, column);
-
-                            csharp.Append("public ");
-
-                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
-                            //  and our validation doesn't work
-
-                            if (column.cellType == "boolean")
-                            {
-                                csharp.Append(" bool? ");
-                            }
-                            else if (column.inputType == "date")
-                            {
-                                csharp.Append(" DateTime? ");
-                            }
-                            else if (column.inputType == "number")
-                            {
-                                csharp.Append(" int? ");
-                            }
-                            else if (column.cellType == "file")
-                            {
-                                csharp.Append("List<SurveyFile> ");
-                            }
-                            else
-                            {
-                                csharp.Append(" string ");
-                            }
-
-                            csharp.Append(CapitalizeFirstLetter(column.name));
-
-                            csharp.AppendLine(" { get; set; }");
-                            csharp.AppendLine();
+                            BuildDynamicPropertyClassItem(csharp, column);
                         }
                     }
                     else if (item.type == "paneldynamic")
                     {
                         foreach (var templateItem in item.templateElements)
                         {
-                            BuildElementSummary(csharp, templateItem);
-
-                            csharp.Append("public ");
-
-                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
-                            //  and our validation doesn't work
-
-                            if (templateItem.type == "boolean")
-                            {
-                                csharp.Append(" bool? ");
-                            }
-                            else if (templateItem.inputType == "date")
-                            {
-                                csharp.Append(" DateTime? ");
-                            }
-                            else if (templateItem.inputType == "number")
-                            {
-                                csharp.Append(" int? ");
-                            }
-                            else if (templateItem.type == "file")
-                            {
-                                csharp.Append("List<SurveyFile> ");
-                            }
-                            else
-                            {
-                                csharp.Append(" string ");
-                            }
-
-                            var name = !string.IsNullOrWhiteSpace(templateItem.valueName) ? templateItem.valueName : templateItem.name;
-                            csharp.Append(CapitalizeFirstLetter(name));
-
-                            csharp.AppendLine(" { get; set; }");
-                            csharp.AppendLine();
+                            BuildDynamicPropertyClassItem(csharp, templateItem);
                         }
                     }
                 }
 
                 csharp.AppendLine("}");
             }
+        }
+
+        private static void BuildDynamicPropertyClassItem(StringBuilder csharp, Element element)
+        {
+            var name = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+
+            BuildElementSummary(csharp, element);
+
+            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
+            //  and our validation doesn't work
+
+            if (element.type == "public boolean")
+            {
+                csharp.Append(" bool? ");
+            }
+            else if (element.inputType == "date")
+            {
+                csharp.Append("public DateTime? ");
+            }
+            else if (element.inputType == "number")
+            {
+                csharp.Append("public int? ");
+            }
+            else if (element.type == "file")
+            {
+                csharp.Append("public List<SurveyFile> ");
+            }
+            else if (element.type == "matrixdynamic")
+            {
+                string className = CapitalizeFirstLetter(name) + "Object";
+                csharp.Append("public class ");
+                csharp.Append(className);
+                csharp.AppendLine("{");
+
+                foreach (var column in element.columns)
+                {
+                    BuildDynamicPropertyClassItem(csharp, column);
+                }
+
+                csharp.AppendLine("}");
+
+                csharp.Append("public List<");
+                csharp.Append(className);
+                csharp.Append("> ");
+            }
+            else
+            {
+                csharp.Append("public string ");
+            }
+
+            csharp.Append(CapitalizeFirstLetter(name));
+            csharp.AppendLine(" { get; set; }");
+            csharp.AppendLine();
         }
 
         private static void BuildElementSummary(StringBuilder csharp, Element element, Page page = null)
