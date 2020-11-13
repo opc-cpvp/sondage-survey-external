@@ -1,567 +1,392 @@
-﻿
-using ComplaintFormCore.Helpers;
-using ComplaintFormCore.Resources;
-using Microsoft.Extensions.Localization;
-using PhoneNumbers;
+﻿using System.Collections.Generic;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
-namespace ComplaintFormCore.Models
+namespace ComplaintFormCore.Models.pa
 {
-    public class SurveyPAModel : IValidatableObject
+    public class SurveyPAModel
     {
-        //private readonly IStringLocalizer<SurveyPAModel> _localizer;
-        //public SurveyPAModel(IStringLocalizer<SurveyPAModel> localizer)
-        //{
-        //    _localizer = localizer;
-        //}
-
         /// <summary>
-        /// Page 1: page_preliminary_info_Authorization_for_Representative
+        /// Page: page_preliminary_info_Authorization_for_Representative<br/>
+        /// Are you filing this complaint on your own behalf (or for a minor child you ...<br/>
+        /// Possible choices: [yourself, someone_else]<br/>
+        /// Survey question type: radiogroup
         /// </summary>
-        [Required]
         public string FilingComplaintOnOwnBehalf { get; set; }
 
-        [Required]
-        public bool? IsOnOwnBehalf
-        {
-            get
-            {
-                if(FilingComplaintOnOwnBehalf == "yourself")
-                {
-                    return true;
-                }
-                else if(FilingComplaintOnOwnBehalf == "someone_else")
-                {
-                    return false;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
+        /// <summary>
+        /// Page: page_preliminary_info_Identify_institution<br/>
+        /// Which federal government institution is your complaint againts?<br/>
+        /// Possible choices: [/api/Institution/GetAll?lang={locale}]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public int? WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
 
         /// <summary>
-        /// Page 2: page_preliminary_info_Identify_institution
+        /// Page: page_steps_taken_Writing_ATIP_Coordinator<br/>
+        /// Have you raised your privacy concerns in writing with the institution's [](...<br/>
+        /// Possible choices: [yes, no, not_sure]<br/>
+        /// Survey question type: radiogroup
         /// </summary>
-        [Required]
-        public string WhichFederalGovernementInstitutionComplaintAgainst { get; set; }
-
-        [Required]
-        public int? InstitutionId
-        {
-            get
-            {
-                if(int.TryParse(WhichFederalGovernementInstitutionComplaintAgainst, out int institutionId))
-                {
-                    return institutionId;
-                }
-
-                return null;
-            }
-        }
-
-        /// <summary>
-        /// Page 3: page_steps_taken_Writing_ATIP_Coordinator
-        /// </summary>
-        [Required]
         public string RaisedPrivacyToAtipCoordinator { get; set; }
 
         /// <summary>
-        /// Page 5: page_details_Type_complaint
+        /// Page: page_details_Type_complaint<br/>
+        /// Which of the following choices most accurately summarizes your complaint?<br/>
+        /// Possible choices: [NatureOfComplaintDelay, NatureOfComplaintExtensionOfTime, NatureOfComplaintDenialOfAccess, NatureOfComplaintLanguage, NatureOfComplaintCorrection, NatureOfComplaintCollection, NatureOfComplaintUseAndDisclosure, NatureOfComplaintRetentionAndDisposal, NatureOfComplaintOther]<br/>
+        /// Survey question type: checkbox
         /// </summary>
-        [Required]
         public List<string> NatureOfComplaint { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Are you submitting the complaint as a member of the general public or as an...<br/>
+        /// Possible choices: [general_public, employee_government]<br/>
+        /// Survey question type: radiogroup
         /// </summary>
-        [Required]
         public string IsEmployeeChoice { get; set; }
 
-        [Required]
-        public bool? IsEmployee
-        {
-            get
-            {
-                if(IsEmployeeChoice == "employee_government")
-                {
-                    return true;
-                }
-                else if (IsEmployeeChoice == "general_public")
-                {
-                    return false;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// What date did you send your written access request to the institution? If y...<br/>
+        /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string DateSentRequests { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// What was the wording of your request and the file number (or reference numb...<br/>
+        /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string WordingOfRequest { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// If the institution asked you for more information or to provide a clarifica...<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string MoreDetailsOfRequest { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// What date did you receive a final response from the institution? (maximum 5...<br/>
+        /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string DateOfFinalAnswer { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Did the institution reply that no records exist?<br/>
+        /// Possible choices: [yes, no]<br/>
+        /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
+        /// Survey question type: radiogroup
         /// </summary>
         public string DidNoRecordExistChoice { get; set; }
 
-        public bool? DidNoRecordExist
-        {
-            get
-            {
-                if (DidNoRecordExistChoice == "yes")
-                {
-                    return true;
-                }
-                else if (DidNoRecordExistChoice == "no")
-                {
-                    return false;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// What sections of the *Privacy Act* did the institution mention (if any) as ...<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string PrivacyActSectionsApplied { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Please describe each item (if any) from your access request that you have n...<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string ItemsNotRecieved { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Did the institution agree to process your request on an informal basis?<br/>
+        /// Possible choices: [yes, no, not_sure]<br/>
+        /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
+        /// Survey question type: radiogroup
         /// </summary>
         public string InstitutionAgreedRequestOnInformalBasis { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// You indicated that in addition to concerns about your access request, you h...<br/>
+        /// Required condition: ({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal', 'NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string SummarizeYourConcernsAndAnyStepsTaken { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Summarize your complaint and any steps you have taken to try to resolve it ...<br/>
+        /// Required condition: ({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal', 'NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string SummarizeYourComplaintAndAnyStepsTaken { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// What would resolve your concerns? (maximum 5,000 characters)<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
-        [Required]
         public string WhatWouldResolveYourComplaint { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Summarize your attempts to resolve the privacy matter with the organization...<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
-        [Required]
         public string SummarizeAttemptsToResolvePrivacyMatter { get; set; }
 
         /// <summary>
-        /// Page 6: page_details_description_of_concerns
+        /// Page: page_details_description_of_concerns<br/>
+        /// Additional comments / special Instructions (maximum 5,000 characters)<br/>
+        /// Survey question type: comment
         /// </summary>
-        [StringLength(5000)]
         public string AdditionalComments { get; set; }
 
         /// <summary>
-        /// Page 7: page_complainant_representative
+        /// Page: page_Complainant_representative<br/>
+        /// Have you submitted a complaint in the past with the Office of the Privacy C...<br/>
+        /// Possible choices: [yes, no]<br/>
+        /// Survey question type: radiogroup
         /// </summary>
-        [Required]
         public string Complainant_HaveYouSubmittedBeforeChoice { get; set; }
 
-        [Required]
-        public bool? Complainant_HaveYouSubmittedBefore
-        {
-            get
-            {
-                if (Complainant_HaveYouSubmittedBeforeChoice == "yes")
-                {
-                    return true;
-                }
-                else if (Complainant_HaveYouSubmittedBeforeChoice == "no")
-                {
-                    return false;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_FormOfAddress { get; set; }
-
-        [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_FirstName { get; set; }
-
-        [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_LastName { get; set; }
-
-        [StringLength(100, ErrorMessage = "This field is over the 100 characters limit.")]
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_Email { get; set; }
-
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_MailingAddress { get; set; }
-
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_City { get; set; }
-
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_Country { get; set; }
-
-        public string Reprensentative_ProvinceOrState { get; set; }
-
-        [RequiredIf(nameof(IsOnOwnBehalf), false, "This field is required")]
-        public string Reprensentative_PostalCode { get; set; }
-
-        public string Reprensentative_DayTimeNumber { get; set; }
-
-        public string Reprensentative_DayTimeNumberExtension { get; set; }
-
-        public string Reprensentative_AltTelephoneNumber { get; set; }
-
-        public string Reprensentative_AltTelephoneNumberExtension { get; set; }
-
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Preferred form of address<br/>
+        /// Possible choices: [Mr., Mrs., Ms., Other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
         public string Complainant_FormOfAddress { get; set; }
 
-        [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// First name<br/>
+        /// Survey question type: text
+        /// </summary>
         public string Complainant_FirstName { get; set; }
 
-        [StringLength(50, ErrorMessage = "This field is over the 50 characters limit.")]
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Last name<br/>
+        /// Survey question type: text
+        /// </summary>
         public string Complainant_LastName { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "This field is over the 100 characters limit.")]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// E-mail address (yourname@domain.com)<br/>
+        /// Survey question type: text (email)
+        /// </summary>
         public string Complainant_Email { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Mailing address<br/>
+        /// Survey question type: text
+        /// </summary>
         public string Complainant_MailingAddress { get; set; }
 
-        [Required]
-        [StringLength(90, ErrorMessage = "This field is over the 90 characters limit.")]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// City<br/>
+        /// Survey question type: text
+        /// </summary>
         public string Complainant_City { get; set; }
 
-        [Required]
-        public string Complainant_PostalCode { get; set; }
-
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Country<br/>
+        /// Possible choices: [/api/Country?lang={locale}]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
         public string Complainant_Country { get; set; }
 
-        public string Complainant_ProvinceOrState { get; set; }
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Province/Territory<br/>
+        /// Possible choices: [/api/Province?lang={locale}]<br/>
+        /// Required condition: {Complainant_Country} = 'CA'<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public int? Complainant_ProvinceOrState { get; set; }
 
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Postal code<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Complainant_PostalCode { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Daytime telephone number (123-456-7890)<br/>
+        /// Survey question type: text (tel)
+        /// </summary>
         public string Complainant_DayTimeNumber { get; set; }
 
-        public string Complainant_DayTimeNumberExtension { get; set; }
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text (number)
+        /// </summary>
+        public int? Complainant_DayTimeNumberExtension { get; set; }
 
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Alternate telephone number (123-456-7890)<br/>
+        /// Survey question type: text (tel)
+        /// </summary>
         public string Complainant_AltTelephoneNumber { get; set; }
 
-        public string Complainant_AltTelephoneNumberExtension { get; set; }
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text (number)
+        /// </summary>
+        public int? Complainant_AltTelephoneNumberExtension { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Preferred form of address<br/>
+        /// Possible choices: [Mr., Mrs., Ms., Other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_FormOfAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// First name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_FirstName { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Last name<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_LastName { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// E-mail address (yourname@domain.com)<br/>
+        /// Survey question type: text (email)
+        /// </summary>
+        public string Reprensentative_Email { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Mailing address<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_MailingAddress { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// City<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_City { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Country<br/>
+        /// Possible choices: [/api/Country?lang={locale}]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_Country { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Province/Territory<br/>
+        /// Possible choices: [/api/Province?lang={locale}]<br/>
+        /// Required condition: {Reprensentative_Country} = 'CA'<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Reprensentative_ProvinceOrState { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Postal code<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Reprensentative_PostalCode { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Daytime telephone number (123-456-7890)<br/>
+        /// Survey question type: text (tel)
+        /// </summary>
+        public string Reprensentative_DayTimeNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text (number)
+        /// </summary>
+        public int? Reprensentative_DayTimeNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Alternate telephone number (123-456-7890)<br/>
+        /// Survey question type: text (tel)
+        /// </summary>
+        public string Reprensentative_AltTelephoneNumber { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// Extension (digits only)<br/>
+        /// Survey question type: text (number)
+        /// </summary>
+        public int? Reprensentative_AltTelephoneNumberExtension { get; set; }
+
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// We are committed to ensuring that clients with disabilities have equal acce...<br/>
+        /// Possible choices: [yes, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
         public string NeedsDisabilityAccommodationChoice { get; set; }
 
-        [Required]
-        public bool? NeedsDisabilityAccommodation
-        {
-            get
-            {
-                if (NeedsDisabilityAccommodationChoice == "yes")
-                {
-                    return true;
-                }
-                else if (NeedsDisabilityAccommodationChoice == "no")
-                {
-                    return false;
-                }
-                else
-                {
-                    return null;
-                }
-            }
-        }
-
-        [RequiredIf(nameof(NeedsDisabilityAccommodation), true, "This field is required")]
+        /// <summary>
+        /// Page: page_Complainant_representative<br/>
+        /// If yes, please describe what accommodation measures you are requesting and ...<br/>
+        /// Required condition: {NeedsDisabilityAccommodationChoice} contains 'yes'<br/>
+        /// Survey question type: comment
+        /// </summary>
         public string DisabilityAccommodation { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Page: page_documentation<br/>
+        /// Do you wish to upload your supporting documents or send them by mail?<br/>
+        /// Possible choices: [upload, mail, both, none]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
         public string Documentation_type { get; set; }
 
-        public List<SurveyFile> Documentation_file_upload { get; set; }
-
+        /// <summary>
+        /// Page: page_documentation<br/>
+        /// Survey question type: file
+        /// </summary>
         public List<SurveyFile> Documentation_file_upload_rep { get; set; }
 
-        [Required]
+        /// <summary>
+        /// Page: page_documentation<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> Documentation_file_upload { get; set; }
+
+        /// <summary>
+        /// Page: <br/>
+        /// Please certify that the information you have given on this form is, to the ...<br/>
+        /// Possible choices: [yes]<br/>
+        /// Survey question type: checkbox
+        /// </summary>
         public List<string> InformationIsTrue { get; set; }
 
-        [Required]
-        public bool IsCertified
-        {
-            get
-            {
-                if(InformationIsTrue.Count > 0 && InformationIsTrue[0] == "yes")
-                {
-                    return true;
-                }
-
-                return false;
-            }
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (RaisedPrivacyToAtipCoordinator != "yes" && RaisedPrivacyToAtipCoordinator != "no" && RaisedPrivacyToAtipCoordinator != "not_sure")
-            {
-                yield return new ValidationResult("This field is required.", new[] { nameof(RaisedPrivacyToAtipCoordinator) });
-            }
-
-            #region NatureOfComplaint validation
-
-            //  Getting the checkboxes selected from the NatureOfComplaint page (page 5)
-            var isAnyFirstFourSelected = NatureOfComplaint.Where(x => x == NatureOfComplaintType.NatureOfComplaintDelay.ToString() || x == NatureOfComplaintType.NatureOfComplaintDenialOfAccess.ToString() || x == NatureOfComplaintType.NatureOfComplaintExtensionOfTime.ToString() || x == NatureOfComplaintType.NatureOfComplaintLanguage.ToString()).Any();
-
-            var isAnyLastFiveSelected = NatureOfComplaint.Where(x => x == NatureOfComplaintType.NatureOfComplaintOther.ToString() || x == NatureOfComplaintType.NatureOfComplaintRetentionAndDisposal.ToString() || x == NatureOfComplaintType.NatureOfComplaintUseAndDisclosure.ToString() || x == NatureOfComplaintType.NatureOfComplaintCollection.ToString() || x == NatureOfComplaintType.NatureOfComplaintCorrection.ToString()).Any();
-
-            if (isAnyFirstFourSelected)
-            {
-                if (string.IsNullOrWhiteSpace(DateSentRequests))
-                {
-                    yield return new ValidationResult("This field is required.", new[] { nameof(DateSentRequests) });
-                }
-
-                if (string.IsNullOrWhiteSpace(WordingOfRequest))
-                {
-                    yield return new ValidationResult("This field is required.", new[] { nameof(WordingOfRequest) });
-                }
-
-                if (string.IsNullOrWhiteSpace(DateOfFinalAnswer))
-                {
-                    yield return new ValidationResult("This field is required.", new[] { nameof(DateOfFinalAnswer) });
-                }
-
-                if (DidNoRecordExist == null)
-                {
-                    yield return new ValidationResult("This field is required.", new[] { nameof(DidNoRecordExist) });
-                }
-
-                if (string.IsNullOrWhiteSpace(InstitutionAgreedRequestOnInformalBasis))
-                {
-                    yield return new ValidationResult("This field is required.", new[] { nameof(InstitutionAgreedRequestOnInformalBasis) });
-                }
-            }
-
-            if (isAnyLastFiveSelected)
-            {
-                //  I AM NOT SURE I GOT THE LOGIC RIGHT
-
-                //if (string.IsNullOrWhiteSpace(model.ComplaintSummary))
-                //    yield return new ValidationResult(Resource.FieldIsRequired, new[] { nameof(OtherNatureOfComplaint) + "." + nameof(OtherNatureOfComplaint.ComplaintSummary) });
-
-                //if ((OtherNatureOfComplaint.ComplaintSummary ?? "").Length > 5000)
-                //    yield return new ValidationResult(string.Format(Resource.FieldIsOverCharacterLimit, 5000), new[] { nameof(OtherNatureOfComplaint) + "." + nameof(OtherNatureOfComplaint.ComplaintSummary) });
-            }
-            #endregion
-
-            #region Complainant & Representative Validation
-
-            foreach (var complainantErrror in GetErrorsForComplainant())
-            {
-                yield return complainantErrror;
-            }
-
-            if(IsOnOwnBehalf == false)
-            {
-                foreach (var representativeErrror in GetErrorsForRepresentative())
-                {
-                    yield return representativeErrror;
-                }
-            }
-
-            #endregion
-
-            #region Document validation
-
-            if (Documentation_type != "upload" && Documentation_type != "mail" && Documentation_type != "both" && Documentation_type != "none")
-            {
-                yield return new ValidationResult("This field is required.", new[] { nameof(Documentation_type) });
-            }
-
-            if (Documentation_type == "upload" || Documentation_type == "both")
-            {
-                if (Documentation_file_upload.Count == 0 && Documentation_file_upload_rep.Count == 0)
-                {
-                    yield return new ValidationResult("At least one file has to be uploaded.", new[] { nameof(Documentation_file_upload) });
-                }
-            }
-            #endregion
-
-            if (IsCertified == false)
-            {
-                yield return new ValidationResult("This field is required.", new[] { nameof(IsCertified) });
-            }
-        }
-
-        private IEnumerable<ValidationResult> GetErrorsForComplainant()
-        {
-            if (!ValidatorHelpers.IsEmailValid(Complainant_Email))
-            {
-                yield return new ValidationResult("Please enter a valid email address.", new[] { nameof(Complainant_Email) });
-            }
-
-            if (Complainant_Country == "CA" && string.IsNullOrWhiteSpace(Complainant_ProvinceOrState))
-            {
-                yield return new ValidationResult("This field is required.", new[] { Complainant_ProvinceOrState });
-            }
-
-            if (!ValidatorHelpers.IsValidZipCode(Complainant_PostalCode, Complainant_Country))
-            {
-                yield return new ValidationResult("Please enter a valid postal code.", new[] { Complainant_PostalCode });
-            }
-
-            // Phone number should be required only for the complainant if no representative and only the representative if there's a representative
-            var isComplainantPhoneNumberRequired = (bool)IsOnOwnBehalf;
-
-            if (isComplainantPhoneNumberRequired && string.IsNullOrWhiteSpace(Complainant_DayTimeNumber))
-            {
-                yield return new ValidationResult("This field is required.", new[] { Complainant_DayTimeNumber });
-            }
-
-            if (!string.IsNullOrWhiteSpace(Complainant_DayTimeNumber))
-            {
-                if (!ValidatorHelpers.IsPhoneNumberValid(Complainant_DayTimeNumber, Complainant_Country))
-                {
-                    yield return new ValidationResult("Please enter a valid phone number.", new[] { Complainant_DayTimeNumber });
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(Complainant_AltTelephoneNumber))
-            {
-                if (!ValidatorHelpers.IsPhoneNumberValid(Complainant_AltTelephoneNumber, Complainant_Country))
-                {
-                    yield return new ValidationResult("Please enter a valid phone number.", new[] { Complainant_AltTelephoneNumber });
-                }
-            }
-
-            // Check if the phone number extensions contain digits only
-            if (Complainant_DayTimeNumberExtension != null && !Complainant_DayTimeNumberExtension.All(char.IsDigit))
-            {
-                yield return new ValidationResult("This field should only contain digits", new[] { Complainant_DayTimeNumberExtension });
-            }
-            // Check if the phone number extensions contain digits only
-            if (Complainant_AltTelephoneNumberExtension != null && !Complainant_AltTelephoneNumberExtension.All(char.IsDigit))
-            {
-                yield return new ValidationResult("This field should only contain digits", new[] { Complainant_AltTelephoneNumberExtension });
-            }
-        }
-
-        private IEnumerable<ValidationResult> GetErrorsForRepresentative()
-        {
-            if (!ValidatorHelpers.IsEmailValid(Reprensentative_Email))
-            {
-                yield return new ValidationResult("Please enter a valid email address.", new[] { nameof(Reprensentative_Email) });
-            }
-
-            if (Reprensentative_Country == "CA" && string.IsNullOrWhiteSpace(Reprensentative_ProvinceOrState))
-            {
-                yield return new ValidationResult("This field is required.", new[] { Reprensentative_ProvinceOrState });
-            }
-
-            if (!ValidatorHelpers.IsValidZipCode(Reprensentative_PostalCode, Reprensentative_Country))
-            {
-                yield return new ValidationResult("Please enter a valid postal code.", new[] { Reprensentative_PostalCode });
-            }
-
-            // Phone number should be required only for the complainant if no representative and only the representative if there's a representative
-            var isComplainantPhoneNumberRequired = (bool)!IsOnOwnBehalf;
-
-            if (isComplainantPhoneNumberRequired && string.IsNullOrWhiteSpace(Reprensentative_DayTimeNumber))
-            {
-                yield return new ValidationResult("This field is required.", new[] { Reprensentative_DayTimeNumber });
-            }
-
-            if (!string.IsNullOrWhiteSpace(Reprensentative_DayTimeNumber))
-            {
-                if (!ValidatorHelpers.IsPhoneNumberValid(Reprensentative_DayTimeNumber, Reprensentative_Country))
-                {
-                    yield return new ValidationResult("Please enter a valid phone number.", new[] { Reprensentative_DayTimeNumber });
-                }
-            }
-
-            if (!string.IsNullOrWhiteSpace(Reprensentative_AltTelephoneNumber))
-            {
-                if (!ValidatorHelpers.IsPhoneNumberValid(Reprensentative_AltTelephoneNumber, Reprensentative_Country))
-                {
-                    yield return new ValidationResult("Please enter a valid phone number.", new[] { Reprensentative_AltTelephoneNumber });
-                }
-            }
-
-            // Check if the phone number extensions contain digits only
-            if (Reprensentative_DayTimeNumberExtension != null && !Reprensentative_DayTimeNumberExtension.All(char.IsDigit))
-            {
-                yield return new ValidationResult("This field should only contain digits", new[] { Reprensentative_DayTimeNumberExtension });
-            }
-            // Check if the phone number extensions contain digits only
-            if (Reprensentative_AltTelephoneNumberExtension != null && !Reprensentative_AltTelephoneNumberExtension.All(char.IsDigit))
-            {
-                yield return new ValidationResult("This field should only contain digits", new[] { Reprensentative_AltTelephoneNumberExtension });
-            }
-        }
-    }
-
-    public enum NatureOfComplaintType
-    {
-        NatureOfComplaintDelay,
-        NatureOfComplaintExtensionOfTime,
-        NatureOfComplaintDenialOfAccess,
-        NatureOfComplaintLanguage,
-        NatureOfComplaintCorrection,
-        NatureOfComplaintCollection,
-        NatureOfComplaintUseAndDisclosure,
-        NatureOfComplaintRetentionAndDisposal,
-        NatureOfComplaintOther
     }
 }
+

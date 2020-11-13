@@ -191,7 +191,7 @@
         },
         {
           "type": "html",
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']",
           "html": {
             "en": "<details><summary>Don't think it will help</summary><p>Before filing a complaint with our office, we encourage you first to attempt to address your concerns directly with the institution. Many times you can resolve privacy issues through direct communication with the Access to Information and Privacy (ATIP) Coordinator. To find this person please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'> list of Access to Information and Privacy Coordinators by institution</a></p></details>",
             "fr": "<details><summary>Ne pense pas que ça aidera</summary><p>Avant de déposer une plainte auprès de notre bureau, nous vous encourageons à commencer par essayer de faire part de vos préoccupations directement à l’institution. Bien souvent, vous pouvez résoudre les problèmes de protection de la vie privée en communiquant directement avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP). Pour trouver cette personne, veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a></p></details>"
@@ -203,7 +203,7 @@
             "en": "<details><summary>Can't find the contact</summary>Please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>list of Access to Information and Privacy Coordinators by institution.</a></details>",
             "fr": "<details><summary>Impossible de trouver la personne-ressource</summary>Veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']"
         },
         {
           "type": "html",
@@ -211,7 +211,7 @@
             "en": "<details><summary>Wish to stay anonymous</summary><p>Please note that yourname (except in extraordinary circumstances) and the details of your complaint will be shared with the institution that is the subject of the complaint. </p><p> We may for the purpose of the investigation share personal information with the institution and may collect personal information from that institution. </p><p> We do not otherwise disclose the information you, provide unless, such a,disclosure is in accordance, with the <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>subsection 8(2) of the, Privacy Act</a>, which is,reserved for,limited situations. In the case of such a disclosure we will only disclose,the information that is required and wherever possible will inform you. </p><p> The personal information you provide,on our complaint form is protected under the <em>Access to Information Act</em> and the <em>Privacy Act</em></p> <p> If you wish to just tell us about an issue and not have your identity revealed use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'> online form to share a privacy comment or an issue without filing a formal complaint</a> At our Commissioner's discretion we can look into matters without a person making a complaint.</p></details>",
             "fr": "<details><summary>Souhaite rester anonyme</summary><p>Veuillez noter que votre nom (sauf dans des circonstances extraordinaires) et les détails de votre plainte seront communiqués à l’institution qui fait l’objet de la plainte.</p><p>Nous pouvons, aux fins de l’enquête, communiquer des renseignements personnels à l’institution et recueillir des renseignements personnels auprès de cette institution.</p><p>Nous ne divulguons pas autrement les renseignements que vous nous fournissez, à moins que cette divulgation soit conforme au <a href='https://laws.justice.gc.ca/fra/lois/P-21/page-2.html' target='_blank'>paragraphe 8(2) de la Loi sur la protection des renseignements personnels</a>, qui est réservé à des situations limitées. Le cas échéant, le Commissariat ne communiquera que l’information nécessaire et, dans la mesure du possible, vous en avisera.</p><p>Les renseignements personnels que vous fournissez sur notre formulaire de plainte sont protégés en vertu de la <em>Loi sur l’accès à l’information</em> et de la <em>Loi sur la protection des renseignements personnels.</em></p> <p>Si vous souhaitez simplement nous parler d’un problème, et que votre identité ne soit pas révélée, utilisez notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=5dfc6151-d40a-449f-9b40-51becbf7851d' target='_blank'> formulaire en ligne pour faire part d’un commentaire ou d’une question relative à la protection de la vie privée sans avoir à déposer une plainte officielle.</a> À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'no' or {RaisedPrivacyToAtipCoordinator}  contains 'not_sure'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']"
         },
         {
           "type": "html",
@@ -383,7 +383,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "comment",
@@ -394,7 +394,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "comment",
@@ -404,7 +404,7 @@
             "fr": "Si l’institution vous a demandé de plus amples renseignements ou des éclaircissements au sujet de votre demande, que lui avez-vous répondu et quand l’avez-vous fait? (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "comment",
@@ -415,7 +415,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "radiogroup",
@@ -425,7 +425,7 @@
             "fr": "L’institution a-t-elle répondu qu’il n’existe aucun document?"
           },
           "isRequired": true,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']",
           "choices": [
             {
               "text": {
@@ -451,7 +451,7 @@
             "fr": "Quels articles de la *Loi sur la protection des renseignements personnels* l’institution a-t-elle mentionnés (le cas échéant) comme raison pour laquelle elle a refusé de divulguer des renseignements dans sa réponse à votre demande? (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "comment",
@@ -461,7 +461,7 @@
             "fr": "Veuillez décrire chaque élément (s’il y a lieu) de votre demande d’accès que vous n’avez pas encore reçu. (maximum 5 000 caractères)"
           },
           "maxLength": 5000,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' "
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']"
         },
         {
           "type": "radiogroup",
@@ -471,7 +471,7 @@
             "fr": "L’institution a-t-elle accepté de traiter votre demande de façon informelle?"
           },
           "isRequired": true,
-          "visibleIf": "{NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage' ",
+          "visibleIf": "{NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']",
           "choices": [
             {
               "text": {
@@ -499,7 +499,7 @@
         {
           "type": "html",
           "name": "InstitutionAgreedRequestOnInformalBasis_info",
-          "visibleIf": "{InstitutionAgreedRequestOnInformalBasis} contains 'yes' or {InstitutionAgreedRequestOnInformalBasis} contains 'not_sure'",
+          "visibleIf": "{InstitutionAgreedRequestOnInformalBasis} anyof ['yes','not_sure']",
           "html": {
             "en": "<section class='alert alert-info'><p>Under the Privacy Act, you must make a formal request to the institution and give the institution an opportunity to respond before making a complaint to our office. Please contact the Access to Information and Privacy Coordinator at the institution. To find this person, please consult the <a target='_blank' href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp'>list of Access to Information and Privacy Coordinators by institution</a></p><p>If, based on the above, you’re not sure if you want to continue with your complaint now, you can end your session and return to file a complaint later.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p></section>",
             "fr": "<section class='alert alert-info'><p>En vertu de la Loi sur la protection des renseignements personnels, vous devez présenter une demande officielle à l’institution et lui donner la possibilité de répondre avant de déposer une plainte à notre bureau. Veuillez communiquer avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels de l’institution. Pour trouver cette personne, veuillez consulter la <a target='_blank' href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></p><p>Si, d’après ce qui précède, vous n’êtes pas certain de vouloir poursuivre votre plainte maintenant, vous pouvez mettre fin à votre session et revenir déposer une plainte plus tard.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Fermer votre session</button></p></section>"
@@ -514,7 +514,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage')",
+          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal','NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
           "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your correspondence with the institution about these concerns</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
@@ -529,7 +529,7 @@
           },
           "isRequired": true,
           "maxLength": 5000,
-          "visibleIf": "!(({NatureOfComplaint} contains 'NatureOfComplaintCorrection' or {NatureOfComplaint} contains 'NatureOfComplaintCollection' or {NatureOfComplaint} contains 'NatureOfComplaintUseAndDisclosure' or {NatureOfComplaint} contains 'NatureOfComplaintRetentionAndDisposal' or {NatureOfComplaint} contains 'NatureOfComplaintOther') and ({NatureOfComplaint} contains 'NatureOfComplaintDelay' or {NatureOfComplaint} contains 'NatureOfComplaintExtensionOfTime' or {NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess' or {NatureOfComplaint} contains 'NatureOfComplaintLanguage'))",
+          "visibleIf": "({NatureOfComplaint} anyof ['NatureOfComplaintCorrection','NatureOfComplaintCollection','NatureOfComplaintUseAndDisclosure','NatureOfComplaintRetentionAndDisposal','NatureOfComplaintOther']) and ({NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage'])",
           "description": {
             "en": "<p>Please explain:</p><p><ul><li>what the organization did or did not do, with personal information, that you are unhappy about</li><li>the who, what, when, where, why of your complaint</li><li>If applicable, please indicate any file or reference number that was assigned to your request (these numbers typically look like this: P-2018-12345)</li></ul></p>",
             "fr": "<p>Veuillez expliquer:</p><p><ul><li>ce que l’organisation a fait ou n’a pas fait, avec les renseignements personnels dont vous n’êtes pas satisfait</li><li>le qui, le quoi, le quand, le où et le pourquoi de votre plainte</li><li>S’il y a lieu, veuillez indiquer tout numéro de dossier ou de référence qui a été attribué à votre demande (ces numéros ressemblent habituellement à ceci : P-2018-12345).</li></ul></p>"
@@ -575,7 +575,7 @@
       ]
     },
     {
-      "name": "page_complainant_representative",
+      "name": "page_Complainant_representative",
       "title": {
         "en": "Part C: Details (Section 3: Complaintant/Representative information) - Privacy complaint form (federal institution)",
         "fr": "Partie C : Détails (Section 3 : Information sur le plaignant ou le représentant) – Formulaire de plainte concernant la protection de la vie privée (institution fédérale)"
@@ -583,7 +583,7 @@
       "elements": [
         {
           "type": "panel",
-          "name": "complainant_PreviousComplaint",
+          "name": "Complainant_PreviousComplaint",
           "title": {
             "en": "Instructions",
             "fr": "Instructions"
@@ -593,7 +593,7 @@
           "elements": [
             {
               "type": "html",
-              "name": "complainant_instructions",
+              "name": "Complainant_instructions",
               "title": {
                 "en": "",
                 "fr": ""
@@ -607,7 +607,7 @@
         },
         {
           "type": "panel",
-          "name": "complainant_PreviousComplaint",
+          "name": "Complainant_PreviousComplaint",
           "title": {
             "en": "Previous Complaint",
             "fr": "Plainte antérieure"
@@ -615,7 +615,7 @@
           "elements": [
             {
               "type": "radiogroup",
-              "name": "complainant_HaveYouSubmittedBeforeChoice",
+              "name": "Complainant_HaveYouSubmittedBeforeChoice",
               "title": {
                 "en": "Have you submitted a complaint in the past with the Office of the Privacy Commissioner (OPC)?",
                 "fr": "Avez-vous déjà déposé une plainte auprès du Commissariat à la protection de la vie privée?"
@@ -640,7 +640,7 @@
             },
             {
               "type": "html",
-              "name": "complainant_HaveYouSubmittedBefore_info",
+              "name": "Complainant_HaveYouSubmittedBefore_info",
               "html": {
                 "en": "<section class='alert alert-info'><p>We are asking this to ensure we have accurate contact information for individuals who submit complaints. Please note, we may update your contact information for any active complaints with our office, using the information you provide below.</p></section>",
                 "fr": "<section class='alert alert-info'><p>Nous demandons cela pour nous assurer d’avoir les coordonnées exactes des personnes qui déposent des plaintes. Veuillez noter que nous pouvons mettre à jour vos coordonnées relatives à toute plainte en cours auprès de notre Commissariat, en utilisant les renseignements que vous fournissez ci-dessous.</p></section>"
@@ -650,7 +650,7 @@
         },
         {
           "type": "panel",
-          "name": "complainant_ComplaintInformation",
+          "name": "Complainant_ComplaintInformation",
           "title": {
             "en": "Complaint Information",
             "fr": "Renseignements sur le plaignant"
@@ -662,7 +662,7 @@
           "elements": [
             {
               "type": "dropdown",
-              "name": "complainant_FormOfAddress",
+              "name": "Complainant_FormOfAddress",
               "title": {
                 "en": "Preferred form of address",
                 "fr": "Titre de civilité préféré"
@@ -702,7 +702,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_FirstName",
+              "name": "Complainant_FirstName",
               "title": {
                 "en": "First name",
                 "fr": "Prénom "
@@ -711,7 +711,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_LastName",
+              "name": "Complainant_LastName",
               "title": {
                 "en": "Last name",
                 "fr": "Nom de famille"
@@ -720,7 +720,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_Email",
+              "name": "Complainant_Email",
               "inputType": "email",
               "title": {
                 "en": "E-mail address (yourname@domain.com)",
@@ -730,7 +730,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_MailingAddress",
+              "name": "Complainant_MailingAddress",
               "title": {
                 "en": "Mailing address",
                 "fr": "Adresse postale"
@@ -739,7 +739,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_City",
+              "name": "Complainant_City",
               "title": {
                 "en": "City",
                 "fr": "Ville "
@@ -748,7 +748,7 @@
             },
             {
               "type": "dropdown",
-              "name": "complainant_Country",
+              "name": "Complainant_Country",
               "title": {
                 "en": "Country",
                 "fr": "Pays"
@@ -762,13 +762,13 @@
             },
             {
               "type": "dropdown",
-              "name": "complainant_ProvinceOrState",
+              "name": "Complainant_ProvinceOrState",
               "title": {
                 "en": "Province/Territory",
                 "fr": "Province ou territoire"
               },
               "isRequired": true,
-              "visibleIf": "{complainant_Country} = 'CA'",
+              "visibleIf": "{Complainant_Country} = 'CA'",
               "choicesByUrl": {
                 "url": "/api/Province?lang={locale}",
                 "titleName": "text",
@@ -777,16 +777,18 @@
             },
             {
               "type": "text",
-              "name": "complainant_PostalCode",
+              "name": "Complainant_PostalCode",
               "title": {
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "isRequired": true
+              "isRequired": true,
+              "placeHolder": "A1A1A1",
+              "maxLength": 7
             },
             {
               "type": "text",
-              "name": "complainant_DayTimeNumber",
+              "name": "Complainant_DayTimeNumber",
               "inputType": "tel",
               "title": {
                 "en": "Daytime telephone number (123-456-7890)",
@@ -799,7 +801,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_DayTimeNumberExtension",
+              "name": "Complainant_DayTimeNumberExtension",
               "title": {
                 "en": "Extension (digits only)",
                 "fr": "Prolongation (chiffres seulement)"
@@ -808,7 +810,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_AltTelephoneNumber",
+              "name": "Complainant_AltTelephoneNumber",
               "inputType": "tel",
               "title": {
                 "en": "Alternate telephone number (123-456-7890)",
@@ -817,7 +819,7 @@
             },
             {
               "type": "text",
-              "name": "complainant_AltTelephoneNumberExtension",
+              "name": "Complainant_AltTelephoneNumberExtension",
               "title": {
                 "en": "Extension (digits only)",
                 "fr": "Prolongation (chiffres seulement)"
@@ -841,7 +843,7 @@
           "elements": [
             {
               "type": "dropdown",
-              "name": "reprensentative_FormOfAddress",
+              "name": "Reprensentative_FormOfAddress",
               "title": {
                 "en": "Preferred form of address",
                 "fr": "Titre de civilité préféré"
@@ -880,7 +882,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_FirstName",
+              "name": "Reprensentative_FirstName",
               "title": {
                 "en": "First name",
                 "fr": "Prénom "
@@ -889,7 +891,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_LastName",
+              "name": "Reprensentative_LastName",
               "title": {
                 "en": "Last name",
                 "fr": "Nom de famille"
@@ -898,7 +900,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_Email",
+              "name": "Reprensentative_Email",
               "inputType": "email",
               "title": {
                 "en": "E-mail address (yourname@domain.com)",
@@ -908,7 +910,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_MailingAddress",
+              "name": "Reprensentative_MailingAddress",
               "title": {
                 "en": "Mailing address",
                 "fr": "Adresse postale"
@@ -917,7 +919,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_City",
+              "name": "Reprensentative_City",
               "title": {
                 "en": "City",
                 "fr": "Ville "
@@ -926,7 +928,7 @@
             },
             {
               "type": "dropdown",
-              "name": "reprensentative_Country",
+              "name": "Reprensentative_Country",
               "title": {
                 "en": "Country",
                 "fr": "Pays"
@@ -940,13 +942,13 @@
             },
             {
               "type": "dropdown",
-              "name": "reprensentative_ProvinceOrState",
+              "name": "Reprensentative_ProvinceOrState",
               "title": {
                 "en": "Province/Territory",
                 "fr": "Province ou territoire"
               },
               "isRequired": true,
-              "visibleIf": "{reprensentative_Country} = 'CA'",
+              "visibleIf": "{Reprensentative_Country} = 'CA'",
               "choicesByUrl": {
                 "url": "/api/Province?lang={locale}",
                 "titleName": "text",
@@ -955,16 +957,18 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_PostalCode",
+              "name": "Reprensentative_PostalCode",
               "title": {
                 "en": "Postal code",
                 "fr": "Code postal"
               },
-              "isRequired": true
+              "isRequired": true,
+              "placeHolder": "A1A1A1",
+              "maxLength": 7
             },
             {
               "type": "text",
-              "name": "reprensentative_DayTimeNumber",
+              "name": "Reprensentative_DayTimeNumber",
               "inputType": "tel",
               "isRequired": true,
               "title": {
@@ -978,7 +982,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_DayTimeNumberExtension",
+              "name": "Reprensentative_DayTimeNumberExtension",
               "title": {
                 "en": "Extension (digits only)",
                 "fr": "Prolongation (chiffres seulement)"
@@ -987,7 +991,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_AltTelephoneNumber",
+              "name": "Reprensentative_AltTelephoneNumber",
               "inputType": "tel",
               "title": {
                 "en": "Alternate telephone number (123-456-7890)",
@@ -996,7 +1000,7 @@
             },
             {
               "type": "text",
-              "name": "reprensentative_AltTelephoneNumberExtension",
+              "name": "Reprensentative_AltTelephoneNumberExtension",
               "title": {
                 "en": "Extension (digits only)",
                 "fr": "Prolongation (chiffres seulement)"
@@ -1015,7 +1019,7 @@
         },
         {
           "type": "panel",
-          "name": "pnl_complainant_accomodation",
+          "name": "pnl_Complainant_accomodation",
           "title": {
             "en": "Accomodation",
             "fr": "Mesures d’adaptation"
@@ -1081,7 +1085,7 @@
         },
         {
           "type": "radiogroup",
-          "name": "documentation_type",
+          "name": "Documentation_type",
           "title": {
             "en": "Do you wish to upload your supporting documents or send them by mail?",
             "fr": "Souhaitez-vous télécharger vos documents à l’appui ou les envoyer par la poste?"
@@ -1130,7 +1134,7 @@
         {
           "type": "html",
           "name": "documentation_uploading_file_types",
-          "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+          "visibleIf": "{Documentation_type} anyof ['upload','both']",
           "html": {
             "en": "<p><h2>Uploading supporting documents</h2></p><p><div class='alert alert-info'><p>We accept the following file types: doc, docx, xls, xlsx, ppt, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif, and tiff.</p><p>We cannot process a complaint submission until all relevant information is received. You can upload files up to a total of 25 MB.</p></div></p>",
             "fr": "<p><h2>Téléchargement des documents à l’appui</h2></p><div class='alert alert-info'><p>Nous acceptons les types de fichiers suivants : doc, docx, xls, xls, xlsx, ppt, pptx, pptx, wpd, csv, pdf, jpg, jpeg, gif, txt, rtf, tif et tiff.</p><p>Nous ne pouvons pas traiter une plainte tant que nous n’avons pas reçu tous les renseignements pertinents. Vous pouvez télécharger des fichiers jusqu’à un total de 25 Mo.</p></div></p>"
@@ -1143,16 +1147,17 @@
             "en": "Authorization form attachment(s)",
             "fr": "Pièces jointes au formulaire d’autorisation"
           },
-          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({documentation_type} contains 'upload' or {documentation_type} contains 'both')",
+          "visibleIf": "{FilingComplaintOnOwnBehalf} contains 'someone_else' and ({Documentation_type} anyof ['upload','both'])",
           "elements": [
             {
               "type": "file",
-              "name": "documentation_file_upload_rep",
+              "name": "Documentation_file_upload_rep",
               "titleLocation": "hidden",
               "description": {
                 "en": "Upload the representative authorization form signed by the complainant.",
                 "fr": "Téléchargez le formulaire d’autorisation de représentation signé par le plaignant."
               },
+              "isRequired":  true,
               "hasComment": false,
               "allowMultiple": true,
               "waitForUpload": true,
@@ -1194,16 +1199,17 @@
             "en": "Attachments",
             "fr": "Pièces jointes"
           },
-          "visibleIf": "{documentation_type} contains 'upload' or {documentation_type} contains 'both'",
+          "visibleIf": "{Documentation_type} anyof ['upload','both']",
           "elements": [
             {
               "type": "file",
-              "name": "documentation_file_upload",
+              "name": "Documentation_file_upload",
               "titleLocation": "hidden",
               "description": {
                 "en": "Upload a file to attach to your complaint",
                 "fr": "Téléchargez un fichier à joindre à votre plainte"
               },
+              "isRequired": true,
               "hasComment": false,
               "allowMultiple": true,
               "waitForUpload": false,
@@ -1224,7 +1230,7 @@
             "en": "Sending documents by mail",
             "fr": "Envoi de documents par la poste"
           },
-          "visibleIf": "{documentation_type} contains 'mail' or {documentation_type} contains 'both'",
+          "visibleIf": "{Documentation_type} anyof ['mail','both']",
           "elements": [
             {
               "type": "html",
