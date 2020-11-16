@@ -157,6 +157,9 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
                 classes.button += " btn btn-primary";
             } else if (options.question.getType() === "paneldynamic") {
                 classes.button += " btn btn-primary";
+
+                // This is to set the question test black like other questions
+                classes.title = "sv_q_title";
             }
         }
     });

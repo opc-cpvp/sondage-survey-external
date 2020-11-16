@@ -4610,9 +4610,9 @@
             {
               "text": {
                 "en": "Program or activity that does NOT involve a decision about an identifiable individual",
-                "fr": "not_involve_decision"
+                "fr": ""
               },
-              "value": ""
+              "value": "not_involve_decision"
             },
             {
               "text": {
@@ -5515,7 +5515,7 @@
     {
       "name": "page_step_3_10_1",
       "title": {
-        "en": "3.10 – Safeguards",
+        "en": "3.10 – Safeguards (Security designation)",
         "fr": ""
       },
       "section": 3.10,
@@ -5538,7 +5538,7 @@
     {
       "name": "page_step_3_10_2",
       "title": {
-        "en": "3.10 – Safeguards",
+        "en": "3.10 – Safeguards (Security designation)",
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
@@ -5558,7 +5558,7 @@
     {
       "name": "page_step_3_10_3",
       "title": {
-        "en": "3.10 – Safeguards",
+        "en": "3.10 – Safeguards (Security designation)",
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
@@ -5644,16 +5644,16 @@
       ]
     },
     {
-      "name": "page_step_3_10_4_A",
+      "name": "page_step_3_10_4_A_B",
       "title": {
-        "en": "3.10 – Safeguards",
+        "en": "3.10 – Safeguards (Assessments)",
         "fr": ""
       },
       "section": 3.10,
       "elements": [
         {
-          "type": "tagbox",
-          "name": "CompleteSecuritySssessments",
+          "type": "paneldynamic",
+          "name": "SecurityAssessment",
           "title": {
             "en": "Has your institution completed or plans to complete any security assessments for this program or activity? Select all that apply",
             "fr": ""
@@ -5662,28 +5662,116 @@
             "en": "Examples may include Security Assessment and Authorization (SA&A), Security Assessment Report (SAR), Threat and Risk Assessment (TRA). Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‘No’ to this question.",
             "fr": ""
           },
+          "renderMode": "list",
           "isRequired": true,
-          "choices": [
+          "allowAddPanel": true,
+          "allowRemovePanel": true,
+          "addPanel": {
+            "en": "Add Security Assessment",
+            "fr": ""
+          },
+          "templateElements": [
             {
-              "text": {
-                "en": "Yes, already completed",
+              "name": "Title",
+              "type": "text",
+              "title": {
+                "en": "Security Assessment:",
                 "fr": ""
-              },
-              "value": "yes_already_completed"
+              }
             },
             {
-              "text": {
-                "en": "Yes, but not yet completed",
-                "fr": ""
-              },
-              "value": "yes_not_completed"
+              "type": "radiogroup",
+              "name": "CompleteState",
+              "hasTitle": false,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Yes, already completed",
+                    "fr": ""
+                  },
+                  "value": "yes_already_completed"
+                },
+                {
+                  "text": {
+                    "en": "Yes, but not yet completed",
+                    "fr": ""
+                  },
+                  "value": "yes_not_completed"
+                },
+                {
+                  "text": {
+                    "en": "No",
+                    "fr": ""
+                  },
+                  "value": "no"
+                }
+              ]
             },
             {
-              "text": {
-                "en": "No",
+              "type": "radiogroup",
+              "name": "SummaryType",
+              "visibleIf": "{panel.CompleteState} contains 'yes_already_completed'",
+              "title": {
+                "en": "Please provide a summary for this assessment. Or, if you prefer, upload a copy of the summary.",
                 "fr": ""
               },
-              "value": "no"
+              "choices": [
+                {
+                  "text": {
+                    "en": "Upload my assessment",
+                    "fr": ""
+                  },
+                  "value": "upload"
+                },
+                {
+                  "text": {
+                    "en": "Enter text",
+                    "fr": ""
+                  },
+                  "value": "enter_text"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "Summary",
+              "visibleIf": "{panel.SummaryType} contains 'enter_text'",
+              "title": {
+                "en": "Summary",
+                "fr": ""
+              }
+            },
+            {
+              "type": "file",
+              "name": "UploadedSummary",
+              "title": {
+                "en": "Upload doc",
+                "fr": ""
+              },
+              "visibleIf": "{panel.SummaryType} contains 'upload'",
+              "description": {
+                "en": "Upload my summary assessment",
+                "fr": ""
+              },
+              "storeDataAsText": false,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+              "confirmRemoveMessage": {
+                "en": "Do you really want to remove this file?",
+                "fr": "Voulez-vous vraiment supprimer ce fichier?"
+              },
+              "itemListTitle": {
+                "en": "Attached summary assessment",
+                "fr": ""
+              },
+              "itemListNoAttachmentsText": {
+                "en": "No attachments have been uploaded yet.",
+                "fr": "Aucune pièce jointe n'a encore été téléchargée."
+              },
+              "duplicateFileNameExceptionMessage": {
+                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+              },
+              "showPreview": false
             }
           ]
         }
@@ -5692,7 +5780,7 @@
     {
       "name": "page_step_3_10_4B",
       "title": {
-        "en": "3.10 – Safeguards",
+        "en": "3.10 – Safeguards (Assessments)",
         "fr": ""
       },
       "section": 3.10,

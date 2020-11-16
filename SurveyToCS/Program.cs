@@ -1008,8 +1008,9 @@ namespace SurveyToCS
                     {
                         foreach (var column in element.columns)
                         {
+                            string columnName = !string.IsNullOrWhiteSpace(column.valueName) ? column.valueName : column.name;
                             csharp.AppendLine();
-                            csharp.Append(column.name);
+                            csharp.Append(columnName);
                             csharp.Append(":");
                             csharp.Append(GetPropertyValue(column));
                             csharp.Append(",");
@@ -1019,8 +1020,9 @@ namespace SurveyToCS
                     {
                         foreach (var column in element.templateElements)
                         {
+                            string columnName = !string.IsNullOrWhiteSpace(column.valueName) ? column.valueName : column.name;
                             csharp.AppendLine();
-                            csharp.Append(column.valueName);
+                            csharp.Append(columnName);
                             csharp.Append(":");
                             csharp.Append(GetPropertyValue(column));
                             csharp.Append(",");
@@ -1110,7 +1112,11 @@ namespace SurveyToCS
             else if (type == "comment")
             {
                 retVal.Append("\"");
-                retVal.Append(RandomText(250));
+                retVal.Append(RandomText(75));
+                retVal.Append(" ");
+                retVal.Append(RandomText(75));
+                retVal.Append(" ");
+                retVal.Append(RandomText(75));
                 retVal.Append("\"");
             }
 
