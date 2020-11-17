@@ -148,7 +148,7 @@ namespace SurveyToCS
                         csharp.Append("List<SurveyFile> ");
                         csharp.Append(elementName);
                     }
-                    else if (element.type == "text" && element.inputType == "date")
+                    else if (element.type == "datepicker" || (element.type == "text" && element.inputType == "date"))
                     {
                         csharp.Append(" DateTime? ");
                         csharp.Append(elementName);

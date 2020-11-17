@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "PBR";
+}
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+
+}
+
+<div id="surveyElement" style="display:inline-block;width:100%;">
+    <survey :survey='survey' />
+</div>
+
+<div id="surveyResult"></div>
+
+<center>
+    <div id="div_navigation">
+        <button id="btnSurveyPrev" onclick="survey.prevPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
+        <button id="btnSurveyNext" onclick="survey.nextPage();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyNext")</button>
+        <button id="btnShowPreview" onclick="survey.showPreview();" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnShowPreview")</button>
+        <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button hidden">@Localizer.GetLocalizedString("btnComplete")</button>
+        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary hidden">Start</button>
+    </div>
+</center>
+
+@section CustomStyles {
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.min.css" />
+}
+
+@section CustomScripts {
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/dist/bundle.js"></script>
+    <script src="~/js/datepicker.js"></script>
+
+    <script type="text/javascript">
+
+        const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
+        const token = "@ViewBag.token";
+
+        initPbr(lang, token);
+
+    </script>
+}
+
