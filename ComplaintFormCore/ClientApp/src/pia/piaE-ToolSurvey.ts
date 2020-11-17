@@ -305,6 +305,9 @@ export class PiaETool {
 
                 this.setNavigationBreadcrumbs(_survey);
 
+                Survey.FunctionFactory.Instance.register("IsPhysicalFormat", IsPhysicalFormat);
+                Survey.FunctionFactory.Instance.register("IsElectronicFormat", IsElectronicFormat);
+
                 const app = new Vue({
                     el: "#surveyElement",
                     data: {
@@ -411,4 +414,42 @@ export class PiaETool {
             li_breadcrumb.className += " active";
         }
     }
+}
+
+export function IsPhysicalFormat(params: any[]): boolean {
+    if (!params) {
+        return false;
+    }
+
+    const PersonalInformationPhysicalAndOrElectronicFormat: string = params[0];
+    const IsElectronicConvertedToPhysical: boolean = params[1];
+
+    if (
+        PersonalInformationPhysicalAndOrElectronicFormat === "physical" ||
+        PersonalInformationPhysicalAndOrElectronicFormat === "both" ||
+        IsElectronicConvertedToPhysical === true
+    ) {
+        return true;
+    }
+
+    return false;
+}
+
+export function IsElectronicFormat(params: any[]): boolean {
+    if (!params) {
+        return false;
+    }
+
+    const PersonalInformationPhysicalAndOrElectronicFormat: string = params[0];
+    const IsPhysicalConvertedToElectronic: boolean = params[1];
+
+    if (
+        PersonalInformationPhysicalAndOrElectronicFormat === "electronic" ||
+        PersonalInformationPhysicalAndOrElectronicFormat === "both" ||
+        IsPhysicalConvertedToElectronic === true
+    ) {
+        return true;
+    }
+
+    return false;
 }

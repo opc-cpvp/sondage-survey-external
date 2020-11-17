@@ -3827,7 +3827,7 @@
         "en": "3.5 – Retention",
         "fr": ""
       },
-      "visibleIf": "({PersonalInformationPhysicalAndOrElectronicFormat} contains 'electronic' and !({IsElectronicConvertedToPhysical} = true)) or {PersonalInformationPhysicalAndOrElectronicFormat} contains 'both' or {IsPhysicalConvertedToElectronic} = true",
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
       "section": 3.5,
       "elements": [
         {
@@ -4263,7 +4263,7 @@
         "fr": ""
       },
       "section": 3.7,
-      "visibleIf": "({PersonalInformationPhysicalAndOrElectronicFormat} = 'electronic' and !({IsElectronicConvertedToPhysical} = true)) or {IsPhysicalConvertedToElectronic} = true or {PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both']",
+      "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
       "elements": [
         {
           "type": "radiogroup",
@@ -5525,7 +5525,7 @@
           "name": "HasSecurityDesignation",
           "isRequired": true,
           "title": {
-            "en": "Have you assigned a security designation to the personal information?",
+            "en": "Have you assigned a security designation to the personal information? (3.10.1)",
             "fr": ""
           },
           "description": {
@@ -5549,7 +5549,7 @@
           "name": "IsSecurityDesignationSameToAllPICollected",
           "isRequired": true,
           "title": {
-            "en": "Is the security designation that has been assigned to the personal information the same for all of the personal information being collected?",
+            "en": "Is the security designation that has been assigned to the personal information the same for all of the personal information being collected?(3.10.2)",
             "fr": ""
           }
         }
@@ -5568,7 +5568,7 @@
           "type": "dropdown",
           "name": "HighestSecurityDesignation",
           "title": {
-            "en": "What is the *highest* security designation that you have assigned to the personal information?",
+            "en": "What is the *highest* security designation that you have assigned to the personal information?(3.10.3)",
             "fr": ""
           },
           "isRequired": true,
@@ -5655,7 +5655,7 @@
           "type": "paneldynamic",
           "name": "SecurityAssessment",
           "title": {
-            "en": "Has your institution completed or plans to complete any security assessments for this program or activity? Select all that apply",
+            "en": "Has your institution completed or plans to complete any security assessments for this program or activity? Select all that apply (3.10.4A)",
             "fr": ""
           },
           "description": {
@@ -5674,6 +5674,7 @@
             {
               "name": "Title",
               "type": "text",
+              "isRequired": true,
               "title": {
                 "en": "Security Assessment:",
                 "fr": ""
@@ -5683,6 +5684,7 @@
               "type": "radiogroup",
               "name": "CompleteState",
               "hasTitle": false,
+              "isRequired": true,
               "choices": [
                 {
                   "text": {
@@ -5711,6 +5713,7 @@
               "type": "radiogroup",
               "name": "SummaryType",
               "visibleIf": "{panel.CompleteState} contains 'yes_already_completed'",
+              "isRequired": true,
               "title": {
                 "en": "Please provide a summary for this assessment. Or, if you prefer, upload a copy of the summary.",
                 "fr": ""
@@ -5736,16 +5739,18 @@
               "type": "comment",
               "name": "Summary",
               "visibleIf": "{panel.SummaryType} contains 'enter_text'",
+              "isRequired": true,
               "title": {
-                "en": "Summary",
+                "en": "Summary (3.10.4B)",
                 "fr": ""
               }
             },
             {
               "type": "file",
-              "name": "UploadedSummary",
+              "name": "SummaryFiles",
+              "isRequired": true,
               "title": {
-                "en": "Upload doc",
+                "en": "Upload doc (3.10.4B)",
                 "fr": ""
               },
               "visibleIf": "{panel.SummaryType} contains 'upload'",
@@ -5778,36 +5783,341 @@
       ]
     },
     {
-      "name": "page_step_3_10_4B",
+      "name": "page_step_3_10_5",
       "title": {
-        "en": "3.10 – Safeguards (Assessments)",
+        "en": "3.10 – Safeguards (Storage)",
         "fr": ""
       },
+      "visibleIf": "IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical})",
       "section": 3.10,
       "elements": [
-
+        {
+          "type": "boolean",
+          "name": "IsPhysicalInfoStoredMultipleLocation",
+          "isRequired": true,
+          "title": {
+            "en": "Is the personal information collected in or converted to physical format for this program or activity stored in more than one location (including any back-up storage)? (3.10.5)",
+            "fr": ""
+          }
+        }
       ]
     },
     {
-      "name": "page_step_3_10",
+      "name": "page_step_3_10_6",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "visibleIf": "IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic})",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsElectronicInfoStoredMultipleLocation",
+          "isRequired": true,
+          "title": {
+            "en": "Is the personal information collected in or converted to electronic format for this program or activity stored in more than one location (including any back-up storage)? (3.10.6)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_7",
       "title": {
         "en": "3.10 – Safeguards",
         "fr": ""
       },
       "section": 3.10,
       "elements": [
-
+        {
+          "type": "radiogroup",
+          "name": "StorageManagement",
+          "isRequired": true,
+          "visibleIf": "IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = true or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = true",
+          "title": {
+            "en": "Does your institution manage the storage of personal information, in any format? (3.10.7A)",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "(A) Yes, we manage the storage of personal information in all locations",
+                "fr": ""
+              },
+              "value": "all"
+            },
+            {
+              "text": {
+                "en": "(B) We manage some storage locations of the personal information but not all of them",
+                "fr": ""
+              },
+              "value": "some"
+            },
+            {
+              "text": {
+                "en": "(C) No, we do not manage any storage of the personal information",
+                "fr": ""
+              },
+              "value": "none"
+            }
+          ]
+        },
+        {
+          "type": "boolean",
+          "name": "IsInstituionManageStorageOfPI",
+          "isRequired": true,
+          "visibleIf": "IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = false or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = false",
+          "title": {
+            "en": "Does your institution manage the storage of the personal information? (3.10.7B)",
+            "fr": ""
+          }
+        }
       ]
     },
     {
-      "name": "page_step_3_10",
+      "name": "page_step_3_10_8",
       "title": {
         "en": "3.10 – Safeguards",
         "fr": ""
       },
+      "visibleIf": "{StorageManagement} anyof ['all','some'] or {IsInstituionManageStorageOfPI} = true",
       "section": 3.10,
       "elements": [
-
+        {
+          "type": "comment",
+          "name": "DescriptionHowPIStored",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a brief description of how the personal information is stored within the institution. (3.10.8)",
+            "fr": ""
+          },
+          "description": {
+            "en": "For example, is data stored in GCDocs? If personal information is captured on paper forms, where are they stored? Please note that you will have the opportunity to provide a detailed description of all of your physical, operational and technical safeguards later. This questions aims to get a “snapshot” of how personal information is stored.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_9_A",
+      "title": {
+        "en": "3.10 – Safeguards (Storage)",
+        "fr": ""
+      },
+      "visibleIf": "{StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "FormalAgreementToManageStorage",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution have in place, or plans to have in place, formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information?(3.10.9A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “‘No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_9_B",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesAgreementRequireUpdates",
+          "isRequired": true,
+          "title": {
+            "en": "Does/do the agreement(s) require any updates to protect adequately the personal information managed by the third party (or third parties) (3.10.9B)?",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "AgreementRequireUpdatesDescription",
+          "visibleIf": "{DoesAgreementRequireUpdates} = 'true'",
+          "isRequired": true,
+          "title": {
+            "en": "Please briefly describe the required updates. You will have the opportunity later to describe how your institution intends to action these updates.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_9_C",
+      "title": {
+        "en": "3.10 – Safeguards (Storage)",
+        "fr": ""
+      },
+      "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "RelevantAgreementDocumentationType",
+          "title": {
+            "en": "Please provide a copy of relevant agreements. (3.10.9C)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload my agreement(s)",
+                "fr": ""
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Agreement(s) are not able to be uploaded",
+                "fr": ""
+              },
+              "value": "no_upload"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "RelevantAgreementFiles",
+          "visibleIf": "{RelevantAgreementDocumentationType} = 'upload'",
+          "titleLocation": "hidden",
+          "description": {
+            "en": "Relevant agreement(s)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "allowMultiple": true,
+          "storeDataAsText": false,
+          "showPreview": false,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+          "confirmRemoveMessage": {
+            "en": "Do you really want to remove this file?",
+            "fr": "Voulez-vous vraiment supprimer ce fichier?"
+          },
+          "itemListTitle": {
+            "en": "",
+            "fr": ""
+          },
+          "itemListNoAttachmentsText": {
+            "en": "No attachments have been uploaded yet.",
+            "fr": "Aucune pièce jointe n'a encore été téléchargée."
+          },
+          "duplicateFileNameExceptionMessage": {
+            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+          }
+        },
+        {
+          "type": "comment",
+          "name": "NoRelevantAgreementDocumentation",
+          "isRequired": true,
+          "visibleIf": "{RelevantAgreementDocumentationType} = 'no_upload'",
+          "title": {
+            "en": "Please explain why you are unable to provide a copy or copies of relevant agreements",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_9_D",
+      "title": {
+        "en": "3.10 – Safeguards (Storage)",
+        "fr": ""
+      },
+      "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place' and {RelevantAgreementDocumentationType} = 'upload'",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasAdditionalInfoAboutStorage",
+          "isRequired": true,
+          "title": {
+            "en": "Is there any additional information about the storage of personal information with the third party that you wish to share that is not explained in the agreement that you have provided?(3.10.9D)",
+            "fr": ""
+          },
+          "description": {
+            "en": "This would be any relevant information about the personal information (for example, safeguards employed by the third party to protect the PI) that is not explained as a part of the agreement.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_9_E",
+      "title": {
+        "en": "3.10 – Safeguards (Storage)",
+        "fr": ""
+      },
+      "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and ({FormalAgreementToManageStorage} != 'yes_in_place' or {RelevantAgreementDocumentationType} = 'no_upload')",
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionOfDisclosure",
+          "isRequired": true,
+          "title": {
+            "en": "In the absence of an information sharing agreement, please provide a description of the disclosure: (3.10.9E)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><ul><li>How will information be shared with the third party (that is, by what means or channels?)</li><li>How will the receiving party protect the personal information (you can choose to provide this information later when discussing safeguards)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic?</li><li>How is the information stored at the third party?</li></ul></p><p>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_10A",
+      "title": {
+        "en": "3.10 – Safeguards (Storage)",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsStoredUsingCloudService",
+          "isRequired": true,
+          "title": {
+            "en": "Is any of the personal information collected for this program or activity stored, even temporarily, using a cloud service? (3.10.10A)",
+            "fr": ""
+          }
+        }
       ]
     }
   ]

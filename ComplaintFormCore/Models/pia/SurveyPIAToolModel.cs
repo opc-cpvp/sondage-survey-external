@@ -1359,7 +1359,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_3_8_4_and_5<br/>
         /// Section: 3.8<br/>
         /// How does the institution use personal information under the program or acti...<br/>
-        /// Possible choices: [, administration, compliance, criminal_investigation]<br/>
+        /// Possible choices: [not_involve_decision, administration, compliance, criminal_investigation]<br/>
         /// Survey question type: dropdown
         /// </summary>
         public string HowInstitutionUsePersonalInformation { get; set; }
@@ -1491,7 +1491,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_3_10_1<br/>
         /// Section: 3.10<br/>
-        /// Have you assigned a security designation to the personal information?<br/>
+        /// Have you assigned a security designation to the personal information? (3.10...<br/>
         /// Survey question type: boolean
         /// </summary>
         public bool? HasSecurityDesignation { get; set; }
@@ -1523,12 +1523,123 @@ namespace ComplaintFormCore.Models
         public string SecurityDesignationDescription { get; set; }
 
         /// <summary>
-        /// Page: page_step_3_10_4_A<br/>
+        /// Page: page_step_3_10_5<br/>
         /// Section: 3.10<br/>
-        /// Has your institution completed or plans to complete any security assessment...<br/>
-        /// Survey question type: tagbox
+        /// Is the personal information collected in or converted to physical format fo...<br/>
+        /// Survey question type: boolean
         /// </summary>
-        public List<string> CompleteSecuritySssessments { get; set; }
+        public bool? IsPhysicalInfoStoredMultipleLocation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_6<br/>
+        /// Section: 3.10<br/>
+        /// Is the personal information collected in or converted to electronic format ...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsElectronicInfoStoredMultipleLocation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_7<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution manage the storage of personal information, in any fo...<br/>
+        /// Possible choices: [all, some, none]<br/>
+        /// Required condition: IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = true or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = true<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string StorageManagement { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_7<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution manage the storage of the personal information? (3.10...<br/>
+        /// Required condition: IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = false or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = false<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsInstituionManageStorageOfPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_8<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a brief description of how the personal information is store...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionHowPIStored { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_A<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution have in place, or plans to have in place, formal agre...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string FormalAgreementToManageStorage { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_B<br/>
+        /// Section: 3.10<br/>
+        /// Does/do the agreement(s) require any updates to protect adequately the pers...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesAgreementRequireUpdates { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_B<br/>
+        /// Section: 3.10<br/>
+        /// Please briefly describe the required updates. You will have the opportunity...<br/>
+        /// Required condition: {DoesAgreementRequireUpdates} = 'true'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AgreementRequireUpdatesDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a copy of relevant agreements. (3.10.9C)<br/>
+        /// Possible choices: [upload, no_upload]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string RelevantAgreementDocumentationType { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Required condition: {RelevantAgreementDocumentationType} = 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> RelevantAgreementFiles { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Please explain why you are unable to provide a copy or copies of relevant a...<br/>
+        /// Required condition: {RelevantAgreementDocumentationType} = 'no_upload'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string NoRelevantAgreementDocumentation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_D<br/>
+        /// Section: 3.10<br/>
+        /// Is there any additional information about the storage of personal informati...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasAdditionalInfoAboutStorage { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_E<br/>
+        /// Section: 3.10<br/>
+        /// In the absence of an information sharing agreement, please provide a descri...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionOfDisclosure { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_10A<br/>
+        /// Section: 3.10<br/>
+        /// Is any of the personal information collected for this program or activity s...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsStoredUsingCloudService { get; set; }
 
 
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
@@ -1542,6 +1653,8 @@ namespace ComplaintFormCore.Models
         public List<PersonalInformationCategory> PersonalInformationCategory { get; set; }
 
         public List<PNSStatement> PNSStatement { get; set; }
+
+        public List<SecurityAssessment> SecurityAssessment { get; set; }
 
     }
     public class BehalfMultipleInstitutionOthers
@@ -1718,6 +1831,43 @@ namespace ComplaintFormCore.Models
         /// Survey question type: comment
         /// </summary>
         public string Description { get; set; }
+
+    }
+    public class SecurityAssessment
+    {
+        /// <summary>
+        /// Security Assessment:<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Title { get; set; }
+
+        /// <summary>
+        /// Possible choices: [yes_already_completed, yes_not_completed, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string CompleteState { get; set; }
+
+        /// <summary>
+        /// Please provide a summary for this assessment. Or, if you prefer, upload a c...<br/>
+        /// Possible choices: [upload, enter_text]<br/>
+        /// Required condition: {panel.CompleteState} contains 'yes_already_completed'<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string SummaryType { get; set; }
+
+        /// <summary>
+        /// Summary (3.10.4B)<br/>
+        /// Required condition: {panel.SummaryType} contains 'enter_text'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string Summary { get; set; }
+
+        /// <summary>
+        /// Upload doc (3.10.4B)<br/>
+        /// Required condition: {panel.SummaryType} contains 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> SummaryFiles { get; set; }
 
     }
 }

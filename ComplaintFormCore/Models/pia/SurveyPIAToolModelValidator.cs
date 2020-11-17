@@ -691,6 +691,72 @@ namespace ComplaintFormCore.Models
             // FlowChartFiles (Page: page_step_3_9_9)
             RuleFor(x => x.FlowChartFiles).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
+            // HasSecurityDesignation (Page: page_step_3_10_1)
+            RuleFor(x => x.HasSecurityDesignation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsSecurityDesignationSameToAllPICollected (Page: page_step_3_10_2)
+            RuleFor(x => x.IsSecurityDesignationSameToAllPICollected).NotEmpty().When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // HighestSecurityDesignation (Page: page_step_3_10_3)
+            RuleFor(x => x.HighestSecurityDesignation).NotEmpty().When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HighestSecurityDesignation).Must(x => new List<string> { "protected_A", "protected_B", "protected_C", "classified", "confidential", "secret", "top_secret", "other" }.Contains(x)).When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // SecurityDesignationDescription (Page: page_step_3_10_3)
+            RuleFor(x => x.SecurityDesignationDescription).NotEmpty().When(x => x.HasSecurityDesignation == true && x.HighestSecurityDesignation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SecurityDesignationDescription).Length(0, 5000).When(x => x.HasSecurityDesignation == true && x.HighestSecurityDesignation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // SecurityAssessment (Page: page_step_3_10_4_A_B)
+            RuleFor(x => x.SecurityAssessment).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsPhysicalInfoStoredMultipleLocation (Page: page_step_3_10_5)
+            RuleFor(x => x.IsPhysicalInfoStoredMultipleLocation).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsElectronicConvertedToPhysical)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsElectronicInfoStoredMultipleLocation (Page: page_step_3_10_6)
+            RuleFor(x => x.IsElectronicInfoStoredMultipleLocation).NotEmpty().When(x => IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // StorageManagement (Page: page_step_3_10_7)
+            RuleFor(x => x.StorageManagement).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == true || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.StorageManagement).Must(x => new List<string> { "all", "some", "none" }.Contains(x)).When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == true || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // IsInstituionManageStorageOfPI (Page: page_step_3_10_7)
+            RuleFor(x => x.IsInstituionManageStorageOfPI).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == false || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // DescriptionHowPIStored (Page: page_step_3_10_8)
+            RuleFor(x => x.DescriptionHowPIStored).NotEmpty().When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"all","some"}).Any() || x.IsInstituionManageStorageOfPI == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionHowPIStored).Length(0, 5000).When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"all","some"}).Any() || x.IsInstituionManageStorageOfPI == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // FormalAgreementToManageStorage (Page: page_step_3_10_9_A)
+            RuleFor(x => x.FormalAgreementToManageStorage).NotEmpty().When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.FormalAgreementToManageStorage).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // DoesAgreementRequireUpdates (Page: page_step_3_10_9_B)
+            RuleFor(x => x.DoesAgreementRequireUpdates).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // AgreementRequireUpdatesDescription (Page: page_step_3_10_9_B)
+            RuleFor(x => x.AgreementRequireUpdatesDescription).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.DoesAgreementRequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AgreementRequireUpdatesDescription).Length(0, 5000).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.DoesAgreementRequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // RelevantAgreementDocumentationType (Page: page_step_3_10_9_C)
+            RuleFor(x => x.RelevantAgreementDocumentationType).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.RelevantAgreementDocumentationType).Must(x => new List<string> { "upload", "no_upload" }.Contains(x)).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // RelevantAgreementFiles (Page: page_step_3_10_9_C)
+            RuleFor(x => x.RelevantAgreementFiles).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // NoRelevantAgreementDocumentation (Page: page_step_3_10_9_C)
+            RuleFor(x => x.NoRelevantAgreementDocumentation).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "no_upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NoRelevantAgreementDocumentation).Length(0, 5000).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "no_upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasAdditionalInfoAboutStorage (Page: page_step_3_10_9_D)
+            RuleFor(x => x.HasAdditionalInfoAboutStorage).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // DescriptionOfDisclosure (Page: page_step_3_10_9_E)
+            RuleFor(x => x.DescriptionOfDisclosure).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && (x.FormalAgreementToManageStorage != "yes_in_place" || x.RelevantAgreementDocumentationType == "no_upload")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionOfDisclosure).Length(0, 5000).When(x =>(new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && (x.FormalAgreementToManageStorage != "yes_in_place" || x.RelevantAgreementDocumentationType == "no_upload")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // IsStoredUsingCloudService (Page: page_step_3_10_10A)
+            RuleFor(x => x.IsStoredUsingCloudService).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
                 // OtherInstitutionHeadFullname
                 child.RuleFor(x => x.OtherInstitutionHeadFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -825,6 +891,57 @@ namespace ComplaintFormCore.Models
                 child.RuleFor(x => x.Description).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
                 child.RuleFor(x => x.Description).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             }).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true) && x.HasPrivacyNoticeStatement == true && x.HasDraftFinalVersionPNSAvailable == true);
+
+            // SecurityAssessment
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // Title (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.Title).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Title).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // CompleteState (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.CompleteState).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.CompleteState).Must(x => new List<string> { "yes_already_completed", "yes_not_completed", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // SummaryType (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.SummaryType).NotEmpty().When(x => x.CompleteState == "yes_already_completed").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SummaryType).Must(x => new List<string> { "upload", "enter_text" }.Contains(x)).When(x => x.CompleteState == "yes_already_completed").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // Summary (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.Summary).NotEmpty().When(x => x.SummaryType == "enter_text").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Summary).Length(0, 5000).When(x => x.SummaryType == "enter_text").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child =>
+            {
+                // UploadedSummary (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.SummaryFiles).NotEmpty().When(x => x.SummaryType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            });
+        }
+
+        private bool IsPhysicalFormat(string personalInformationPhysicalAndOrElectronicFormat, bool? isElectronicConvertedToPhysical)
+        {
+            if (personalInformationPhysicalAndOrElectronicFormat == "physical" || personalInformationPhysicalAndOrElectronicFormat == "both" || isElectronicConvertedToPhysical == true)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsElectronicFormat(string personalInformationPhysicalAndOrElectronicFormat, bool? isPhysicalConvertedToElectronic)
+        {
+            if (personalInformationPhysicalAndOrElectronicFormat == "electronic" || personalInformationPhysicalAndOrElectronicFormat == "both" || isPhysicalConvertedToElectronic == true)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
