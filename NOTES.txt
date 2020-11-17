@@ -101,6 +101,23 @@
     "isRequired": true
 }
 
+------------------------------
+{
+    "type": "text",
+    "inputType": "date",
+    "name": "",
+    "title": {
+    "en": "",
+    "fr": ""
+    },
+    "dateFormat": "dd-MMM-yyyy",
+    "placeHolder": {
+    "en": "dd-MMM-yyyy",
+    "fr": "dd-MMM-yyyy"
+    },
+    "isRequired": true
+},
+
 //*******************************************************************************************
 PaSurvey.ts...
 

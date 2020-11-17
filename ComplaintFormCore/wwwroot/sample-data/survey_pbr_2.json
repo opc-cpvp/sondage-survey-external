@@ -1,0 +1,54 @@
+{
+  "showPreviewBeforeComplete": "showAllQuestions",
+  "pages": [
+    {
+      "name": "page_organization",
+      "title": "Test page startWithNewLine",
+      "elements": [
+        {
+          "type": "text",
+          "name": "ContactPhoneWithCountryCode",
+          "title": "Telephone"
+        },
+        {
+          "type": "text",
+          "name": "ContactPhoneExtension",
+          "startWithNewLine": true,
+          "title": "Extension"
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "OrganizationDescription",
+          "title": {
+            "en": "Description of any organizations and/or government institutions notified about the breach not mentioned above (for example, professional bodies or other privacy commissioners' offices)",
+            "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée ci-dessus (par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée)"
+          },
+          "isRequired": true,
+          "cellType": "dropdown",
+          "columns": [
+            {
+              "name": "Name",
+              "cellType": "text",
+              "title": {
+                "en": "Organization name",
+                "fr": "Nom de l'organisation"
+              }
+            },
+            {
+              "name": "DateNotified",
+              "title": {
+                "en": "Date notified",
+                "fr": "Date de l'avis"
+              },
+              "cellType": "text",
+              "inputType": "date"
+            }
+          ],
+          "rowCount": 1,
+          "minRowCount": 1,
+          "maxRowCount": 10
+        }
+      ]
+    }
+  ]
+}

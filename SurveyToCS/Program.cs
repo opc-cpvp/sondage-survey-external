@@ -28,11 +28,11 @@ namespace SurveyToCS
             string line = Console.ReadLine();
             if (line == "c")
             {
-                CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPAModel");
+                CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPBRModel");
             }
             else if (line == "v")
             {
-                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPAModel");
+                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPBRModel");
             }
             else if (line == "t")
             {
@@ -161,7 +161,7 @@ namespace SurveyToCS
                         csharp.Append("List<SurveyFile> ");
                         csharp.Append(elementName);
                     }
-                    else if (element.type == "text" && element.inputType == "date")
+                    else if (element.type == "datepicker" || (element.type == "text" && element.inputType == "date"))
                     {
                         csharp.Append(" DateTime? ");
                         csharp.Append(elementName);
@@ -226,7 +226,7 @@ namespace SurveyToCS
                             {
                                 csharp.Append(" bool? ");
                             }
-                            else if (column.inputType == "date")
+                            else if(column.inputType == "date" || column.cellType == "datepicker")
                             {
                                 csharp.Append(" DateTime? ");
                             }
@@ -260,7 +260,7 @@ namespace SurveyToCS
                             {
                                 csharp.Append(" bool? ");
                             }
-                            else if (templateItem.inputType == "date")
+                            else if (templateItem.inputType == "date" || templateItem.type == "datepicker")
                             {
                                 csharp.Append(" DateTime? ");
                             }
