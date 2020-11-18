@@ -1642,6 +1642,85 @@ namespace ComplaintFormCore.Models
         public bool? IsStoredUsingCloudService { get; set; }
 
 
+        /// <summary>
+        /// Page: page_step_3_10_10<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a description of your use of the cloud. (3.10.10B)<br/>
+        /// Required condition: {IsStoredUsingCloudService} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string StoredUsingCloudServiceDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_11<br/>
+        /// Does personal information ever leave Canada in any format? Please select al...<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> DoesPersonalInformationLeaveCanada { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_11<br/>
+        /// Please provide a brief explanation of the circumstances in which personal i...<br/>
+        /// Required condition: {DoesPersonalInformationLeaveCanada} = ['no']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PersonalInformationLeaveCanadaDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_12<br/>
+        /// Your institution has safeguards in place to restrict access to sensitive in...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string AdministrativeSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_12<br/>
+        /// Describe the administrative safeguards that the institution implements or p...<br/>
+        /// Required condition: {AdministrativeSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AdministrativeSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_13<br/>
+        /// Does the institution have physical safeguards implemented or planned for im...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string PhysicalSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_13<br/>
+        /// Describe the physical safeguards that the institution implements to protect...<br/>
+        /// Required condition: {PhysicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PhysicalSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_14<br/>
+        /// Does the institution have technical safeguards implemented or planned for i...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string TechnicalSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_14<br/>
+        /// Describe the technological safeguards that the institution implements to pr...<br/>
+        /// Required condition: {TechnicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string TechnicalSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_15<br/>
+        /// Have you established which persons or positions will have access to the per...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasEstablishedWhoHaveAccessToPI { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }

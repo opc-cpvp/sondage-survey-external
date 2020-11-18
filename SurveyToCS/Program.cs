@@ -691,6 +691,8 @@ namespace SurveyToCS
             string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
             string property_pattern = @"({[a-zA-Z_]+})";
 
+            //  First we get all of the visibleIf conditions from the element and the parent element
+            //  into a string
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {
                 visibleIf += parentPage.visibleIf;
@@ -723,6 +725,8 @@ namespace SurveyToCS
 
                 if (anyofs.Count > 0)
                 {
+                    #region Anyof
+
                     string wholeVisibleIf = string.Empty;
                     foreach (Match match_anyof in Regex.Matches(visibleIf, anyof_pattern))
                     {
@@ -759,8 +763,10 @@ namespace SurveyToCS
 
                         visibleIf = visibleIf.Replace(match_anyof.Value, replacement);
                     }
+                    #endregion
                 }
 
+                //  Replace {Property} by x.Property
                 foreach (Match match_propery in Regex.Matches(visibleIf, property_pattern))
                 {
                     visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
@@ -1222,7 +1228,7 @@ namespace SurveyToCS
         public static string SafeReplace(this string input, string find, string replace, bool matchWholeWord)
         {
             string textToFind = matchWholeWord ? string.Format(@"\b{0}\b", find) : find;
-            var test = Regex.Replace(input, textToFind, replace);
+            //var test = Regex.Replace(input, textToFind, replace);
             return Regex.Replace(input, textToFind, replace);
         }
     }

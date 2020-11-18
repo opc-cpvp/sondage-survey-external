@@ -6102,7 +6102,7 @@
       ]
     },
     {
-      "name": "page_step_3_10_10A",
+      "name": "page_step_3_10_10",
       "title": {
         "en": "3.10 – Safeguards (Storage)",
         "fr": ""
@@ -6117,7 +6117,310 @@
             "en": "Is any of the personal information collected for this program or activity stored, even temporarily, using a cloud service? (3.10.10A)",
             "fr": ""
           }
+        },
+        {
+          "type": "comment",
+          "name": "StoredUsingCloudServiceDescription",
+          "visibleIf": "{IsStoredUsingCloudService} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a description of your use of the cloud. (3.10.10B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><ul><li>Please provide the name of the cloud provider. Note that there are specific approved cloud solutions for information at the Protected B level. If your institution is using a different provider for materials at this level or higher, please explain why.</li><li>Please include information on any third party products that you have added to the cloud environment from the service provider’s marketplaces, if applicable.</li><li>Please note that you will have the opportunity to discuss safeguards (administrative, physical, and technical) later. However, you may choose to discuss cloud-specific safeguards here, if more appropriate.</li><li>If you feel that you have already sufficiently answered this question in other answers, you may refer back to those answers.</li></ul></p>",
+            "fr": ""
+          }
         }
+      ]
+    },
+    {
+      "name": "page_step_3_10_11",
+      "title": {
+        "en": "3.10 – Safeguards (Residency)",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "tagbox",
+          "name": "DoesPersonalInformationLeaveCanada",
+          "title": {
+            "en": "Does personal information ever leave Canada in any format? Please select all that apply (3.10.11A)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Some or all personal information is stored outside of Canada on an ongoing basis",
+                "fr": ""
+              },
+              "value": "ongoing_basis"
+            },
+            {
+              "text": {
+                "en": "Some or all personal information is stored outside of Canada on a temporary basis (for example, online application)",
+                "fr": ""
+              },
+              "value": "temporary_basis"
+            },
+            {
+              "text": {
+                "en": "Personal information is transmitted through a country other than Canada",
+                "fr": ""
+              },
+              "value": "transmitted"
+            },
+            {
+              "text": {
+                "en": "Personal information could be transmitted through a country other than Canada in specific circumstances (for example, based on the user’s email provider)",
+                "fr": ""
+              },
+              "value": "specific_circumstances"
+            },
+            {
+              "text": {
+                "en": "No – personal information does not leave Canada",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "PersonalInformationLeaveCanadaDescription",
+          "visibleIf": "{DoesPersonalInformationLeaveCanada} = ['no']",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a brief explanation of the circumstances in which personal information is or may be outside of Canada, and the reasoning for this.(3.10.11B)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_12",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "AdministrativeSafeguardsImplementation",
+          "isRequired": true,
+          "title": {
+            "en": "Your institution has safeguards in place to restrict access to sensitive information, including personal information. Safeguards generally fall into one of three broad categories: administrative (or operational), physical and technical. Does the institution have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit? (3.10.12A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "AdministrativeSafeguardsDescription",
+          "visibleIf": "{AdministrativeSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']",
+          "isRequired": true,
+          "title": {
+            "en": "Describe the administrative safeguards that the institution implements or plans to implement to protect the personal information while in storage, in transit, or both.(3.10.12B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Examples include, but are not limited to</p><ul><li>Security clearances</li><li>Limiting access on a need-to-know basis</li><li>Other access restrictions</li><li>Regular reviews of access privileges</li><li>Clean-desk policy</li><li>Privacy and information management training</li><li>Procedures to restore or replace personal information that has been damaged or lost</li><li>Other procedures</li></ul><p>Please limit your response to <strong>administrative safeguards</strong> only. You will be given an opportunity in the next question to discuss technical safeguards.</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_13",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "PhysicalSafeguardsImplementation",
+          "isRequired": true,
+          "title": {
+            "en": "Does the institution have physical safeguards implemented or planned for implementation to protect the personal information, while in storage or in transit? (3.10.13A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "PhysicalSafeguardsDescription",
+          "visibleIf": "{PhysicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']",
+          "isRequired": true,
+          "title": {
+            "en": "Describe the physical safeguards that the institution implements to protect the personal information while in storage, in transit, or both. (3.10.13B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Examples include, but are not limited to:</p><ul><li>Locked filing cabinets or safes</li><li>Combination locks</li><li>Secured premises</li><li>Access or key cards</li><li>Alarm systems</li><li>Security Guards</li><li>Cipher locks</li><li>Video surveillance</li><li>Secured server location(s)</li><li>Back-up servers stored off-site</li></ul><p>Please limit your response to <strong>physical safeguards</strong> only. You will be given an opportunity in the next question to discuss operational and technical safeguards.</p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_14",
+      "title": {
+        "en": "3.10 – Safeguards",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "TechnicalSafeguardsImplementation",
+          "isRequired": true,
+          "title": {
+            "en": "Does the institution have technical safeguards implemented or planned for implementation to protect the personal information while in storage and/or in transit? (3.10.14A)",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "TechnicalSafeguardsDescription",
+          "visibleIf": "{TechnicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']",
+          "isRequired": true,
+          "title": {
+            "en": "Describe the technological safeguards that the institution implements to protect the personal information while in storage, in transit, or both. (3.10.14B)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Examples include, but are not limited to:</p><p><ul><li>Identification requirements to establish legitimate identity for accessing personal information</li><li>Authentication (in other words, passwords or other unique identifiers for ensuring authorized access to personal information)</li><li>Biometrics</li><li>Password changes at set intervals</li><li>System access controls</li><li>Secure channels for transmission of personal information</li><li>Encryption of sensitive data for storage and transmission (include the type/level)</li><li>Firewalls and intrusion detection systems and procedures</li><li>Audit trails</li><li>System security maintenance controls including logs</li><li>Security incident procedures and logs</li><li>Virtual private networks</li><li>Government of Canada Public Key Infrastructure</li><li>Other privacy enhancing technologies</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_15",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": 3.10,
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasEstablishedWhoHaveAccessToPI",
+          "isRequired": true,
+          "title": {
+            "en": "Have you established which persons or positions will have access to the personal information collected for this initiative?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question. This question refers to your institution as well as any third parties to whom you are disclosing information (as applicable).",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_12",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page_step_3_10_12",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "elements": [
+
       ]
     }
   ]
