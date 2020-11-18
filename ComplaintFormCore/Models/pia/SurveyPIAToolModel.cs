@@ -1721,6 +1721,48 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public bool? HasEstablishedWhoHaveAccessToPI { get; set; }
 
+
+        /// <summary>
+        /// Page: page_step_3_10_16_C<br/>
+        /// Section: 3.10<br/>
+        /// Who will have access to the personal information? What areas, groups and in...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WhoWillHaveAccessToPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_16_C<br/>
+        /// Section: 3.10<br/>
+        /// Please describe how you will protect personal information against loss or t...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionProtectPIAgainstLossOrTheft { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_17<br/>
+        /// Section: 3.10<br/>
+        /// Does the institution monitor or plan to monitor access to or modification o...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string MonitorModificationOfPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_18_B<br/>
+        /// Section: 3.10<br/>
+        /// Please describe how you will monitor access. (3.10.18B)<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string MonitorAccessDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_19<br/>
+        /// Section: 3.10<br/>
+        /// Has the institution experienced a privacy breach in this program, or a simi...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasPastExperiencedPrivacyBreach { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }
@@ -1867,6 +1909,23 @@ namespace ComplaintFormCore.Models
         /// Survey question type: comment
         /// </summary>
         public string DocumentationISAMissingExplanation { get; set; }
+
+        /// <summary>
+        /// What areas, groups and individuals will have access to or handle the person...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AreasGroupsIndividualsAccess { get; set; }
+
+        /// <summary>
+        /// Please describe any ways in which you will protect personal information aga...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WaysToProtectPIAgainstLossOrTheft { get; set; }
+
+        /// <summary>
+        /// Survey question type: comment
+        /// </summary>
+        public string MonitorAccessDescription { get; set; }
 
     }
     public class PersonalInformationCategory

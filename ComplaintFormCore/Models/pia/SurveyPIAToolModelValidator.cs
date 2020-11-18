@@ -796,6 +796,33 @@ namespace ComplaintFormCore.Models
             // HasEstablishedWhoHaveAccessToPI (Page: page_step_3_10_15)
             RuleFor(x => x.HasEstablishedWhoHaveAccessToPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
+            // PartiesSharePersonalInformation (Page: page_step_3_10_16_A_B)
+            RuleFor(x => x.PartiesSharePersonalInformation).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // WhoWillHaveAccessToPersonalInformation (Page: page_step_3_10_16_C)
+            RuleFor(x => x.WhoWillHaveAccessToPersonalInformation).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WhoWillHaveAccessToPersonalInformation).Length(0, 5000).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DescriptionProtectPIAgainstLossOrTheft (Page: page_step_3_10_16_C)
+            RuleFor(x => x.DescriptionProtectPIAgainstLossOrTheft).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionProtectPIAgainstLossOrTheft).Length(0, 5000).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // MonitorModificationOfPersonalInformation (Page: page_step_3_10_17)
+            RuleFor(x => x.MonitorModificationOfPersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MonitorModificationOfPersonalInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PartiesSharePersonalInformation (Page: page_step_3_10_18_A)
+            RuleFor(x => x.PartiesSharePersonalInformation).NotEmpty().When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // MonitorAccessDescription (Page: page_step_3_10_18_B)
+            RuleFor(x => x.MonitorAccessDescription).NotEmpty().When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() { "yes_in_place", "yes_not_established" }).Any() && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MonitorAccessDescription).Length(0, 5000).When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasPastExperiencedPrivacyBreach (Page: page_step_3_10_19)
+            RuleFor(x => x.HasPastExperiencedPrivacyBreach).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            //***************************************************************************************************************************
+
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
                 // OtherInstitutionHeadFullname
                 child.RuleFor(x => x.OtherInstitutionHeadFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -896,6 +923,24 @@ namespace ComplaintFormCore.Models
                 child.RuleFor(x => x.DocumentationISAMissingExplanation).NotEmpty().When(x => x.RelevantISASourceType == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
                 child.RuleFor(x => x.DocumentationISAMissingExplanation).Length(0, 5000).When(x => x.RelevantISASourceType == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // AreasGroupsIndividualsAccess (Page: page_step_3_10_16_A_B)
+                child.RuleFor(x => x.AreasGroupsIndividualsAccess).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.AreasGroupsIndividualsAccess).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // WaysToProtectPIAgainstLossOrTheft (Page: page_step_3_10_16_A_B)
+                child.RuleFor(x => x.WaysToProtectPIAgainstLossOrTheft).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.WaysToProtectPIAgainstLossOrTheft).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // MonitorAccessDescription (Page: page_step_3_10_18_A)
+                child.RuleFor(x => x.MonitorAccessDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.MonitorAccessDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == true);
 
             RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
                 // Category (Page: page_step_3_3_2)

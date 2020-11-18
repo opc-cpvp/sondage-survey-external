@@ -6,7 +6,7 @@
         "en": "What is the Office of the Privacy Commissioner of Canada’s privacy impact assessment e-Tool?",
         "fr": ""
       },
-      "section": 0,
+      "section": "0",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -74,7 +74,7 @@
         "en": "What is the OPC’s role in the privacy impact assessment process?",
         "fr": ""
       },
-      "section": 0,
+      "section": "0",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -143,7 +143,7 @@
         "en": "PIA report writing best practices",
         "fr": ""
       },
-      "section": 0,
+      "section": "0",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -162,7 +162,7 @@
         "en": "Privacy notice",
         "fr": ""
       },
-      "section": 0,
+      "section": "0",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -181,7 +181,7 @@
         "en": "Definitions",
         "fr": ""
       },
-      "section": 0,
+      "section": "0",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -235,7 +235,7 @@
         "en": "Before you begin",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "html",
@@ -269,7 +269,7 @@
         "en": "Before you begin",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "comment",
@@ -294,7 +294,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "html",
@@ -329,7 +329,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "visibleIf": "{IsNewprogram} = false",
       "elements": [
         {
@@ -362,7 +362,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "boolean",
@@ -385,7 +385,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "visibleIf": "{IsProgramInvolvePersonalInformation} = false",
       "elements": [
         {
@@ -461,7 +461,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "radiogroup",
@@ -500,7 +500,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "visibleIf": "{PersonalInfoUsedFor} contains 'non_admin_purpose'",
       "elements": [
         {
@@ -576,7 +576,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "elements": [
         {
           "type": "radiogroup",
@@ -615,7 +615,7 @@
         "en": "Step 1 - Determine if a PIA is required",
         "fr": ""
       },
-      "section": 1,
+      "section": "1",
       "visibleIf": "{SubjectOfPIA} contains 'other'",
       "elements": [
         {
@@ -691,7 +691,7 @@
         "en": "Introduction to the PIA - Question 2.1.1",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "html",
@@ -790,7 +790,7 @@
         "en": "Introduction to the PIA - Question 2.1.2A",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{SingleOrMultiInstitutionPIA} anyof ['single','single_related']",
       "elements": [
         {
@@ -832,7 +832,7 @@
         "en": "Introduction to the PIA - Question 2.1.2B",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -921,7 +921,7 @@
         "en": "Introduction to the PIA - Question 2.1.3",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -972,7 +972,7 @@
         "en": "Introduction to the PIA - Question 2.1.4",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -995,7 +995,7 @@
         "en": "Introduction to the PIA - Question 2.1.5",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "panel",
@@ -1056,7 +1056,7 @@
         "en": "Introduction to the PIA - Question 2.1.6",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -1123,7 +1123,7 @@
         "en": "Introduction to the PIA - Question 2.1.7",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "panel",
@@ -1184,7 +1184,7 @@
         "en": "Introduction to the PIA - Question 2.1.8",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{SingleOrMultiInstitutionPIA} contains 'multi'",
       "elements": [
         {
@@ -1251,7 +1251,7 @@
         "en": "Introduction to the PIA - Question 2.1.9",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "dropdown",
@@ -1324,7 +1324,7 @@
         "en": "Introduction to the PIA - Question 2.1.10",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "radiogroup",
@@ -1370,7 +1370,7 @@
         "en": "Introduction to the PIA - Question 2.1.11 A",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
       "elements": [
         {
@@ -1420,7 +1420,7 @@
         "en": "Introduction to the PIA - Question 2.1.11 B",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
       "elements": [
         {
@@ -1444,7 +1444,7 @@
         "en": "Introduction to the PIA - Question 2.1.12",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "visibleIf": "{NewOrUpdatedPIA} contains 'new_pia_covers_already_submitted'",
       "elements": [
         {
@@ -1494,7 +1494,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.1",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "name": "ProgramOverview",
@@ -1517,7 +1517,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.2",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "dropdown",
@@ -1566,7 +1566,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.3",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1595,7 +1595,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.4",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "dropdown",
@@ -1654,7 +1654,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.5",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1673,7 +1673,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.6",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1702,7 +1702,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.7",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1731,7 +1731,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.8",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1760,7 +1760,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.10",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1789,7 +1789,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.12",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1818,7 +1818,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.13",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "boolean",
@@ -1837,7 +1837,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.14",
         "fr": ""
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "comment",
@@ -1856,7 +1856,7 @@
         "en": "2.2 – Introduction to the program or activity - Question 2.2.15",
         "fr": "IsProgramRolledOutPhases"
       },
-      "section": 2,
+      "section": "2",
       "elements": [
         {
           "type": "html",
@@ -1923,7 +1923,7 @@
         "en": "Step 3 – Program or activity details",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -1951,7 +1951,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "hideOnPreview": true,
       "hideOnPDF": true,
       "elements": [
@@ -1970,7 +1970,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "comment",
@@ -2002,7 +2002,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "comment",
@@ -2036,7 +2036,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "comment",
@@ -2059,7 +2059,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "boolean",
@@ -2078,7 +2078,7 @@
         "en": "3.1 – The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "comment",
@@ -2114,7 +2114,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "html",
@@ -2183,7 +2183,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "html",
@@ -2200,7 +2200,7 @@
         "en": "3.2 – Accountability",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "boolean",
@@ -2237,7 +2237,7 @@
         "en": "3.2 – Accountability",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "comment",
@@ -2260,7 +2260,7 @@
         "en": "3.2 – Accountability",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "boolean",
@@ -2297,7 +2297,7 @@
         "en": "3.2 – Accountability",
         "fr": ""
       },
-      "section": 3,
+      "section": "3",
       "elements": [
         {
           "type": "radiogroup",
@@ -2355,7 +2355,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "html",
@@ -2372,7 +2372,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "radiogroup",
@@ -2438,7 +2438,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "matrixdynamic",
@@ -2721,7 +2721,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "paneldynamic",
@@ -2763,7 +2763,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "boolean",
@@ -2800,7 +2800,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "radiogroup",
@@ -2847,7 +2847,7 @@
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical','both']",
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "comment",
@@ -2898,7 +2898,7 @@
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both']",
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "comment",
@@ -2948,7 +2948,7 @@
         "en": "3.3 – Limiting collection",
         "fr": ""
       },
-      "section": 3.3,
+      "section": "3.3",
       "elements": [
         {
           "type": "boolean",
@@ -2997,7 +2997,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "html",
@@ -3014,7 +3014,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "boolean",
@@ -3034,7 +3034,7 @@
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "tagbox",
@@ -3108,7 +3108,7 @@
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly']",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "boolean",
@@ -3156,7 +3156,7 @@
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal','provincial','not_government','indirectly','other']",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "comment",
@@ -3176,7 +3176,7 @@
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal','provincial','not_government','indirectly','other']",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "radiogroup",
@@ -3237,7 +3237,7 @@
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "radiogroup",
@@ -3351,7 +3351,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "boolean",
@@ -3374,7 +3374,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "section": 3.4,
+      "section": "3.4",
       "visibleIf": "{HasExistingPIB} = true",
       "elements": [
         {
@@ -3395,7 +3395,7 @@
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "radiogroup",
@@ -3438,7 +3438,7 @@
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} anyof ['new_pib','update_pib']",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "boolean",
@@ -3548,7 +3548,7 @@
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib'",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "comment",
@@ -3583,7 +3583,7 @@
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = true or {NoPIBStatusReason} anyof ['new_pib','update_pib'] or ({IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true)",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "radiogroup",
@@ -3629,7 +3629,7 @@
         "en": "",
         "fr": ""
       },
-      "section": 3.4,
+      "section": "3.4",
       "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true)",
       "elements": [
         {
@@ -3696,7 +3696,7 @@
         "fr": ""
       },
       "visibleIf": "({HasExistingPIB} = true and {InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']) or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true))",
-      "section": 3.4,
+      "section": "3.4",
       "elements": [
         {
           "type": "comment",
@@ -3753,7 +3753,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "html",
@@ -3770,7 +3770,7 @@
         "en": "3.5 – Retention",
         "fr": ""
       },
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "boolean",
@@ -3804,7 +3804,7 @@
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical','both'] or {IsElectronicConvertedToPhysical} = true",
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "comment",
@@ -3828,7 +3828,7 @@
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "comment",
@@ -3851,7 +3851,7 @@
         "en": "3.5 – Retention",
         "fr": ""
       },
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "radiogroup",
@@ -3908,7 +3908,7 @@
         "fr": ""
       },
       "visibleIf": "{IsThereCollectNotIntended} = true",
-      "section": 3.5,
+      "section": "3.5",
       "elements": [
         {
           "type": "boolean",
@@ -3943,7 +3943,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.6,
+      "section": "3.6",
       "elements": [
         {
           "type": "html",
@@ -3960,7 +3960,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
-      "section": 3.6,
+      "section": "3.6",
       "elements": [
         {
           "type": "radiogroup",
@@ -4012,7 +4012,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
-      "section": 3.6,
+      "section": "3.6",
       "visibleIf": "{MechanismToCorrectPersonalInformation} anyof ['yes_in_place','yes_not_established']",
       "elements": [
         {
@@ -4078,7 +4078,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
-      "section": 3.6,
+      "section": "3.6",
       "elements": [
         {
           "type": "radiogroup",
@@ -4134,7 +4134,7 @@
         "en": "3.6 – Accuracy",
         "fr": ""
       },
-      "section": 3.6,
+      "section": "3.6",
       "elements": [
         {
           "type": "comment",
@@ -4155,7 +4155,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.7,
+      "section": "3.7",
       "elements": [
         {
           "type": "html",
@@ -4172,7 +4172,7 @@
         "en": "3.7 – Disposal",
         "fr": ""
       },
-      "section": 3.7,
+      "section": "3.7",
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical','both'] or {IsElectronicConvertedToPhysical} = true",
       "elements": [
         {
@@ -4262,7 +4262,7 @@
         "en": "3.7 – Disposal",
         "fr": ""
       },
-      "section": 3.7,
+      "section": "3.7",
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
       "elements": [
         {
@@ -4352,7 +4352,7 @@
         "en": "3.7 – Disposal",
         "fr": ""
       },
-      "section": 3.7,
+      "section": "3.7",
       "elements": [
         {
           "type": "comment",
@@ -4371,7 +4371,7 @@
         "en": "3.7 – Disposal",
         "fr": ""
       },
-      "section": 3.7,
+      "section": "3.7",
       "elements": [
         {
           "type": "boolean",
@@ -4394,7 +4394,7 @@
         "en": "3.7 – Disposal",
         "fr": ""
       },
-      "section": 3.7,
+      "section": "3.7",
       "elements": [
         {
           "type": "radiogroup",
@@ -4442,7 +4442,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "html",
@@ -4459,7 +4459,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "dropdown",
@@ -4517,7 +4517,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "boolean",
@@ -4550,7 +4550,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "dropdown",
@@ -4596,7 +4596,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "dropdown",
@@ -4654,7 +4654,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "tagbox",
@@ -4710,7 +4710,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "tagbox",
@@ -4777,7 +4777,7 @@
         "en": "3.8 – Limiting use",
         "fr": ""
       },
-      "section": 3.8,
+      "section": "3.8",
       "elements": [
         {
           "type": "boolean",
@@ -4811,7 +4811,7 @@
       },
       "hideOnPreview": true,
       "hideOnPDF": true,
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "html",
@@ -4828,7 +4828,7 @@
         "en": "3.9 – Limiting disclosure",
         "fr": ""
       },
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "boolean",
@@ -4852,7 +4852,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "tagbox",
@@ -4902,7 +4902,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "matrixdynamic",
@@ -5039,7 +5039,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and ({PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} notempty or {PartiesSharePersonalInformation[0].Party} != 'other')",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "paneldynamic",
@@ -5074,7 +5074,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "boolean",
@@ -5093,7 +5093,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = false",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "paneldynamic",
@@ -5137,7 +5137,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0]Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "paneldynamic",
@@ -5172,7 +5172,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "radiogroup",
@@ -5219,7 +5219,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} contains 'yes_in_place'",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "boolean",
@@ -5249,7 +5249,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} contains 'yes_in_place'",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "paneldynamic",
@@ -5372,7 +5372,7 @@
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} anyof ['yes_not_established','no']",
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "comment",
@@ -5395,7 +5395,7 @@
         "en": "3.9 – Limiting disclosure",
         "fr": ""
       },
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "radiogroup",
@@ -5455,7 +5455,7 @@
         "en": "3.9 – Limiting disclosure",
         "fr": ""
       },
-      "section": 3.9,
+      "section": "3.9",
       "elements": [
         {
           "type": "html",
@@ -5501,7 +5501,7 @@
         "en": "3.10 – Safeguards",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "html",
@@ -5518,7 +5518,7 @@
         "en": "3.10 – Safeguards (Security designation)",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -5542,7 +5542,7 @@
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -5562,7 +5562,7 @@
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "dropdown",
@@ -5649,7 +5649,7 @@
         "en": "3.10 – Safeguards (Assessments)",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "paneldynamic",
@@ -5789,7 +5789,7 @@
         "fr": ""
       },
       "visibleIf": "IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical})",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -5809,7 +5809,7 @@
         "fr": ""
       },
       "visibleIf": "IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic})",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -5828,7 +5828,7 @@
         "en": "3.10 – Safeguards",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -5882,7 +5882,7 @@
         "fr": ""
       },
       "visibleIf": "{StorageManagement} anyof ['all','some'] or {IsInstituionManageStorageOfPI} = true",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "comment",
@@ -5906,7 +5906,7 @@
         "fr": ""
       },
       "visibleIf": "{StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -5953,7 +5953,7 @@
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -5983,7 +5983,7 @@
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -6060,7 +6060,7 @@
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place' and {RelevantAgreementDocumentationType} = 'upload'",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -6084,7 +6084,7 @@
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and ({FormalAgreementToManageStorage} != 'yes_in_place' or {RelevantAgreementDocumentationType} = 'no_upload')",
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "comment",
@@ -6107,7 +6107,7 @@
         "en": "3.10 – Safeguards (Storage)",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
@@ -6140,7 +6140,7 @@
         "en": "3.10 – Safeguards (Residency)",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "tagbox",
@@ -6206,7 +6206,7 @@
         "en": "3.10 – Safeguards",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -6266,7 +6266,7 @@
         "en": "3.10 – Safeguards",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -6326,7 +6326,7 @@
         "en": "3.10 – Safeguards",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "radiogroup",
@@ -6386,18 +6386,218 @@
         "en": "3.10 – Safeguards (Access)",
         "fr": ""
       },
-      "section": 3.10,
+      "section": "3.10",
       "elements": [
         {
           "type": "boolean",
           "name": "HasEstablishedWhoHaveAccessToPI",
           "isRequired": true,
           "title": {
-            "en": "Have you established which persons or positions will have access to the personal information collected for this initiative?",
+            "en": "Have you established which persons or positions will have access to the personal information collected for this initiative? (3.10.15)",
             "fr": ""
           },
           "description": {
             "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question. This question refers to your institution as well as any third parties to whom you are disclosing information (as applicable).",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_16_A_B",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "visibleIf": "{HasEstablishedWhoHaveAccessToPI} = true and {IsCollectionReasonOtherThanStorage} = true",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "valueName": "PartiesSharePersonalInformation",
+          "title": {
+            "en": "Protection of personal information",
+            "fr": ""
+          },
+          "isRequired": true,
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Party}",
+          "templateElements": [
+            {
+              "type": "comment",
+              "name": "AreasGroupsIndividualsAccess",
+              "title": {
+                "en": "What areas, groups and individuals will have access to or handle the personal information, within the institution and within each third party? (3.10.16A)",
+                "fr": ""
+              },
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "WaysToProtectPIAgainstLossOrTheft",
+              "title": {
+                "en": "Please describe any ways in which you will protect personal information against loss or theft, as well as unauthorized access to or disclosure, copying, use, or modification of personal information, within the institution and within each third party. (3.10.16B)",
+                "fr": ""
+              },
+              "description": {
+                "en": "If you feel that you have sufficiently covered this information in previous answers, you may refer back to those answers. ",
+                "fr": ""
+              },
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_16_C",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "visibleIf": "{HasEstablishedWhoHaveAccessToPI} = true and {IsCollectionReasonOtherThanStorage} = false",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "WhoWillHaveAccessToPersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Who will have access to the personal information? What areas, groups and individuals will have access to or handle the personal information? (3.10.16C)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionProtectPIAgainstLossOrTheft",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe how you will protect personal information against loss or theft, as well as unauthorized access to or disclosure, copying, use, or modification of personal information.",
+            "fr": ""
+          },
+          "description": {
+            "en": "If you feel that you have sufficiently covered this information in previous answers, you may refer back to those answers. ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_17",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "MonitorModificationOfPersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Does the institution monitor or plan to monitor access to or modification of personal information? (3.10.17)",
+            "fr": ""
+          },
+          "description": {
+            "en": "This is most commonly done through audit logging. Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_18_A",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "visibleIf": "{MonitorModificationOfPersonalInformation} anyof ['yes_in_place','yes_not_established'] and {IsCollectionReasonOtherThanStorage} = true",
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "valueName": "PartiesSharePersonalInformation",
+          "title": {
+            "en": "Please describe how you will monitor access, within the institution and within each third party? (3.10.18A)",
+            "fr": ""
+          },
+          "isRequired": true,
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Party}",
+          "templateElements": [
+            {
+              "type": "comment",
+              "name": "MonitorAccessDescription",
+              "titleLocation": "hidden",
+              "isRequired": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_18_B",
+      "title": {
+        "en": "3.10 – Safeguards (Access)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "visibleIf": "{MonitorModificationOfPersonalInformation} anyof ['yes_in_place','yes_not_established'] and {IsCollectionReasonOtherThanStorage} = false",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "MonitorAccessDescription",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe how you will monitor access. (3.10.18B)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_10_19",
+      "title": {
+        "en": "3.10 – Safeguards (Breaches)",
+        "fr": ""
+      },
+      "section": "3.10",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasPastExperiencedPrivacyBreach",
+          "isRequired": true,
+          "title": {
+            "en": "Has the institution experienced a privacy breach in this program, or a similar program, in the past? (3.10.19)",
+            "fr": ""
+          },
+          "description": {
+            "en": "According to the TBS Guidelines for Privacy Breaches, a privacy breach involves improper or unauthorized collection, use, disclosure, retention or disposal of personal information. A privacy breach may occur within an institution or off-site and may be the result of inadvertent errors or malicious actions by employees, third parties, partners in information sharing agreements or intruders. A breach is deemed “material” if the breach involves sensitive personal information and could reasonably be expected to cause serious injury or harm to the individual and/or involves a large number of affected individuals.",
             "fr": ""
           }
         }
@@ -6409,16 +6609,7 @@
         "en": "3.10 – Safeguards (Access)",
         "fr": ""
       },
-      "elements": [
-
-      ]
-    },
-    {
-      "name": "page_step_3_10_12",
-      "title": {
-        "en": "3.10 – Safeguards (Access)",
-        "fr": ""
-      },
+      "section": "3.10",
       "elements": [
 
       ]

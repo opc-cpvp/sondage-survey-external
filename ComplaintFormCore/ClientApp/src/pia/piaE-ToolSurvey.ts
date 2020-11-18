@@ -23,7 +23,7 @@ export class PiaETool {
         SurveyFile.initSurveyFile();
 
         Survey.JsonObject.metaData.addProperty("page", {
-            name: "section:number",
+            name: "section:text",
             default: false
         });
 
@@ -360,7 +360,7 @@ export class PiaETool {
             });
     }
 
-    public gotoSection(surveyObj: Survey.SurveyModel, section: number): void {
+    public gotoSection(surveyObj: Survey.SurveyModel, section: string): void {
         //  This is part of the navigation. When a user clicks on a breadcrums item it takes them
         //  directly where they want.
 
