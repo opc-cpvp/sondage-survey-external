@@ -524,8 +524,8 @@
             "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue "
           },
           "description": {
-            "en": "<p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><section class='alert alert-warning'><p>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p></section>",
-            "fr": "<p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><p><section class='alert alert-warning'><p>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p></section>"
+            "en": "<p><p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><section class='alert alert-warning'><p>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p></section></p>",
+            "fr": "<p><p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><section class='alert alert-warning'><p>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p></section></p>"
           },
           "maxLength": 2000
         }
@@ -541,8 +541,8 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'>The <a href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-64/index.html' target='_blank'>Breach of Security Safeguard Regulations</a> stipulate that any notification where the breach represents a Real Risk of Significant Harm (RROSH) must contain specific elements laid out in Section 3 of the Regulations.</section>",
-            "fr": "<section class='alert alert-info'>Le <a href='https://laws-lois.justice.gc.ca/fra/lois/P-8.6/' target='_blank'>Règlement sur les atteintes aux mesures de sécurité</a> prévoit que tout avis concernant une atteinte représentant un risque réel de préjudice grave doit contenir certains éléments précisés à l'article 3 dudit règlement.</section>"
+            "en": "<section class='alert alert-info'><p>The <a href='https://laws-lois.justice.gc.ca/eng/regulations/SOR-2018-64/index.html' target='_blank'>Breach of Security Safeguard Regulations</a> stipulate that any notification where the breach represents a Real Risk of Significant Harm (RROSH) must contain specific elements laid out in Section 3 of the Regulations.</p></section>",
+            "fr": "<section class='alert alert-info'><p>Le <a href='https://laws-lois.justice.gc.ca/fra/lois/P-8.6/' target='_blank'>Règlement sur les atteintes aux mesures de sécurité</a> prévoit que tout avis concernant une atteinte représentant un risque réel de préjudice grave doit contenir certains éléments précisés à l'article 3 dudit règlement.</p></section>"
           }
         },
         {
@@ -645,8 +645,8 @@
             "fr": "Décrivez la forme de l'avis"
           },
           "description": {
-            "en": "<p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p><section class='alert alert-warning'><p>Do not include any identifying personal information.</p></section>",
-            "fr": "<p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p><section class='alert alert-warning'><p>Ne pas inclure de renseignements personnels identificatoires.</p></section>"
+            "en": "<p><section class='alert alert-info'><p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p></section><section class='alert alert-warning'><p>Do not include any identifying personal information.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p></section><section class='alert alert-warning'><p>Ne pas inclure de renseignements personnels identificatoires.</p></section></p>"
           },
           "maxLength": 2000
         }
@@ -667,8 +667,8 @@
             "fr": "Les mesures que l'organisation a prises (autres que la notification des intéressés) afin de réduire lerisque de préjudice à l'endroit des intéressés, ou afin d'atténuer un tel préjudice"
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>For example, this can include:</p><p><ul><li>taking steps such as resetting passwords, offering credit monitoring services where appropriate, recoveringmisdirected information, seeking confirmation from unintended recipients that they have destroyed and not circulated the information; and</li><li>notifying third parties or organizations that can reduce the risk of harm, such as the police, paymentprocessors or credit card companies.</li></ul></p></section></p>",
-            "fr": "<p><section class='alert alert-info'><p>Par exemple, ceci peut comprendre ce qui suit:</p><p><ul><li>prendre des mesures comme réinitialiser les mots de passe, offrir des services de surveillance du crédit le caséchéant, récupérer les renseignements envoyés à un mauvais destinataire, obtenir la confirmation despersonnes auxquelles les renseignements n'étaient pas destinés qu'elles ont détruits ces renseignements etqu'elles ne les ont pas diffusés;</li><li>aviser les tierces parties ou les organisations qui peuvent réduire le risque de préjudice, comme la police, lescentres de traitement des paiements ou les sociétés émettrices de cartes de crédit.</li></ul></p></section></p>"
+            "en": "<p><section class='alert alert-info'><p>For example, this can include:</p><ul><li>taking steps such as resetting passwords, offering credit monitoring services where appropriate, recoveringmisdirected information, seeking confirmation from unintended recipients that they have destroyed and not circulated the information; and</li><li>notifying third parties or organizations that can reduce the risk of harm, such as the police, paymentprocessors or credit card companies.</li></ul></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple, ceci peut comprendre ce qui suit:</p><ul><li>prendre des mesures comme réinitialiser les mots de passe, offrir des services de surveillance du crédit le caséchéant, récupérer les renseignements envoyés à un mauvais destinataire, obtenir la confirmation despersonnes auxquelles les renseignements n'étaient pas destinés qu'elles ont détruits ces renseignements et qu'elles ne les ont pas diffusés;</li><li>aviser les tierces parties ou les organisations qui peuvent réduire le risque de préjudice, comme la police, lescentres de traitement des paiements ou les sociétés émettrices de cartes de crédit.</li></ul></section></p>"
           },
           "isRequired": true,
           "maxLength": 2000
@@ -687,8 +687,12 @@
           "type": "matrixdynamic",
           "name": "OrganizationDescription",
           "title": {
-            "en": "Description of any organizations and/or government institutions notified about the breach not mentioned above (for example, professional bodies or other privacy commissioners' offices)",
-            "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée ci-dessus (par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée)"
+            "en": "Description of any organizations and/or government institutions notified about the breach not mentioned",
+            "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>For example, professional bodies or other privacy commissioners' offices.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée</p></section></p>"
           },
           "isRequired": true,
           "cellType": "dropdown",
@@ -730,8 +734,8 @@
             "fr": "Description des mesures qui ont été prises afin de réduire le risque qu'un événement similaire se produise à l'avenir"
           },
           "description": {
-            "en": "<p>For example:</p><p><ul><li>an experienced IT security firm has been hired to review the organization's security program and weare committed to making any recommended improvements;</li><li>all new contracts with web service providers will include the following quality control provisions ... ,</li><li>a privacy training module has been developed and is now mandatory for all staff;</li><li>all laptops will be encrypted;</li><li>software change management protocol has been updated; etc.</li></ul></p>",
-            "fr": "<p>Par exemple:</p><p><ul><li>un cabinet expert en Tl a été embauché afin d'examiner le programme de sécurité d'une organisation etcelle-ci s'est engagée à apporter toute amélioration recommandée;</li><li>tous les nouveaux contrats conclus avec des fournisseurs de service Web comprendront les dispositions decontrôle de la qualité suivantes ... ;</li><li>un module de formation sur la protection des renseignements personnels a été élaboré et est maintenantobligatoire pour tout le personnel;</li><li>tous les ordinateurs portables seront cryptés;</li><li>le protocole de gestion des modifications du logiciel a été mis à jour; etc.</li></ul></p>"
+            "en": "<p><section class='alert alert-info'><p>For example:</p><ul><li>an experienced IT security firm has been hired to review the organization's security program and weare committed to making any recommended improvements;</li><li>all new contracts with web service providers will include the following quality control provisions ... ,</li><li>a privacy training module has been developed and is now mandatory for all staff;</li><li>all laptops will be encrypted;</li><li>software change management protocol has been updated; etc.</li></ul></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple:</p><ul><li>un cabinet expert en Tl a été embauché afin d'examiner le programme de sécurité d'une organisation etcelle-ci s'est engagée à apporter toute amélioration recommandée;</li><li>tous les nouveaux contrats conclus avec des fournisseurs de service Web comprendront les dispositions decontrôle de la qualité suivantes ... ;</li><li>un module de formation sur la protection des renseignements personnels a été élaboré et est maintenantobligatoire pour tout le personnel;</li><li>tous les ordinateurs portables seront cryptés;</li><li>le protocole de gestion des modifications du logiciel a été mis à jour; etc.</li></ul></section></p>"
           },
           "maxLength": 2000
         }
