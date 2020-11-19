@@ -858,6 +858,45 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.SafeguardsOngoingBasisDescription).NotEmpty().When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.SafeguardsOngoingBasisDescription).Length(0, 5000).When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
+            // HasAssessmentForConsentRequired (Page: page_step_3_11_1_and_2)
+            RuleFor(x => x.HasAssessmentForConsentRequired).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // AssessmentForConsentRequiredDescription (Page: page_step_3_11_1_and_2)
+            RuleFor(x => x.AssessmentForConsentRequiredDescription).NotEmpty().When(x => x.HasAssessmentForConsentRequired == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AssessmentForConsentRequiredDescription).Length(0, 5000).When(x => x.HasAssessmentForConsentRequired == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToCollectPersonalInfo (Page: page_step_3_11_3)
+            RuleFor(x => x.DoesSeekConsentToCollectPersonalInfo).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToCollectPersonalInfoDescription (Page: page_step_3_11_3)
+            RuleFor(x => x.SeekConsentToCollectPersonalInfoDescription).NotEmpty().When(x => x.DoesSeekConsentToCollectPersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToCollectPersonalInfoDescription).Length(0, 5000).When(x => x.DoesSeekConsentToCollectPersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToUsePersonalInfo (Page: page_step_3_11_4)
+            RuleFor(x => x.DoesSeekConsentToUsePersonalInfo).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToUsePersonalInfoDescription (Page: page_step_3_11_4)
+            RuleFor(x => x.SeekConsentToUsePersonalInfoDescription).NotEmpty().When(x => x.DoesSeekConsentToUsePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToUsePersonalInfoDescription).Length(0, 5000).When(x => x.DoesSeekConsentToUsePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToDisclosePersonalInfo (Page: page_step_3_11_5)
+            RuleFor(x => x.DoesSeekConsentToDisclosePersonalInfo).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToDisclosePersonalInfoDescription (Page: page_step_3_11_5)
+            RuleFor(x => x.SeekConsentToDisclosePersonalInfoDescription).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && x.DoesSeekConsentToDisclosePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToDisclosePersonalInfoDescription).Length(0, 5000).When(x =>  x.IsCollectionReasonOtherThanStorage == true && x.DoesSeekConsentToDisclosePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // InformationConveyedAffectedIndividuals (Page: page_step_3_11_6)
+            RuleFor(x => x.InformationConveyedAffectedIndividuals).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformationConveyedAffectedIndividuals).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasPIASummaryOnWebsite (Page: page_step_3_11_7)
+            RuleFor(x => x.HasPIASummaryOnWebsite).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PIASummaryOnWebsite (Page: page_step_3_11_7)
+            RuleFor(x => x.PIASummaryOnWebsite).NotEmpty().When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PIASummaryOnWebsite).Length(0, 5000).When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
             //***************************************************************************************************************************
 
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {

@@ -1848,6 +1848,100 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public string SafeguardsOngoingBasisDescription { get; set; }
 
+
+        /// <summary>
+        /// Page: page_step_3_11_1_and_2<br/>
+        /// Section: 3.11<br/>
+        /// Did your institution conduct an assessment as to whether consent is require...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasAssessmentForConsentRequired { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_1_and_2<br/>
+        /// Section: 3.11<br/>
+        /// You have indicated that your institution conducted an assessment to determi...<br/>
+        /// Required condition: {HasAssessmentForConsentRequired} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AssessmentForConsentRequiredDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_3<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToCollectPersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_3<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToCollectPersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToCollectPersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_4<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToUsePersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_4<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToUsePersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToUsePersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_5<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToDisclosePersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_5<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToDisclosePersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToDisclosePersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_6<br/>
+        /// Section: 3.11<br/>
+        /// In Question 2.2.2, you described the nature of participation in the program...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string InformationConveyedAffectedIndividuals { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_7<br/>
+        /// Section: 3.11<br/>
+        /// Has the institution prepared a summary of this PIA to post on its website?<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasPIASummaryOnWebsite { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_7<br/>
+        /// Section: 3.11<br/>
+        /// Please provide the PIA summary as it will appear on the institutional websi...<br/>
+        /// Required condition: {HasPIASummaryOnWebsite} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PIASummaryOnWebsite { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }

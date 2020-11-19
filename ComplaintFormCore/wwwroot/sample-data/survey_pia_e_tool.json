@@ -6818,12 +6818,222 @@
       ]
     },
     {
-      "name": "page_step_3_11_1",
+      "name": "page_step_3_11_1_and_2",
       "title": {
         "en": "3.11 – Openness",
         "fr": ""
       },
       "section": "3.11",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasAssessmentForConsentRequired",
+          "isRequired": true,
+          "title": {
+            "en": "Did your institution conduct an assessment as to whether consent is required for the collection, use or disclosure of personal information under this program or activity? (3.11.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "In some areas of government activity, seeking consent for treatment of personal information is neither realistic nor appropriate. For example, some services or functions of government cannot be performed effectively in the absence of particular types of personal information. In these cases, government institutions generally rely on legal authority and notice, rather than consent, as the basis for the information activities. Specifically, consent is not required if the personal information is to be used for the authorized purpose for which it was obtained, for a use consistent with that purpose or for a purpose for which it may be disclosed to the institution under subsection 8(2) of the Privacy Act.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "AssessmentForConsentRequiredDescription",
+          "visibleIf": "{HasAssessmentForConsentRequired} = true",
+          "isRequired": true,
+          "title": {
+            "en": "You have indicated that your institution conducted an assessment to determine whether consent is required for the collection, use or disclosure of personal information for this program or activity. Please provide or summarize your assessment. (3.11.2)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Your answer should include a justification for deciding not to seek consent, if applicable.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_11_3",
+      "title": {
+        "en": "3.11 – Openness",
+        "fr": ""
+      },
+      "section": "3.11",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesSeekConsentToCollectPersonalInfo",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution seek the consent of individuals (or that of their next of kin, power of attorney, guardian, etc.) to collect their personal information? (3.11.3)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "SeekConsentToCollectPersonalInfoDescription",
+          "visibleIf": "{DoesSeekConsentToCollectPersonalInfo} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the consent.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_11_4",
+      "title": {
+        "en": "3.11 – Openness",
+        "fr": ""
+      },
+      "section": "3.11",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesSeekConsentToUsePersonalInfo",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution seek the consent of individuals (or that of their next of kin, power of attorney, guardian, etc.) to use their personal information? (3.11.4)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "SeekConsentToUsePersonalInfoDescription",
+          "visibleIf": "{DoesSeekConsentToUsePersonalInfo} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the consent.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_11_5",
+      "title": {
+        "en": "3.11 – Openness",
+        "fr": ""
+      },
+      "section": "3.11",
+      "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "DoesSeekConsentToDisclosePersonalInfo",
+          "isRequired": true,
+          "title": {
+            "en": "Does your institution seek the consent of individuals (or that of their next of kin, power of attorney, guardian, etc.) to disclose their personal information? (3.11.5)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "SeekConsentToDisclosePersonalInfoDescription",
+          "visibleIf": "{DoesSeekConsentToDisclosePersonalInfo} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the consent.",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_11_6",
+      "title": {
+        "en": "3.11 – Openness",
+        "fr": ""
+      },
+      "section": "3.11",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "InformationConveyedAffectedIndividuals",
+          "isRequired": true,
+          "title": {
+            "en": "In Question 2.2.2, you described the nature of participation in the program. How is this information conveyed to affected individuals?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p>Your answer to Question 2.2.2: <em>{ParticipationOptions}</em></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_11_7",
+      "title": {
+        "en": "3.11 – Openness",
+        "fr": ""
+      },
+      "section": "3.11",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasPIASummaryOnWebsite",
+          "isRequired": true,
+          "title": {
+            "en": "Has the institution prepared a summary of this PIA to post on its website?",
+            "fr": ""
+          },
+          "description": {
+            "en": "The TBS Directive on Privacy Impact Assessment requires that federal government institutions make certain aspects of PIAs publicly available. Most institutions do this by posting a description of the initiative and the required components of the PIA on their websites. Public reporting allows individuals to have an idea of how government is using their personal information and helps foster trust in the institution’s operations. You may need to rework summaries to protect interests such as commercial confidentiality, individual privacy, security of information or legal privilege prior to publishing. ",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "PIASummaryOnWebsite",
+          "visibleIf": "{HasPIASummaryOnWebsite} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide the PIA summary as it will appear on the institutional website.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_12",
+      "title": {
+        "en": "3.12 – Individual Access",
+        "fr": ""
+      },
+      "section": "3.12",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 12' href='' target='_blank'>s. 12</a></li><li><strong>Relevant policy requirements:</strong> <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32590' target='_blank'>Directive on Personal Information Requests and Correction of Personal Information </a> and <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What individual access means</strong>:Give individuals access to the information you hold about them and correct it, when necessary.</li></ul></p><p><strong>Tip:</strong> Exemptions to providing access to personal information should be interpreted as narrowly as possible.</p></section>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_12_1",
+      "title": {
+        "en": "3.12 – Individual Access",
+        "fr": ""
+      },
+      "section": "3.12",
       "elements": [
 
       ]
