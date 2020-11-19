@@ -1763,6 +1763,91 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public bool? HasPastExperiencedPrivacyBreach { get; set; }
 
+        /// <summary>
+        /// Page: page_step_3_10_20<br/>
+        /// Section: 3.10<br/>
+        /// Please briefly describe the privacy breach(es) and how it (they) relate to ...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_21_and_22<br/>
+        /// Section: 3.10<br/>
+        /// Does the institution have or intend to have a process for handling a breach...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessHandlingBreachOfPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_21_and_22<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the process for handling a breach of personal information.(...<br/>
+        /// Required condition: {ProcessHandlingBreachOfPI} contains 'yes_in_place'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ProcessHandlingBreachOfPIDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_23<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the ways in which your institution would detect a breach in...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionWaysDetectingBreach { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_24<br/>
+        /// Section: 3.10<br/>
+        /// Would a privacy breach impact individual(s) or employee(s)? (3.10.24)<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesPrivacyBreachImpactIndividualOrEmployee { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_24<br/>
+        /// Section: 3.10<br/>
+        /// Describe the potential impact(s) on the individual or employee in the event...<br/>
+        /// Required condition: {DoesPrivacyBreachImpactIndividualOrEmployee} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachImpactOnIndividualEmployeeDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_26<br/>
+        /// Section: 3.10<br/>
+        /// Would a privacy breach impact the institution? (3.10.26)<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesPrivacyBreachImpactInstitution { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_26<br/>
+        /// Section: 3.10<br/>
+        /// Describe the potential impact(s) on the institution in the event of a priva...<br/>
+        /// Required condition: {DoesPrivacyBreachImpactInstitution} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachImpactInstitutionDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_28_A_B<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution test safeguards on an ongoing basis to ensure they ar...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasSafeguardsOngoingBasis { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_28_A_B<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the ongoing testing of safeguards you conduct. (3.10.28B)<br/>
+        /// Required condition: {HasSafeguardsOngoingBasis} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SafeguardsOngoingBasisDescription { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }

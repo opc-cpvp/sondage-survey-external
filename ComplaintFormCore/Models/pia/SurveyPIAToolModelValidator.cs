@@ -821,6 +821,43 @@ namespace ComplaintFormCore.Models
             // HasPastExperiencedPrivacyBreach (Page: page_step_3_10_19)
             RuleFor(x => x.HasPastExperiencedPrivacyBreach).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
+            // PrivacyBreachDescription (Page: page_step_3_10_20)
+            RuleFor(x => x.PrivacyBreachDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ProcessHandlingBreachOfPI (Page: page_step_3_10_21_and_22)
+            RuleFor(x => x.ProcessHandlingBreachOfPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessHandlingBreachOfPI).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // ProcessHandlingBreachOfPIDescription (Page: page_step_3_10_21_and_22)
+            RuleFor(x => x.ProcessHandlingBreachOfPIDescription).NotEmpty().When(x => x.ProcessHandlingBreachOfPI == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessHandlingBreachOfPIDescription).Length(0, 5000).When(x => x.ProcessHandlingBreachOfPI == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DescriptionWaysDetectingBreach (Page: page_step_3_10_23)
+            RuleFor(x => x.DescriptionWaysDetectingBreach).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionWaysDetectingBreach).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesPrivacyBreachImpactIndividualOrEmployee (Page: page_step_3_10_24)
+            RuleFor(x => x.DoesPrivacyBreachImpactIndividualOrEmployee).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PrivacyBreachImpactOnIndividualEmployeeDescription (Page: page_step_3_10_24)
+            RuleFor(x => x.PrivacyBreachImpactOnIndividualEmployeeDescription).NotEmpty().When(x => x.DoesPrivacyBreachImpactIndividualOrEmployee == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachImpactOnIndividualEmployeeDescription).Length(0, 5000).When(x => x.DoesPrivacyBreachImpactIndividualOrEmployee == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesPrivacyBreachImpactInstitution (Page: page_step_3_10_26)
+            RuleFor(x => x.DoesPrivacyBreachImpactInstitution).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PrivacyBreachImpactInstitutionDescription (Page: page_step_3_10_26)
+            RuleFor(x => x.PrivacyBreachImpactInstitutionDescription).NotEmpty().When(x => x.DoesPrivacyBreachImpactInstitution == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachImpactInstitutionDescription).Length(0, 5000).When(x => x.DoesPrivacyBreachImpactInstitution == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasSafeguardsOngoingBasis (Page: page_step_3_10_28_A_B)
+            RuleFor(x => x.HasSafeguardsOngoingBasis).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SafeguardsOngoingBasisDescription (Page: page_step_3_10_28_A_B)
+            RuleFor(x => x.SafeguardsOngoingBasisDescription).NotEmpty().When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SafeguardsOngoingBasisDescription).Length(0, 5000).When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
             //***************************************************************************************************************************
 
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
