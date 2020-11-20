@@ -1942,6 +1942,59 @@ namespace ComplaintFormCore.Models
         /// </summary>
         public string PIASummaryOnWebsite { get; set; }
 
+
+        /// <summary>
+        /// Page: page_step_3_12_1<br/>
+        /// Section: 3.12<br/>
+        /// Has your institution provided individuals with a mechanism to access their ...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string MechanismToAccessPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_1<br/>
+        /// Section: 3.12<br/>
+        /// Please describe the processes by which individuals can or will be able to a...<br/>
+        /// Required condition: {MechanismToAccessPersonalInformation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string MechanismToAccessPersonalInformationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_3<br/>
+        /// Section: 3.12<br/>
+        /// Are third parties to whom personal information is disclosed notified of cha...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ThirdPartiesNotifiedOfChangesToPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_4<br/>
+        /// Section: 3.12<br/>
+        /// Do you advise requestors of the reasons for refusal and recourse available ...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? AreRequestorsAdvisedOfRefusal { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_13_1<br/>
+        /// Section: 3.13<br/>
+        /// If there are any supplementary materials that are relevant to the review of...<br/>
+        /// Possible choices: [upload, nothing]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string SupplementaryMaterials { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_13_1<br/>
+        /// Section: 3.13<br/>
+        /// Required condition: {SupplementaryMaterials} = 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> SupplementaryMaterialFiles { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
         public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }

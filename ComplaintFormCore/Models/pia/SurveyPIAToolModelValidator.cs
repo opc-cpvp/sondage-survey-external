@@ -897,6 +897,28 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.PIASummaryOnWebsite).NotEmpty().When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.PIASummaryOnWebsite).Length(0, 5000).When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
+            // MechanismToAccessPersonalInformation (Page: page_step_3_12_1)
+            RuleFor(x => x.MechanismToAccessPersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToAccessPersonalInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // MechanismToAccessPersonalInformationDescription (Page: page_step_3_12_1)
+            RuleFor(x => x.MechanismToAccessPersonalInformationDescription).NotEmpty().When(x => new List<string>() { x.MechanismToAccessPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToAccessPersonalInformationDescription).Length(0, 5000).When(x => new List<string>() { x.MechanismToAccessPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ThirdPartiesNotifiedOfChangesToPI (Page: page_step_3_12_3)
+            RuleFor(x => x.ThirdPartiesNotifiedOfChangesToPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ThirdPartiesNotifiedOfChangesToPI).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // AreRequestorsAdvisedOfRefusal (Page: page_step_3_12_4)
+            RuleFor(x => x.AreRequestorsAdvisedOfRefusal).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SupplementaryMaterials (Page: page_step_3_13_1)
+            RuleFor(x => x.SupplementaryMaterials).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SupplementaryMaterials).Must(x => new List<string> { "upload", "nothing" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // SupplementaryMaterialFiles (Page: page_step_3_13_1)
+            RuleFor(x => x.SupplementaryMaterialFiles).NotEmpty().When(x => x.SupplementaryMaterials == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
             //***************************************************************************************************************************
 
             RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {

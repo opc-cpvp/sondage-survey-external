@@ -7035,7 +7035,209 @@
       },
       "section": "3.12",
       "elements": [
-
+        {
+          "type": "radiogroup",
+          "name": "MechanismToAccessPersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Has your institution provided individuals with a mechanism to access their personal information? (3.12.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "MechanismToAccessPersonalInformationDescription",
+          "visibleIf": "{MechanismToAccessPersonalInformation} anyof ['yes_in_place','yes_not_established']",
+          "isRequired": true,
+          "title": {
+            "en": "Please describe the processes by which individuals can or will be able to access their personal information. (3.12.2)",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_12_3",
+      "title": {
+        "en": "3.12 – Individual Access",
+        "fr": ""
+      },
+      "section": "3.12",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ThirdPartiesNotifiedOfChangesToPI",
+          "isRequired": true,
+          "title": {
+            "en": "Are third parties to whom personal information is disclosed notified of changes and corrections made to personal information? (3.12.3)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, already in place",
+                "fr": ""
+              },
+              "value": "yes_in_place"
+            },
+            {
+              "text": {
+                "en": "Yes, but not yet established",
+                "fr": ""
+              },
+              "value": "yes_not_established"
+            },
+            {
+              "text": {
+                "en": "No",
+                "fr": "Non"
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_12_4",
+      "title": {
+        "en": "3.12 – Individual Access",
+        "fr": ""
+      },
+      "section": "3.12",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "AreRequestorsAdvisedOfRefusal",
+          "isRequired": true,
+          "title": {
+            "en": "Do you advise requestors of the reasons for refusal and recourse available to them when you refuse their access requests?",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond “No” to this question.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_3_13_1",
+      "title": {
+        "en": "3.13 – Supplementary Information",
+        "fr": ""
+      },
+      "section": "3.13",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "SupplementaryMaterials",
+          "title": {
+            "en": "If there are any supplementary materials that are relevant to the review of the PIA that the institution would like to provide, please provide them here. (3.13.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "This could include, but is not limited to, the project-specific privacy notices, policies and procedures; legal instruments, agreements, MOUs, forms used to collect personal information, public education materials, data privacy guides, etc.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Upload materials",
+                "fr": ""
+              },
+              "value": "upload"
+            },
+            {
+              "text": {
+                "en": "Nothing to provide",
+                "fr": ""
+              },
+              "value": "nothing"
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "SupplementaryMaterialFiles",
+          "visibleIf": "{SupplementaryMaterials} = 'upload'",
+          "titleLocation": "hidden",
+          "description": {
+            "en": "Supplementary Materials",
+            "fr": ""
+          },
+          "isRequired": true,
+          "allowMultiple": true,
+          "maxSize": 0,
+          "storeDataAsText": false,
+          "showPreview": false,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+          "confirmRemoveMessage": {
+            "en": "Do you really want to remove this file?",
+            "fr": "Voulez-vous vraiment supprimer ce fichier?"
+          },
+          "itemListTitle": {
+            "en": "",
+            "fr": ""
+          },
+          "itemListNoAttachmentsText": {
+            "en": "No attachments have been uploaded yet.",
+            "fr": "Aucune pièce jointe n'a encore été téléchargée."
+          },
+          "duplicateFileNameExceptionMessage": {
+            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_step_4",
+      "title": {
+        "en": "step 4",
+        "fr": ""
+      },
+      "section": "4",
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "This is step 4",
+            "fr": ""
+          }
+        }
       ]
     }
   ]

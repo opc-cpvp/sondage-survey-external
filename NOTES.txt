@@ -125,6 +125,38 @@
     "isRequired": true
 },
 
+{
+    "type": "file",
+    "name": "",
+    "titleLocation": "hidden",
+    "description": {
+    "en": "",
+    "fr": ""
+    },
+    "isRequired": true,
+    "allowMultiple": true,
+    "maxSize": 0,
+    "storeDataAsText": false,
+    "showPreview": false,
+    "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
+    "confirmRemoveMessage": {
+    "en": "Do you really want to remove this file?",
+    "fr": "Voulez-vous vraiment supprimer ce fichier?"
+    },
+    "itemListTitle": {
+    "en": "",
+    "fr": ""
+    },
+    "itemListNoAttachmentsText": {
+    "en": "No attachments have been uploaded yet.",
+    "fr": "Aucune pièce jointe n'a encore été téléchargée."
+    },
+    "duplicateFileNameExceptionMessage": {
+    "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
+    "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
+    }
+}
+
 //*******************************************************************************************
 PaSurvey.ts...
 
