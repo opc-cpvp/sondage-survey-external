@@ -154,6 +154,7 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             } else if (options.question.getType() === "radiogroup") {
                 classes.materialDecorator = "";
             } else if (options.question.getType() === "matrixdynamic") {
+                classes.root += " table";
                 classes.button += " btn btn-primary";
             } else if (options.question.getType() === "paneldynamic") {
                 classes.button += " btn btn-primary";
