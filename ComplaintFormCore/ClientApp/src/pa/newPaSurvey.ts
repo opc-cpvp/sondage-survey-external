@@ -1,22 +1,27 @@
-import { Event, SurveyModel } from "survey-vue";
+import { SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
+import { CheckboxWidget } from "../widgets/checkboxwidget";
+import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class NewPaSurvey extends SurveyBase {
-    public onPaSurveyComplete: Event<(sender: SurveyModel, options: any) => any, any> = new Event<
-        (sender: SurveyModel, options: any) => any,
-        any
-    >();
-
     private authToken: string;
 
-    public constructor(locale: "fr" | "en" = "en", authToken: string) {
+    public constructor(locale: "en" | "fr" = "en", authToken: string) {
         super(locale);
         this.authToken = authToken;
 
-        this.registerCallbacks();
+        // Since our completed page relies on a variable, we'll hide it until the variable is set.
+        this.survey.showCompletedPage = false;
     }
 
-    private registerCallbacks(): void {
+    protected registerWidgets(): void {
+        CheckboxWidget.register();
+        FileMeterWidget.register();
+    }
+
+    protected registerEventHandlers(): void {
+        super.registerEventHandlers();
+
         this.survey.onServerValidateQuestions.add((sender: SurveyModel, options: any) => {
             this.handleOnServerValidateQuestions(sender, options);
         });
@@ -87,13 +92,12 @@ export class NewPaSurvey extends SurveyBase {
             }
 
             const responseData = await response.json();
+            this.survey.setVariable("referenceNumber", responseData.referenceNumber);
+
+            // Now that the variable is set, show the completed page.
+            this.survey.showCompletedPage = true;
+
             options.showDataSavingSuccess();
-
-            if (this.onPaSurveyComplete.isEmpty) {
-                return;
-            }
-
-            this.onPaSurveyComplete.fire(this.survey, { referenceNumber: responseData.referenceNumber });
         })();
     }
 

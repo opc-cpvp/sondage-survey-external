@@ -8,7 +8,7 @@ export class CheckboxWidget extends Widget {
         super("checkboxwithhtmlinfo", "Checkbox list with addtional Html info");
     }
 
-    static init(): void {
+    static register(): void {
         const widget: CheckboxWidget = new CheckboxWidget();
 
         // If activatedBy isn't passed, it will default to property.
@@ -41,13 +41,15 @@ export class CheckboxWidget extends Widget {
      */
     activatedByChanged(activatedBy: string): void {
         this.activatedBy = activatedBy;
-        JsonObject.metaData.removeProperty("checkbox", "renderAs");
         if (activatedBy === "property") {
             JsonObject.metaData.addProperty("checkbox", {
                 name: "renderAs",
                 category: "general",
                 default: "standard",
                 choices: ["standard", "checkboxwithhtmlinfo"]
+            });
+            JsonObject.metaData.addProperty("itemvalue", {
+                name: "htmlAdditionalInfo:text"
             });
         } else if (activatedBy === "customtype") {
             JsonObject.metaData.addClass("checkboxwithhtmlinfo", [], undefined, "checkbox");

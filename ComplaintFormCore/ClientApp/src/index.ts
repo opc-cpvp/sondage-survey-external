@@ -6,10 +6,7 @@ import "element-closest-polyfill"; //  Polyfill to use Element.closest
 
 import * as Survey from "survey-vue";
 import { TestSurvey } from "./tests/testSurvey";
-import { PaSurvey } from "./pa/PaSurvey";
 import { NewPaSurvey } from "./pa/newPaSurvey";
-import { CheckboxWidget } from "./widgets/checkboxwidget";
-import { FileMeterWidget } from "./widgets/filemeterwidget";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
@@ -24,7 +21,7 @@ declare global {
     function showPreview(survey: Survey.SurveyModel): void;
     function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
 
-    function initPaSurvey(lang: "fr" | "en", token: string): void;
+    function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
     function initPipeda(lang: string, token: string): void;
@@ -66,23 +63,10 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            CheckboxWidget.init();
-            FileMeterWidget.init();
-
             const paSurvey = new NewPaSurvey(lang, token);
-
-            paSurvey.onPaSurveyComplete.add((survey: Survey.SurveyModel, options: any) => {
-                const fileNumber = document.getElementById("sp_survey_file_number");
-                if (fileNumber) {
-                    fileNumber.innerText = options.referenceNumber;
-                }
-            });
 
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.render();
-
-            /* const paSurvey = new PaSurvey();
-            paSurvey.init(jsonUrl, lang, token);*/
         };
 
         globalThis.initPiaETool = (lang, token) => {

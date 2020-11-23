@@ -10,7 +10,7 @@ export class FileMeterWidget extends Widget {
         super("filemeter", "Meter used to display total amount of space used by files");
     }
 
-    static init(): void {
+    static register(): void {
         const widget: FileMeterWidget = new FileMeterWidget();
 
         // If activatedBy isn't passed, it will default to property.

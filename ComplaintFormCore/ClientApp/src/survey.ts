@@ -15,7 +15,7 @@ import { Converter } from "showdown";
 import Vue from "vue";
 
 export abstract class SurveyBase extends Survey {
-    private converter = new Converter({
+    private readonly converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
     });
@@ -24,12 +24,13 @@ export abstract class SurveyBase extends Survey {
         super();
 
         this.survey = new Model();
+
         this.survey.locale = locale;
-
-        this.setSurveyProperties();
         this.setSurveyLocalizations();
-        this.registerSurveyCallbacks();
+        this.setSurveyProperties();
 
+        this.registerWidgets();
+        this.registerEventHandlers();
         this.registerCustomProperties();
     }
 
@@ -45,6 +46,8 @@ export abstract class SurveyBase extends Survey {
             return;
         }
 
+        const errorText = surveyLocalization.getString("errorText") as string;
+
         const summary = document.createElement("section");
         summary.className = "alert alert-danger";
 
@@ -57,14 +60,16 @@ export abstract class SurveyBase extends Survey {
                 const item = document.createElement("li");
                 const link = document.createElement("a");
                 link.href = `#${question.inputId}`;
-                link.innerText = `Error ${index++}: ${title.innerText} - ${error.getText()}`;
+                link.innerText = `${errorText} ${index++}: ${title.innerText} - ${error.getText()}`;
                 item.appendChild(link);
                 list.appendChild(item);
             }
         });
 
+        const validationError = surveyLocalization.getString("validationError")["format"](index - 1) as string;
+
         const header = document.createElement("h2");
-        header.innerText = `The form could not be submitted because ${index - 1} error(s) were found.`;
+        header.innerText = validationError;
 
         summary.appendChild(header);
         summary.appendChild(list);
@@ -93,12 +98,25 @@ export abstract class SurveyBase extends Survey {
         });
     }
 
+    protected registerWidgets(): void {}
+
+    protected registerEventHandlers(): void {
+        this.survey.onTextMarkdown.add((sender: SurveyModel, options: any) => {
+            this.handleOnTextMarkdown(sender, options);
+        });
+
+        this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnValidatedErrorsOnCurrentPage(sender, options);
+        });
+    }
+
     private setSurveyProperties(): void {
         // Set Theme
         StylesManager.applyTheme("bootstrap");
 
         // Override defaultBootstrapCss Properties
         defaultBootstrapCss.error.icon = "";
+        defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
@@ -109,31 +127,32 @@ export abstract class SurveyBase extends Survey {
         // onHidden -> survey clears the question value when the question becomes invisible.
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
         this.survey.clearInvisibleValues = "onHidden";
-        this.survey.goNextPageAutomatic = false;
+        this.survey.focusOnFirstError = false;
         this.survey.showPreviewBeforeComplete = "showAllQuestions";
         this.survey.questionErrorLocation = "top";
-        this.survey.requiredText = this.survey.locale === "fr" ? "(obligatoire)" : "(required)";
+        this.survey.requiredText = surveyLocalization.getString("requiredText");
         this.survey.showCompletedPage = true;
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
     }
 
     private setSurveyLocalizations(): void {
+        // Override surveyjs strings
         surveyLocalization.locales["en"].otherItemText = "Other";
         surveyLocalization.locales["fr"].otherItemText = "Autre";
 
         surveyLocalization.locales["en"].requiredError = "This field is required";
         surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
-    }
 
-    private registerSurveyCallbacks(): void {
-        this.survey.onTextMarkdown.add((sender: SurveyModel, options: any) => {
-            this.handleOnTextMarkdown(sender, options);
-        });
+        // Define custom localizable strings
+        surveyLocalization.locales["en"].errorText = "Error";
+        surveyLocalization.locales["fr"].errorText = "Erreur";
 
-        this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
-            this.handleOnValidatedErrorsOnCurrentPage(sender, options);
-        });
+        surveyLocalization.locales["en"].requiredText = "(required)";
+        surveyLocalization.locales["fr"].requiredText = "(obligatoire)";
+
+        surveyLocalization.locales["en"].validationError = "The form could not be submitted because {0} errors were found.";
+        surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreurs ont été trouvées.";
     }
 
     private handleOnTextMarkdown(sender: SurveyModel, options: any): void {
@@ -161,10 +180,6 @@ export abstract class SurveyBase extends Survey {
 
     // TODO: This method should actually be converted into a widget.
     private registerCustomProperties(): void {
-        JsonObject.metaData.addProperty("itemvalue", {
-            name: "htmlAdditionalInfo:text"
-        });
-
         // This is a survey property that will hold the information as to if the user has reached the 'Preview'
         // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
         // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
