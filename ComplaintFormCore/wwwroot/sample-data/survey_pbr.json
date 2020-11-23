@@ -101,6 +101,15 @@
           "elements": [
             {
               "type": "text",
+              "name": "OrganizationAddress",
+              "title": {
+                "en": "Address",
+                "fr": "Adresse"
+              },
+              "isRequired": true
+            },
+            {
+              "type": "text",
               "name": "OrganizationCity",
               "title": {
                 "en": "City",
@@ -109,24 +118,41 @@
               "isRequired": true
             },
             {
-              "type": "text",
-              "name": "OrganizationStreet",
-              "title": {
-                "en": "Street",
-                "fr": "Rue"
-              },
-              "isRequired": true
-            },
-            {
               "type": "dropdown",
               "name": "OrganizationProvince",
               "title": {
-                "en": "Province/State",
-                "fr": "Province/territoire"
+                "en": "Province / State",
+                "fr": "Province / territoire"
               },
               "isRequired": true,
               "choicesByUrl": {
-                "url": "/api/Province?lang={locale}",
+                "url": "/api/Province?lang={locale}&addOther=true",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "OrganizationProvinceOther",
+              "startWithNewLine": false,
+              "title": {
+                "en": "Province / State",
+                "fr": "Province / territoire"
+              },
+              "titleLocation": "hidden",
+              "requiredIf": "{OrganizationProvince} = 14",
+              "visibleIf": "{OrganizationProvince} = 14"
+            },
+            {
+              "type": "dropdown",
+              "name": "OrganizationCountry",
+              "title": {
+                "en": "Country",
+                "fr": "Pays"
+              },
+              "isRequired": true,
+              "choicesByUrl": {
+                "url": "/api/Country?lang={locale}",
                 "titleName": "text",
                 "valueName": "value"
               }
@@ -135,8 +161,8 @@
               "type": "text",
               "name": "OrganizationPostalCode",
               "title": {
-                "en": "Postal code",
-                "fr": "Code postal"
+                "en": "ZIP / Postal code",
+                "fr": "ZIP / Code postal"
               },
               "isRequired": true,
               "maxLength":  10
@@ -147,7 +173,7 @@
           "type": "panel",
           "name": "pnl_RepresentativeType",
           "title": {
-            "en": "Contact information",
+            "en": "Contact Information",
             "fr": "Information du contact"
           },
           "elements": [
@@ -189,8 +215,8 @@
               "type": "text",
               "name": "ContactTitle",
               "title": {
-                "en": "Title/position",
-                "fr": "Titre/poste"
+                "en": "Title / Position",
+                "fr": "Titre / poste"
               },
               "isRequired": true
             },
@@ -244,10 +270,10 @@
             },
             {
               "type": "text",
-              "name": "ContactStreetAdress",
+              "name": "ContactAddress",
               "title": {
-                "en": "Street address",
-                "fr": "Adresse municipale"
+                "en": "Address",
+                "fr": "Adresse"
               },
               "isRequired": true
             },
@@ -259,6 +285,32 @@
                 "fr": "Ville"
               },
               "isRequired": true
+            },
+            {
+              "type": "dropdown",
+              "name": "ContactProvince",
+              "title": {
+                "en": "Province / State",
+                "fr": "Province / territoire"
+              },
+              "isRequired": true,
+              "choicesByUrl": {
+                "url": "/api/Province?lang={locale}&addOther=true",
+                "titleName": "text",
+                "valueName": "value"
+              }
+            },
+            {
+              "type": "text",
+              "name": "ContactProvinceOther",
+              "startWithNewLine": false,
+              "title": {
+                "en": "Province / State",
+                "fr": "Province / territoire"
+              },
+              "titleLocation": "hidden",
+              "requiredIf": "{ContactProvince} = 14",
+              "visibleIf": "{ContactProvince} = 14"
             },
             {
               "type": "dropdown",
@@ -275,36 +327,11 @@
               }
             },
             {
-              "type": "dropdown",
-              "name": "ContactProvince",
-              "visibleIf": "{ContactCountry} = 'CA'",
-              "title": {
-                "en": "Province/State",
-                "fr": "Province/territoire"
-              },
-              "isRequired": true,
-              "choicesByUrl": {
-                "url": "/api/Province?lang={locale}&addOther=true",
-                "titleName": "text",
-                "valueName": "value"
-              }
-            },
-            {
-              "type": "text",
-              "name": "ContactOtherProvince",
-              "visibleIf": "{ContactProvince} = 14",
-              "title": {
-                "en": "Other Province",
-                "fr": "Autre Province"
-              },
-              "isRequired": true
-            },
-            {
               "type": "text",
               "name": "ContactPostalCode",
               "title": {
-                "en": "Postal code",
-                "fr": "Code postal"
+                "en": "ZIP / Postal code",
+                "fr": "ZIP / Code postal"
               },
               "isRequired": true,
               "maxLength": 10
@@ -317,7 +344,7 @@
       "name": "page_breach_description_affected",
       "title": {
         "en": "PIPEDA Breach Report - Breach description",
-        "fr": "apport d'atteinte à la LPRPDE - Description de l'atteinte"
+        "fr": "Rapport d'atteinte à la LPRPDE - Description de l'atteinte"
       },
       "elements": [
         {
@@ -328,14 +355,24 @@
           }
         },
         {
+          "type": "boolean",
+          "name": "NumberOfInvidualKnown",
+          "title": {
+            "en": "Do you know the total number of individuals affected?",
+            "fr": "[FR] Do you know the total number of individuals affected?"
+          },
+          "isRequired": true
+        },
+        {
           "type": "text",
           "name": "NumberOfInvidualAffected",
           "title": {
-            "en": "Total number of individual affected",
+            "en": "Total number of individuals affected",
             "fr": "Nombre total des individus touchés"
           },
           "inputType":  "number",
-          "isRequired": true,
+          "requiredIf": "{NumberOfInvidualKnown} = true",
+          "visibleIf": "{NumberOfInvidualKnown} = true",
           "validators": [
             {
               "type": "numeric"
@@ -350,6 +387,7 @@
             "fr": "Nombre total de canadiens touchés"
           },
           "inputType": "number",
+          "visibleIf": "{NumberOfInvidualKnown} = true",
           "validators": [
             {
               "type": "numeric"
@@ -363,7 +401,8 @@
             "en": "Additional comments",
             "fr": "Commentaires"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -388,7 +427,12 @@
             "en": "Start date of breach occurrence",
             "fr": "Date à laquelle l'atteinte a débuté"
           },
-          "isRequired": true
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date",
+          "config": {
+            "maxDate": 0
+          }
         },
         {
           "type": "datepicker",
@@ -396,6 +440,11 @@
           "title": {
             "en": "End date of breach occurrence",
             "fr": "Date à laquelle l'atteinte a pris fin"
+          },
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date",
+          "config": {
+            "maxDate": 0
           }
         },
         {
@@ -405,7 +454,8 @@
             "en": "Additional comments",
             "fr": "Commentaires"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -464,6 +514,19 @@
               "value": "other"
             }
           ]
+        },
+        {
+          "type": "comment",
+          "name": "TypeOfBreachOther",
+          "title": {
+            "en": "Type of breach",
+            "fr": "Type d'atteinte"
+          },
+          "titleLocation": "hidden",
+          "maxLength": 2000,
+          "rows": 10,
+          "requiredIf": "{TypeOfBreach} = other",
+          "visibleIf": "{TypeOfBreach} = other"
         }
       ]
     },
@@ -486,7 +549,8 @@
             "en": "<p><ol><li>Description of all organizations involved in the breach including their role(s) with respect tothe personal information in question,</li><li>How and why the breach occurred (please include some technical detail regarding the breach including anexplanation of the methodology of the attack if one took place),</li><li>When the breach was discovered,</li><li>Where the breach occurred,</li><li>Who may have had access to the personal information (to the extent known)</li></ol></p>",
             "fr": "<p><ol><li>description de toutes les organisations visées par l'atteinte y compris leur rôle en ce qui a trait aux renseignementspersonnels en question,</li><li>comment et pourquoi l'atteinte a eu lieu (veuillez inclure quelques détails techniques concernant l'atteinte y comprisune description de la méthode utilisée lors de l'attaque si celle-ci s'est produite),</li><li>quand l'atteinte a été découverte,</li><li>où l'atteinte a eu lieu,</li><li>qui peut avoir eu accès aux renseignements personnels (dans la mesure où ces personnes sont connues).</li></ol></p>"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -504,7 +568,8 @@
             "en": "Description of relevant security safeguards in place at the time of the breach to prevent the type of incident that occurred",
             "fr": "Description des mesures de sécurité pertinentes en place au moment de l'atteinte afin d'empêcher le type d'incident qui a eu lieu "
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -516,18 +581,72 @@
       },
       "elements": [
         {
+          "type": "checkbox",
+          "name": "PersonalInformation",
+          "isRequired": true,
+          "title": {
+            "en": "Type of personal information that was breached",
+            "fr": "Renseignements personnels visés par l'atteinte"
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Name",
+                "fr": "Nom"
+              },
+              "value": "name"
+            },
+            {
+              "text": {
+                "en": "Phone Number",
+                "fr": "Numéro de téléphone"
+              },
+              "value": "phone_number"
+            },
+            {
+              "text": {
+                "en": "Email Address",
+                "fr": "Adresse courriel"
+              },
+              "value": "email_address"
+            },
+            {
+              "text": {
+                "en": "Account Number",
+                "fr": "Numéro de compte"
+              },
+              "value": "account_number"
+            },
+            {
+              "text": {
+                "en": "Social Insurance Number",
+                "fr": "Numéro d'assurance sociale"
+              },
+              "value": "social_insurance_number"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
           "type": "comment",
           "name": "SubjectOfBreach",
           "isRequired": true,
           "title": {
             "en": "Description of the personal information that is the subject of the breach to the extent known",
-            "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue "
+            "fr": "La nature des renseignements personnels visés par l'atteinte dans la mesure où elle est connue"
           },
           "description": {
-            "en": "<p><p>Describe the type and nature of the personal information that was breached (for instance, name, phone number, email address, account number, social insurance number, etc.). Please specify if client or employee information was accessed.</p><section class='alert alert-warning'><p>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p></section></p>",
-            "fr": "<p><p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte (par exemple, nom, numéro de téléphone, adresse courriel, numéro de compte, numéro d'assurance sociale, etc.). Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><section class='alert alert-warning'><p>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p></section></p>"
+            "en": "<p><p>Describe the type and nature of the personal information that was breached. Please specify if client or employee information was accessed.</p><section class='alert alert-warning'><p>This section need not include any identifying information, unless it is necessary to explain the nature and sensitivity of the information.</p></section></p>",
+            "fr": "<p><p>Décrivez le type et la nature des renseignements personnels faisant l'objet de l'atteinte. Veuillez préciser si les renseignements personnels du client ou de l'employé ont été consultés.</p><section class='alert alert-warning'><p>Il n'est pas exigé d'inclure dans la présente section des renseignements identificatoires, à moins qu'ils ne soient nécessaires pour expliquer la nature et la sensibilité des renseignements</p></section></p>"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -576,6 +695,9 @@
           "title": {
             "en": "Date notification was completed",
             "fr": "Date à laquelle l'avis a pris fin"
+          },
+          "options": {
+            "maxDate": 0
           }
         },
         {
@@ -625,7 +747,8 @@
             "en": "If you have chosen to notify indirectly, describe the rationale for doing so as well as the type of indirect notification used (i.e. how it was delivered to the target audience)",
             "fr": "Si vous avez choisi d'aviser indirectement les intéressés, veuillez décrire la raison pour ce faire, ainsi que le type d'avis indirect utilisé (c.-à-d. par quel moyen il a été livré à un public cible)"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -637,6 +760,52 @@
       },
       "elements": [
         {
+          "type": "checkbox",
+          "name": "NotificationType",
+          "isRequired": true,
+          "title": {
+            "en": "Form of notification",
+            "fr": "Forme de l'avis"
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Letter",
+                "fr": "Lettre"
+              },
+              "value": "letter"
+            },
+            {
+              "text": {
+                "en": "Mail",
+                "fr": "Courriel"
+              },
+              "value": "mail"
+            },
+            {
+              "text": {
+                "en": "Telephone",
+                "fr": "Téléphone"
+              },
+              "value": "telephone"
+            },
+            {
+              "text": {
+                "en": "Newspaper announcement",
+                "fr": "Annonce dans les journaux"
+              },
+              "value": "newspaper"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
           "type": "comment",
           "name": "NotificationDescription",
           "isRequired": true,
@@ -645,10 +814,11 @@
             "fr": "Décrivez la forme de l'avis"
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>For example, this can include directly by letter, email, telephone; indirectly via newspaper announcement, etc.</p></section><section class='alert alert-warning'><p>Do not include any identifying personal information.</p></section></p>",
-            "fr": "<p><section class='alert alert-info'><p>Par exemple, cela peut comprendre les moyens suivants : directement par lettre, courriel, téléphone; indirectement par annonce dans les journaux, etc.</p></section><section class='alert alert-warning'><p>Ne pas inclure de renseignements personnels identificatoires.</p></section></p>"
+            "en": "<p><section class='alert alert-warning'><p>Do not include any identifying personal information.</p></section></p>",
+            "fr": "<p><section class='alert alert-warning'><p>Ne pas inclure de renseignements personnels identificatoires.</p></section></p>"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     },
@@ -671,9 +841,9 @@
             "fr": "<p><section class='alert alert-info'><p>Par exemple, ceci peut comprendre ce qui suit:</p><ul><li>prendre des mesures comme réinitialiser les mots de passe, offrir des services de surveillance du crédit le caséchéant, récupérer les renseignements envoyés à un mauvais destinataire, obtenir la confirmation despersonnes auxquelles les renseignements n'étaient pas destinés qu'elles ont détruits ces renseignements et qu'elles ne les ont pas diffusés;</li><li>aviser les tierces parties ou les organisations qui peuvent réduire le risque de préjudice, comme la police, lescentres de traitement des paiements ou les sociétés émettrices de cartes de crédit.</li></ul></section></p>"
           },
           "isRequired": true,
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
-
       ]
     },
     {
@@ -684,17 +854,25 @@
       },
       "elements": [
         {
+          "type": "boolean",
+          "name": "OrganizationNotified",
+          "isRequired": true,
+          "title": {
+            "en": "Have any other organizations and/or government institutions been notified about the breach?",
+            "fr": "[FR] Have any other organizations and/or government institutions been notified about the breach?"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>For example, professional bodies or other privacy commissioners' offices.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée</p></section></p>"
+          }
+        },
+        {
           "type": "matrixdynamic",
           "name": "OrganizationDescription",
           "title": {
             "en": "Description of any organizations and/or government institutions notified about the breach not mentioned",
             "fr": "Description de toute autre organisation ou institution gouvernementale avisée de l'atteinte et non mentionnée"
           },
-          "description": {
-            "en": "<p><section class='alert alert-info'><p>For example, professional bodies or other privacy commissioners' offices.</p></section></p>",
-            "fr": "<p><section class='alert alert-info'><p>Par exemple, ordres professionnels ou autres commissariats à la protection de la vie privée</p></section></p>"
-          },
-          "isRequired": true,
           "cellType": "dropdown",
           "columns": [
             {
@@ -715,7 +893,9 @@
             }
           ],
           "rowCount": 1,
-          "minRowCount": 1
+          "minRowCount": 1,
+          "requiredIf": "{OrganizationNotified} = true",
+          "visibleIf": "{OrganizationNotified} = true"
         }
       ]
     },
@@ -737,7 +917,8 @@
             "en": "<p><section class='alert alert-info'><p>For example:</p><ul><li>an experienced IT security firm has been hired to review the organization's security program and weare committed to making any recommended improvements;</li><li>all new contracts with web service providers will include the following quality control provisions ... ,</li><li>a privacy training module has been developed and is now mandatory for all staff;</li><li>all laptops will be encrypted;</li><li>software change management protocol has been updated; etc.</li></ul></section></p>",
             "fr": "<p><section class='alert alert-info'><p>Par exemple:</p><ul><li>un cabinet expert en Tl a été embauché afin d'examiner le programme de sécurité d'une organisation etcelle-ci s'est engagée à apporter toute amélioration recommandée;</li><li>tous les nouveaux contrats conclus avec des fournisseurs de service Web comprendront les dispositions decontrôle de la qualité suivantes ... ;</li><li>un module de formation sur la protection des renseignements personnels a été élaboré et est maintenantobligatoire pour tout le personnel;</li><li>tous les ordinateurs portables seront cryptés;</li><li>le protocole de gestion des modifications du logiciel a été mis à jour; etc.</li></ul></section></p>"
           },
-          "maxLength": 2000
+          "maxLength": 2000,
+          "rows": 10
         }
       ]
     }
