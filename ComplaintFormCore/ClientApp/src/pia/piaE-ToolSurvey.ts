@@ -261,22 +261,28 @@ export class PiaETool {
                         //  paneldynamic 'pnd_PurposeOfDisclosure' with what the user has selected in a previous question.
 
                         const pnd_PurposeOfDisclosure = options.question as Survey.QuestionPanelDynamicModel;
-                        if (pnd_PurposeOfDisclosure) {
-                            //  receivingParties is the dropdown to be populated
-                            const receivingParties = pnd_PurposeOfDisclosure.templateElements[1] as Survey.QuestionDropdownModel;
-                            if (receivingParties) {
-                                //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
-                                const otherPartiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
-                                    "OtherPartiesSharePersonalInformation"
-                                ) as Survey.QuestionMatrixDynamicModel;
-                                const arrayOfItem = otherPartiesSharePersonalInformation[0].value as any[];
-                                arrayOfItem.forEach(item => {
-                                    const selectedItem: Survey.ItemValue = new Survey.ItemValue(item.Party, item.Party);
-
-                                    receivingParties.choices.push(selectedItem);
-                                });
-                            }
+                        if (pnd_PurposeOfDisclosure === null) {
+                            return;
                         }
+
+                        //  receivingParties is the dropdown to be populated
+                        const receivingParties = pnd_PurposeOfDisclosure.templateElements.find(
+                            r => r.name === "ReceivingParties"
+                        ) as Survey.QuestionDropdownModel;
+                        if (receivingParties === null) {
+                            return;
+                        }
+
+                        //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
+                        const otherPartiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
+                            "OtherPartiesSharePersonalInformation"
+                        ) as Survey.QuestionMatrixDynamicModel;
+                        const arrayOfItem = otherPartiesSharePersonalInformation[0].value as any[];
+                        arrayOfItem.forEach(item => {
+                            const selectedItem: Survey.ItemValue = new Survey.ItemValue(item.Party, item.Party);
+
+                            receivingParties.choices.push(selectedItem);
+                        });
                     }
                 });
 

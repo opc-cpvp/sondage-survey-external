@@ -3839,7 +3839,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:</p><p><ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul></p>",
+            "en": "<p>In assessing what is the appropriate retention period and whether it is time to dispose of personal information, an institution should consider the following points:<ul><li>Reviewing the purpose for having collected the personal information in the first place is generally helpful in assessing how long certain personal information should be retained</li><li>If personal information was used to make a decision about an individual, retain it for the legally required period of time thereafter - or other reasonable amount of time in the absence of legislative requirements - to allow the individual to access that information in order to understand, and possibly challenge, the basis for the decision</li><li>If retaining personal information any longer would result in a prejudice for the concerned individual, or increase the risk and exposure to data breaches, the institution should safely dispose of it</li></ul></p>",
             "fr": ""
           }
         }
@@ -5383,7 +5383,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><ul><li>How will information be shared with the third party (that is, by what means or channels?) </li><li>How will the receiving party protect the personal information (you can choose to provide this information later when discussing safeguards)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic? </li></ul></p><p>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
+            "en": "<p><ul><li>How will information be shared with the third party (that is, by what means or channels?) </li><li>How will the receiving party protect the personal information (you can choose to provide this information later when discussing safeguards)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic? </li></ul>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
             "fr": ""
           }
         }
@@ -6095,7 +6095,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><ul><li>How will information be shared with the third party (that is, by what means or channels?)</li><li>How will the receiving party protect the personal information (you can choose to provide this information later when discussing safeguards)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic?</li><li>How is the information stored at the third party?</li></ul></p><p>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
+            "en": "<p><ul><li>How will information be shared with the third party (that is, by what means or channels?)</li><li>How will the receiving party protect the personal information (you can choose to provide this information later when discussing safeguards)</li><li>When is information transferred? Is it immediate or iterative, in batch form, etc.? Who completes the action? Or is it automatic?</li><li>How is the information stored at the third party?</li></ul>Please include all the information technology tools used for the transfer (for example, cloud computing), noting that you will have the opportunity later to speak to the safeguards of those systems.</p>",
             "fr": ""
           }
         }
@@ -6254,7 +6254,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Examples include, but are not limited to</p><ul><li>Security clearances</li><li>Limiting access on a need-to-know basis</li><li>Other access restrictions</li><li>Regular reviews of access privileges</li><li>Clean-desk policy</li><li>Privacy and information management training</li><li>Procedures to restore or replace personal information that has been damaged or lost</li><li>Other procedures</li></ul><p>Please limit your response to <strong>administrative safeguards</strong> only. You will be given an opportunity in the next question to discuss technical safeguards.</p>",
+            "en": "<p>Examples include, but are not limited to<ul><li>Security clearances</li><li>Limiting access on a need-to-know basis</li><li>Other access restrictions</li><li>Regular reviews of access privileges</li><li>Clean-desk policy</li><li>Privacy and information management training</li><li>Procedures to restore or replace personal information that has been damaged or lost</li><li>Other procedures</li></ul>Please limit your response to <strong>administrative safeguards</strong> only. You will be given an opportunity in the next question to discuss technical safeguards.</p>",
             "fr": ""
           }
         }
@@ -6314,7 +6314,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Examples include, but are not limited to:</p><ul><li>Locked filing cabinets or safes</li><li>Combination locks</li><li>Secured premises</li><li>Access or key cards</li><li>Alarm systems</li><li>Security Guards</li><li>Cipher locks</li><li>Video surveillance</li><li>Secured server location(s)</li><li>Back-up servers stored off-site</li></ul><p>Please limit your response to <strong>physical safeguards</strong> only. You will be given an opportunity in the next question to discuss operational and technical safeguards.</p>",
+            "en": "<p>Examples include, but are not limited to:<ul><li>Locked filing cabinets or safes</li><li>Combination locks</li><li>Secured premises</li><li>Access or key cards</li><li>Alarm systems</li><li>Security Guards</li><li>Cipher locks</li><li>Video surveillance</li><li>Secured server location(s)</li><li>Back-up servers stored off-site</li></ul>Please limit your response to <strong>physical safeguards</strong> only. You will be given an opportunity in the next question to discuss operational and technical safeguards.</p>",
             "fr": ""
           }
         }
@@ -6374,7 +6374,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Examples include, but are not limited to:</p><p><ul><li>Identification requirements to establish legitimate identity for accessing personal information</li><li>Authentication (in other words, passwords or other unique identifiers for ensuring authorized access to personal information)</li><li>Biometrics</li><li>Password changes at set intervals</li><li>System access controls</li><li>Secure channels for transmission of personal information</li><li>Encryption of sensitive data for storage and transmission (include the type/level)</li><li>Firewalls and intrusion detection systems and procedures</li><li>Audit trails</li><li>System security maintenance controls including logs</li><li>Security incident procedures and logs</li><li>Virtual private networks</li><li>Government of Canada Public Key Infrastructure</li><li>Other privacy enhancing technologies</li></ul></p>",
+            "en": "<p>Examples include, but are not limited to:<ul><li>Identification requirements to establish legitimate identity for accessing personal information</li><li>Authentication (in other words, passwords or other unique identifiers for ensuring authorized access to personal information)</li><li>Biometrics</li><li>Password changes at set intervals</li><li>System access controls</li><li>Secure channels for transmission of personal information</li><li>Encryption of sensitive data for storage and transmission (include the type/level)</li><li>Firewalls and intrusion detection systems and procedures</li><li>Audit trails</li><li>System security maintenance controls including logs</li><li>Security incident procedures and logs</li><li>Virtual private networks</li><li>Government of Canada Public Key Infrastructure</li><li>Other privacy enhancing technologies</li></ul></p>",
             "fr": ""
           }
         }
@@ -6881,7 +6881,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "en": "<p>Please ensure your response answers the following questions:<ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
             "fr": ""
           }
         }
@@ -6914,7 +6914,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "en": "<p>Please ensure your response answers the following questions:<ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
             "fr": ""
           }
         }
@@ -6948,7 +6948,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p>Please ensure your response answers the following questions:</p><p><ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
+            "en": "<p>Please ensure your response answers the following questions:<ul><li>Is implied or express consent obtained?</li><li>Is consent sought for all personal information elements?</li><li>What happens if an individual does not consent?</li><li>Can consent be withdrawn, and if so, how?</li><li>How are individuals informed of the consequences for withdrawing their consent?</li></ul></p>",
             "fr": ""
           }
         }
