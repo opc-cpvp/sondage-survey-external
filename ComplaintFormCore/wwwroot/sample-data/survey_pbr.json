@@ -583,6 +583,7 @@
         {
           "type": "checkbox",
           "name": "PersonalInformation",
+          "hasOther": true,
           "isRequired": true,
           "title": {
             "en": "Type of personal information that was breached",
@@ -623,13 +624,6 @@
                 "fr": "Numéro d'assurance sociale"
               },
               "value": "social_insurance_number"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
             }
           ]
         },
@@ -762,6 +756,7 @@
         {
           "type": "checkbox",
           "name": "NotificationType",
+          "hasOther": true,
           "isRequired": true,
           "title": {
             "en": "Form of notification",
@@ -795,13 +790,6 @@
                 "fr": "Annonce dans les journaux"
               },
               "value": "newspaper"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
             }
           ]
         },
