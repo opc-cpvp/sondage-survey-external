@@ -105,10 +105,6 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 13) The bundle.js is getting to 40Mb. Figure out what makes it so big.
 14) Build the preview page using the same logic as for pdf, e.g. creating a new survey. There is too much blank wasted spaces
 		with the existing one because we are hidding divs instead of not having them
-15) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
-	For now we're not using startWithNewLine. 
-	I have tried updating survey-vue to 1.8.12 but still not working.
-	When using Survey Creator however it is working fine.
 
 ### Mode details required or help required
  
@@ -186,6 +182,11 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	This is exception seems to have dissapeared.
 35) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 	Localization is done in the Validator classes and it is working.
+36) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
+	For now we're not using startWithNewLine. 
+	I have tried updating survey-vue to 1.8.12 but still not working.
+	When using Survey Creator however it is working fine.
+	Fixed by the developpers at SurveyJS in release 1.8.13 
 
 ### Postponed todo
 a) Explore survey Creator (POSTPONED)

@@ -3155,7 +3155,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal','provincial','not_government','indirectly','other']",
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly']",
       "section": "3.4",
       "elements": [
         {
@@ -3175,7 +3175,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} anyof ['federal','provincial','not_government','indirectly','other']",
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly']",
       "section": "3.4",
       "elements": [
         {
@@ -3236,7 +3236,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "{IsDirectlyFromIndividual} = false and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
+      "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly'] and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
       "section": "3.4",
       "elements": [
         {
@@ -3563,7 +3563,7 @@
         {
           "type": "comment",
           "name": "WhyNoPIBExplanation",
-          "visibleIf": "!({IsOriginalPurposeConsistent} = true)",
+          "visibleIf": "{IsDirectlyFromIndividual} = true or {WhereWhomInfoCollected} != ['directly'] or ({WhereWhomInfoCollected} = ['directly'] and  {IsOriginalPurposeConsistent} = false)",
           "isRequired": true,
           "title": {
             "en": "You have indicated that the institution does not plan to create or update any PIBs to reflect the personal information in this program or activity. Please explain why this is the case.(3.4.10E)",
@@ -3695,7 +3695,7 @@
         "en": "3.4 – Direct collection and purpose identification",
         "fr": ""
       },
-      "visibleIf": "({HasExistingPIB} = true and {InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established']) or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and !({IsOriginalPurposeConsistent} = true))",
+      "visibleIf": "{InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established'] or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = false)",
       "section": "3.4",
       "elements": [
         {
