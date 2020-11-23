@@ -27,8 +27,6 @@ export class FileMeterWidget extends Widget {
      */
     activatedByChanged(activatedBy: string): void {
         this.activatedBy = activatedBy;
-        JsonObject.metaData.removeProperty("file", "showMeter");
-        JsonObject.metaData.removeProperty("file", "totalSize");
         if (activatedBy === "property") {
             JsonObject.metaData.addProperty("file", {
                 name: "showMeter:boolean",
@@ -83,7 +81,7 @@ export class FileMeterWidget extends Widget {
             const size = this.getQuestionSize(question);
 
             if (size > totalSize) {
-                options.error = "The size of the files exceeds the total size";
+                options.error = "The size of the files exceeds the total size allowed.";
             }
         });
 
