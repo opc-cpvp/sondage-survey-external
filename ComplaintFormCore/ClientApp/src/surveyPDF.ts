@@ -1,6 +1,5 @@
 ﻿import * as Survey from "survey-vue";
 import * as SurveyCore from "survey-core"; //  SurveyPDF is using survey-core
-import { storageName_PA } from "./surveyLocalStorage";
 import * as SurveyPDF from "survey-pdf";
 import * as showdown from "showdown";
 
