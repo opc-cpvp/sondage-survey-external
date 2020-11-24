@@ -116,9 +116,9 @@ export abstract class SurveyBase extends Survey {
 
         // Override defaultBootstrapCss Properties
         defaultBootstrapCss.error.icon = "";
-        defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
+        defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
         defaultBootstrapCss.page.title = "sv_title";
         defaultBootstrapCss.question.title = "sv_q_title";
@@ -128,10 +128,10 @@ export abstract class SurveyBase extends Survey {
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
         this.survey.clearInvisibleValues = "onHidden";
         this.survey.focusOnFirstError = false;
-        this.survey.showPreviewBeforeComplete = "showAllQuestions";
         this.survey.questionErrorLocation = "top";
         this.survey.requiredText = surveyLocalization.getString("requiredText");
         this.survey.showCompletedPage = true;
+        this.survey.showPreviewBeforeComplete = "showAllQuestions";
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
     }
