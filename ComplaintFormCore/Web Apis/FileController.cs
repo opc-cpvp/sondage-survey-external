@@ -18,70 +18,73 @@ namespace ComplaintFormCore.Web_Apis
     [ApiController]
     public class FileController : ControllerBase
     {
-        private List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
+        private readonly List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
 
         [HttpPost, DisableRequestSizeLimit]
         public async Task<IActionResult> Upload(string complaintId)
         {
             try
             {
-                var file = Request.Form.Files[0];
                 var folderName = Path.Combine("FileUploads", complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-                var extension = Path.GetExtension(file.FileName);
+                var files = new Dictionary<string, Guid>();
+                var errors = new List<OPCProblemDetails>();
 
-                if(_allowedFileTypes.Contains(extension) == false)
+                foreach (var file in Request.Form.Files)
                 {
-                    OPCProblemDetails problem = new OPCProblemDetails
+                    var extension = Path.GetExtension(file.FileName);
+
+                    if (!_allowedFileTypes.Contains(extension))
                     {
-                        Detail = "Extension " + extension + " not allowed",
-                        Status = 400,
-                        Title = ""
-                    };
+                        errors.Add(new OPCProblemDetails
+                        {
+                            Detail = $"Extension {extension} not allowed",
+                            Status = 400,
+                            Title = ""
+                        });
+                        continue;
+                    }
 
-                    return BadRequest(problem);
-                }
+                    if (file.Length < 0)
+                    {
+                        errors.Add(new OPCProblemDetails
+                        {
+                            Detail = "The file is empty",
+                            Status = 400,
+                            Title = ""
+                        });
+                        continue;
+                    }
 
-                if (file.Length > 0)
-                {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
-                    byte[] fileData = await GetByteArrayFromImageAsync(file);
-                    long size = file.Length;
+                    var fileData = await GetByteArrayFromImageAsync(file);
+                    var size = file.Length;
 
-                    var fullPath = Path.Combine(pathToSave, fileName);
-                    var dbPath = Path.Combine(folderName, fileName);
+                    var fullPath = Path.Combine(pathToSave, file.FileName);
+                    var dbPath = Path.Combine(folderName, file.FileName);
 
                     if (!Directory.Exists(pathToSave))
-                    {
                         Directory.CreateDirectory(pathToSave);
-                    }
 
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
 
-                    return Ok(new { dbPath, size = file.Length });
+                    files.Add(file.FileName, Guid.NewGuid());
                 }
-                else
-                {
-                    OPCProblemDetails problem = new OPCProblemDetails
-                    {
-                        Detail = "The file is empty",
-                        Status = 400,
-                        Title = ""
-                    };
 
-                    return BadRequest(problem);
-                }
+                if (errors.Count > 0)
+                    return BadRequest(errors);
+
+                return Ok(files);
             }
             catch (Exception ex)
             {
                 //  TODO: Log this somewhere
                 return StatusCode(500, $"Internal server error: {ex}");
             }
-        }     
+        }
 
         /// <summary>
         /// Fetch a file associated to a complaint
@@ -90,7 +93,7 @@ namespace ComplaintFormCore.Web_Apis
         [ActionName("Get")]
         public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
         {
-           // throw new Exception("The file is not found or has been removed from the server");
+            // throw new Exception("The file is not found or has been removed from the server");
             //OPCProblemDetails problem2 = new OPCProblemDetails
             //{
             //    Detail = "The file is not found or has been removed from the server",
