@@ -88,12 +88,10 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 6) Log JS exceptions using a web api. console.write
 7) (PA) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
 		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
-8) (PA) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
-		representative if there's a representative
-9) PDF: 
+8) PDF: 
 	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
-10) Add "maxLength": value to all the property that have a maximum in the json
+9) Add "maxLength": value to all the property that have a maximum in the json
 11) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html (Fixed)
@@ -186,6 +184,8 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	This is exception seems to have dissapeared.
 35) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 	Localization is done in the Validator classes and it is working.
+36) (PA) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
+		representative if there's a representative
 
 ### Postponed todo
 a) Explore survey Creator (POSTPONED)
