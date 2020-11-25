@@ -86,30 +86,23 @@ a) Files needs to be saved as UTF-8 in order for the accents to be displayed pro
 4) Find a strategy to clear local storage. Put a timestamp on local storage?
 5) Make sure the css classes are the same on the checkboxes & the radio buttons
 6) Log JS exceptions using a web api. console.write
-7) (PA) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
-		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
-8) PDF: 
+
+7) PDF: 
 	- Some text was screwed up by using french apostrophe. Using single quote fixes it. Maybe saving in utf-8
 
-9) Add "maxLength": value to all the property that have a maximum in the json
-11) Get rid of the 'survey' global variable. That causes an issues with lint
+8) Add "maxLength": value to all the property that have a maximum in the json
+9) Get rid of the 'survey' global variable. That causes an issues with lint
 		-	There is a problem with the navigation
 		-	There is a problem with the checkboxes with html (Fixed)
 
-12) Matrixdynamic 
+10) Matrixdynamic 
 		-	Other box need some style
 		-	Figure out the logic for duplicate selection
 
-13) The bundle.js is getting to 40Mb. Figure out what makes it so big.
-14) Build the preview page using the same logic as for pdf, e.g. creating a new survey. There is too much blank wasted spaces
+11) The bundle.js is getting to 40Mb. Figure out what makes it so big.
+12) Build the preview page using the same logic as for pdf, e.g. creating a new survey. There is too much blank wasted spaces
 		with the existing one because we are hidding divs instead of not having them
-15) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
-	For now we're not using startWithNewLine. 
-	I have tried updating survey-vue to 1.8.12 but still not working.
-	When using Survey Creator however it is working fine.
 
-### Mode details required or help required
- 
 
 ### Fixed todos
 
@@ -186,6 +179,12 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	Localization is done in the Validator classes and it is working.
 36) (PA) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
 		representative if there's a representative
+37) (PA) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
+		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
+38) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
+	For now we're not using startWithNewLine. 
+	I have tried updating survey-vue to 1.8.12 but still not working.
+	When using Survey Creator however it is working fine.
 
 ### Postponed todo
 a) Explore survey Creator (POSTPONED)
