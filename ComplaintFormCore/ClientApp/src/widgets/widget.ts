@@ -1,4 +1,4 @@
-import { IQuestion } from "survey-vue";
+import { Question } from "survey-vue";
 
 export abstract class Widget {
     /**
@@ -43,7 +43,12 @@ export abstract class Widget {
      * @param question
      * @param el
      */
-    afterRender(question: IQuestion, el: HTMLElement): void {}
+    afterRender(question: Question, el: HTMLElement): void {}
+
+    /**
+     * Gets called after the widget has been added to the CustomWidgetCollection.
+     */
+    init(): void {}
 
     /**
      * Use it to destroy the widget. It is typically needed by jQuery widgets.
@@ -51,7 +56,7 @@ export abstract class Widget {
      * @param question
      * @param el
      */
-    willUnmount(question: IQuestion, el: HTMLElement): void {}
+    willUnmount(question: Question, el: HTMLElement): void {}
 
     /**
      * If the widgets depends on third-party library(s) then here you may check if this library(s) is loaded.
@@ -75,5 +80,5 @@ export abstract class Widget {
      *
      * @param question
      */
-    abstract isFit(question: IQuestion): boolean;
+    abstract isFit(question: Question): boolean;
 }
