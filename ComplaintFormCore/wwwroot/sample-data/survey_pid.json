@@ -1,0 +1,44 @@
+{
+  "pages": [
+    {
+      "name": "page_template",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary. Where there is an open field, please consider how to best respond without providing more information than is required.</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "",
+          "title": {
+            "en": "Attention: Before you proceed Has this notification been formally approved in accordance with your institution’s approval process?",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_template",
+      "title": {
+        "en": "",
+        "fr": ""
+      },
+      "elements": [
+
+      ]
+    },
+    {
+      "name": "page1",
+      "elements": [
+
+      ]
+    }
+  ]
+}

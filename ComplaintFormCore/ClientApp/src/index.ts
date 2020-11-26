@@ -13,6 +13,7 @@ import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { storageName_PA, storageName_PIPEDA } from "./surveyLocalStorage";
+import { PidSurvey } from "./pid/pidSurvey";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -27,6 +28,7 @@ declare global {
     function initPiaETool(lang: string, token: string): void;
     function initPipeda(lang: string, token: string): void;
     function initPbr(lang: string, token: string): void;
+    function initPidSurvey(lang: string, token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
@@ -67,6 +69,12 @@ declare let Symbol;
             const jsonUrl = "/sample-data/survey_pbr.json";
             const pbrSurvey = new PbrSurvey();
             pbrSurvey.init(jsonUrl, lang, token);
+        };
+
+        globalThis.initPidSurvey = (lang, token) => {
+            const jsonUrl = "/sample-data/survey_pid.json";
+            const pidSurvey = new PidSurvey();
+            pidSurvey.init(jsonUrl, lang, token);
         };
 
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
