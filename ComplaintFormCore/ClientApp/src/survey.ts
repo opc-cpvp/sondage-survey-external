@@ -15,12 +15,14 @@ import { Converter } from "showdown";
 import Vue from "vue";
 
 export abstract class SurveyBase extends Survey {
+    protected storageName: string;
+
     private readonly converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
     });
 
-    public constructor(locale: "en" | "fr" = "en") {
+    public constructor(locale: "en" | "fr" = "en", storageName: string) {
         super();
 
         this.survey = new Model();
@@ -32,6 +34,8 @@ export abstract class SurveyBase extends Survey {
         this.registerWidgets();
         this.registerEventHandlers();
         this.registerCustomProperties();
+
+        this.storageName = storageName;
     }
 
     public displayErrorSummary(questionErrors: Map<Question, SurveyError[]>): void {
@@ -86,6 +90,9 @@ export abstract class SurveyBase extends Survey {
             .then(response => response.json())
             .then(json => {
                 this.survey.fromJSON(json);
+
+                this.loadStateLocally(this.survey, this.storageName, JSON.stringify(""));
+                this.saveStateLocally(this.survey, this.storageName);
             });
     }
 
@@ -108,6 +115,23 @@ export abstract class SurveyBase extends Survey {
         this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
             this.handleOnValidatedErrorsOnCurrentPage(sender, options);
         });
+    }
+
+    protected saveStateLocally(sender: SurveyModel, storageName: string): void {
+        const res = {
+            currentPageNo: sender.currentPageNo,
+            data: sender.data
+        };
+
+        if (sender.isDisplayMode === true) {
+            res.currentPageNo = 999;
+        } else if (sender.state === "completed") {
+            res.currentPageNo = 1000;
+        }
+
+        // Here should be the code to save the data into your database
+
+        window.localStorage.setItem(storageName, JSON.stringify(res));
     }
 
     private setSurveyProperties(): void {
@@ -210,5 +234,39 @@ export abstract class SurveyBase extends Survey {
             name: "hideOnPreview:boolean",
             default: false
         });
+    }
+
+    private loadStateLocally(sender: SurveyModel, storageName: string, defaultDataAsJsonString: string): void {
+        // Here should be the code to load the data from your database
+
+        const storageSt = window.localStorage.getItem(storageName) || "";
+
+        let res: { currentPageNo: number; data: any };
+        if (storageSt) {
+            res = JSON.parse(storageSt); // Create the survey state for the demo. This line should be deleted in the real app.
+        } else {
+            // If nothing was found we set the default values for the json as well as set the current page to 0
+            res = {
+                currentPageNo: 0,
+                data: JSON.parse(defaultDataAsJsonString)
+            };
+        }
+
+        if (res.data) {
+            sender.data = res.data;
+        }
+
+        // Set the loaded data into the survey.
+        if (res.currentPageNo === 999) {
+            sender.showPreview();
+        } else if (res.currentPageNo === 1000) {
+            // go to completed page
+        } else {
+            sender.currentPageNo = res.currentPageNo;
+        }
+    }
+
+    private clearLocalStorage(storageName: string): void {
+        window.localStorage.setItem(storageName, "");
     }
 }

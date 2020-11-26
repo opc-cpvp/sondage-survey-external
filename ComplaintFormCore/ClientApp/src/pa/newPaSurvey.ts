@@ -2,12 +2,13 @@ import { SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { CheckboxWidget } from "../widgets/checkboxwidget";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
+import { paTestData } from "./pa_test_data";
 
 export class NewPaSurvey extends SurveyBase {
     private authToken: string;
 
-    public constructor(locale: "en" | "fr" = "en", authToken: string) {
-        super(locale);
+    public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
+        super(locale, storageName);
         this.authToken = authToken;
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
@@ -36,6 +37,10 @@ export class NewPaSurvey extends SurveyBase {
 
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
+        });
+
+        this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
+            this.saveStateLocally(sender, this.storageName);
         });
     }
 

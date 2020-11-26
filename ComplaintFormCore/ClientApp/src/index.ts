@@ -72,7 +72,7 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            const paSurvey = new NewPaSurvey(lang, token);
+            const paSurvey = new NewPaSurvey(lang, token, "SurveyJS_LoadState_PA");
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.render();
         };
