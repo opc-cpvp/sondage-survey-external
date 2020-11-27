@@ -426,6 +426,12 @@ namespace SurveyToCS
             }
 
             csharp.AppendLine("}"); // end constructor
+
+            foreach (var methods in survey.calculatedValues)
+            {
+                BuildCalculatedValues(csharp, methods);
+            }
+
             csharp.AppendLine("}"); // end main class
             csharp.AppendLine("}");// end namespace
 
@@ -937,6 +943,20 @@ namespace SurveyToCS
 
             csharp.Append(".WithMessage(");
             csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
+        }
+
+        private static void BuildCalculatedValues(StringBuilder csharp, CalculatedValues calculatedValue)
+        {
+            csharp.Append("private void ");
+            csharp.Append(calculatedValue.name);
+            csharp.AppendLine(" ()");
+            csharp.AppendLine("{");
+
+            csharp.AppendLine("//   TODO: Translate this into code");
+            csharp.Append("//   ");
+            csharp.AppendLine(calculatedValue.expression);
+
+            csharp.AppendLine("}");
         }
 
         #endregion
