@@ -75,6 +75,7 @@ declare let Symbol;
             const paSurvey = new NewPaSurvey(lang, token, "SurveyJS_LoadState_PA");
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.render();
+            paSurvey.setStateLocally();
         };
 
         globalThis.initPiaETool = (lang, token) => {

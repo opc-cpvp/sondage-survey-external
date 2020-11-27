@@ -90,10 +90,12 @@ export abstract class SurveyBase extends Survey {
             .then(response => response.json())
             .then(json => {
                 this.survey.fromJSON(json);
-
-                this.loadStateLocally(this.survey, this.storageName, JSON.stringify(""));
-                this.saveStateLocally(this.survey, this.storageName);
             });
+    }
+
+    public setStateLocally(): void {
+        this.loadStateLocally(this.survey, this.storageName, JSON.stringify(""));
+        this.saveStateLocally(this.survey, this.storageName);
     }
 
     public render(): void {
