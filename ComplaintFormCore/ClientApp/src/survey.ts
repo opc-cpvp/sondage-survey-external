@@ -7,15 +7,15 @@ import {
     Question,
     QuestionHtmlModel,
     StylesManager,
-    Survey,
     SurveyError,
     SurveyModel
 } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 
-export abstract class SurveyBase extends Survey {
+export abstract class SurveyBase {
     protected storageName: string;
+    protected survey: Model;
 
     private readonly converter = new Converter({
         simpleLineBreaks: true,
@@ -23,8 +23,6 @@ export abstract class SurveyBase extends Survey {
     });
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
-        super();
-
         this.survey = new Model();
 
         this.survey.locale = locale;
@@ -32,7 +30,7 @@ export abstract class SurveyBase extends Survey {
         this.setSurveyProperties();
 
         this.registerWidgets();
-        this.registerEventHandlers();
+        // this.registerEventHandlers();
         this.registerCustomProperties();
 
         this.storageName = storageName;
@@ -93,12 +91,14 @@ export abstract class SurveyBase extends Survey {
             });
     }
 
-    public setStateLocally(): void {
-        this.loadStateLocally(this.survey, this.storageName, JSON.stringify(""));
+    public postLoadSurvey(defaultData: string): void {
+        this.loadStateLocally(this.survey, this.storageName, defaultData);
         this.saveStateLocally(this.survey, this.storageName);
+
+        this.registerEventHandlers();
     }
 
-    public render(): void {
+    public renderSurvey(): void {
         new Vue({
             el: "#surveyElement",
             data: {
@@ -117,6 +117,10 @@ export abstract class SurveyBase extends Survey {
         this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
             this.handleOnValidatedErrorsOnCurrentPage(sender, options);
         });
+
+        this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
+            this.saveStateLocally(sender, this.storageName);
+        });
     }
 
     protected saveStateLocally(sender: SurveyModel, storageName: string): void {
@@ -126,12 +130,11 @@ export abstract class SurveyBase extends Survey {
         };
 
         if (sender.isDisplayMode === true) {
+            //  This is code for Preview mode
             res.currentPageNo = 999;
         } else if (sender.state === "completed") {
             res.currentPageNo = 1000;
         }
-
-        // Here should be the code to save the data into your database
 
         window.localStorage.setItem(storageName, JSON.stringify(res));
     }
@@ -239,13 +242,11 @@ export abstract class SurveyBase extends Survey {
     }
 
     private loadStateLocally(sender: SurveyModel, storageName: string, defaultDataAsJsonString: string): void {
-        // Here should be the code to load the data from your database
-
         const storageSt = window.localStorage.getItem(storageName) || "";
 
         let res: { currentPageNo: number; data: any };
         if (storageSt) {
-            res = JSON.parse(storageSt); // Create the survey state for the demo. This line should be deleted in the real app.
+            res = JSON.parse(storageSt);
         } else {
             // If nothing was found we set the default values for the json as well as set the current page to 0
             res = {

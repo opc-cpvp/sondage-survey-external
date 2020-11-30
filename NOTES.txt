@@ -119,60 +119,11 @@
 },
 
 //*******************************************************************************************
-PaSurvey.ts...
 
-// //survey
-// //    .onCompleting
-// //    .add(function (sender, options) {
-
-// //        options.allowComplete = true;
-
-// //        //let data = JSON.stringify(sender.data, null, 3);
-
-// //        var params = { 'complaintId': sender.complaintId }
-// //        let query = Object.keys(params).map(k => encodeURIComponent(k)
-//  //                  + '=' + encodeURIComponent(params[k])).join('&');
-// //        var uri = "/api/PASurvey/Validate?" + query;
-
-// //        const validate = async () => {
-
-// //            const response = await fetch(uri, {
-// //                method: 'POST',
-// //                headers: {
-// //                    'Accept': 'application/json',
-// //                    'Content-Type': 'application/json; charset=utf-8'
-// //                },
-// //                body: JSON.stringify(sender.data)
-
-// //            });
-
-// //            const validationResponse = await response;
-
-// //            if (validationResponse.status === 200) {
-// //                options.allowComplete = false;
-
-// //            }
-// //            else {
-// //                if (validationResponse.json) {
-// //                    validationResponse.json().then(function (error) {
-// //                        printProblemDetails(error);
-// //                    });
-// //                }
-// //                else {
-// //                    alert("oopsy");
-// //                }
-
-// //                //return false;
-// //            }
-// //        }
-
-// //        //    options.allowComplete = validate() === true;
-
-// //        validate();
-// //        //options.allowComplete = allowComplete;
-// //        //validate().catch(function (error) {
-// //        //    console.warn(error);
-// //        //});
-// //    });
+ globalThis.initPaSurvey = async (lang, token) => {
+            const jsonUrl = "/sample-data/survey_pa_complaint.json";
+            const paSurvey = new PaSurvey();
+            paSurvey.init(jsonUrl, lang, token);
+        };
 
 *************************************************************************************************

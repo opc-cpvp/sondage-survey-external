@@ -74,8 +74,18 @@ declare let Symbol;
 
             const paSurvey = new NewPaSurvey(lang, token, "SurveyJS_LoadState_PA");
             await paSurvey.loadSurveyFromUrl(jsonUrl);
-            paSurvey.render();
-            paSurvey.setStateLocally();
+
+            const defaultData = {};
+
+            //  This is test data. Uncomment to use.
+            // const test = await import("./pa/pa_test_data").then(testData => {
+            //    return testData.paTestData2;
+            // });
+
+            // defaultData = test;
+
+            paSurvey.postLoadSurvey(JSON.stringify(defaultData));
+            paSurvey.renderSurvey();
         };
 
         globalThis.initPiaETool = (lang, token) => {
