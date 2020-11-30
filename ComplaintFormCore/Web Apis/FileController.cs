@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using ComplaintFormCore.Exceptions;
+using ComplaintFormCore.Models;
 //using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -28,7 +29,7 @@ namespace ComplaintFormCore.Web_Apis
                 var folderName = Path.Combine("FileUploads", complaintId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
 
-                var files = new Dictionary<string, Guid>();
+                var files = new Dictionary<string,SurveyFile>();
                 var errors = new List<OPCProblemDetails>();
 
                 foreach (var file in Request.Form.Files)
@@ -71,7 +72,7 @@ namespace ComplaintFormCore.Web_Apis
                         file.CopyTo(stream);
                     }
 
-                    files.Add(file.FileName, Guid.NewGuid());
+                    files.Add(file.FileName, new SurveyFile { name = file.FileName, type = file.ContentType, content = Guid.NewGuid().ToString(), size = file.Length });
                 }
 
                 if (errors.Count > 0)

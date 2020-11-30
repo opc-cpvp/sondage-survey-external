@@ -134,7 +134,8 @@ export class NewPaSurvey extends SurveyBase {
                 "success",
                 options.files.map(file => ({
                     file: file,
-                    content: responseData[file.name]
+                    content: responseData[file.name].content,
+                    size: responseData[file.name].size
                 }))
             );
         })();

@@ -121,6 +121,14 @@ export abstract class SurveyBase {
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
             this.saveStateLocally(sender, this.storageName);
         });
+
+        this.survey.onUpdatePanelCssClasses.add((sender: SurveyModel, options: any) => {
+            this.handleOnUpdatePanelCssClasses(sender, options);
+        });
+
+        this.survey.onUpdateQuestionCssClasses.add((sender: SurveyModel, options: any) => {
+            this.handleOnUpdateQuestionCssClasses(sender, options);
+        });
     }
 
     protected saveStateLocally(sender: SurveyModel, storageName: string): void {
@@ -205,6 +213,39 @@ export abstract class SurveyBase {
         }
 
         this.displayErrorSummary(questionErrors);
+    }
+
+    private handleOnUpdateQuestionCssClasses(sender: SurveyModel, options: any): void {
+        const classes = options.cssClasses;
+
+        //  If it is the preview mode...
+        if (sender.isDisplayMode === true) {
+            if (options.question.getType() === "html") {
+                //  This will remove the html questions in Preview mode.
+                classes.root += " sv-hidden";
+            } else if (options.question.getType() === "comment") {
+                //  do not show the 'description' property
+                classes.description += " sv-hidden";
+            } else if (options.question.getType() === "file") {
+                classes.placeholderInput += " sv-hidden";
+            }
+        }
+    }
+
+    private handleOnUpdatePanelCssClasses(sender: SurveyModel, options: any): void {
+        const classes = options.cssClasses;
+
+        if (sender.isDisplayMode === true && options.panel.hideOnPreview === true) {
+            //  This is to hide panel we don't want to show on preview.
+            //  Panels that contains information html for example.
+            //  It also hides the 'pages'! The reason is because on preview, the pages become panels
+            //  and therefore going thru this code.
+            classes.panel.container = "sv-hidden";
+        } else {
+            //  This is a class found in GoC and was used in the original project.
+            //  It adds a border around a panel and a different backgroud color
+            classes.panel.container += " well";
+        }
     }
 
     // TODO: This method should actually be converted into a widget.
