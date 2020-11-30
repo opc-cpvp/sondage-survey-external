@@ -56,6 +56,8 @@ export class FileMeterWidget extends Widget {
             return;
         }
 
+        this.loadQuestionFiles(fileQuestion);
+
         const container = document.createElement("section");
         container.className = "alert alert-info";
 
@@ -135,20 +137,20 @@ export class FileMeterWidget extends Widget {
                 return;
             }
 
-            // for (let i = 0; i < question.value.length; i++) {
-            //    const file = question.value[i];
-            //    const name = file.name;
-            //    const questionFile = this.questionFiles.get(question)?.find(f => f.name === name);
+            const files = question.value || [];
+            const questionFiles = this.questionFiles.get(question) || [];
 
-            //    if (!questionFile) {
-            //        continue;
-            //    }
+            for (const file of files) {
+                const name = file.name;
+                const questionFile = questionFiles.find(f => f.name === name);
 
-            //    const size = questionFile.size;
-            //    file.size = size;
-            // }
+                if (!questionFile) {
+                    continue;
+                }
 
-            console.log(question.value);
+                const size = questionFile.size;
+                file.size = size;
+            }
         });
     }
 
@@ -170,6 +172,15 @@ export class FileMeterWidget extends Widget {
         }
 
         const files = question.value || [];
+        const questionFiles = files.map(
+            f =>
+                ({
+                    name: f.name,
+                    type: f.type,
+                    size: f.size
+                } as File)
+        ) as File[];
+        this.questionFiles.set(question, questionFiles);
     }
 
     private updateHeader(header: HTMLHeadingElement, question: Question): void {
