@@ -12,6 +12,7 @@ import {
 } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
+import { SurveyLocalStorage } from "./surveyLocalStorage";
 
 export abstract class SurveyBase {
     protected storageName: string;
@@ -92,8 +93,9 @@ export abstract class SurveyBase {
     }
 
     public postLoadSurvey(defaultData: string): void {
-        this.loadStateLocally(this.survey, this.storageName, defaultData);
-        this.saveStateLocally(this.survey, this.storageName);
+        const storage: SurveyLocalStorage = new SurveyLocalStorage();
+        storage.loadStateLocally(this.survey, this.storageName, defaultData);
+        storage.saveStateLocally(this.survey, this.storageName);
 
         this.registerEventHandlers();
     }
@@ -119,7 +121,7 @@ export abstract class SurveyBase {
         });
 
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
-            this.saveStateLocally(sender, this.storageName);
+            new SurveyLocalStorage().saveStateLocally(sender, this.storageName);
         });
 
         this.survey.onUpdatePanelCssClasses.add((sender: SurveyModel, options: any) => {
@@ -129,22 +131,14 @@ export abstract class SurveyBase {
         this.survey.onUpdateQuestionCssClasses.add((sender: SurveyModel, options: any) => {
             this.handleOnUpdateQuestionCssClasses(sender, options);
         });
-    }
 
-    protected saveStateLocally(sender: SurveyModel, storageName: string): void {
-        const res = {
-            currentPageNo: sender.currentPageNo,
-            data: sender.data
-        };
+        this.survey.onGetQuestionTitle.add((sender: SurveyModel, options: any) => {
+            this.handleOnGetQuestionTitle(sender, options);
+        });
 
-        if (sender.isDisplayMode === true) {
-            //  This is code for Preview mode
-            res.currentPageNo = 999;
-        } else if (sender.state === "completed") {
-            res.currentPageNo = 1000;
-        }
-
-        window.localStorage.setItem(storageName, JSON.stringify(res));
+        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderPage(sender, options);
+        });
     }
 
     private setSurveyProperties(): void {
@@ -248,6 +242,18 @@ export abstract class SurveyBase {
         }
     }
 
+    private handleOnGetQuestionTitle(sender: SurveyModel, options: any): void {
+        //  This is to add * at the beginning of a required question. The property requiredText
+        //  is set as 'required' later in the code
+        if (options.question.isRequired) {
+            options.title = `<span class='sv_q_required_text'>&ast;&nbsp;</span>${options.title as string}`;
+        }
+    }
+
+    private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
+        window.document.title = options.page.title;
+    }
+
     // TODO: This method should actually be converted into a widget.
     private registerCustomProperties(): void {
         // This is a survey property that will hold the information as to if the user has reached the 'Preview'
@@ -280,37 +286,5 @@ export abstract class SurveyBase {
             name: "hideOnPreview:boolean",
             default: false
         });
-    }
-
-    private loadStateLocally(sender: SurveyModel, storageName: string, defaultDataAsJsonString: string): void {
-        const storageSt = window.localStorage.getItem(storageName) || "";
-
-        let res: { currentPageNo: number; data: any };
-        if (storageSt) {
-            res = JSON.parse(storageSt);
-        } else {
-            // If nothing was found we set the default values for the json as well as set the current page to 0
-            res = {
-                currentPageNo: 0,
-                data: JSON.parse(defaultDataAsJsonString)
-            };
-        }
-
-        if (res.data) {
-            sender.data = res.data;
-        }
-
-        // Set the loaded data into the survey.
-        if (res.currentPageNo === 999) {
-            sender.showPreview();
-        } else if (res.currentPageNo === 1000) {
-            // go to completed page
-        } else {
-            sender.currentPageNo = res.currentPageNo;
-        }
-    }
-
-    private clearLocalStorage(storageName: string): void {
-        window.localStorage.setItem(storageName, "");
     }
 }

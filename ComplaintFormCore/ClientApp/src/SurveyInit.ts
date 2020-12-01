@@ -183,9 +183,11 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
 
         if (errorSection) {
             if (options.errors && options.errors.length > 0) {
-                const problem = new ProblemDetails();
-                problem.detail = "";
-                problem.errors = options.errors;
+                const problem = {
+                    detail: "",
+                    errors: options.errors
+                } as ProblemDetails;
+
                 SurveyHelper.printProblemDetails(problem, survey.locale);
             } else {
                 SurveyHelper.clearProblemDetails();

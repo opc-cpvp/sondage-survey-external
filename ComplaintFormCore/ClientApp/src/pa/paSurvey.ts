@@ -1,12 +1,12 @@
 import Vue from "vue";
 import * as Survey from "survey-vue";
-import { saveStateLocally, storageName_PA, loadStateLocally } from "../surveyLocalStorage";
 import { initSurvey, initSurveyModelEvents, initSurveyModelProperties } from "../surveyInit";
 import { initSurveyFile, initSurveyFileModelEvents } from "../surveyFile";
 import { printProblemDetails, getTranslation } from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
 import { paTestData } from "./pa_test_data";
+import { SurveyLocalStorage } from "../surveyLocalStorage";
 
 declare global {
     // TODO: get rid of this global variable
@@ -17,6 +17,8 @@ declare global {
 const multipleFileMaxSize = 26214400;
 
 export class PaSurvey {
+    private storageName_PA = "SurveyJS_LoadState_PA";
+
     public init(jsonUrl: string, lang: string, token: string): void {
         initSurvey();
         initSurveyFile();
@@ -116,7 +118,7 @@ export class PaSurvey {
                                         console.warn(error);
                                     });
 
-                                saveStateLocally(_survey, storageName_PA);
+                                new SurveyLocalStorage().saveStateLocally(_survey, this.storageName_PA);
 
                                 console.log(sender.data);
                                 Ladda.stopAll();
@@ -262,7 +264,7 @@ export class PaSurvey {
                 };
 
                 // Load the initial state
-                loadStateLocally(_survey, storageName_PA, JSON.stringify(paTestData));
+                new SurveyLocalStorage().loadStateLocally(_survey, this.storageName_PA, JSON.stringify(paTestData));
 
                 // Save the state back to local storage
                 this.onCurrentPageChanged_saveState(_survey);
@@ -314,7 +316,7 @@ export class PaSurvey {
     }
 
     private onCurrentPageChanged_saveState(surveyObj) {
-        saveStateLocally(surveyObj, storageName_PA);
+        new SurveyLocalStorage().saveStateLocally(surveyObj, this.storageName_PA);
     }
 
     // This is to get the total number of bytes for both file uploads.

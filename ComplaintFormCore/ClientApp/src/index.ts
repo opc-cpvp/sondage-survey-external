@@ -12,7 +12,6 @@ import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
-import { storageName_PA, storageName_PIPEDA } from "./surveyLocalStorage";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -63,6 +62,10 @@ declare let Symbol;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
+        const storageName_PA = "SurveyJS_LoadState_PA";
+        const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
+        const storageName_PBR = "SurveyJS_LoadState_PBR";
+
         globalThis.initPbr = (lang, token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
             const pbrSurvey = new PbrSurvey();
@@ -72,7 +75,7 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            const paSurvey = new NewPaSurvey(lang, token, "SurveyJS_LoadState_PA");
+            const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
 
             const defaultData = {};
@@ -81,7 +84,6 @@ declare let Symbol;
             // const test = await import("./pa/pa_test_data").then(testData => {
             //    return testData.paTestData2;
             // });
-
             // defaultData = test;
 
             paSurvey.postLoadSurvey(JSON.stringify(defaultData));

@@ -1,6 +1,6 @@
 ﻿import Vue from "vue";
 import * as Survey from "survey-vue";
-import * as SurveyLocalStorage from "../surveyLocalStorage";
+import { SurveyLocalStorage } from "../surveyLocalStorage";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
@@ -16,6 +16,8 @@ declare global {
 }
 
 export class PipedaTool {
+    private storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
+
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
 
@@ -108,7 +110,7 @@ export class PipedaTool {
                                         console.warn(error);
                                     });
 
-                                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA);
+                                new SurveyLocalStorage().saveStateLocally(_survey, this.storageName_PIPEDA);
 
                                 console.log(sender.data);
                                 Ladda.stopAll();
@@ -238,7 +240,7 @@ export class PipedaTool {
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    SurveyLocalStorage.saveStateLocally(sender, SurveyLocalStorage.storageName_PIPEDA);
+                    new SurveyLocalStorage().saveStateLocally(sender, this.storageName_PIPEDA);
                 });
 
                 SurveyInit.initSurveyModelEvents(_survey);
@@ -250,9 +252,10 @@ export class PipedaTool {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA, JSON.stringify(defaultData));
+                const storage: SurveyLocalStorage = new SurveyLocalStorage();
+                storage.loadStateLocally(_survey, this.storageName_PIPEDA, JSON.stringify(defaultData));
 
-                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PIPEDA);
+                storage.saveStateLocally(_survey, this.storageName_PIPEDA);
 
                 // Save the state back to local storage
                 // this.onCurrentPageChanged_saveState(_survey);
