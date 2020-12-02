@@ -570,7 +570,7 @@ namespace SurveyToCS
             csharp.Append(")");
             csharp.AppendLine();
 
-            string visibleIf = GetVisibleIf(element, null, null);
+            string visibleIf = GetVisibleIfFullCondition(element, null, null);
 
             if (element.isRequired)
             {
@@ -638,7 +638,7 @@ namespace SurveyToCS
                     //    child.RuleFor(x => x.Category).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
                     //});
 
-                    string visibleIf = GetVisibleIf(element, element.parent, null);
+                    string visibleIf = GetVisibleIfFullCondition(element, element.parent, null);
 
                     if (element.type == "matrixdynamic")
                     {
