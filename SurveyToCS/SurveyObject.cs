@@ -7,6 +7,8 @@ namespace SurveyToCS
     public class SurveyObject
     {
         public List<Page> pages { get; set; }
+
+        public List<CalculatedValues> calculatedValues { get; set; }
     }
 
     public class Page
@@ -19,6 +21,15 @@ namespace SurveyToCS
         public string section { get; set; }
 
         public List<Element> elements { get; set; }
+    }
+
+    public class CalculatedValues
+    {
+        public string name { get; set; }
+
+        public string expression { get; set; }
+
+        public bool? includeIntoResult { get; set; }
     }
 
     public class Element
@@ -55,16 +66,6 @@ namespace SurveyToCS
         public string en { get; set; }
         public string fr { get; set; }
     }
-
-    //public class Column
-    //{
-    //    public string name { get; set; }
-    //    public string cellType { get; set; }
-
-    //    public bool isRequired { get; set; }
-
-    //    public Title title { get; set; }
-    //}
 
     public class Choices
     {
