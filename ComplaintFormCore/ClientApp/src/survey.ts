@@ -13,6 +13,7 @@ import {
 import { Converter } from "showdown";
 import Vue from "vue";
 import { SurveyLocalStorage } from "./surveyLocalStorage";
+import { ProblemDetails } from "./models/problemDetails";
 
 export abstract class SurveyBase {
     protected storageName: string;
@@ -41,13 +42,6 @@ export abstract class SurveyBase {
         const currentPage = this.survey.currentPage as PageModel;
 
         let errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
-        if (errorsQuestion !== null) {
-            currentPage.removeQuestion(errorsQuestion);
-        }
-
-        if (!currentPage.hasErrors()) {
-            return;
-        }
 
         const errorText = surveyLocalization.getString("errorText") as string;
 
@@ -62,7 +56,14 @@ export abstract class SurveyBase {
             for (const error of errors) {
                 const item = document.createElement("li");
                 const link = document.createElement("a");
-                link.href = `#${question.inputId}`;
+
+                if (this.survey.isDisplayMode === true) {
+                    //  This is the preview mode
+                    link.href = `#${question.id}`;
+                } else {
+                    link.href = `#${question.inputId}`;
+                }
+
                 link.innerText = `${errorText} ${index++}: ${title.innerText} - ${error.getText()}`;
                 item.appendChild(link);
                 list.appendChild(item);
@@ -82,6 +83,35 @@ export abstract class SurveyBase {
 
         currentPage.addQuestion(errorsQuestion, 0);
         currentPage.scrollToTop();
+    }
+
+    public displayProblemDetails(problemDetails: ProblemDetails): void {
+        const questionErrors = new Map<Question, SurveyError[]>();
+
+        const currentPage = this.survey.currentPage as PageModel;
+
+        //  We first clear the previous error html queation if there was
+        const errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
+        if (errorsQuestion !== null) {
+            currentPage.removeQuestion(errorsQuestion);
+        }
+
+        Object.keys(problemDetails.errors).forEach(key => {
+            const question = this.survey.getQuestionByName(key);
+            if (question) {
+                const errors: SurveyError[] = [];
+                const valueError = problemDetails.errors[key];
+
+                valueError.forEach((item: string) => {
+                    const surveyError: SurveyError = new SurveyError(item, question);
+                    errors.push(surveyError);
+                });
+
+                questionErrors.set(question, errors);
+            }
+        });
+
+        this.displayErrorSummary(questionErrors);
     }
 
     public loadSurveyFromUrl(surveyUrl: string): Promise<void> {
@@ -199,6 +229,18 @@ export abstract class SurveyBase {
     }
 
     private handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
+        //  First we clear the previous 'errors' question if there was
+        const currentPage = this.survey.currentPage as PageModel;
+
+        const errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
+        if (errorsQuestion !== null) {
+            currentPage.removeQuestion(errorsQuestion);
+        }
+
+        if (!currentPage.hasErrors()) {
+            return;
+        }
+
         const questions = options.questions as Question[];
 
         const questionErrors = new Map<Question, SurveyError[]>();
@@ -214,8 +256,9 @@ export abstract class SurveyBase {
 
         //  If it is the preview mode...
         if (sender.isDisplayMode === true) {
-            if (options.question.getType() === "html") {
+            if (options.question.getType() === "html" && options.question.name !== "errors") {
                 //  This will remove the html questions in Preview mode.
+                //  BUT not for the html question holding the errors on the Preview page.
                 classes.root += " sv-hidden";
             } else if (options.question.getType() === "comment") {
                 //  do not show the 'description' property
