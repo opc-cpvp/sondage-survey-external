@@ -23,7 +23,7 @@ export class PiaETool {
         SurveyFile.initSurveyFile();
 
         Survey.JsonObject.metaData.addProperty("page", {
-            name: "section:number",
+            name: "section:text",
             default: false
         });
 
@@ -256,6 +256,33 @@ export class PiaETool {
                                 });
                             }
                         }
+                    } else if (options.question.name === "pnd_PurposeOfNotAllDisclosed") {
+                        //  For this question, we need to populate the dropdown named 'ReceivingParties' inside the
+                        //  paneldynamic 'pnd_PurposeOfDisclosure' with what the user has selected in a previous question.
+
+                        const pnd_PurposeOfDisclosure = options.question as Survey.QuestionPanelDynamicModel;
+                        if (pnd_PurposeOfDisclosure === null) {
+                            return;
+                        }
+
+                        //  receivingParties is the dropdown to be populated
+                        const receivingParties = pnd_PurposeOfDisclosure.templateElements.find(
+                            r => r.name === "ReceivingParties"
+                        ) as Survey.QuestionDropdownModel;
+                        if (receivingParties === null) {
+                            return;
+                        }
+
+                        //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
+                        const otherPartiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
+                            "OtherPartiesSharePersonalInformation"
+                        ) as Survey.QuestionMatrixDynamicModel;
+                        const arrayOfItem = otherPartiesSharePersonalInformation[0].value as any[];
+                        arrayOfItem.forEach(item => {
+                            const selectedItem: Survey.ItemValue = new Survey.ItemValue(item.Party, item.Party);
+
+                            receivingParties.choices.push(selectedItem);
+                        });
                     }
                 });
 
@@ -281,7 +308,7 @@ export class PiaETool {
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
-                SurveyFile.initSurveyFileModelEvents(_survey);
+                SurveyFile.initSurveyFileModelEvents(_survey, "pia");
 
                 this.setNavigationBreadcrumbs(_survey);
 
@@ -337,7 +364,7 @@ export class PiaETool {
             });
     }
 
-    public gotoSection(surveyObj: Survey.SurveyModel, section: number): void {
+    public gotoSection(surveyObj: Survey.SurveyModel, section: string): void {
         //  This is part of the navigation. When a user clicks on a breadcrums item it takes them
         //  directly where they want.
 
@@ -385,26 +412,10 @@ export class PiaETool {
             li.className = "breadcrumb-item";
         });
 
-        if (surveyObj.currentPage.section === 0) {
-            const li = document.getElementById("li_breadcrumb_0");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 1) {
-            const li = document.getElementById("li_breadcrumb_1");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 2) {
-            const li = document.getElementById("li_breadcrumb_2");
-            if (li) {
-                li.className += " active";
-            }
-        } else if (surveyObj.currentPage.section === 3) {
-            const li = document.getElementById("li_breadcrumb_3");
-            if (li) {
-                li.className += " active";
-            }
+        const section: string = surveyObj.currentPage.section;
+        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
+        if (li_breadcrumb) {
+            li_breadcrumb.className += " active";
         }
     }
 }

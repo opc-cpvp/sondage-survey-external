@@ -158,6 +158,9 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
                 classes.button += " btn btn-primary";
             } else if (options.question.getType() === "paneldynamic") {
                 classes.button += " btn btn-primary";
+
+                // This is to set the question test black like other questions
+                classes.title = "sv_q_title";
             }
         }
     });
@@ -175,6 +178,9 @@ export function initSurveyModelEvents(survey: Survey.SurveyModel): void {
             //  This is a class found in GoC and was used in the original project.
             //  It adds a border around a panel and a different backgroud color
             classes.panel.container += " well";
+
+            //  Add the css class label-danger
+            classes.error.root += " label-danger";
         }
     });
 

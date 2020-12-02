@@ -30,7 +30,7 @@ declare global {
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 
-    function gotoSection(survey: Survey.SurveyModel, section: number): void;
+    function gotoSection(survey: Survey.SurveyModel, section: string): void;
     function gotoPage(survey: Survey.SurveyModel, pageName: string): void;
 }
 

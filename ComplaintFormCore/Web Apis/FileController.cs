@@ -22,7 +22,7 @@ namespace ComplaintFormCore.Web_Apis
         private readonly List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
 
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string complaintId)
+        public async Task<IActionResult> Upload(string complaintId, string opcSurveyType, string subFolder)
         {
             try
             {
