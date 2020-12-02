@@ -171,38 +171,6 @@ export class PaSurvey {
                     this.onCurrentPageChanged_saveState(sender);
                 });
 
-                _survey.onAfterRenderPage.add((sender, options) => {
-                    const page = options.page as Survey.PageModel;
-                    if (page.name === "page_details_description_of_concerns") {
-                        //  In this page, the page title changes depending on the flags selected in a previous question
-                        const natureOfComplaint = _survey.getQuestionByValueName("NatureOfComplaint");
-                        const arrayOfItem = natureOfComplaint.value as string[];
-
-                        const isAnyFirstFourSelected = NatureOfComplaintIsAnyFirstFourSelected(arrayOfItem);
-                        const isAnyLastFiveSelected = NatureOfComplaintIsAnyLastFiveSelected(arrayOfItem);
-
-                        if (isAnyFirstFourSelected === true && isAnyLastFiveSelected === true) {
-                            if (sender.locale === "fr") {
-                                sender.setVariable("details", "description des pr�occupations");
-                            } else {
-                                sender.setVariable("details", "description of concerns");
-                            }
-                        } else if (isAnyFirstFourSelected === true) {
-                            if (sender.locale === "fr") {
-                                sender.setVariable("details", "refus d�acc�s");
-                            } else {
-                                sender.setVariable("details", "denial of access");
-                            }
-                        } else {
-                            if (sender.locale === "fr") {
-                                sender.setVariable("details", "Section 2 : D�tails de la plainte");
-                            } else {
-                                sender.setVariable("details", "Section 2: Details of complaint");
-                            }
-                        }
-                    }
-                });
-
                 _survey.onValidateQuestion.add((sender, options) => {
                     if (options.question.getType() === "file" && options.question.value) {
                         // Getting the total size of all uploaded files
@@ -302,12 +270,6 @@ export class PaSurvey {
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
 
-                Survey.FunctionFactory.Instance.register(
-                    "NatureOfComplaintIsAnyFirstFourSelected",
-                    NatureOfComplaintIsAnyFirstFourSelected
-                );
-                Survey.FunctionFactory.Instance.register("NatureOfComplaintIsAnyLastFiveSelected", NatureOfComplaintIsAnyLastFiveSelected);
-
                 // DICTIONNARY - this is just to show how to use localization
                 // survey.setVariable("part_a_2_title", "Part A: Preliminary information (Identify institution)...");
                 // survey.setVariable("part_b_1_title", "Part B: Steps taken (Writing to the ATIP Coordinator)-...");
@@ -387,62 +349,4 @@ export class PaSurvey {
 
         return totalBytes;
     }
-}
-
-export function NatureOfComplaintIsAnyFirstFourSelected(params: any[]): boolean {
-    if (!params) {
-        return false;
-    }
-
-    if (
-        params.indexOf("NatureOfComplaintDelay") >= 0 ||
-        params.indexOf("NatureOfComplaintExtensionOfTime") >= 0 ||
-        params.indexOf("NatureOfComplaintDenialOfAccess") >= 0 ||
-        params.indexOf("NatureOfComplaintLanguage") >= 0
-    ) {
-        return true;
-    }
-
-    if (params[0]) {
-        if (
-            params[0].indexOf("NatureOfComplaintDelay") >= 0 ||
-            params[0].indexOf("NatureOfComplaintExtensionOfTime") >= 0 ||
-            params[0].indexOf("NatureOfComplaintDenialOfAccess") >= 0 ||
-            params[0].indexOf("NatureOfComplaintLanguage") >= 0
-        ) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-export function NatureOfComplaintIsAnyLastFiveSelected(params: string[]): boolean {
-    if (!params) {
-        return false;
-    }
-
-    if (
-        params.indexOf("NatureOfComplaintCorrection") >= 0 ||
-        params.indexOf("NatureOfComplaintCollection") >= 0 ||
-        params.indexOf("NatureOfComplaintUseAndDisclosure") >= 0 ||
-        params.indexOf("NatureOfComplaintRetentionAndDisposal") >= 0 ||
-        params.indexOf("NatureOfComplaintOther") >= 0
-    ) {
-        return true;
-    }
-
-    if (params[0]) {
-        if (
-            params[0].indexOf("NatureOfComplaintCorrection") >= 0 ||
-            params[0].indexOf("NatureOfComplaintCollection") >= 0 ||
-            params[0].indexOf("NatureOfComplaintUseAndDisclosure") >= 0 ||
-            params[0].indexOf("NatureOfComplaintRetentionAndDisposal") >= 0 ||
-            params[0].indexOf("NatureOfComplaintOther") >= 0
-        ) {
-            return true;
-        }
-    }
-
-    return false;
 }
