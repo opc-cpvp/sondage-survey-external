@@ -169,6 +169,9 @@
   <data name="liStep_36" xml:space="preserve">
     <value>Step 3.6</value>
   </data>
+  <data name="liStep_37" xml:space="preserve">
+    <value>Step 3.7</value>
+  </data>
   <data name="SelectedValueNotValid" xml:space="preserve">
     <value>Selected value is not valid</value>
   </data>

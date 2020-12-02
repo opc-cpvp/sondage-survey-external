@@ -75,7 +75,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_1_q_1_6<br/>
         /// Section: 1<br/>
         /// Please provide your email address. (1.6)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string UserEmailAddress16 { get; set; }
 
@@ -101,7 +101,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_1_q_1_8<br/>
         /// Section: 1<br/>
         /// Please provide your email address. (1.8)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string UserEmailAddress18 { get; set; }
 
@@ -127,7 +127,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_1_q_1_10<br/>
         /// Section: 1<br/>
         /// Please provide your email address. (1.10)<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string UserEmailAddress110 { get; set; }
 
@@ -167,7 +167,7 @@ namespace ComplaintFormCore.Models
         /// <summary>
         /// Page: page_step_2_1_q_2_1_2a<br/>
         /// Section: 2<br/>
-        /// On behalf of which institution are you submitting a PIA? Select from the<br/>
+        /// On behalf of which institution are you submitting a PIA? Select from the dr...<br/>
         /// Possible choices: [/api/Institution/GetAll?lang={locale}&addOther=true]<br/>
         /// Survey question type: dropdown
         /// </summary>
@@ -254,7 +254,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_5<br/>
         /// Section: 2<br/>
         /// Email address:<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string HeadYourInstitutionEmail { get; set; }
 
@@ -286,7 +286,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_7<br/>
         /// Section: 2<br/>
         /// Email address:<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string SeniorOfficialEmail { get; set; }
 
@@ -327,7 +327,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_2_1_q_2_1_9<br/>
         /// Section: 2<br/>
         /// Email address:<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string AnotherContactEmail { get; set; }
 
@@ -671,7 +671,7 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_3_1_q_3_1_7<br/>
         /// Section: 3<br/>
         /// Please provide your email address.<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string UserEmailAddress317 { get; set; }
 
@@ -730,14 +730,14 @@ namespace ComplaintFormCore.Models
         /// Page: page_step_3_2_q_3_2_6<br/>
         /// Section: 3<br/>
         /// Please describe the process for handling a privacy complaint or inquiry.<br/>
-        /// Required condition: {ProcessHandlingPrivacyComplaint} anyof ['yes_in_place', 'yes_not_established'] <br/>
+        /// Required condition: {ProcessHandlingPrivacyComplaint} anyof ['yes_in_place','yes_not_established'] <br/>
         /// Survey question type: comment
         /// </summary>
         public string ProcessHandlingPrivacyComplaintDescription { get; set; }
 
         /// <summary>
         /// Page: page_step_3_3_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Have you undertaken a data minimization exercise?<br/>
         /// Possible choices: [yes, not_yet_planned, no]<br/>
         /// Survey question type: radiogroup
@@ -746,7 +746,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please provide additional details about this exercise.<br/>
         /// Required condition: {HasDataMinimization} contains 'yes'<br/>
         /// Survey question type: comment
@@ -755,7 +755,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please provide additional details about this exercise.<br/>
         /// Required condition: {HasDataMinimization} contains 'not_yet_planned'<br/>
         /// Survey question type: comment
@@ -764,7 +764,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Is the context in which the personal information is collected and used sens...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -772,7 +772,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please provide more details about the context in which the personal informa...<br/>
         /// Required condition: {IsContextualSensitivities} = true<br/>
         /// Survey question type: comment
@@ -781,7 +781,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_pre_3_3_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Will your institution be collecting any personal information in a physical ...<br/>
         /// Possible choices: [physical, electronic, both]<br/>
         /// Survey question type: radiogroup
@@ -790,7 +790,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please describe your collection of personal information in physical format....<br/>
         /// Survey question type: comment
         /// </summary>
@@ -798,7 +798,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Will your institution convert or copy any personal information in a physica...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -806,7 +806,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please describe your conversion of personal information from a physical for...<br/>
         /// Required condition: {IsPhysicalConvertedToElectronic} = true<br/>
         /// Survey question type: comment
@@ -815,7 +815,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_6<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please describe your collection of personal information in electronic forma...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -823,7 +823,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_6<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Will your institution convert or copy any personal information in an electr...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -831,7 +831,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_6<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please describe your conversion of personal information from an electronic ...<br/>
         /// Required condition: {IsElectronicConvertedToPhysical} = true<br/>
         /// Survey question type: comment
@@ -840,7 +840,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_8a<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Think now to how you collect personal information, in any format. Is there ...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -848,7 +848,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_8a<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Does your institution have policies or procedures in place to manage the in...<br/>
         /// Required condition: {IsThereCollectNotIntended} = true<br/>
         /// Survey question type: boolean
@@ -857,7 +857,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_3_8a<br/>
-        /// Section: 3<br/>
+        /// Section: 3.3<br/>
         /// Please describe the policies or procedures in place to manage the inadverte...<br/>
         /// Required condition: {DoesHavePoliciesProcedures} = true<br/>
         /// Survey question type: comment
@@ -866,7 +866,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Do you collect the personal information directly from the individual for th...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -874,7 +874,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_2<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// From where or whom is the personal information collected? Please select all...<br/>
         /// Survey question type: tagbox
         /// </summary>
@@ -882,7 +882,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_2<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Please type in your answer(s)<br/>
         /// Required condition: {WhereWhomInfoCollected} contains 'other'<br/>
         /// Survey question type: comment
@@ -891,7 +891,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_3_and_3_4_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that you collect the personal information directly from ...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -899,7 +899,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_3_and_3_4_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that the personal information collected by your institut...<br/>
         /// Required condition: {IsOriginalPurposeConsistent} = true<br/>
         /// Survey question type: comment
@@ -908,7 +908,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_3_and_3_4_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that you collect the personal information directly from ...<br/>
         /// Required condition: {IsOriginalPurposeConsistent} = false<br/>
         /// Survey question type: comment
@@ -917,7 +917,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that you do not collect the personal information directl...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -925,7 +925,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_6_A_and_C<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that you collect personal information from at least one ...<br/>
         /// Possible choices: [yes_already_in_place, yes_not_established, no]<br/>
         /// Survey question type: radiogroup
@@ -934,7 +934,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_6_A_and_C<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// In the absence of an information sharing agreement, please provide a descri...<br/>
         /// Required condition: {FormalInformationSharingAgreement} = 'no'<br/>
         /// Survey question type: comment
@@ -943,7 +943,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_6B<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Please provide a copy (or copies) of relevant ISAs. (3.4.6B)<br/>
         /// Possible choices: [upload, link, not_able]<br/>
         /// Survey question type: radiogroup
@@ -952,16 +952,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_6B<br/>
-        /// Section: 3<br/>
-        /// Please enter a web URL that links to a copy or copies of relevant ISAs<br/>
-        /// Required condition: {DocumentationRelevantISA} = 'link'<br/>
-        /// Survey question type: text
-        /// </summary>
-        public string DocumentationRelevantISALink { get; set; }
-
-        /// <summary>
-        /// Page: page_step_3_4_6B<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Please explain why you are unable to provide a copy or copies of relevant I...<br/>
         /// Required condition: {DocumentationRelevantISA} = 'not_able'<br/>
         /// Survey question type: comment
@@ -970,14 +961,14 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_6B<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Survey question type: file
         /// </summary>
-        public List<SurveyFile> Documentation_file_upload { get; set; }
+        public List<SurveyFile> ISAFiles { get; set; }
 
         /// <summary>
         /// Page: page_step_3_4_7<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Is there an existing PIB that, in its current state, accurately describes t...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -985,7 +976,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_8<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that an existing PIB covers this program or activity. Pl...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -993,7 +984,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_9<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that there is not currently a PIB that accurately descri...<br/>
         /// Possible choices: [new_pib, update_pib, no_pib]<br/>
         /// Survey question type: radiogroup
@@ -1002,7 +993,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_a_b_c<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that your institution plans to either create a new PIB o...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -1010,7 +1001,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_a_b_c<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that your institution has already begun working on eithe...<br/>
         /// Possible choices: [text_field, upload]<br/>
         /// Required condition: {HasNewPIBWorkBegun} = true<br/>
@@ -1020,7 +1011,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_a_b_c<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Required condition: {PIBStatusExplanationType} contains 'text_field'<br/>
         /// Survey question type: comment
         /// </summary>
@@ -1028,15 +1019,15 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_a_b_c<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Required condition: {PIBStatusExplanationType} contains 'upload'<br/>
         /// Survey question type: file
         /// </summary>
-        public List<SurveyFile> PIB_documentation_file_upload { get; set; }
+        public List<SurveyFile> PIBFiles { get; set; }
 
         /// <summary>
         /// Page: page_step_3_4_10_a_b_c<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that your institution plans to either create a new PIB o...<br/>
         /// Required condition: {HasNewPIBWorkBegun} = false<br/>
         /// Survey question type: comment
@@ -1045,7 +1036,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_d_e<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that the institution does not plan create or update any ...<br/>
         /// Required condition: {IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true<br/>
         /// Survey question type: comment
@@ -1054,7 +1045,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_10_d_e<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// You have indicated that the institution does not plan to create or update a...<br/>
         /// Required condition: !({IsOriginalPurposeConsistent} = true)<br/>
         /// Survey question type: comment
@@ -1063,7 +1054,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_11<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Does your institution notify or intend to notify individuals of the purpose...<br/>
         /// Possible choices: [yes_already_in_place, yes_not_established, no]<br/>
         /// Survey question type: radiogroup
@@ -1072,6 +1063,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_11_a_b_c<br/>
+        /// Section: 3.4<br/>
         /// Will there be a privacy notice statement for this program or activity? (3.4...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -1079,14 +1071,16 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_11_a_b_c<br/>
+        /// Section: 3.4<br/>
         /// Do you have draft or final versions of your PNS available to include in you...<br/>
+        /// Required condition: {HasPrivacyNoticeStatement} = true<br/>
         /// Survey question type: boolean
         /// </summary>
         public bool? HasDraftFinalVersionPNSAvailable { get; set; }
 
         /// <summary>
         /// Page: page_step_3_4_12_and_13<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// Please describe how you notify affected individuals and what information yo...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -1094,7 +1088,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_4_12_and_13<br/>
-        /// Section: 3<br/>
+        /// Section: 3.4<br/>
         /// At what point in time relative to the collection taking place will you noti...<br/>
         /// Possible choices: [before, at, after]<br/>
         /// Survey question type: radiogroup
@@ -1103,7 +1097,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// Has Library and Archive Canada approved a records retention and disposal sc...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -1111,7 +1105,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_1<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// Please identify the Record Disposition Authority (RDA).  (3.5.1)<br/>
         /// Required condition: {HasLibraryArchiveCanadaApproved} = true<br/>
         /// Survey question type: comment
@@ -1120,7 +1114,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_2<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// How long do you retain personal information <strong>in physical format</str...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -1128,7 +1122,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_3<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// How long do you retain personal information <strong>in electronic format</s...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -1136,7 +1130,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// Have you implemented, or do you plan to implement, controls and procedures ...<br/>
         /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
         /// Survey question type: radiogroup
@@ -1145,7 +1139,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_4<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// Please briefly describe the controls and procedures that you have implement...<br/>
         /// Required condition: {ControlsProceduresImplementation} anyof ['yes_in_place','yes_not_established']<br/>
         /// Survey question type: comment
@@ -1154,7 +1148,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// You previously indicated that it is possible that your institution could in...<br/>
         /// Survey question type: boolean
         /// </summary>
@@ -1162,7 +1156,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_5_5<br/>
-        /// Section: 3<br/>
+        /// Section: 3.5<br/>
         /// Please describe the circumstances in which you would retain the personal in...<br/>
         /// Required condition: {WillRetainInformationUnintentionally} = 'true'<br/>
         /// Survey question type: comment
@@ -1171,7 +1165,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_1_a<br/>
-        /// Section: 3<br/>
+        /// Section: 3.6<br/>
         /// Does your institution provide, or plan to provide, individuals with a mecha...<br/>
         /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
         /// Survey question type: radiogroup
@@ -1180,15 +1174,16 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_1_a<br/>
-        /// Section: 3<br/>
+        /// Section: 3.6<br/>
         /// Please explain why your institution does not intend to provide individuals ...<br/>
-        /// Required condition: {MechanismToCorrectPersonalInformation} contains 'no'<br/>
+        /// Required condition: {MechanismToCorrectPersonalInformation} = 'no'<br/>
         /// Survey question type: comment
         /// </summary>
         public string NoMechanismToCorrectPersonalInformationExplanation { get; set; }
 
         /// <summary>
         /// Page: page_step_3_6_1_b_c<br/>
+        /// Section: 3.6<br/>
         /// Please describe the mechanism(s) by which individuals can or will be able t...<br/>
         /// Survey question type: comment
         /// </summary>
@@ -1196,6 +1191,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_1_b_c<br/>
+        /// Section: 3.6<br/>
         /// Does your institution provide, or plan to provide, individuals the opportun...<br/>
         /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
         /// Survey question type: radiogroup
@@ -1204,6 +1200,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_1_b_c<br/>
+        /// Section: 3.6<br/>
         /// Please explain why your institution does not intend to provide individuals ...<br/>
         /// Required condition: {WillProvideOpportunityToAddStatement} contains 'no'<br/>
         /// Survey question type: comment
@@ -1212,6 +1209,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_2<br/>
+        /// Section: 3.6<br/>
         /// Does your program collect personal information from authoritative sources?<br/>
         /// Possible choices: [yes_in_all_collection, yes_but_not_in_all_collection, no]<br/>
         /// Survey question type: radiogroup
@@ -1220,6 +1218,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_2<br/>
+        /// Section: 3.6<br/>
         /// Please explain how you determined that your sources for personal informatio...<br/>
         /// Required condition: {IsCollectInformationAuthoritativeSources} anyof ['yes_in_all_collection','yes_but_not_in_all_collection']<br/>
         /// Survey question type: comment
@@ -1228,16 +1227,787 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Page: page_step_3_6_3<br/>
+        /// Section: 3.6<br/>
         /// In addition to any information provided in the previous questions in this s...<br/>
         /// Survey question type: comment
         /// </summary>
         public string ProgramAccuracyDescription { get; set; }
 
+        /// <summary>
+        /// Page: page_step_3_7_1<br/>
+        /// Section: 3.7<br/>
+        /// Does the institution have, or intend to have, an established process by whi...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessDisposalPhysicalFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_1<br/>
+        /// Section: 3.7<br/>
+        /// Have you documented and made available to employees, or are planning to do ...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Required condition: {ProcessDisposalPhysicalFormat} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessDisposalDocumentationPhysicalFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_1<br/>
+        /// Section: 3.7<br/>
+        /// How will the institution dispose of the personal information in physical fo...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DisposalPhysicalFormatDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_2<br/>
+        /// Section: 3.7<br/>
+        /// Does your institution have or plan to have, an established process by which...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessDisposalElectronicFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_2<br/>
+        /// Section: 3.7<br/>
+        /// Have you documented and made available to employees, or are planning to do ...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Required condition: {ProcessDisposalElectronicFormat} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessDisposalDocumentationElectronicFormat { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_2<br/>
+        /// Section: 3.7<br/>
+        /// How will the institution dispose of the personal information in electronic ...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DisposalElectronicFormatDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_3<br/>
+        /// Section: 3.7<br/>
+        /// What triggers the process to dispose of the personal information, in all fo...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string TriggerProcessToDispose { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_4<br/>
+        /// Section: 3.7<br/>
+        /// Do you keep, or plan to keep, a record of your disposal of personal informa...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? WillKeepRecordOfDisposal { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_7_5<br/>
+        /// Section: 3.7<br/>
+        /// When disposing of equipment or devices used for storing personal informatio...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string EquipementDeviceDeleteStoredInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_1<br/>
+        /// Section: 3.8<br/>
+        /// Please describe the population that will be impacted by the program or acti...<br/>
+        /// Possible choices: [certain_employees, all_employees, certain_individuals, all_individuals]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string PopulationImpactedByUseOfPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_1<br/>
+        /// Section: 3.8<br/>
+        /// Please provide additional details to further refine your answer. Examples i...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PopulationImpactedByUseOfPIAdditionalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_2<br/>
+        /// Section: 3.8<br/>
+        /// Does the program or activity focus on vulnerable groups? (3.8.2)<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesFocusVulnerableGroups { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_2<br/>
+        /// Section: 3.8<br/>
+        /// Please provide a description of the vulnerable group(s) on which your progr...<br/>
+        /// Required condition: {DoesFocusVulnerableGroups} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string FocusVulnerableGroupsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_3<br/>
+        /// Section: 3.8<br/>
+        /// Which of the following best describes the size of the population impacted b...<br/>
+        /// Possible choices: [small, significant, entire]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string SizePopulationImpacted { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_4_and_5<br/>
+        /// Section: 3.8<br/>
+        /// How does the institution use personal information under the program or acti...<br/>
+        /// Possible choices: [not_involve_decision, administration, compliance, criminal_investigation]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string HowInstitutionUsePersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_4_and_5<br/>
+        /// Section: 3.8<br/>
+        /// Please provide more detail. More specifically, how and for what purpose doe...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string HowInstitutionUsePersonalInformationMoreDetails { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_6<br/>
+        /// Section: 3.8<br/>
+        /// Does your institution use the personal information: (3.8.6)<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> InstitutionUsePersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_7<br/>
+        /// Section: 3.8<br/>
+        /// Is any of the personal information used for any of the following? Select al...<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> PersonalInformationUsedFor { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_8_and_9<br/>
+        /// Section: 3.8<br/>
+        /// Do you use de-identified information, where possible?<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesUseDeIndentification { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_8_8_and_9<br/>
+        /// Section: 3.8<br/>
+        /// Please describe the process and parameters used for de-identification.<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string UseDeIndentificationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_1<br/>
+        /// Section: 3.9<br/>
+        /// Will the program area that is responsible for collection of the personal in...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsCollectionReasonOtherThanStorage { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_2<br/>
+        /// Section: 3.9<br/>
+        /// Does your institution disclose the personal information: (3.9.2)<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> DisclosePersonalInformationMethod { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_4<br/>
+        /// Section: 3.9<br/>
+        /// Will all of the personal information elements that you are collecting (as d...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? WillAllPICollectedBeDisclosed { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_6A<br/>
+        /// Section: 3.9<br/>
+        /// Are information sharing agreements (ISAs) in place with any of the third pa...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string InformationSharingAgreementInPlace { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_6B<br/>
+        /// Section: 3.9<br/>
+        /// Does/do the ISA(s) require any updates to protect adequately the personal i...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesISARequireUpdates { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_6B<br/>
+        /// Section: 3.9<br/>
+        /// Please briefly describe the required updates. You will have the opportunity...<br/>
+        /// Required condition: {DoesISARequireUpdates} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ISARequireUpdatesDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_6D<br/>
+        /// Section: 3.9<br/>
+        /// In the absence of an information sharing agreement, please provide a descri...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string NoISADisclosureDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_7_and_3_9_8<br/>
+        /// Section: 3.9<br/>
+        /// Does your institution inform individuals of the purpose for which it disclo...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string InformIndividuals { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_7_and_3_9_8<br/>
+        /// Section: 3.9<br/>
+        /// How will the institution communicate the purpose of its disclosure of perso...<br/>
+        /// Required condition: {InformIndividuals} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string InformIndividualsCommunication { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_9_9<br/>
+        /// Section: 3.9<br/>
+        /// Flow chart or diagram<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> FlowChartFiles { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_1<br/>
+        /// Section: 3.10<br/>
+        /// Have you assigned a security designation to the personal information? (3.10...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasSecurityDesignation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_2<br/>
+        /// Section: 3.10<br/>
+        /// Is the security designation that has been assigned to the personal informat...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsSecurityDesignationSameToAllPICollected { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_3<br/>
+        /// Section: 3.10<br/>
+        /// What is the *highest* security designation that you have assigned to the pe...<br/>
+        /// Possible choices: [protected_A, protected_B, protected_C, classified, confidential, secret, top_secret, other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string HighestSecurityDesignation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_3<br/>
+        /// Section: 3.10<br/>
+        /// Security Designation: <br/>
+        /// Required condition: {HighestSecurityDesignation} = 'other'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SecurityDesignationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_5<br/>
+        /// Section: 3.10<br/>
+        /// Is the personal information collected in or converted to physical format fo...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsPhysicalInfoStoredMultipleLocation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_6<br/>
+        /// Section: 3.10<br/>
+        /// Is the personal information collected in or converted to electronic format ...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsElectronicInfoStoredMultipleLocation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_7<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution manage the storage of personal information, in any fo...<br/>
+        /// Possible choices: [all, some, none]<br/>
+        /// Required condition: IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = true or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = true<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string StorageManagement { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_7<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution manage the storage of the personal information? (3.10...<br/>
+        /// Required condition: IsPhysicalFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsElectronicConvertedToPhysical}) and {IsPhysicalInfoStoredMultipleLocation} = false or IsElectronicFormat({PersonalInformationPhysicalAndOrElectronicFormat},{IsPhysicalConvertedToElectronic}) and {IsElectronicInfoStoredMultipleLocation} = false<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsInstituionManageStorageOfPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_8<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a brief description of how the personal information is store...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionHowPIStored { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_A<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution have in place, or plans to have in place, formal agre...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string FormalAgreementToManageStorage { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_B<br/>
+        /// Section: 3.10<br/>
+        /// Does/do the agreement(s) require any updates to protect adequately the pers...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesAgreementRequireUpdates { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_B<br/>
+        /// Section: 3.10<br/>
+        /// Please briefly describe the required updates. You will have the opportunity...<br/>
+        /// Required condition: {DoesAgreementRequireUpdates} = 'true'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AgreementRequireUpdatesDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a copy of relevant agreements. (3.10.9C)<br/>
+        /// Possible choices: [upload, no_upload]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string RelevantAgreementDocumentationType { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Required condition: {RelevantAgreementDocumentationType} = 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> RelevantAgreementFiles { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_C<br/>
+        /// Section: 3.10<br/>
+        /// Please explain why you are unable to provide a copy or copies of relevant a...<br/>
+        /// Required condition: {RelevantAgreementDocumentationType} = 'no_upload'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string NoRelevantAgreementDocumentation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_D<br/>
+        /// Section: 3.10<br/>
+        /// Is there any additional information about the storage of personal informati...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasAdditionalInfoAboutStorage { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_9_E<br/>
+        /// Section: 3.10<br/>
+        /// In the absence of an information sharing agreement, please provide a descri...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionOfDisclosure { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_10A<br/>
+        /// Section: 3.10<br/>
+        /// Is any of the personal information collected for this program or activity s...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? IsStoredUsingCloudService { get; set; }
+
+
+        /// <summary>
+        /// Page: page_step_3_10_10<br/>
+        /// Section: 3.10<br/>
+        /// Please provide a description of your use of the cloud. (3.10.10B)<br/>
+        /// Required condition: {IsStoredUsingCloudService} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string StoredUsingCloudServiceDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_11<br/>
+        /// Does personal information ever leave Canada in any format? Please select al...<br/>
+        /// Survey question type: tagbox
+        /// </summary>
+        public List<string> DoesPersonalInformationLeaveCanada { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_11<br/>
+        /// Please provide a brief explanation of the circumstances in which personal i...<br/>
+        /// Required condition: {DoesPersonalInformationLeaveCanada} = ['no']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PersonalInformationLeaveCanadaDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_12<br/>
+        /// Your institution has safeguards in place to restrict access to sensitive in...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string AdministrativeSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_12<br/>
+        /// Describe the administrative safeguards that the institution implements or p...<br/>
+        /// Required condition: {AdministrativeSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AdministrativeSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_13<br/>
+        /// Does the institution have physical safeguards implemented or planned for im...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string PhysicalSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_13<br/>
+        /// Describe the physical safeguards that the institution implements to protect...<br/>
+        /// Required condition: {PhysicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PhysicalSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_14<br/>
+        /// Does the institution have technical safeguards implemented or planned for i...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string TechnicalSafeguardsImplementation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_14<br/>
+        /// Describe the technological safeguards that the institution implements to pr...<br/>
+        /// Required condition: {TechnicalSafeguardsImplementation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string TechnicalSafeguardsDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_15<br/>
+        /// Have you established which persons or positions will have access to the per...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasEstablishedWhoHaveAccessToPI { get; set; }
+
+
+        /// <summary>
+        /// Page: page_step_3_10_16_C<br/>
+        /// Section: 3.10<br/>
+        /// Who will have access to the personal information? What areas, groups and in...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WhoWillHaveAccessToPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_16_C<br/>
+        /// Section: 3.10<br/>
+        /// Please describe how you will protect personal information against loss or t...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionProtectPIAgainstLossOrTheft { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_17<br/>
+        /// Section: 3.10<br/>
+        /// Does the institution monitor or plan to monitor access to or modification o...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string MonitorModificationOfPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_18_B<br/>
+        /// Section: 3.10<br/>
+        /// Please describe how you will monitor access. (3.10.18B)<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string MonitorAccessDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_19<br/>
+        /// Section: 3.10<br/>
+        /// Has the institution experienced a privacy breach in this program, or a simi...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasPastExperiencedPrivacyBreach { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_20<br/>
+        /// Section: 3.10<br/>
+        /// Please briefly describe the privacy breach(es) and how it (they) relate to ...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_21_and_22<br/>
+        /// Section: 3.10<br/>
+        /// Does the institution have or intend to have a process for handling a breach...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ProcessHandlingBreachOfPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_21_and_22<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the process for handling a breach of personal information.(...<br/>
+        /// Required condition: {ProcessHandlingBreachOfPI} contains 'yes_in_place'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string ProcessHandlingBreachOfPIDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_23<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the ways in which your institution would detect a breach in...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DescriptionWaysDetectingBreach { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_24<br/>
+        /// Section: 3.10<br/>
+        /// Would a privacy breach impact individual(s) or employee(s)? (3.10.24)<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesPrivacyBreachImpactIndividualOrEmployee { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_24<br/>
+        /// Section: 3.10<br/>
+        /// Describe the potential impact(s) on the individual or employee in the event...<br/>
+        /// Required condition: {DoesPrivacyBreachImpactIndividualOrEmployee} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachImpactOnIndividualEmployeeDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_26<br/>
+        /// Section: 3.10<br/>
+        /// Would a privacy breach impact the institution? (3.10.26)<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesPrivacyBreachImpactInstitution { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_26<br/>
+        /// Section: 3.10<br/>
+        /// Describe the potential impact(s) on the institution in the event of a priva...<br/>
+        /// Required condition: {DoesPrivacyBreachImpactInstitution} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PrivacyBreachImpactInstitutionDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_28_A_B<br/>
+        /// Section: 3.10<br/>
+        /// Does your institution test safeguards on an ongoing basis to ensure they ar...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasSafeguardsOngoingBasis { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_10_28_A_B<br/>
+        /// Section: 3.10<br/>
+        /// Please describe the ongoing testing of safeguards you conduct. (3.10.28B)<br/>
+        /// Required condition: {HasSafeguardsOngoingBasis} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SafeguardsOngoingBasisDescription { get; set; }
+
+
+        /// <summary>
+        /// Page: page_step_3_11_1_and_2<br/>
+        /// Section: 3.11<br/>
+        /// Did your institution conduct an assessment as to whether consent is require...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasAssessmentForConsentRequired { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_1_and_2<br/>
+        /// Section: 3.11<br/>
+        /// You have indicated that your institution conducted an assessment to determi...<br/>
+        /// Required condition: {HasAssessmentForConsentRequired} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AssessmentForConsentRequiredDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_3<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToCollectPersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_3<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToCollectPersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToCollectPersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_4<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToUsePersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_4<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToUsePersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToUsePersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_5<br/>
+        /// Section: 3.11<br/>
+        /// Does your institution seek the consent of individuals (or that of their nex...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? DoesSeekConsentToDisclosePersonalInfo { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_5<br/>
+        /// Section: 3.11<br/>
+        /// Please describe the consent.<br/>
+        /// Required condition: {DoesSeekConsentToDisclosePersonalInfo} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string SeekConsentToDisclosePersonalInfoDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_6<br/>
+        /// Section: 3.11<br/>
+        /// In Question 2.2.2, you described the nature of participation in the program...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string InformationConveyedAffectedIndividuals { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_7<br/>
+        /// Section: 3.11<br/>
+        /// Has the institution prepared a summary of this PIA to post on its website?<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? HasPIASummaryOnWebsite { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_11_7<br/>
+        /// Section: 3.11<br/>
+        /// Please provide the PIA summary as it will appear on the institutional websi...<br/>
+        /// Required condition: {HasPIASummaryOnWebsite} = true<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PIASummaryOnWebsite { get; set; }
+
+
+        /// <summary>
+        /// Page: page_step_3_12_1<br/>
+        /// Section: 3.12<br/>
+        /// Has your institution provided individuals with a mechanism to access their ...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string MechanismToAccessPersonalInformation { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_1<br/>
+        /// Section: 3.12<br/>
+        /// Please describe the processes by which individuals can or will be able to a...<br/>
+        /// Required condition: {MechanismToAccessPersonalInformation} anyof ['yes_in_place','yes_not_established']<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string MechanismToAccessPersonalInformationDescription { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_3<br/>
+        /// Section: 3.12<br/>
+        /// Are third parties to whom personal information is disclosed notified of cha...<br/>
+        /// Possible choices: [yes_in_place, yes_not_established, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string ThirdPartiesNotifiedOfChangesToPI { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_12_4<br/>
+        /// Section: 3.12<br/>
+        /// Do you advise requestors of the reasons for refusal and recourse available ...<br/>
+        /// Survey question type: boolean
+        /// </summary>
+        public bool? AreRequestorsAdvisedOfRefusal { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_13_1<br/>
+        /// Section: 3.13<br/>
+        /// If there are any supplementary materials that are relevant to the review of...<br/>
+        /// Possible choices: [upload, nothing]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string SupplementaryMaterials { get; set; }
+
+        /// <summary>
+        /// Page: page_step_3_13_1<br/>
+        /// Section: 3.13<br/>
+        /// Required condition: {SupplementaryMaterials} = 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> SupplementaryMaterialFiles { get; set; }
+
         public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
+
+        public List<DocumentationRelevantISALinks> DocumentationRelevantISALinks { get; set; }
+
+        public List<OtherPartiesSharePersonalInformation> OtherPartiesSharePersonalInformation { get; set; }
+
+        public List<PartiesSharePersonalInformation> PartiesSharePersonalInformation { get; set; }
 
         public List<PersonalInformationCategory> PersonalInformationCategory { get; set; }
 
         public List<PNSStatement> PNSStatement { get; set; }
+
+        public List<SecurityAssessment> SecurityAssessment { get; set; }
 
     }
     public class BehalfMultipleInstitutionOthers
@@ -1269,7 +2039,7 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Email address:<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string OtherInstitutionEmail { get; set; }
 
@@ -1293,22 +2063,113 @@ namespace ComplaintFormCore.Models
 
         /// <summary>
         /// Email address:<br/>
-        /// Survey question type: text
+        /// Survey question type: text (email)
         /// </summary>
         public string SeniorOfficialOtherEmail { get; set; }
+
+    }
+    public class DocumentationRelevantISALinks
+    {
+        /// <summary>
+        /// Link (s)<br/>
+        /// Survey question type: text (url)
+        /// </summary>
+        public string Link { get; set; }
+
+    }
+    public class OtherPartiesSharePersonalInformation
+    {
+        /// <summary>
+        /// Party or parties: <br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Party { get; set; }
+
+        /// <summary>
+        /// Purpose of disclosure<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PurposeOfDisclosure { get; set; }
+
+    }
+    public class PartiesSharePersonalInformation
+    {
+        /// <summary>
+        /// Possible choices: [same_institution, federal_government_institution, provincial_in_canada, regional_in_canada, government_outside_canada, non_governmental_organization_in_canada, non_governmental_organization_outside_canada, private_sector_in_canada, private_sector_outside_canada, other]<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string Party { get; set; }
+
+        /// <summary>
+        /// Description<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Source<br/>
+        /// Possible choices: [upload, link, not_able]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string RelevantISASourceType { get; set; }
+
+        /// <summary>
+        /// Required condition: {panel.RelevantISASourceType} = 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> ISAFilesParties { get; set; }
+
+        /// <summary>
+        /// Please enter a web URL that links to a copy or copies of relevant ISAs<br/>
+        /// Required condition: {panel.RelevantISASourceType} = 'link'<br/>
+        /// Survey question type: matrixdynamic
+        /// </summary>
+        public class RelevantISALinksObject
+        {
+            /// <summary>
+            /// Link (s)<br/>
+            /// Survey question type: text (url)
+            /// </summary>
+            public string Link { get; set; }
+
+        }
+        public List<RelevantISALinksObject> RelevantISALinks { get; set; }
+
+        /// <summary>
+        /// Please explain why you are unable to provide a copy or copies of relevant I...<br/>
+        /// Required condition: {panel.RelevantISASourceType} = 'not_able'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string DocumentationISAMissingExplanation { get; set; }
+
+        /// <summary>
+        /// What areas, groups and individuals will have access to or handle the person...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string AreasGroupsIndividualsAccess { get; set; }
+
+        /// <summary>
+        /// Please describe any ways in which you will protect personal information aga...<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string WaysToProtectPIAgainstLossOrTheft { get; set; }
+
+        /// <summary>
+        /// Survey question type: comment
+        /// </summary>
+        public string MonitorAccessDescription { get; set; }
 
     }
     public class PersonalInformationCategory
     {
         /// <summary>
-        /// Category<br/>
         /// Possible choices: [name, address, contact_information, from_social_media, personal_website, d_o_b, current_age, sex_gender, physical_attribute, marital_status, family, racial_identity, ethnic_origin, city_state_country, citizenship, opinions, affiliations_or_association, religious, criminal, government_issued_id, employer, business, travel, recorded_files, transactions, financial, medical, parental_guardian, substitute_decision_maker, allegations, bodily_samples, physical_biometrics, behavioural_biometrics, other]<br/>
         /// Survey question type: dropdown
         /// </summary>
         public string Category { get; set; }
 
         /// <summary>
-        /// Supplementary Information<br/>
+        /// Supplementary information<br/>
         /// Survey question type: comment
         /// </summary>
         public string SupplementaryInformation { get; set; }
@@ -1318,6 +2179,19 @@ namespace ComplaintFormCore.Models
         /// Survey question type: comment
         /// </summary>
         public string PersonalInformationElement { get; set; }
+
+        /// <summary>
+        /// Purpose of disclosure<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string PurposeOfDisclosure { get; set; }
+
+        /// <summary>
+        /// Receiving parties:<br/>
+        /// Possible choices: []<br/>
+        /// Survey question type: dropdown
+        /// </summary>
+        public string ReceivingParties { get; set; }
 
     }
     public class PNSStatement
@@ -1329,6 +2203,42 @@ namespace ComplaintFormCore.Models
         public string Description { get; set; }
 
     }
-}
+    public class SecurityAssessment
+    {
+        /// <summary>
+        /// Security Assessment:<br/>
+        /// Survey question type: text
+        /// </summary>
+        public string Title { get; set; }
 
+        /// <summary>
+        /// Possible choices: [yes_already_completed, yes_not_completed, no]<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string CompleteState { get; set; }
+
+        /// <summary>
+        /// Please provide a summary for this assessment. Or, if you prefer, upload a c...<br/>
+        /// Possible choices: [upload, enter_text]<br/>
+        /// Required condition: {panel.CompleteState} contains 'yes_already_completed'<br/>
+        /// Survey question type: radiogroup
+        /// </summary>
+        public string SummaryType { get; set; }
+
+        /// <summary>
+        /// Summary (3.10.4B)<br/>
+        /// Required condition: {panel.SummaryType} contains 'enter_text'<br/>
+        /// Survey question type: comment
+        /// </summary>
+        public string Summary { get; set; }
+
+        /// <summary>
+        /// Upload doc (3.10.4B)<br/>
+        /// Required condition: {panel.SummaryType} contains 'upload'<br/>
+        /// Survey question type: file
+        /// </summary>
+        public List<SurveyFile> SummaryFiles { get; set; }
+
+    }
+}
 

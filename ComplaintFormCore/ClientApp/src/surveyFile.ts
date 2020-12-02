@@ -13,7 +13,7 @@ export function initSurveyFile(): void {
     ]);
 }
 
-export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
+export function initSurveyFileModelEvents(survey: Survey.SurveyModel, opcSurveyType: string): void {
     survey.onAfterRenderQuestion.add((sender, options) => {
         if (options.question.getType() === "file") {
             //  This is to build the file preview, we're not using the native one
@@ -67,7 +67,7 @@ export function initSurveyFileModelEvents(survey: Survey.SurveyModel): void {
             const formData = new FormData();
             formData.append("file", file, newFilename);
 
-            const params = { complaintId: sender.complaintId };
+            const params = { complaintId: sender.complaintId, opcSurveyType: opcSurveyType, subFolder: options.question.name };
             const query = Object.keys(params)
                 .map(k => `${encodeURIComponent(k)}=${encodeURIComponent(params[k])}`)
                 .join("&");
@@ -204,7 +204,7 @@ export function updateFilePreview(surveyObj: Survey.SurveyModel, question: Surve
 
                 const buttonRemove = document.createElement("button");
                 buttonRemove.setAttribute("type", "button");
-                buttonRemove.className = "btn sv_q_file_remove_button";
+                buttonRemove.className = "btn btn-primary sv_q_file_remove_button";
 
                 if (question.itemListRemoveText && question.itemListRemoveText.length > 0) {
                     buttonRemove.innerText = getTranslation(question.itemListRemoveText, surveyObj.locale);
@@ -219,6 +219,7 @@ export function updateFilePreview(surveyObj: Survey.SurveyModel, question: Surve
 
                 buttonRemove.onclick = () => {
                     //  We cannot use the file property 'needConfirmRemoveFile' because it is a custom preview
+
                     if (confirm(getTranslation(question.confirmRemoveMessage, surveyObj.locale))) {
                         question.removeFile({ name: fileItem.name });
                     }

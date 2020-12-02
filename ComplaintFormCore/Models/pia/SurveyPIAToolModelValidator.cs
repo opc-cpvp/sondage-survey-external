@@ -2,6 +2,8 @@
 using FluentValidation;
 using ComplaintFormCore.Resources;
 using ComplaintFormCore.Web_Apis.Models;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ComplaintFormCore.Models
 {
@@ -130,8 +132,6 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.HeadYourInstitutionEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             RuleFor(x => x.HeadYourInstitutionEmail).EmailAddress();
 
-            // BehalfMultipleInstitutionOthers (Page: page_step_2_1_q_2_1_6)
-
             // SeniorOfficialFullname (Page: page_step_2_1_q_2_1_7)
             RuleFor(x => x.SeniorOfficialFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.SeniorOfficialFullname).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
@@ -148,8 +148,6 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.SeniorOfficialEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.SeniorOfficialEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
             RuleFor(x => x.SeniorOfficialEmail).EmailAddress();
-
-            // BehalfMultipleInstitutionOthers (Page: page_step_2_1_q_2_1_8)
 
             // PersonContact (Page: page_step_2_1_q_2_1_9)
             RuleFor(x => x.PersonContact).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -418,42 +416,41 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.WhereWhomInfoCollectedOtherDetails).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("other")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // IsOriginalPurposeConsistent (Page: page_step_3_4_3_and_3_4_4)
-            RuleFor(x => x.IsOriginalPurposeConsistent).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.IsOriginalPurposeConsistent).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // OriginalPurposeIsConsistentSummary (Page: page_step_3_4_3_and_3_4_4)
-            RuleFor(x => x.OriginalPurposeIsConsistentSummary).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OriginalPurposeIsConsistentSummary).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.OriginalPurposeIsConsistentSummary).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.OriginalPurposeIsConsistentSummary).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // OriginalPurposeIsNotConsistentJustification (Page: page_step_3_4_3_and_3_4_4)
-            RuleFor(x => x.OriginalPurposeIsNotConsistentJustification).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OriginalPurposeIsNotConsistentJustification).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.OriginalPurposeIsNotConsistentJustification).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.OriginalPurposeIsNotConsistentJustification).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // WhyCollectInfoOtherSource (Page: page_step_3_4_5)
-            RuleFor(x => x.WhyCollectInfoOtherSource).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.WhyCollectInfoOtherSource).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.WhyCollectInfoOtherSource).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WhyCollectInfoOtherSource).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // FormalInformationSharingAgreement (Page: page_step_3_4_6_A_and_C)
-            RuleFor(x => x.FormalInformationSharingAgreement).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.FormalInformationSharingAgreement).Must(x => new List<string> { "yes_already_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other"))).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            RuleFor(x => x.FormalInformationSharingAgreement).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly"))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.FormalInformationSharingAgreement).Must(x => new List<string> { "yes_already_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly"))).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
             // ThirdPartyCollectionDescription (Page: page_step_3_4_6_A_and_C)
-            RuleFor(x => x.ThirdPartyCollectionDescription).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other")) && x.FormalInformationSharingAgreement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.ThirdPartyCollectionDescription).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Contains("federal") || x.WhereWhomInfoCollected.Contains("provincial") || x.WhereWhomInfoCollected.Contains("not_government") || x.WhereWhomInfoCollected.Contains("indirectly") || x.WhereWhomInfoCollected.Contains("other")) && x.FormalInformationSharingAgreement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.ThirdPartyCollectionDescription).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ThirdPartyCollectionDescription).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // DocumentationRelevantISA (Page: page_step_3_4_6B)
-            RuleFor(x => x.DocumentationRelevantISA).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.DocumentationRelevantISA).Must(x => new List<string> { "upload", "link", "not_able" }.Contains(x)).When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            RuleFor(x => x.DocumentationRelevantISA).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DocumentationRelevantISA).Must(x => new List<string> { "upload", "link", "not_able" }.Contains(x)).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
-            // DocumentationRelevantISALink (Page: page_step_3_4_6B)
-            RuleFor(x => x.DocumentationRelevantISALink).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.DocumentationRelevantISALink).Length(0, 200).When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            // DocumentationRelevantISALinks (Page: page_step_3_4_6B)
+            RuleFor(x => x.DocumentationRelevantISALinks).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // DocumentationISAMissingExplanation (Page: page_step_3_4_6B)
-            RuleFor(x => x.DocumentationISAMissingExplanation).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.DocumentationISAMissingExplanation).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.DocumentationISAMissingExplanation).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DocumentationISAMissingExplanation).Length(0, 5000).When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-            // Documentation_file_upload (Page: page_step_3_4_6B)
-            RuleFor(x => x.Documentation_file_upload).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            // ISAFiles (Page: page_step_3_4_6B)
+            RuleFor(x => x.ISAFiles).NotEmpty().When(x => x.IsDirectlyFromIndividual == false && (x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly")) && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // HasExistingPIB (Page: page_step_3_4_7)
             RuleFor(x => x.HasExistingPIB).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -477,24 +474,24 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.PIBStatusExplanationText).NotEmpty().When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == true && x.PIBStatusExplanationType == "text_field").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.PIBStatusExplanationText).Length(0, 5000).When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == true && x.PIBStatusExplanationType == "text_field").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-            // PIB_documentation_file_upload (Page: page_step_3_4_10_a_b_c)
-            RuleFor(x => x.PIB_documentation_file_upload).NotEmpty().When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == true && x.PIBStatusExplanationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            // PIBFiles (Page: page_step_3_4_10_a_b_c)
+            RuleFor(x => x.PIBFiles).NotEmpty().When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == true && x.PIBStatusExplanationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // NoBeganPIBStatusExplanationText (Page: page_step_3_4_10_a_b_c)
             RuleFor(x => x.NoBeganPIBStatusExplanationText).NotEmpty().When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.NoBeganPIBStatusExplanationText).Length(0, 5000).When(x => x.HasExistingPIB == false && (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") && x.HasNewPIBWorkBegun == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // WhyNoPlanToReflectNewConsistentPIB (Page: page_step_3_4_10_d_e)
-            RuleFor(x => x.WhyNoPlanToReflectNewConsistentPIB).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.WhyNoPlanToReflectNewConsistentPIB).Length(0, 5000).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.WhyNoPlanToReflectNewConsistentPIB).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WhyNoPlanToReflectNewConsistentPIB).Length(0, 5000).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // WhyNoPIBExplanation (Page: page_step_3_4_10_d_e)
-            RuleFor(x => x.WhyNoPIBExplanation).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && !(x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.WhyNoPIBExplanation).Length(0, 5000).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && !(x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.WhyNoPIBExplanation).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && (x.IsDirectlyFromIndividual == true || x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly") || (x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WhyNoPIBExplanation).Length(0, 5000).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && (x.IsDirectlyFromIndividual == true || x.WhereWhomInfoCollected.Count > 1 || !x.WhereWhomInfoCollected.Contains("directly") || (x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // InstitutionNotifyIndividuals (Page: page_step_3_4_11)
-            RuleFor(x => x.InstitutionNotifyIndividuals).NotEmpty().When(x => x.HasExistingPIB == true || x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib" || (x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.InstitutionNotifyIndividuals).Must(x => new List<string> { "yes_already_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.HasExistingPIB == true || (x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib") || (x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            RuleFor(x => x.InstitutionNotifyIndividuals).NotEmpty().When(x => x.HasExistingPIB == true || x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib" || (x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InstitutionNotifyIndividuals).Must(x => new List<string> { "yes_already_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.HasExistingPIB == true || x.NoPIBStatusReason == "new_pib" || x.NoPIBStatusReason == "update_pib" || (x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == true)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
             // HasPrivacyNoticeStatement (Page: page_step_3_4_11_a_b_c)
             RuleFor(x => x.HasPrivacyNoticeStatement).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -503,12 +500,11 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.HasDraftFinalVersionPNSAvailable).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !x.IsOriginalPurposeConsistent == true && x.HasPrivacyNoticeStatement == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // PNSStatement (Page: page_step_3_4_11_a_b_c)
-            RuleFor(x => x.PNSStatement).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !x.IsOriginalPurposeConsistent == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PNSStatement).NotEmpty().When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true) && x.HasPrivacyNoticeStatement == true && x.HasDraftFinalVersionPNSAvailable == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
             // InstitutionNotifyIndividualsDescription (Page: page_step_3_4_12_and_13)
-            RuleFor(x => x.InstitutionNotifyIndividualsDescription).NotEmpty().When(x => (x.HasExistingPIB == true && (x.InstitutionNotifyIndividuals == "yes_already_in_place" || x.NoPIBStatusReason == "yes_not_established")) || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && (x.IsOriginalPurposeConsistent == null))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-
-            RuleFor(x => x.InstitutionNotifyIndividualsDescription).Length(0, 5000).When(x => (x.HasExistingPIB == true && (x.InstitutionNotifyIndividuals == "yes_already_in_place" || x.NoPIBStatusReason == "yes_not_established")) || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            RuleFor(x => x.InstitutionNotifyIndividualsDescription).NotEmpty().When(x => new List<string>() { x.InstitutionNotifyIndividuals }.Intersect(new List<string>() {"yes_already_in_place","yes_not_established"}).Any() || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InstitutionNotifyIndividualsDescription).Length(0, 5000).When(x => new List<string>() { x.InstitutionNotifyIndividuals }.Intersect(new List<string>() {"yes_already_in_place","yes_not_established"}).Any() || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly") && x.IsOriginalPurposeConsistent == false)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
             // NotificationTime (Page: page_step_3_4_12_and_13)
             RuleFor(x => x.NotificationTime).NotEmpty().When(x => (x.HasExistingPIB == true && (x.InstitutionNotifyIndividuals == "yes_already_in_place" || x.NoPIBStatusReason == "yes_not_established")) || (x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true))).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -576,86 +572,557 @@ namespace ComplaintFormCore.Models
             RuleFor(x => x.ProgramAccuracyDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
             RuleFor(x => x.ProgramAccuracyDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-            RuleForEach(x => x.BehalfMultipleInstitutionOthers).SetValidator(new BehalfMultipleInstitutionOthersValidator(_localizer)).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+            // ProcessDisposalPhysicalFormat (Page: page_step_3_7_1)
+            RuleFor(x => x.ProcessDisposalPhysicalFormat).NotEmpty().When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessDisposalPhysicalFormat).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
-            RuleForEach(x => x.PersonalInformationCategory).SetValidator(new PersonalInformationCategoryValidator(_localizer));
+            // ProcessDisposalDocumentationPhysicalFormat (Page: page_step_3_7_1)
+            RuleFor(x => x.ProcessDisposalDocumentationPhysicalFormat).NotEmpty().When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true && new List<string>() { x.ProcessDisposalPhysicalFormat }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessDisposalDocumentationPhysicalFormat).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true && new List<string>() { x.ProcessDisposalPhysicalFormat }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
-            RuleForEach(x => x.PNSStatement).SetValidator(new PNSStatementValidator(_localizer)).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true) && x.HasPrivacyNoticeStatement == true && x.HasDraftFinalVersionPNSAvailable == true );
+            // DisposalPhysicalFormatDescription (Page: page_step_3_7_1)
+            RuleFor(x => x.DisposalPhysicalFormatDescription).NotEmpty().When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DisposalPhysicalFormatDescription).Length(0, 5000).When(x => new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"physical","both"}).Any() || x.IsElectronicConvertedToPhysical == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ProcessDisposalElectronicFormat (Page: page_step_3_7_2)
+            RuleFor(x => x.ProcessDisposalElectronicFormat).NotEmpty().When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessDisposalElectronicFormat).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // ProcessDisposalDocumentationElectronicFormat (Page: page_step_3_7_2)
+            RuleFor(x => x.ProcessDisposalDocumentationElectronicFormat).NotEmpty().When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any() && new List<string>() { x.ProcessDisposalElectronicFormat }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessDisposalDocumentationElectronicFormat).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any() && new List<string>() { x.ProcessDisposalElectronicFormat }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // DisposalElectronicFormatDescription (Page: page_step_3_7_2)
+            RuleFor(x => x.DisposalElectronicFormatDescription).NotEmpty().When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DisposalElectronicFormatDescription).Length(0, 5000).When(x => (x.PersonalInformationPhysicalAndOrElectronicFormat == "electronic" && !(x.IsElectronicConvertedToPhysical == true)) || x.IsPhysicalConvertedToElectronic == true || new List<string>() { x.PersonalInformationPhysicalAndOrElectronicFormat }.Intersect(new List<string>() {"electronic","both"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // TriggerProcessToDispose (Page: page_step_3_7_3)
+            RuleFor(x => x.TriggerProcessToDispose).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.TriggerProcessToDispose).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WillKeepRecordOfDisposal (Page: page_step_3_7_4)
+            RuleFor(x => x.WillKeepRecordOfDisposal).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // EquipementDeviceDeleteStoredInformation (Page: page_step_3_7_5)
+            RuleFor(x => x.EquipementDeviceDeleteStoredInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.EquipementDeviceDeleteStoredInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PopulationImpactedByUseOfPI (Page: page_step_3_8_1)
+            RuleFor(x => x.PopulationImpactedByUseOfPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PopulationImpactedByUseOfPI).Must(x => new List<string> { "certain_employees", "all_employees", "certain_individuals", "all_individuals" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PopulationImpactedByUseOfPIAdditionalInfo (Page: page_step_3_8_1)
+            RuleFor(x => x.PopulationImpactedByUseOfPIAdditionalInfo).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PopulationImpactedByUseOfPIAdditionalInfo).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesFocusVulnerableGroups (Page: page_step_3_8_2)
+            RuleFor(x => x.DoesFocusVulnerableGroups).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // FocusVulnerableGroupsDescription (Page: page_step_3_8_2)
+            RuleFor(x => x.FocusVulnerableGroupsDescription).NotEmpty().When(x => x.DoesFocusVulnerableGroups == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.FocusVulnerableGroupsDescription).Length(0, 5000).When(x => x.DoesFocusVulnerableGroups == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // SizePopulationImpacted (Page: page_step_3_8_3)
+            RuleFor(x => x.SizePopulationImpacted).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SizePopulationImpacted).Must(x => new List<string> { "small", "significant", "entire" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // HowInstitutionUsePersonalInformation (Page: page_step_3_8_4_and_5)
+            RuleFor(x => x.HowInstitutionUsePersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HowInstitutionUsePersonalInformation).Must(x => new List<string> { "not_involve_decision", "administration", "compliance", "criminal_investigation" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // HowInstitutionUsePersonalInformationMoreDetails (Page: page_step_3_8_4_and_5)
+            RuleFor(x => x.HowInstitutionUsePersonalInformationMoreDetails).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HowInstitutionUsePersonalInformationMoreDetails).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // InstitutionUsePersonalInformation (Page: page_step_3_8_6)
+            RuleFor(x => x.InstitutionUsePersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleForEach(x => x.InstitutionUsePersonalInformation).Must(x => new List<string> { "purpose_collected", "consistent_purpose", "purpose_disclosed", "individual_consent", "none" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PersonalInformationUsedFor (Page: page_step_3_8_7)
+            RuleFor(x => x.PersonalInformationUsedFor).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleForEach(x => x.PersonalInformationUsedFor).Must(x => new List<string> { "data_matching_linking", "enhanced_identification", "surveillance", "automated", "profiling_prediction", "none" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // DoesUseDeIndentification (Page: page_step_3_8_8_and_9)
+            RuleFor(x => x.DoesUseDeIndentification).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // UseDeIndentificationDescription (Page: page_step_3_8_8_and_9)
+            RuleFor(x => x.UseDeIndentificationDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.UseDeIndentificationDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // IsCollectionReasonOtherThanStorage (Page: page_step_3_9_1)
+            RuleFor(x => x.IsCollectionReasonOtherThanStorage).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // DisclosePersonalInformationMethod (Page: page_step_3_9_2)
+            RuleFor(x => x.DisclosePersonalInformationMethod).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleForEach(x => x.DisclosePersonalInformationMethod).Must(x => new List<string> { "legal_authority", "s_8_privacy_act", "individual_consent", "none" }.Contains(x)).When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PartiesSharePersonalInformation (Page: page_step_3_9_3A)
+            RuleFor(x => x.PartiesSharePersonalInformation).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // OtherPartiesSharePersonalInformation (Page: page_step_3_9_3A)
+            RuleFor(x => x.OtherPartiesSharePersonalInformation).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // WillAllPICollectedBeDisclosed (Page: page_step_3_9_4)
+
+            // InformationSharingAgreementInPlace (Page: page_step_3_9_6A)
+            RuleFor(x => x.InformationSharingAgreementInPlace).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformationSharingAgreementInPlace).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // DoesISARequireUpdates (Page: page_step_3_9_6B)
+            RuleFor(x => x.DoesISARequireUpdates).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // ISARequireUpdatesDescription (Page: page_step_3_9_6B)
+            RuleFor(x => x.ISARequireUpdatesDescription).NotEmpty().When(x =>x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place" && x.DoesISARequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ISARequireUpdatesDescription).Length(0, 5000).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place" && x.DoesISARequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // NoISADisclosureDescription (Page: page_step_3_9_6D)
+            RuleFor(x => x.NoISADisclosureDescription).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && new List<string>() { x.InformationSharingAgreementInPlace }.Intersect(new List<string>() {"yes_not_established","no"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NoISADisclosureDescription).Length(0, 5000).When(x => x.IsCollectionReasonOtherThanStorage == true && new List<string>() { x.InformationSharingAgreementInPlace }.Intersect(new List<string>() {"yes_not_established","no"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // InformIndividuals (Page: page_step_3_9_7_and_3_9_8)
+            RuleFor(x => x.InformIndividuals).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformIndividuals).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // InformIndividualsCommunication (Page: page_step_3_9_7_and_3_9_8)
+            RuleFor(x => x.InformIndividualsCommunication).NotEmpty().When(x => new List<string>() { x.InformIndividuals }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformIndividualsCommunication).Length(0, 5000).When(x => new List<string>() { x.InformIndividuals }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // FlowChartFiles (Page: page_step_3_9_9)
+            RuleFor(x => x.FlowChartFiles).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // HasSecurityDesignation (Page: page_step_3_10_1)
+            RuleFor(x => x.HasSecurityDesignation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsSecurityDesignationSameToAllPICollected (Page: page_step_3_10_2)
+            RuleFor(x => x.IsSecurityDesignationSameToAllPICollected).NotEmpty().When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // HighestSecurityDesignation (Page: page_step_3_10_3)
+            RuleFor(x => x.HighestSecurityDesignation).NotEmpty().When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.HighestSecurityDesignation).Must(x => new List<string> { "protected_A", "protected_B", "protected_C", "classified", "confidential", "secret", "top_secret", "other" }.Contains(x)).When(x => x.HasSecurityDesignation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // SecurityDesignationDescription (Page: page_step_3_10_3)
+            RuleFor(x => x.SecurityDesignationDescription).NotEmpty().When(x => x.HasSecurityDesignation == true && x.HighestSecurityDesignation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SecurityDesignationDescription).Length(0, 5000).When(x => x.HasSecurityDesignation == true && x.HighestSecurityDesignation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // SecurityAssessment (Page: page_step_3_10_4_A_B)
+            RuleFor(x => x.SecurityAssessment).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsPhysicalInfoStoredMultipleLocation (Page: page_step_3_10_5)
+            RuleFor(x => x.IsPhysicalInfoStoredMultipleLocation).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsElectronicConvertedToPhysical)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // IsElectronicInfoStoredMultipleLocation (Page: page_step_3_10_6)
+            RuleFor(x => x.IsElectronicInfoStoredMultipleLocation).NotEmpty().When(x => IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic)).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // StorageManagement (Page: page_step_3_10_7)
+            RuleFor(x => x.StorageManagement).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == true || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat, x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.StorageManagement).Must(x => new List<string> { "all", "some", "none" }.Contains(x)).When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == true || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // IsInstituionManageStorageOfPI (Page: page_step_3_10_7)
+            RuleFor(x => x.IsInstituionManageStorageOfPI).NotEmpty().When(x => IsPhysicalFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsElectronicConvertedToPhysical) && x.IsPhysicalInfoStoredMultipleLocation == false || IsElectronicFormat(x.PersonalInformationPhysicalAndOrElectronicFormat,x.IsPhysicalConvertedToElectronic) && x.IsElectronicInfoStoredMultipleLocation == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // DescriptionHowPIStored (Page: page_step_3_10_8)
+            RuleFor(x => x.DescriptionHowPIStored).NotEmpty().When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"all","some"}).Any() || x.IsInstituionManageStorageOfPI == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionHowPIStored).Length(0, 5000).When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"all","some"}).Any() || x.IsInstituionManageStorageOfPI == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // FormalAgreementToManageStorage (Page: page_step_3_10_9_A)
+            RuleFor(x => x.FormalAgreementToManageStorage).NotEmpty().When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.FormalAgreementToManageStorage).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).When(x => new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // DoesAgreementRequireUpdates (Page: page_step_3_10_9_B)
+            RuleFor(x => x.DoesAgreementRequireUpdates).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // AgreementRequireUpdatesDescription (Page: page_step_3_10_9_B)
+            RuleFor(x => x.AgreementRequireUpdatesDescription).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.DoesAgreementRequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AgreementRequireUpdatesDescription).Length(0, 5000).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.DoesAgreementRequireUpdates == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // RelevantAgreementDocumentationType (Page: page_step_3_10_9_C)
+            RuleFor(x => x.RelevantAgreementDocumentationType).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.RelevantAgreementDocumentationType).Must(x => new List<string> { "upload", "no_upload" }.Contains(x)).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // RelevantAgreementFiles (Page: page_step_3_10_9_C)
+            RuleFor(x => x.RelevantAgreementFiles).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // NoRelevantAgreementDocumentation (Page: page_step_3_10_9_C)
+            RuleFor(x => x.NoRelevantAgreementDocumentation).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "no_upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.NoRelevantAgreementDocumentation).Length(0, 5000).When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "no_upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasAdditionalInfoAboutStorage (Page: page_step_3_10_9_D)
+            RuleFor(x => x.HasAdditionalInfoAboutStorage).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // DescriptionOfDisclosure (Page: page_step_3_10_9_E)
+            RuleFor(x => x.DescriptionOfDisclosure).NotEmpty().When(x => (new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && (x.FormalAgreementToManageStorage != "yes_in_place" || x.RelevantAgreementDocumentationType == "no_upload")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionOfDisclosure).Length(0, 5000).When(x =>(new List<string>() { x.StorageManagement }.Intersect(new List<string>() {"some","none"}).Any() || x.IsInstituionManageStorageOfPI == false) && (x.FormalAgreementToManageStorage != "yes_in_place" || x.RelevantAgreementDocumentationType == "no_upload")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // IsStoredUsingCloudService (Page: page_step_3_10_10A)
+            RuleFor(x => x.IsStoredUsingCloudService).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // StoredUsingCloudServiceDescription (Page: page_step_3_10_10)
+            RuleFor(x => x.StoredUsingCloudServiceDescription).NotEmpty().When(x => x.IsStoredUsingCloudService == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.StoredUsingCloudServiceDescription).Length(0, 5000).When(x => x.IsStoredUsingCloudService == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesPersonalInformationLeaveCanada (Page: page_step_3_10_11)
+            RuleFor(x => x.DoesPersonalInformationLeaveCanada).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleForEach(x => x.DoesPersonalInformationLeaveCanada).Must(x => new List<string> { "ongoing_basis", "temporary_basis", "transmitted", "specific_circumstances", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PersonalInformationLeaveCanadaDescription (Page: page_step_3_10_11)
+            RuleFor(x => x.PersonalInformationLeaveCanadaDescription).NotEmpty().When(x => x.DoesPersonalInformationLeaveCanada.Count == 1 && x.DoesPersonalInformationLeaveCanada.Contains("no")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PersonalInformationLeaveCanadaDescription).Length(0, 5000).When(x => x.DoesPersonalInformationLeaveCanada.Count == 1 && x.DoesPersonalInformationLeaveCanada.Contains("no")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // AdministrativeSafeguardsImplementation (Page: page_step_3_10_12)
+            RuleFor(x => x.AdministrativeSafeguardsImplementation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AdministrativeSafeguardsImplementation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // AdministrativeSafeguardsDescription (Page: page_step_3_10_12)
+            RuleFor(x => x.AdministrativeSafeguardsDescription).NotEmpty().When(x => new List<string>() { x.AdministrativeSafeguardsImplementation }.Intersect(new List<string>() { "yes_in_place", "yes_not_established" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AdministrativeSafeguardsDescription).Length(0, 5000).When(x => new List<string>() { x.AdministrativeSafeguardsImplementation }.Intersect(new List<string>() { "yes_in_place", "yes_not_established" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // PhysicalSafeguardsImplementation (Page: page_step_3_10_13)
+            RuleFor(x => x.PhysicalSafeguardsImplementation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PhysicalSafeguardsImplementation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PhysicalSafeguardsDescription (Page: page_step_3_10_13)
+            RuleFor(x => x.PhysicalSafeguardsDescription).NotEmpty().When(x => new List<string>() { x.PhysicalSafeguardsImplementation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PhysicalSafeguardsDescription).Length(0, 5000).When(x => new List<string>() { x.PhysicalSafeguardsImplementation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // TechnicalSafeguardsImplementation (Page: page_step_3_10_14)
+            RuleFor(x => x.TechnicalSafeguardsImplementation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.TechnicalSafeguardsImplementation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // TechnicalSafeguardsDescription (Page: page_step_3_10_14)
+            RuleFor(x => x.TechnicalSafeguardsDescription).NotEmpty().When(x => new List<string>() { x.TechnicalSafeguardsImplementation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.TechnicalSafeguardsDescription).Length(0, 5000).When(x => new List<string>() { x.TechnicalSafeguardsImplementation }.Intersect(new List<string>() { "yes_in_place", "yes_not_established" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasEstablishedWhoHaveAccessToPI (Page: page_step_3_10_15)
+            RuleFor(x => x.HasEstablishedWhoHaveAccessToPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PartiesSharePersonalInformation (Page: page_step_3_10_16_A_B)
+            RuleFor(x => x.PartiesSharePersonalInformation).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // WhoWillHaveAccessToPersonalInformation (Page: page_step_3_10_16_C)
+            RuleFor(x => x.WhoWillHaveAccessToPersonalInformation).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.WhoWillHaveAccessToPersonalInformation).Length(0, 5000).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DescriptionProtectPIAgainstLossOrTheft (Page: page_step_3_10_16_C)
+            RuleFor(x => x.DescriptionProtectPIAgainstLossOrTheft).NotEmpty().When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionProtectPIAgainstLossOrTheft).Length(0, 5000).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // MonitorModificationOfPersonalInformation (Page: page_step_3_10_17)
+            RuleFor(x => x.MonitorModificationOfPersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MonitorModificationOfPersonalInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // PartiesSharePersonalInformation (Page: page_step_3_10_18_A)
+            RuleFor(x => x.PartiesSharePersonalInformation).NotEmpty().When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // MonitorAccessDescription (Page: page_step_3_10_18_B)
+            RuleFor(x => x.MonitorAccessDescription).NotEmpty().When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() { "yes_in_place", "yes_not_established" }).Any() && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MonitorAccessDescription).Length(0, 5000).When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasPastExperiencedPrivacyBreach (Page: page_step_3_10_19)
+            RuleFor(x => x.HasPastExperiencedPrivacyBreach).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PrivacyBreachDescription (Page: page_step_3_10_20)
+            RuleFor(x => x.PrivacyBreachDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ProcessHandlingBreachOfPI (Page: page_step_3_10_21_and_22)
+            RuleFor(x => x.ProcessHandlingBreachOfPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessHandlingBreachOfPI).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // ProcessHandlingBreachOfPIDescription (Page: page_step_3_10_21_and_22)
+            RuleFor(x => x.ProcessHandlingBreachOfPIDescription).NotEmpty().When(x => x.ProcessHandlingBreachOfPI == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ProcessHandlingBreachOfPIDescription).Length(0, 5000).When(x => x.ProcessHandlingBreachOfPI == "yes_in_place").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DescriptionWaysDetectingBreach (Page: page_step_3_10_23)
+            RuleFor(x => x.DescriptionWaysDetectingBreach).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.DescriptionWaysDetectingBreach).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesPrivacyBreachImpactIndividualOrEmployee (Page: page_step_3_10_24)
+            RuleFor(x => x.DoesPrivacyBreachImpactIndividualOrEmployee).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PrivacyBreachImpactOnIndividualEmployeeDescription (Page: page_step_3_10_24)
+            RuleFor(x => x.PrivacyBreachImpactOnIndividualEmployeeDescription).NotEmpty().When(x => x.DoesPrivacyBreachImpactIndividualOrEmployee == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachImpactOnIndividualEmployeeDescription).Length(0, 5000).When(x => x.DoesPrivacyBreachImpactIndividualOrEmployee == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesPrivacyBreachImpactInstitution (Page: page_step_3_10_26)
+            RuleFor(x => x.DoesPrivacyBreachImpactInstitution).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PrivacyBreachImpactInstitutionDescription (Page: page_step_3_10_26)
+            RuleFor(x => x.PrivacyBreachImpactInstitutionDescription).NotEmpty().When(x => x.DoesPrivacyBreachImpactInstitution == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PrivacyBreachImpactInstitutionDescription).Length(0, 5000).When(x => x.DoesPrivacyBreachImpactInstitution == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasSafeguardsOngoingBasis (Page: page_step_3_10_28_A_B)
+            RuleFor(x => x.HasSafeguardsOngoingBasis).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SafeguardsOngoingBasisDescription (Page: page_step_3_10_28_A_B)
+            RuleFor(x => x.SafeguardsOngoingBasisDescription).NotEmpty().When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SafeguardsOngoingBasisDescription).Length(0, 5000).When(x => x.HasSafeguardsOngoingBasis == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasAssessmentForConsentRequired (Page: page_step_3_11_1_and_2)
+            RuleFor(x => x.HasAssessmentForConsentRequired).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // AssessmentForConsentRequiredDescription (Page: page_step_3_11_1_and_2)
+            RuleFor(x => x.AssessmentForConsentRequiredDescription).NotEmpty().When(x => x.HasAssessmentForConsentRequired == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.AssessmentForConsentRequiredDescription).Length(0, 5000).When(x => x.HasAssessmentForConsentRequired == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToCollectPersonalInfo (Page: page_step_3_11_3)
+            RuleFor(x => x.DoesSeekConsentToCollectPersonalInfo).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToCollectPersonalInfoDescription (Page: page_step_3_11_3)
+            RuleFor(x => x.SeekConsentToCollectPersonalInfoDescription).NotEmpty().When(x => x.DoesSeekConsentToCollectPersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToCollectPersonalInfoDescription).Length(0, 5000).When(x => x.DoesSeekConsentToCollectPersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToUsePersonalInfo (Page: page_step_3_11_4)
+            RuleFor(x => x.DoesSeekConsentToUsePersonalInfo).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToUsePersonalInfoDescription (Page: page_step_3_11_4)
+            RuleFor(x => x.SeekConsentToUsePersonalInfoDescription).NotEmpty().When(x => x.DoesSeekConsentToUsePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToUsePersonalInfoDescription).Length(0, 5000).When(x => x.DoesSeekConsentToUsePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // DoesSeekConsentToDisclosePersonalInfo (Page: page_step_3_11_5)
+            RuleFor(x => x.DoesSeekConsentToDisclosePersonalInfo).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SeekConsentToDisclosePersonalInfoDescription (Page: page_step_3_11_5)
+            RuleFor(x => x.SeekConsentToDisclosePersonalInfoDescription).NotEmpty().When(x => x.IsCollectionReasonOtherThanStorage == true && x.DoesSeekConsentToDisclosePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SeekConsentToDisclosePersonalInfoDescription).Length(0, 5000).When(x =>  x.IsCollectionReasonOtherThanStorage == true && x.DoesSeekConsentToDisclosePersonalInfo == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // InformationConveyedAffectedIndividuals (Page: page_step_3_11_6)
+            RuleFor(x => x.InformationConveyedAffectedIndividuals).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.InformationConveyedAffectedIndividuals).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // HasPIASummaryOnWebsite (Page: page_step_3_11_7)
+            RuleFor(x => x.HasPIASummaryOnWebsite).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // PIASummaryOnWebsite (Page: page_step_3_11_7)
+            RuleFor(x => x.PIASummaryOnWebsite).NotEmpty().When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.PIASummaryOnWebsite).Length(0, 5000).When(x => x.HasPIASummaryOnWebsite == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // MechanismToAccessPersonalInformation (Page: page_step_3_12_1)
+            RuleFor(x => x.MechanismToAccessPersonalInformation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToAccessPersonalInformation).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // MechanismToAccessPersonalInformationDescription (Page: page_step_3_12_1)
+            RuleFor(x => x.MechanismToAccessPersonalInformationDescription).NotEmpty().When(x => new List<string>() { x.MechanismToAccessPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.MechanismToAccessPersonalInformationDescription).Length(0, 5000).When(x => new List<string>() { x.MechanismToAccessPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+            // ThirdPartiesNotifiedOfChangesToPI (Page: page_step_3_12_3)
+            RuleFor(x => x.ThirdPartiesNotifiedOfChangesToPI).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.ThirdPartiesNotifiedOfChangesToPI).Must(x => new List<string> { "yes_in_place", "yes_not_established", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // AreRequestorsAdvisedOfRefusal (Page: page_step_3_12_4)
+            RuleFor(x => x.AreRequestorsAdvisedOfRefusal).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            // SupplementaryMaterials (Page: page_step_3_13_1)
+            RuleFor(x => x.SupplementaryMaterials).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            RuleFor(x => x.SupplementaryMaterials).Must(x => new List<string> { "upload", "nothing" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+            // SupplementaryMaterialFiles (Page: page_step_3_13_1)
+            RuleFor(x => x.SupplementaryMaterialFiles).NotEmpty().When(x => x.SupplementaryMaterials == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+            //***************************************************************************************************************************
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // OtherInstitutionHeadFullname
+                child.RuleFor(x => x.OtherInstitutionHeadFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.OtherInstitutionHeadFullname).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // OtherInstitutionHeadTitle
+                child.RuleFor(x => x.OtherInstitutionHeadTitle).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.OtherInstitutionHeadTitle).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // OtherInstitutionSection
+                child.RuleFor(x => x.OtherInstitutionSection).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.OtherInstitutionSection).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // OtherInstitutionEmail
+                child.RuleFor(x => x.OtherInstitutionEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.OtherInstitutionEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+                child.RuleFor(x => x.OtherInstitutionEmail).EmailAddress();
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // SeniorOfficialOtherFullname
+                child.RuleFor(x => x.SeniorOfficialOtherFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SeniorOfficialOtherFullname).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // SeniorOfficialOtherTitle
+                child.RuleFor(x => x.SeniorOfficialOtherTitle).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SeniorOfficialOtherTitle).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // SeniorOfficialOtherSection
+                child.RuleFor(x => x.SeniorOfficialOtherSection).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SeniorOfficialOtherSection).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
+                // SeniorOfficialOtherEmail
+                child.RuleFor(x => x.SeniorOfficialOtherEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SeniorOfficialOtherEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+                child.RuleFor(x => x.SeniorOfficialOtherEmail).EmailAddress();
+            }).When(x => x.SingleOrMultiInstitutionPIA == "multi");
+
+            RuleForEach(x => x.DocumentationRelevantISALinks).ChildRules(child => {
+                // link
+                child.RuleFor(x => x.Link).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsDirectlyFromIndividual == false && x.FormalInformationSharingAgreement == "yes_already_in_place" && x.DocumentationRelevantISA == "link");
+
+            // OtherPartiesSharePersonalInformation
+            RuleForEach(x => x.OtherPartiesSharePersonalInformation).ChildRules(child => {
+                // Party (Page: page_step_3_9_3A)
+                child.RuleFor(x => x.Party).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other");
+
+            RuleForEach(x => x.OtherPartiesSharePersonalInformation).ChildRules(child => {
+                // PurposeOfDisclosure (Page: page_step_3_9_5B)
+                child.RuleFor(x => x.PurposeOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.PurposeOfDisclosure).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other" && x.WillAllPICollectedBeDisclosed == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // Party (Page: page_step_3_9_3A)
+                child.RuleFor(x => x.Party).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Party).Must(x => new List<string> { "same_institution", "federal_government_institution", "provincial_in_canada", "regional_in_canada", "government_outside_canada", "non_governmental_organization_in_canada", "non_governmental_organization_outside_canada", "private_sector_in_canada", "private_sector_outside_canada", "other" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // Description (Page: page_step_3_9_3B)
+                child.RuleFor(x => x.Description).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Description).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && (x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party != "other" || x.PartiesSharePersonalInformation.Count > 1));
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // RelevantISASourceType (Page: page_step_3_9_6C)
+                child.RuleFor(x => x.RelevantISASourceType).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.RelevantISASourceType).Must(x => new List<string> { "upload", "link", "not_able" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // ISAFilesParties (Page: page_step_3_9_6C)
+                child.RuleFor(x => x.ISAFilesParties).NotEmpty().When(x => x.RelevantISASourceType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // RelevantISALinks (Page: page_step_3_9_6C)
+                child.RuleFor(x => x.RelevantISALinks).NotEmpty().When(x => x.RelevantISASourceType == "link").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // DocumentationISAMissingExplanation (Page: page_step_3_9_6C)
+                child.RuleFor(x => x.DocumentationISAMissingExplanation).NotEmpty().When(x => x.RelevantISASourceType == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.DocumentationISAMissingExplanation).Length(0, 5000).When(x => x.RelevantISASourceType == "not_able").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.InformationSharingAgreementInPlace == "yes_in_place");
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // AreasGroupsIndividualsAccess (Page: page_step_3_10_16_A_B)
+                child.RuleFor(x => x.AreasGroupsIndividualsAccess).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.AreasGroupsIndividualsAccess).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // WaysToProtectPIAgainstLossOrTheft (Page: page_step_3_10_16_A_B)
+                child.RuleFor(x => x.WaysToProtectPIAgainstLossOrTheft).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.WaysToProtectPIAgainstLossOrTheft).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.HasEstablishedWhoHaveAccessToPI == true && x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PartiesSharePersonalInformation).ChildRules(child => {
+                // MonitorAccessDescription (Page: page_step_3_10_18_A)
+                child.RuleFor(x => x.MonitorAccessDescription).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.MonitorAccessDescription).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => new List<string>() { x.MonitorModificationOfPersonalInformation }.Intersect(new List<string>() {"yes_in_place","yes_not_established"}).Any() && x.IsCollectionReasonOtherThanStorage == true);
+
+            RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                // Category (Page: page_step_3_3_2)
+                child.RuleFor(x => x.Category).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Category).Must(x => new List<string> { "name", "address", "contact_information", "from_social_media", "personal_website", "d_o_b", "current_age", "sex_gender", "physical_attribute", "marital_status", "family", "racial_identity", "ethnic_origin", "city_state_country", "citizenship", "opinions", "affiliations_or_association", "religious", "criminal", "government_issued_id", "employer", "business", "travel", "recorded_files", "transactions", "financial", "medical", "parental_guardian", "substitute_decision_maker", "allegations", "bodily_samples", "physical_biometrics", "behavioural_biometrics", "other" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            });
+
+            RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                // SupplementaryInformation (Page: page_step_3_3_3)
+                child.RuleFor(x => x.SupplementaryInformation).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                // PersonalInformationElement (Page: page_step_3_3_3)
+                child.RuleFor(x => x.PersonalInformationElement).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.PersonalInformationElement).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                // PurposeOfDisclosure (Page: page_step_3_9_5A)
+                child.RuleFor(x => x.PurposeOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.PurposeOfDisclosure).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other" && x.WillAllPICollectedBeDisclosed == false);
+
+            RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                // ReceivingParties (Page: page_step_3_9_5A)
+                child.RuleFor(x => x.ReceivingParties).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            }).When(x => x.IsCollectionReasonOtherThanStorage == true && x.PartiesSharePersonalInformation.Count == 1 && x.PartiesSharePersonalInformation[0].Party == "other" && x.WillAllPICollectedBeDisclosed == false);
+
+            RuleForEach(x => x.PNSStatement).ChildRules(child => {
+                // Description (Page: page_step_3_4_11_a_b_c)
+                child.RuleFor(x => x.Description).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Description).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            }).When(x => x.HasExistingPIB == false && x.NoPIBStatusReason == "no_pib" && x.IsDirectlyFromIndividual == false && !(x.IsOriginalPurposeConsistent == true) && x.HasPrivacyNoticeStatement == true && x.HasDraftFinalVersionPNSAvailable == true);
+
+            // SecurityAssessment
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // Title (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.Title).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Title).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // CompleteState (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.CompleteState).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.CompleteState).Must(x => new List<string> { "yes_already_completed", "yes_not_completed", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // SummaryType (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.SummaryType).NotEmpty().When(x => x.CompleteState == "yes_already_completed").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.SummaryType).Must(x => new List<string> { "upload", "enter_text" }.Contains(x)).When(x => x.CompleteState == "yes_already_completed").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child => {
+                // Summary (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.Summary).NotEmpty().When(x => x.SummaryType == "enter_text").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                child.RuleFor(x => x.Summary).Length(0, 5000).When(x => x.SummaryType == "enter_text").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+            });
+
+            RuleForEach(x => x.SecurityAssessment).ChildRules(child =>
+            {
+                // UploadedSummary (Page: page_step_3_10_4_A_B)
+                child.RuleFor(x => x.SummaryFiles).NotEmpty().When(x => x.SummaryType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+            });
         }
-    }
-    public partial class BehalfMultipleInstitutionOthersValidator : AbstractValidator<BehalfMultipleInstitutionOthers>
-    {
-        public BehalfMultipleInstitutionOthersValidator(SharedLocalizer _localizer)
+
+        private bool IsPhysicalFormat(string personalInformationPhysicalAndOrElectronicFormat, bool? isElectronicConvertedToPhysical)
         {
-            ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;
+            if (personalInformationPhysicalAndOrElectronicFormat == "physical" || personalInformationPhysicalAndOrElectronicFormat == "both" || isElectronicConvertedToPhysical == true)
+            {
+                return true;
+            }
 
-            // BehalfMultipleInstitutionOther
-
-            // OtherInstitutionHeadFullname
-            RuleFor(x => x.OtherInstitutionHeadFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OtherInstitutionHeadFullname).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // OtherInstitutionHeadTitle
-            RuleFor(x => x.OtherInstitutionHeadTitle).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OtherInstitutionHeadTitle).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // OtherInstitutionSection
-            RuleFor(x => x.OtherInstitutionSection).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OtherInstitutionSection).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // OtherInstitutionEmail
-            RuleFor(x => x.OtherInstitutionEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.OtherInstitutionEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-            RuleFor(x => x.OtherInstitutionEmail).EmailAddress();
-
-            // SeniorOfficialOtherFullname
-            RuleFor(x => x.SeniorOfficialOtherFullname).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.SeniorOfficialOtherFullname).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // SeniorOfficialOtherTitle
-            RuleFor(x => x.SeniorOfficialOtherTitle).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.SeniorOfficialOtherTitle).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // SeniorOfficialOtherSection
-            RuleFor(x => x.SeniorOfficialOtherSection).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.SeniorOfficialOtherSection).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // SeniorOfficialOtherEmail
-            RuleFor(x => x.SeniorOfficialOtherEmail).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.SeniorOfficialOtherEmail).Length(0, 200).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-            RuleFor(x => x.SeniorOfficialOtherEmail).EmailAddress();
-
+            return false;
         }
-    }
-    public partial class PersonalInformationCategoryValidator : AbstractValidator<PersonalInformationCategory>
-    {
-        public PersonalInformationCategoryValidator(SharedLocalizer _localizer)
+
+        private bool IsElectronicFormat(string personalInformationPhysicalAndOrElectronicFormat, bool? isPhysicalConvertedToElectronic)
         {
-            ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;
+            if (personalInformationPhysicalAndOrElectronicFormat == "electronic" || personalInformationPhysicalAndOrElectronicFormat == "both" || isPhysicalConvertedToElectronic == true)
+            {
+                return true;
+            }
 
-            // Category
-            RuleFor(x => x.Category).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.Category).Must(x => new List<string> { "name", "address", "contact_information", "from_social_media", "personal_website", "d_o_b", "current_age", "sex_gender", "physical_attribute", "marital_status", "family", "racial_identity", "ethnic_origin", "city_state_country", "citizenship", "opinions", "affiliations_or_association", "religious", "criminal", "government_issued_id", "employer", "business", "travel", "recorded_files", "transactions", "financial", "medical", "parental_guardian", "substitute_decision_maker", "allegations", "bodily_samples", "physical_biometrics", "behavioural_biometrics", "other" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
-
-            // SupplementaryInformation
-            RuleFor(x => x.SupplementaryInformation).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-            // PersonalInformationElement
-            RuleFor(x => x.PersonalInformationElement).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.PersonalInformationElement).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
-        }
-    }
-    public partial class PNSStatementValidator : AbstractValidator<PNSStatement>
-    {
-        public PNSStatementValidator(SharedLocalizer _localizer)
-        {
-            ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;
-
-            // Description
-            RuleFor(x => x.Description).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-            RuleFor(x => x.Description).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-
+            return false;
         }
     }
 }
