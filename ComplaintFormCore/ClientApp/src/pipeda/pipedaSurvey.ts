@@ -245,7 +245,7 @@ export class PipedaTool {
 
                 SurveyInit.initSurveyModelProperties(_survey);
 
-                SurveyFile.initSurveyFileModelEvents(_survey);
+                SurveyFile.initSurveyFileModelEvents(_survey, "pipeda");
 
                 const defaultData = {};
 

@@ -23,16 +23,17 @@ namespace SurveyToCS
         static void Main(string[] args)
         {
             //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+            string className = "SurveyPIAToolModel";
 
             string line = Console.ReadLine();
             if (line == "c")
             {
-                CreateClassObject(json, "ComplaintFormCore.Models", "SurveyPAModel");
+                CreateClassObject(json, "ComplaintFormCore.Models", className);
             }
             else if (line == "v")
             {
-                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", "SurveyPAModel");
+                CreateValidators(json, new List<string>() { "ComplaintFormCore.Resources", "ComplaintFormCore.Web_Apis.Models" }, "ComplaintFormCore.Models", className);
             }
             else if (line == "t")
             {
@@ -88,20 +89,6 @@ namespace SurveyToCS
 
                 foreach (var dynamicItem in groupedByValueName)
                 {
-                    //StringBuilder summary = new StringBuilder();
-
-                    //summary.AppendLine("/// <summary>");
-
-                    //foreach (var item in dynamicItem)
-                    //{
-                    //    string elementName = !string.IsNullOrWhiteSpace(item.valueName) ? item.valueName : item.name;
-
-                    //    summary.Append("/// Property use for: ");
-                    //    summary.AppendLine(elementName);
-                    //}
-
-                    //summary.AppendLine("/// </summary>");
-
                     BuildDynamicProperty(csharp, dynamicItem.Key);
                 }
             }
@@ -215,74 +202,73 @@ namespace SurveyToCS
                     {
                         foreach (var column in item.columns)
                         {
-                            BuildElementSummary(csharp, column);
-
-                            csharp.Append("public ");
-
-                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
-                            //  and our validation doesn't work
-
-                            if (column.cellType == "boolean")
-                            {
-                                csharp.Append(" bool? ");
-                            }
-                            else if(column.inputType == "date" || column.cellType == "datepicker")
-                            {
-                                csharp.Append(" DateTime? ");
-                            }
-                            else if (column.inputType == "number")
-                            {
-                                csharp.Append(" int? ");
-                            }
-                            else
-                            {
-                                csharp.Append(" string ");
-                            }
-
-                            csharp.Append(CapitalizeFirstLetter(column.name));
-
-                            csharp.AppendLine(" { get; set; }");
-                            csharp.AppendLine();
+                            BuildDynamicPropertyClassItem(csharp, column);
                         }
                     }
                     else if (item.type == "paneldynamic")
                     {
                         foreach (var templateItem in item.templateElements)
                         {
-                            BuildElementSummary(csharp, templateItem);
-
-                            csharp.Append("public ");
-
-                            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
-                            //  and our validation doesn't work
-
-                            if (templateItem.type == "boolean")
-                            {
-                                csharp.Append(" bool? ");
-                            }
-                            else if (templateItem.inputType == "date" || templateItem.type == "datepicker")
-                            {
-                                csharp.Append(" DateTime? ");
-                            }
-                            else if (templateItem.inputType == "number")
-                            {
-                                csharp.Append(" int? ");
-                            }
-                            else
-                            {
-                                csharp.Append(" string ");
-                            }
-
-                            csharp.Append(CapitalizeFirstLetter(templateItem.valueName));
-
-                            csharp.AppendLine(" { get; set; }");
-                            csharp.AppendLine();
+                            BuildDynamicPropertyClassItem(csharp, templateItem);
                         }
                     }
                 }
 
                 csharp.AppendLine("}");
             }
+        }
+
+        private static void BuildDynamicPropertyClassItem(StringBuilder csharp, Element element)
+        {
+            var name = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+
+            BuildElementSummary(csharp, element);
+
+            //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
+            //  and our validation doesn't work
+
+            if (element.type == "public boolean")
+            {
+                csharp.Append(" bool? ");
+            }
+            else if (element.inputType == "date")
+            {
+                csharp.Append("public DateTime? ");
+            }
+            else if (element.inputType == "number")
+            {
+                csharp.Append("public int? ");
+            }
+            else if (element.type == "file")
+            {
+                csharp.Append("public List<SurveyFile> ");
+            }
+            else if (element.type == "matrixdynamic")
+            {
+                string className = CapitalizeFirstLetter(name) + "Object";
+                csharp.Append("public class ");
+                csharp.Append(className);
+                csharp.AppendLine("{");
+
+                foreach (var column in element.columns)
+                {
+                    BuildDynamicPropertyClassItem(csharp, column);
+                }
+
+                csharp.AppendLine("}");
+
+                csharp.Append("public List<");
+                csharp.Append(className);
+                csharp.Append("> ");
+            }
+            else
+            {
+                csharp.Append("public string ");
+            }
+
+            csharp.Append(CapitalizeFirstLetter(name));
+            csharp.AppendLine(" { get; set; }");
+            csharp.AppendLine();
         }
 
         private static void BuildElementSummary(StringBuilder csharp, Element element, Page page = null)
@@ -440,13 +426,13 @@ namespace SurveyToCS
             }
 
             csharp.AppendLine("}"); // end constructor
-            csharp.AppendLine("}"); // end main class
 
-            if (survey_dynamic_elements.Count > 0)
+            foreach (var methods in survey.calculatedValues)
             {
-                BuildDynamicValidatorClasses(csharp, survey_dynamic_elements);
+                BuildCalculatedValues(csharp, methods);
             }
 
+            csharp.AppendLine("}"); // end main class
             csharp.AppendLine("}");// end namespace
 
             Console.WriteLine(csharp.ToString());
@@ -525,10 +511,113 @@ namespace SurveyToCS
             {
                 csharp.Append("RuleFor(x => x.");
                 csharp.Append(elementName);
-                csharp.AppendLine(").EmailAddress();");
+                csharp.AppendLine(").EmailAddress()");
+
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    csharp.Append(".When( ");
+                    csharp.Append(visibleIf); ;
+                    csharp.Append(")");
+                }
+
+                csharp.AppendLine(";");
             }
 
             csharp.AppendLine();
+        }
+
+        private static bool ElementHasRules(Element element)
+        {
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
+
+            if (element.isRequired)
+            {
+                return true;
+            }
+
+            if (type == "comment")
+            {
+                return true;
+            }
+
+            if (type == "text" && element.inputType != "date" && element.inputType != "number")
+            {
+                return true;
+            }
+
+            if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox") && element.choices != null && element.choices.Count > 0)
+            {
+                return true;
+            }
+
+            if (type == "text" && element.inputType == "email")
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        private static void BuildDynamicElementValidator(StringBuilder csharp, Element element, string childParameter, string page_name)
+        {
+            string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+            string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
+
+            csharp.Append("// ");
+            csharp.Append(elementName);
+            csharp.Append(" (Page: ");
+            csharp.Append(page_name);
+            csharp.Append(")");
+            csharp.AppendLine();
+
+            string visibleIf = GetVisibleIf(element, null, null);
+
+            if (element.isRequired)
+            {
+                csharp.Append(childParameter);
+                csharp.Append(".");
+                BuildRequiredValidator(csharp, elementName, visibleIf);
+            }
+
+            if (type == "comment")
+            {
+                csharp.Append(childParameter);
+                csharp.Append(".");
+                BuildMaxLengthValidator(csharp, element, visibleIf);
+            }
+
+            if (type == "text" && element.inputType != "date" && element.inputType != "number")
+            {
+                csharp.Append(childParameter);
+                csharp.Append(".");
+                BuildMaxLengthValidator(csharp, element, visibleIf);
+            }
+
+            //  Check if selected option is in the list of valid options
+            if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox") && element.choices != null && element.choices.Count > 0)
+            {
+                csharp.Append(childParameter);
+                csharp.Append(".");
+                BuildListValidator(csharp, element, visibleIf);
+            }
+
+            if (type == "text" && element.inputType == "email")
+            {
+                csharp.Append(childParameter);
+                csharp.Append(".");
+                csharp.Append("RuleFor(x => x.");
+                csharp.Append(elementName);
+                csharp.AppendLine(").EmailAddress()");
+
+                if (!string.IsNullOrWhiteSpace(visibleIf))
+                {
+                    csharp.Append(".When( ");
+                    csharp.Append(visibleIf); ;
+                    csharp.Append(")");
+                }
+
+                csharp.AppendLine(";");
+            }
         }
 
         private static void SetDynamicValidators(StringBuilder csharp, List<Element> dynamicElements)
@@ -540,90 +629,76 @@ namespace SurveyToCS
 
             foreach (var dynamicItem in groupedByValueName)
             {
-                //RuleForEach(x => x.PersonalInformationCategory).SetValidator(new PersonalInformationCategoryValidator(_localizer));
-
-                List<string> conditions = new List<string>();
-                foreach (var element in dynamicItem)
-                {
-                    if (element.parent != null && !string.IsNullOrWhiteSpace(element.parent.visibleIf))
-                    {
-                        string condition = GetVisibleIfCondition(element, element.parent);
-
-                        if (!conditions.Contains(condition))
-                        {
-                            conditions.Add(condition);
-                        }
-                    }
-                }
-
-                csharp.Append("RuleForEach(x => x.");
-                csharp.Append(dynamicItem.Key);
-                csharp.Append(").SetValidator(new ");
-                csharp.Append(dynamicItem.Key);
-                csharp.Append("Validator(_localizer))");
-
-                if (conditions.Count > 0)
-                {
-                    csharp.Append(".When(x => true /* TODO: ");
-
-                    foreach (var condition in conditions)
-                    {
-                        csharp.Append(condition);
-                    }
-
-                    csharp.Append(" */)");
-                }
-
-                csharp.AppendLine(";");
-                csharp.AppendLine();
-            }
-        }
-
-        private static void BuildDynamicValidatorClasses(StringBuilder csharp, List<Element> dynamicElements)
-        {
-            var groupedByValueName = from item in dynamicElements
-                                     group item by item.valueName != null ? item.valueName : item.name into newGroup
-                                     orderby newGroup.Key
-                                     select newGroup;
-
-            foreach (var dynamicItem in groupedByValueName)
-            {
-                csharp.Append("public partial class ");
-                csharp.Append(dynamicItem.Key);
-                csharp.Append("Validator: AbstractValidator<");
-                csharp.Append(dynamicItem.Key);
-                csharp.Append(">");
-                csharp.AppendLine("{");
-
-                //  constructor
-                csharp.Append("public ");
-                csharp.Append(dynamicItem.Key);
-                csharp.Append("Validator(SharedLocalizer _localizer)");
-                csharp.AppendLine("{");
-
-                csharp.AppendLine("ValidatorOptions.Global.CascadeMode = CascadeMode.Continue;");
-                csharp.AppendLine();
+                csharp.Append("// ");
+                csharp.AppendLine(dynamicItem.Key);
 
                 foreach (var element in dynamicItem)
                 {
+                    //RuleForEach(x => x.PersonalInformationCategory).ChildRules(child => {
+                    //    child.RuleFor(x => x.Category).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+                    //});
+
+                    string visibleIf = GetVisibleIf(element, element.parent, null);
+
                     if (element.type == "matrixdynamic")
                     {
                         foreach (var column in element.columns)
                         {
-                            BuildElementValidator(csharp, column, null, element);
+                            if (!ElementHasRules(column))
+                            {
+                                continue;
+                            }
+
+                            csharp.Append("RuleForEach(x => x.");
+                            csharp.Append(dynamicItem.Key);
+                            csharp.AppendLine(").ChildRules(child => {");
+
+                            BuildDynamicElementValidator(csharp, column, "child", element.parent.name);
+
+                            csharp.Append("})");
+
+                            if (!string.IsNullOrWhiteSpace(visibleIf))
+                            {
+                                csharp.Append(".When( ");
+                                csharp.Append(visibleIf); ;
+                                csharp.Append(")");
+                            }
+
+                            csharp.AppendLine(";");
+                            csharp.AppendLine();
                         }
                     }
                     else if (element.type == "paneldynamic")
                     {
                         foreach (var templateItem in element.templateElements)
                         {
-                            BuildElementValidator(csharp, templateItem, null, element);
+                            if (!ElementHasRules(templateItem))
+                            {
+                                continue;
+                            }
+
+                            csharp.Append("RuleForEach(x => x.");
+                            csharp.Append(dynamicItem.Key);
+                            csharp.AppendLine(").ChildRules(child => {");
+
+                            BuildDynamicElementValidator(csharp, templateItem, "child", element.parent.name);
+
+                            csharp.Append("})");
+
+                            if (!string.IsNullOrWhiteSpace(visibleIf))
+                            {
+                                csharp.Append(".When( ");
+                                csharp.Append(visibleIf); ;
+                                csharp.Append(")");
+                            }
+
+                            csharp.AppendLine(";");
+                            csharp.AppendLine();
                         }
                     }
                 }
 
-                csharp.AppendLine("}"); // end constructor
-                csharp.AppendLine("}"); // end class
+               // csharp.AppendLine();
             }
         }
 
@@ -635,6 +710,8 @@ namespace SurveyToCS
             string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
             string property_pattern = @"({[a-zA-Z_]+})";
 
+            //  First we get all of the visibleIf conditions from the element and the parent element
+            //  into a string
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {
                 visibleIf += parentPage.visibleIf;
@@ -667,6 +744,9 @@ namespace SurveyToCS
 
                 if (anyofs.Count > 0)
                 {
+                    #region Anyof
+
+                    string wholeVisibleIf = string.Empty;
                     foreach (Match match_anyof in Regex.Matches(visibleIf, anyof_pattern))
                     {
                         //  {InstitutionAgreedRequestOnInformalBasis} anyof ['yes','not_sure']
@@ -702,8 +782,10 @@ namespace SurveyToCS
 
                         visibleIf = visibleIf.Replace(match_anyof.Value, replacement);
                     }
+                    #endregion
                 }
 
+                //  Replace {Property} by x.Property
                 foreach (Match match_propery in Regex.Matches(visibleIf, property_pattern))
                 {
                     visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
@@ -839,9 +921,6 @@ namespace SurveyToCS
 
             if (!string.IsNullOrWhiteSpace(condition))
             {
-                ////{ProvinceIncidence} anyof [2,6,9] and [{ComplaintAboutHandlingInformationOutsideProvince}] anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'"
-
-
                 csharp.Append(".When( ");
                 csharp.Append(condition); ;
                 csharp.Append(")");
@@ -933,6 +1012,20 @@ namespace SurveyToCS
             csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
         }
 
+        private static void BuildCalculatedValues(StringBuilder csharp, CalculatedValues calculatedValue)
+        {
+            csharp.Append("private void ");
+            csharp.Append(calculatedValue.name);
+            csharp.AppendLine(" ()");
+            csharp.AppendLine("{");
+
+            csharp.AppendLine("//   TODO: Translate this into code");
+            csharp.Append("//   ");
+            csharp.AppendLine(calculatedValue.expression);
+
+            csharp.AppendLine("}");
+        }
+
         #endregion
 
         #region Test Data
@@ -1008,8 +1101,9 @@ namespace SurveyToCS
                     {
                         foreach (var column in element.columns)
                         {
+                            string columnName = !string.IsNullOrWhiteSpace(column.valueName) ? column.valueName : column.name;
                             csharp.AppendLine();
-                            csharp.Append(column.name);
+                            csharp.Append(columnName);
                             csharp.Append(":");
                             csharp.Append(GetPropertyValue(column));
                             csharp.Append(",");
@@ -1019,8 +1113,9 @@ namespace SurveyToCS
                     {
                         foreach (var column in element.templateElements)
                         {
+                            string columnName = !string.IsNullOrWhiteSpace(column.valueName) ? column.valueName : column.name;
                             csharp.AppendLine();
-                            csharp.Append(column.valueName);
+                            csharp.Append(columnName);
                             csharp.Append(":");
                             csharp.Append(GetPropertyValue(column));
                             csharp.Append(",");
@@ -1095,6 +1190,11 @@ namespace SurveyToCS
                     var rand = new Random();
                     retVal.Append(rand.Next(200, 700).ToString());
                 }
+                else if (element.inputType == "url")
+                {
+                    var rand = new Random();
+                    retVal.Append("http://" + RandomText(10) + ".com");
+                }
                 else
                 {
                     retVal.Append(RandomText(25));
@@ -1105,7 +1205,11 @@ namespace SurveyToCS
             else if (type == "comment")
             {
                 retVal.Append("\"");
-                retVal.Append(RandomText(250));
+                retVal.Append(RandomText(75));
+                retVal.Append(" ");
+                retVal.Append(RandomText(75));
+                retVal.Append(" ");
+                retVal.Append(RandomText(75));
                 retVal.Append("\"");
             }
 
@@ -1211,7 +1315,7 @@ namespace SurveyToCS
         public static string SafeReplace(this string input, string find, string replace, bool matchWholeWord)
         {
             string textToFind = matchWholeWord ? string.Format(@"\b{0}\b", find) : find;
-            var test = Regex.Replace(input, textToFind, replace);
+            //var test = Regex.Replace(input, textToFind, replace);
             return Regex.Replace(input, textToFind, replace);
         }
     }

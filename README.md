@@ -16,7 +16,7 @@ I am not 100% sure of how they operate but it seems like code get moved around o
 - I didn't find much on StackOverflow but here, I have found a lot of questions/answers https://github.com/surveyjs/survey-library/issues?q=
 - Here is the link to the question I've asked regarding hiding a page on preview: https://github.com/surveyjs/survey-library/issues/2268
 
-### Special libs & polyfills used
+### Special libs used
 
 a) showdown.js found at https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js. 
 	It is used;
@@ -34,17 +34,15 @@ b) Ladda: https://github.com/hakimel/Ladda -> npm install ladda
 - FluentValidator
 - Microsoft.AspNetCore.Mvc.NewtonsoftJson for JSON serialization/deserialization. And add in Startup ```services.AddControllersWithViews().AddNewtonsoftJson();```
 
-### Survey.js Custom Widget
+### Our Survey Custom Widget
 
-Located in the code in ~\wwwroot\js\survey\
+Located in the code in ClientApp/src/widgets
 
 1) widgetCheckboxHtml
 - This is to display additional information under a checkbox when it is being checked. Plain text or html can be used.
 - To use it, add the property 'hasHtmlAddtionalInfo' : 'true' to a checkbox question AND for the desired items (choices), add the property 'htmlAdditionalInfo':'your html'
 - Each check box item is being constructed in the function 'afterRender'.
 - There is a function checkBoxInfoPopup(checkbox) needed for it to work
-
-* All other widgets are only for testing features. They are not being used.
 
 ### Notes on CSS classes
 
@@ -177,21 +175,17 @@ then the section "Authorization form attachment(s)" info is missing when uploadi
 	This is exception seems to have dissapeared.
 35) localization in the model, inject IStringLocalizer didn't work. Maybe I need to have an interface like ISurveyPAModel
 	Localization is done in the Validator classes and it is working.
-36) (PA) Fix this logic in the json -> Phone number should be required only for the complainant if no representative and only the 
-		representative if there's a representative
-37) (PA) There is a bug with the logic of the checkboxes with html and the textarea to show in the next page after. Something
-		to do with isAnyFirstFourSelected && isAnyLastFiveSelected
-38) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
+36) (PBR) When using the element property 'startWithNewLine' it is crashing during 'Preview' mode. 
 	For now we're not using startWithNewLine. 
 	I have tried updating survey-vue to 1.8.12 but still not working.
 	When using Survey Creator however it is working fine.
+	Fixed by the developpers at SurveyJS in release 1.8.13 
+37) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
+	Fixed by adding a confirm page (in PA)
 
 ### Postponed todo
 a) Explore survey Creator (POSTPONED)
 b) The navigation panel is the native of and should be replaced (POSTPONED)
-c) Add a modal popup to confirm when completing the survey. There is too many ways to do this and I'm not sure which one is best for you.
-d) Create a queryable javascript object that contains the json data. To be able to show the preview button based on some logic. There is
-	no need for this just now.
 e) Backend error logging - need to ask soemone
 
 ### Won't fix or implement'
@@ -207,9 +201,6 @@ a) Try to make use of the start properties of survey (survey.firstPageIsStarted 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.js"></script>
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
 	```
-	```
-
-	```
 
 3) In *.ts file
 	```
@@ -219,7 +210,6 @@ a) Try to make use of the start properties of survey (survey.firstPageIsStarted 
 	```
 	widgets.select2tagbox(Survey);
 	```
-
 
 ### Editable strings in Survey
 
