@@ -21,16 +21,22 @@ namespace ComplaintFormCore.Web_Apis
     {
         private readonly List<string> _allowedFileTypes = new List<string>() { ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".wpd", ".csv", ".pdf", ".jpg", ".jpeg", ".gif", ".txt", ".rtf", ".tif", ".tiff" };
 
+        private readonly string FileUploadeFolderName = "FileUploads";
+
         [HttpPost, DisableRequestSizeLimit]
-        public async Task<IActionResult> Upload(string complaintId, string opcSurveyType, string subFolder)
+        public async Task<IActionResult> Upload(string complaintI, string questionName)
         {
+            //  NOTE: The complaintId should probably be used to validate that this is a proper request
+
             try
             {
-                var folderName = Path.Combine("FileUploads", complaintId);
-                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
+                var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), FileUploadeFolderName);
 
                 var files = new Dictionary<string,SurveyFile>();
-                var errors = new List<OPCProblemDetails>();
+                OPCProblemDetails problem = new OPCProblemDetails
+                {
+                    Status = 400
+                };
 
                 foreach (var file in Request.Form.Files)
                 {
@@ -38,45 +44,33 @@ namespace ComplaintFormCore.Web_Apis
 
                     if (!_allowedFileTypes.Contains(extension))
                     {
-                        errors.Add(new OPCProblemDetails
-                        {
-                            Detail = $"Extension {extension} not allowed",
-                            Status = 400,
-                            Title = ""
-                        });
+                        problem.Errors.Add(questionName, new List<string> { $"Extension {extension} not allowed" });
                         continue;
                     }
 
                     if (file.Length < 0)
                     {
-                        errors.Add(new OPCProblemDetails
-                        {
-                            Detail = "The file is empty",
-                            Status = 400,
-                            Title = ""
-                        });
+                        problem.Errors.Add(questionName, new List<string> { "The file is empty" });
                         continue;
                     }
 
-                    var fileData = await GetByteArrayFromImageAsync(file);
-                    var size = file.Length;
+                    var uniqueId = Guid.NewGuid().ToString();
+                    var folder = Path.Combine(pathToSave, uniqueId);
+                    var fullPath = Path.Combine(folder, file.FileName);
 
-                    var fullPath = Path.Combine(pathToSave, file.FileName);
-                    var dbPath = Path.Combine(folderName, file.FileName);
-
-                    if (!Directory.Exists(pathToSave))
-                        Directory.CreateDirectory(pathToSave);
+                    if (!Directory.Exists(folder))
+                        Directory.CreateDirectory(folder);
 
                     using (var stream = new FileStream(fullPath, FileMode.Create))
                     {
                         file.CopyTo(stream);
                     }
 
-                    files.Add(file.FileName, new SurveyFile { name = file.FileName, type = file.ContentType, content = Guid.NewGuid().ToString(), size = file.Length });
+                    files.Add(file.FileName, new SurveyFile { name = file.FileName, type = file.ContentType, content = uniqueId, size = file.Length });
                 }
 
-                if (errors.Count > 0)
-                    return BadRequest(errors);
+                if (problem.Errors.Count > 0)
+                    return BadRequest(problem);
 
                 return Ok(files);
             }
@@ -92,7 +86,7 @@ namespace ComplaintFormCore.Web_Apis
         /// </summary>
         [HttpGet]
         [ActionName("Get")]
-        public IActionResult Get([FromQuery] string complaintId, [FromQuery] string filename)
+        public IActionResult Get([FromQuery] string complaintId, [FromQuery] string fileUniqueId, [FromQuery] string fileName)
         {
             // throw new Exception("The file is not found or has been removed from the server");
             //OPCProblemDetails problem2 = new OPCProblemDetails
@@ -106,19 +100,21 @@ namespace ComplaintFormCore.Web_Apis
 
             //return BadRequest(problem2);
 
+            //  NOTE: The complaintId should probably be used to validate that this is a proper request
+
             try
             {
                 // Files are organized by complaint id in the folder FileUploads
-                var folderName = Path.Combine("FileUploads", complaintId);
+                var folderName = Path.Combine("FileUploads", fileUniqueId);
                 var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), folderName);
-                var fullPath = Path.Combine(pathToSave, filename);
+                var fullPath = Path.Combine(pathToSave, fileName);
 
                 var net = new System.Net.WebClient();
                 var data = net.DownloadData(fullPath);
                 var content = new System.IO.MemoryStream(data);
                 var contentType = "APPLICATION/octet-stream";
 
-                return File(content, contentType, filename);
+                return File(content, contentType, fileName);
             }
             catch (WebException)
             {
@@ -145,15 +141,6 @@ namespace ComplaintFormCore.Web_Apis
                 return BadRequest(problem);
             }
 
-        }
-
-        private async Task<byte[]> GetByteArrayFromImageAsync(IFormFile file)
-        {
-            using (var target = new MemoryStream())
-            {
-                await file.CopyToAsync(target);
-                return target.ToArray();
-            }
         }
     }
 }

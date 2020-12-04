@@ -32,7 +32,7 @@ export abstract class SurveyBase {
         this.setSurveyProperties();
 
         this.registerWidgets();
-        // this.registerEventHandlers();
+        this.registerEventHandlers();
         this.registerCustomProperties();
 
         this.storageName = storageName;
@@ -127,7 +127,7 @@ export abstract class SurveyBase {
         storage.loadStateLocally(this.survey, this.storageName, defaultData);
         storage.saveStateLocally(this.survey, this.storageName);
 
-        this.registerEventHandlers();
+        this.registerCSSEventHandlers();
     }
 
     public renderSurvey(): void {
@@ -150,16 +150,18 @@ export abstract class SurveyBase {
             this.handleOnValidatedErrorsOnCurrentPage(sender, options);
         });
 
+        this.survey.onCurrentPageChanging.add((sender: SurveyModel, options: any) => {
+            //  Clear the error div of the user is clicking Next
+            if (options.isPrevPage) {
+                const errorsQuestion = options.oldCurrentPage.getQuestionByName("errors") as QuestionHtmlModel;
+                if (errorsQuestion !== null) {
+                    options.oldCurrentPage.removeQuestion(errorsQuestion);
+                }
+            }
+        });
+
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
             new SurveyLocalStorage().saveStateLocally(sender, this.storageName);
-        });
-
-        this.survey.onUpdatePanelCssClasses.add((sender: SurveyModel, options: any) => {
-            this.handleOnUpdatePanelCssClasses(sender, options);
-        });
-
-        this.survey.onUpdateQuestionCssClasses.add((sender: SurveyModel, options: any) => {
-            this.handleOnUpdateQuestionCssClasses(sender, options);
         });
 
         this.survey.onGetQuestionTitle.add((sender: SurveyModel, options: any) => {
@@ -168,6 +170,16 @@ export abstract class SurveyBase {
 
         this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
             this.handleOnAfterRenderPage(sender, options);
+        });
+    }
+
+    protected registerCSSEventHandlers(): void {
+        this.survey.onUpdatePanelCssClasses.add((sender: SurveyModel, options: any) => {
+            this.handleOnUpdatePanelCssClasses(sender, options);
+        });
+
+        this.survey.onUpdateQuestionCssClasses.add((sender: SurveyModel, options: any) => {
+            this.handleOnUpdateQuestionCssClasses(sender, options);
         });
     }
 

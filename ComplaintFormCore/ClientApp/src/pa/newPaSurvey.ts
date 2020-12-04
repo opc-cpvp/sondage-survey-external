@@ -34,6 +34,10 @@ export class NewPaSurvey extends SurveyBase {
             this.handleOnUploadFiles(sender, options);
         });
 
+        // this.survey.onDownloadFile.add((sender: SurveyModel, options: any) => {
+        //     this.handleOnDownloadFiles(sender, options);
+        // });
+
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
         });
@@ -108,7 +112,8 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnUploadFiles(sender: SurveyModel, options: any): void {
         void (async () => {
-            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}`;
+            const questionName: string = options.name;
+            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}&questionName=${questionName}`;
             const formData = new FormData();
 
             options.files.forEach(file => {
@@ -123,8 +128,7 @@ export class NewPaSurvey extends SurveyBase {
 
             if (!response.ok) {
                 const problem = await response.json();
-                // TODO: Replace this with something more generic
-                // this.displayErrorSummary(questionErrors);
+                this.displayProblemDetails(problem);
                 return;
             }
 
@@ -138,6 +142,23 @@ export class NewPaSurvey extends SurveyBase {
                 }))
             );
         })();
+    }
+
+    private handleOnDownloadFiles(sender: SurveyModel, options: any): void {
+        const fileUniqueId: string = options.content;
+        const fileName: string = options.fileValue.name;
+        const downloadUrl = `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${fileUniqueId}&filename=${fileName}`;
+
+        void fetch(downloadUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    options.callback("success");
+                };
+
+                options.callback("success", URL.createObjectURL(blob));
+            });
     }
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
