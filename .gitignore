@@ -355,3 +355,4 @@ node_modules
 /ComplaintFormCore/FileUploads/pia
 /ComplaintFormCore/wwwroot/lib
 /ComplaintFormCore/wwwroot/dist/bundle.js
+/ComplaintFormCore/FileUploads
