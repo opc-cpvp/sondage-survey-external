@@ -40,9 +40,6 @@ export abstract class SurveyBase {
 
     public displayErrorSummary(questionErrors: Map<Question, SurveyError[]>): void {
         const currentPage = this.survey.currentPage as PageModel;
-
-        let errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
-
         const errorText = surveyLocalization.getString("errorText") as string;
 
         const summary = document.createElement("section");
@@ -78,7 +75,7 @@ export abstract class SurveyBase {
         summary.appendChild(header);
         summary.appendChild(list);
 
-        errorsQuestion = new QuestionHtmlModel("errors");
+        const errorsQuestion = new QuestionHtmlModel("errors");
         errorsQuestion.html = summary.outerHTML;
 
         currentPage.addQuestion(errorsQuestion, 0);

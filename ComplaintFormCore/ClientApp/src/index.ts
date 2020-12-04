@@ -64,7 +64,7 @@ declare let Symbol;
 
         const storageName_PA = "SurveyJS_LoadState_PA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-        const storageName_PBR = "SurveyJS_LoadState_PBR";
+        // const storageName_PBR = "SurveyJS_LoadState_PBR";
 
         globalThis.initPbr = (lang, token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
