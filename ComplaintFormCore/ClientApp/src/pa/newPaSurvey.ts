@@ -133,7 +133,6 @@ export class NewPaSurvey extends SurveyBase {
                 "success",
                 options.files.map(file => ({
                     file: file,
-                    // content: responseData[file.name].content,
                     content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
                         responseData[file.name].content as string
                     }&filename=${file.name as string}`,

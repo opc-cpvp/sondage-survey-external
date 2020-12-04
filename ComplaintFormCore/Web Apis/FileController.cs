@@ -88,18 +88,6 @@ namespace ComplaintFormCore.Web_Apis
         [ActionName("Get")]
         public IActionResult Get([FromQuery] string complaintId, [FromQuery] string fileUniqueId, [FromQuery] string fileName)
         {
-            // throw new Exception("The file is not found or has been removed from the server");
-            //OPCProblemDetails problem2 = new OPCProblemDetails
-            //{
-            //    Detail = "The file is not found or has been removed from the server",
-            //    Status = 400,
-            //    Title = ""
-            //};
-
-            //problem2.Errors.Add("my key", new List<string>() { "The file is not found or has been removed from the server" });
-
-            //return BadRequest(problem2);
-
             //  NOTE: The complaintId should probably be used to validate that this is a proper request
 
             try
@@ -128,7 +116,7 @@ namespace ComplaintFormCore.Web_Apis
 
                 return BadRequest(problem);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //  TODO: Log this somewhere
                 OPCProblemDetails problem = new OPCProblemDetails
@@ -140,7 +128,6 @@ namespace ComplaintFormCore.Web_Apis
 
                 return BadRequest(problem);
             }
-
         }
     }
 }
