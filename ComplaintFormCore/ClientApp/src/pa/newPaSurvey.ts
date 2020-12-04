@@ -34,10 +34,6 @@ export class NewPaSurvey extends SurveyBase {
             this.handleOnUploadFiles(sender, options);
         });
 
-        // this.survey.onDownloadFile.add((sender: SurveyModel, options: any) => {
-        //     this.handleOnDownloadFiles(sender, options);
-        // });
-
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
         });
@@ -137,28 +133,14 @@ export class NewPaSurvey extends SurveyBase {
                 "success",
                 options.files.map(file => ({
                     file: file,
-                    content: responseData[file.name].content,
+                    // content: responseData[file.name].content,
+                    content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
+                        responseData[file.name].content as string
+                    }&filename=${file.name as string}`,
                     size: responseData[file.name].size
                 }))
             );
         })();
-    }
-
-    private handleOnDownloadFiles(sender: SurveyModel, options: any): void {
-        const fileUniqueId: string = options.content;
-        const fileName: string = options.fileValue.name;
-        const downloadUrl = `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${fileUniqueId}&filename=${fileName}`;
-
-        void fetch(downloadUrl)
-            .then(response => response.blob())
-            .then(blob => {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    options.callback("success");
-                };
-
-                options.callback("success", URL.createObjectURL(blob));
-            });
     }
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
