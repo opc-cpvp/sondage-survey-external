@@ -43,7 +43,7 @@ namespace ComplaintFormCore.Models.pa
         /// Possible choices: [general_public, employee_government]<br/>
         /// Survey question type: radiogroup
         /// </summary>
-        public string IsEmployeeChoice { get; set; }
+        public string IsEmployee { get; set; }
 
         /// <summary>
         /// Page: page_details_description_of_concerns<br/>
@@ -83,7 +83,7 @@ namespace ComplaintFormCore.Models.pa
         /// Required condition: {NatureOfComplaint} anyof ['NatureOfComplaintDelay','NatureOfComplaintExtensionOfTime','NatureOfComplaintDenialOfAccess','NatureOfComplaintLanguage']<br/>
         /// Survey question type: radiogroup
         /// </summary>
-        public string DidNoRecordExistChoice { get; set; }
+        public string DidNoRecordExist { get; set; }
 
         /// <summary>
         /// Page: page_details_description_of_concerns<br/>
@@ -151,7 +151,7 @@ namespace ComplaintFormCore.Models.pa
         /// Possible choices: [yes, no]<br/>
         /// Survey question type: radiogroup
         /// </summary>
-        public string Complainant_HaveYouSubmittedBeforeChoice { get; set; }
+        public string Complainant_HaveYouSubmittedBefore { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
@@ -349,12 +349,12 @@ namespace ComplaintFormCore.Models.pa
         /// Possible choices: [yes, no]<br/>
         /// Survey question type: radiogroup
         /// </summary>
-        public string NeedsDisabilityAccommodationChoice { get; set; }
+        public string NeedsDisabilityAccommodation { get; set; }
 
         /// <summary>
         /// Page: page_Complainant_representative<br/>
         /// If yes, please describe what accommodation measures you are requesting and ...<br/>
-        /// Required condition: {NeedsDisabilityAccommodationChoice} contains 'yes'<br/>
+        /// Required condition: {NeedsDisabilityAccommodation} contains 'yes'<br/>
         /// Survey question type: comment
         /// </summary>
         public string DisabilityAccommodation { get; set; }
