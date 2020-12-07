@@ -37,12 +37,6 @@ export class NewPaSurvey extends SurveyBase {
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
         });
-
-        this.survey.onAfterRenderQuestion.add((sender, options) => {
-            if (options.question.getType() === "html" && options.question.name === "documentation_info") {
-                this.updateDocumentationInfoSection(sender);
-            }
-        });
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
@@ -144,35 +138,5 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
         options.callback("success");
-    }
-
-    // This function is to update the html for the question of type html named 'documentation_info'.
-    // It will removed the hidden css on some of the <li> depending on some conditions
-    private updateDocumentationInfoSection(surveyObj) {
-        const ul_documentation_info = document.getElementById("ul_documentation_info");
-        if (ul_documentation_info == null) {
-            return;
-        }
-
-        if (surveyObj.data["RaisedPrivacyToAtipCoordinator"] === "yes") {
-            const liNode = ul_documentation_info.querySelector(".raisedPrivacyToAtipCoordinator");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
-
-        if (surveyObj.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
-
-        if (surveyObj.data["NatureOfComplaint"].filter(x => x === "NatureOfComplaintDenialOfAccess").length > 0) {
-            const liNode = ul_documentation_info.querySelector(".natureOfComplaint");
-            if (liNode != null) {
-                liNode.classList.remove("sv-hidden");
-            }
-        }
     }
 }
