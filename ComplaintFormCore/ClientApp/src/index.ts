@@ -12,6 +12,7 @@ import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
+import { LocalStorage } from "./localStorage";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -75,17 +76,17 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
+            /*
+            await import("./pa/pa_test_data")
+                .then(testData => testData.paTestData2)
+                .then(testData => {
+                    const storage = new LocalStorage();
+                    storage.save(storageName_PA, testData);
+                });
+            */
+
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
-
-            const defaultData = {};
-
-            //  This is test data. Uncomment to use.
-            // const test = await import("./pa/pa_test_data").then(testData => {
-            //    return testData.paTestData2;
-            // });
-            // defaultData = test;
-
             paSurvey.renderSurvey();
         };
 
