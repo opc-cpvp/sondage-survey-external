@@ -1,4 +1,4 @@
-import { SurveyModel } from "survey-vue";
+import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { CheckboxWidget } from "../widgets/checkboxwidget";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
@@ -58,13 +58,41 @@ export class NewPaSurvey extends SurveyBase {
                 body: JSON.stringify(sender.data)
             });
 
+            const questions = [] as Question[];
+            const errors = [] as SurveyError[];
+
             if (!response.ok) {
                 const problem = await response.json();
-                this.displayProblemDetails(problem);
-                return;
+
+                Object.keys(problem.errors).forEach(q => {
+                    // options.errors in only able to set one error per question
+                    options.errors[q] = problem.errors[q][0];
+
+                    const question = this.survey.getQuestionByName(q);
+                    if (question && question["errors"]) {
+                        question.clearErrors();
+                        questions.push(question);
+                        for (const error of problem.errors[q]) {
+                            errors.push(new SurveyError(error, question));
+                        }
+                    }
+                });
             }
 
             options.complete();
+
+            // TODO: Remove the following lines after updating surveyjs >= v1.8.21 (Bug #2566)
+            if (this.survey.onValidatedErrorsOnCurrentPage.isEmpty) {
+                return;
+            }
+
+            const validationOptions = {
+                page: this.survey.currentPage,
+                questions: questions,
+                errors: errors
+            };
+
+            this.survey.onValidatedErrorsOnCurrentPage.fire(sender, validationOptions);
         })();
     }
 
@@ -95,6 +123,7 @@ export class NewPaSurvey extends SurveyBase {
 
             // Now that the variable is set, show the completed page.
             this.survey.showCompletedPage = true;
+            this.storage.remove(this.storageName);
 
             options.showDataSavingSuccess();
         })();
@@ -118,7 +147,14 @@ export class NewPaSurvey extends SurveyBase {
 
             if (!response.ok) {
                 const problem = await response.json();
-                this.displayProblemDetails(problem);
+                const questionErrors = new Map<Question, SurveyError[]>();
+
+                Object.keys(problem.errors).forEach(q => {
+                    const errors = problem.errors[q].map(error => new SurveyError(error, options.question));
+                    questionErrors.set(options.question, errors);
+                });
+
+                this.displayErrorSummary(questionErrors);
                 return;
             }
 

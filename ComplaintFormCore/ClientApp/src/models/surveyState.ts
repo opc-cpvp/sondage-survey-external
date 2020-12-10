@@ -1,4 +1,4 @@
-﻿export interface LocalStorage {
+﻿export interface SurveyState {
     currentPageNo: number;
     data: any;
 }

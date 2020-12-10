@@ -86,7 +86,6 @@ declare let Symbol;
             // });
             // defaultData = test;
 
-            paSurvey.postLoadSurvey(JSON.stringify(defaultData));
             paSurvey.renderSurvey();
         };
 

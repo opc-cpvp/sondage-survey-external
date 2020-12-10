@@ -6,6 +6,13 @@
     font-weight: bold;
 }
 
+.sv_q_title.required:before {
+    content: "* ";
+    margin-left: -.665em;
+    color: #d3080c;
+    font-weight: 700;
+}
+
 .sv_q_required_text {
     color: red;
 }
@@ -165,7 +172,6 @@
 }
 
 label.sv-boolean {
-    font-weight: !important;
     padding-bottom: 3em;
 }
 

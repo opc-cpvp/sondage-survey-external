@@ -1,12 +1,12 @@
 ﻿import * as Survey from "survey-vue";
-import { LocalStorage } from "./models/localStorage";
+import { SurveyState } from "./models/surveyState";
 
 export class SurveyLocalStorage {
     public saveStateLocally(survey: Survey.SurveyModel, storageName: string): void {
         const res = {
             currentPageNo: survey.currentPageNo,
             data: survey.data
-        } as LocalStorage;
+        } as SurveyState;
 
         if (survey.isDisplayMode === true) {
             res.currentPageNo = 999;
@@ -24,7 +24,7 @@ export class SurveyLocalStorage {
 
         const storageSt = window.localStorage.getItem(storageName) || "";
 
-        let res: LocalStorage;
+        let res: SurveyState;
         if (storageSt) {
             res = JSON.parse(storageSt); // Create the survey state for the demo. This line should be deleted in the real app.
         } else {
