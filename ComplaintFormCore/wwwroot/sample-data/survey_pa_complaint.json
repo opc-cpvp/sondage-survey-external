@@ -1080,8 +1080,8 @@
           "type": "html",
           "name": "documentation_info",
           "html": {
-            "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul id='ul_documentation_info'><li class='mrgn-bttm-sm'>a copy of any written responses you received from the organization about your privacy concerns </li><li class='mrgn-bttm-sm'>a copy of your request to the institution</li><li class='raisedPrivacyToAtipCoordinator mrgn-bttm-sm sv-hidden'>a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator</li><li class='filingComplaintOnOwnBehalf mrgn-bttm-sm sv-hidden'>your representative authorization form signed by the complainant</li><li class='natureOfComplaint mrgn-bttm-sm sv-hidden'>your access request(s) and any reply(ies) received from the institution</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
-            "fr": "<section class='alert alert-info col-md-12'><p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p><ul id='ul_documentation_info'><li class='mrgn-bttm-sm'>une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)</li><li class='mrgn-bttm-sm'>une copie de votre demande à l’institution</li><li class='raisedPrivacyToAtipCoordinator mrgn-bttm-sm sv-hidden'>une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution</li><li class='filingComplaintOnOwnBehalf mrgn-bttm-sm sv-hidden'>votre formulaire d’autorisation de représentation signé par le plaignant</li><li class='natureOfComplaint mrgn-bttm-sm sv-hidden'>vos demandes d’accès et toute réponse reçue de l’institution</li></ul><p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p></section>"
+            "en": "<section class='alert alert-info col-md-12'><p>Based on your responses so far, you should attach the following documents with your complaint:</p><ul id='ul_documentation_info'><li class='mrgn-bttm-sm'>a copy of any written responses you received from the organization about your privacy concerns </li><li class='mrgn-bttm-sm'>a copy of your request to the institution</li><li class='{DocumentationInfoRaisedPrivacyToAtipCoordinatorGetClass}'>a copy of your correspondence with the institution about your privacy concerns, including your attempts to escalate your concerns to the institution’s Access to Information and Privacy (ATIP) Coordinator</li><li class='{DocumentationInfoFilingComplaintOnOwnBehalfGetClass}'>your representative authorization form signed by the complainant</li><li class='{DocumentationInfoNatureOfComplaintDenialOfAccessGetClass}'>your access request(s) and any reply(ies) received from the institution</li></ul><p>You can either attach supporting documents to this online complaint or you can mail documents separately.</p></section>",
+            "fr": "<section class='alert alert-info col-md-12'><p>D’après les réponses que vous avez fournies jusqu’à présent, vous devez joindre les documents suivants à votre plainte :</p><ul id='ul_documentation_info'><li class='mrgn-bttm-sm'>une copie des réponses par écrit que vous avez reçues de l’organisation au sujet de vos préoccupations en matière de protection de la vie privée (le cas échéant)</li><li class='mrgn-bttm-sm'>une copie de votre demande à l’institution</li><li class='{DocumentationInfoRaisedPrivacyToAtipCoordinatorGetClass}'>une copie de votre correspondance avec l’institution au sujet de vos préoccupations en matière de protection de la vie privée, y compris vos tentatives de faire part de vos préoccupations au coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de l’institution</li><li class='{DocumentationInfoFilingComplaintOnOwnBehalfGetClass}'>votre formulaire d’autorisation de représentation signé par le plaignant</li><li class='{DocumentationInfoNatureOfComplaintDenialOfAccessGetClass}'>vos demandes d’accès et toute réponse reçue de l’institution</li></ul><p>Vous pouvez joindre les documents à l’appui à cette plainte en ligne ou les envoyer par la poste séparément.</p></section>"
           }
         },
         {
@@ -1161,35 +1161,13 @@
               "isRequired": true,
               "hasComment": false,
               "allowMultiple": true,
-              "waitForUpload": true,
+              "waitForUpload": false,
               "maxSize": 0,
               "storeDataAsText": false,
-              "showPreview": false,
-              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "multipleFileMaxSizeErrorMessage": {
-                "en": "Maximum size of files 25MB allowed",
-                "fr": "FR - Maximum size of files 25MB allowed"
-              },
-              "confirmRemoveMessage": {
-                "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce fichier?"
-              },
-              "itemListTitle": {
-                "en": "Attached",
-                "fr": "Fichier joint au formulaire d’autorisation"
-              },
-              "itemListRemoveText": {
-                "en": "Remove",
-                "fr": "Supprimer"
-              },
-              "itemListNoAttachmentsText": {
-                "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n'a encore été téléchargée."
-              },
-              "duplicateFileNameExceptionMessage": {
-                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-              }
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             }
           ]
         },
@@ -1304,6 +1282,21 @@
     {
       "name": "PageDetailsDescriptionOfConcernsFr",
       "expression": "iif({NatureOfComplaintIsAnyFirstFourSelected} = true and {NatureOfComplaintIsAnyLastFiveSelected} = true, 'description des préoccupations', iif({NatureOfComplaintIsAnyFirstFourSelected} = true, 'refus d'accès', 'Section 2 : Détails de la plainte'))",
+      "includeIntoResult": true
+    },
+    {
+      "name": "DocumentationInfoRaisedPrivacyToAtipCoordinatorGetClass",
+      "expression": "iif({RaisedPrivacyToAtipCoordinator} = true, 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
+      "includeIntoResult": true
+    },
+    {
+      "name": "DocumentationInfoFilingComplaintOnOwnBehalfGetClass",
+      "expression": "iif({FilingComplaintOnOwnBehalf} = 'someone_else', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
+      "includeIntoResult": true
+    },
+    {
+      "name": "DocumentationInfoNatureOfComplaintDenialOfAccessGetClass",
+      "expression": "iif({NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
       "includeIntoResult": true
     }
   ]

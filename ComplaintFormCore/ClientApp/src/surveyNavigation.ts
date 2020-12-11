@@ -1,7 +1,6 @@
 ﻿import * as Survey from "survey-vue";
 import * as SurveyHelper from "./surveyHelper";
 import * as Ladda from "ladda";
-import * as SurveyLocalStorage from "./surveyLocalStorage";
 
 //  Function for updating (show/hide) the navigation buttons
 export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel): void {
@@ -55,7 +54,6 @@ export function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyM
 }
 
 export function startSurvey(survey: Survey.SurveyModel): void {
-    SurveyLocalStorage.clearLocalStorage(SurveyLocalStorage.storageName_PA);
     survey.nextPage();
 }
 

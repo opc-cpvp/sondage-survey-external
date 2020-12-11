@@ -1,8 +1,8 @@
-﻿import { ProblemDetails } from "./models/problemDetails";
-import { MultiLanguagePropery } from "./models/multiLanguageProperty";
+import { ProblemDetails } from "./models/problemDetails";
+import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 import * as Survey from "survey-vue";
 
-export function getTranslation(questionProperty: MultiLanguagePropery, lang: string): string {
+export function getTranslation(questionProperty: MultiLanguageProperty, lang: string): string {
     if (lang === "fr" && questionProperty.fr) {
         return questionProperty.fr;
     } else if (questionProperty.en) {

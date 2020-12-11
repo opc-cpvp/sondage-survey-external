@@ -94,6 +94,7 @@
   <ItemGroup>
     <None Remove="ClientApp\%40types\survey-vue\survey.vue.d.ts" />
     <None Remove="ClientApp\src\index.ts" />
+    <None Remove="ClientApp\src\models\localStorage.ts" />
     <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
@@ -118,6 +119,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\models\localStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbrSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbr_test_data.ts" />

@@ -105,6 +105,13 @@ export const paTestData2 = {
         "XXMOXAWRNBMHUNTEPRIUSWNHCDNOKXJKBXWYMPCRFGPDNEEEORLILNYBJFLTMHGOQBFWQTQAOQOLGJSXYIASMAYMYUOHDHFXAAMLXGNTBKSUXMTALMUDHMCPCRWUEJWHKQKFWGARUFRBHEOLBOUPMCQMXWJFJSPRNLJGBNCEMCHBUBIWDLSONHTIAXHYWUICPAMUTHJMLQDKTORWOLBWYADGRBGDGCHQSFKUNNDUBFCVEJNKGJKKTKCOVG",
     Documentation_type: "upload",
     Documentation_file_upload_rep: [],
-    Documentation_file_upload: [{ content: "3916", name: "css.txt", type: "text/plain" }],
+    Documentation_file_upload: [
+        {
+            content: "dee600ce-f7d9-4efc-b7ca-bf5bd09db9b0",
+            name: "css.txt",
+            size: 2649024,
+            type: "text/plain"
+        }
+    ],
     InformationIsTrue: ["yes"]
 };

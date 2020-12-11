@@ -3,7 +3,7 @@ import * as Survey from "survey-vue";
 declare let $: any; // import $ from "jquery";
 
 import * as SurveyInit from "../surveyInit";
-import * as SurveyLocalStorage from "../surveyLocalStorage";
+import { SurveyLocalStorage } from "../surveyLocalStorage";
 import { printProblemDetails } from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
 
@@ -13,9 +13,11 @@ import * as SurveyNavigation from "../surveyNavigation";
 // }
 
 export class TestSurvey {
+    private storageName_Test = "SurveyJS_LoadState_Test";
+
     public init(jsonUrl: string, lang: string, token: string): void {
-        function onCurrentPageChanged_saveState(survey) {
-            SurveyLocalStorage.saveStateLocally(survey, SurveyLocalStorage.storageName_Test);
+        function onCurrentPageChanged_saveState(survey, storageName: string) {
+            new SurveyLocalStorage().saveStateLocally(survey, storageName);
         }
 
         SurveyInit.initSurvey();
@@ -40,10 +42,11 @@ export class TestSurvey {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(survey, SurveyLocalStorage.storageName_Test, JSON.stringify(defaultData));
+                const storage: SurveyLocalStorage = new SurveyLocalStorage();
+                storage.loadStateLocally(survey, this.storageName_Test, JSON.stringify(defaultData));
 
                 // Save the state back to local storage
-                onCurrentPageChanged_saveState(survey);
+                onCurrentPageChanged_saveState(survey, this.storageName_Test);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(survey);

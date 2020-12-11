@@ -7,23 +7,27 @@ import {
     Question,
     QuestionHtmlModel,
     StylesManager,
-    Survey,
     SurveyError,
     SurveyModel
 } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
+import { LocalStorage } from "./localStorage";
+import { SurveyState } from "./models/surveyState";
 
-export abstract class SurveyBase extends Survey {
+export abstract class SurveyBase {
+    public readonly storageName: string;
+    protected readonly survey: SurveyModel;
+    protected readonly storage = new LocalStorage();
+
     private readonly converter = new Converter({
         simpleLineBreaks: true,
         tasklists: true
     });
 
-    public constructor(locale: "en" | "fr" = "en") {
-        super();
-
-        this.survey = new Model();
+    public constructor(locale: "en" | "fr" = "en", storageName: string) {
+        this.storageName = storageName;
+        this.survey = new SurveyModel();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();
@@ -42,7 +46,7 @@ export abstract class SurveyBase extends Survey {
             currentPage.removeQuestion(errorsQuestion);
         }
 
-        if (!currentPage.hasErrors()) {
+        if (questionErrors.size === 0) {
             return;
         }
 
@@ -84,18 +88,21 @@ export abstract class SurveyBase extends Survey {
     public loadSurveyFromUrl(surveyUrl: string): Promise<void> {
         return fetch(surveyUrl)
             .then(response => response.json())
-            .then(json => {
-                this.survey.fromJSON(json);
-            });
+            .then(json => this.survey.fromJSON(json))
+            .then(() => this.loadedSurveyFromUrl());
     }
 
-    public render(): void {
+    public renderSurvey(): void {
         new Vue({
             el: "#surveyElement",
             data: {
                 survey: this.survey
             }
         });
+    }
+
+    protected loadedSurveyFromUrl(): void {
+        this.loadSurveyState();
     }
 
     protected registerWidgets(): void {}
@@ -107,6 +114,10 @@ export abstract class SurveyBase extends Survey {
 
         this.survey.onValidatedErrorsOnCurrentPage.add((sender: SurveyModel, options: any) => {
             this.handleOnValidatedErrorsOnCurrentPage(sender, options);
+        });
+
+        this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
+            this.handleOnCurrentPageChanged(sender, options);
         });
     }
 
@@ -155,6 +166,35 @@ export abstract class SurveyBase extends Survey {
         surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreurs ont été trouvées.";
     }
 
+    private getSurveyState(): SurveyState {
+        return {
+            currentPageNo: this.survey.currentPageNo,
+            data: this.survey.data
+        } as SurveyState;
+    }
+
+    private saveSurveyState(): void {
+        const state = this.getSurveyState();
+        this.storage.save(this.storageName, state);
+    }
+
+    private setSurveyState(state: SurveyState) {
+        // It's important that the data is set first, otherwise changing the currentPageNo will cause
+        // onCurrentPageChanged to trigger which will override the data.
+        this.survey.data = state.data;
+        this.survey.currentPageNo = state.currentPageNo;
+    }
+
+    private loadSurveyState(): void {
+        const state = this.storage.load(this.storageName) as SurveyState;
+
+        if (state === null) {
+            return;
+        }
+
+        this.setSurveyState(state);
+    }
+
     private handleOnTextMarkdown(sender: SurveyModel, options: any): void {
         // convert the mardown text to html
         let str = this.converter.makeHtml(options.text);
@@ -165,6 +205,10 @@ export abstract class SurveyBase extends Survey {
 
         // set html
         options.html = str;
+    }
+
+    private handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        this.saveSurveyState();
     }
 
     private handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {

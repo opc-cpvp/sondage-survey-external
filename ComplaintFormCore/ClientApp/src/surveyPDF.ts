@@ -157,14 +157,16 @@ export class surveyPdfExport {
             options.question.value.forEach((fileItem: Survey.Question) => {
                 htmlQuestion.html += "<li>";
 
-                const fileSizeInBytes = (fileItem.content as number) || 0;
-                let size = 0;
+                const fileSizeInBytes = (fileItem.size as number) || 0;
 
                 if (fileSizeInBytes < 1000) {
                     htmlQuestion.html += `${fileItem.name} (${fileSizeInBytes} B)`;
-                } else {
-                    size = Math.round(fileSizeInBytes / 1000);
+                } else if (fileSizeInBytes < 1000000) {
+                    const size = Math.round(fileSizeInBytes / 1000);
                     htmlQuestion.html += `${fileItem.name} (${size} KB)`;
+                } else {
+                    const size = Math.round(fileSizeInBytes / 1000000);
+                    htmlQuestion.html += `${fileItem.name} (${size} MB)`;
                 }
 
                 htmlQuestion.html += "</li>";

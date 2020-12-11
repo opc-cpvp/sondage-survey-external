@@ -1,6 +1,6 @@
 import Vue from "vue";
 import * as Survey from "survey-vue";
-import * as SurveyLocalStorage from "../surveyLocalStorage";
+import { SurveyLocalStorage } from "../surveyLocalStorage";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyHelper from "../surveyHelper";
 import * as SurveyNavigation from "../surveyNavigation";
@@ -288,7 +288,7 @@ export class PiaETool {
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    SurveyLocalStorage.saveStateLocally(sender, this.storageName_PIA);
+                    new SurveyLocalStorage().saveStateLocally(sender, this.storageName_PIA);
 
                     this.setNavigationBreadcrumbs(_survey);
                 });
@@ -299,10 +299,11 @@ export class PiaETool {
 
                 const defaultData = {};
 
-                // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
+                // Load the initial state]
+                const storage: SurveyLocalStorage = new SurveyLocalStorage();
+                storage.loadStateLocally(_survey, this.storageName_PIA, JSON.stringify(defaultData));
 
-                SurveyLocalStorage.saveStateLocally(_survey, this.storageName_PIA);
+                storage.saveStateLocally(_survey, this.storageName_PIA);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
