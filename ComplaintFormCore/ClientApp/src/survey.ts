@@ -27,7 +27,7 @@ export abstract class SurveyBase {
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
         this.storageName = storageName;
-        this.survey = new SurveyModel();
+        this.survey = new Model();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();

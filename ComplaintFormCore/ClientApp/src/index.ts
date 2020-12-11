@@ -1,4 +1,4 @@
-﻿import "core-js/es";
+import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill"; //  Polyfill to open/close the <details> tags
@@ -13,6 +13,7 @@ import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { LocalStorage } from "./localStorage";
+import { SurveyState } from "./models/surveyState";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -76,14 +77,18 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            /*
             await import("./pa/pa_test_data")
                 .then(testData => testData.paTestData2)
                 .then(testData => {
                     const storage = new LocalStorage();
-                    storage.save(storageName_PA, testData);
+
+                    const storageData = {
+                        currentPageNo: 0,
+                        data: testData
+                    } as SurveyState;
+
+                    storage.save(storageName_PA, storageData);
                 });
-            */
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
