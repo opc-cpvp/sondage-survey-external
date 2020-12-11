@@ -196,18 +196,6 @@ export class FileMeterWidget extends Widget {
 
     private getQuestionSize(question: Question): number {
         const files = this.questionFiles.get(question) || [];
-        let total = 0;
-        if (files.length > 0) {
-            files.forEach(file => {
-                if (file.size) {
-                    total += file.size;
-                }
-            });
-
-            return total;
-            // return files.reduce((previous, current) => previous + current.size, 0);
-        } else {
-            return 0;
-        }
+        return files.reduce((previous, current) => previous + current.size, 0);
     }
 }

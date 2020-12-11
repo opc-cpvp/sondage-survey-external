@@ -1,4 +1,4 @@
-﻿export interface MultiLanguagePropery {
+export interface MultiLanguageProperty {
     fr: string;
     en: string;
     default: string;
