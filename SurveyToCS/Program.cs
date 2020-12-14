@@ -1,4 +1,4 @@
-﻿using Microsoft.CSharp;
+using Microsoft.CSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -23,8 +23,8 @@ namespace SurveyToCS
         static void Main(string[] args)
         {
             //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-            string className = "SurveyPIAToolModel";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
+            string className = "SurveyPipedaModel";
 
             string line = Console.ReadLine();
             if (line == "c")

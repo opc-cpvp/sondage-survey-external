@@ -13,7 +13,7 @@ export const PipedaProvincesData: Record<Province, PipedaProvince> = {
     [Province.Ontario]: {
         French: {
             FrenchPrefix_Au: "en ",
-            FrenchPrefix_Du: "de l'",
+            FrenchPrefix_Du: "de l’",
             Link_more_info: "",
             Link_province_opc: "https://www.ipc.on.ca/protection-de-la-vie-privee-particuliers/proteger-sa-vie-privee-2/?lang=fr",
             Province_link: ""
@@ -108,8 +108,8 @@ export const PipedaProvincesData: Record<Province, PipedaProvince> = {
     },
     [Province.PEI]: {
         French: {
-            FrenchPrefix_Au: "à l'",
-            FrenchPrefix_Du: "de l'",
+            FrenchPrefix_Au: "à l’",
+            FrenchPrefix_Du: "de l’",
             Link_more_info: "https://www.assembly.pe.ca/",
             Link_province_opc: "",
             Province_link: ""
@@ -141,7 +141,7 @@ export const PipedaProvincesData: Record<Province, PipedaProvince> = {
     [Province.Alberta]: {
         French: {
             FrenchPrefix_Au: "en ",
-            FrenchPrefix_Du: "de l'",
+            FrenchPrefix_Du: "de l’",
             Link_more_info: "",
             Link_province_opc: "",
             Province_link: "https://www.oipc.ab.ca/action-items/request-a-review-file-a-complaint.aspx"
@@ -220,8 +220,8 @@ export const PipedaProvincesData: Record<Province, PipedaProvince> = {
     },
     [Province.Other]: {
         French: {
-            FrenchPrefix_Au: "à l'",
-            FrenchPrefix_Du: "de l'",
+            FrenchPrefix_Au: "à l’",
+            FrenchPrefix_Du: "de l’",
             Link_more_info: "",
             Link_province_opc: "",
             Province_link: ""
