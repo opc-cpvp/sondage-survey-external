@@ -96,7 +96,7 @@
     margin-left: 1.3125em;
     padding: 0.125em 0.1875em;
     border-radius: 0.75em;
-    background-color: #007292;
+    background-color: #007292 !important;
 }
 
 [dir="rtl"] .sv-boolean__switch, [style*="direction:rtl"] .sv-boolean__switch {
