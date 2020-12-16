@@ -27,14 +27,13 @@ export abstract class SurveyBase {
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
         this.storageName = storageName;
-        this.survey = new SurveyModel();
+        this.survey = new Model();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();
         this.setSurveyProperties();
 
         this.registerWidgets();
-        this.registerEventHandlers();
         this.registerCustomProperties();
     }
 
@@ -103,6 +102,12 @@ export abstract class SurveyBase {
 
     protected loadedSurveyFromUrl(): void {
         this.loadSurveyState();
+
+        //  This registerEventHandlers MUST be after loading the survey.
+        //  Problem is whenever there is a paneldynamic in a survey, during loading of the paneldynamic,
+        //  onCurrentPageChanged gets fired. This cause the page data to be deleted so when the users switch
+        //  languages they are returned to page 1 of the survey.
+        this.registerEventHandlers();
     }
 
     protected registerWidgets(): void {}
@@ -118,6 +123,40 @@ export abstract class SurveyBase {
 
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
             this.handleOnCurrentPageChanged(sender, options);
+        });
+    }
+
+    // TODO: This method should actually be converted into a widget.
+    protected registerCustomProperties(): void {
+        // This is a survey property that will hold the information as to if the user has reached the 'Preview'
+        // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
+        // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
+        JsonObject.metaData.addProperty("survey", {
+            name: "passedPreviewPage:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("page", {
+            name: "hideOnPDF:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("page", {
+            name: "hideOnPreview:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("panel", {
+            name: "hideOnPDF:boolean",
+            default: false
+        });
+
+        // This is to hide page and panel we don't want to show on preview.
+        // Pages or Panels that contains exclusively information html for example.
+        // The reason why it is working for is because on preview, the pages become panels
+        JsonObject.metaData.addProperty("panel", {
+            name: "hideOnPreview:boolean",
+            default: false
         });
     }
 
@@ -220,39 +259,5 @@ export abstract class SurveyBase {
         }
 
         this.displayErrorSummary(questionErrors);
-    }
-
-    // TODO: This method should actually be converted into a widget.
-    private registerCustomProperties(): void {
-        // This is a survey property that will hold the information as to if the user has reached the 'Preview'
-        // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
-        // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
-        JsonObject.metaData.addProperty("survey", {
-            name: "passedPreviewPage:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("page", {
-            name: "hideOnPDF:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("page", {
-            name: "hideOnPreview:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("panel", {
-            name: "hideOnPDF:boolean",
-            default: false
-        });
-
-        // This is to hide page and panel we don't want to show on preview.
-        // Pages or Panels that contains exclusively information html for example.
-        // The reason why it is working for is because on preview, the pages become panels
-        JsonObject.metaData.addProperty("panel", {
-            name: "hideOnPreview:boolean",
-            default: false
-        });
     }
 }
