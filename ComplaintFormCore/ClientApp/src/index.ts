@@ -11,9 +11,9 @@ import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
 import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
-import { PbrSurvey } from "./pbr/pbrSurvey";
 import { LocalStorage } from "./localStorage";
 import { NewPbrSurvey } from "./pbr/newPbrSurvey";
+import { SurveyState } from "./models/surveyState";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -71,19 +71,22 @@ declare let Symbol;
         globalThis.initPbr = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
 
-            await import("./pbr/pbr_test_data")
-                .then(testData => testData.pbr_test_data)
-                .then(testData => {
-                    const storage = new LocalStorage();
-                    storage.save(storageName_PBR, testData);
-                });
+            // await import("./pbr/pbr_test_data")
+            //    .then(testData => testData.pbr_test_data)
+            //    .then(testData => {
+            //        const storage = new LocalStorage();
+
+            //        const storageData = {
+            //            currentPageNo: 0,
+            //            data: testData
+            //        } as SurveyState;
+
+            //        storage.save(storageName_PBR, storageData);
+            //    });
 
             const pbrSurvey = new NewPbrSurvey(lang, token, storageName_PBR);
             await pbrSurvey.loadSurveyFromUrl(jsonUrl);
             pbrSurvey.renderSurvey();
-
-            // const pbrSurvey = new PbrSurvey();
-            // pbrSurvey.init(jsonUrl, lang, token);
         };
 
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {

@@ -1,9 +1,11 @@
-﻿export const pbr_test_data = {
+export const pbr_test_data = {
     OrganizationName: "DFLSATJOYNFMWTAFPCNVMXOCI",
+    OrganizationAddress: "555 Main street",
     OrganizationCity: "ATJNCFJXANGVUHGXWSXKGSJNH",
     OrganizationStreet: "YWRQFNDVDQFCKUMBIQFCXSQXB",
     OrganizationProvince: "1",
     OrganizationPostalCode: "A1A1A1",
+    OrganizationCountry: "CA",
     RepresentativeType: "internal_representative",
     ContactName: "XIXACAVXWSNOMOVAIDMGEOQNO",
     ContactTitle: "QJAEGLRQVAIIMIGRUKLFUYARG",
@@ -12,7 +14,8 @@
     ContactEmail: "BTRUVAVXIQ@gmail.com",
     ContactStreetAdress: "RNSAJVLRPDOJDTUPLQLEMBNDS",
     ContactCity: "CDYFJNGEVCKXHDDGFGILLUJCC",
-    ContactCountry: "1",
+    ContactAddress: "888 rue principale",
+    ContactCountry: "CA",
     ContactProvince: "1",
     ContactOtherProvince: "TBMSGXIIFBWVWEQMKYMBPUBKW",
     ContactPostalCode: "A1A1A1",
@@ -20,6 +23,7 @@
     NumberOfCanadiansAffected: "228",
     NumberAffectedComment:
         "LAVRGXYXSEQEFPDQERTRKYXOHJLRBXVXDXVKDBUQHBXUUNEHACLSRDDLBGJWMHWUISBHTSNCVDJIBDTSEDQXLCGATKJVQXDYEDLCMWNH OIVNSTKWMQRIPXILBMIIRLXYJEWRQGHPJJDFRGAALIAFTJFUFPLJEXWWXOJPMFVKJSGOFATUMIWILREAXCMAUXKKMFHDWJMGLOVBCQOEVPVUBNLFJIQJSVPLHUCYSQXDUPVVVDWHMHEEBPJXT",
+    NumberOfInvidualKnown: true,
     DateBreachOccurrenceStart: "2020-11-03",
     DateBreachOccurrenceEnd: "2020-11-03",
     BreachOccurrenceComment:
