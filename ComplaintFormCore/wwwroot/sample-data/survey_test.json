@@ -248,7 +248,7 @@
             [
               {
                 "type": "radiogroup",
-                "name": "IsEmployeeChoice",
+                "name": "IsEmployee",
                 "title": {
                   "en": "Are you submitting the complaint as a member of the general public or as an employee of the goverment institution?",
                   "fr": "Déposez-vous la plainte en tant que membre du grand public ou en tant qu’employé de l’institution fédérale?"
@@ -326,7 +326,7 @@
             [
               {
                 "type": "radiogroup",
-                "name": "DidNoRecordExistChoice",
+                "name": "DidNoRecordExist",
                 "title": {
                   "en": "Did the institution reply that no records exist?",
                   "fr": "L’institution a-t-elle répondu qu’il n’existe aucun document?"

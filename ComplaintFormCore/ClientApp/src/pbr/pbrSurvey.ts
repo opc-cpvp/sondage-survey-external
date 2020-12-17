@@ -1,12 +1,12 @@
 ﻿import Vue from "vue";
 import * as Survey from "survey-vue";
-import * as SurveyLocalStorage from "../surveyLocalStorage";
 import * as SurveyInit from "../surveyInit";
 import * as SurveyNavigation from "../surveyNavigation";
 import * as Ladda from "ladda";
 import { pbr_test_data } from "./pbr_test_data";
 import * as SurveyHelper from "../surveyHelper";
 import * as widgets from "surveyjs-widgets";
+import { SurveyLocalStorage } from "../surveyLocalStorage";
 
 declare global {
     // TODO: get rid of this global variable
@@ -14,6 +14,8 @@ declare global {
 }
 
 export class PbrSurvey {
+    private storageName_PBR = "SurveyJS_LoadState_PBR";
+
     public init(jsonUrl: string, lang: string, token: string): void {
         SurveyInit.initSurvey();
 
@@ -88,7 +90,7 @@ export class PbrSurvey {
 
                 // Adding particular event for this page only
                 _survey.onCurrentPageChanged.add((sender, options) => {
-                    SurveyLocalStorage.saveStateLocally(sender, SurveyLocalStorage.storageName_PBR);
+                    new SurveyLocalStorage().saveStateLocally(sender, this.storageName_PBR);
                 });
 
                 SurveyInit.initSurveyModelEvents(_survey);
@@ -98,9 +100,10 @@ export class PbrSurvey {
                 const defaultData = {};
 
                 // Load the initial state
-                SurveyLocalStorage.loadStateLocally(_survey, SurveyLocalStorage.storageName_PBR, JSON.stringify(defaultData));
+                const storage: SurveyLocalStorage = new SurveyLocalStorage();
+                storage.loadStateLocally(_survey, this.storageName_PBR, JSON.stringify(defaultData));
 
-                SurveyLocalStorage.saveStateLocally(_survey, SurveyLocalStorage.storageName_PBR);
+                storage.saveStateLocally(_survey, this.storageName_PBR);
 
                 // Call the event to set the navigation buttons on page load
                 SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);

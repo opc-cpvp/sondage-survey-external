@@ -56,6 +56,8 @@ export class FileMeterWidget extends Widget {
             return;
         }
 
+        this.loadQuestionFiles(fileQuestion);
+
         const container = document.createElement("section");
         container.className = "alert alert-info";
 
@@ -66,6 +68,7 @@ export class FileMeterWidget extends Widget {
         meter.className = "full-width";
         meter.min = 0;
         meter.max = question.totalSize || 0;
+        meter.value = this.getQuestionSize(question);
 
         container.appendChild(header);
         container.appendChild(meter);
@@ -128,6 +131,27 @@ export class FileMeterWidget extends Widget {
 
             this.updateHeader(header, question);
         });
+
+        question.onStateChanged.add((sender: QuestionFileModel, options: any) => {
+            if (options.state !== "loaded") {
+                return;
+            }
+
+            const files = question.value || [];
+            const questionFiles = this.questionFiles.get(question) || [];
+
+            for (const file of files) {
+                const name = file.name;
+                const questionFile = questionFiles.find(f => f.name === name);
+
+                if (!questionFile) {
+                    continue;
+                }
+
+                const size = questionFile.size;
+                file.size = size;
+            }
+        });
     }
 
     /**
@@ -140,6 +164,23 @@ export class FileMeterWidget extends Widget {
             return question.showMeter && question.totalSize && question.getType() === "file";
         }
         return false;
+    }
+
+    private loadQuestionFiles(question: QuestionFileModel): void {
+        if (this.questionFiles.get(question)) {
+            return;
+        }
+
+        const files = question.value || [];
+        const questionFiles = files.map(
+            f =>
+                ({
+                    name: f.name,
+                    type: f.type,
+                    size: f.size
+                } as File)
+        ) as File[];
+        this.questionFiles.set(question, questionFiles);
     }
 
     private updateHeader(header: HTMLHeadingElement, question: Question): void {

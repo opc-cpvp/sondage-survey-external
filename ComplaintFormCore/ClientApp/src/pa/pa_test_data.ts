@@ -8,9 +8,9 @@
         "NatureOfComplaintExtensionOfTime",
         "NatureOfComplaintCollection"
     ],
-    "IsEmployeeChoice": "general_public",
+    "IsEmployee": "general_public",
     "AdditionalComments": "iuyiuyuiyiuy",
-    "Complainant_HaveYouSubmittedBeforeChoice": "no",
+    "Complainant_HaveYouSubmittedBefore": "no",
     "Complainant_FormOfAddress": "Mr.",
     "Complainant_FirstName": "jf",
     "Complainant_LastName": "brouillette",
@@ -19,7 +19,7 @@
     "Complainant_City": "gat",
     "Complainant_PostalCode": "J9A2V5",
     "Complainant_DayTimeNumber": "6135656667",
-    "NeedsDisabilityAccommodationChoice": "yes",
+    "NeedsDisabilityAccommodation": "yes",
     "DisabilityAccommodation": "iuyuiyiuyiuy",
     "Complainant_Country": "CA",
     "Complainant_ProvinceOrState": "2",
@@ -38,7 +38,7 @@
     "WordingOfRequest": "hgdffgh",
     "MoreDetailsOfRequest": "oiuyoiuo",
     "DateOfFinalAnswer": "gfhfjgj",
-    "DidNoRecordExistChoice": "yes",
+    "DidNoRecordExist": "yes",
     "InstitutionAgreedRequestOnInformalBasis": "not_sure",
     "SummarizeYourConcernsAndAnyStepsTaken": "poiuiop"
 };
@@ -48,7 +48,7 @@ export const paTestData2 = {
     WhichFederalGovernementInstitutionComplaintAgainst: "1",
     RaisedPrivacyToAtipCoordinator: "yes",
     NatureOfComplaint: ["NatureOfComplaintUseAndDisclosure"],
-    IsEmployeeChoice: "general_public",
+    IsEmployee: "general_public",
     DateSentRequests:
         "FNMDBMMPYQJKVTORAOGAWEUSTAEXPQTQRPUIVMQSUFXFLQTVVFWMBTOBRSJBINYHWRRGXFUNWNFQFPHDFIBKTHPWATPDDPJGGPISXMWQK JONOWVCLFUAMONPCTGEPRKHDXKOHNESKKYJRCICWNQWUJTQCRQDGRASXHJQMGTWBCOCODWALDHBANMSETLOVALRJGKJRQPQSSURTQBYUQRCKYRKUPLSTFAAPVRIRNHTNPHGRTYMRMTFIJHKNY",
     WordingOfRequest:
@@ -57,7 +57,7 @@ export const paTestData2 = {
         "BJWIPCAUJVSYNGANBMWIOFLTOKSQOKRVPYSYAGCCTUSNECIMWVHKVVEVXCSFJIFYEVJNNANTKUOSLXPMCGTSCGYTUVBWMWSKOTJHSTXVH MYBGKJAMGDCOMWWVPRQXPHMCEDROHSHHWKOGXMKMBKGTPUCVLKDBGWQFMYCGRKEMUUQBIPXCHEWFASMIAUCVPFAASITXJDTPFSXTEANVMATCAKESMTFVIIVPTQHYUYREJGAHURDAHFJPKXAHD",
     DateOfFinalAnswer:
         "OIRYBRLTEYVPDOUSEJOYLLEALEHRBCKRRQIRDERRVBFDLWHMGKDLYFJDDQMVKTSCODWMFCOAQWCJFAOOVTKPXXSMHFNLQVGBIDOHAUHD UDTBCYWCBXAPJCEPKJEANCIUPAABLGOAMHUTEQJHHLJSVQRGYXWPPHORUXKBYVQUJYDCHJKSAWRCSOYYITCMJYKFRCYFGHILTOJVMPXOMEOSOLYGYLSESDLJOXJFKEMSOFIDECLSUMYEJQPFCS",
-    DidNoRecordExistChoice: "yes",
+    DidNoRecordExist: "yes",
     PrivacyActSectionsApplied:
         "XNIKXBHOQEYAHJKUEIQICBRRNBUHXDECXCQIWKOKSCAIAMFPVDVSOJSVUQVVFAPNAVCERBWTSGOAAJRBVFKUHKMOITNFNSESLMHDKAW UFCAITSUKYUAAOUFOJNVXMRFABVONBNPUHPOFKDTPXCGSREDQGSSWEXHNVAGXEHJKEFRYGAEFSFAKKMHWRWGIUSQIIAIJVVLPSUNMMEKGOMDXXWDIRJFGBAPKNIQFQTJWTJQOYUKNMASHORKLVA",
     ItemsNotRecieved:
@@ -73,7 +73,7 @@ export const paTestData2 = {
         "UDUYRJYURMTQSYRVSUNOOHKVOIWJVDYBUCLIXEQXDCPCTGVKYSOTURBNRYKJMPYNMSUQMIXNEOLMQICILLJCOFGCBWQXTHLNCBOBKFWQ UAOFFNWJWCWAFVYHLRPORYTWDXJOSBWGNSHOPAWMAGBQJLHFCHORPHYUFRCHEHQVEQLMOJQLUCOKXCNQQDLKMFPFTLIXWOHSPELRYUQSQCVMSNWCEKPAUFJYAFRDASNFUUUSQURUMSTJIDMFNG",
     AdditionalComments:
         "PSTWSGHGDJNTPGKEEEWSAVFULONLXUXAYUFKBNUHYYYDGAAYFXVDEUGSMXKDSUIIKMTTAACQJPSAWBOLNNFYXUVDOLWCCQNEQPSSFGYFU FTNBFVKJYPFPIKOPQFODANRBOJHIUGHOADSBIBIPLSDAINHFDCOAJBUQBMMVOCNRIPPFQNHOWYRGKRRBCBFRRGEXHBYUOMAIFKRSXCNOUYDKJOGJTLSMVUABLQWPNLYJXIBYYYCANPWRDSNST",
-    Complainant_HaveYouSubmittedBeforeChoice: "yes",
+    Complainant_HaveYouSubmittedBefore: "yes",
     Complainant_FormOfAddress: "Mrs.",
     Complainant_FirstName: "SOWQVLILBGGWXVTWNRTNSYMMQ",
     Complainant_LastName: "CQKBKDBHDWRLNTCWMJPLKHWEX",
@@ -100,11 +100,18 @@ export const paTestData2 = {
     Reprensentative_DayTimeNumberExtension: "556",
     Reprensentative_AltTelephoneNumber: "+1613-624-9444",
     Reprensentative_AltTelephoneNumberExtension: "634",
-    NeedsDisabilityAccommodationChoice: "yes",
+    NeedsDisabilityAccommodation: "yes",
     DisabilityAccommodation:
         "XXMOXAWRNBMHUNTEPRIUSWNHCDNOKXJKBXWYMPCRFGPDNEEEORLILNYBJFLTMHGOQBFWQTQAOQOLGJSXYIASMAYMYUOHDHFXAAMLXGNTBKSUXMTALMUDHMCPCRWUEJWHKQKFWGARUFRBHEOLBOUPMCQMXWJFJSPRNLJGBNCEMCHBUBIWDLSONHTIAXHYWUICPAMUTHJMLQDKTORWOLBWYADGRBGDGCHQSFKUNNDUBFCVEJNKGJKKTKCOVG",
     Documentation_type: "upload",
     Documentation_file_upload_rep: [],
-    Documentation_file_upload: [{ content: "3916", name: "css.txt", type: "text/plain" }],
+    Documentation_file_upload: [
+        {
+            content: "dee600ce-f7d9-4efc-b7ca-bf5bd09db9b0",
+            name: "css.txt",
+            size: 2649024,
+            type: "text/plain"
+        }
+    ],
     InformationIsTrue: ["yes"]
 };
