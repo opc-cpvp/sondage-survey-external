@@ -1,4 +1,4 @@
-﻿import "core-js/es";
+import "core-js/es";
 import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
 import "details-polyfill"; //  Polyfill to open/close the <details> tags
@@ -13,6 +13,7 @@ import { PiaETool } from "./pia/piaE-ToolSurvey";
 import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { LocalStorage } from "./localStorage";
+import { NewPbrSurvey } from "./pbr/newPbrSurvey";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -26,7 +27,7 @@ declare global {
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
     function initPipeda(lang: string, token: string): void;
-    function initPbr(lang: string, token: string): void;
+    function initPbr(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
@@ -65,25 +66,35 @@ declare let Symbol;
 
         const storageName_PA = "SurveyJS_LoadState_PA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-        // const storageName_PBR = "SurveyJS_LoadState_PBR";
+        const storageName_PBR = "SurveyJS_LoadState_PBR";
 
-        globalThis.initPbr = (lang, token) => {
+        globalThis.initPbr = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
-            const pbrSurvey = new PbrSurvey();
-            pbrSurvey.init(jsonUrl, lang, token);
+
+            await import("./pbr/pbr_test_data")
+                .then(testData => testData.pbr_test_data)
+                .then(testData => {
+                    const storage = new LocalStorage();
+                    storage.save(storageName_PBR, testData);
+                });
+
+            const pbrSurvey = new NewPbrSurvey(lang, token, storageName_PBR);
+            await pbrSurvey.loadSurveyFromUrl(jsonUrl);
+            pbrSurvey.renderSurvey();
+
+            // const pbrSurvey = new PbrSurvey();
+            // pbrSurvey.init(jsonUrl, lang, token);
         };
 
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            /*
             await import("./pa/pa_test_data")
                 .then(testData => testData.paTestData2)
                 .then(testData => {
                     const storage = new LocalStorage();
                     storage.save(storageName_PA, testData);
                 });
-            */
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);

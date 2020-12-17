@@ -119,8 +119,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <WebpackInputs Remove="ClientApp\src\models\localStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
+    <WebpackInputs Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbrSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbr_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pa\pa_test_data.ts" />

@@ -27,14 +27,13 @@ export abstract class SurveyBase {
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
         this.storageName = storageName;
-        this.survey = new SurveyModel();
+        this.survey = new Model();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();
         this.setSurveyProperties();
 
         this.registerWidgets();
-        this.registerEventHandlers();
         this.registerCustomProperties();
     }
 
@@ -103,6 +102,12 @@ export abstract class SurveyBase {
 
     protected loadedSurveyFromUrl(): void {
         this.loadSurveyState();
+
+        //  This registerEventHandlers MUST be after loading the survey.
+        //  Problem is whenever there is a paneldynamic in a survey, during loading of the paneldynamic,
+        //  onCurrentPageChanged gets fired. This cause the page data to be deleted so when the users switch
+        //  languages they are returned to page 1 of the survey.
+        this.registerEventHandlers();
     }
 
     protected registerWidgets(): void {}
