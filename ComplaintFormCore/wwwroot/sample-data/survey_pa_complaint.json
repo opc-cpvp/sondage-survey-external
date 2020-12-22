@@ -163,7 +163,7 @@
             "en": "<details><summary>The institution has not responded.</summary><p>Please allow some time for the institution to respond and resolve your issue before filing a complaint with us. Usually, it is reasonable to allow 3 to 5 weeks.</p></details>",
             "fr": "<details><summary>L’institution n’a pas répondu.</summary><p>Veuillez accorder un certain temps à l’institution pour répondre et résoudre votre problème avant de déposer une plainte auprès de nous. En général, il est raisonnable de laisser de trois à cinq semaines.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} contains 'yes'"
         },
         {
           "type": "html",
@@ -171,7 +171,7 @@
             "en": "<details><summary>The institution has not made the changes you asked for or given you the information you are looking for.</summary><p>Please be sure to check that your correspondence with the institution was clear about the exact changes or information you are seeking. Consider making a final summary of your concerns and what you are seeking in case the institution did not fully understand.</p></details>",
             "fr": "<details><summary>L’institution n’a pas apporté les changements que vous avez demandés ou ne vous a pas fourni les renseignements que vous cherchez.</summary><p>Veuillez vérifier que votre correspondance avec l’institution était claire au sujet des changements ou des renseignements exacts que vous demandez. Envisagez de faire un résumé final de vos préoccupations et de ce que vous cherchez au cas où l’institution n’aurait pas bien compris.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} contains 'yes'"
         },
         {
           "type": "html",
@@ -179,7 +179,7 @@
             "en": "<details><summary>The institution has not compensated you for what happened.</summary><p>Please be aware that our office does not have the power to order compensation. Usually, people need to take legal action to pursue compensation. You may wish to consult a lawyer for more information.</p></details>",
             "fr": "<details><summary>L’institution ne vous a pas indemnisé pour ce qui s’est passé.</summary><p>Veuillez noter que notre Commissariat n’a pas le pouvoir d’ordonner une indemnisation. En règle générale, les gens doivent intenter une action en justice pour obtenir une indemnisation. Il peut être souhaitable de consulter un avocat pour obtenir de plus amples renseignements.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} contains 'yes'"
         },
         {
           "type": "html",
@@ -187,11 +187,11 @@
             "en": "<details><summary>The employee(s) responsible for what happened have not been held accountable.</summary><p>Generally, an institution is accountable for how its employees handle personal information. This could mean taking steps to prevent a similar problem in the future. The institution might change its systems, processes and training, or discipline the employee. The decision to discipline an employee is complex and must be made carefully by the institution. Our office cannot order disciplinary action.</p><p>Also, the <em>Privacy Act</em> does not give complainants the right to know if an employee was disciplined and institutions will not usually release this information.</p></details>",
             "fr": "<details><summary>Les employés responsables de ce qui s’est passé n’ont pas été tenus responsables.</summary><p>En général, une institution est responsable de la façon dont ses employés traitent les renseignements personnels. Cela pourrait signifier qu’il faudrait prendre des mesures pour éviter qu’un problème semblable ne se reproduise à l’avenir. L’institution pourrait modifier ses systèmes, ses processus et sa formation ou prendre des mesures disciplinaires à l’égard des employés concernés. La décision de prendre des mesures disciplinaires à l’égard d’employés est complexe et doit être prise avec soin par l’institution. Notre Commissariat ne peut pas ordonner des mesures disciplinaires.</p><p>De plus, la <em>Loi sur la protection des renseignements personnels</em> ne donne pas aux plaignants le droit de savoir si un employé a fait l’objet de mesures disciplinaires et, en général, les institutions ne communiquent pas cette information.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  contains 'yes'"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} contains 'yes'"
         },
         {
           "type": "html",
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']",
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} anyof ['no','not_sure']",
           "html": {
             "en": "<details><summary>Don't think it will help</summary><p>Before filing a complaint with our office, we encourage you first to attempt to address your concerns directly with the institution. Many times you can resolve privacy issues through direct communication with the Access to Information and Privacy (ATIP) Coordinator. To find this person please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'> list of Access to Information and Privacy Coordinators by institution</a></p></details>",
             "fr": "<details><summary>Ne pense pas que ça aidera</summary><p>Avant de déposer une plainte auprès de notre bureau, nous vous encourageons à commencer par essayer de faire part de vos préoccupations directement à l’institution. Bien souvent, vous pouvez résoudre les problèmes de protection de la vie privée en communiquant directement avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP). Pour trouver cette personne, veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a></p></details>"
@@ -203,7 +203,7 @@
             "en": "<details><summary>Can't find the contact</summary>Please consult the <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>list of Access to Information and Privacy Coordinators by institution.</a></details>",
             "fr": "<details><summary>Impossible de trouver la personne-ressource</summary>Veuillez consulter la <a href='http://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'> liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution.</a></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} anyof ['no','not_sure']"
         },
         {
           "type": "html",
@@ -211,7 +211,7 @@
             "en": "<details><summary>Wish to stay anonymous</summary><p>Please note that yourname (except in extraordinary circumstances) and the details of your complaint will be shared with the institution that is the subject of the complaint. </p><p> We may for the purpose of the investigation share personal information with the institution and may collect personal information from that institution. </p><p> We do not otherwise disclose the information you, provide unless, such a,disclosure is in accordance, with the <a href='http://laws.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>subsection 8(2) of the, Privacy Act</a>, which is,reserved for,limited situations. In the case of such a disclosure we will only disclose,the information that is required and wherever possible will inform you. </p><p> The personal information you provide,on our complaint form is protected under the <em>Access to Information Act</em> and the <em>Privacy Act</em></p> <p> If you wish to just tell us about an issue and not have your identity revealed use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51' target='_blank'> online form to share a privacy comment or an issue without filing a formal complaint</a> At our Commissioner's discretion we can look into matters without a person making a complaint.</p></details>",
             "fr": "<details><summary>Souhaite rester anonyme</summary><p>Veuillez noter que votre nom (sauf dans des circonstances extraordinaires) et les détails de votre plainte seront communiqués à l’institution qui fait l’objet de la plainte.</p><p>Nous pouvons, aux fins de l’enquête, communiquer des renseignements personnels à l’institution et recueillir des renseignements personnels auprès de cette institution.</p><p>Nous ne divulguons pas autrement les renseignements que vous nous fournissez, à moins que cette divulgation soit conforme au <a href='https://laws.justice.gc.ca/fra/lois/P-21/page-2.html' target='_blank'>paragraphe 8(2) de la Loi sur la protection des renseignements personnels</a>, qui est réservé à des situations limitées. Le cas échéant, le Commissariat ne communiquera que l’information nécessaire et, dans la mesure du possible, vous en avisera.</p><p>Les renseignements personnels que vous fournissez sur notre formulaire de plainte sont protégés en vertu de la <em>Loi sur l’accès à l’information</em> et de la <em>Loi sur la protection des renseignements personnels.</em></p> <p>Si vous souhaitez simplement nous parler d’un problème, et que votre identité ne soit pas révélée, utilisez notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=5dfc6151-d40a-449f-9b40-51becbf7851d' target='_blank'> formulaire en ligne pour faire part d’un commentaire ou d’une question relative à la protection de la vie privée sans avoir à déposer une plainte officielle.</a> À la discrétion de notre commissaire, nous pouvons faire enquête sans qu’une personne dépose une plainte.</p></details>"
           },
-          "visibleIf": "{RaisedPrivacyToAtipCoordinator}  anyof ['no','not_sure']"
+          "visibleIf": "{RaisedPrivacyToAtipCoordinator} anyof ['no','not_sure']"
         },
         {
           "type": "html",
@@ -1276,28 +1276,23 @@
     },
     {
       "name": "PageDetailsDescriptionOfConcernsEn",
-      "expression": "iif({NatureOfComplaintIsAnyFirstFourSelected} = true and {NatureOfComplaintIsAnyLastFiveSelected} = true, 'description of concerns', iif({NatureOfComplaintIsAnyFirstFourSelected} = true, 'denial of access', 'Section 2: Details of complaint'))",
-      "includeIntoResult": true
+      "expression": "iif({NatureOfComplaintIsAnyFirstFourSelected} = true and {NatureOfComplaintIsAnyLastFiveSelected} = true, 'description of concerns', iif({NatureOfComplaintIsAnyFirstFourSelected} = true, 'denial of access', 'Section 2: Details of complaint'))"
     },
     {
       "name": "PageDetailsDescriptionOfConcernsFr",
-      "expression": "iif({NatureOfComplaintIsAnyFirstFourSelected} = true and {NatureOfComplaintIsAnyLastFiveSelected} = true, 'description des préoccupations', iif({NatureOfComplaintIsAnyFirstFourSelected} = true, 'refus d'accès', 'Section 2 : Détails de la plainte'))",
-      "includeIntoResult": true
+      "expression": "iif({NatureOfComplaintIsAnyFirstFourSelected} = true and {NatureOfComplaintIsAnyLastFiveSelected} = true, 'description des préoccupations', iif({NatureOfComplaintIsAnyFirstFourSelected} = true, 'refus d'accès', 'Section 2 : Détails de la plainte'))"
     },
     {
       "name": "DocumentationInfoRaisedPrivacyToAtipCoordinatorGetClass",
-      "expression": "iif({RaisedPrivacyToAtipCoordinator} = true, 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
-      "includeIntoResult": true
+      "expression": "iif({RaisedPrivacyToAtipCoordinator} = true, 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')"
     },
     {
       "name": "DocumentationInfoFilingComplaintOnOwnBehalfGetClass",
-      "expression": "iif({FilingComplaintOnOwnBehalf} = 'someone_else', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
-      "includeIntoResult": true
+      "expression": "iif({FilingComplaintOnOwnBehalf} = 'someone_else', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')"
     },
     {
       "name": "DocumentationInfoNatureOfComplaintDenialOfAccessGetClass",
-      "expression": "iif({NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')",
-      "includeIntoResult": true
+      "expression": "iif({NatureOfComplaint} contains 'NatureOfComplaintDenialOfAccess', 'mrgn-bttm-sm', 'mrgn-bttm-sm sv-hidden')"
     }
   ]
 }

@@ -165,8 +165,7 @@ export class NewPaSurvey extends SurveyBase {
                     file: file,
                     content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
                         responseData[file.name].content as string
-                    }&filename=${file.name as string}`,
-                    size: responseData[file.name].size
+                    }&filename=${file.name as string}`
                 }))
             );
         })();
