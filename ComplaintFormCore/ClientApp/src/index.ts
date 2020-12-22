@@ -26,7 +26,7 @@ declare global {
     function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: string, token: string): void;
-    function initPipeda(lang: "fr" | "en", token: string): void;
+    function initPipeda(lang: "en" | "fr", token: string): void;
     function initPbr(lang: string, token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
@@ -74,7 +74,7 @@ declare let Symbol;
             pbrSurvey.init(jsonUrl, lang, token);
         };
 
-        globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
+        globalThis.initPaSurvey = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             /*
@@ -113,21 +113,19 @@ declare let Symbol;
             };
         };
 
-        globalThis.initPipeda = async (lang: "fr" | "en", token) => {
+        globalThis.initPipeda = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pipeda_complaint.json";
 
-            await import("./pipeda/pipeda_test_data")
-                .then(testData => testData.testData_pipeda)
-                .then(testData => {
-                    const storage = new LocalStorage();
+            await import("./pipeda/pipeda_test_data").then(testData => {
+                const storage = new LocalStorage();
 
-                    const storageData = {
-                        currentPageNo: 0,
-                        data: testData
-                    } as SurveyState;
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.testData_pipeda
+                } as SurveyState;
 
-                    storage.save(storageName_PA, storageData);
-                });
+                storage.save(storageName_PIPEDA, storageData);
+            });
 
             const pipedaSurvey = new NewPipedaSurvey(lang, token, storageName_PIPEDA);
             await pipedaSurvey.loadSurveyFromUrl(jsonUrl);
