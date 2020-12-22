@@ -77,18 +77,18 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            await import("./pa/pa_test_data")
-                .then(testData => testData.paTestData2)
-                .then(testData => {
-                    const storage = new LocalStorage();
+            /*
+            await import("./pa/pa_test_data").then(testData => {
+                const storage = new LocalStorage();
 
-                    const storageData = {
-                        currentPageNo: 0,
-                        data: testData
-                    } as SurveyState;
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.paTestData2
+                } as SurveyState;
 
-                    storage.save(storageName_PA, storageData);
-                });
+                storage.save(storageName_PA, storageData);
+            });
+            */
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
