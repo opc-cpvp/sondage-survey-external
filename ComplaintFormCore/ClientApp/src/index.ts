@@ -9,11 +9,11 @@ import { TestSurvey } from "./tests/testSurvey";
 import { NewPaSurvey } from "./pa/newPaSurvey";
 import { surveyPdfExport } from "./surveyPDF";
 import * as SurveyNavigation from "./surveyNavigation";
-import { PipedaTool } from "./pipeda/pipedaSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { NewPiaToolSurvey } from "./pia/newPiaToolSurvey";
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
+import { NewPipedaSurvey } from "./pipeda/newPipedaSurvey";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -26,7 +26,7 @@ declare global {
     function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: "en" | "fr", token: string): void;
-    function initPipeda(lang: string, token: string): void;
+    function initPipeda(lang: "en" | "fr", token: string): void;
     function initPbr(lang: string, token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
@@ -74,16 +74,20 @@ declare let Symbol;
             pbrSurvey.init(jsonUrl, lang, token);
         };
 
-        globalThis.initPaSurvey = async (lang: "fr" | "en", token) => {
+        globalThis.initPaSurvey = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
             /*
-            await import("./pa/pa_test_data")
-                .then(testData => testData.paTestData2)
-                .then(testData => {
-                    const storage = new LocalStorage();
-                    storage.save(storageName_PA, testData);
-                });
+            await import("./pa/pa_test_data").then(testData => {
+                const storage = new LocalStorage();
+
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.paTestData2
+                } as SurveyState;
+
+                storage.save(storageName_PA, storageData);
+            });
             */
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
@@ -127,10 +131,23 @@ declare let Symbol;
             // };
         };
 
-        globalThis.initPipeda = (lang, token) => {
+        globalThis.initPipeda = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pipeda_complaint.json";
-            const pipedaTool = new PipedaTool();
-            pipedaTool.init(jsonUrl, lang, token);
+
+            await import("./pipeda/pipeda_test_data").then(testData => {
+                const storage = new LocalStorage();
+
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.testData_pipeda
+                } as SurveyState;
+
+                storage.save(storageName_PIPEDA, storageData);
+            });
+
+            const pipedaSurvey = new NewPipedaSurvey(lang, token, storageName_PIPEDA);
+            await pipedaSurvey.loadSurveyFromUrl(jsonUrl);
+            pipedaSurvey.renderSurvey();
         };
 
         globalThis.exportToPDF = (lang, complaintType) => {
