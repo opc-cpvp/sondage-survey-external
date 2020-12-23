@@ -4,11 +4,10 @@ import {
     SurveyModel,
     QuestionDropdownModel,
     ItemValue,
-    QuestionTextModel,
-    QuestionRadiogroupModel,
     QuestionPanelDynamicModel,
     QuestionMatrixDynamicModel,
-    JsonObject
+    JsonObject,
+    QuestionSelectBase
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
@@ -127,94 +126,81 @@ export class NewPiaToolSurvey extends SurveyBase {
     }
 
     private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
-        if (options.question.name === "PersonContact") {
-            //  We are building a list of person contacts to use as choices for the
-            //  dropdown type question PersonContact at question 2.1.9
+        const question = options.question as Question;
 
-            const personContact = options.question as QuestionDropdownModel;
-            personContact.choices = [];
+        // Generate the list of contact persons based on previous answers
+        if (question.name === "PersonContact") {
+            const contactQuestions = [
+                "HeadYourInstitutionFullname", // Question 2.1.5 - Who is the head of the government institution
+                "pnd_OtherInstitutionHead", // Question 2.1.6 - Head of the government institution or delegate
+                "SeniorOfficialFullname", // Question 2.1.7 - Senior official or executive responsible
+                "panle_senior_officials_others" // Question 2.1.8 - Senior official or executive responsible
+            ];
 
-            //  1) We add another individual item
-            let otherName = "Another individual";
-            if (sender.getLocale() === "fr") {
-                otherName = "Autre individu";
-            }
-
-            const itemOther: ItemValue = new ItemValue("another", otherName);
-            personContact.choices.push(itemOther);
-
-            //  2) Question 2.1.5 - Who is the head of the government institution
-            const headYourInstitutionFullname = sender.getQuestionByName("HeadYourInstitutionFullname") as QuestionTextModel;
-            if (headYourInstitutionFullname) {
-                const item: ItemValue = new ItemValue(headYourInstitutionFullname.value, headYourInstitutionFullname.value);
-                personContact.choices.push(item);
-            }
-
-            //  3) Question 2.1.7 - Senior official or executive responsible
-            const seniorOfficialFullname = sender.getQuestionByName("SeniorOfficialFullname") as QuestionTextModel;
-            if (seniorOfficialFullname) {
-                const item: ItemValue = new ItemValue(seniorOfficialFullname.value, seniorOfficialFullname.value);
-                personContact.choices.push(item);
-            }
-
-            const singleOrMultiInstitutionPIA = sender.getQuestionByName("SingleOrMultiInstitutionPIA") as QuestionRadiogroupModel;
-            if (singleOrMultiInstitutionPIA.selectedItem && singleOrMultiInstitutionPIA.selectedItem.value === "multi") {
-                const behalfMultipleInstitutionOthers = sender.getQuestionByValueName("BehalfMultipleInstitutionOthers");
-                if (behalfMultipleInstitutionOthers && behalfMultipleInstitutionOthers.value) {
-                    const arrayOfItem = behalfMultipleInstitutionOthers.value as any[];
-                    arrayOfItem.forEach(item => {
-                        //  Question 2.1.6 - Head of the government institution or delegate
-                        if (item.OtherInstitutionHeadFullname) {
-                            if (!personContact.choices.some(contact => contact.value === item.OtherInstitutionHeadFullname)) {
-                                const itemOtherInstitutionHeadFullname: ItemValue = new ItemValue(
-                                    item.OtherInstitutionHeadFullname,
-                                    item.OtherInstitutionHeadFullname
-                                );
-                                personContact.choices.push(itemOtherInstitutionHeadFullname);
-                            }
-                        }
-
-                        //  Question 2.1.8 - Senior official or executive responsible
-                        if (item.SeniorOfficialOtherFullname) {
-                            if (!personContact.choices.some(contact => contact.value === item.SeniorOfficialOtherFullname)) {
-                                const itemSeniorOther: ItemValue = new ItemValue(
-                                    item.SeniorOfficialOtherFullname,
-                                    item.SeniorOfficialOtherFullname
-                                );
-
-                                personContact.choices.push(itemSeniorOther);
-                            }
-                        }
-                    });
+            if (contactQuestions.indexOf(question.name) > -1) {
+                const personContactQuestion = this.survey.getQuestionByName("PersonContact") as QuestionSelectBase;
+                if (personContactQuestion === null) {
+                    return;
                 }
+
+                const anotherIndividual = this.survey.locale === "fr" ? "Autre individu" : "Another individual";
+                const contacts: ItemValue[] = [new ItemValue("another", anotherIndividual)];
+                contactQuestions.forEach(q => {
+                    const contactQuestion = this.survey.getQuestionByName(q);
+                    if (contactQuestion === null) {
+                        return;
+                    }
+
+                    // Search for contact fields in the dynamic panels
+                    if (contactQuestion instanceof QuestionPanelDynamicModel) {
+                        const items = contactQuestion.value as any[];
+                        const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
+                        items.forEach(item => {
+                            fields.forEach(f => {
+                                const contact = item[f];
+                                if (contact === null || contacts.some(c => c.value === contact)) {
+                                    return;
+                                }
+                                contacts.push(new ItemValue(contact, contact));
+                            });
+                        });
+                    } else {
+                        contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
+                    }
+                });
+
+                personContactQuestion.choices = contacts;
             }
-        } else if (options.question.name === "pnd_PurposeOfNotAllDisclosed") {
+        } else if (question.name === "pnd_PurposeOfNotAllDisclosed") {
             //  For this question, we need to populate the dropdown named 'ReceivingParties' inside the
-            //  paneldynamic 'pnd_PurposeOfDisclosure' with what the user has selected in a previous question.
+            //  paneldynamic 'pnd_PurposeOfNotAllDisclosed' with what the user has selected in a previous question.
 
-            const pnd_PurposeOfDisclosure = options.question as QuestionPanelDynamicModel;
-            if (pnd_PurposeOfDisclosure === null) {
-                return;
-            }
-
-            //  receivingParties is the dropdown to be populated
-            const receivingParties = pnd_PurposeOfDisclosure.templateElements.find(
+            const purposeOfNotAllDisclosed = question as QuestionPanelDynamicModel;
+            const receivingParties = purposeOfNotAllDisclosed.templateElements.find(
                 r => r.name === "ReceivingParties"
             ) as QuestionDropdownModel;
             if (receivingParties === null) {
                 return;
             }
 
-            //  We are going to get the user's selection from the matrixdynamic 'PartiesSharePersonalInformation'
-            const otherPartiesSharePersonalInformation = sender.getQuestionsByValueNameCore(
+            const otherPartiesSharePersonalInformation = this.survey.getQuestionByName(
                 "OtherPartiesSharePersonalInformation"
-            ) as QuestionMatrixDynamicModel;
-            const arrayOfItem = otherPartiesSharePersonalInformation[0].value as any[];
-            arrayOfItem.forEach(item => {
-                const selectedItem: ItemValue = new ItemValue(item.Party, item.Party);
+            ) as QuestionPanelDynamicModel;
+            if (otherPartiesSharePersonalInformation === null) {
+                return;
+            }
 
-                receivingParties.choices.push(selectedItem);
+            const parties: ItemValue[] = [];
+            const items = otherPartiesSharePersonalInformation.value as any[];
+            items.forEach(item => {
+                const party = item.Party;
+                if (party === null) {
+                    return;
+                }
+                parties.push(new ItemValue(party, party));
             });
+
+            receivingParties.choices = parties;
         }
     }
 

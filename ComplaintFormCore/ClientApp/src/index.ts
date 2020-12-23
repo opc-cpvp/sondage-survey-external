@@ -98,25 +98,20 @@ declare let Symbol;
         globalThis.initPiaETool = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
 
-            // await import("./pia/pia_test_data")
-            //    .then(testData => testData.piaTestData)
-            //    .then(testData => {
-            //        const storage = new LocalStorage();
+            await import("./pia/pia_test_data").then(testData => {
+                const storage = new LocalStorage();
 
-            //        const storageData = {
-            //            currentPageNo: 0,
-            //            data: testData
-            //        } as SurveyState;
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.piaTestData
+                } as SurveyState;
 
-            //        storage.save(storageName_PIA, storageData);
-            //    });
+                storage.save(storageName_PIA, storageData);
+            });
 
             const piaSurvey = new NewPiaToolSurvey(lang, token, storageName_PIA);
             await piaSurvey.loadSurveyFromUrl(jsonUrl);
             piaSurvey.renderSurvey();
-
-            // const piaETool = new PiaETool();
-            // piaETool.init(jsonUrl, lang, token);
 
             globalThis.gotoSection = section => {
                 piaSurvey.gotoSection(section);
@@ -125,10 +120,6 @@ declare let Symbol;
             globalThis.gotoPage = pageName => {
                 piaSurvey.gotoPage(pageName);
             };
-
-            // globalThis.nextPage = survey => {
-            //    piaETool.nextPage(survey);
-            // };
         };
 
         globalThis.initPipeda = async (lang: "en" | "fr", token) => {

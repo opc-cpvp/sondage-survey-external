@@ -800,12 +800,6 @@
             "fr": ""
           },
           "isRequired": true,
-          "validators": [
-            {
-              "type": "expression",
-              "expression": "HasSelectedItem({institution}) = true"
-            }
-          ],
           "choicesByUrl": {
             "url": "/api/Institution/GetAll?lang={locale}&addOther=true",
             "titleName": "name",
@@ -4978,6 +4972,7 @@
         },
         {
           "type": "matrixdynamic",
+          "name": "OtherPartiesSharePersonalInformation",
           "valueName": "OtherPartiesSharePersonalInformation",
           "visibleIf": "{PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
           "isRequired": true,
