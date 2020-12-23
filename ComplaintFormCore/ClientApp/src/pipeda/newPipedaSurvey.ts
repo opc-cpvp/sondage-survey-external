@@ -1,8 +1,8 @@
 import { SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import { QuestionRadiogroupModel, Question, SurveyError } from "../../node_modules/survey-vue/survey.vue";
-import { PipedaProvincesData } from "./pipedaProvinceData";
-import { Province } from "../surveyHelper";
+import { Question, SurveyError } from "../../node_modules/survey-vue/survey.vue";
+import { PipedaProvince } from "./pipedaProvince";
+import { PipedaProvinceData, PipedaProvincesData } from "./pipedaProvinceData";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class NewPipedaSurvey extends SurveyBase {
@@ -31,8 +31,8 @@ export class NewPipedaSurvey extends SurveyBase {
             this.handleOnComplete(sender, options);
         });
 
-        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderPagePipeda(sender, options);
+        this.survey.onValueChanged.add((sender: SurveyModel, options: any) => {
+            this.handleOnValueChanged(sender, options);
         });
 
         this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
@@ -73,7 +73,7 @@ export class NewPipedaSurvey extends SurveyBase {
                     // options.errors in only able to set one error per question
                     options.errors[q] = problem.errors[q][0];
 
-                    const question = this.survey.getQuestionByName(q);
+                    const question = sender.getQuestionByName(q);
                     if (question && question["errors"]) {
                         question.clearErrors();
                         questions.push(question);
@@ -92,7 +92,7 @@ export class NewPipedaSurvey extends SurveyBase {
             }
 
             const validationOptions = {
-                page: this.survey.currentPage,
+                page: sender.currentPage,
                 questions: questions,
                 errors: errors
             };
@@ -128,65 +128,29 @@ export class NewPipedaSurvey extends SurveyBase {
 
             // Now that the variable is set, show the completed page.
             this.survey.showCompletedPage = true;
+            this.storage.remove(this.storageName);
 
             options.showDataSavingSuccess();
         })();
     }
 
-    private handleOnAfterRenderPagePipeda(sender: SurveyModel, options: any): void {
-        const pagesRequiringProvinceTranslations = [
-            "page_part_a_jurisdiction_unable_1",
-            "page_part_a_jurisdiction_particulars",
-            "page_part_a_customer_or_employee",
-            "page_part_a_jurisdiction_unable_2"
-        ];
+    private handleOnValueChanged(sender: SurveyModel, options: any): void {
+        const question = options.question as Question;
+        const value = options.value;
 
-        if (pagesRequiringProvinceTranslations.some(p => p === options.page.name)) {
-            //  Set the french province prefixes for those pages.
-
-            const selectedProvinceQuestion = sender.getQuestionByName("ProvinceIncidence") as QuestionRadiogroupModel;
-            if (selectedProvinceQuestion.value) {
-                const selectedProvinceId = Number(selectedProvinceQuestion.value);
-
-                //  en, au, à...
-                sender.setVariable("province_incidence_prefix_au", PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Au);
-
-                //  de, du, de la...
-                sender.setVariable("province_incidence_prefix_du", PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Du);
-            }
+        if (question.name !== "ProvinceIncidence" || value === null) {
+            return;
         }
 
-        if (options.page.name === "page_part_a_jurisdiction_unable_1") {
-            const selectedProvinceQuestion = sender.getQuestionByName("ProvinceIncidence") as QuestionRadiogroupModel;
+        const provinceId = Number(value);
+        const province = PipedaProvincesData.get(provinceId) as PipedaProvince;
+        const provinceData: PipedaProvinceData = this.survey.locale === "fr" ? province.French : province.English;
 
-            if (selectedProvinceQuestion.value) {
-                //  We are setting some dynamic urls depending on the province of incidence selected by the user.
-
-                const selectedProvinceId = selectedProvinceQuestion.value as number;
-
-                if (sender.locale === "fr") {
-                    sender.setVariable("province_link", PipedaProvincesData[selectedProvinceId].French.Province_link);
-                } else {
-                    sender.setVariable("province_link", PipedaProvincesData[selectedProvinceId].English.Province_link);
-                }
-            }
-        } else if (options.page.name === "page_part_a_jurisdiction_unable_2") {
-            const selectedProvinceQuestion = sender.getQuestionByName("ProvinceIncidence") as QuestionRadiogroupModel;
-
-            if (selectedProvinceQuestion.value) {
-                //  We are setting some dynamic urls depending on the province of incidence selected by the user.
-
-                const selectedProvinceId = selectedProvinceQuestion.value as number;
-
-                if (sender.locale === "fr") {
-                    sender.setVariable("link_province_opc", PipedaProvincesData[selectedProvinceId].French.Link_province_opc);
-                    sender.setVariable("link_more_info", PipedaProvincesData[selectedProvinceId].French.Link_province_opc);
-                } else {
-                    sender.setVariable("link_province_opc", PipedaProvincesData[selectedProvinceId].English.Link_province_opc);
-                    sender.setVariable("link_more_info", PipedaProvincesData[selectedProvinceId].French.Link_more_info);
-                }
-            }
-        }
+        this.survey.setVariable("province_incidence_prefix_au", provinceData.FrenchPrefix_Au); // en, au, à...
+        this.survey.setVariable("province_incidence_prefix_du", provinceData.FrenchPrefix_Du); // de, du, de la...
+        this.survey.setVariable("province_link", provinceData.Province_link);
+        this.survey.setVariable("link_province_opc", provinceData.Link_province_opc);
+        this.survey.setVariable("link_more_info", provinceData.Link_more_info);
     }
 
     private handleOnUploadFiles(sender: SurveyModel, options: any): void {
@@ -225,8 +189,7 @@ export class NewPipedaSurvey extends SurveyBase {
                     file: file,
                     content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
                         responseData[file.name].content as string
-                    }&filename=${file.name as string}`,
-                    size: responseData[file.name].size
+                    }&filename=${file.name as string}`
                 }))
             );
         })();
