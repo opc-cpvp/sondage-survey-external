@@ -176,13 +176,15 @@ export class NewPiaToolSurvey extends SurveyBase {
                 return;
             }
 
-            const purposeOfDisclosure = this.survey.getQuestionByName("pnd_PurposeOfDisclosure") as QuestionPanelDynamicModel;
-            if (purposeOfDisclosure === null) {
+            const otherPartiesSharePersonalInformation = this.survey.getQuestionByName(
+                "OtherPartiesSharePersonalInformation"
+            ) as QuestionPanelDynamicModel;
+            if (otherPartiesSharePersonalInformation === null) {
                 return;
             }
 
             const parties: ItemValue[] = [];
-            const items = purposeOfDisclosure.value as any[];
+            const items = otherPartiesSharePersonalInformation.value as any[];
             items.forEach(item => {
                 const party = item.Party;
                 if (party === null) {
