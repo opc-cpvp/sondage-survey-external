@@ -27,14 +27,13 @@ export abstract class SurveyBase {
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
         this.storageName = storageName;
-        this.survey = new SurveyModel();
+        this.survey = new Model();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();
         this.setSurveyProperties();
 
         this.registerWidgets();
-        this.registerEventHandlers();
         this.registerCustomProperties();
     }
 
@@ -103,6 +102,8 @@ export abstract class SurveyBase {
 
     protected loadedSurveyFromUrl(): void {
         this.loadSurveyState();
+
+        this.registerEventHandlers();
     }
 
     protected registerWidgets(): void {}
