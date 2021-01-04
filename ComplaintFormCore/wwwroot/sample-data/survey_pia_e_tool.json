@@ -5104,7 +5104,7 @@
         "en": "3.9 – Limiting disclosure",
         "fr": ""
       },
-      "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0]Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
+      "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
       "section": "3.9",
       "elements": [
         {
