@@ -105,6 +105,7 @@
     <None Remove="ClientApp\src\pa\paSurvey.ts" />
     <None Remove="ClientApp\src\pia\pia_test_data.ts" />
     <None Remove="ClientApp\src\pid\pidSurvey.ts" />
+    <None Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
     <None Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
     <None Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
     <None Remove="ClientApp\src\problemDetails.ts" />
@@ -128,6 +129,7 @@
     <WebpackInputs Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\pia_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pid\pidSurvey.ts" />
+    <WebpackInputs Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />

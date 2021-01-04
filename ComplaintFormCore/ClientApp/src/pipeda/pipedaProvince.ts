@@ -1,6 +1,6 @@
 ﻿import { PipedaProvinceData } from "./pipedaProvinceData";
 
-export class PipedaProvince {
-    public French: PipedaProvinceData = new PipedaProvinceData();
-    public English: PipedaProvinceData = new PipedaProvinceData();
+export interface PipedaProvince {
+    English: PipedaProvinceData;
+    French: PipedaProvinceData;
 }

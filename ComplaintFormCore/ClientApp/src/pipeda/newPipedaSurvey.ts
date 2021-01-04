@@ -1,9 +1,11 @@
-import { Question, SurveyError, SurveyModel } from "survey-vue";
+import { SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import { CheckboxWidget } from "../widgets/checkboxwidget";
+import { Question, SurveyError } from "../../node_modules/survey-vue/survey.vue";
+import { PipedaProvince } from "./pipedaProvince";
+import { PipedaProvinceData, PipedaProvincesData } from "./pipedaProvinceData";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
-export class NewPaSurvey extends SurveyBase {
+export class NewPipedaSurvey extends SurveyBase {
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
@@ -15,7 +17,6 @@ export class NewPaSurvey extends SurveyBase {
     }
 
     protected registerWidgets(): void {
-        CheckboxWidget.register();
         FileMeterWidget.register();
     }
 
@@ -28,6 +29,10 @@ export class NewPaSurvey extends SurveyBase {
 
         this.survey.onComplete.add((sender: SurveyModel, options: any) => {
             this.handleOnComplete(sender, options);
+        });
+
+        this.survey.onValueChanged.add((sender: SurveyModel, options: any) => {
+            this.handleOnValueChanged(sender, options);
         });
 
         this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
@@ -45,7 +50,7 @@ export class NewPaSurvey extends SurveyBase {
             return;
         }
 
-        const validationUrl = `/api/PASurvey/Validate?complaintId=${this.authToken}`;
+        const validationUrl = `/api/PipedaSurvey/Validate?complaintId=${this.authToken}`;
 
         void (async () => {
             // Validate the survey results
@@ -68,7 +73,7 @@ export class NewPaSurvey extends SurveyBase {
                     // options.errors in only able to set one error per question
                     options.errors[q] = problem.errors[q][0];
 
-                    const question = this.survey.getQuestionByName(q);
+                    const question = sender.getQuestionByName(q);
                     if (question && question["errors"]) {
                         question.clearErrors();
                         questions.push(question);
@@ -87,7 +92,7 @@ export class NewPaSurvey extends SurveyBase {
             }
 
             const validationOptions = {
-                page: this.survey.currentPage,
+                page: sender.currentPage,
                 questions: questions,
                 errors: errors
             };
@@ -98,7 +103,7 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PASurvey/Complete?complaintId=${this.authToken}`;
+            const completeUrl = `/api/PipedaSurvey/Complete?complaintId=${this.authToken}`;
 
             options.showDataSaving();
 
@@ -127,6 +132,25 @@ export class NewPaSurvey extends SurveyBase {
 
             options.showDataSavingSuccess();
         })();
+    }
+
+    private handleOnValueChanged(sender: SurveyModel, options: any): void {
+        const question = options.question as Question;
+        const value = options.value;
+
+        if (question.name !== "ProvinceIncidence" || value === null) {
+            return;
+        }
+
+        const provinceId = Number(value);
+        const province = PipedaProvincesData.get(provinceId) as PipedaProvince;
+        const provinceData: PipedaProvinceData = this.survey.locale === "fr" ? province.French : province.English;
+
+        this.survey.setVariable("province_incidence_prefix_au", provinceData.FrenchPrefix_Au); // en, au, à...
+        this.survey.setVariable("province_incidence_prefix_du", provinceData.FrenchPrefix_Du); // de, du, de la...
+        this.survey.setVariable("province_link", provinceData.Province_link);
+        this.survey.setVariable("link_province_opc", provinceData.Link_province_opc);
+        this.survey.setVariable("link_more_info", provinceData.Link_more_info);
     }
 
     private handleOnUploadFiles(sender: SurveyModel, options: any): void {
