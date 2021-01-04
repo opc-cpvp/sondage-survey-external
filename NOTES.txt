@@ -157,6 +157,8 @@
     }
 }
 
+<section class='alert alert-info'><p></p></section>
+
 //*******************************************************************************************
 
  globalThis.initPaSurvey = async (lang, token) => {

@@ -1,138 +1,272 @@
 {
-    "pages": [
+  "pages": [
+    {
+      "name": "page_intro",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool",
+        "fr": ""
+      },
+      "elements": [
         {
-            "name": "page_intro",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool",
-                "fr": ""
-            },
-            "elements": [
-                {
-                    "type": "html",
-                    "html": {
-                        "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the <em>Privacy Act</em>, or s 37(2) of the <em>Department of Employment and Social Development Act</em> (DESDA).</p><p>For more information about how the OPC manages personal information, please see our <a href='https//www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a></p></section>",
-                        "fr": ""
-                    }
-                }
-            ]
-        },
-        {
-            "name": "page_q_1_0",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool - Question 1.0",
-                "fr": ""
-            },
-            "elements": [
-                {
-                    "type": "dropdown",
-                    "name": "Institution",
-                    "title": {
-                        "en": "Institution name",
-                        "fr": ""
-                    },
-                    "isRequired": true,
-                    "choicesByUrl": {
-                        "url": "/api/Institution/GetAll?lang={locale}",
-                        "titleName": "name",
-                        "valueName": "value"
-                    }
-                }
-            ]
-        },
-        {
-            "name": "page_q_1_1",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool - Question 1.1",
-                "fr": ""
-            },
-            "elements": [
-                {
-                    "type": "html",
-                    "html": {
-                        "en": "<section class='alert alert-warning'><p>Attention: Before you proceed.</p></section>",
-                        "fr": ""
-                    }
-                },
-                {
-                    "type": "boolean",
-                    "name": "HasNotificationApproved",
-                    "title": {
-                        "en": "Has this notification been formally approved in accordance with your institution’s approval process?",
-                        "fr": ""
-                    },
-                    "description": {
-                        "en": "<p><section class='alert alert-info'><p>8(5) and 37(2) notifications must be approved by a delegated official. If you are unsure if you should submit a notification, please contact your institution’s Access to Information and Privacy (ATIP) coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a></p></section></p>",
-                        "fr": ""
-                    },
-                    "isRequired": true
-                },
-                {
-                    "type": "html",
-                    "visibleIf": "{HasNotificationApproved} = false",
-                    "html": {
-                        "en": "<p>Please ensure that your institution’s approval process has been completed before providing notification to our office. If you are unsure of who this is, please contact your institution’s Access to Information and Privacy (ATIP) Coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
-                        "fr": ""
-                    }
-                },
-                {
-                    "type": "html",
-                    "visibleIf": "{HasNotificationApproved} = true",
-                    "html": {
-                        "en": "Please provide the name and position title of the official responsible for approving this notification at your institution.",
-                        "fr": ""
-                    }
-                },
-                {
-                    "type": "text",
-                    "visibleIf": "{HasNotificationApproved} = true",
-                    "name": "",
-                    "isRequired": true,
-                    "title": {
-                        "en": "Name:",
-                        "fr": ""
-                    }
-                },
-                {
-                    "type": "text",
-                    "visibleIf": "{HasNotificationApproved} = true",
-                    "name": "",
-                    "isRequired": true,
-                    "title": {
-                        "en": "Position title:",
-                        "fr": ""
-                    }
-                }
-            ]
-        },
-        {
-            "name": "page_q_1_2",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool - Question 1.2",
-                "fr": ""
-            },
-            "elements": [
-
-            ]
-        },
-        {
-            "name": "page_q_1_3",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool - Question 1.3",
-                "fr": ""
-            },
-            "elements": [
-
-            ]
-        },
-        {
-            "name": "page_q_2_0",
-            "title": {
-                "en": "Public interest disclosure notification online submission tool - Question 2.0",
-                "fr": ""
-            },
-            "elements": [
-
-            ]
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the <em>Privacy Act</em>, or s 37(2) of the <em>Department of Employment and Social Development Act</em> (DESDA).</p><p>For more information about how the OPC manages personal information, please see our <a href='https//www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a></p></section>",
+            "fr": ""
+          }
         }
-    ]
+      ]
+    },
+    {
+      "name": "page_q_1_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "Institution",
+          "title": {
+            "en": "Institution name",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "/api/Institution/GetAll?lang={locale}",
+            "titleName": "name",
+            "valueName": "value"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.1",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-warning'><p>Attention: Before you proceed.</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "boolean",
+          "name": "HasNotificationApproved",
+          "title": {
+            "en": "Has this notification been formally approved in accordance with your institution’s approval process?",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>8(5) and 37(2) notifications must be approved by a delegated official. If you are unsure if you should submit a notification, please contact your institution’s Access to Information and Privacy (ATIP) coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a></p></section></p>",
+            "fr": ""
+          },
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "{HasNotificationApproved} = false",
+          "html": {
+            "en": "<p>Please ensure that your institution’s approval process has been completed before providing notification to our office. If you are unsure of who this is, please contact your institution’s Access to Information and Privacy (ATIP) Coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{HasNotificationApproved} = true",
+          "html": {
+            "en": "Please provide the name and position title of the official responsible for approving this notification at your institution.",
+            "fr": ""
+          }
+        },
+        {
+          "type": "text",
+          "visibleIf": "{HasNotificationApproved} = true",
+          "name": "ApproverName",
+          "isRequired": true,
+          "title": {
+            "en": "Name:",
+            "fr": ""
+          }
+        },
+        {
+          "type": "text",
+          "visibleIf": "{HasNotificationApproved} = true",
+          "name": "ApproverTitle",
+          "isRequired": true,
+          "title": {
+            "en": "Position title:",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_2",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.2",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Please provide the name and email address of the appropriate contact at your institution </p><section class='alert alert-info'><p>Please note that the contact should be the person best able to speak to this specific disclosure should OPC have additional questions. The contact will also receive acknowledgement of the notification. The position level of the contact is at the discretion of your institution.</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "text",
+          "name": "ContactName",
+          "isRequired": true,
+          "title": {
+            "en": "Name:",
+            "fr": ""
+          }
+        },
+        {
+          "type": "text",
+          "name": "ContactEmail",
+          "inputType": "email",
+          "isRequired": true,
+          "title": {
+            "en": "Email address:",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_3",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.3",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "text",
+          "name": "ReferenceFileNumber",
+          "title": {
+            "en": "If applicable, please provide your institutional reference or file number",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>The OPC recommends that your institution have a reference number to enable better internal tracking and communication with our office.</p></section></p>",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_2_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "TimingOfDisclosure",
+          "title": {
+            "en": "Please provide information about the timing of the disclosure",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "The disclosure has already taken place",
+                "fr": ""
+              },
+              "value": "already"
+            },
+            {
+              "text": {
+                "en": "The disclosure will take place in the future",
+                "fr": ""
+              },
+              "value": "future"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_2_0_a",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": ""
+      },
+      "visibleIf": "{TimingOfDisclosure} contains 'already'",
+      "elements": [
+        {
+          "type": "datepicker",
+          "name": "DateOfDisclosure",
+          "title": {
+            "en": "Date of Disclosure",
+            "fr": ""
+          },
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date",
+          "config": {
+            "maxDate": 0
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosurePriorToNotificationExplanation",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why the disclosure occurred prior to notification",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>The Privacy Act states that institutions are to notify the Privacy Commissioner prior to the disclosure where reasonably practicable or in any other case forthwith on the disclosure</p></section></p>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "WasNotPracticalToNotifyPCPrior",
+          "title": {
+            "en": "Notification to the Privacy Commissioner",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional information concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "It was not reasonably practical to notify the Privacy Commissioner prior to the disclosure",
+                "fr": ""
+              },
+              "value": "not_practical"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NotPracticalToNotifyOPCPriorAddiotnalInfo",
+          "visibleIf": "{WasNotPracticalToNotifyPCPrior} contains 'not_practical'",
+          "titleLocation": "hidden"
+        }
+      ]
+    },
+    {
+      "name": "page_q_3_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": ""
+      },
+      "elements": [
+
+      ]
+    }
+  ]
 }
