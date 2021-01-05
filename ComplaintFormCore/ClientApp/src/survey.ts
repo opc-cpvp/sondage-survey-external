@@ -146,6 +146,12 @@ export abstract class SurveyBase {
         this.survey.showPreviewBeforeComplete = "showAllQuestions";
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
+
+        //  The default value for this is true. That means when using hasOther = true for a checkbox type question,
+        //  SurveyJS creates an new property with name 'PropertyName-Comment'. Problem occurs when trying to convert
+        //  the survey data into C# object, dashes are not permitted in C#. This is much simpler to just set
+        //  storeOthersAsComment = false and then any 'other' item is passed to the back as is (e.g. in string).
+        this.survey.storeOthersAsComment = false;
     }
 
     private setSurveyLocalizations(): void {

@@ -68,7 +68,7 @@ declare let Symbol;
 
         const storageName_PA = "SurveyJS_LoadState_PA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-        // const storageName_PBR = "SurveyJS_LoadState_PBR";
+        const storageName_PID = "SurveyJS_LoadState_PID";
 
         globalThis.initPbr = (lang, token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
@@ -99,17 +99,7 @@ declare let Symbol;
 
         globalThis.initPidSurvey = async (lang: "fr" | "en", token) => {
             const jsonUrl = "/sample-data/survey_pid.json";
-
-            /*
-            await import("./pa/pa_test_data")
-                .then(testData => testData.paTestData2)
-                .then(testData => {
-                    const storage = new LocalStorage();
-                    storage.save(storageName_PA, testData);
-                });
-            */
-
-            const pidSurvey = new PidSurvey(lang, token, storageName_PA);
+            const pidSurvey = new PidSurvey(lang, token, storageName_PID);
             await pidSurvey.loadSurveyFromUrl(jsonUrl);
             pidSurvey.renderSurvey();
         };

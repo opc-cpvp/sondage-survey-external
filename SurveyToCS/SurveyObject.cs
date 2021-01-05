@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -61,7 +61,9 @@ namespace SurveyToCS
         public List<Choices> choices { get; set; }
 
         public string visibleIf { get; set; }
-    }
+
+		public bool? hasOther { get; set; }
+	}
 
     public class Title
     {

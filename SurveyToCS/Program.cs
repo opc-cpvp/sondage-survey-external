@@ -15,7 +15,7 @@ namespace SurveyToCS
 {
     class Program
     {
-        private static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "tagbox", "radiogroup", "boolean", "panel", "file", "checkbox" };
+        private static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "tagbox", "radiogroup", "boolean", "panel", "file", "checkbox", "datepicker" };
         private static readonly List<string> _dynamicElements = new List<string>() { "matrixdynamic", "paneldynamic" };
 
         private static List<Element> _surveyAllElements;
@@ -23,8 +23,8 @@ namespace SurveyToCS
         static void Main(string[] args)
         {
             //string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
-            string className = "SurveyPipedaModel";
+            string json = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pid.json";
+            string className = "SurveyPIDModel";
 
             string line = Console.ReadLine();
             if (line == "c")
@@ -427,10 +427,13 @@ namespace SurveyToCS
 
             csharp.AppendLine("}"); // end constructor
 
-            foreach (var methods in survey.calculatedValues)
-            {
-                BuildCalculatedValues(csharp, methods);
-            }
+			if(survey.calculatedValues != null)
+			{
+				foreach (var methods in survey.calculatedValues)
+				{
+					BuildCalculatedValues(csharp, methods);
+				}
+			}
 
             csharp.AppendLine("}"); // end main class
             csharp.AppendLine("}");// end namespace
@@ -471,25 +474,28 @@ namespace SurveyToCS
 
             csharp.AppendLine();
 
-            //
             string visibleIf = GetVisibleIfFullCondition(element, parentPage, parentPanel);
-            string requiredIf = GetRequiredIfFullCondition(element, parentPage, parentPanel);
 
-            string condition = visibleIf;
-            if (!string.IsNullOrWhiteSpace(requiredIf))
-            {
-                condition = requiredIf;
-            }
+            //string condition = visibleIf;
+            //if (!string.IsNullOrWhiteSpace(requiredIf))
+            //{
+            //    condition = requiredIf;
+            //}
 
             if (element.isRequired)
             {
                 BuildRequiredValidator(csharp, elementName, visibleIf);
             }
 
-            if (!string.IsNullOrWhiteSpace(requiredIf))
-            {
-                BuildRequiredValidator(csharp, elementName, requiredIf);
-            }
+			if(!string.IsNullOrWhiteSpace(element.requiredIf))
+			{
+				string requiredIf = GetRequiredIfFullCondition(element, parentPage, parentPanel);
+
+				if (!string.IsNullOrWhiteSpace(requiredIf))
+				{
+					BuildRequiredValidator(csharp, elementName, requiredIf);
+				}
+			}
 
             if (type == "comment")
             {
@@ -965,11 +971,18 @@ namespace SurveyToCS
 
         private static void BuildListValidator(StringBuilder csharp, Element element, string condition)
         {
-            //  Check if selected option is in the list of valid options
+			//  Check if selected option is in the list of valid options
 
-            //RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
+			if (element.hasOther == true)
+			{
+				//	Unfortunatly if using hasOther it is impossible to validate the data against a valid list because
+				//	the 'other' can be anything
+				return;
+			}
 
-            string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+			//RuleFor(x => x.ContactATIPQ18).Must(x => new List<string> { "receive_email", "no_email", "conduct_pia" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("ItemNotValid"));
+
+			string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
             string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
             if (type == "checkbox" || type == "tagbox")
@@ -995,9 +1008,11 @@ namespace SurveyToCS
 
                 if (i < element.choices.Count - 1)
                 {
-                    csharp.Append(",");
-                }
+					csharp.Append(",");
+				}
             }
+
+
 
             csharp.Append("}.Contains(x))");
 

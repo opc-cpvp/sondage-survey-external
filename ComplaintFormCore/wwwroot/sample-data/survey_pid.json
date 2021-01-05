@@ -259,6 +259,176 @@
       ]
     },
     {
+      "name": "page_q_2_0_b",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": ""
+      },
+      "visibleIf": "{TimingOfDisclosure} contains 'future'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "AnticipatedDateOfDisclosureKnown",
+          "title": {
+            "en": "Anticipated Date of Disclosure",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Known anticipated date of diclosure",
+                "fr": ""
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "Unknown anticipated date of diclosure",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "datepicker",
+          "name": "AnticipatedDateOfDisclosure",
+          "visibleIf": "{AnticipatedDateOfDisclosureKnown} contains 'yes'",
+          "title": {
+            "en": "Anticipated Date of Disclosure",
+            "fr": ""
+          },
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date"
+        },
+        {
+          "type": "comment",
+          "name": "AnticipatedDateOfDisclosureText",
+          "visibleIf": "{AnticipatedDateOfDisclosureKnown} contains 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "If you do not know the exact date, please use the open text box to enter an anticipated month, date range, etc.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_3_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 3.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "LegislativeAuthority",
+          "title": {
+            "en": "Please indicate under what legislative authority the disclosure was/will be made",
+            "fr": ""
+          },
+          "description": {
+            "en": "Choose all that apply",
+            "fr": ""
+          },
+          "isRequired": true,
+          "hasOther": true,
+          "otherText": {
+            "en": "Other legal authority",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "PA 8(2)(m)(i) – in the public interest",
+                "fr": ""
+              },
+              "value": "public"
+            },
+            {
+              "text": {
+                "en": "PA 8(2)(m)(ii) – in the interest of the individual ",
+                "fr": ""
+              },
+              "value": "individual"
+            },
+            {
+              "text": {
+                "en": "DESDA 37(1)",
+                "fr": ""
+              },
+              "value": "desda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_3_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 3.1",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "OtherOptionsForDisclosure",
+          "title": {
+            "en": "Has the institution considered other options for this disclosure, such as subsections 8(2)(a) through 8(2)(l) of the Privacy Act? ",
+            "fr": ""
+          },
+          "description": {
+            "en": "It is possible another legislative authority may be more appropriate for the disclosure. Please note that in certain circumstances, personal information cannot be disclosed under s 8(2)(m) of the Privacy Act, because its disclosure is prohibited by other legislation.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, the institution considered other options for this disclosure and determined that this is the most appropriate course of action",
+                "fr": ""
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No, the institution did not consider other options for this disclosure",
+                "fr": ""
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "No, subsections 8(2)(a) through 8(2)(l) of the Privacy Act do not apply for this disclosure",
+                "fr": ""
+              },
+              "value": "not_apply"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "OtherOptionsForDisclosureAdditonalInfo",
+          "title": {
+            "en": "Additional information ",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_4_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 4.0",
+        "fr": ""
+      },
+      "elements": [
+
+      ]
+    },
+    {
       "name": "page_q_3_0",
       "title": {
         "en": "Public interest disclosure notification online submission tool - Question 2.0",

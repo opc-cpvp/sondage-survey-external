@@ -1,4 +1,4 @@
-using ComplaintFormCore.Models.pid;
+using ComplaintFormCore.Models;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
