@@ -126,6 +126,40 @@ export abstract class SurveyBase {
         });
     }
 
+    // TODO: This method should actually be converted into a widget.
+    protected registerCustomProperties(): void {
+        // This is a survey property that will hold the information as to if the user has reached the 'Preview'
+        // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
+        // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
+        JsonObject.metaData.addProperty("survey", {
+            name: "passedPreviewPage:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("page", {
+            name: "hideOnPDF:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("page", {
+            name: "hideOnPreview:boolean",
+            default: false
+        });
+
+        JsonObject.metaData.addProperty("panel", {
+            name: "hideOnPDF:boolean",
+            default: false
+        });
+
+        // This is to hide page and panel we don't want to show on preview.
+        // Pages or Panels that contains exclusively information html for example.
+        // The reason why it is working for is because on preview, the pages become panels
+        JsonObject.metaData.addProperty("panel", {
+            name: "hideOnPreview:boolean",
+            default: false
+        });
+    }
+
     private setSurveyProperties(): void {
         // Set Theme
         StylesManager.applyTheme("bootstrap");
@@ -225,39 +259,5 @@ export abstract class SurveyBase {
         }
 
         this.displayErrorSummary(questionErrors);
-    }
-
-    // TODO: This method should actually be converted into a widget.
-    private registerCustomProperties(): void {
-        // This is a survey property that will hold the information as to if the user has reached the 'Preview'
-        // page at least once. The idea is if the user has reached the 'Preview' page he can always go back to it after
-        // editing a page. This will be usefull for very long survey after a user decided to edit an item from the preview page.
-        JsonObject.metaData.addProperty("survey", {
-            name: "passedPreviewPage:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("page", {
-            name: "hideOnPDF:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("page", {
-            name: "hideOnPreview:boolean",
-            default: false
-        });
-
-        JsonObject.metaData.addProperty("panel", {
-            name: "hideOnPDF:boolean",
-            default: false
-        });
-
-        // This is to hide page and panel we don't want to show on preview.
-        // Pages or Panels that contains exclusively information html for example.
-        // The reason why it is working for is because on preview, the pages become panels
-        JsonObject.metaData.addProperty("panel", {
-            name: "hideOnPreview:boolean",
-            default: false
-        });
     }
 }

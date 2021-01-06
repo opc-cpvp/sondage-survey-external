@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "PIA E-Tool";
 }
 
@@ -19,55 +19,44 @@
 </div>
 
 <div id="surveyResult"></div>
-
-<center>
-    <div id="div_navigation">
-        <button id="btnSurveyPrev" onclick="prevPage(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyPrev")</button>
-        <button id="btnSurveyNext" onclick="nextPage(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnSurveyNext")</button>
-        <button id="btnShowPreview" onclick="showPreview(survey);" class="btn btn-primary hidden">@Localizer.GetLocalizedString("btnShowPreview")</button>
-        <button id="btnComplete" data-style="contract-overlay" data-size="l" data-spinner-color="#FFFFFF" onclick="completeSurvey(this, survey)" class="btn btn-primary ladda-button hidden">@Localizer.GetLocalizedString("btnComplete")</button>
-        <button id="btnStart" onclick="startSurvey(survey);" class="btn btn-primary hidden">Start</button>
-    </div>
-</center>
-<br />
 <ul class="breadcrumb" role="tablist" id="ul_pia_navigation">
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '0')" id="li_breadcrumb_0">
+    <li class="breadcrumb-item" onclick="gotoSection('0')" id="li_breadcrumb_0">
         <p>Information</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '1')" id="li_breadcrumb_1">
+    <li class="breadcrumb-item" onclick="gotoSection('1')" id="li_breadcrumb_1">
         <p>@Localizer.GetLocalizedString("liStep_1")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '2')" id="li_breadcrumb_2">
+    <li class="breadcrumb-item" onclick="gotoSection('2')" id="li_breadcrumb_2">
         <p>@Localizer.GetLocalizedString("liStep_2")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3')" id="li_breadcrumb_3">
+    <li class="breadcrumb-item" onclick="gotoSection('3')" id="li_breadcrumb_3">
         <p>@Localizer.GetLocalizedString("liStep_3")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.3')" id="li_breadcrumb_3.3">
+    <li class="breadcrumb-item" onclick="gotoSection('3.3')" id="li_breadcrumb_3.3">
         <p>@Localizer.GetLocalizedString("liStep_33")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.4')" id="li_breadcrumb_3.4">
+    <li class="breadcrumb-item" onclick="gotoSection('3.4')" id="li_breadcrumb_3.4">
         <p>@Localizer.GetLocalizedString("liStep_34")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.5')" id="li_breadcrumb_3.5">
+    <li class="breadcrumb-item" onclick="gotoSection('3.5')" id="li_breadcrumb_3.5">
         <p>@Localizer.GetLocalizedString("liStep_35")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.6')" id="li_breadcrumb_3.6">
+    <li class="breadcrumb-item" onclick="gotoSection('3.6')" id="li_breadcrumb_3.6">
         <p>@Localizer.GetLocalizedString("liStep_36")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.7')" id="li_breadcrumb_3.7">
+    <li class="breadcrumb-item" onclick="gotoSection('3.7')" id="li_breadcrumb_3.7">
         <p>@Localizer.GetLocalizedString("liStep_37")</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.8')" id="li_breadcrumb_3.8">
+    <li class="breadcrumb-item" onclick="gotoSection('3.8')" id="li_breadcrumb_3.8">
         <p>Step 3.8</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.9')" id="li_breadcrumb_3.9">
+    <li class="breadcrumb-item" onclick="gotoSection('3.9')" id="li_breadcrumb_3.9">
         <p>Step 3.9</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.10')" id="li_breadcrumb_3.10">
+    <li class="breadcrumb-item" onclick="gotoSection('3.10')" id="li_breadcrumb_3.10">
         <p>Step 3.10</p>
     </li>
-    <li class="breadcrumb-item" onclick="gotoSection(survey, '3.11')" id="li_breadcrumb_3.11">
+    <li class="breadcrumb-item" onclick="gotoSection('3.11')" id="li_breadcrumb_3.11">
         <p>Step 3.11</p>
     </li>
 </ul>

@@ -98,25 +98,26 @@
     <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
     <None Remove="ClientApp\src\models\problemDetails.ts" />
     <None Remove="ClientApp\src\multiLanguageProperty.ts" />
-    <None Remove="ClientApp\src\pbr\pbrSurvey.ts" />
+    <None Remove="ClientApp\src\pa\paSurvey.ts.old" />
+    <None Remove="ClientApp\src\pbr\pbrSurvey.ts.old" />
     <None Remove="ClientApp\src\pbr\pbr_test_data.ts" />
     <None Remove="ClientApp\src\pa\pa_test_data.ts" />
-    <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
-    <None Remove="ClientApp\src\pa\paSurvey.ts" />
+    <None Remove="ClientApp\src\pia\newPiaToolSurvey.ts" />
+    <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts.old" />
     <None Remove="ClientApp\src\pia\pia_test_data.ts" />
     <None Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
     <None Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
     <None Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
     <None Remove="ClientApp\src\problemDetails.ts" />
-    <None Remove="ClientApp\src\surveyFile.ts" />
+    <None Remove="ClientApp\src\surveyFile.ts.old" />
     <None Remove="ClientApp\src\surveyHelper.ts" />
-    <None Remove="ClientApp\src\surveyInit.ts" />
-    <None Remove="ClientApp\src\surveyLocalStorage.ts" />
-    <None Remove="ClientApp\src\surveyNavigation.ts" />
+    <None Remove="ClientApp\src\SurveyInit.ts.old" />
+    <None Remove="ClientApp\src\SurveyLocalStorage.ts.old" />
+    <None Remove="ClientApp\src\surveyNavigation.ts.old" />
     <None Remove="ClientApp\src\surveyPDF.ts" />
     <None Remove="ClientApp\src\testSurvey.ts" />
     <None Remove="ClientApp\src\tests\SampleSurvey.ts" />
-    <None Remove="ClientApp\src\tests\testSurvey.ts" />
+    <None Remove="ClientApp\src\tests\testSurvey.ts.old" />
   </ItemGroup>
 
   <ItemGroup>
@@ -127,38 +128,42 @@
     <WebpackInputs Remove="ClientApp\src\models\localStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\pbr\pbrSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\pbr_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pa\pa_test_data.ts" />
-    <WebpackInputs Remove="ClientApp\src\pia\piaE-ToolSurvey.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\newPiaToolSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\pia_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
     <WebpackInputs Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
     <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyFile.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyInit.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyLocalStorage.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyNavigation.ts" />
     <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
     <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Update="ClientApp\src\surveyFile.ts">
+    <TypeScriptCompile Include="ClientApp\src\pa\paSurvey.ts.old" />
+    <TypeScriptCompile Include="ClientApp\src\pbr\pbrSurvey.ts.old" />
+    <TypeScriptCompile Include="ClientApp\src\pia\piaE-ToolSurvey.ts.old" />
+    <TypeScriptCompile Include="ClientApp\src\pipeda\pipedaSurvey.ts.old" />
+    <TypeScriptCompile Include="ClientApp\src\surveyFile.ts.old">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\SurveyInit.ts.old">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\SurveyLocalStorage.ts.old">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\surveyNavigation.ts.old" />
+    <TypeScriptCompile Include="ClientApp\src\tests\testSurvey.ts.old" />
+  </ItemGroup>
+
+  <ItemGroup>
     <TypeScriptCompile Update="ClientApp\src\surveyHelper.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
-    <TypeScriptCompile Update="ClientApp\src\SurveyInit.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
-    <TypeScriptCompile Update="ClientApp\src\SurveyLocalStorage.ts">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </TypeScriptCompile>

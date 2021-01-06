@@ -5,17 +5,15 @@ import "details-polyfill"; //  Polyfill to open/close the <details> tags
 import "element-closest-polyfill"; //  Polyfill to use Element.closest
 
 import * as Survey from "survey-vue";
-import { TestSurvey } from "./tests/testSurvey";
 import { NewPaSurvey } from "./pa/newPaSurvey";
-import { surveyPdfExport } from "./surveyPDF";
-import * as SurveyNavigation from "./surveyNavigation";
-import { PiaETool } from "./pia/piaE-ToolSurvey";
-import { PipedaTool } from "./pipeda/pipedaSurvey";
-import { PbrSurvey } from "./pbr/pbrSurvey";
-import { LocalStorage } from "./localStorage";
 import { NewPbrSurvey } from "./pbr/newPbrSurvey";
-import { SurveyState } from "./models/surveyState";
+import { NewPiaToolSurvey } from "./pia/newPiaToolSurvey";
 import { NewPipedaSurvey } from "./pipeda/newPipedaSurvey";
+import { TestSurvey } from "./tests/testSurvey";
+import * as SurveyNavigation from "./surveyNavigation";
+import { surveyPdfExport } from "./surveyPDF";
+import { LocalStorage } from "./localStorage";
+import { SurveyState } from "./models/surveyState";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -27,15 +25,15 @@ declare global {
 
     function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
-    function initPiaETool(lang: string, token: string): void;
+    function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 
-    function gotoSection(survey: Survey.SurveyModel, section: string): void;
-    function gotoPage(survey: Survey.SurveyModel, pageName: string): void;
+    function gotoSection(section: string): void;
+    function gotoPage(pageName: string): void;
 }
 
 declare let Symbol;
@@ -67,6 +65,7 @@ declare let Symbol;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
         const storageName_PA = "SurveyJS_LoadState_PA";
+        const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
         const storageName_PBR = "SurveyJS_LoadState_PBR";
 
@@ -94,54 +93,61 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            /*
-            await import("./pa/pa_test_data").then(testData => {
-                const storage = new LocalStorage();
+            // await import("./pa/pa_test_data").then(testData => {
+            //     const storage = new LocalStorage();
 
-                const storageData = {
-                    currentPageNo: 0,
-                    data: testData.paTestData2
-                } as SurveyState;
+            //     const storageData = {
+            //         currentPageNo: 0,
+            //         data: testData.paTestData2
+            //     } as SurveyState;
 
-                storage.save(storageName_PA, storageData);
-            });
-            */
+            //     storage.save(storageName_PA, storageData);
+            // });
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.renderSurvey();
         };
 
-        globalThis.initPiaETool = (lang, token) => {
+        globalThis.initPiaETool = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
-            const piaETool = new PiaETool();
-            piaETool.init(jsonUrl, lang, token);
 
-            globalThis.gotoSection = (survey, section) => {
-                piaETool.gotoSection(survey, section);
+            // await import("./pia/pia_test_data").then(testData => {
+            //    const storage = new LocalStorage();
+
+            //    const storageData = {
+            //        currentPageNo: 0,
+            //        data: testData.piaTestData
+            //    } as SurveyState;
+
+            //    storage.save(storageName_PIA, storageData);
+            // });
+
+            const piaSurvey = new NewPiaToolSurvey(lang, token, storageName_PIA);
+            await piaSurvey.loadSurveyFromUrl(jsonUrl);
+            piaSurvey.renderSurvey();
+
+            globalThis.gotoSection = section => {
+                piaSurvey.gotoSection(section);
             };
 
-            globalThis.gotoPage = (survey, pageName) => {
-                piaETool.gotoPage(survey, pageName);
-            };
-
-            globalThis.nextPage = survey => {
-                piaETool.nextPage(survey);
+            globalThis.gotoPage = pageName => {
+                piaSurvey.gotoPage(pageName);
             };
         };
 
         globalThis.initPipeda = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pipeda_complaint.json";
 
-            // await import("././pipeda_test_data").then(testData => {
-            //    const storage = new LocalStorage();
+            // await import("./pipeda/pipeda_test_data").then(testData => {
+            //     const storage = new LocalStorage();
 
-            //    const storageData = {
-            //        currentPageNo: 0,
-            //        data: testData.testData_pipeda
-            //    } as SurveyState;
+            //     const storageData = {
+            //         currentPageNo: 0,
+            //         data: testData.testData_pipeda
+            //     } as SurveyState;
 
-            //    storage.save(storageName_PIPEDA, storageData);
+            //     storage.save(storageName_PIPEDA, storageData);
             // });
 
             const pipedaSurvey = new NewPipedaSurvey(lang, token, storageName_PIPEDA);

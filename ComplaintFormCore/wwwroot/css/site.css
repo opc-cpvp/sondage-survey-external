@@ -1,4 +1,4 @@
-﻿
+
 /*  The question titles are being rendered as <h5> by Survey.js and the css from GoC doesn't set
     the style desired */
 .sv_q_title {
@@ -39,32 +39,11 @@
 }
 
 /* Progress bar native style except for the color blue (#007292)*/
-.sv_main .sv_progress {
-    background-color: #e7e7e7;
-    margin-bottom: 2em;
+
+.sv_main .progress-bar {
+    min-width: 100px !important;
 }
 
-.sv_main .sv_progress_bar {
-    background-color: #007292;
-}
-
-.sv_main .sv_container .sv_body .sv_progress {
-    height: 0.3em;
-}
-
-    .sv_main .sv_container .sv_body .sv_progress .sv_progress_bar {
-        height: 100%;
-        min-width: 100px;
-        position: relative;
-        margin-top: 2em;
-    }
-
-        .sv_main .sv_container .sv_body .sv_progress .sv_progress_bar > span {
-            position: absolute;
-            top: -1.5em;
-            display: inline-block;
-            white-space: nowrap;
-        }
 /* end progress bar ***********************/
 
 .alert, .label-danger {
@@ -117,7 +96,7 @@
     margin-left: 1.3125em;
     padding: 0.125em 0.1875em;
     border-radius: 0.75em;
-    background-color: #007292;
+    background-color: #007292 !important;
 }
 
 [dir="rtl"] .sv-boolean__switch, [style*="direction:rtl"] .sv-boolean__switch {
