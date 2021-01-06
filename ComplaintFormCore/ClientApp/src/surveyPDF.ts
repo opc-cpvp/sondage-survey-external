@@ -1,7 +1,7 @@
-﻿import * as Survey from "survey-vue";
-import * as SurveyCore from "survey-core"; //  SurveyPDF is using survey-core
-import * as SurveyPDF from "survey-pdf";
-import * as showdown from "showdown";
+﻿import { IElement, Model, PageModel, PanelModelBase, Question, QuestionHtmlModel, QuestionSelectBase } from "survey-vue";
+import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
+import { AdornersOptions, SurveyPDF } from "survey-pdf";
+import { Converter } from "showdown";
 
 export class surveyPdfExport {
     private pdfOptions = {
@@ -44,7 +44,7 @@ export class surveyPdfExport {
     }
 
     private modifySurveyJsonforPDF(json_pdf: any, lang: string): string {
-        const originalSurvey = new Survey.Model(json_pdf);
+        const originalSurvey = new Model(json_pdf);
         originalSurvey.locale = lang;
 
         //  The idea is to convert each survey pages into survey panels
@@ -62,7 +62,7 @@ export class surveyPdfExport {
             elements: [] as any
         };
 
-        originalSurvey.pages.forEach((page: Survey.PageModel) => {
+        originalSurvey.pages.forEach((page: PageModel) => {
             const hideOnPDF = page.getPropertyValue("hideOnPDF");
 
             if (!hideOnPDF && page.isVisible) {
@@ -74,7 +74,7 @@ export class surveyPdfExport {
                     elements: [] as any
                 };
 
-                page.elements.forEach((element: Survey.IElement) => {
+                page.elements.forEach((element: IElement) => {
                     this.setElements(panel, element);
                 });
 
@@ -87,9 +87,9 @@ export class surveyPdfExport {
         return JSON.stringify(root);
     }
 
-    private setElements(panel: any, element: Survey.IElement): any {
-        if (element instanceof Survey.PanelModelBase) {
-            const panelBase = element as Survey.PanelModelBase;
+    private setElements(panel: any, element: IElement): any {
+        if (element instanceof PanelModelBase) {
+            const panelBase = element;
 
             //  'hideOnPDF' is a custom property that the can be set in the json
             let hideOnPDF = panelBase.getPropertyValue("hideOnPDF");
@@ -105,7 +105,7 @@ export class surveyPdfExport {
                         elements: [] as any
                     };
 
-                    panelBase.elements.forEach((panelElement: Survey.IElement) => {
+                    panelBase.elements.forEach((panelElement: IElement) => {
                         this.setElements(innerPanel, panelElement);
                     });
 
@@ -113,16 +113,12 @@ export class surveyPdfExport {
                 }
             }
         } else {
-            const question = element as Survey.Question;
+            const question = element as Question;
 
-            if (question instanceof Survey.QuestionHtmlModel) {
+            if (question instanceof QuestionHtmlModel) {
                 //  Do nothing
                 return;
-            } else if (
-                question instanceof Survey.QuestionRadiogroupModel ||
-                question instanceof Survey.QuestionDropdownModel ||
-                question instanceof Survey.QuestionCheckboxModel
-            ) {
+            } else if (question instanceof QuestionSelectBase) {
                 const newElement = {
                     name: question.name,
                     type: question.getType(),
@@ -148,13 +144,13 @@ export class surveyPdfExport {
         return;
     }
 
-    private buildFilePreview(survey: SurveyPDF.SurveyPDF, options: SurveyPDF.AdornersOptions, lang: string) {
-        const htmlQuestion: SurveyCore.Question = SurveyCore.QuestionFactory.Instance.createQuestion("html", "html_question");
+    private buildFilePreview(survey: SurveyPDF, options: AdornersOptions, lang: string) {
+        const htmlQuestion = QuestionFactory.Instance.createQuestion("html", "html_question");
 
         if (options.question.value && options.question.value.length > 0) {
             htmlQuestion.html = "<ol>";
 
-            options.question.value.forEach((fileItem: Survey.Question) => {
+            options.question.value.forEach((fileItem: Question) => {
                 htmlQuestion.html += "<li>";
 
                 const fileSizeInBytes = (fileItem.size as number) || 0;
@@ -184,7 +180,7 @@ export class surveyPdfExport {
         //  TODO: jf
         const flatHtml = options.repository.create(survey, htmlQuestion, options.controller, "html");
 
-        return new Promise(resolve => {
+        return new Promise<void>(resolve => {
             flatHtml
                 .generateFlats(options.point)
                 .then(htmlBricks => {
@@ -197,10 +193,10 @@ export class surveyPdfExport {
         });
     }
 
-    private initSurveyPDF(json: string, data: any, lang: string): SurveyPDF.SurveyPDF {
+    private initSurveyPDF(json: string, data: any, lang: string): SurveyPDF {
         //  From: https://embed.plnkr.co/qoxpmWp2XOUFlRDsk6ta/
 
-        const surveyPDF = new SurveyPDF.SurveyPDF(json, this.pdfOptions);
+        const surveyPDF = new SurveyPDF(json, this.pdfOptions);
         surveyPDF.locale = lang;
         surveyPDF.data = data;
         surveyPDF.showQuestionNumbers = "off";
@@ -209,7 +205,7 @@ export class surveyPdfExport {
         surveyPDF.mode = "display";
 
         //  Adding the markdown
-        const converter = new showdown.Converter();
+        const converter = new Converter();
         converter.setOption("simpleLineBreaks", true);
         converter.setOption("tasklists", true);
 
