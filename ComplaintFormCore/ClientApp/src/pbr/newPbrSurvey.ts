@@ -1,7 +1,7 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
 import * as Survey from "survey-vue";
-import * as widgets from "surveyjs-widgets";
+import { jqueryuidatepicker } from "surveyjs-widgets";
 
 export class NewPbrSurvey extends SurveyBase {
     private authToken: string;
@@ -15,7 +15,7 @@ export class NewPbrSurvey extends SurveyBase {
     }
 
     protected registerWidgets(): void {
-        widgets.jqueryuidatepicker(Survey);
+        jqueryuidatepicker(Survey);
     }
 
     protected registerEventHandlers(): void {

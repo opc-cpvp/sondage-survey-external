@@ -65,11 +65,11 @@ declare let Symbol;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
         const storageName_PA = "SurveyJS_LoadState_PA";
+        const storageName_PBR = "SurveyJS_LoadState_PBR";
         const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-        const storageName_PBR = "SurveyJS_LoadState_PBR";
 
-        globalThis.initPbr = async (lang: "fr" | "en", token) => {
+        globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
 
             // await import("./pbr/pbr_test_data")
