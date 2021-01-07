@@ -2,6 +2,7 @@ import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
 import * as Survey from "survey-vue";
 import * as widgets from "surveyjs-widgets";
+import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class PidSurvey extends SurveyBase {
     private authToken: string;
@@ -16,6 +17,7 @@ export class PidSurvey extends SurveyBase {
 
     protected registerWidgets(): void {
         widgets.jqueryuidatepicker(Survey);
+        FileMeterWidget.register();
     }
 
     protected registerEventHandlers(): void {
@@ -27,6 +29,14 @@ export class PidSurvey extends SurveyBase {
 
         this.survey.onComplete.add((sender: SurveyModel, options: any) => {
             this.handleOnComplete(sender, options);
+        });
+
+        this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnUploadFiles(sender, options);
+        });
+
+        this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnClearFiles(sender, options);
         });
     }
 
@@ -118,5 +128,51 @@ export class PidSurvey extends SurveyBase {
 
             options.showDataSavingSuccess();
         })();
+    }
+
+    private handleOnUploadFiles(sender: SurveyModel, options: any): void {
+        void (async () => {
+            const questionName: string = options.name;
+            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}&questionName=${questionName}`;
+            const formData = new FormData();
+
+            options.files.forEach(file => {
+                formData.append(file.name, file);
+            });
+
+            // Complete the survey
+            const response = await fetch(uploadUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                const problem = await response.json();
+                const questionErrors = new Map<Question, SurveyError[]>();
+
+                Object.keys(problem.errors).forEach(q => {
+                    const errors = problem.errors[q].map(error => new SurveyError(error, options.question));
+                    questionErrors.set(options.question, errors);
+                });
+
+                this.displayErrorSummary(questionErrors);
+                return;
+            }
+
+            const responseData = await response.json();
+            options.callback(
+                "success",
+                options.files.map(file => ({
+                    file: file,
+                    content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
+                        responseData[file.name].content as string
+                    }&filename=${file.name as string}`
+                }))
+            );
+        })();
+    }
+
+    private handleOnClearFiles(sender: SurveyModel, options: any): void {
+        options.callback("success");
     }
 }

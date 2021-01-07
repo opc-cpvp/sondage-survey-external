@@ -475,29 +475,24 @@ namespace SurveyToCS
             csharp.AppendLine();
 
             string visibleIf = GetVisibleIfFullCondition(element, parentPage, parentPanel);
+			string requiredIf = GetRequiredIfFullCondition(element, parentPage, parentPanel);
 
-            //string condition = visibleIf;
-            //if (!string.IsNullOrWhiteSpace(requiredIf))
-            //{
-            //    condition = requiredIf;
-            //}
+			//string condition = visibleIf;
+			//if (!string.IsNullOrWhiteSpace(requiredIf))
+			//{
+			//    condition = requiredIf;
+			//}
 
-            if (element.isRequired)
+			if (element.isRequired)
             {
                 BuildRequiredValidator(csharp, elementName, visibleIf);
             }
-
-			if(!string.IsNullOrWhiteSpace(element.requiredIf))
+			else if (!string.IsNullOrWhiteSpace(requiredIf))
 			{
-				string requiredIf = GetRequiredIfFullCondition(element, parentPage, parentPanel);
-
-				if (!string.IsNullOrWhiteSpace(requiredIf))
-				{
-					BuildRequiredValidator(csharp, elementName, requiredIf);
-				}
+				BuildRequiredValidator(csharp, elementName, requiredIf);
 			}
 
-            if (type == "comment")
+			if (type == "comment")
             {
                 BuildMaxLengthValidator(csharp, element, visibleIf);
             }
@@ -810,6 +805,11 @@ namespace SurveyToCS
             string anyof_pattern = @"{[a-zA-Z_]+}\sanyof\s\[[a-zA-Z,'_]+\]";
             string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
             string property_pattern = @"({[a-zA-Z_]+})";
+
+			if(string.IsNullOrWhiteSpace(parentPanel.requiredIf) && string.IsNullOrWhiteSpace(element.requiredIf))
+			{
+				return string.Empty;
+			}
 
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {

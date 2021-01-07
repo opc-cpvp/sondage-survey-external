@@ -425,6 +425,235 @@
         "fr": ""
       },
       "elements": [
+        {
+          "type": "checkbox",
+          "name": "DisclosureRecipients",
+          "title": {
+            "en": "Please indicate the disclosure recipient(s)",
+            "fr": ""
+          },
+          "description": {
+            "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "",
+                "fr": ""
+              },
+              "value": "yes"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "",
+          "title": {
+            "en": "",
+            "fr": ""
+          },
+          "description": {
+            "en": "",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "",
+                "fr": ""
+              },
+              "value": "yes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_5_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 5.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "DisclosingOfPIOneOrMultipleIndividual",
+          "title": {
+            "en": "Is the institution disclosing the personal information of one individual, or multiple individuals?",
+            "fr": ""
+          },
+          "description": {
+            "en": "The OPC asks institutions to provide the name of the affected individual(s) in the case our office determines it is necessary to inform the individual(s) of the disclosure, as per s 8(5) of the Privacy Act. The answer will also effect the structure of the questions that follow.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "One individual",
+                "fr": ""
+              },
+              "value": "single"
+            },
+            {
+              "text": {
+                "en": "Multiple individuals",
+                "fr": ""
+              },
+              "value": "multiple"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_5_1_a",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 5.1A",
+        "fr": ""
+      },
+      "visibleIf": "{DisclosingOfPIOneOrMultipleIndividual} contains 'single'",
+      "elements": [
+        {
+          "type": "text",
+          "name": "OneIndividualPIDisclosedName",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide the name of the individual whose personal information was/will be disclosed",
+            "fr": ""
+          },
+          "description": {
+            "en": "If the name of the individual is not known to the institution, please indicate “unknown”.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_5_1_b",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 5.1B",
+        "fr": ""
+      },
+      "visibleIf": "{DisclosingOfPIOneOrMultipleIndividual} contains 'multiple'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "MultipleIndividualsAddOption",
+          "title": {
+            "en": "Please provide the names of the individuals whose personal information was/will be disclosed.",
+            "fr": ""
+          },
+          "description": {
+            "en": "You may either add the names directly into the tool, or upload a spreadsheet.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Add names directly",
+                "fr": ""
+              },
+              "value": "directly"
+            },
+            {
+              "text": {
+                "en": "Upload ",
+                "fr": ""
+              },
+              "value": "upload"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "title": {
+            "en": "Multiple individuals",
+            "fr": ""
+          },
+          "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
+          "minRowCount": 1,
+          "rowCount": 1,
+          "name": "MultipleIndividuals",
+          "isRequired": true,
+          "addRowText": {
+            "en": "Add individuals",
+            "fr": ""
+          },
+          "removeRowText": {
+            "en": "Remove",
+            "fr": ""
+          },
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this individuals?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Name",
+              "cellType": "text",
+              "title": {
+                "en": "Name",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "FileMultipleIndividuals",
+          "titleLocation": "hidden",
+          "visibleIf": "{MultipleIndividualsAddOption} contains 'upload'",
+          "description": {
+            "en": "Upload document",
+            "fr": ""
+          },
+          "isRequired": true,
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": false,
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+        }
+      ]
+    },
+    {
+      "name": "page_q_6_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 6.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionOfEvents",
+          "title": {
+            "en": "Description of events that lead to the disclosure",
+            "fr": ""
+          },
+          "description": {
+            "en": "This description should relate to the circumstances that prompted the institution to disclose the personal information.   Please provide a brief description with a limited amount of personal information required for us to understand the context for the disclosure. If necessary, you will have the option to upload additional documentation before submitting the notification.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_7_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 7.0",
+        "fr": ""
+      },
+      "elements": [
 
       ]
     },
