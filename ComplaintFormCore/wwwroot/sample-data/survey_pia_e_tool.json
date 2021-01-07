@@ -135,7 +135,6 @@
           }
         }
       ]
-
     },
     {
       "name": "page_best_practices",
@@ -800,14 +799,7 @@
             "en": "On behalf of which institution are you submitting a PIA? Select from the drop-down list. If the institution is not listed, please select ”other”.",
             "fr": ""
           },
-
           "isRequired": true,
-          "validators": [
-            {
-              "type": "expression",
-              "expression": "HasSelectedItem({institution}) = true"
-            }
-          ],
           "choicesByUrl": {
             "url": "/api/Institution/GetAll?lang={locale}&addOther=true",
             "titleName": "name",
@@ -2210,7 +2202,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>Head of the government institution or delegate</p><p><strong>{ HeadYourInstitutionFullname }</strong></p></section></p>",
+            "en": "<p><section class='alert alert-info'><p>Head of the government institution or delegate</p><p><strong>{HeadYourInstitutionFullname}</strong></p></section></p>",
             "fr": ""
           },
           "isRequired": true
@@ -3319,27 +3311,15 @@
                 "fr": ""
               },
               "isRequired": true,
+              "hasComment": false,
               "allowMultiple": true,
+              "waitForUpload": false,
               "maxSize": 0,
               "storeDataAsText": false,
-              "showPreview": false,
-              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveMessage": {
-                "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce fichier?"
-              },
-              "itemListTitle": {
-                "en": "Attached ISA(s)",
-                "fr": ""
-              },
-              "itemListNoAttachmentsText": {
-                "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n'a encore été téléchargée."
-              },
-              "duplicateFileNameExceptionMessage": {
-                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-              }
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             }
           ]
         }
@@ -3505,27 +3485,15 @@
                 "fr": ""
               },
               "isRequired": true,
+              "hasComment": false,
               "allowMultiple": true,
+              "waitForUpload": false,
               "maxSize": 0,
               "storeDataAsText": false,
-              "showPreview": false,
-              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveMessage": {
-                "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce fichier?"
-              },
-              "itemListTitle": {
-                "en": "Attached PIB(s)",
-                "fr": ""
-              },
-              "itemListNoAttachmentsText": {
-                "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n'a encore été téléchargée."
-              },
-              "duplicateFileNameExceptionMessage": {
-                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-              }
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             }
           ]
         },
@@ -4179,7 +4147,6 @@
           "type": "radiogroup",
           "name": "ProcessDisposalPhysicalFormat",
           "isRequired": true,
-
           "title": {
             "en": "Does the institution have, or intend to have, an established process by which to dispose of the personal information that you have collected in and/or converted to physical format? (3.7.1A)",
             "fr": ""
@@ -5005,6 +4972,7 @@
         },
         {
           "type": "matrixdynamic",
+          "name": "OtherPartiesSharePersonalInformation",
           "valueName": "OtherPartiesSharePersonalInformation",
           "visibleIf": "{PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
           "isRequired": true,
@@ -5136,7 +5104,7 @@
         "en": "3.9 – Limiting disclosure",
         "fr": ""
       },
-      "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0]Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
+      "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
       "section": "3.9",
       "elements": [
         {
@@ -5306,27 +5274,15 @@
                 "fr": ""
               },
               "isRequired": true,
+              "hasComment": false,
               "allowMultiple": true,
+              "waitForUpload": false,
               "maxSize": 0,
               "storeDataAsText": false,
-              "showPreview": false,
-              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveMessage": {
-                "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce fichier?"
-              },
-              "itemListTitle": {
-                "en": "Attached ISA(s)",
-                "fr": ""
-              },
-              "itemListNoAttachmentsText": {
-                "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n'a encore été téléchargée."
-              },
-              "duplicateFileNameExceptionMessage": {
-                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-              }
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             },
             {
               "type": "matrixdynamic",
@@ -5472,26 +5428,15 @@
             "fr": ""
           },
           "isRequired": true,
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": false,
           "maxSize": 0,
           "storeDataAsText": false,
-          "showPreview": false,
-          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-          "confirmRemoveMessage": {
-            "en": "Do you really want to remove this file?",
-            "fr": "Voulez-vous vraiment supprimer ce fichier?"
-          },
-          "itemListTitle": {
-            "en": "Attached Flow Chart",
-            "fr": ""
-          },
-          "itemListNoAttachmentsText": {
-            "en": "No attachments have been uploaded yet.",
-            "fr": "Aucune pièce jointe n'a encore été téléchargée."
-          },
-          "duplicateFileNameExceptionMessage": {
-            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-          }
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
         }
       ]
     },
@@ -5506,7 +5451,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s.7 and 8' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 7 and 8</a></li><li><strong>Relevant policy requirements and other references: </strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=16578' target='_blank'>Policy on Government Security</a>, <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32611' target='_blank'>Directive on Security Management</a>, <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=16577' target='_blank'>Directive on Identity Management</a>, <a href='https://cyber.gc.ca/en/guidance/it-security-risk-management-lifecycle-approach-itsg-33' target='_blank'>IT Security Risk Management: A Lifecycle Approach (ITSG-33)</a>, <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=26154' target='_blank'>Guidelines for Privacy Breaches</a></li><li><strong>What safeguards means</strong>:Take steps to ensure that personal information is appropriately protected.</li></ul></p><p><strong>Tip</strong>: The most effective privacy safeguard is not to collect personal information in the first place if you do not need it.</p><p><strong>Tip</strong>: The goal of a PIA is to identify the most appropriate level of security in specific circumstances, not the strongest information security possible.</p></section>",
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s.7 and 8' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 7 and 8</a></li><li><strong>Relevant policy requirements and other references: </strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=16578' target='_blank'>Policy on Government Security</a>, <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32611' target='_blank'>Directive on Security Management</a>, <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=16577' target='_blank'>Directive on Identity Management</a>, <a href='https://cyber.gc.ca/en/guidance/it-security-risk-management-lifecycle-approach-itsg-33' target='_blank'>IT Security Risk Management: A Lifecycle Approach (ITSG-33)</a>, <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=26154' target='_blank'>Guidelines for Privacy Breaches</a></li><li><strong>What safeguards means</strong>:Take steps to ensure that personal information is appropriately protected.</li></ul></p><p><strong>Tip</strong>: The most effective privacy safeguard is not to collect personal information in the first place if you do not need it.</p><p><strong>Tip</strong>: The goal of a PIA is to identify the most appropriate level of security in specific circumstances, not the strongest information security possible.</p></section>",
             "fr": ""
           }
         }
@@ -5758,25 +5703,15 @@
                 "en": "Upload my summary assessment",
                 "fr": ""
               },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": false,
+              "maxSize": 0,
               "storeDataAsText": false,
-              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-              "confirmRemoveMessage": {
-                "en": "Do you really want to remove this file?",
-                "fr": "Voulez-vous vraiment supprimer ce fichier?"
-              },
-              "itemListTitle": {
-                "en": "Attached summary assessment",
-                "fr": ""
-              },
-              "itemListNoAttachmentsText": {
-                "en": "No attachments have been uploaded yet.",
-                "fr": "Aucune pièce jointe n'a encore été téléchargée."
-              },
-              "duplicateFileNameExceptionMessage": {
-                "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-                "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-              },
-              "showPreview": false
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             }
           ]
         }
@@ -6020,26 +5955,15 @@
             "fr": ""
           },
           "isRequired": true,
+          "hasComment": false,
           "allowMultiple": true,
+          "waitForUpload": false,
+          "maxSize": 0,
           "storeDataAsText": false,
-          "showPreview": false,
-          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-          "confirmRemoveMessage": {
-            "en": "Do you really want to remove this file?",
-            "fr": "Voulez-vous vraiment supprimer ce fichier?"
-          },
-          "itemListTitle": {
-            "en": "",
-            "fr": ""
-          },
-          "itemListNoAttachmentsText": {
-            "en": "No attachments have been uploaded yet.",
-            "fr": "Aucune pièce jointe n'a encore été téléchargée."
-          },
-          "duplicateFileNameExceptionMessage": {
-            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-          }
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
         },
         {
           "type": "comment",
@@ -6811,7 +6735,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 9, 10 and 11' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-3.html#docCont' target='_blank'>s. 9, 10 and 11</a></li><li><strong>Relevant policy requirements:</strong> <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What openness means</strong>:Be open, clear and straightforward about your handling of personal information.</li></ul></p></section>",
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 9, 10 and 11' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-3.html#docCont' target='_blank'>s. 9, 10 and 11</a></li><li><strong>Relevant policy requirements:</strong> <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What openness means</strong>:Be open, clear and straightforward about your handling of personal information.</li></ul></p></section>",
             "fr": ""
           }
         }
@@ -7021,7 +6945,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 12' href='' target='_blank'>s. 12</a></li><li><strong>Relevant policy requirements:</strong> <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32590' target='_blank'>Directive on Personal Information Requests and Correction of Personal Information </a> and <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What individual access means</strong>:Give individuals access to the information you hold about them and correct it, when necessary.</li></ul></p><p><strong>Tip:</strong> Exemptions to providing access to personal information should be interpreted as narrowly as possible.</p></section>",
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 12' href='' target='_blank'>s. 12</a></li><li><strong>Relevant policy requirements:</strong> <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=32590' target='_blank'>Directive on Personal Information Requests and Correction of Personal Information </a> and <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What individual access means</strong>:Give individuals access to the information you hold about them and correct it, when necessary.</li></ul></p><p><strong>Tip:</strong> Exemptions to providing access to personal information should be interpreted as narrowly as possible.</p></section>",
             "fr": ""
           }
         }
@@ -7199,27 +7123,15 @@
             "fr": ""
           },
           "isRequired": true,
+          "hasComment": false,
           "allowMultiple": true,
+          "waitForUpload": false,
           "maxSize": 0,
           "storeDataAsText": false,
-          "showPreview": false,
-          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff",
-          "confirmRemoveMessage": {
-            "en": "Do you really want to remove this file?",
-            "fr": "Voulez-vous vraiment supprimer ce fichier?"
-          },
-          "itemListTitle": {
-            "en": "",
-            "fr": ""
-          },
-          "itemListNoAttachmentsText": {
-            "en": "No attachments have been uploaded yet.",
-            "fr": "Aucune pièce jointe n'a encore été téléchargée."
-          },
-          "duplicateFileNameExceptionMessage": {
-            "en": "There is already a file with the same name. Duplicate file name not allowed. Your file will be renamed.",
-            "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
-          }
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
         }
       ]
     },
@@ -7250,7 +7162,7 @@
     {
       "name": "IsElectronicFormat",
       "expression": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
-      "includeIntoResult":  true
+      "includeIntoResult": true
     }
   ]
 }
