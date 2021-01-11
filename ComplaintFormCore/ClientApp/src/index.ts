@@ -178,6 +178,10 @@ declare let Symbol;
                 jsonUrl = "/sample-data/survey_pa_complaint.json";
                 filename = "survey_export_pa";
                 pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA);
+            } else if (complaintType === "pid") {
+                jsonUrl = "/sample-data/survey_pid.json";
+                filename = "survey_export_pid";
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID);
             }
         };
 

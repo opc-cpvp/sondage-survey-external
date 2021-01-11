@@ -47,21 +47,14 @@
       },
       "elements": [
         {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-warning'><p>Attention: Before you proceed.</p></section>",
-            "fr": ""
-          }
-        },
-        {
           "type": "boolean",
           "name": "HasNotificationApproved",
           "title": {
-            "en": "Has this notification been formally approved in accordance with your institution’s approval process?",
+            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process?",
             "fr": ""
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>8(5) and 37(2) notifications must be approved by a delegated official. If you are unsure if you should submit a notification, please contact your institution’s Access to Information and Privacy (ATIP) coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a></p></section></p>",
+            "en": "<p><section class='alert alert-warning'><p>8(5) and 37(2) notifications must be approved by a delegated official. If you are unsure if you should submit a notification, please contact your institution’s Access to Information and Privacy (ATIP) coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a></p></section></p>",
             "fr": ""
           },
           "isRequired": true
@@ -75,20 +68,12 @@
           }
         },
         {
-          "type": "html",
-          "visibleIf": "{HasNotificationApproved} = true",
-          "html": {
-            "en": "Please provide the name and position title of the official responsible for approving this notification at your institution.",
-            "fr": ""
-          }
-        },
-        {
           "type": "text",
           "visibleIf": "{HasNotificationApproved} = true",
           "name": "ApproverName",
           "isRequired": true,
           "title": {
-            "en": "Name:",
+            "en": "Please provide the name of the official responsible for approving this notification at your institution.",
             "fr": ""
           }
         },
@@ -98,7 +83,7 @@
           "name": "ApproverTitle",
           "isRequired": true,
           "title": {
-            "en": "Position title:",
+            "en": "Please provide the position title of the official responsible for approving this notification at your institution.",
             "fr": ""
           }
         }
@@ -426,7 +411,7 @@
       },
       "elements": [
         {
-          "type": "checkbox",
+          "type": "paneldynamic",
           "name": "DisclosureRecipients",
           "title": {
             "en": "Please indicate the disclosure recipient(s)",
@@ -436,36 +421,137 @@
             "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
             "fr": ""
           },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "",
-                "fr": ""
-              },
-              "value": "yes"
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "name": "",
-          "title": {
-            "en": "",
+          "isRequired":  true,
+          "renderMode": "list",
+          "panelCount": 1,
+          "keyName": "Recipient",
+          "keyDuplicationError": {
+            "en": "Recipient already added",
             "fr": ""
           },
-          "description": {
-            "en": "",
-            "fr": ""
-          },
-          "isRequired": true,
-          "choices": [
+          "templateTitle": "{panel.Recipient}",
+          "templateElements": [
             {
-              "text": {
-                "en": "",
+              "name": "Recipient",
+              "type": "dropdown",
+              "title": {
+                "en": "Recipients",
                 "fr": ""
               },
-              "value": "yes"
+              "choices": [
+                {
+                  "text": {
+                    "en": "Law enforcement",
+                    "fr": ""
+                  },
+                  "value": "law_enforcement"
+                },
+                {
+                  "text": {
+                    "en": "Family member",
+                    "fr": ""
+                  },
+                  "value": "family_member"
+                },
+                {
+                  "text": {
+                    "en": "Named representative",
+                    "fr": ""
+                  },
+                  "value": "named_representative"
+                },
+                {
+                  "text": {
+                    "en": "Government of Canada institution(s)",
+                    "fr": ""
+                  },
+                  "value": "goc_institution"
+                },
+                {
+                  "text": {
+                    "en": "Regulatory or Oversight Bodies",
+                    "fr": ""
+                  },
+                  "value": "regulatory"
+                },
+                {
+                  "text": {
+                    "en": "Government(s) in other jurisdiction(s) - This could include municipal, provincial, territorial, or foreign governments.",
+                    "fr": ""
+                  },
+                  "value": "gov_other_jurisdiction"
+                },
+                {
+                  "text": {
+                    "en": "Media",
+                    "fr": ""
+                  },
+                  "value": "media"
+                },
+                {
+                  "text": {
+                    "en": "Public",
+                    "fr": ""
+                  },
+                  "value": "public"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "Info",
+              "visibleIf": "{panel.Recipient} != 'family_member'",
+              "requiredIf": "{panel.Recipient} anyof ['law_enforcement','named_representative','goc_institution','regulatory','gov_other_jurisdiction','public','other']",
+              "title": {
+                "en": "Explain",
+                "fr": ""
+              }
+            },
+            {
+              "type": "checkbox",
+              "name": "FamilyMember",
+              "visibleIf": "{panel.Recipient} contains 'family_member'",
+              "isRequired": true,
+              "title": {
+                "en": "Family Member",
+                "fr": ""
+              },
+              "hasOther": true,
+              "otherText": {
+                "en": "Other type of relation",
+                "fr": ""
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Spouse/Common-law spouse",
+                    "fr": ""
+                  },
+                  "value": "spouse"
+                },
+                {
+                  "text": {
+                    "en": "Parent(s)",
+                    "fr": ""
+                  },
+                  "value": "parent"
+                },
+                {
+                  "text": {
+                    "en": "Sibling(s) ",
+                    "fr": ""
+                  },
+                  "value": "sibling"
+                }
+              ]
             }
           ]
         }
@@ -654,7 +740,300 @@
         "fr": ""
       },
       "elements": [
-
+        {
+          "type": "paneldynamic",
+          "name": "DataElementsDisclosed",
+          "title": {
+            "en": "Data elements disclosed",
+            "fr": ""
+          },
+          "description": {
+            "en": "Choose all that apply.",
+            "fr": ""
+          },
+          "isRequired": true,
+          "renderMode": "list",
+          "keyName": "DataElement",
+          "keyDuplicationError": {
+            "en": "Data Element already added",
+            "fr": ""
+          },
+          "templateTitle": "{panel.DataElement}",
+          "templateElements": [
+            {
+              "name": "DataElement",
+              "type": "dropdown",
+              "title": {
+                "en": "Elements",
+                "fr": ""
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Name",
+                    "fr": ""
+                  },
+                  "value": "name"
+                },
+                {
+                  "text": {
+                    "en": "Date of birth",
+                    "fr": ""
+                  },
+                  "value": "dob"
+                },
+                {
+                  "text": {
+                    "en": "Home address",
+                    "fr": ""
+                  },
+                  "value": "home_address"
+                },
+                {
+                  "text": {
+                    "en": "Phone number",
+                    "fr": ""
+                  },
+                  "value": "phone_number"
+                },
+                {
+                  "text": {
+                    "en": "Email address",
+                    "fr": ""
+                  },
+                  "value": "email"
+                },
+                {
+                  "text": {
+                    "en": "Information related to death",
+                    "fr": ""
+                  },
+                  "value": "death"
+                },
+                {
+                  "text": {
+                    "en": "Information related to law enforcement ",
+                    "fr": ""
+                  },
+                  "value": "law_enforcement"
+                },
+                {
+                  "text": {
+                    "en": "Medical information",
+                    "fr": ""
+                  },
+                  "value": "medical"
+                },
+                {
+                  "text": {
+                    "en": "Financial information",
+                    "fr": ""
+                  },
+                  "value": "financial"
+                },
+                {
+                  "text": {
+                    "en": "Details of interaction with Government of Canada",
+                    "fr": ""
+                  },
+                  "value": "interaction_goc"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ],
+              "isRequired": true
+            },
+            {
+              "type": "comment",
+              "name": "Info",
+              "visibleIf": "{panel.DataElement} anyof ['medical','financial','interaction_goc','other']",
+              "isRequired": true,
+              "title": {
+                "en": "Explain",
+                "fr": ""
+              }
+            },
+            {
+              "type": "checkbox",
+              "name": "InfoDeath",
+              "visibleIf": "{panel.DataElement} contains 'death'",
+              "isRequired": true,
+              "title": {
+                "en": "Information related to death",
+                "fr": ""
+              },
+              "hasOther": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Date of death",
+                    "fr": ""
+                  },
+                  "value": "date"
+                },
+                {
+                  "text": {
+                    "en": "Cause of death",
+                    "fr": ""
+                  },
+                  "value": "cause"
+                },
+                {
+                  "text": {
+                    "en": "Death related reports and investigations",
+                    "fr": ""
+                  },
+                  "value": "reports_investigations"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "InfoLawEnforcement",
+              "visibleIf": "{panel.DataElement} contains 'law_enforcement'",
+              "title": {
+                "en": "Information related to law enforcement",
+                "fr": ""
+              },
+              "isRequired": true,
+              "hasOther": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Charges",
+                    "fr": ""
+                  },
+                  "value": "charges"
+                },
+                {
+                  "text": {
+                    "en": "Convictions",
+                    "fr": ""
+                  },
+                  "value": "convictions"
+                },
+                {
+                  "text": {
+                    "en": "Criminal record (where no record suspension has been ordered)",
+                    "fr": ""
+                  },
+                  "value": "criminal_record"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_8_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 8.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "RationalForDisclosure",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide rationale for disclosure. Your answer should include the purpose of the disclosure, and an explanation of why the public interest overrides privacy concerns in this instance, or how the disclosure would clearly benefit the individual.",
+            "fr": ""
+          },
+          "description": {
+            "en": "Public interest disclosure provisions are applied in unique, fact-specific situations in which the public interest clearly outweighs the privacy concerns of the affected individual(s); or it is in the best interest of the individual to disclose the personal information. Institutions should ensure that they have carefully weighed the invasion of privacy against the public interest, or the benefit to the individual.",
+            "fr": ""
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_9_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 9.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "HasInstitutionNotifiedIndOfDisclosure",
+          "isRequired": true,
+          "title": {
+            "en": "Has your institution notified the affected individual(s) of the disclosure?",
+            "fr": ""
+          },
+          "description": {
+            "en": "The OPC may notify an individual of a disclosure of their personal information pursuant to paragraph 8(2)(m) if it considers it appropriate to do so.",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, the institution has notified the affected individual(s).",
+                "fr": ""
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No, the institution has not notified the affected individuals(s).",
+                "fr": ""
+              },
+              "value": "no"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_10_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 10.0",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "file",
+          "name": "FileSupplementaryDocumentations",
+          "title": {
+            "en": "Upload supplementary documentation",
+            "fr": ""
+          },
+          "description": {
+            "en": "Please do not upload any documents above Protected B. Should you need to provide documents above Protected B, please arrange this with our office by contacting us at scg-ga@priv.gc.ca. Please consider whether it is necessary to provide supplementary documentation, and the sensitivity of the personal information included. Only submit documents that would provide context and enable a better understanding of the disclosure",
+            "fr": ""
+          },
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": false,
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+        }
+      ]
+    },
+    {
+      "name": "page_q_10_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 10.1",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h5 class='sv_q_title'>Download a copy of this notification for your records</h5></p><p><button class='btn btn-primary' onclick='showPDF(); return false;'>Download</button></p>",
+            "fr": ""
+          }
+        }
       ]
     },
     {

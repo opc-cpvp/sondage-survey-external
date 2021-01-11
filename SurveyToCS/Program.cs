@@ -221,29 +221,30 @@ namespace SurveyToCS
         private static void BuildDynamicPropertyClassItem(StringBuilder csharp, Element element)
         {
             var name = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
-            BuildElementSummary(csharp, element);
+			BuildElementSummary(csharp, element);
 
             //  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
             //  and our validation doesn't work
 
-            if (element.type == "public boolean")
+            if (type == "boolean")
             {
                 csharp.Append(" bool? ");
             }
-            else if (element.inputType == "date")
+            else if (type == "date")
             {
                 csharp.Append("public DateTime? ");
             }
-            else if (element.inputType == "number")
+            else if (type == "number")
             {
                 csharp.Append("public int? ");
             }
-            else if (element.type == "file")
+            else if (type == "file")
             {
                 csharp.Append("public List<SurveyFile> ");
             }
-            else if (element.type == "matrixdynamic")
+            else if (type == "matrixdynamic")
             {
                 string className = CapitalizeFirstLetter(name) + "Object";
                 csharp.Append("public class ");
@@ -261,7 +262,11 @@ namespace SurveyToCS
                 csharp.Append(className);
                 csharp.Append("> ");
             }
-            else
+			else if (type == "checkbox" || type == "tagbox")
+			{
+				csharp.Append("public List<string> ");
+			}
+			else
             {
                 csharp.Append("public string ");
             }
@@ -595,7 +600,9 @@ namespace SurveyToCS
             }
 
             //  Check if selected option is in the list of valid options
-            if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox") && element.choices != null && element.choices.Count > 0)
+            if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox")
+				&& element.choices != null && element.choices.Count > 0
+				&& (element.hasOther == null || element.hasOther == false))
             {
                 csharp.Append(childParameter);
                 csharp.Append(".");
@@ -608,7 +615,7 @@ namespace SurveyToCS
                 csharp.Append(".");
                 csharp.Append("RuleFor(x => x.");
                 csharp.Append(elementName);
-                csharp.AppendLine(").EmailAddress()");
+                csharp.Append(").EmailAddress()");
 
                 if (!string.IsNullOrWhiteSpace(visibleIf))
                 {
@@ -739,6 +746,8 @@ namespace SurveyToCS
                 visibleIf += element.visibleIf;
             }
 
+			visibleIf = visibleIf.Replace("panel.","x.");
+
             if (string.IsNullOrWhiteSpace(visibleIf) == false)
             {
                 MatchCollection anyofs = Regex.Matches(visibleIf, anyof_pattern);
@@ -805,11 +814,7 @@ namespace SurveyToCS
             string anyof_pattern = @"{[a-zA-Z_]+}\sanyof\s\[[a-zA-Z,'_]+\]";
             string anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
             string property_pattern = @"({[a-zA-Z_]+})";
-
-			if(string.IsNullOrWhiteSpace(parentPanel.requiredIf) && string.IsNullOrWhiteSpace(element.requiredIf))
-			{
-				return string.Empty;
-			}
+			bool hasRequiredIf = false;
 
             if (parentPage != null && !string.IsNullOrWhiteSpace(parentPage.visibleIf))
             {
@@ -826,7 +831,8 @@ namespace SurveyToCS
                 }
 
                 requiredIf += parentPanel.requiredIf;
-            }
+				hasRequiredIf = true;
+			}
 
             if (!string.IsNullOrWhiteSpace(element.requiredIf))
             {
@@ -837,7 +843,13 @@ namespace SurveyToCS
                 }
 
                 requiredIf += element.requiredIf;
-            }
+				hasRequiredIf = true;
+			}
+
+			if(!hasRequiredIf)
+			{
+				return string.Empty;
+			}
 
             if (string.IsNullOrWhiteSpace(requiredIf) == false)
             {

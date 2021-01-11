@@ -37,6 +37,11 @@
         const token = "@ViewBag.token";
 
         initPidSurvey(lang, token);
+
+        function showPDF() {
+            exportToPDF(lang, "pid");
+        }
+
     </script>
 }
 
