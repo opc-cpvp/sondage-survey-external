@@ -421,9 +421,18 @@
             "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
             "fr": ""
           },
-          "isRequired":  true,
+          "isRequired": true,
           "renderMode": "list",
           "panelCount": 1,
+          "minPanelCount": 1,
+          "panelAddText": {
+            "en": "+ Add Recipient",
+            "fr": ""
+          },
+          "panelRemoveText": {
+            "en": "Remove Recipient (X)",
+            "fr": ""
+          },
           "keyName": "Recipient",
           "keyDuplicationError": {
             "en": "Recipient already added",
@@ -751,8 +760,18 @@
             "en": "Choose all that apply.",
             "fr": ""
           },
+          "panelCount": 1,
+          "minPanelCount": 1,
           "isRequired": true,
           "renderMode": "list",
+          "panelAddText": {
+            "en": "+ Add Data Element",
+            "fr": ""
+          },
+          "panelRemoveText": {
+            "en": "Remove Data Element (X)",
+            "fr": ""
+          },
           "keyName": "DataElement",
           "keyDuplicationError": {
             "en": "Data Element already added",
