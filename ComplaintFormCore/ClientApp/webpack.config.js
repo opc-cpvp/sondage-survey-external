@@ -1,8 +1,7 @@
 ﻿const path = require("path");
 
-module.exports = {
+const config = {
     entry: "./src/index.ts",
-    devtool: "inline-source-map",
     module: {
         rules: [
             {
@@ -29,3 +28,11 @@ module.exports = {
         path: path.resolve(__dirname, "../wwwroot/dist")
     }
 };
+
+module.exports = (env, argv) => {
+    if (argv.mode === 'development') {
+        config.devtool = "inline-source-map";
+    }
+
+    return config;
+}
