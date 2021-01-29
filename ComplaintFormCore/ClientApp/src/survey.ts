@@ -174,14 +174,15 @@ export abstract class SurveyBase {
         defaultBootstrapCss.question.title = "sv_q_title";
         defaultBootstrapCss.question.titleRequired = "required";
 
-        //  This is to remove the call 'small'
+        //  This is to remove the css class call 'small'
         defaultBootstrapCss.question.description = "";
 
         //  The css is removed so the 'Other' textbox can be displayed below with full width.
         defaultBootstrapCss.checkbox.root = "";
 
-        defaultBootstrapCss.paneldynamic.buttonRemove += " btn btn-default";
+        defaultBootstrapCss.paneldynamic.buttonRemove += " btn btn-danger";
         defaultBootstrapCss.paneldynamic.buttonAdd += " btn btn-default";
+        defaultBootstrapCss.panel.container += " well";
 
         // onHidden -> survey clears the question value when the question becomes invisible.
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.

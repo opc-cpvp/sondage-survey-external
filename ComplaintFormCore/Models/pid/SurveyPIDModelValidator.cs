@@ -72,7 +72,7 @@ namespace ComplaintFormCore.Models
 
 			// OtherOptionsForDisclosure (Page: page_q_3_1)
 			RuleFor(x => x.OtherOptionsForDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.OtherOptionsForDisclosure).Must(x => new List<string> { "yes", "no", "not_apply" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+			RuleFor(x => x.OtherOptionsForDisclosure).Must(x => new List<string> { "yes", "no", "not_apply" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// OtherOptionsForDisclosureAdditonalInfo (Page: page_q_3_1)
 			RuleFor(x => x.OtherOptionsForDisclosureAdditonalInfo).Length(0, 5000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));

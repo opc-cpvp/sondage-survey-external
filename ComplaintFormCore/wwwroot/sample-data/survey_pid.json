@@ -358,7 +358,7 @@
       },
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "OtherOptionsForDisclosure",
           "title": {
             "en": "Has the institution considered other options for this disclosure, such as subsections 8(2)(a) through 8(2)(l) of the Privacy Act? ",
@@ -430,7 +430,7 @@
             "fr": ""
           },
           "panelRemoveText": {
-            "en": "Remove Recipient (X)",
+            "en": "Remove Recipient",
             "fr": ""
           },
           "keyName": "Recipient",
@@ -769,7 +769,7 @@
             "fr": ""
           },
           "panelRemoveText": {
-            "en": "Remove Data Element (X)",
+            "en": "Remove Data Element",
             "fr": ""
           },
           "keyName": "DataElement",

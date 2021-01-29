@@ -129,9 +129,9 @@ namespace ComplaintFormCore.Models
 		/// Page: page_q_3_1<br/>
 		/// Has the institution considered other options for this disclosure, such as s...<br/>
 		/// Possible choices: [yes, no, not_apply]<br/>
-		/// Survey question type: checkbox
+		/// Survey question type: radiogroup
 		/// </summary>
-		public List<string> OtherOptionsForDisclosure { get; set; }
+		public string OtherOptionsForDisclosure { get; set; }
 
 		/// <summary>
 		/// Page: page_q_3_1<br/>
