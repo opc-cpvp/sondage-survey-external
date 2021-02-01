@@ -165,24 +165,19 @@ export abstract class SurveyBase {
         StylesManager.applyTheme("bootstrap");
 
         // Override defaultBootstrapCss Properties
+        defaultBootstrapCss.checkbox.root = ""; // Allows the 'Other' textbox to display at full width.
         defaultBootstrapCss.error.icon = "";
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
         defaultBootstrapCss.page.title = "sv_title";
-        defaultBootstrapCss.question.title = "sv_q_title";
-        defaultBootstrapCss.question.titleRequired = "required";
-
-        //  This is to remove the css class call 'small'
-        defaultBootstrapCss.question.description = "";
-
-        //  The css is removed so the 'Other' textbox can be displayed below with full width.
-        defaultBootstrapCss.checkbox.root = "";
-
-        defaultBootstrapCss.paneldynamic.buttonRemove += " btn btn-danger";
-        defaultBootstrapCss.paneldynamic.buttonAdd += " btn btn-default";
         defaultBootstrapCss.panel.container += " well";
+        defaultBootstrapCss.paneldynamic.buttonAdd = "btn btn-secondary";
+        defaultBootstrapCss.paneldynamic.buttonRemove = "btn btn-danger";
+        defaultBootstrapCss.question.description = ""; //  Removes the default class (small)
+        defaultBootstrapCss.question.title = "sv_q_title";
+        defaultBootstrapCss.question.titleRequired = "required";        
 
         // onHidden -> survey clears the question value when the question becomes invisible.
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
