@@ -177,7 +177,7 @@ export abstract class SurveyBase {
         defaultBootstrapCss.paneldynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.question.description = ""; //  Removes the default class (small)
         defaultBootstrapCss.question.title = "sv_q_title";
-        defaultBootstrapCss.question.titleRequired = "required";        
+        defaultBootstrapCss.question.titleRequired = "required";
 
         // onHidden -> survey clears the question value when the question becomes invisible.
         // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
