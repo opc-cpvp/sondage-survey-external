@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace SurveyToCS
 {
@@ -218,11 +219,11 @@ namespace SurveyToCS
 			//  NOTE: We always set the booleans, int or datetime to nullable, otherwise the default value is set on the property
 			//  and our validation doesn't work
 
-			if (element.type == "public boolean")
+			if (element.type == "boolean")
 			{
-				csharp.Append(" bool? ");
+				csharp.Append("public bool? ");
 			}
-			else if (element.inputType == "date")
+			else if (element.inputType == "date" || element.type == "datepicker")
 			{
 				csharp.Append("public DateTime? ");
 			}
@@ -394,7 +395,8 @@ namespace SurveyToCS
 				foreach (var item in dynamicItem)
 				{
 					//	... and each column element of the matrix becomes a property of this new class
-					foreach (var row in item.rows)
+					//	We need to Deserialize the Object items.rows since this Element property is of type Object
+					foreach (var row in JsonConvert.DeserializeObject<List<Row>>(item.rows.ToString()))
 					{
 						csharp.Append("public string ");
 						csharp.Append(Common.CapitalizeFirstLetter(row.value));

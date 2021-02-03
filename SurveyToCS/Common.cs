@@ -6,12 +6,14 @@ namespace SurveyToCS
 {
 	public class Common
 	{
-		public static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "tagbox", "radiogroup", "boolean", "panel", "file", "checkbox" };
+		public static readonly List<string> _simpleTypeElements = new List<string>() { "text", "comment", "dropdown", "tagbox", "radiogroup", "boolean", "panel", "file", "checkbox", "datepicker" };
 		public static readonly List<string> _dynamicElements = new List<string>() { "matrixdynamic", "paneldynamic" };
 
-		public static readonly string _anyof_pattern = @"{[a-zA-Z_]+}\sanyof\s\[[a-zA-Z,'_]+\]";
-		public static readonly string _property_pattern = @"({[a-zA-Z_]+})";
-		public static readonly string _anyof_pattern_items = @"[[a-zA-Z,'_]+\]";
+		public static readonly string _anyof_pattern = @"{[a-zA-Z0-9_]+}\sanyof\s\[[a-zA-Z0-9,'_]+\]";
+		public static readonly string _property_pattern = @"({[a-zA-Z_0-9]+})";
+		public static readonly string _anyof_pattern_items = @"[[a-zA-Z0-9,'_]+\]";
+		public static readonly string _arraySingleElementSelected = @"\['[a-zA-Z0-9_]+']";
+		public static readonly string _wordInSingleQuotes = @"'[a-zA-Z0-9_]+'";
 
 		public static string CapitalizeFirstLetter(string str)
 		{

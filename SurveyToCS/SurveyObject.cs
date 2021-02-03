@@ -62,7 +62,9 @@ namespace SurveyToCS
 
 		public string visibleIf { get; set; }
 
-		public List<Row> rows { get; set; }
+		//	This property being an Object is weird by the problem is 'rows' is being used in
+		//	'matrix' type question as well as in 'comment'. Both as different data type.
+		public object rows { get; set; }
 
 		public string value { get; set; }
 	}

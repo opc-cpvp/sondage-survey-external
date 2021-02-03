@@ -9,10 +9,16 @@ namespace SurveyToCS
 	public class FluentValidatorBuilder
 	{
 		private static List<Element> _surveyAllElements;
+		private static bool _commentedOut = true;
+		private static List<CalculatedValues> _calculatedValues;
 
 		public static void CreateValidators(SurveyObject survey, string _namespace, string className)
 		{
+			_commentedOut = false;
+
 			_surveyAllElements = new List<Element>();
+			_calculatedValues = survey.calculatedValues;
+
 			foreach (var page in survey.pages)
 			{
 				Common.AddSurveyElement(_surveyAllElements, page, page.elements);
@@ -60,7 +66,7 @@ namespace SurveyToCS
 
 			foreach (var page in survey.pages)
 			{
-				//  We don't want to deal with the non-html elements just now
+				//  We just don't want to deal with the non-html elements
 				BuildPageValidator(csharp, page.elements.Where(e => e.type != "html").ToList(), page);
 			}
 
@@ -83,13 +89,13 @@ namespace SurveyToCS
 
 			csharp.AppendLine("}"); // end constructor
 
-			if (survey.calculatedValues != null)
-			{
-				foreach (var methods in survey.calculatedValues)
-				{
-					BuildCalculatedValues(csharp, methods);
-				}
-			}
+			//if (survey.calculatedValues != null)
+			//{
+			//	foreach (var methods in survey.calculatedValues)
+			//	{
+			//		BuildCalculatedValues(csharp, methods);
+			//	}
+			//}
 
 			csharp.AppendLine("}"); // end main class
 			csharp.AppendLine("}");// end namespace
@@ -149,32 +155,20 @@ namespace SurveyToCS
 			{
 				BuildMaxLengthValidator(csharp, element, visibleIf);
 			}
-
-			if (type == "text" && element.inputType != "date" && element.inputType != "number")
+			else if (type == "text" && element.inputType != "date" && element.inputType != "number")
 			{
 				BuildMaxLengthValidator(csharp, element, visibleIf);
 			}
 
-			//  Check if selected option is in the list of valid options
 			if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox") && element.choices != null && element.choices.Count > 0)
 			{
+				//  Check if selected option is in the list of valid options
 				BuildListValidator(csharp, element, visibleIf);
 			}
 
 			if (type == "text" && element.inputType == "email")
 			{
-				csharp.Append("RuleFor(x => x.");
-				csharp.Append(elementName);
-				csharp.AppendLine(").EmailAddress()");
-
-				if (!string.IsNullOrWhiteSpace(visibleIf))
-				{
-					csharp.Append(".When( ");
-					csharp.Append(visibleIf); ;
-					csharp.Append(")");
-				}
-
-				csharp.AppendLine(";");
+				BuildEmailValidator(csharp, elementName, visibleIf);
 			}
 
 			csharp.AppendLine();
@@ -239,17 +233,15 @@ namespace SurveyToCS
 				csharp.Append(".");
 				BuildMaxLengthValidator(csharp, element, visibleIf);
 			}
-
-			if (type == "text" && element.inputType != "date" && element.inputType != "number")
+			else if (type == "text" && element.inputType != "date" && element.inputType != "number")
 			{
 				csharp.Append(childParameter);
 				csharp.Append(".");
 				BuildMaxLengthValidator(csharp, element, visibleIf);
 			}
-
-			//  Check if selected option is in the list of valid options
 			if ((type == "checkbox" || type == "radiogroup" || type == "dropdown" || type == "tagbox") && element.choices != null && element.choices.Count > 0)
 			{
+				//  Check if selected option is in the list of valid options
 				csharp.Append(childParameter);
 				csharp.Append(".");
 				BuildListValidator(csharp, element, visibleIf);
@@ -259,18 +251,7 @@ namespace SurveyToCS
 			{
 				csharp.Append(childParameter);
 				csharp.Append(".");
-				csharp.Append("RuleFor(x => x.");
-				csharp.Append(elementName);
-				csharp.AppendLine(").EmailAddress()");
-
-				if (!string.IsNullOrWhiteSpace(visibleIf))
-				{
-					csharp.Append(".When( ");
-					csharp.Append(visibleIf); ;
-					csharp.Append(")");
-				}
-
-				csharp.AppendLine(";");
+				BuildEmailValidator(csharp, elementName, visibleIf);
 			}
 		}
 
@@ -351,8 +332,6 @@ namespace SurveyToCS
 						}
 					}
 				}
-
-				// csharp.AppendLine();
 			}
 		}
 
@@ -393,25 +372,16 @@ namespace SurveyToCS
 
 			if (string.IsNullOrWhiteSpace(visibleIf) == false)
 			{
-				MatchCollection anyofs = Regex.Matches(visibleIf, Common._anyof_pattern);
-
-				if (anyofs.Count > 0)
-				{
-					ReplaceAnyOf(visibleIf);
-				}
-
-				//  Replace {Property} by x.Property
-				foreach (Match match_propery in Regex.Matches(visibleIf, Common._property_pattern))
-				{
-					visibleIf = visibleIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
-				}
-
-				return visibleIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
+				return ReplaceData(visibleIf);
 			}
 
 			return string.Empty;
 		}
 
+		/// <summary>
+		/// Build a list of required condition for the element. Each element can have requiredIf property set but also
+		/// the parent panel or the parent page can have visibleIf and we need to include it
+		/// </summary>
 		private static string GetRequiredIfCondition(Element element, Page parentPage, Element parentPanel = null)
 		{
 			string requiredIf = string.Empty;
@@ -458,15 +428,12 @@ namespace SurveyToCS
 
 				if (anyofs.Count > 0)
 				{
-					ReplaceAnyOf(requiredIf);
+					ReplaceAnyOf(ref requiredIf);
 				}
 
-				foreach (Match match_propery in Regex.Matches(requiredIf, Common._property_pattern))
-				{
-					requiredIf = requiredIf.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
-				}
-
-				return requiredIf.Replace("=", "==").Replace("contains", "==").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
+				ReplaceProperty(ref requiredIf);
+				ReplaceOperators(ref requiredIf);
+				return requiredIf;
 			}
 
 			return string.Empty;
@@ -478,11 +445,17 @@ namespace SurveyToCS
 
 			if (string.IsNullOrWhiteSpace(visibleIf) == false)
 			{
-				return "x => true/* TODO: " + visibleIf + "*/";
+				if (_commentedOut)
+				{
+					return "x => true/* TODO: " + visibleIf + "*/";
+				}
+				else
+				{
+					return "x => "+  visibleIf;
+				}
 			}
 
 			return string.Empty;
-
 		}
 
 		private static string GetRequiredIfFullCondition(Element element, Page parentPage, Element parentPanel = null)
@@ -491,18 +464,42 @@ namespace SurveyToCS
 
 			if (string.IsNullOrWhiteSpace(requiredIf) == false)
 			{
-				return "x => true/* TODO: " + requiredIf + "*/";
+				if (_commentedOut)
+				{
+					return "x => true/* TODO: " + requiredIf + "*/";
+				}
+				else
+				{
+					return "x => " + requiredIf;
+				}
 			}
 
 			return string.Empty;
 
 		}
 
-		private static void ReplaceAnyOf(string visibleIf)
+		private static string ReplaceData(string visibleIf)
 		{
-			string wholeVisibleIf = string.Empty;
+			//	Panel such as "visibleIf": "{panel.CompleteState} contains 'yes_already_completed'"
+			//	is ised in paneldynamic for column visiblity.
+			visibleIf = visibleIf.Replace("panel.", "");
 
-			foreach (Match match_anyof in Regex.Matches(visibleIf, Common._anyof_pattern))
+			MatchCollection anyofs = Regex.Matches(visibleIf, Common._anyof_pattern);
+
+			if (anyofs.Count > 0)
+			{
+				ReplaceAnyOf(ref visibleIf);
+			}
+
+			//  Replace {Property} by x.Property
+			ReplaceProperty(ref visibleIf);
+			ReplaceOperators(ref visibleIf);
+			return visibleIf;
+		}
+
+		private static void ReplaceAnyOf(ref string condition)
+		{
+			foreach (Match match_anyof in Regex.Matches(condition, Common._anyof_pattern))
 			{
 				//  {InstitutionAgreedRequestOnInformalBasis} anyof ['yes','not_sure']
 				// x.NatureOfComplaint.Intersect(new List<string> { "NatureOfComplaintDelay", "NatureOfComplaintExtensionOfTime", "NatureOfComplaintDenialOfAccess", "NatureOfComplaintLanguage" }).Any()
@@ -535,8 +532,80 @@ namespace SurveyToCS
 
 				replacement += "}).Any()";
 
-				visibleIf = visibleIf.Replace(match_anyof.Value, replacement);
+				condition = condition.Replace(match_anyof.Value, replacement);
 			}
+		}
+
+		/// <summary>
+		/// Replace {Property} by x.Property
+		/// </summary>
+		private static void ReplaceProperty(ref string condition)
+		{
+			foreach (Match match_propery in Regex.Matches(condition, Common._property_pattern))
+			{
+				string prop_name = match_propery.Value.Replace("{", "").Replace("}", "");
+				Element elem = _surveyAllElements.Where(e => e.name == prop_name).FirstOrDefault();
+
+				if (elem != null)
+				{
+					if(elem.type == "tagbox") // || checkbox ?
+					{
+						string propertyName = match_propery.Value.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+
+						Match match_propery_single_item = Regex.Match(condition, Common._arraySingleElementSelected);
+						if (match_propery_single_item.Success)
+						{
+							//	{WhereWhomInfoCollected} = ['directly'] -> x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly")
+							condition = propertyName + ".Count == 1 && " + propertyName + ".Contains(" + match_propery_single_item.Value.Replace("[", "").Replace("]", "") + ")";
+						}
+						else
+						{
+							//	{WhereWhomInfoCollected} contains 'other' -> x.WhereWhomInfoCollected.Contains("other")
+							Match match_condition_value = Regex.Match(condition, Common._wordInSingleQuotes);
+							if (match_condition_value.Success)
+							{
+								condition = propertyName + ".Contains(" + match_condition_value.Value + ")";
+							}
+							else
+							{
+								//	This should not happen
+								condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+							}
+						}
+
+						continue;
+					}
+					else if (elem.type == "dropdown")
+					{
+
+					}
+					else if (elem.type == "boolean")
+					{
+
+					}
+				}
+				else if(_calculatedValues != null && _calculatedValues.Where(c => c.name == prop_name).Any())
+				{
+					//	The property match for the condtion is a calculated value
+
+					var calculatedValue = _calculatedValues.Where(c => c.name == prop_name).FirstOrDefault();
+					if(calculatedValue != null)
+					{
+						string expression = calculatedValue.expression;
+						condition = ReplaceData(expression);
+						continue;
+					}
+				}
+
+				condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+
+				//	{HasDataMinimization} contains 'not_yet_planned' -> x.HasDataMinimization == "not_yet_planned"
+			}
+		}
+
+		private static void ReplaceOperators(ref string condition)
+		{
+			condition = condition.Replace("'true'", "true").Replace(" = ", " == ").SafeReplace("contains", "==", true).Replace("<>", "!=").Replace("'", "\"").SafeReplace("or", "||", true).SafeReplace("and", "&&", true);
 		}
 
 		private static void BuildRequiredValidator(StringBuilder csharp, string elementName, string condition)
@@ -650,6 +719,22 @@ namespace SurveyToCS
 			csharp.AppendLine(calculatedValue.expression);
 
 			csharp.AppendLine("}");
+		}
+
+		private static void BuildEmailValidator(StringBuilder csharp, string elementName, string condition)
+		{
+			csharp.Append("RuleFor(x => x.");
+			csharp.Append(elementName);
+			csharp.Append(").EmailAddress()");
+
+			if (!string.IsNullOrWhiteSpace(condition))
+			{
+				csharp.Append(".When( ");
+				csharp.Append(condition); ;
+				csharp.Append(")");
+			}
+
+			csharp.AppendLine(";");
 		}
 	}
 }
