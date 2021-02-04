@@ -17,14 +17,17 @@ namespace SurveyToCS
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 			//string className = "SurveyPBRModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
-			//string className = "SurveyRROSHModel";
+			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
+			string className = "SurveyRROSHModel";
 
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 			//string className = "SurveyPIAToolModel";
 
-			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
-			string className = "SurveyPAModel";
+			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
+			//string className = "SurveyPAModel";
+
+			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
+			//string className = "SurveyPipedaModel";
 
 			string classNamespace = "ComplaintFormCore.Models";
 			SurveyObject survey;
@@ -34,7 +37,7 @@ namespace SurveyToCS
 				// read file into a string and deserialize JSON to a type
 				survey = JsonConvert.DeserializeObject<SurveyObject>(File.ReadAllText(pathToJSONFile));
 			}
-			catch(Exception ex)
+			catch
 			{
 				Console.WriteLine("Cannot find the file " + pathToJSONFile);
 				return;
@@ -58,36 +61,6 @@ namespace SurveyToCS
 			{
 				TestDataBuilder.CreateTestData(survey);
 			}
-		}
-	}
-
-	public class VisibleIfCondition
-	{
-		public string Property { get; set; }
-		public string Operator { get; set; }
-
-		public string Value { get; set; }
-
-		public VisibleIfCondition(string visibleIf)
-		{
-			//x => x.HasLegalAuthority
-
-			//  {HasLegalAuthority}  = false
-			//  {ContactATIPQ16} contains 'receive_email'
-			//  {SingleOrMultiInstitutionPIA} anyof ['single','single_related']
-			//  {IsInformationPhysicalFormat} = true and {IsInformationPhysicalConvertedCopy} = true
-			//  {ProvinceIncidence} anyof [2,6,9] and {ComplaintAboutHandlingInformationOutsideProvince} anyof ['no', 'not_sure'] and {IsAgainstFwub} contains 'no' and {DidOrganizationDirectComplaintToOpc} contains 'no'"
-
-		}
-	}
-
-	public static class StringExtensions
-	{
-		public static string SafeReplace(this string input, string find, string replace, bool matchWholeWord)
-		{
-			string textToFind = matchWholeWord ? string.Format(@"\b{0}\b", find) : find;
-			//var test = Regex.Replace(input, textToFind, replace);
-			return Regex.Replace(input, textToFind, replace);
 		}
 	}
 }

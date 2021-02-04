@@ -9,7 +9,14 @@ namespace SurveyToCS
 	public class FluentValidatorBuilder
 	{
 		private static List<Element> _surveyAllElements;
+
+		/// <summary>
+		/// This flag is use if you want to go cowboy and not have the condition set as comments.
+		/// Set to true it will add the conditions (visibleIf or requiredIf) as TODO inside a C# comment.
+		/// Set to false, the conditions will be in code. For complexe conditions this may create build errors
+		/// </summary>
 		private static bool _commentedOut = true;
+
 		private static List<CalculatedValues> _calculatedValues;
 
 		public static void CreateValidators(SurveyObject survey, string _namespace, string className)
@@ -125,6 +132,7 @@ namespace SurveyToCS
 			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
 			#region Comment such as the element name and which page the property is in
+
 			csharp.Append("// ");
 			csharp.Append(elementName);
 
@@ -513,6 +521,9 @@ namespace SurveyToCS
 				Element conditonalProperty = _surveyAllElements.Where(x => x.name == matchPropertyClean).First();
 				string replacement = string.Empty;
 
+				//	We assume that for any questions using choicesByUrl the value will be integer
+				bool isIntegerValueItems = conditonalProperty.choicesByUrl != null && !string.IsNullOrWhiteSpace(conditonalProperty.choicesByUrl.url);
+
 				if (conditonalProperty.type == "tagbox" || conditonalProperty.type == "checkbox")
 				{
 					//  tagbox & checkbox can have multiple choices so they are List<string> properties
@@ -522,13 +533,28 @@ namespace SurveyToCS
 				{
 					//  This applies to type that has only one value selectable such as dropdown or radiogroup
 					//  Very important to leave a space between the { property } otherwise the {} will be overwritten below
-					replacement = "new List<string>() { x." + matchPropertyClean + " }.Intersect";
+
+					if(isIntegerValueItems)
+					{
+						replacement = "new List<int>() { x." + matchPropertyClean + " != null ? (int)x."+ matchPropertyClean + " : 0 }.Intersect";
+					}
+					else
+					{
+						replacement = "new List<string>() { x." + matchPropertyClean + " }.Intersect";
+					}
 				}
 
 				Regex rgx_items = new Regex(Common._anyof_pattern_items);
 				Match matchArray = rgx_items.Match(match_anyof.Value);
 
-				replacement += "(new List<string>() {" + matchArray.Value.Replace("'", "\"").Replace("[", "").Replace("]", "");
+				if (isIntegerValueItems)
+				{
+					replacement += "(new List<int>() {" + matchArray.Value.Replace("'", "\"").Replace("[", "").Replace("]", "");
+				}
+				else
+				{
+					replacement += "(new List<string>() {" + matchArray.Value.Replace("'", "\"").Replace("[", "").Replace("]", "");
+				}
 
 				replacement += "}).Any()";
 
@@ -575,14 +601,6 @@ namespace SurveyToCS
 
 						continue;
 					}
-					else if (elem.type == "dropdown")
-					{
-
-					}
-					else if (elem.type == "boolean")
-					{
-
-					}
 				}
 				else if(_calculatedValues != null && _calculatedValues.Where(c => c.name == prop_name).Any())
 				{
@@ -598,8 +616,6 @@ namespace SurveyToCS
 				}
 
 				condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
-
-				//	{HasDataMinimization} contains 'not_yet_planned' -> x.HasDataMinimization == "not_yet_planned"
 			}
 		}
 

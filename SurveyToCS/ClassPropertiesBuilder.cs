@@ -116,6 +116,14 @@ namespace SurveyToCS
 
 					switch (element.type)
 					{
+						case "radiogroup" when element.choicesByUrl != null && !string.IsNullOrWhiteSpace(element.choicesByUrl.url):
+						case "dropdown" when element.choicesByUrl != null && !string.IsNullOrWhiteSpace(element.choicesByUrl.url):
+							//	TODO:	Most of the time when the data for a radiogroup or a dropdown comes from choicesByUrl then the
+							//			values are integer. But sometimes (exemple the case of countries) values are string data.
+							//			We could add a JSON property for choicesByUrl data type to solve this problem.
+							csharp.Append(" int? ");
+							csharp.Append(elementName);
+							break;
 						case "boolean":
 							csharp.Append(" bool? ");
 							csharp.Append(elementName);
