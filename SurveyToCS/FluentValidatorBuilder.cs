@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace SurveyToCS
 {
@@ -91,7 +92,7 @@ namespace SurveyToCS
 			if (survey_matrix_elements.Count > 0)
 			{
 				csharp.AppendLine();
-				//BuildDynamicPropertyClasses(csharp, survey_matrix_elements);
+				BuildMatrixValidators(csharp, survey_matrix_elements);
 			}
 
 			csharp.AppendLine("}"); // end constructor
@@ -340,6 +341,66 @@ namespace SurveyToCS
 						}
 					}
 				}
+			}
+		}
+
+		private static void BuildMatrixValidators(StringBuilder csharp, List<Element> matrixElements)
+		{
+			var groupedByValueName = from item in matrixElements
+									 group item by item.valueName != null ? item.valueName : item.name into newGroup
+									 orderby newGroup.Key
+									 select newGroup;
+
+			foreach (var dynamicItem in groupedByValueName)
+			{
+				csharp.Append("// ");
+				csharp.AppendLine(dynamicItem.Key);
+
+				csharp.Append("RuleFor(x => x.");
+				csharp.Append(dynamicItem.Key);
+				csharp.AppendLine(").ChildRules(child => {");
+
+				foreach (var element in dynamicItem)
+				{
+					string visibleIf = GetVisibleIfFullCondition(element, element.parent, null);
+					List<string> possibleValues = element.columns.Select(c => c.value).ToList();
+
+					foreach (var row in JsonConvert.DeserializeObject<List<Row>>(element.rows.ToString()))
+					{
+						csharp.Append("child.RuleFor(x => x.");
+
+						csharp.Append(row.value);
+						csharp.Append(").Must(x => new List<string> { ");
+
+						for (int i = 0; i < possibleValues.Count; i++)
+						{
+							csharp.Append("\"");
+							csharp.Append(possibleValues[i]);
+							csharp.Append("\"");
+
+							if (i < possibleValues.Count - 1)
+							{
+								csharp.Append(",");
+							}
+						}
+
+						csharp.Append("}.Contains(x))");
+
+						if (!string.IsNullOrWhiteSpace(visibleIf))
+						{
+							csharp.Append(".When( ");
+							csharp.Append(visibleIf); ;
+							csharp.Append(")");
+						}
+
+						csharp.Append(".WithMessage(");
+						csharp.AppendLine("_localizer.GetLocalizedStringSharedResource(\"SelectedValueNotValid\")); ");
+					}
+				}
+
+				csharp.Append("})");
+				csharp.AppendLine(";");
+				csharp.AppendLine();
 			}
 		}
 
