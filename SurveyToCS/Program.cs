@@ -1,10 +1,7 @@
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
+using TextCopy;
 
 namespace SurveyToCS
 {
@@ -12,7 +9,15 @@ namespace SurveyToCS
 	{
 		static void Main(string[] args)
 		{
-			//	TODO: When using make sure string json & string className are set properly
+			Console.Clear();
+			Console.WriteLine("Choose an option:");
+			Console.WriteLine("1) Type 'c' to generate the C# class with properties");
+			Console.WriteLine("2) Type 'v' to generate the FluentValidation class");
+			Console.WriteLine("3) Type 't' to generate test data");
+			Console.Write("\r\nSelect an option: ");
+
+			//	TODO:	When using make sure string json & string className are set properly
+			//			Maybe this can be user input.
 
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 			//string className = "SurveyPBRModel";
@@ -51,15 +56,25 @@ namespace SurveyToCS
 			string line = Console.ReadLine();
 			if (line == "c")
 			{
-				ClassPropertiesBuilder.CreateClassObject(survey, classNamespace, className);
+				string result = ClassPropertiesBuilder.CreateClassObject(survey, classNamespace, className);
+				ClipboardService.SetText(result);
+				Console.WriteLine(result);
 			}
 			else if (line == "v")
 			{
-				FluentValidatorBuilder.CreateValidators(survey, classNamespace, className);
+				Console.WriteLine("Do you want to generate the visibleIf conditions as commented TODOs? Type y/n:");
+				string line_validation = Console.ReadLine();
+				bool commentedOut = line_validation == "y";
+
+				string result = FluentValidatorBuilder.CreateValidators(survey, classNamespace, className, commentedOut);
+				ClipboardService.SetText(result);
+				Console.WriteLine(result);
 			}
 			else if (line == "t")
 			{
-				TestDataBuilder.CreateTestData(survey);
+				string result = TestDataBuilder.CreateTestData(survey);
+				ClipboardService.SetText(result);
+				Console.WriteLine(result);
 			}
 		}
 	}

@@ -7,9 +7,8 @@ namespace SurveyToCS
 {
 	public class TestDataBuilder
 	{
-		public static void CreateTestData(SurveyObject survey)
+		public static string CreateTestData(SurveyObject survey)
 		{
-
 			StringBuilder csharp = new StringBuilder();
 
 			foreach (var page in survey.pages)
@@ -29,8 +28,7 @@ namespace SurveyToCS
 				BuildDynamicPropertyData(csharp, survey_dynamic_elements);
 			}
 
-			Console.WriteLine(csharp.ToString());
-			Console.ReadLine();
+			return csharp.ToString();
 		}
 
 		private static void BuildPropertyData(StringBuilder csharp, List<Element> elements, Page pageObj)

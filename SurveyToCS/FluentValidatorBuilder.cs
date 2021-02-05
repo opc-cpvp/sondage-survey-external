@@ -20,9 +20,9 @@ namespace SurveyToCS
 
 		private static List<CalculatedValues> _calculatedValues;
 
-		public static void CreateValidators(SurveyObject survey, string _namespace, string className)
+		public static string CreateValidators(SurveyObject survey, string _namespace, string className, bool commentedOut)
 		{
-			_commentedOut = false;
+			_commentedOut = commentedOut;
 
 			_surveyAllElements = new List<Element>();
 			_calculatedValues = survey.calculatedValues;
@@ -108,8 +108,7 @@ namespace SurveyToCS
 			csharp.AppendLine("}"); // end main class
 			csharp.AppendLine("}");// end namespace
 
-			Console.WriteLine(csharp.ToString());
-			Console.ReadLine();
+			return csharp.ToString();
 		}
 
 		private static void BuildPageValidator(StringBuilder csharp, List<Element> elements, Page parentPage, Element parentPanel = null)

@@ -8,7 +8,7 @@ namespace SurveyToCS
 {
 	public class ClassPropertiesBuilder
 	{
-		public static void CreateClassObject(SurveyObject survey, string _namespace, string className)
+		public static string CreateClassObject(SurveyObject survey, string _namespace, string className)
 		{
 			//	TODO: Question type 'matrixdropdown' is not implemented here.
 
@@ -88,8 +88,7 @@ namespace SurveyToCS
 
 			csharp.AppendLine("}");// end namespace
 
-			Console.WriteLine(csharp.ToString());
-			Console.ReadLine();
+			return csharp.ToString();
 		}
 
 		/// <summary>
