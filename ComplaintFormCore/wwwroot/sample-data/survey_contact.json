@@ -702,7 +702,7 @@
       "elements": [
         {
           "type": "comment",
-          "name": "",
+          "name": "QuestionToInformationCenterDetails",
           "isRequired": true,
           "title": {
             "en": "What is your question for the Information Centre? (Please do not provide any sensitive personal information, such as medical information, banking information, social insurance number, etc.)",
