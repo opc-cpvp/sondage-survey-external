@@ -76,7 +76,6 @@
   <ItemGroup>
     <Folder Include="ClientApp\node_modules\ladda\css\" />
     <Folder Include="ClientApp\node_modules\ladda\dist\" />
-    <Folder Include="Models\contact_info_centre\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>

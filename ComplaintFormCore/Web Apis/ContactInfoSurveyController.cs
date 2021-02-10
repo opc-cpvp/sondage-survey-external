@@ -23,7 +23,7 @@ namespace ComplaintFormCore.Web_Apis
         }
 
         [HttpPost]
-        public IActionResult Complete([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
+        public IActionResult Complete([FromBody] SurveyContactInfoModel model, [FromQuery] string complaintId)
         {
             OPCProblemDetails problems = _Validate(model);
 
@@ -36,7 +36,7 @@ namespace ComplaintFormCore.Web_Apis
         }
 
         [HttpPost]
-        public IActionResult Validate([FromBody] SurveyPAModel model, [FromQuery] string complaintId)
+        public IActionResult Validate([FromBody] SurveyContactInfoModel model, [FromQuery] string complaintId)
         {
             OPCProblemDetails problems = _Validate(model);
 
@@ -48,9 +48,9 @@ namespace ComplaintFormCore.Web_Apis
             return Ok();
         }
 
-        private OPCProblemDetails _Validate(SurveyPAModel model)
+        private OPCProblemDetails _Validate(SurveyContactInfoModel model)
         {
-            var validator = new SurveyPAModelValidator(_localizer);
+            var validator = new SurveyContactInfoModelValidator(_localizer);
             var results = validator.Validate(model);
 
             if (!results.IsValid)
