@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -29,7 +29,8 @@ namespace ComplaintFormCore.Controllers
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
-        }
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
+		}
 
         public IActionResult Index()
         {
@@ -71,7 +72,14 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
-        public IActionResult Test2()
+		public IActionResult ContactInfo([FromQuery(Name = "token")] string token)
+		{
+			ViewBag.token = token;
+			return View();
+		}
+
+
+		public IActionResult Test2()
         {
             return View();
         }

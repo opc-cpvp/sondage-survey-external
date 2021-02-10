@@ -76,6 +76,7 @@
   <ItemGroup>
     <Folder Include="ClientApp\node_modules\ladda\css\" />
     <Folder Include="ClientApp\node_modules\ladda\dist\" />
+    <Folder Include="Models\contact_info_centre\" />
     <Folder Include="wwwroot\dist\" />
     <Folder Include="wwwroot\js\" />
   </ItemGroup>
@@ -121,10 +122,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Remove="ClientApp\src\contact_info_centre\contactInfoSurvey.ts" />
     <TypeScriptCompile Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\contact_info_centre\contactInfoSurvey.ts" />
     <WebpackInputs Remove="ClientApp\src\models\localStorage.ts" />
     <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
     <WebpackInputs Remove="ClientApp\src\pbr\newPbrSurvey.ts" />

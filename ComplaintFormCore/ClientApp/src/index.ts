@@ -14,6 +14,7 @@ import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
+import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 
 declare global {
     function startSurvey(survey: Survey.SurveyModel): void;
@@ -28,6 +29,7 @@ declare global {
     function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
+    function initContactInfo(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
@@ -68,6 +70,28 @@ declare let Symbol;
         const storageName_PBR = "SurveyJS_LoadState_PBR";
         const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
+        const storageName_CONTACTINFO = "SurveyJS_LoadState_CONTACTINFO";
+
+        globalThis.initContactInfo = async (lang: "en" | "fr", token) => {
+            const jsonUrl = "/sample-data/survey_contact.json";
+
+            // await import("./pbr/pbr_test_data")
+            //    .then(testData => testData.pbr_test_data)
+            //    .then(testData => {
+            //        const storage = new LocalStorage();
+
+            //        const storageData = {
+            //            currentPageNo: 0,
+            //            data: testData
+            //        } as SurveyState;
+
+            //        storage.save(storageName_PBR, storageData);
+            //    });
+
+            const contactInfoSurvey = new ContactInfoSurvey(lang, token, storageName_CONTACTINFO);
+            await contactInfoSurvey.loadSurveyFromUrl(jsonUrl);
+            contactInfoSurvey.renderSurvey();
+        };
 
         globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
