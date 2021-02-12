@@ -167,13 +167,13 @@ export abstract class SurveyBase {
         // Override defaultBootstrapCss Properties
         defaultBootstrapCss.checkbox.root = ""; // Allows the 'Other' textbox to display at full width.
         defaultBootstrapCss.error.icon = "";
-        defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
+        defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-default";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
         defaultBootstrapCss.page.title = "sv_title";
-        defaultBootstrapCss.panel.container += " well";
-        defaultBootstrapCss.paneldynamic.buttonAdd = "btn btn-secondary";
+        defaultBootstrapCss.panel.container = "well";
+        defaultBootstrapCss.paneldynamic.buttonAdd = "btn btn-default";
         defaultBootstrapCss.paneldynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.question.description = ""; //  Removes the default class (small)
         defaultBootstrapCss.question.title = "sv_q_title";
