@@ -1,0 +1,93 @@
+{
+  "pages": [
+    {
+      "name": "page_main",
+      "title": {
+        "en": "Tell the OPC about a privacy issue",
+        "fr": "Faire part au Commissariat d’une question ou d’une préoccupation relative à la protection de la vie privée"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>You don’t have to <a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/' target='_blank'>file a formal complaint</a> to tell us about a privacy issue or concern. Use the form on this page to bring your issue or concern to our attention. </p><p>While we do not respond to enquiries or comments submitted via this form, we do review all comments. Your input may assist us in identifying trends and privacy risks, and even help us take action in the future.</p>",
+            "fr": "<p>Vous n’avez pas à <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/' target='_blank'>déposer une plainte officielle</a> pour nous faire part d’une question ou d’une préoccupation relative à la protection de la vie privée. Utilisez le formulaire accessible sur cette page pour nous faire part de votre question ou préoccupation.</p><p>Bien que nous ne répondions pas aux demandes de renseignements ou aux commentaires présentés sur ce formulaire, nous prenons connaissance de tous les commentaires. En nous transmettant vos commentaires, vous pouvez nous aider à cerner les tendances ou les risques en matière de protection de la vie privée et peut-être même à prendre des mesures par la suite.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p><strong>Notice:</strong></p><ul><li>This form is intended for individuals who want to share their comments with us but do not require a response from our Office. If you have a question or require information, please use our <a href='https://services.priv.gc.ca/q-s/allez-go/eng/8b62761b-7100-4016-886c-0279a78670d6' target='_blank'>Online Information Request form</a> or contact our <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Information Centre</a>.</li><li>Comments submitted using this form will not be treated as privacy complaints under the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/' target='_blank'><em>Privacy Act</em> </a>or the <em><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/' target='_blank'>Personal Information Protection and Electronic Documents Act</a></em>. For further information on filing complaints under either Act, please see <a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/' target='_blank'>File a formal privacy complaint</a>.</li></ul></section>",
+            "fr": "<p><strong>Avis : </strong></p><ul><li>Ce formulaire est prévu pour les personnes qui souhaitent nous envoyer leurs commentaires mais n’attendent pas de réponse de la part du Commissariat. Si vous avez une question ou avez besoin d’information, veuillez utiliser notre <a href='https://services.priv.gc.ca/q-s/allez-go/fra/8b62761b-7100-4016-886c-0279a78670d6' target='_blank'>Formulaire de demande d'information en ligne</a> ou communiquez avec notre <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>Centre d’information</a>.</li><li>Les commentaires soumises par ce formulaire ne seront pas traitées en tant que plaintes en vertu de la <em><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/' target='_blank'>Loi sur la protection des renseignements personnels</a></em> ou la <em><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/' target='_blank'>Loi sur la protection des renseignements personnels et les documents électroniques</a></em>. Pour plus d’information sur le dépôt de plaintes sous l’une ou l’autre des lois, voir <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/' target='_blank'>Déposer une plainte officielle concernant la protection de la vie privée</a>.</li></ul>"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "PrivacyConcern",
+          "isRequired": true,
+          "title": {
+            "en": "My privacy issue or concern:",
+            "fr": "Ma question ou préoccupation sur une question de vie privée:"
+          },
+          "description": {
+            "en": "(Maximum 4096 characters)",
+            "fr": "(Maximum 4096 caractères)"
+          },
+          "maxLength": 4096
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>You do not need to share your personal information with us to submit your comment. However, if you would like to provide it, you can enter it in the following fields. We will only contact you if we need further information. </p></section>",
+            "fr": "<section class='alert alert-info'><p>Vous n'êtes pas obligé(e) de nous fournir vos renseignements personnels pour nous faire parvenir vos commentaires. Cependant, si vous souhaitez le faire, vous pouvez remplir les champs suivants. Nous ne vous contacterons que si nous avons besoin d'informations supplémentaires.</p></section>"
+          }
+        },
+        {
+          "type": "text",
+          "name": "Complainant_FirstName",
+          "title": {
+            "en": "First name",
+            "fr": "Prénom "
+          }
+        },
+        {
+          "type": "text",
+          "name": "Complainant_LastName",
+          "title": {
+            "en": "Last name",
+            "fr": "Nom de famille"
+          }
+        },
+        {
+          "type": "text",
+          "name": "Complainant_Email",
+          "inputType": "email",
+          "title": {
+            "en": "E-mail address (yourname@domain.com)",
+            "fr": "Adresse électronique (votrenom@domaine.com)"
+          }
+        },
+        {
+          "type": "text",
+          "name": "Complainant_PhoneNumber",
+          "inputType": "tel",
+          "title": {
+            "en": "Phone number",
+            "fr": "Numéro de téléphone"
+          }
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>OPC is committed to ensuring that clients with disabilities have equal access to, and can benefit from, all our public-facing services. If you require <a href='https://www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/terms-and-conditions-of-use/#acc' target='_blank'>accommodation for a disability</a> to help you share your comment, please contact our <a href='https://www.priv.gc.ca/en/contact-the-opc/contact-the-information-centre/' target='_blank'>Information Centre</a>.</p><p>Read our <a href='https://www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a> to see how we manage and protect your personal information.</p><p>To learn more about our role and mandate, read <a href='https://www.priv.gc.ca/en/about-the-opc/' target='_blank'>About the OPC</a>. If you have questions about privacy rights and responsibilities, you may also wish to contact our Information Centre toll free at <span class='baec5a81-e4d6-4674-97f3-e9220f0136c1'>1-800-282-1376<a title='Call: 1-800-282-1376' href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51#'><img title='Call: 1-800-282-1376' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABcklEQVR4XpXTPUvDUBTH4aR2c2hBQXGpTiIORhBcBOvgYKf0Awi+4Ggr1MVPIIrYdnEpShddHIyLi6AVXVxsRRDRwbi4KNgu4lCIv8i/i6QRDzycy+09555LqOl5nhEUptPoJe1iDHU8oYlrlDw79m4QEbSLPexzsIc8hDRm8YBjLpj4q8EgxQdab+MNd4ghhQ2adIc1+ORAFEnWWfTDRp7GDfImlsIavKALLuqoqMGUCs4wHtagiQ5uc8kDyCOBKlP1k78QNTOZnMXCQRxWsbjl6iuskV41SQG2Gj9rikvcR1WcgKFDBa1LOEUK56hqv8BUFV3SGWkVS9JQ6Dsv4wQ1DKMPORUvkm78BhdQMI1CTa5I0yrcwSFqFD+SZ7DQesIkCG5S/JpkHYERQRmuNsrZ7Grc+Ef8/Bcoslkfae8Wc7CUHZ++TuAEBj86pHntjaDKXllPy6PW/gkKFaThwp/K87N8hDcQTTKKFTioSxqB8Q2BNX5JtAljwgAAAABJRU5ErkJggg==' alt='' /></a></span> or <span class='baec5a81-e4d6-4674-97f3-e9220f0136c1'>(819) 994-5444<a title='Call: (819) 994-5444' href='https://services.priv.gc.ca/q-s/allez-go/eng/fb408134-7bd4-48cb-87a2-4ac6210dee51#'><img title='Call: (819) 994-5444' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABcklEQVR4XpXTPUvDUBTH4aR2c2hBQXGpTiIORhBcBOvgYKf0Awi+4Ggr1MVPIIrYdnEpShddHIyLi6AVXVxsRRDRwbi4KNgu4lCIv8i/i6QRDzycy+09555LqOl5nhEUptPoJe1iDHU8oYlrlDw79m4QEbSLPexzsIc8hDRm8YBjLpj4q8EgxQdab+MNd4ghhQ2adIc1+ORAFEnWWfTDRp7GDfImlsIavKALLuqoqMGUCs4wHtagiQ5uc8kDyCOBKlP1k78QNTOZnMXCQRxWsbjl6iuskV41SQG2Gj9rikvcR1WcgKFDBa1LOEUK56hqv8BUFV3SGWkVS9JQ6Dsv4wQ1DKMPORUvkm78BhdQMI1CTa5I0yrcwSFqFD+SZ7DQesIkCG5S/JpkHYERQRmuNsrZ7Grc+Ef8/Bcoslkfae8Wc7CUHZ++TuAEBj86pHntjaDKXllPy6PW/gkKFaThwp/K87N8hDcQTTKKFTioSxqB8Q2BNX5JtAljwgAAAABJRU5ErkJggg==' alt='' /></a></span>.</p><p>Please click on the continue button once you have finished, to share your comment with us.</p>",
+            "fr": "<p>Le Commissariat est déterminé à faire en sorte que les clients ayant une déficience disposent d'un accès égal et puissent profiter de tous les services offerts au public. Si vous avez besoin de <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/conditions-d-utilisation/#acc' target='_blank'>mesures d'adaptation</a> pour vous aider à nous faire part de vos commentaires, veuillez contacter notre <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/communiquer-avec-le-centre-d-information/' target='_blank'>Centre d'information</a>.</p><p>Consultez notre <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/' target='_blank'>politique sur la protection des renseignements personnels</a> pour savoir comment nous gérons et protégeons vos renseignements personnels.</p><p>Pour en savoir plus sur notre rôle et notre mandat, veuillez consulter la section <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/' target='_blank'>À propos du Commissariat</a> de notre site. Si vous avez des questions au sujet des droits et responsabilités liés à la vie privée, vous pouvez également contacter notre Centre d’information au numéro sans frais <span class='baec5a81-e4d6-4674-97f3-e9220f0136c1'>1-800-282-1376<a title='Call: 1-800-282-1376' href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=e1191a8b-cc72-4b16-addb-f8a437dfd48d#'><img title='Call: 1-800-282-1376' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABcklEQVR4XpXTPUvDUBTH4aR2c2hBQXGpTiIORhBcBOvgYKf0Awi+4Ggr1MVPIIrYdnEpShddHIyLi6AVXVxsRRDRwbi4KNgu4lCIv8i/i6QRDzycy+09555LqOl5nhEUptPoJe1iDHU8oYlrlDw79m4QEbSLPexzsIc8hDRm8YBjLpj4q8EgxQdab+MNd4ghhQ2adIc1+ORAFEnWWfTDRp7GDfImlsIavKALLuqoqMGUCs4wHtagiQ5uc8kDyCOBKlP1k78QNTOZnMXCQRxWsbjl6iuskV41SQG2Gj9rikvcR1WcgKFDBa1LOEUK56hqv8BUFV3SGWkVS9JQ6Dsv4wQ1DKMPORUvkm78BhdQMI1CTa5I0yrcwSFqFD+SZ7DQesIkCG5S/JpkHYERQRmuNsrZ7Grc+Ef8/Bcoslkfae8Wc7CUHZ++TuAEBj86pHntjaDKXllPy6PW/gkKFaThwp/K87N8hDcQTTKKFTioSxqB8Q2BNX5JtAljwgAAAABJRU5ErkJggg==' alt='' /></a></span> ou au <span class='baec5a81-e4d6-4674-97f3-e9220f0136c1'>(819) 994-5444<a title='Call: (819) 994-5444' href='https://services.priv.gc.ca/q-s/allez-go/fra/fb408134-7bd4-48cb-87a2-4ac6210dee51?ResultId=e1191a8b-cc72-4b16-addb-f8a437dfd48d#'><img title='Call: (819) 994-5444' src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABcklEQVR4XpXTPUvDUBTH4aR2c2hBQXGpTiIORhBcBOvgYKf0Awi+4Ggr1MVPIIrYdnEpShddHIyLi6AVXVxsRRDRwbi4KNgu4lCIv8i/i6QRDzycy+09555LqOl5nhEUptPoJe1iDHU8oYlrlDw79m4QEbSLPexzsIc8hDRm8YBjLpj4q8EgxQdab+MNd4ghhQ2adIc1+ORAFEnWWfTDRp7GDfImlsIavKALLuqoqMGUCs4wHtagiQ5uc8kDyCOBKlP1k78QNTOZnMXCQRxWsbjl6iuskV41SQG2Gj9rikvcR1WcgKFDBa1LOEUK56hqv8BUFV3SGWkVS9JQ6Dsv4wQ1DKMPORUvkm78BhdQMI1CTa5I0yrcwSFqFD+SZ7DQesIkCG5S/JpkHYERQRmuNsrZ7Grc+Ef8/Bcoslkfae8Wc7CUHZ++TuAEBj86pHntjaDKXllPy6PW/gkKFaThwp/K87N8hDcQTTKKFTioSxqB8Q2BNX5JtAljwgAAAABJRU5ErkJggg==' alt='' /></a></span>.</p><p>Veuillez cliquer sur le bouton « Continuer » lorsque vous aurez rempli le formulaire, pour nous faire parvenir vos commentaires.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "completedHtml": {
+    "en": "<p>Thank you for sharing your comment with us. Your comment can assist us in identifying trends and privacy risks, and may help us take action in the future.</p><p>If you are looking for information about a particular privacy topic, try browsing our <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/'>Privacy Topics</a> page or using our <a href='https://www.priv.gc.ca/en/search'>Search tool</a>.</p>",
+    "fr": "<p>Merci de nous avoir fait part de vos commentaires. Ceux-ci peuvent nous aider à repérer des tendances ou des risques en matière de vie privée, nous permettant possiblement d'agir à l'avenir.</p><p>Si vous cherchez des renseignements sur un sujet lié à la protection de la vie privée en particulier, essayez de naviguer sur notre page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/'>Sujets liés à la protection de la vie privée</a> ou utilisez notre <a href='https://www.priv.gc.ca/fr/search'>outil de recherche</a>.</p>"
+  }
+}
