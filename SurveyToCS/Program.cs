@@ -14,6 +14,8 @@ namespace SurveyToCS
 			Console.WriteLine("1) Type 'c' to generate the C# class with properties");
 			Console.WriteLine("2) Type 'v' to generate the FluentValidation class");
 			Console.WriteLine("3) Type 't' to generate test data");
+			Console.WriteLine("4) Type '' to generate test data");
+			Console.WriteLine("5) Type 'r' to rebuild to json with translated strings");
 			Console.Write("\r\nSelect an option: ");
 
 			//	TODO:	When using make sure string json & string className are set properly
@@ -22,11 +24,11 @@ namespace SurveyToCS
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 			//string className = "SurveyPBRModel";
 
-			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
-			string className = "SurveyRROSHModel";
+			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
+			//string className = "SurveyRROSHModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
-			//string className = "SurveyPIAToolModel";
+			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+			string className = "SurveyPIAToolModel";
 
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
 			//string className = "SurveyPAModel";
@@ -75,6 +77,12 @@ namespace SurveyToCS
 				string result = TestDataBuilder.CreateTestData(survey);
 				ClipboardService.SetText(result);
 				Console.WriteLine(result);
+			}
+			else if (line == "r")
+			{
+				string result = ExportForTranslation.ReBuildJSON("", pathToJSONFile);
+				ClipboardService.SetText(result);
+				//Console.WriteLine(result);
 			}
 		}
 	}

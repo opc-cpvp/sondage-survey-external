@@ -149,7 +149,7 @@ namespace SurveyToCS
 			string visibleIf = GetVisibleIfFullCondition(element, parentPage, parentPanel);
 			string requiredIf = GetRequiredIfFullCondition(element, parentPage, parentPanel);
 
-			if (element.isRequired)
+			if (element.isRequired == true)
 			{
 				BuildRequiredValidator(csharp, elementName, visibleIf);
 			}
@@ -186,7 +186,7 @@ namespace SurveyToCS
 		{
 			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
-			if (element.isRequired)
+			if (element.isRequired == true)
 			{
 				return true;
 			}
@@ -228,7 +228,7 @@ namespace SurveyToCS
 
 			string visibleIf = GetVisibleIfFullCondition(element, null, null);
 
-			if (element.isRequired)
+			if (element.isRequired == true)
 			{
 				csharp.Append(childParameter);
 				csharp.Append(".");

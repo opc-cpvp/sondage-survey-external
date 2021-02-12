@@ -328,7 +328,7 @@ namespace SurveyToCS
 				csharp.AppendLine("<br/>");
 			}
 
-			if (element.isRequired && !string.IsNullOrWhiteSpace(element.visibleIf))
+			if (element.isRequired == true && !string.IsNullOrWhiteSpace(element.visibleIf))
 			{
 				csharp.Append("/// Required condition: ");
 				csharp.Append(element.visibleIf);

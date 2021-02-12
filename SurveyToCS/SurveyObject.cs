@@ -14,7 +14,7 @@ namespace SurveyToCS
 	public class Page
 	{
 		public string name { get; set; }
-		public Title title { get; set; }
+		public Traduction title { get; set; }
 
 		public string visibleIf { get; set; }
 
@@ -36,13 +36,16 @@ namespace SurveyToCS
 	{
 		public Page parent { get; set; }
 		public string type { get; set; }
+
+		public string name { get; set; }
+
+		public Traduction title { get; set; }
 		public string inputType { get; set; }
 
 		public string cellType { get; set; }
-		public Title title { get; set; }
-		public string name { get; set; }
+
 		public string valueName { get; set; }
-		public bool isRequired { get; set; }
+		public bool? isRequired { get; set; }
 
 		public string requiredIf { get; set; }
 		public ChoicesByUrl choicesByUrl { get; set; }
@@ -67,9 +70,31 @@ namespace SurveyToCS
 		public object rows { get; set; }
 
 		public string value { get; set; }
+
+		public Traduction html { get; set; }
+
+		public Traduction description { get; set; }
+
+		public string section { get; set; }
+
+		public string titleLocation { get; set; }
+
+		public int? colCount { get; set; }
 	}
 
-	public class Title
+	//public class Html
+	//{
+	//	public string en { get; set; }
+	//	public string fr { get; set; }
+	//}
+
+	//public class Title
+	//{
+	//	public string en { get; set; }
+	//	public string fr { get; set; }
+	//}
+
+	public class Traduction
 	{
 		public string en { get; set; }
 		public string fr { get; set; }
@@ -78,6 +103,8 @@ namespace SurveyToCS
 	public class Choices
 	{
 		public string value { get; set; }
+
+		public Traduction text { get; set; }
 	}
 
 	public class ChoicesByUrl
