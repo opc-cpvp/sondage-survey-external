@@ -1,7 +1,7 @@
-﻿export const paTestData = {
+export const paTestData = {
     "FilingComplaintOnOwnBehalf": "yourself",
     "RaisedPrivacyToAtipCoordinator": "yes",
-    "WhichFederalGovernementInstitutionComplaintAgainst": "3",
+    "WhichFederalGovernementInstitutionComplaintAgainst": 3,
     "NatureOfComplaint": [
         "NatureOfComplaintOther",
         "NatureOfComplaintDelay",
@@ -22,7 +22,7 @@
     "NeedsDisabilityAccommodation": "yes",
     "DisabilityAccommodation": "iuyuiyiuyiuy",
     "Complainant_Country": "CA",
-    "Complainant_ProvinceOrState": "2",
+    "Complainant_ProvinceOrState": 2,
     "Reprensentative_FormOfAddress": "Mr.",
     "Reprensentative_FirstName": "jf",
     "Reprensentative_LastName": "brouillette",
