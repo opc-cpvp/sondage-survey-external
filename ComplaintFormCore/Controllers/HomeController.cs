@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,7 +8,6 @@ using Microsoft.Extensions.Logging;
 using ComplaintFormCore.Models;
 using GoC.WebTemplate.CoreMVC.Controllers;
 using GoC.WebTemplate.Components.Core.Services;
-using ComplaintFormCore.Models.pa;
 
 namespace ComplaintFormCore.Controllers
 {
