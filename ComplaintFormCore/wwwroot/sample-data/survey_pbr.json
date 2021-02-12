@@ -525,8 +525,8 @@
           "titleLocation": "hidden",
           "maxLength": 2000,
           "rows": 10,
-          "requiredIf": "{TypeOfBreach} = other",
-          "visibleIf": "{TypeOfBreach} = other"
+          "requiredIf": "{TypeOfBreach} = 'other'",
+          "visibleIf": "{TypeOfBreach} = 'other'"
         }
       ]
     },

@@ -839,12 +839,6 @@
             "fr": ""
           },
           "isRequired": true,
-          "validators": [
-            {
-              "type": "expression",
-              "expression": "HasSelectedItem({institution}) = true"
-            }
-          ],
           "choicesByUrl": {
             "url": "/api/Institution/GetAll?lang={locale}&addOther=true",
             "titleName": "name",
