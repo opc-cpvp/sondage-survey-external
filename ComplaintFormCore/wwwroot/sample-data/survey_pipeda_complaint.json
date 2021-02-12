@@ -1291,7 +1291,7 @@
             "en": "Access to your personal information",
             "fr": "Accès à vos renseignements personnels"
           },
-          "visibleIf": "{DeniedAccess} anyof ['yes_and_other_concern', 'yes']",
+          "visibleIf": "{DeniedAccess} anyof ['yes_and_other_concern','yes']",
           "elements": [
             {
               "type": "comment",
@@ -1605,7 +1605,7 @@
                 "fr": "Province ou territoire"
               },
               "isRequired": true,
-              "visibleIf": "{complainant_Country} = 'CA'",
+              "visibleIf": "{Complainant_Country} = 'CA'",
               "choicesByUrl": {
                 "url": "/api/Province?lang={locale}",
                 "titleName": "text",
@@ -1783,7 +1783,7 @@
                 "fr": "Province ou territoire"
               },
               "isRequired": true,
-              "visibleIf": "{reprensentative_Country} = 'CA'",
+              "visibleIf": "{Reprensentative_Country} = 'CA'",
               "choicesByUrl": {
                 "url": "/api/Province?lang={locale}",
                 "titleName": "text",
