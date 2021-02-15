@@ -750,7 +750,7 @@
       },
       "elements": [
         {
-          "type": "paneldynamic",
+          "type": "checkbox",
           "name": "DataElementsDisclosed",
           "title": {
             "en": "Data elements disclosed",
@@ -760,190 +760,193 @@
             "en": "Choose all that apply.",
             "fr": ""
           },
-          "panelCount": 1,
-          "minPanelCount": 1,
           "isRequired": true,
-          "renderMode": "list",
-          "panelAddText": {
-            "en": "+ Add Data Element",
-            "fr": ""
-          },
-          "panelRemoveText": {
-            "en": "Remove Data Element",
-            "fr": ""
-          },
-          "keyName": "DataElement",
-          "keyDuplicationError": {
-            "en": "Data Element already added",
-            "fr": ""
-          },
-          "templateTitle": "{panel.DataElement}",
-          "templateElements": [
+          "hasOther": true,
+          "choices": [
             {
-              "name": "DataElement",
-              "type": "dropdown",
-              "title": {
-                "en": "Elements",
+              "text": {
+                "en": "Name",
                 "fr": ""
               },
-              "choices": [
-                {
-                  "text": {
-                    "en": "Name",
-                    "fr": ""
-                  },
-                  "value": "name"
-                },
-                {
-                  "text": {
-                    "en": "Date of birth",
-                    "fr": ""
-                  },
-                  "value": "dob"
-                },
-                {
-                  "text": {
-                    "en": "Home address",
-                    "fr": ""
-                  },
-                  "value": "home_address"
-                },
-                {
-                  "text": {
-                    "en": "Phone number",
-                    "fr": ""
-                  },
-                  "value": "phone_number"
-                },
-                {
-                  "text": {
-                    "en": "Email address",
-                    "fr": ""
-                  },
-                  "value": "email"
-                },
-                {
-                  "text": {
-                    "en": "Information related to death",
-                    "fr": ""
-                  },
-                  "value": "death"
-                },
-                {
-                  "text": {
-                    "en": "Information related to law enforcement ",
-                    "fr": ""
-                  },
-                  "value": "law_enforcement"
-                },
-                {
-                  "text": {
-                    "en": "Medical information",
-                    "fr": ""
-                  },
-                  "value": "medical"
-                },
-                {
-                  "text": {
-                    "en": "Financial information",
-                    "fr": ""
-                  },
-                  "value": "financial"
-                },
-                {
-                  "text": {
-                    "en": "Details of interaction with Government of Canada",
-                    "fr": ""
-                  },
-                  "value": "interaction_goc"
-                },
-                {
-                  "text": {
-                    "en": "Other",
-                    "fr": ""
-                  },
-                  "value": "other"
-                }
-              ],
-              "isRequired": true
+              "value": "name"
             },
             {
-              "type": "comment",
-              "name": "Info",
-              "visibleIf": "{panel.DataElement} anyof ['medical','financial','interaction_goc','other']",
-              "isRequired": true,
-              "title": {
-                "en": "Explain",
+              "text": {
+                "en": "Date of birth",
                 "fr": ""
-              }
+              },
+              "value": "dob"
             },
             {
-              "type": "checkbox",
-              "name": "InfoDeath",
-              "visibleIf": "{panel.DataElement} contains 'death'",
-              "isRequired": true,
-              "title": {
+              "text": {
+                "en": "Home address",
+                "fr": ""
+              },
+              "value": "home_address"
+            },
+            {
+              "text": {
+                "en": "Phone number",
+                "fr": ""
+              },
+              "value": "phone_number"
+            },
+            {
+              "text": {
+                "en": "Email address",
+                "fr": ""
+              },
+              "value": "email"
+            },
+            {
+              "text": {
                 "en": "Information related to death",
                 "fr": ""
               },
-              "hasOther": true,
-              "choices": [
-                {
-                  "text": {
-                    "en": "Date of death",
-                    "fr": ""
-                  },
-                  "value": "date"
-                },
-                {
-                  "text": {
-                    "en": "Cause of death",
-                    "fr": ""
-                  },
-                  "value": "cause"
-                },
-                {
-                  "text": {
-                    "en": "Death related reports and investigations",
-                    "fr": ""
-                  },
-                  "value": "reports_investigations"
-                }
-              ]
+              "value": "death"
             },
             {
-              "type": "checkbox",
-              "name": "InfoLawEnforcement",
-              "visibleIf": "{panel.DataElement} contains 'law_enforcement'",
-              "title": {
-                "en": "Information related to law enforcement",
+              "text": {
+                "en": "Information related to law enforcement ",
                 "fr": ""
               },
-              "isRequired": true,
-              "hasOther": true,
-              "choices": [
-                {
-                  "text": {
-                    "en": "Charges",
-                    "fr": ""
-                  },
-                  "value": "charges"
-                },
-                {
-                  "text": {
-                    "en": "Convictions",
-                    "fr": ""
-                  },
-                  "value": "convictions"
-                },
-                {
-                  "text": {
-                    "en": "Criminal record (where no record suspension has been ordered)",
-                    "fr": ""
-                  },
-                  "value": "criminal_record"
-                }
-              ]
+              "value": "law_enforcement"
+            },
+            {
+              "text": {
+                "en": "Medical information",
+                "fr": ""
+              },
+              "value": "medical"
+            },
+            {
+              "text": {
+                "en": "Financial information",
+                "fr": ""
+              },
+              "value": "financial"
+            },
+            {
+              "text": {
+                "en": "Details of interaction with Government of Canada",
+                "fr": ""
+              },
+              "value": "interaction_goc"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_7_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 7.0",
+        "fr": ""
+      },
+     
+      "elements": [
+        {
+          "type": "comment",
+          "name": "MedicalDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'medical'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the medical data elements disclosed",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "FinancialDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'financial'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the financial data elements disclosed",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "InteractionGOCDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'interaction_goc'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the interaction with Government of Canada data elements disclosed",
+            "fr": ""
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "DeathDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'death'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the information related to death data elements disclosed",
+            "fr": ""
+          },
+          "hasOther": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Date of death",
+                "fr": ""
+              },
+              "value": "date"
+            },
+            {
+              "text": {
+                "en": "Cause of death",
+                "fr": ""
+              },
+              "value": "cause"
+            },
+            {
+              "text": {
+                "en": "Death related reports and investigations",
+                "fr": ""
+              },
+              "value": "reports_investigations"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "InfoLawEnforcementDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement'",
+          "title": {
+            "en": "Explain the law enforcement data elements disclosed",
+            "fr": ""
+          },
+          "isRequired": true,
+          "hasOther": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Charges",
+                "fr": ""
+              },
+              "value": "charges"
+            },
+            {
+              "text": {
+                "en": "Convictions",
+                "fr": ""
+              },
+              "value": "convictions"
+            },
+            {
+              "text": {
+                "en": "Criminal record (where no record suspension has been ordered)",
+                "fr": ""
+              },
+              "value": "criminal_record"
             }
           ]
         }

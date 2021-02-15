@@ -11,7 +11,7 @@ namespace ComplaintFormCore.Models
 		/// Possible choices: [/api/Institution/GetAll?lang={locale}]<br/>
 		/// Survey question type: dropdown
 		/// </summary>
-		public string Institution { get; set; }
+		public int? Institution { get; set; }
 
 		/// <summary>
 		/// Page: page_q_1_1<br/>
@@ -178,6 +178,56 @@ namespace ComplaintFormCore.Models
 		public string DescriptionOfEvents { get; set; }
 
 		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Data elements disclosed<br/>
+		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc, other]<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> DataElementsDisclosed { get; set; }
+
+		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Explain the medical data elements disclosed<br/>
+		/// Required condition: {DataElementsDisclosed} contains 'medical'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string MedicalDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Explain the financial data elements disclosed<br/>
+		/// Required condition: {DataElementsDisclosed} contains 'financial'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string FinancialDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Explain the interaction with Government of Canada data elements disclosed<br/>
+		/// Required condition: {DataElementsDisclosed} contains 'interaction_goc'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string InteractionGOCDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Explain the information related to death data elements disclosed<br/>
+		/// Possible choices: [date, cause, reports_investigations]<br/>
+		/// Required condition: {DataElementsDisclosed} contains 'death'<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> DeathDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Page: page_q_7_0<br/>
+		/// Explain the law enforcement data elements disclosed<br/>
+		/// Possible choices: [charges, convictions, criminal_record]<br/>
+		/// Required condition: {DataElementsDisclosed} contains 'law_enforcement'<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> InfoLawEnforcementDisclosedExplanation { get; set; }
+
+		/// <summary>
 		/// Page: page_q_8_0<br/>
 		/// Please provide rationale for disclosure. Your answer should include the pur...<br/>
 		/// Survey question type: comment
@@ -200,42 +250,9 @@ namespace ComplaintFormCore.Models
 		public List<SurveyFile> FileSupplementaryDocumentations { get; set; }
 
 
-		public List<DataElementsDisclosed> DataElementsDisclosed { get; set; }
-
 		public List<DisclosureRecipients> DisclosureRecipients { get; set; }
 
 		public List<MultipleIndividuals> MultipleIndividuals { get; set; }
-
-	}
-	public class DataElementsDisclosed
-	{
-		/// <summary>
-		/// Elements<br/>
-		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc, other]<br/>
-		/// Survey question type: dropdown
-		/// </summary>
-		public string DataElement { get; set; }
-
-		/// <summary>
-		/// Explain<br/>
-		/// Required condition: {panel.DataElement} anyof ['medical','financial','interaction_goc','other']<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string Info { get; set; }
-
-		/// <summary>
-		/// Information related to death<br/>
-		/// Possible choices: [date, cause, reports_investigations]<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> InfoDeath { get; set; }
-
-		/// <summary>
-		/// Information related to law enforcement<br/>
-		/// Possible choices: [charges, convictions, criminal_record]<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> InfoLawEnforcement { get; set; }
 
 	}
 	public class DisclosureRecipients
@@ -256,6 +273,7 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Family Member<br/>
 		/// Possible choices: [spouse, parent, sibling]<br/>
+		/// Required condition: {panel.Recipient} contains 'family_member'<br/>
 		/// Survey question type: checkbox
 		/// </summary>
 		public List<string> FamilyMember { get; set; }
