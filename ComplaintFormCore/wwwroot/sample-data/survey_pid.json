@@ -425,14 +425,6 @@
           "renderMode": "list",
           "panelCount": 1,
           "minPanelCount": 1,
-          "panelAddText": {
-            "en": "+ Add Recipient",
-            "fr": ""
-          },
-          "panelRemoveText": {
-            "en": "Remove Recipient",
-            "fr": ""
-          },
           "keyName": "Recipient",
           "keyDuplicationError": {
             "en": "Recipient already added",
