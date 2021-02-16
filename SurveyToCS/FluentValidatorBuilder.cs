@@ -743,6 +743,12 @@ namespace SurveyToCS
 			string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
 			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
+			if (type == "checkbox" && element.hasOther == true)
+			{
+				//	We can process that because the 'other' can be anything.
+				return;
+			}
+
 			if (type == "checkbox" || type == "tagbox")
 			{
 				csharp.Append("RuleForEach(x => x.");

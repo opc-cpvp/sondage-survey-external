@@ -68,7 +68,6 @@ namespace ComplaintFormCore.Models
 
 			// LegislativeAuthority (Page: page_q_3_0)
 			RuleFor(x => x.LegislativeAuthority).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.LegislativeAuthority).Must(x => new List<string> { "public", "individual", "desda" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// OtherOptionsForDisclosure (Page: page_q_3_1)
 			RuleFor(x => x.OtherOptionsForDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -103,7 +102,6 @@ namespace ComplaintFormCore.Models
 
 			// DataElementsDisclosed (Page: page_q_7_0)
 			RuleFor(x => x.DataElementsDisclosed).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.DataElementsDisclosed).Must(x => new List<string> { "name", "dob", "home_address", "phone_number", "email", "death", "law_enforcement", "medical", "financial", "interaction_goc", "other" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// MedicalDisclosedExplanation (Page: page_q_7_0)
 			RuleFor(x => x.MedicalDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("medical")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -119,11 +117,9 @@ namespace ComplaintFormCore.Models
 
 			// DeathDisclosedExplanation (Page: page_q_7_0)
 			RuleFor(x => x.DeathDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("death")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.DeathDisclosedExplanation).Must(x => new List<string> { "date", "cause", "reports_investigations" }.Contains(x)).When(x => x.DataElementsDisclosed.Contains("death")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// InfoLawEnforcementDisclosedExplanation (Page: page_q_7_0)
 			RuleFor(x => x.InfoLawEnforcementDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.InfoLawEnforcementDisclosedExplanation).Must(x => new List<string> { "charges", "convictions", "criminal_record" }.Contains(x)).When(x => x.DataElementsDisclosed.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// RationalForDisclosure (Page: page_q_8_0)
 			RuleFor(x => x.RationalForDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -151,7 +147,6 @@ namespace ComplaintFormCore.Models
 			{
 				// FamilyMember (Page: page_q_4_0)
 				child.RuleFor(x => x.FamilyMember).NotEmpty().When(x => x.Recipient == "family_member").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-				child.RuleForEach(x => x.FamilyMember).Must(x => new List<string> { "spouse", "parent", "sibling" }.Contains(x)).When(x => x.Recipient == "family_member").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 			});
 
 			// MultipleIndividuals

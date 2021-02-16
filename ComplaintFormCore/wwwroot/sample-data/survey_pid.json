@@ -754,6 +754,10 @@
           },
           "isRequired": true,
           "hasOther": true,
+          "otherPlaceHolder": {
+            "en": "Provide details about this other data element disclosed",
+            "fr": ""
+          },
           "choices": [
             {
               "text": {
@@ -824,13 +828,6 @@
                 "fr": ""
               },
               "value": "interaction_goc"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": ""
-              },
-              "value": "other"
             }
           ]
         }
@@ -839,11 +836,19 @@
     {
       "name": "page_q_7_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 7.0",
+        "en": "Public interest disclosure notification online submission tool - Question 7.0 - Details about elements disclosed",
         "fr": ""
       },
-     
+
       "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{DataElementsDisclosed} anyof ['medical','financial','interaction_goc','death','law_enforcement']",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p>Provide details about the selected data elements disclosed</p></section>",
+            "fr": ""
+          }
+        },
         {
           "type": "comment",
           "name": "MedicalDisclosedExplanation",
