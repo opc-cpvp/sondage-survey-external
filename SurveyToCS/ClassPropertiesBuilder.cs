@@ -242,6 +242,10 @@ namespace SurveyToCS
 			{
 				csharp.Append("public List<SurveyFile> ");
 			}
+			else if (element.type == "checkbox")
+			{
+				csharp.Append("public List<string> ");
+			}
 			else if (element.type == "matrixdynamic")
 			{
 				string className = Common.CapitalizeFirstLetter(name) + "Object";

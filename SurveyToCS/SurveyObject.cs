@@ -81,9 +81,6 @@ namespace SurveyToCS
 
 		public bool? useDisplayValuesInTitle { get; set; }
 
-
-
-
 		public List<Element> columns { get; set; }
 
 		public int? maxLength { get; set; }

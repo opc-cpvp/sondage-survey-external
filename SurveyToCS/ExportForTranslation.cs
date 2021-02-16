@@ -56,9 +56,21 @@ namespace SurveyToCS
 				return "";
 			}
 
-			var test = survey.pages.Where(p => p.name == "page_before_begin_q_0_1").First().elements.Where(e => e.name == "HasLegalAuthority").First().title;
+			var test = survey.pages.Where(p => p.name == "page_step_2_1_q_2_1_6").First().elements.Where(e => e.name == "pnd_OtherInstitutionHead").First();
 
-			test.fr = "salut ca va";
+			if(test.type == "paneldynamic")
+			{
+				foreach(var item in test.templateElements)
+				{
+					item.title.fr = "xyz";
+				}
+			}
+			else if(test.type == "matrixdynamic")
+			{
+
+			}
+
+			//test.fr = "salut ca va";
 
 			//string output = JsonConvert.SerializeObject(survey, Formatting.Indented);
 			//string finaloutput = JToken.FromObject(survey).ToString();
