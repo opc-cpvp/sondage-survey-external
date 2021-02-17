@@ -141,6 +141,79 @@ namespace ComplaintFormCore.Models
 		public string OtherOptionsForDisclosureAdditonalInfo { get; set; }
 
 		/// <summary>
+		/// Page: page_q_4_0<br/>
+		/// Please indicate the disclosure recipient(s)<br/>
+		/// Possible choices: [law_enforcement, family_member, named_representative, goc_institution, regulatory, gov_other_jurisdiction, media, public]<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> DisclosureRecipients { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which law enforcement body/bodies<br/>
+		/// Required condition: {DisclosureRecipients} contains 'law_enforcement'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_law_enforcement { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which named representative<br/>
+		/// Required condition: {DisclosureRecipients} contains 'named_representative'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_named_representative { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which Government of Canada institution(s)<br/>
+		/// Required condition: {DisclosureRecipients} contains 'goc_institution'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_goc_institution { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which Regulatory or Oversight Bodies<br/>
+		/// Required condition: {DisclosureRecipients} contains 'regulatory'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_Regulatory { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which Government(s) in other jurisdiction(s)<br/>
+		/// Required condition: {DisclosureRecipients} contains 'gov_other_jurisdiction'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_Jurisdiction { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which public disclosure recipient(s)<br/>
+		/// Required condition: {DisclosureRecipients} contains 'public'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_Public { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which media outlet<br/>
+		/// Required condition: {DisclosureRecipients} contains 'media'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string DisclosureRecipients_Media { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which family member(s)<br/>
+		/// Possible choices: [spouse, parent, sibling]<br/>
+		/// Required condition: {DisclosureRecipients} contains 'family_member'<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> DisclosureRecipients_FamilyMember { get; set; }
+
+		/// <summary>
 		/// Page: page_q_5_0<br/>
 		/// Is the institution disclosing the personal information of one individual, o...<br/>
 		/// Possible choices: [single, multiple]<br/>
@@ -180,7 +253,7 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Page: page_q_7_0<br/>
 		/// Data elements disclosed<br/>
-		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc, other]<br/>
+		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc]<br/>
 		/// Survey question type: checkbox
 		/// </summary>
 		public List<string> DataElementsDisclosed { get; set; }
@@ -250,33 +323,7 @@ namespace ComplaintFormCore.Models
 		public List<SurveyFile> FileSupplementaryDocumentations { get; set; }
 
 
-		public List<DisclosureRecipients> DisclosureRecipients { get; set; }
-
 		public List<MultipleIndividuals> MultipleIndividuals { get; set; }
-
-	}
-	public class DisclosureRecipients
-	{
-		/// <summary>
-		/// Recipients<br/>
-		/// Possible choices: [law_enforcement, family_member, named_representative, goc_institution, regulatory, gov_other_jurisdiction, media, public, other]<br/>
-		/// Survey question type: dropdown
-		/// </summary>
-		public string Recipient { get; set; }
-
-		/// <summary>
-		/// Explain<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string Info { get; set; }
-
-		/// <summary>
-		/// Family Member<br/>
-		/// Possible choices: [spouse, parent, sibling]<br/>
-		/// Required condition: {panel.Recipient} contains 'family_member'<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> FamilyMember { get; set; }
 
 	}
 	public class MultipleIndividuals

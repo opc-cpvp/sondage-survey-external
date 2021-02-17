@@ -634,7 +634,7 @@ namespace SurveyToCS
 
 				if (elem != null)
 				{
-					if(elem.type == "tagbox") // || checkbox ?
+					if(elem.type == "tagbox" || elem.type == "checkbox")
 					{
 						string propertyName = match_propery.Value.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 

@@ -22,8 +22,8 @@ namespace SurveyToCS
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 			//string className = "SurveyPBRModel";
 
-			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
-			string className = "SurveyRROSHModel";
+			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
+			//string className = "SurveyRROSHModel";
 
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 			//string className = "SurveyPIAToolModel";
@@ -33,6 +33,9 @@ namespace SurveyToCS
 
 			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
 			//string className = "SurveyPipedaModel";
+
+			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pid.json";
+			string className = "SurveyPIDModel";
 
 			string classNamespace = "ComplaintFormCore.Models";
 			SurveyObject survey;

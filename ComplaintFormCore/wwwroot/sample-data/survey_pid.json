@@ -411,7 +411,7 @@
       },
       "elements": [
         {
-          "type": "paneldynamic",
+          "type": "checkbox",
           "name": "DisclosureRecipients",
           "title": {
             "en": "Please indicate the disclosure recipient(s)",
@@ -421,138 +421,188 @@
             "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
             "fr": ""
           },
+          "hasOther": true,
           "isRequired": true,
-          "renderMode": "list",
-          "panelCount": 1,
-          "minPanelCount": 1,
-          "keyName": "Recipient",
-          "keyDuplicationError": {
-            "en": "Recipient already added",
+          "choices": [
+            {
+              "text": {
+                "en": "Law enforcement",
+                "fr": ""
+              },
+              "value": "law_enforcement"
+            },
+            {
+              "text": {
+                "en": "Family member",
+                "fr": ""
+              },
+              "value": "family_member"
+            },
+            {
+              "text": {
+                "en": "Named representative",
+                "fr": ""
+              },
+              "value": "named_representative"
+            },
+            {
+              "text": {
+                "en": "Government of Canada institution(s)",
+                "fr": ""
+              },
+              "value": "goc_institution"
+            },
+            {
+              "text": {
+                "en": "Regulatory or Oversight Bodies",
+                "fr": ""
+              },
+              "value": "regulatory"
+            },
+            {
+              "text": {
+                "en": "Government(s) in other jurisdiction(s) - This could include municipal, provincial, territorial, or foreign governments.",
+                "fr": ""
+              },
+              "value": "gov_other_jurisdiction"
+            },
+            {
+              "text": {
+                "en": "Media",
+                "fr": ""
+              },
+              "value": "media"
+            },
+            {
+              "text": {
+                "en": "Public",
+                "fr": ""
+              },
+              "value": "public"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_4_0_details",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 4.0 - Details",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Provide more details about the disclosure recipient(s)</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_law_enforcement",
+          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which law enforcement body/bodies",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_named_representative",
+          "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which named representative",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_goc_institution",
+          "visibleIf": "{DisclosureRecipients} contains 'goc_institution'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government of Canada institution(s)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_Regulatory",
+          "visibleIf": "{DisclosureRecipients} contains 'regulatory'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Regulatory or Oversight Bodies",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_Jurisdiction",
+          "visibleIf": "{DisclosureRecipients} contains 'gov_other_jurisdiction'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government(s) in other jurisdiction(s)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_Public",
+          "visibleIf": "{DisclosureRecipients} contains 'public'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which public disclosure recipient(s)",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosureRecipients_Media",
+          "visibleIf": "{DisclosureRecipients} contains 'media'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which media outlet",
+            "fr": ""
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "DisclosureRecipients_FamilyMember",
+          "visibleIf": "{DisclosureRecipients} contains 'family_member'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which family member(s)",
             "fr": ""
           },
-          "templateTitle": "{panel.Recipient}",
-          "templateElements": [
+          "hasOther": true,
+          "otherText": {
+            "en": "Other type of relation",
+            "fr": ""
+          },
+          "choices": [
             {
-              "name": "Recipient",
-              "type": "dropdown",
-              "title": {
-                "en": "Recipients",
+              "text": {
+                "en": "Spouse/Common-law spouse",
                 "fr": ""
               },
-              "choices": [
-                {
-                  "text": {
-                    "en": "Law enforcement",
-                    "fr": ""
-                  },
-                  "value": "law_enforcement"
-                },
-                {
-                  "text": {
-                    "en": "Family member",
-                    "fr": ""
-                  },
-                  "value": "family_member"
-                },
-                {
-                  "text": {
-                    "en": "Named representative",
-                    "fr": ""
-                  },
-                  "value": "named_representative"
-                },
-                {
-                  "text": {
-                    "en": "Government of Canada institution(s)",
-                    "fr": ""
-                  },
-                  "value": "goc_institution"
-                },
-                {
-                  "text": {
-                    "en": "Regulatory or Oversight Bodies",
-                    "fr": ""
-                  },
-                  "value": "regulatory"
-                },
-                {
-                  "text": {
-                    "en": "Government(s) in other jurisdiction(s) - This could include municipal, provincial, territorial, or foreign governments.",
-                    "fr": ""
-                  },
-                  "value": "gov_other_jurisdiction"
-                },
-                {
-                  "text": {
-                    "en": "Media",
-                    "fr": ""
-                  },
-                  "value": "media"
-                },
-                {
-                  "text": {
-                    "en": "Public",
-                    "fr": ""
-                  },
-                  "value": "public"
-                },
-                {
-                  "text": {
-                    "en": "Other",
-                    "fr": ""
-                  },
-                  "value": "other"
-                }
-              ],
-              "isRequired": true
+              "value": "spouse"
             },
             {
-              "type": "comment",
-              "name": "Info",
-              "visibleIf": "{panel.Recipient} != 'family_member'",
-              "requiredIf": "{panel.Recipient} anyof ['law_enforcement','named_representative','goc_institution','regulatory','gov_other_jurisdiction','public','other']",
-              "title": {
-                "en": "Explain",
+              "text": {
+                "en": "Parent(s)",
                 "fr": ""
-              }
+              },
+              "value": "parent"
             },
             {
-              "type": "checkbox",
-              "name": "FamilyMember",
-              "visibleIf": "{panel.Recipient} contains 'family_member'",
-              "isRequired": true,
-              "title": {
-                "en": "Family Member",
+              "text": {
+                "en": "Sibling(s) ",
                 "fr": ""
               },
-              "hasOther": true,
-              "otherText": {
-                "en": "Other type of relation",
-                "fr": ""
-              },
-              "choices": [
-                {
-                  "text": {
-                    "en": "Spouse/Common-law spouse",
-                    "fr": ""
-                  },
-                  "value": "spouse"
-                },
-                {
-                  "text": {
-                    "en": "Parent(s)",
-                    "fr": ""
-                  },
-                  "value": "parent"
-                },
-                {
-                  "text": {
-                    "en": "Sibling(s) ",
-                    "fr": ""
-                  },
-                  "value": "sibling"
-                }
-              ]
+              "value": "sibling"
             }
           ]
         }
