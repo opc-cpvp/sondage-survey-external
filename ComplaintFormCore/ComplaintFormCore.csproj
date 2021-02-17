@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup Label="Globals">
     <SccProjectName>SAK</SccProjectName>
@@ -22,34 +22,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="FileUploads\**" />
-    <Compile Remove="Resources_original\**" />
-    <Compile Remove="wwwroot\lib\survey-vue\**" />
-    <Compile Remove="wwwroot\lib\vue\dist\**" />
-    <Compile Remove="wwwroot\lib\vue\src\**" />
-    <Content Remove="FileUploads\**" />
-    <Content Remove="Resources_original\**" />
-    <Content Remove="wwwroot\lib\survey-vue\**" />
-    <Content Remove="wwwroot\lib\vue\dist\**" />
-    <Content Remove="wwwroot\lib\vue\src\**" />
-    <EmbeddedResource Remove="FileUploads\**" />
-    <EmbeddedResource Remove="Resources_original\**" />
-    <EmbeddedResource Remove="wwwroot\lib\survey-vue\**" />
-    <EmbeddedResource Remove="wwwroot\lib\vue\dist\**" />
-    <EmbeddedResource Remove="wwwroot\lib\vue\src\**" />
-    <None Remove="FileUploads\**" />
-    <None Remove="Resources_original\**" />
-    <None Remove="wwwroot\lib\survey-vue\**" />
-    <None Remove="wwwroot\lib\vue\dist\**" />
-    <None Remove="wwwroot\lib\vue\src\**" />
-    <TypeScriptCompile Remove="FileUploads\**" />
-    <TypeScriptCompile Remove="Resources_original\**" />
-    <TypeScriptCompile Remove="wwwroot\lib\survey-vue\**" />
-    <TypeScriptCompile Remove="wwwroot\lib\vue\dist\**" />
-    <TypeScriptCompile Remove="wwwroot\lib\vue\src\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
     <PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
@@ -64,111 +36,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="3.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
-    <WebpackInputs Include="**\*.ts" Exclude="node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Resources\SharedResource.fr.resx">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ClientApp\node_modules\ladda\css\" />
-    <Folder Include="ClientApp\node_modules\ladda\dist\" />
-    <Folder Include="wwwroot\dist\" />
-    <Folder Include="wwwroot\js\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Content Remove="$(SpaRoot)**" />
-    <None Remove="$(SpaRoot)**" />
-    <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <WebpackInputs Remove="FileUploads\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ClientApp\%40types\survey-vue\survey.vue.d.ts" />
-    <None Remove="ClientApp\src\index.ts" />
-    <None Remove="ClientApp\src\models\localStorage.ts" />
-    <None Remove="ClientApp\src\models\multiLanguageProperty.ts" />
-    <None Remove="ClientApp\src\models\problemDetails.ts" />
-    <None Remove="ClientApp\src\multiLanguageProperty.ts" />
-    <None Remove="ClientApp\src\pa\paSurvey.ts.old" />
-    <None Remove="ClientApp\src\pbr\pbrSurvey.ts.old" />
-    <None Remove="ClientApp\src\pbr\pbr_test_data.ts" />
-    <None Remove="ClientApp\src\pa\pa_test_data.ts" />
-    <None Remove="ClientApp\src\pia\newPiaToolSurvey.ts" />
-    <None Remove="ClientApp\src\pia\piaE-ToolSurvey.ts.old" />
-    <None Remove="ClientApp\src\pia\pia_test_data.ts" />
-    <None Remove="ClientApp\src\pid\pidSurvey.ts" />
-    <None Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
-    <None Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
-    <None Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
-    <None Remove="ClientApp\src\problemDetails.ts" />
-    <None Remove="ClientApp\src\surveyFile.ts.old" />
-    <None Remove="ClientApp\src\surveyHelper.ts" />
-    <None Remove="ClientApp\src\SurveyInit.ts.old" />
-    <None Remove="ClientApp\src\SurveyLocalStorage.ts.old" />
-    <None Remove="ClientApp\src\surveyNavigation.ts.old" />
-    <None Remove="ClientApp\src\surveyPDF.ts" />
-    <None Remove="ClientApp\src\testSurvey.ts" />
-    <None Remove="ClientApp\src\tests\SampleSurvey.ts" />
-    <None Remove="ClientApp\src\tests\testSurvey.ts.old" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <WebpackInputs Remove="ClientApp\src\models\localStorage.ts" />
-    <WebpackInputs Remove="ClientApp\src\multiLanguageProperty.ts" />
-    <WebpackInputs Remove="ClientApp\src\pbr\newPbrSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\pbr\pbr_test_data.ts" />
-    <WebpackInputs Remove="ClientApp\src\pa\pa_test_data.ts" />
-    <WebpackInputs Remove="ClientApp\src\pia\newPiaToolSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\pia\pia_test_data.ts" />
-    <WebpackInputs Remove="ClientApp\src\pid\pidSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\pipeda\newPipedaSurvey.ts" />
-    <WebpackInputs Remove="ClientApp\src\pipeda\pipedaProvince.ts" />
-    <WebpackInputs Remove="ClientApp\src\pipeda\pipeda_test_data.ts" />
-    <WebpackInputs Remove="ClientApp\src\problemDetails.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyHelper.ts" />
-    <WebpackInputs Remove="ClientApp\src\surveyPDF.ts" />
-    <WebpackInputs Remove="ClientApp\src\testSurvey.ts" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\pa\paSurvey.ts.old" />
-    <TypeScriptCompile Include="ClientApp\src\pbr\pbrSurvey.ts.old" />
-    <TypeScriptCompile Include="ClientApp\src\pia\piaE-ToolSurvey.ts.old" />
-    <TypeScriptCompile Include="ClientApp\src\pipeda\pipedaSurvey.ts.old" />
-    <TypeScriptCompile Include="ClientApp\src\surveyFile.ts.old">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\SurveyInit.ts.old">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\SurveyLocalStorage.ts.old">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\surveyNavigation.ts.old" />
-    <TypeScriptCompile Include="ClientApp\src\tests\testSurvey.ts.old" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <TypeScriptCompile Update="ClientApp\src\surveyHelper.ts">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </TypeScriptCompile>
+    <WebpackInputs Include="$(SpaRoot)**\*.ts" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
@@ -181,29 +52,32 @@
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
   </Target>
 
-  <Target Name="RunWebpack" BeforeTargets="Build" Inputs="@(WebpackInputs)" Outputs="NOT_USED" Condition=" '$(Configuration)' == 'Debug' ">
-    <RemoveDir Directories="dist" />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:dev" />
+  <Target Name="RunWebpack" BeforeTargets="Build" Inputs="@(WebpackInputs)" Outputs="$(SpaRoot)dist\clientapp.min.js">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:dev" Condition=" '$(Configuration)' == 'Debug' " />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" Condition=" '$(Configuration)' != 'Debug' " />
+
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**" />
+    </ItemGroup>
+
+    <RemoveDir Directories="$(ProjectDir)wwwroot\js\clientapp" />
+    <Copy SourceFiles="@(DistFiles)" DestinationFolder="$(ProjectDir)wwwroot\js\clientapp" />
   </Target>
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
-  </PropertyGroup>
+<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
 
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptTarget>ES2015</TypeScriptTarget>
-    <TypeScriptJSXEmit>React</TypeScriptJSXEmit>
-    <TypeScriptModuleKind>ES6</TypeScriptModuleKind>
-    <TypeScriptCompileOnSaveEnabled>False</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-  </PropertyGroup>
-
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="$(SpaRoot)dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
 </Project>

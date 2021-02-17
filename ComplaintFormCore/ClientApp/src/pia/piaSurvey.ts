@@ -11,7 +11,7 @@ import {
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
-export class NewPiaToolSurvey extends SurveyBase {
+export class PiaSurvey extends SurveyBase {
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {

@@ -28,11 +28,9 @@
 
 @section CustomScripts {
     <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
-    <script src="~/dist/bundle.js"></script>
+    <script src="~/js/clientapp/clientapp.min.js"></script>
     <script src="~/js/datepicker.js"></script>
-
     <script type="text/javascript">
-
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
@@ -41,7 +39,5 @@
         function showPDF() {
             exportToPDF(lang, "pid");
         }
-
     </script>
 }
-
