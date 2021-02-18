@@ -61,7 +61,7 @@
     <Copy SourceFiles="@(DistFiles)" DestinationFolder="$(ProjectDir)wwwroot\js\clientapp" />
   </Target>
 
-<Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
+  <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
