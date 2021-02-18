@@ -82,16 +82,10 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Page: page_q_2_0_a<br/>
 		/// Notification to the Privacy Commissioner<br/>
-		/// Possible choices: [not_practical]<br/>
+		/// Possible choices: []<br/>
 		/// Survey question type: checkbox
 		/// </summary>
 		public List<string> WasNotPracticalToNotifyPCPrior { get; set; }
-
-		/// <summary>
-		/// Page: page_q_2_0_a<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string NotPracticalToNotifyOPCPriorAddiotnalInfo { get; set; }
 
 		/// <summary>
 		/// Page: page_q_2_0_b<br/>
@@ -121,9 +115,9 @@ namespace ComplaintFormCore.Models
 		/// Page: page_q_3_0<br/>
 		/// Please indicate under what legislative authority the disclosure was/will be...<br/>
 		/// Possible choices: [public, individual, desda]<br/>
-		/// Survey question type: checkbox
+		/// Survey question type: radiogroup
 		/// </summary>
-		public List<string> LegislativeAuthority { get; set; }
+		public string LegislativeAuthority { get; set; }
 
 		/// <summary>
 		/// Page: page_q_3_1<br/>
@@ -215,21 +209,6 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_5_0<br/>
-		/// Is the institution disclosing the personal information of one individual, o...<br/>
-		/// Possible choices: [single, multiple]<br/>
-		/// Survey question type: radiogroup
-		/// </summary>
-		public string DisclosingOfPIOneOrMultipleIndividual { get; set; }
-
-		/// <summary>
-		/// Page: page_q_5_1_a<br/>
-		/// Please provide the name of the individual whose personal information was/wi...<br/>
-		/// Survey question type: text
-		/// </summary>
-		public string OneIndividualPIDisclosedName { get; set; }
-
-		/// <summary>
-		/// Page: page_q_5_1_b<br/>
 		/// Please provide the names of the individuals whose personal information was/...<br/>
 		/// Possible choices: [directly, upload]<br/>
 		/// Survey question type: radiogroup
@@ -237,7 +216,7 @@ namespace ComplaintFormCore.Models
 		public string MultipleIndividualsAddOption { get; set; }
 
 		/// <summary>
-		/// Page: page_q_5_1_b<br/>
+		/// Page: page_q_5_0<br/>
 		/// Required condition: {MultipleIndividualsAddOption} contains 'upload'<br/>
 		/// Survey question type: file
 		/// </summary>

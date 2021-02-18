@@ -225,21 +225,11 @@
             "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional information concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
             "fr": ""
           },
-          "choices": [
-            {
-              "text": {
-                "en": "It was not reasonably practical to notify the Privacy Commissioner prior to the disclosure",
-                "fr": ""
-              },
-              "value": "not_practical"
-            }
-          ]
-        },
-        {
-          "type": "comment",
-          "name": "NotPracticalToNotifyOPCPriorAddiotnalInfo",
-          "visibleIf": "{WasNotPracticalToNotifyPCPrior} contains 'not_practical'",
-          "titleLocation": "hidden"
+          "hasOther": true,
+          "otherText": {
+            "en": "It was not reasonably practical to notify the Privacy Commissioner prior to the disclosure",
+            "fr": ""
+          }
         }
       ]
     },
@@ -308,14 +298,10 @@
       },
       "elements": [
         {
-          "type": "checkbox",
+          "type": "radiogroup",
           "name": "LegislativeAuthority",
           "title": {
             "en": "Please indicate under what legislative authority the disclosure was/will be made",
-            "fr": ""
-          },
-          "description": {
-            "en": "Choose all that apply",
             "fr": ""
           },
           "isRequired": true,
@@ -611,71 +597,9 @@
     {
       "name": "page_q_5_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 5.0",
+        "en": "Public interest disclosure notification online submission tool - Question 5",
         "fr": ""
       },
-      "elements": [
-        {
-          "type": "radiogroup",
-          "name": "DisclosingOfPIOneOrMultipleIndividual",
-          "title": {
-            "en": "Is the institution disclosing the personal information of one individual, or multiple individuals?",
-            "fr": ""
-          },
-          "description": {
-            "en": "The OPC asks institutions to provide the name of the affected individual(s) in the case our office determines it is necessary to inform the individual(s) of the disclosure, as per s 8(5) of the Privacy Act. The answer will also effect the structure of the questions that follow.",
-            "fr": ""
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "One individual",
-                "fr": ""
-              },
-              "value": "single"
-            },
-            {
-              "text": {
-                "en": "Multiple individuals",
-                "fr": ""
-              },
-              "value": "multiple"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "page_q_5_1_a",
-      "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 5.1A",
-        "fr": ""
-      },
-      "visibleIf": "{DisclosingOfPIOneOrMultipleIndividual} contains 'single'",
-      "elements": [
-        {
-          "type": "text",
-          "name": "OneIndividualPIDisclosedName",
-          "isRequired": true,
-          "title": {
-            "en": "Please provide the name of the individual whose personal information was/will be disclosed",
-            "fr": ""
-          },
-          "description": {
-            "en": "If the name of the individual is not known to the institution, please indicate “unknown”.",
-            "fr": ""
-          }
-        }
-      ]
-    },
-    {
-      "name": "page_q_5_1_b",
-      "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 5.1B",
-        "fr": ""
-      },
-      "visibleIf": "{DisclosingOfPIOneOrMultipleIndividual} contains 'multiple'",
       "elements": [
         {
           "type": "radiogroup",
@@ -685,7 +609,7 @@
             "fr": ""
           },
           "description": {
-            "en": "You may either add the names directly into the tool, or upload a spreadsheet.",
+            "en": "<p>The OPC asks institutions to provide the name of the affected individual(s) in the case our office determines it is necessary to inform the individual(s) of the disclosure, as per s 8(5) of the Privacy Act. The answer will also effect the structure of the questions that follow.</p><p>You may either add the names directly into the tool, or upload a spreadsheet.</p>",
             "fr": ""
           },
           "isRequired": true,
