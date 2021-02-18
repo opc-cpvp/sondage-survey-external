@@ -128,6 +128,7 @@ export class surveyPdfExport {
 
             const innerPanel = {
                 name: panelDynamicBase.name,
+                valueName: panelDynamicBase.valueName,
                 type: "paneldynamic",
                 title: panelDynamicBase.title,
                 visibleIf: panelDynamicBase.visibleIf,
@@ -144,6 +145,7 @@ export class surveyPdfExport {
 
             const innerPanel = {
                 name: matrixDynamicBase.name,
+                valueName: matrixDynamicBase.valueName,
                 type: "matrixdynamic",
                 title: matrixDynamicBase.title,
                 visibleIf: matrixDynamicBase.visibleIf,
@@ -164,7 +166,8 @@ export class surveyPdfExport {
                     title: question.title,
                     choices: question.choices,
                     choicesByUrl: question.choicesByUrl,
-                    visibleIf: question.visibleIf
+                    visibleIf: question.visibleIf,
+                    hasOther: question.hasOther
                 };
 
                 if (panel.templateElements) {
