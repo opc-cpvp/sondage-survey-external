@@ -64,7 +64,6 @@ namespace ComplaintFormCore.Models
 
 			// LegislativeAuthority (Page: page_q_3_0)
 			RuleFor(x => x.LegislativeAuthority).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.LegislativeAuthority).Must(x => new List<string> { "public", "individual", "desda" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// OtherOptionsForDisclosure (Page: page_q_3_1)
 			RuleFor(x => x.OtherOptionsForDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
