@@ -1,7 +1,18 @@
-﻿import { IElement, Model, PageModel, PanelModelBase, Question, QuestionHtmlModel, QuestionSelectBase } from "survey-vue";
+import {
+    IElement,
+    Model,
+    PageModel,
+    PanelModelBase,
+    Question,
+    QuestionHtmlModel,
+    QuestionSelectBase,
+    QuestionPanelDynamicModel
+} from "survey-vue";
 import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
 import { AdornersOptions, SurveyPDF } from "survey-pdf";
 import { Converter } from "showdown";
+import { MultiLanguageProperty } from "./models/multiLanguageProperty";
+import { QuestionMatrixDynamicModel } from "../node_modules/survey-vue/survey.vue";
 
 export class surveyPdfExport {
     private pdfOptions = {
@@ -20,12 +31,12 @@ export class surveyPdfExport {
         // compress: true
     };
 
-    public exportToPDF(filename: string, jsonUrl: string, lang: string, storageName: string): void {
+    public exportToPDF(filename: string, jsonUrl: string, lang: string, storageName: string, pdf_page_title: MultiLanguageProperty): void {
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json_pdf => {
                 //  Modify the json to strip out what we don't want
-                const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang);
+                const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang, pdf_page_title);
 
                 //  Getting the data from browser local storage
                 const storageSt = window.localStorage.getItem(storageName) || "";
@@ -43,7 +54,7 @@ export class surveyPdfExport {
             });
     }
 
-    private modifySurveyJsonforPDF(json_pdf: any, lang: string): string {
+    private modifySurveyJsonforPDF(json_pdf: any, lang: string, pdf_page_title: MultiLanguageProperty): string {
         const originalSurvey = new Model(json_pdf);
         originalSurvey.locale = lang;
 
@@ -56,8 +67,8 @@ export class surveyPdfExport {
         const singlePage = {
             name: "single_page",
             title: {
-                en: "Review and send Privacy complaint form (federal institution)",
-                fr: "FR-Review and send—Privacy complaint form (federal institution)"
+                en: pdf_page_title.en,
+                fr: pdf_page_title.fr
             },
             elements: [] as any
         };
@@ -65,7 +76,7 @@ export class surveyPdfExport {
         originalSurvey.pages.forEach((page: PageModel) => {
             const hideOnPDF = page.getPropertyValue("hideOnPDF");
 
-            if (!hideOnPDF && page.isVisible) {
+            if (!hideOnPDF && page.visible) {
                 //  Create a panel for each page
                 const panel = {
                     name: page.name,
@@ -112,12 +123,42 @@ export class surveyPdfExport {
                     panel.elements.push(innerPanel);
                 }
             }
+        } else if (element.getType() === "paneldynamic") {
+            const panelDynamicBase = element as QuestionPanelDynamicModel;
+
+            const innerPanel = {
+                name: panelDynamicBase.name,
+                valueName: panelDynamicBase.valueName,
+                type: "paneldynamic",
+                title: panelDynamicBase.title,
+                visibleIf: panelDynamicBase.visibleIf,
+                templateElements: [] as any
+            };
+
+            panelDynamicBase.templateElements.forEach((panelElement: IElement) => {
+                this.setElements(innerPanel, panelElement);
+            });
+
+            panel.elements.push(innerPanel);
+        } else if (element.getType() === "matrixdynamic") {
+            const matrixDynamicBase = element as QuestionMatrixDynamicModel;
+
+            const innerPanel = {
+                name: matrixDynamicBase.name,
+                valueName: matrixDynamicBase.valueName,
+                type: "matrixdynamic",
+                title: matrixDynamicBase.title,
+                visibleIf: matrixDynamicBase.visibleIf,
+                columns: matrixDynamicBase.columns,
+                choices: matrixDynamicBase.choices
+            };
+
+            panel.elements.push(innerPanel);
         } else {
             const question = element as Question;
 
             if (question instanceof QuestionHtmlModel) {
                 //  Do nothing
-                return;
             } else if (question instanceof QuestionSelectBase) {
                 const newElement = {
                     name: question.name,
@@ -125,10 +166,15 @@ export class surveyPdfExport {
                     title: question.title,
                     choices: question.choices,
                     choicesByUrl: question.choicesByUrl,
-                    visibleIf: question.visibleIf
+                    visibleIf: question.visibleIf,
+                    hasOther: question.hasOther
                 };
 
-                panel.elements.push(newElement);
+                if (panel.templateElements) {
+                    panel.templateElements.push(newElement);
+                } else {
+                    panel.elements.push(newElement);
+                }
             } else {
                 const newElement = {
                     name: question.name,
@@ -137,7 +183,11 @@ export class surveyPdfExport {
                     visibleIf: question.visibleIf
                 };
 
-                panel.elements.push(newElement);
+                if (panel.templateElements) {
+                    panel.templateElements.push(newElement);
+                } else {
+                    panel.elements.push(newElement);
+                }
             }
         }
 

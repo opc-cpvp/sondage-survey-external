@@ -15,6 +15,7 @@ import { TestSurvey } from "./tests/testSurvey";
 
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
+import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
 declare global {
     function startSurvey(survey: SurveyModel): void;
@@ -173,15 +174,36 @@ declare let Symbol;
             if (complaintType === "pipeda") {
                 jsonUrl = "/sample-data/survey_pipeda_complaint.json";
                 filename = "survey_export_pipeda";
-                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PIPEDA);
+
+                const page_title: MultiLanguageProperty = {
+                    en: "PIPDEA Review and send Privacy complaint form (federal institution)",
+                    fr: "FR-Review and send—Privacy complaint form (federal institution)",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PIPEDA, page_title);
             } else if (complaintType === "pa") {
                 jsonUrl = "/sample-data/survey_pa_complaint.json";
                 filename = "survey_export_pa";
-                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA);
+
+                const page_title: MultiLanguageProperty = {
+                    en: "PA Review and send Privacy complaint form (federal institution)",
+                    fr: "FR-Review and send—Privacy complaint form (federal institution)",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA, page_title);
             } else if (complaintType === "pid") {
                 jsonUrl = "/sample-data/survey_pid.json";
                 filename = "survey_export_pid";
-                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID);
+
+                const page_title: MultiLanguageProperty = {
+                    en: "PID PDF title",
+                    fr: "FR-PID PDF title",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID, page_title);
             }
         };
 
