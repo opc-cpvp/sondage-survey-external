@@ -195,6 +195,12 @@ export abstract class SurveyBase {
         //  the survey data into C# object, dashes are not permitted in C#. This is much simpler to just set
         //  storeOthersAsComment = false and then any 'other' item is passed to the back as is (e.g. in string).
         this.survey.storeOthersAsComment = false;
+
+        //  This flag is to set the maxLength on all other as in hasOther
+        this.survey.maxOthersLength = 100;
+
+        //  This flag is to set the maxLength for all comments and text type question.
+        this.survey.maxTextLength = 2000;
     }
 
     private setSurveyLocalizations(): void {

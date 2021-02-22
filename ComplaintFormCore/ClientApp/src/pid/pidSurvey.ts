@@ -6,6 +6,7 @@ import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class PidSurvey extends SurveyBase {
     private authToken: string;
+    private textBoxesMaxLength = 100;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);
@@ -37,6 +38,10 @@ export class PidSurvey extends SurveyBase {
 
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
+        });
+
+        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleAfterRenderQuestion(sender, options);
         });
     }
 
@@ -174,5 +179,12 @@ export class PidSurvey extends SurveyBase {
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
         options.callback("success");
+    }
+
+    private handleAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        if (options.question.getType() === "text") {
+            const textQuestion = options.question as Survey.QuestionTextModel;
+            textQuestion.maxLength = this.textBoxesMaxLength;
+        }
     }
 }

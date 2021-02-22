@@ -6,7 +6,8 @@ import {
     Question,
     QuestionHtmlModel,
     QuestionSelectBase,
-    QuestionPanelDynamicModel
+    QuestionPanelDynamicModel,
+    QuestionBooleanModel
 } from "survey-vue";
 import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
 import { AdornersOptions, SurveyPDF } from "survey-pdf";
@@ -160,6 +161,7 @@ export class surveyPdfExport {
             if (question instanceof QuestionHtmlModel) {
                 //  Do nothing
             } else if (question instanceof QuestionSelectBase) {
+                // QuestionBooleanModel
                 const newElement = {
                     name: question.name,
                     type: question.getType(),
@@ -180,7 +182,8 @@ export class surveyPdfExport {
                     name: question.name,
                     type: question.getType(),
                     title: question.title,
-                    visibleIf: question.visibleIf
+                    visibleIf: question.visibleIf,
+                    id: question.id
                 };
 
                 if (panel.templateElements) {

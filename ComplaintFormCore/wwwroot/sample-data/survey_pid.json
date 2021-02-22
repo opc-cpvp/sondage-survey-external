@@ -407,7 +407,6 @@
             "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
             "fr": ""
           },
-          "hasOther": true,
           "isRequired": true,
           "choices": [
             {
@@ -465,6 +464,13 @@
                 "fr": ""
               },
               "value": "public"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
             }
           ]
         }
@@ -479,80 +485,200 @@
       "elements": [
         {
           "type": "html",
+          "visibleIf": "{DisclosureRecipients} anyof ['named_representative','law_enforcement','goc_institution','regulatory','gov_other_jurisdiction','public','media','family_member']",
           "html": {
             "en": "<section class='alert alert-info'><p>Provide more details about the disclosure recipient(s)</p></section>",
             "fr": ""
           }
         },
         {
-          "type": "comment",
-          "name": "DisclosureRecipients_law_enforcement",
-          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
-          "isRequired": true,
+          "type": "matrixdynamic",
           "title": {
             "en": "Please indicate which law enforcement body/bodies",
             "fr": ""
-          }
+          },
+          "name": "DisclosureRecipients_law_enforcement",
+          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
+          "minRowCount": 1,
+          "rowCount": 1,
+          "isRequired": true,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this Law Enforcement Recipient?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_named_representative",
           "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which named representative",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this named representative?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_goc_institution",
           "visibleIf": "{DisclosureRecipients} contains 'goc_institution'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which Government of Canada institution(s)",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this institution?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_Regulatory",
           "visibleIf": "{DisclosureRecipients} contains 'regulatory'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which Regulatory or Oversight Bodies",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this body?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_Jurisdiction",
           "visibleIf": "{DisclosureRecipients} contains 'gov_other_jurisdiction'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which Government(s) in other jurisdiction(s)",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this jurisdiction?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_Public",
           "visibleIf": "{DisclosureRecipients} contains 'public'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which public disclosure recipient(s)",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this public disclosure?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
-          "type": "comment",
+          "type": "matrixdynamic",
           "name": "DisclosureRecipients_Media",
           "visibleIf": "{DisclosureRecipients} contains 'media'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which media outlet",
             "fr": ""
-          }
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this media disclosure?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
         },
         {
           "type": "checkbox",
@@ -561,11 +687,6 @@
           "isRequired": true,
           "title": {
             "en": "Please indicate which family member(s)",
-            "fr": ""
-          },
-          "hasOther": true,
-          "otherText": {
-            "en": "Other type of relation",
             "fr": ""
           },
           "choices": [
@@ -589,6 +710,40 @@
                 "fr": ""
               },
               "value": "sibling"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_FamilyMember_Other",
+          "visibleIf": "{DisclosureRecipients} contains 'family_member' and {DisclosureRecipients_FamilyMember} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other family member",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this family member?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
             }
           ]
         }
@@ -633,7 +788,7 @@
         {
           "type": "matrixdynamic",
           "title": {
-            "en": "Multiple individuals",
+            "en": "Individual (s)",
             "fr": ""
           },
           "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
@@ -642,7 +797,7 @@
           "name": "MultipleIndividuals",
           "isRequired": true,
           "addRowText": {
-            "en": "Add individuals",
+            "en": "Add individual",
             "fr": ""
           },
           "removeRowText": {
@@ -727,11 +882,6 @@
             "fr": ""
           },
           "isRequired": true,
-          "hasOther": true,
-          "otherPlaceHolder": {
-            "en": "Provide details about this other data element disclosed",
-            "fr": ""
-          },
           "choices": [
             {
               "text": {
@@ -802,13 +952,20 @@
                 "fr": ""
               },
               "value": "interaction_goc"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
             }
           ]
         }
       ]
     },
     {
-      "name": "page_q_7_0",
+      "name": "page_q_7_0_details",
       "title": {
         "en": "Public interest disclosure notification online submission tool - Question 7.0 - Details about elements disclosed",
         "fr": ""
@@ -817,7 +974,7 @@
       "elements": [
         {
           "type": "html",
-          "visibleIf": "{DataElementsDisclosed} anyof ['medical','financial','interaction_goc','death','law_enforcement']",
+          "visibleIf": "{DataElementsDisclosed} anyof ['medical','financial','interaction_goc','death','law_enforcement','other']",
           "html": {
             "en": "<p><section class='alert alert-info'><p>Provide details about the selected data elements disclosed</p></section>",
             "fr": ""
@@ -862,7 +1019,6 @@
             "en": "Explain the information related to death data elements disclosed",
             "fr": ""
           },
-          "hasOther": true,
           "choices": [
             {
               "text": {
@@ -884,6 +1040,40 @@
                 "fr": ""
               },
               "value": "reports_investigations"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DeathDisclosedExplanation_Other",
+          "visibleIf": "{DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other death data elements",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this death data elements?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
             }
           ]
         },
@@ -896,7 +1086,6 @@
             "fr": ""
           },
           "isRequired": true,
-          "hasOther": true,
           "choices": [
             {
               "text": {
@@ -918,6 +1107,67 @@
                 "fr": ""
               },
               "value": "criminal_record"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": ""
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "InfoLawEnforcementDisclosedExplanation_Other",
+          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other law enforcement data elements",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this law enforcement data elements?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "OtherDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the other data elements disclosed",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "confirmDeleteText ": {
+            "en": "Are you sure you want to remove this law enforcement data elements?",
+            "fr": ""
+          },
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Added",
+                "fr": ""
+              }
             }
           ]
         }
@@ -953,7 +1203,7 @@
       },
       "elements": [
         {
-          "type": "radiogroup",
+          "type": "boolean",
           "name": "HasInstitutionNotifiedIndOfDisclosure",
           "isRequired": true,
           "title": {
@@ -963,23 +1213,7 @@
           "description": {
             "en": "The OPC may notify an individual of a disclosure of their personal information pursuant to paragraph 8(2)(m) if it considers it appropriate to do so.",
             "fr": ""
-          },
-          "choices": [
-            {
-              "text": {
-                "en": "Yes, the institution has notified the affected individual(s).",
-                "fr": ""
-              },
-              "value": "yes"
-            },
-            {
-              "text": {
-                "en": "No, the institution has not notified the affected individuals(s).",
-                "fr": ""
-              },
-              "value": "no"
-            }
-          ]
+          }
         }
       ]
     },

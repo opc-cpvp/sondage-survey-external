@@ -627,6 +627,8 @@ namespace SurveyToCS
 		/// </summary>
 		private static void ReplaceProperty(ref string condition)
 		{
+			string ret_condition = string.Empty;
+
 			foreach (Match match_propery in Regex.Matches(condition, Common._property_pattern))
 			{
 				string prop_name = match_propery.Value.Replace("{", "").Replace("}", "");
@@ -642,20 +644,31 @@ namespace SurveyToCS
 						if (match_propery_single_item.Success)
 						{
 							//	{WhereWhomInfoCollected} = ['directly'] -> x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly")
-							condition = propertyName + ".Count == 1 && " + propertyName + ".Contains(" + match_propery_single_item.Value.Replace("[", "").Replace("]", "") + ")";
+							if (!string.IsNullOrWhiteSpace(ret_condition))
+							{
+								ret_condition += " && ";
+							}
+
+							ret_condition += propertyName + ".Count == 1 && " + propertyName + ".Contains(" + match_propery_single_item.Value.Replace("[", "").Replace("]", "") + ")";
 						}
 						else
 						{
 							//	{WhereWhomInfoCollected} contains 'other' -> x.WhereWhomInfoCollected.Contains("other")
 							Match match_condition_value = Regex.Match(condition, Common._wordInSingleQuotes);
+
+							if (!string.IsNullOrWhiteSpace(ret_condition))
+							{
+								ret_condition += " && ";
+							}
+
 							if (match_condition_value.Success)
 							{
-								condition = propertyName + ".Contains(" + match_condition_value.Value + ")";
+								ret_condition += propertyName + ".Contains(" + match_condition_value.Value + ")";
 							}
 							else
 							{
 								//	This should not happen
-								condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+								ret_condition += condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 							}
 						}
 
@@ -675,8 +688,10 @@ namespace SurveyToCS
 					}
 				}
 
-				condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+				ret_condition = ret_condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 			}
+
+			condition = ret_condition;
 		}
 
 		private static void ReplaceOperators(ref string condition)
@@ -703,13 +718,13 @@ namespace SurveyToCS
 
 		private static void BuildMaxLengthValidator(StringBuilder csharp, Element element, string condition)
 		{
-			int maxLength = 5000;
+			int maxLength = 2000;
 			string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
 			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
 			if (type == "text")
 			{
-				maxLength = 200;
+				maxLength = 100;
 			}
 
 			if (element.maxLength != null)
@@ -743,7 +758,7 @@ namespace SurveyToCS
 			string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
 			string type = !string.IsNullOrWhiteSpace(element.type) ? element.type : element.cellType;
 
-			if (type == "checkbox" && element.hasOther == true)
+			if ((type == "checkbox" || type == "radiogroup") && element.hasOther == true)
 			{
 				//	We can process that because the 'other' can be anything.
 				return;
