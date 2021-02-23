@@ -19,22 +19,22 @@ namespace SurveyToCS
 			//	TODO:	When using make sure string json & string className are set properly
 			//			Maybe this can be user input.
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
+			//string pathToJSONFile = @"..\..\..\..\ComplaintFormCore\wwwroot\sample-data\survey_pbr.json";
 			//string className = "SurveyPBRModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
+			//string pathToJSONFile = @"..\..\..\..\..\sondage-survey-internal\ComplaintFormCore\wwwroot\sample-data\survey_rrosh.json";
 			//string className = "SurveyRROSHModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
+			//string pathToJSONFile = @"..\..\..\..\ComplaintFormCore\wwwroot\sample-data\survey_pia_e_tool.json";
 			//string className = "SurveyPIAToolModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
+			//string pathToJSONFile = @"..\..\..\..\ComplaintFormCore\wwwroot\sample-data\survey_pa_complaint.json";
 			//string className = "SurveyPAModel";
 
-			//string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
+			//string pathToJSONFile = @"..\..\..\..\ComplaintFormCore\wwwroot\sample-data\survey_pipeda_complaint.json";
 			//string className = "SurveyPipedaModel";
 
-			string pathToJSONFile = @"C:\Users\jbrouillette\source\repos\online-complaint-form-pa_jf\ComplaintFormCore\wwwroot\sample-data\survey_pid.json";
+			string pathToJSONFile = @"..\..\..\..\ComplaintFormCore\wwwroot\sample-data\survey_pid.json";
 			string className = "SurveyPIDModel";
 
 			string classNamespace = "ComplaintFormCore.Models";
