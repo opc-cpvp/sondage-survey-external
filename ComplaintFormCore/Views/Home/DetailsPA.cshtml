@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "DetailsPA";
 }
 
@@ -39,8 +39,6 @@
 
     <script src="~/dist/bundle.js"></script>
 
-
-
     <script type="text/javascript">
 
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
@@ -49,7 +47,7 @@
         initPaSurvey(lang, token);
 
         function showPDF() {
-            exportToPDF(lang, "pa");
+            exportToPDF(lang, "pa", token);
         }
 
     </script>

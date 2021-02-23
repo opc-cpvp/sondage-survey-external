@@ -30,7 +30,7 @@ declare global {
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
 
-    function exportToPDF(lang: string, complaintType: string): void;
+    function exportToPDF(lang: string, complaintType: string, token: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
 
     function gotoSection(section: string): void;
@@ -94,16 +94,16 @@ declare let Symbol;
         globalThis.initPaSurvey = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pa_complaint.json";
 
-            // await import("./pa/pa_test_data").then(testData => {
-            //     const storage = new LocalStorage();
+            await import("./pa/pa_test_data").then(testData => {
+                const storage = new LocalStorage();
 
-            //     const storageData = {
-            //         currentPageNo: 0,
-            //         data: testData.paTestData2
-            //     } as SurveyState;
+                const storageData = {
+                    currentPageNo: 0,
+                    data: testData.paTestData2
+                } as SurveyState;
 
-            //     storage.save(storageName_PA, storageData);
-            // });
+                storage.save(storageName_PA, storageData);
+            });
 
             const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
@@ -156,7 +156,7 @@ declare let Symbol;
             pipedaSurvey.renderSurvey();
         };
 
-        globalThis.exportToPDF = (lang, complaintType) => {
+        globalThis.exportToPDF = (lang, complaintType, token) => {
             let jsonUrl = "";
             let filename = "";
             const pdfClass = new surveyPdfExport();
@@ -182,7 +182,8 @@ declare let Symbol;
                     default: ""
                 };
 
-                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA, page_title);
+                const surveyData: string = getCookie(token);
+                pdfClass.exportToPDFAlt(filename, jsonUrl, lang, surveyData, page_title);
             }
         };
 
@@ -192,6 +193,20 @@ declare let Symbol;
 
             sampleSurvey.init(jsonUrl, lang, token);
         };
+    }
+
+    function getCookie(name: string) {
+        const nameEQ = `${name}=`;
+        const ca = document.cookie.split(";");
+        for (let c of ca) {
+            while (c.charAt(0) === " ") {
+                c = c.substring(1, c.length);
+            }
+            if (c.indexOf(nameEQ) === 0) {
+                return c.substring(nameEQ.length, c.length);
+            }
+        }
+        return "";
     }
 
     surveyPolyfill();

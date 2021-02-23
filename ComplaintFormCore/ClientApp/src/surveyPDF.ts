@@ -54,6 +54,20 @@ export class surveyPdfExport {
             });
     }
 
+    public exportToPDFAlt(filename: string, jsonUrl: string, lang: string, data: string, pdf_page_title: MultiLanguageProperty): void {
+        void fetch(jsonUrl)
+            .then(response => response.json())
+            .then(json_pdf => {
+                //  Modify the json to strip out what we don't want
+                const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang, pdf_page_title);
+
+                //  Then construct a new survey pdf object with the modified json
+                const survey_pdf = this.initSurveyPDF(modifiedJson, JSON.parse(data), lang);
+
+                void survey_pdf.save(filename);
+            });
+    }
+
     private modifySurveyJsonforPDF(json_pdf: any, lang: string, pdf_page_title: MultiLanguageProperty): string {
         const originalSurvey = new Model(json_pdf);
         originalSurvey.locale = lang;

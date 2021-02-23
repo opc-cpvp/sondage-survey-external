@@ -123,6 +123,11 @@ export class NewPaSurvey extends SurveyBase {
 
             // Now that the variable is set, show the completed page.
             this.survey.showCompletedPage = true;
+
+            //  Store the json data in a cookie before clearing the storage.
+            //  This is for pdf export
+            this.setSurveyDataAsCookie(this.authToken);
+
             this.storage.remove(this.storageName);
 
             options.showDataSavingSuccess();
