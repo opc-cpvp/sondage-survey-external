@@ -503,178 +503,12 @@
           "rowCount": 1,
           "isRequired": true,
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this Law Enforcement Recipient?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Item",
               "cellType": "text",
               "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_named_representative",
-          "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which named representative",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this named representative?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_goc_institution",
-          "visibleIf": "{DisclosureRecipients} contains 'goc_institution'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which Government of Canada institution(s)",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this institution?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_Regulatory",
-          "visibleIf": "{DisclosureRecipients} contains 'regulatory'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which Regulatory or Oversight Bodies",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this body?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_Jurisdiction",
-          "visibleIf": "{DisclosureRecipients} contains 'gov_other_jurisdiction'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which Government(s) in other jurisdiction(s)",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this jurisdiction?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_Public",
-          "visibleIf": "{DisclosureRecipients} contains 'public'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which public disclosure recipient(s)",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this public disclosure?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
-                "fr": ""
-              }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DisclosureRecipients_Media",
-          "visibleIf": "{DisclosureRecipients} contains 'media'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which media outlet",
-            "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this media disclosure?",
-            "fr": ""
-          },
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Added",
+                "en": "Law Enforcement Body",
                 "fr": ""
               }
             }
@@ -732,16 +566,150 @@
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this family member?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Item",
               "cellType": "text",
               "title": {
-                "en": "Added",
+                "en": "Family Member",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_named_representative",
+          "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which named representative",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Named Representative",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_goc_institution",
+          "visibleIf": "{DisclosureRecipients} contains 'goc_institution'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government of Canada institution(s)",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Institution",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Regulatory",
+          "visibleIf": "{DisclosureRecipients} contains 'regulatory'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Regulatory or Oversight body/bodies",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Body",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Jurisdiction",
+          "visibleIf": "{DisclosureRecipients} contains 'gov_other_jurisdiction'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government(s) in other jurisdiction(s)",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Government",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Media",
+          "visibleIf": "{DisclosureRecipients} contains 'media'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which media outlet(s)",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Media Outlet",
+                "fr": ""
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Public",
+          "visibleIf": "{DisclosureRecipients} contains 'public'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which public disclosure recipient(s)",
+            "fr": ""
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Recipient",
                 "fr": ""
               }
             }
@@ -778,7 +746,7 @@
             },
             {
               "text": {
-                "en": "Upload ",
+                "en": "Upload",
                 "fr": ""
               },
               "value": "upload"
@@ -788,7 +756,7 @@
         {
           "type": "matrixdynamic",
           "title": {
-            "en": "Individual (s)",
+            "en": "Individual(s)",
             "fr": ""
           },
           "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
@@ -796,19 +764,11 @@
           "rowCount": 1,
           "name": "MultipleIndividuals",
           "isRequired": true,
-          "addRowText": {
-            "en": "Add individual",
-            "fr": ""
-          },
           "removeRowText": {
             "en": "Remove",
             "fr": ""
           },
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this individuals?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Name",
@@ -1062,10 +1022,6 @@
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this death data elements?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Item",
@@ -1129,10 +1085,6 @@
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this law enforcement data elements?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Item",
@@ -1156,10 +1108,6 @@
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
-          "confirmDeleteText ": {
-            "en": "Are you sure you want to remove this law enforcement data elements?",
-            "fr": ""
-          },
           "columns": [
             {
               "name": "Item",
