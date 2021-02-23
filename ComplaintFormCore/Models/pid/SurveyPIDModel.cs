@@ -152,6 +152,22 @@ namespace ComplaintFormCore.Models
 		public List<string> DisclosureRecipients_FamilyMember { get; set; }
 
 		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which named representative<br/>
+		/// Required condition: {DisclosureRecipients} contains 'named_representative'<br/>
+		/// Survey question type: text
+		/// </summary>
+		public string DisclosureRecipients_named_representative { get; set; }
+
+		/// <summary>
+		/// Page: page_q_4_0_details<br/>
+		/// Please indicate which public disclosure recipient<br/>
+		/// Required condition: {DisclosureRecipients} contains 'public'<br/>
+		/// Survey question type: text
+		/// </summary>
+		public string DisclosureRecipients_Public { get; set; }
+
+		/// <summary>
 		/// Page: page_q_5_0<br/>
 		/// Please provide the names of the individuals whose personal information was/...<br/>
 		/// Possible choices: [directly, upload]<br/>
@@ -207,7 +223,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_7_0_details<br/>
-		/// Explain the information related to death data elements disclosed<br/>
+		/// Indicate the information related to death data elements disclosed<br/>
 		/// Possible choices: [date, cause, reports_investigations, other]<br/>
 		/// Required condition: {DataElementsDisclosed} contains 'death'<br/>
 		/// Survey question type: checkbox
@@ -216,7 +232,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_7_0_details<br/>
-		/// Explain the law enforcement data elements disclosed<br/>
+		/// Indicate the information related to law enforcement data elements disclosed<br/>
 		/// Possible choices: [charges, convictions, criminal_record, other]<br/>
 		/// Required condition: {DataElementsDisclosed} contains 'law_enforcement'<br/>
 		/// Survey question type: checkbox
@@ -257,9 +273,7 @@ namespace ComplaintFormCore.Models
 
 		public List<DisclosureRecipients_Media> DisclosureRecipients_Media { get; set; }
 
-		public List<DisclosureRecipients_named_representative> DisclosureRecipients_named_representative { get; set; }
-
-		public List<DisclosureRecipients_Public> DisclosureRecipients_Public { get; set; }
+		public List<DisclosureRecipients_Other> DisclosureRecipients_Other { get; set; }
 
 		public List<DisclosureRecipients_Regulatory> DisclosureRecipients_Regulatory { get; set; }
 
@@ -273,7 +287,7 @@ namespace ComplaintFormCore.Models
 	public class DeathDisclosedExplanation_Other
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Information<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -282,7 +296,7 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_FamilyMember_Other
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Family Member<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -291,7 +305,7 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_goc_institution
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Institution<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -300,7 +314,7 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_Jurisdiction
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Government<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -309,7 +323,7 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_law_enforcement
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Law Enforcement Body<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -318,25 +332,16 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_Media
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Media Outlet<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
 
 	}
-	public class DisclosureRecipients_named_representative
+	public class DisclosureRecipients_Other
 	{
 		/// <summary>
-		/// Added<br/>
-		/// Survey question type: text
-		/// </summary>
-		public string Item { get; set; }
-
-	}
-	public class DisclosureRecipients_Public
-	{
-		/// <summary>
-		/// Added<br/>
+		/// Recipient<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -345,7 +350,7 @@ namespace ComplaintFormCore.Models
 	public class DisclosureRecipients_Regulatory
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Body<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -354,7 +359,7 @@ namespace ComplaintFormCore.Models
 	public class InfoLawEnforcementDisclosedExplanation_Other
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Information<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }
@@ -372,7 +377,7 @@ namespace ComplaintFormCore.Models
 	public class OtherDisclosedExplanation
 	{
 		/// <summary>
-		/// Added<br/>
+		/// Information<br/>
 		/// Survey question type: text
 		/// </summary>
 		public string Item { get; set; }

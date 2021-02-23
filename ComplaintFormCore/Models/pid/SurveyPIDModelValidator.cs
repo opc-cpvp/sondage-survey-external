@@ -19,12 +19,12 @@ namespace ComplaintFormCore.Models
 			RuleFor(x => x.HasNotificationApproved).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// ApproverName (Page: page_q_1_1)
-			RuleFor(x => x.ApproverName).NotEmpty().When(x => x.HasNotificationApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.ApproverName).Length(0, 100).When(x => x.HasNotificationApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+			RuleFor(x => x.ApproverName).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.ApproverName).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
 			// ApproverTitle (Page: page_q_1_1)
-			RuleFor(x => x.ApproverTitle).NotEmpty().When(x => x.HasNotificationApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.ApproverTitle).Length(0, 100).When(x => x.HasNotificationApproved == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+			RuleFor(x => x.ApproverTitle).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.ApproverTitle).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
 			// ContactName (Page: page_q_1_2)
 			RuleFor(x => x.ContactName).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -43,24 +43,24 @@ namespace ComplaintFormCore.Models
 			RuleFor(x => x.TimingOfDisclosure).Must(x => new List<string> { "already", "future" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// DateOfDisclosure (Page: page_q_2_0_a)
-			RuleFor(x => x.DateOfDisclosure).NotEmpty().When(x => x.TimingOfDisclosure == "already").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.DateOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// DisclosurePriorToNotificationExplanation (Page: page_q_2_0_a)
-			RuleFor(x => x.DisclosurePriorToNotificationExplanation).NotEmpty().When(x => x.TimingOfDisclosure == "already").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.DisclosurePriorToNotificationExplanation).Length(0, 2000).When(x => x.TimingOfDisclosure == "already").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+			RuleFor(x => x.DisclosurePriorToNotificationExplanation).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.DisclosurePriorToNotificationExplanation).Length(0, 2000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
 			// WasNotPracticalToNotifyPCPrior (Page: page_q_2_0_a)
 
 			// AnticipatedDateOfDisclosureKnown (Page: page_q_2_0_b)
-			RuleFor(x => x.AnticipatedDateOfDisclosureKnown).NotEmpty().When(x => x.TimingOfDisclosure == "future").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.AnticipatedDateOfDisclosureKnown).Must(x => new List<string> { "yes", "no" }.Contains(x)).When(x => x.TimingOfDisclosure == "future").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+			RuleFor(x => x.AnticipatedDateOfDisclosureKnown).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.AnticipatedDateOfDisclosureKnown).Must(x => new List<string> { "yes", "no" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// AnticipatedDateOfDisclosure (Page: page_q_2_0_b)
-			RuleFor(x => x.AnticipatedDateOfDisclosure).NotEmpty().When(x => x.TimingOfDisclosure == "future" && x.AnticipatedDateOfDisclosureKnown == "yes").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.AnticipatedDateOfDisclosure).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// AnticipatedDateOfDisclosureText (Page: page_q_2_0_b)
-			RuleFor(x => x.AnticipatedDateOfDisclosureText).NotEmpty().When(x => x.TimingOfDisclosure == "future" && x.AnticipatedDateOfDisclosureKnown == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleFor(x => x.AnticipatedDateOfDisclosureText).Length(0, 2000).When(x => x.TimingOfDisclosure == "future" && x.AnticipatedDateOfDisclosureKnown == "no").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+			RuleFor(x => x.AnticipatedDateOfDisclosureText).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.AnticipatedDateOfDisclosureText).Length(0, 2000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
 			// LegislativeAuthority (Page: page_q_3_0)
 			RuleFor(x => x.LegislativeAuthority).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -79,8 +79,16 @@ namespace ComplaintFormCore.Models
 			// DisclosureRecipients_law_enforcement (Page: page_q_4_0_details)
 			RuleFor(x => x.DisclosureRecipients_law_enforcement).NotEmpty().When(x => x.DisclosureRecipients.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
+			// DisclosureRecipients_FamilyMember (Page: page_q_4_0_details)
+			RuleFor(x => x.DisclosureRecipients_FamilyMember).NotEmpty().When(x => x.DisclosureRecipients.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleForEach(x => x.DisclosureRecipients_FamilyMember).Must(x => new List<string> { "spouse", "parent", "sibling", "other" }.Contains(x)).When(x => x.DisclosureRecipients.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// DisclosureRecipients_FamilyMember_Other (Page: page_q_4_0_details)
+			RuleFor(x => x.DisclosureRecipients_FamilyMember_Other).NotEmpty().When(x => x.DisclosureRecipients.Contains("family_member") && x.DisclosureRecipients_FamilyMember.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
 			// DisclosureRecipients_named_representative (Page: page_q_4_0_details)
 			RuleFor(x => x.DisclosureRecipients_named_representative).NotEmpty().When(x => x.DisclosureRecipients.Contains("named_representative")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.DisclosureRecipients_named_representative).Length(0, 100).When(x => x.DisclosureRecipients.Contains("named_representative")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
 			// DisclosureRecipients_goc_institution (Page: page_q_4_0_details)
 			RuleFor(x => x.DisclosureRecipients_goc_institution).NotEmpty().When(x => x.DisclosureRecipients.Contains("goc_institution")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -91,28 +99,25 @@ namespace ComplaintFormCore.Models
 			// DisclosureRecipients_Jurisdiction (Page: page_q_4_0_details)
 			RuleFor(x => x.DisclosureRecipients_Jurisdiction).NotEmpty().When(x => x.DisclosureRecipients.Contains("gov_other_jurisdiction")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
-			// DisclosureRecipients_Public (Page: page_q_4_0_details)
-			RuleFor(x => x.DisclosureRecipients_Public).NotEmpty().When(x => x.DisclosureRecipients.Contains("public")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-
 			// DisclosureRecipients_Media (Page: page_q_4_0_details)
 			RuleFor(x => x.DisclosureRecipients_Media).NotEmpty().When(x => x.DisclosureRecipients.Contains("media")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
-			// DisclosureRecipients_FamilyMember (Page: page_q_4_0_details)
-			RuleFor(x => x.DisclosureRecipients_FamilyMember).NotEmpty().When(x => x.DisclosureRecipients.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
-			RuleForEach(x => x.DisclosureRecipients_FamilyMember).Must(x => new List<string> { "spouse", "parent", "sibling", "other" }.Contains(x)).When(x => x.DisclosureRecipients.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+			// DisclosureRecipients_Public (Page: page_q_4_0_details)
+			RuleFor(x => x.DisclosureRecipients_Public).NotEmpty().When(x => x.DisclosureRecipients.Contains("public")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.DisclosureRecipients_Public).Length(0, 100).When(x => x.DisclosureRecipients.Contains("public")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 
-			// DisclosureRecipients_FamilyMember_Other (Page: page_q_4_0_details)
-			RuleFor(x => x.DisclosureRecipients_FamilyMember_Other).NotEmpty().When(x => x.DisclosureRecipients_FamilyMember.Contains("family_member")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			// DisclosureRecipients_Other (Page: page_q_4_0_details)
+			RuleFor(x => x.DisclosureRecipients_Other).NotEmpty().When(x => x.DisclosureRecipients.Contains("other")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// MultipleIndividualsAddOption (Page: page_q_5_0)
 			RuleFor(x => x.MultipleIndividualsAddOption).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 			RuleFor(x => x.MultipleIndividualsAddOption).Must(x => new List<string> { "directly", "upload" }.Contains(x)).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// MultipleIndividuals (Page: page_q_5_0)
-			RuleFor(x => x.MultipleIndividuals).NotEmpty().When(x => x.MultipleIndividualsAddOption == "directly").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.MultipleIndividuals).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// FileMultipleIndividuals (Page: page_q_5_0)
-			RuleFor(x => x.FileMultipleIndividuals).NotEmpty().When(x => x.MultipleIndividualsAddOption == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.FileMultipleIndividuals).NotEmpty().WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// DescriptionOfEvents (Page: page_q_6_0)
 			RuleFor(x => x.DescriptionOfEvents).Length(0, 2000).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
@@ -137,15 +142,15 @@ namespace ComplaintFormCore.Models
 			RuleFor(x => x.DeathDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("death")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 			RuleForEach(x => x.DeathDisclosedExplanation).Must(x => new List<string> { "date", "cause", "reports_investigations", "other" }.Contains(x)).When(x => x.DataElementsDisclosed.Contains("death")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
-			// DeathDisclosedExplanation_Other (Page: page_q_7_0_details) {DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'
-			RuleFor(x => x.DeathDisclosedExplanation_Other).NotEmpty().When(x => x.DataElementsDisclosed.Contains("death") && x.DeathDisclosedExplanation.Contains("other")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			// DeathDisclosedExplanation_Other (Page: page_q_7_0_details)
+			RuleFor(x => x.DeathDisclosedExplanation_Other).NotEmpty().When(x => x.DataElementsDisclosed.Contains("death") && x.DeathDisclosedExplanation.Contains("death")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// InfoLawEnforcementDisclosedExplanation (Page: page_q_7_0_details)
 			RuleFor(x => x.InfoLawEnforcementDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 			RuleForEach(x => x.InfoLawEnforcementDisclosedExplanation).Must(x => new List<string> { "charges", "convictions", "criminal_record", "other" }.Contains(x)).When(x => x.DataElementsDisclosed.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
 
 			// InfoLawEnforcementDisclosedExplanation_Other (Page: page_q_7_0_details)
-			RuleFor(x => x.InfoLawEnforcementDisclosedExplanation_Other).NotEmpty().When(x => x.DataElementsDisclosed.Contains("law_enforcement") && x.InfoLawEnforcementDisclosedExplanation.Contains("other")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.InfoLawEnforcementDisclosedExplanation_Other).NotEmpty().When(x => x.DataElementsDisclosed.Contains("law_enforcement") && x.InfoLawEnforcementDisclosedExplanation.Contains("law_enforcement")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
 			// OtherDisclosedExplanation (Page: page_q_7_0_details)
 			RuleFor(x => x.OtherDisclosedExplanation).NotEmpty().When(x => x.DataElementsDisclosed.Contains("other")).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
@@ -163,13 +168,13 @@ namespace ComplaintFormCore.Models
 			RuleForEach(x => x.DeathDisclosedExplanation_Other).ChildRules(child => {
 				// Item (Page: page_q_7_0_details)
 				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.DataElementsDisclosed.Contains("death") && x.DeathDisclosedExplanation.Contains("other"));
+			}).When(x => x.DataElementsDisclosed.Contains("death") && x.DeathDisclosedExplanation.Contains("death"));
 
 			// DisclosureRecipients_FamilyMember_Other
 			RuleForEach(x => x.DisclosureRecipients_FamilyMember_Other).ChildRules(child => {
 				// Item (Page: page_q_4_0_details)
 				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.DisclosureRecipients_FamilyMember.Contains("family_member"));
+			}).When(x => x.DisclosureRecipients.Contains("family_member") && x.DisclosureRecipients_FamilyMember.Contains("family_member"));
 
 			// DisclosureRecipients_goc_institution
 			RuleForEach(x => x.DisclosureRecipients_goc_institution).ChildRules(child => {
@@ -195,17 +200,11 @@ namespace ComplaintFormCore.Models
 				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
 			}).When(x => x.DisclosureRecipients.Contains("media"));
 
-			// DisclosureRecipients_named_representative
-			RuleForEach(x => x.DisclosureRecipients_named_representative).ChildRules(child => {
+			// DisclosureRecipients_Other
+			RuleForEach(x => x.DisclosureRecipients_Other).ChildRules(child => {
 				// Item (Page: page_q_4_0_details)
 				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.DisclosureRecipients.Contains("named_representative"));
-
-			// DisclosureRecipients_Public
-			RuleForEach(x => x.DisclosureRecipients_Public).ChildRules(child => {
-				// Item (Page: page_q_4_0_details)
-				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.DisclosureRecipients.Contains("public"));
+			}).When(x => x.DisclosureRecipients.Contains("other"));
 
 			// DisclosureRecipients_Regulatory
 			RuleForEach(x => x.DisclosureRecipients_Regulatory).ChildRules(child => {
@@ -217,13 +216,13 @@ namespace ComplaintFormCore.Models
 			RuleForEach(x => x.InfoLawEnforcementDisclosedExplanation_Other).ChildRules(child => {
 				// Item (Page: page_q_7_0_details)
 				child.RuleFor(x => x.Item).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.DataElementsDisclosed.Contains("law_enforcement") && x.InfoLawEnforcementDisclosedExplanation.Contains("other"));
+			}).When(x => x.DataElementsDisclosed.Contains("law_enforcement") && x.InfoLawEnforcementDisclosedExplanation.Contains("law_enforcement"));
 
 			// MultipleIndividuals
 			RuleForEach(x => x.MultipleIndividuals).ChildRules(child => {
 				// Name (Page: page_q_5_0)
 				child.RuleFor(x => x.Name).Length(0, 100).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
-			}).When(x => x.MultipleIndividualsAddOption == "directly");
+			});
 
 			// OtherDisclosedExplanation
 			RuleForEach(x => x.OtherDisclosedExplanation).ChildRules(child => {

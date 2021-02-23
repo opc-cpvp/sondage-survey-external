@@ -485,7 +485,6 @@
       "elements": [
         {
           "type": "html",
-          "visibleIf": "{DisclosureRecipients} anyof ['named_representative','law_enforcement','goc_institution','regulatory','gov_other_jurisdiction','public','media','family_member']",
           "html": {
             "en": "<section class='alert alert-info'><p>Provide more details about the disclosure recipient(s)</p></section>",
             "fr": ""
@@ -493,15 +492,19 @@
         },
         {
           "type": "matrixdynamic",
+          "name": "DisclosureRecipients_law_enforcement",
+          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
+          "isRequired": true,
           "title": {
             "en": "Please indicate which law enforcement body/bodies",
             "fr": ""
           },
-          "name": "DisclosureRecipients_law_enforcement",
-          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
           "minRowCount": 1,
           "rowCount": 1,
-          "isRequired": true,
           "confirmDelete": true,
           "columns": [
             {
@@ -563,6 +566,10 @@
             "en": "Please indicate which other family member",
             "fr": ""
           },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
@@ -578,27 +585,14 @@
           ]
         },
         {
-          "type": "matrixdynamic",
+          "type": "text",
           "name": "DisclosureRecipients_named_representative",
           "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
           "isRequired": true,
           "title": {
             "en": "Please indicate which named representative",
             "fr": ""
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
-              "title": {
-                "en": "Named Representative",
-                "fr": ""
-              }
-            }
-          ]
+          }
         },
         {
           "type": "matrixdynamic",
@@ -608,6 +602,10 @@
           "title": {
             "en": "Please indicate which Government of Canada institution(s)",
             "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -632,6 +630,10 @@
             "en": "Please indicate which Regulatory or Oversight body/bodies",
             "fr": ""
           },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
@@ -654,6 +656,10 @@
           "title": {
             "en": "Please indicate which Government(s) in other jurisdiction(s)",
             "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -678,6 +684,10 @@
             "en": "Please indicate which media outlet(s)",
             "fr": ""
           },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
           "minRowCount": 1,
           "rowCount": 1,
           "confirmDelete": true,
@@ -693,13 +703,27 @@
           ]
         },
         {
-          "type": "matrixdynamic",
+          "type": "text",
           "name": "DisclosureRecipients_Public",
           "visibleIf": "{DisclosureRecipients} contains 'public'",
           "isRequired": true,
           "title": {
-            "en": "Please indicate which public disclosure recipient(s)",
+            "en": "Please indicate which public disclosure recipient",
             "fr": ""
+          }
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Other",
+          "visibleIf": "{DisclosureRecipients} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other recipient(s)",
+            "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -755,19 +779,19 @@
         },
         {
           "type": "matrixdynamic",
+          "name": "MultipleIndividuals",
+          "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
+          "isRequired": true,
           "title": {
             "en": "Individual(s)",
             "fr": ""
           },
-          "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
           "minRowCount": 1,
           "rowCount": 1,
-          "name": "MultipleIndividuals",
-          "isRequired": true,
-          "removeRowText": {
-            "en": "Remove",
-            "fr": ""
-          },
           "confirmDelete": true,
           "columns": [
             {
@@ -976,7 +1000,7 @@
           "visibleIf": "{DataElementsDisclosed} contains 'death'",
           "isRequired": true,
           "title": {
-            "en": "Explain the information related to death data elements disclosed",
+            "en": "Indicate the information related to death data elements disclosed",
             "fr": ""
           },
           "choices": [
@@ -1016,8 +1040,12 @@
           "visibleIf": "{DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'",
           "isRequired": true,
           "title": {
-            "en": "Please indicate which other death data elements",
+            "en": "Please indicate which other information related to death was disclosed",
             "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -1027,7 +1055,7 @@
               "name": "Item",
               "cellType": "text",
               "title": {
-                "en": "Added",
+                "en": "Information",
                 "fr": ""
               }
             }
@@ -1038,7 +1066,7 @@
           "name": "InfoLawEnforcementDisclosedExplanation",
           "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement'",
           "title": {
-            "en": "Explain the law enforcement data elements disclosed",
+            "en": "Indicate the information related to law enforcement data elements disclosed",
             "fr": ""
           },
           "isRequired": true,
@@ -1079,8 +1107,12 @@
           "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'",
           "isRequired": true,
           "title": {
-            "en": "Please indicate which other law enforcement data elements",
+            "en": "Please indicate which other information related to law enforcement was disclosed",
             "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -1090,7 +1122,7 @@
               "name": "Item",
               "cellType": "text",
               "title": {
-                "en": "Added",
+                "en": "Information",
                 "fr": ""
               }
             }
@@ -1102,8 +1134,12 @@
           "visibleIf": "{DataElementsDisclosed} contains 'other'",
           "isRequired": true,
           "title": {
-            "en": "Explain the other data elements disclosed",
+            "en": "Indicate the other data element(s) disclosed",
             "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
           },
           "minRowCount": 1,
           "rowCount": 1,
@@ -1113,7 +1149,7 @@
               "name": "Item",
               "cellType": "text",
               "title": {
-                "en": "Added",
+                "en": "Information",
                 "fr": ""
               }
             }
