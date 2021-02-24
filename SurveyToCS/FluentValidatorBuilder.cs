@@ -627,52 +627,60 @@ namespace SurveyToCS
 		/// </summary>
 		private static void ReplaceProperty(ref string condition)
 		{
-			string ret_condition = string.Empty;
+			//	TODO:	There is issues when the condition is based on a checkbox or a tagbox containing multiple conditions
+			//			separated by ands or ors such as
+			//			{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'
 
-			foreach (Match match_propery in Regex.Matches(condition, Common._property_pattern))
+			//	Making a collection of matches to {property}
+			MatchCollection matches = Regex.Matches(condition, Common._property_pattern);
+			int countMatches = matches.Count();
+
+			foreach (Match match_propery in matches)
 			{
 				string prop_name = match_propery.Value.Replace("{", "").Replace("}", "");
 				Element elem = _surveyAllElements.Where(e => e.name == prop_name).FirstOrDefault();
 
 				if (elem != null)
 				{
-					if(elem.type == "tagbox" || elem.type == "checkbox")
+					string tempValue = string.Empty;
+
+					if (elem.type == "tagbox" || elem.type == "checkbox")
 					{
-						string propertyName = match_propery.Value.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
-
-						Match match_propery_single_item = Regex.Match(condition, Common._arraySingleElementSelected);
-						if (match_propery_single_item.Success)
+						if(countMatches == 1)
 						{
-							//	{WhereWhomInfoCollected} = ['directly'] -> x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly")
-							if (!string.IsNullOrWhiteSpace(ret_condition))
-							{
-								ret_condition += " && ";
-							}
+							string propertyName = match_propery.Value.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 
-							ret_condition += propertyName + ".Count == 1 && " + propertyName + ".Contains(" + match_propery_single_item.Value.Replace("[", "").Replace("]", "") + ")";
-						}
-						else
-						{
-							//	{WhereWhomInfoCollected} contains 'other' -> x.WhereWhomInfoCollected.Contains("other")
-							Match match_condition_value = Regex.Match(condition, Common._wordInSingleQuotes);
-
-							if (!string.IsNullOrWhiteSpace(ret_condition))
+							Match match_propery_single_item = Regex.Match(condition, Common._arraySingleElementSelected);
+							if (match_propery_single_item.Success)
 							{
-								ret_condition += " && ";
-							}
-
-							if (match_condition_value.Success)
-							{
-								ret_condition += propertyName + ".Contains(" + match_condition_value.Value + ")";
+								//	{WhereWhomInfoCollected} = ['directly'] -> x.WhereWhomInfoCollected.Count == 1 && x.WhereWhomInfoCollected.Contains("directly")
+								condition = propertyName + ".Count == 1 && " + propertyName + ".Contains(" + match_propery_single_item.Value.Replace("[", "").Replace("]", "") + ")";
 							}
 							else
 							{
-								//	This should not happen
-								ret_condition += condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+								//	{WhereWhomInfoCollected} contains 'other' -> x.WhereWhomInfoCollected.Contains("other")
+								Match match_condition_value = Regex.Match(condition, Common._wordInSingleQuotes);
+
+								if (match_condition_value.Success)
+								{
+									condition = propertyName + ".Contains(" + match_condition_value.Value + ")";
+								}
+								else
+								{
+									//	This should not happen
+									condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+								}
 							}
 						}
-
-						continue;
+						else
+						{
+							//	{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'
+							condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
+						}
+					}
+					else
+					{
+						condition = condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 					}
 				}
 				else if(_calculatedValues != null && _calculatedValues.Where(c => c.name == prop_name).Any())
@@ -684,14 +692,9 @@ namespace SurveyToCS
 					{
 						string expression = calculatedValue.expression;
 						condition = ReplaceData(expression);
-						continue;
 					}
 				}
-
-				ret_condition = ret_condition.Replace(match_propery.Value, match_propery.Value.Replace("{", "x.").Replace("}", ""));
 			}
-
-			condition = ret_condition;
 		}
 
 		private static void ReplaceOperators(ref string condition)
