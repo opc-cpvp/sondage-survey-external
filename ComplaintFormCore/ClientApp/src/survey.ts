@@ -160,18 +160,6 @@ export abstract class SurveyBase {
         });
     }
 
-    protected setSurveyDataAsCookie(name: string): void {
-        let expires = "";
-        const date = new Date();
-        const hours = 6;
-
-        date.setTime(date.getTime() + hours * 60 * 60 * 1000);
-
-        expires = "; expires=" + date.toUTCString();
-
-        document.cookie = name + "=" + (JSON.stringify(this.survey.data) || "") + expires + "; path=/";
-    }
-
     private setSurveyProperties(): void {
         // Set Theme
         StylesManager.applyTheme("bootstrap");
