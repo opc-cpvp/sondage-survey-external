@@ -1,9 +1,9 @@
-﻿import * as Survey from "survey-vue";
+import { SurveyModel } from "survey-vue";
 import * as SurveyHelper from "./surveyHelper";
 import * as Ladda from "ladda";
 
 //  Function for updating (show/hide) the navigation buttons
-export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel): void {
+export function onCurrentPageChanged_updateNavButtons(survey: SurveyModel): void {
     //  NOTES:
     //  survey.isFirstPage is the start page but for some reasons when we view the preview, survey.isFirstPage
     //      gets set to true. This maybe a bug in survey.js or else there is a reason I don't understand
@@ -38,7 +38,7 @@ export function onCurrentPageChanged_updateNavButtons(survey: Survey.SurveyModel
     SurveyHelper.clearProblemDetails();
 }
 
-export function showPreview(survey: Survey.SurveyModel): void {
+export function showPreview(survey: SurveyModel): void {
     //  Set the survey property that will hold the information as to if the user has reached the 'Preview'
     survey.passedPreviewPage = true;
 
@@ -46,22 +46,22 @@ export function showPreview(survey: Survey.SurveyModel): void {
     survey.showPreview();
 }
 
-export function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void {
+export function completeSurvey(button: HTMLButtonElement, survey: SurveyModel): void {
     const spinner = Ladda.create(button);
     spinner.start();
 
     survey.doComplete();
 }
 
-export function startSurvey(survey: Survey.SurveyModel): void {
+export function startSurvey(survey: SurveyModel): void {
     survey.nextPage();
 }
 
-export function prevPage(survey: Survey.SurveyModel): void {
+export function prevPage(survey: SurveyModel): void {
     survey.prevPage();
 }
 
-export function nextPage(survey: Survey.SurveyModel): void {
+export function nextPage(survey: SurveyModel): void {
     survey.nextPage();
 }
 

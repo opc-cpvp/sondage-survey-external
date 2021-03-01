@@ -1,318 +1,201 @@
-﻿import Vue from "vue";
-import * as Survey from "survey-vue";
-import { SurveyLocalStorage } from "../surveyLocalStorage";
-import * as SurveyInit from "../surveyInit";
-import * as SurveyHelper from "../surveyHelper";
-import * as SurveyNavigation from "../surveyNavigation";
-import * as Ladda from "ladda";
-import { testData_pipeda } from "./pipeda_test_data";
-import { Province } from "../surveyHelper";
-import { PipedaProvincesData } from "./pipedaProvinceData";
-import * as SurveyFile from "../surveyFile";
+import { SurveyModel } from "survey-vue";
+import { SurveyBase } from "../survey";
+import { Question, SurveyError } from "../../node_modules/survey-vue/survey.vue";
+import { PipedaProvince } from "./pipedaProvince";
+import { PipedaProvinceData, PipedaProvincesData } from "./pipedaProvinceData";
+import { FileMeterWidget } from "../widgets/filemeterwidget";
 
-declare global {
-    // TODO: get rid of this global variable
-    var survey: Survey.SurveyModel; // eslint-disable-line no-var
-}
+export class PipedaSurvey extends SurveyBase {
+    private authToken: string;
 
-export class PipedaTool {
-    private storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
+    public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
+        super(locale, storageName);
+        this.authToken = authToken;
 
-    public init(jsonUrl: string, lang: string, token: string): void {
-        SurveyInit.initSurvey();
-
-        SurveyFile.initSurveyFile();
-
-        void fetch(jsonUrl)
-            .then(response => response.json())
-            .then(json => {
-                const _survey = new Survey.Model(json);
-                globalThis.survey = _survey;
-
-                _survey.complaintId = token;
-
-                //  This needs to be here
-                _survey.locale = lang;
-
-                //  We are going to use this variable to handle if the validation has passed or not.
-                let isValidSurvey = false;
-
-                _survey.onCompleting.add((sender, options) => {
-                    if (isValidSurvey === true) {
-                        options.allowComplete = true;
-                        return;
-                    }
-
-                    options.allowComplete = false;
-
-                    const uri = `/api/PipedaSurvey/Validate?complaintId="${sender.complaintId as string}`;
-
-                    fetch(uri, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                        // body: JSON.stringify(testData_pipeda)
-                        body: JSON.stringify(sender.data)
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                //  Validation is good then we set the variable so the next call to doComplete()
-                                //  will bypass the validation
-                                isValidSurvey = true;
-                                _survey.doComplete();
-                            } else {
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        SurveyHelper.printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            }
-                        })
-                        .catch(error => {
-                            console.warn(error);
-                            Ladda.stopAll();
-                        });
-                });
-
-                _survey.onComplete.add((sender, options) => {
-                    const uri = `/api/PipedaSurvey/Complete?complaintId="${sender.complaintId as string}`;
-
-                    fetch(uri, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                        body: JSON.stringify(sender.data)
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                //  Hide the navigation buttons
-                                const div_navigation = document.getElementById("div_navigation");
-                                if (div_navigation) {
-                                    div_navigation.classList.add("hidden");
-                                }
-
-                                //  Update the file reference number
-                                void response
-                                    .json()
-                                    .then(responseData => {
-                                        const sp_survey_file_number = document.getElementById("sp_survey_file_number");
-                                        if (sp_survey_file_number) {
-                                            sp_survey_file_number.innerText = responseData.referenceNumber;
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.warn(error);
-                                    });
-
-                                new SurveyLocalStorage().saveStateLocally(_survey, this.storageName_PIPEDA);
-
-                                console.log(sender.data);
-                                Ladda.stopAll();
-                            } else {
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        SurveyHelper.printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            }
-                        })
-                        .catch(error => {
-                            console.warn(error);
-                            Ladda.stopAll();
-                        });
-                });
-
-                _survey.onCurrentPageChanging.add((sender, options) => {
-                    //  The event is fired before the current page changes to another page.
-                    //  Typically it happens when a user click the 'Next' or 'Prev' buttons.
-                    //  sender - the survey object that fires the event.
-                    //  option.oldCurrentPage - the previous current/active page.
-                    //  option.newCurrentPage - a new current/active page.
-                    //  option.allowChanging - set it to `false` to disable the current page changing. It is `true` by default.
-                    //  option.isNextPage - commonly means, that end-user press the next page button.
-                    //              In general, it means that options.newCurrentPage is the next page after options.oldCurrentPage
-                    //  option.isPrevPage - commonly means, that end-user press the previous page button.
-                    //              In general, it means that options.newCurrentPage is the previous page before options.oldCurrentPage
-
-                    //  We are checking if we are going forward AND we are not at the starting page
-                    if (!options.isNextPage || !options.oldCurrentPage) {
-                        return;
-                    }
-
-                    options.allowChanging = false;
-                    options.allowChanging = true;
-                });
-
-                _survey.onAfterRenderQuestion.add((sender, options) => {
-                    if (options.question.getType() === "html" && options.question.name === "documentation_info") {
-                        this.updateDocumentationInfoSection(sender);
-                    }
-                });
-
-                survey.onAfterRenderPage.add((sender, options) => {
-                    const pagesRequiringProvinceTranslations = [
-                        "page_part_a_jurisdiction_unable_1",
-                        "page_part_a_jurisdiction_particulars",
-                        "page_part_a_customer_or_employee",
-                        "page_part_a_jurisdiction_unable_2"
-                    ];
-
-                    if (pagesRequiringProvinceTranslations.some(p => p === options.page.name)) {
-                        //  Set the french province prefixes for those pages.
-
-                        const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
-                        if (selectedProvinceQuestion.value) {
-                            const selectedProvinceId = Number(selectedProvinceQuestion.value);
-
-                            //  en, au, à...
-                            _survey.setVariable(
-                                "province_incidence_prefix_au",
-                                PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Au
-                            );
-
-                            //  de, du, de la...
-                            _survey.setVariable(
-                                "province_incidence_prefix_du",
-                                PipedaProvincesData[selectedProvinceId].French.FrenchPrefix_Du
-                            );
-                        }
-                    }
-
-                    if (options.page.name === "page_part_a_jurisdiction_unable_1") {
-                        const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
-
-                        if (selectedProvinceQuestion.value) {
-                            //  We are setting some dynamic urls depending on the province of incidence selected by the user.
-
-                            const selectedProvinceId = selectedProvinceQuestion.value as number;
-
-                            if (sender.locale === "fr") {
-                                _survey.setVariable("province_link", PipedaProvincesData[selectedProvinceId].French.Province_link);
-                            } else {
-                                _survey.setVariable("province_link", PipedaProvincesData[selectedProvinceId].English.Province_link);
-                            }
-                        }
-                    } else if (options.page.name === "page_part_a_jurisdiction_unable_2") {
-                        const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
-
-                        if (selectedProvinceQuestion.value) {
-                            //  We are setting some dynamic urls depending on the province of incidence selected by the user.
-
-                            const selectedProvinceId = selectedProvinceQuestion.value as number;
-
-                            if (sender.locale === "fr") {
-                                _survey.setVariable("link_province_opc", PipedaProvincesData[selectedProvinceId].French.Link_province_opc);
-                                _survey.setVariable("link_more_info", PipedaProvincesData[selectedProvinceId].French.Link_province_opc);
-                            } else {
-                                _survey.setVariable("link_province_opc", PipedaProvincesData[selectedProvinceId].English.Link_province_opc);
-                                _survey.setVariable("link_more_info", PipedaProvincesData[selectedProvinceId].French.Link_more_info);
-                            }
-                        }
-                    } else if (options.page.name === "page_part_a_customer_or_employee") {
-                        const selectedProvinceQuestion = _survey.getQuestionByName("ProvinceIncidence") as Survey.QuestionRadiogroupModel;
-
-                        if (selectedProvinceQuestion.value) {
-                            const selectedProvinceId = selectedProvinceQuestion.value;
-                            const nonParticularProvinces = [
-                                Province.Ontario,
-                                Province.NovaScotia,
-                                Province.NewBrunswick,
-                                Province.Manitoba,
-                                Province.PEI,
-                                Province.Saskatchewan
-                            ];
-
-                            if (nonParticularProvinces.some(p => p === selectedProvinceId)) {
-                                //  Referes to AnsweredOrganizationsQuestion()
-                                _survey.setVariable("plural", "s");
-                            }
-                        }
-                    }
-                });
-
-                // Adding particular event for this page only
-                _survey.onCurrentPageChanged.add((sender, options) => {
-                    new SurveyLocalStorage().saveStateLocally(sender, this.storageName_PIPEDA);
-                });
-
-                SurveyInit.initSurveyModelEvents(_survey);
-
-                SurveyInit.initSurveyModelProperties(_survey);
-
-                SurveyFile.initSurveyFileModelEvents(_survey, "pipeda");
-
-                const defaultData = {};
-
-                // Load the initial state
-                const storage: SurveyLocalStorage = new SurveyLocalStorage();
-                storage.loadStateLocally(_survey, this.storageName_PIPEDA, JSON.stringify(defaultData));
-
-                storage.saveStateLocally(_survey, this.storageName_PIPEDA);
-
-                // Save the state back to local storage
-                // this.onCurrentPageChanged_saveState(_survey);
-
-                // Call the event to set the navigation buttons on page load
-                SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
-
-                const app = new Vue({
-                    el: "#surveyElement",
-                    data: {
-                        survey: _survey
-                    }
-                });
-            });
+        // Since our completed page relies on a variable, we'll hide it until the variable is set.
+        this.survey.showCompletedPage = false;
     }
 
-    // This function is to update the html for the question of type html named 'documentation_info'.
-    // It will removed the hidden css on some of the <li> depending on some conditions
-    private updateDocumentationInfoSection(surveyObj) {
-        const ul_documentation_info = document.getElementById("ul_documentation_info");
-        if (ul_documentation_info == null) {
+    protected registerWidgets(): void {
+        FileMeterWidget.register();
+    }
+
+    protected registerEventHandlers(): void {
+        super.registerEventHandlers();
+
+        this.survey.onServerValidateQuestions.add((sender: SurveyModel, options: any) => {
+            this.handleOnServerValidateQuestions(sender, options);
+        });
+
+        this.survey.onComplete.add((sender: SurveyModel, options: any) => {
+            this.handleOnComplete(sender, options);
+        });
+
+        this.survey.onValueChanged.add((sender: SurveyModel, options: any) => {
+            this.handleOnValueChanged(sender, options);
+        });
+
+        this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnUploadFiles(sender, options);
+        });
+
+        this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
+            this.handleOnClearFiles(sender, options);
+        });
+    }
+
+    private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
+        if (!this.survey.isLastPage) {
+            options.complete();
             return;
         }
 
-        if (surveyObj.data["RaisedConcernToPrivacyOfficer"] === "yes") {
-            const liNode = ul_documentation_info.querySelector(".raisedConcernToPrivacyOfficer");
-            if (liNode != null) {
-                liNode.classList.remove("hidden");
+        const validationUrl = `/api/PipedaSurvey/Validate?complaintId=${this.authToken}`;
+
+        void (async () => {
+            // Validate the survey results
+            const response = await fetch(validationUrl, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(sender.data)
+            });
+
+            const questions = [] as Question[];
+            const errors = [] as SurveyError[];
+
+            if (!response.ok) {
+                const problem = await response.json();
+
+                Object.keys(problem.errors).forEach(q => {
+                    // options.errors in only able to set one error per question
+                    options.errors[q] = problem.errors[q][0];
+
+                    const question = sender.getQuestionByName(q);
+                    if (question && question["errors"]) {
+                        question.clearErrors();
+                        questions.push(question);
+                        for (const error of problem.errors[q]) {
+                            errors.push(new SurveyError(error, question));
+                        }
+                    }
+                });
             }
+
+            options.complete();
+
+            // TODO: Remove the following lines after updating surveyjs >= v1.8.21 (Bug #2566)
+            if (this.survey.onValidatedErrorsOnCurrentPage.isEmpty) {
+                return;
+            }
+
+            const validationOptions = {
+                page: sender.currentPage,
+                questions: questions,
+                errors: errors
+            };
+
+            this.survey.onValidatedErrorsOnCurrentPage.fire(sender, validationOptions);
+        })();
+    }
+
+    private handleOnComplete(sender: SurveyModel, options: any): void {
+        void (async () => {
+            const completeUrl = `/api/PipedaSurvey/Complete?complaintId=${this.authToken}`;
+
+            options.showDataSaving();
+
+            // Complete the survey
+            const response = await fetch(completeUrl, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(sender.data)
+            });
+
+            if (!response.ok) {
+                const problem = await response.json();
+                options.showDataSavingError();
+                return;
+            }
+
+            const responseData = await response.json();
+            this.survey.setVariable("referenceNumber", responseData.referenceNumber);
+
+            // Now that the variable is set, show the completed page.
+            this.survey.showCompletedPage = true;
+            this.storage.remove(this.storageName);
+
+            options.showDataSavingSuccess();
+        })();
+    }
+
+    private handleOnValueChanged(sender: SurveyModel, options: any): void {
+        const question = options.question as Question;
+        const value = options.value;
+
+        if (question.name !== "ProvinceIncidence" || value === null) {
+            return;
         }
 
-        if (surveyObj.data["DeniedAccess"] === "yes_and_other_concern" || surveyObj.data["DeniedAccess"] === "yes") {
-            const liNode = ul_documentation_info.querySelector(".deniedAccess");
-            if (liNode != null) {
-                liNode.classList.remove("hidden");
-            }
-        }
+        const provinceId = Number(value);
+        const province = PipedaProvincesData.get(provinceId) as PipedaProvince;
+        const provinceData: PipedaProvinceData = this.survey.locale === "fr" ? province.French : province.English;
 
-        if (surveyObj.data["SubmittedComplaintToOtherBody"] === true) {
-            const liNode = ul_documentation_info.querySelector(".submittedComplaintToOtherBody");
-            if (liNode != null) {
-                liNode.classList.remove("hidden");
-            }
-        }
+        this.survey.setVariable("province_incidence_prefix_au", provinceData.FrenchPrefix_Au); // en, au, à...
+        this.survey.setVariable("province_incidence_prefix_du", provinceData.FrenchPrefix_Du); // de, du, de la...
+        this.survey.setVariable("province_link", provinceData.Province_link);
+        this.survey.setVariable("link_province_opc", provinceData.Link_province_opc);
+        this.survey.setVariable("link_more_info", provinceData.Link_more_info);
+    }
 
-        if (surveyObj.data["ComplaintStillOngoing"] === true) {
-            const liNode = ul_documentation_info.querySelector(".complaintStillOngoing");
-            if (liNode != null) {
-                liNode.classList.remove("hidden");
-            }
-        }
+    private handleOnUploadFiles(sender: SurveyModel, options: any): void {
+        void (async () => {
+            const questionName: string = options.name;
+            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}&questionName=${questionName}`;
+            const formData = new FormData();
 
-        if (surveyObj.data["FilingComplaintOnOwnBehalf"] === "someone_else") {
-            const liNode = ul_documentation_info.querySelector(".filingComplaintOnOwnBehalf");
-            if (liNode != null) {
-                liNode.classList.remove("hidden");
+            options.files.forEach(file => {
+                formData.append(file.name, file);
+            });
+
+            // Complete the survey
+            const response = await fetch(uploadUrl, {
+                method: "POST",
+                body: formData
+            });
+
+            if (!response.ok) {
+                const problem = await response.json();
+                const questionErrors = new Map<Question, SurveyError[]>();
+
+                Object.keys(problem.errors).forEach(q => {
+                    const errors = problem.errors[q].map(error => new SurveyError(error, options.question));
+                    questionErrors.set(options.question, errors);
+                });
+
+                this.displayErrorSummary(questionErrors);
+                return;
             }
-        }
+
+            const responseData = await response.json();
+            options.callback(
+                "success",
+                options.files.map(file => ({
+                    file: file,
+                    content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
+                        responseData[file.name].content as string
+                    }&filename=${file.name as string}`
+                }))
+            );
+        })();
+    }
+
+    private handleOnClearFiles(sender: SurveyModel, options: any): void {
+        options.callback("success");
     }
 }

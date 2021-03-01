@@ -95,6 +95,30 @@
     "fr": ""
     }
 }
+------------------------------
+
+{
+    "type": "checkbox",
+    "name": "",
+    "title": {
+    "en": "",
+    "fr": ""
+    },
+    "description": {
+    "en": "",
+    "fr": ""
+    },
+    "isRequired": true,
+    "choices": [
+    {
+        "text": {
+        "en": "",
+        "fr": ""
+        },
+        "value": "yes"
+    }
+   ]
+}
 
 ------------------------------
 {
@@ -104,8 +128,7 @@
     "title": {
     "en": "",
     "fr": ""
-    },
-    "isRequired": true
+    }
 }
 
 ------------------------------
@@ -156,6 +179,8 @@
     "fr": "Il y a deja un fichier sous ce nom. Fichier avec le meme nom non permis. Votre fichier sera renomme."
     }
 }
+
+<section class='alert alert-info'><p></p></section>
 
 //*******************************************************************************************
 

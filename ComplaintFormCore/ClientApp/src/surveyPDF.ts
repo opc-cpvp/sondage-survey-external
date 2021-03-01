@@ -1,3 +1,6 @@
+import { Converter } from "showdown";
+import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
+import { AdornersOptions, SurveyPDF } from "survey-pdf";
 import {
     IElement,
     Model,
@@ -5,14 +8,11 @@ import {
     PanelModelBase,
     Question,
     QuestionHtmlModel,
-    QuestionSelectBase,
-    QuestionPanelDynamicModel
+    QuestionMatrixDynamicModel,
+    QuestionPanelDynamicModel,
+    QuestionSelectBase
 } from "survey-vue";
-import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
-import { AdornersOptions, SurveyPDF } from "survey-pdf";
-import { Converter } from "showdown";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
-import { QuestionMatrixDynamicModel } from "../node_modules/survey-vue/survey.vue";
 
 export class surveyPdfExport {
     private pdfOptions = {
@@ -180,7 +180,8 @@ export class surveyPdfExport {
                     name: question.name,
                     type: question.getType(),
                     title: question.title,
-                    visibleIf: question.visibleIf
+                    visibleIf: question.visibleIf,
+                    id: question.id
                 };
 
                 if (panel.templateElements) {

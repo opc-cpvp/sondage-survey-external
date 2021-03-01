@@ -1,34 +1,36 @@
-import "core-js/es";
-import "whatwg-fetch";
 import "abortcontroller-polyfill/dist/polyfill-patch-fetch";
+import "core-js/es";
 import "details-polyfill"; //  Polyfill to open/close the <details> tags
 import "element-closest-polyfill"; //  Polyfill to use Element.closest
-
-import * as Survey from "survey-vue";
-import { NewPaSurvey } from "./pa/newPaSurvey";
-import { NewPbrSurvey } from "./pbr/newPbrSurvey";
-import { NewPiaToolSurvey } from "./pia/newPiaToolSurvey";
-import { NewPipedaSurvey } from "./pipeda/newPipedaSurvey";
-import { TestSurvey } from "./tests/testSurvey";
+import { SurveyModel } from "survey-vue";
+import "whatwg-fetch";
+import { PaSurvey } from "./pa/paSurvey";
+import { PbrSurvey } from "./pbr/pbrSurvey";
+import { PiaSurvey } from "./pia/piaSurvey";
+import { PidSurvey } from "./pid/pidSurvey";
+import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
+import { TestSurvey } from "./tests/testSurvey";
+
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
 declare global {
-    function startSurvey(survey: Survey.SurveyModel): void;
-    function prevPage(survey: Survey.SurveyModel): void;
-    function nextPage(survey: Survey.SurveyModel): void;
+    function startSurvey(survey: SurveyModel): void;
+    function prevPage(survey: SurveyModel): void;
+    function nextPage(survey: SurveyModel): void;
     function endSession(): void;
-    function showPreview(survey: Survey.SurveyModel): void;
-    function completeSurvey(button: HTMLButtonElement, survey: Survey.SurveyModel): void;
+    function showPreview(survey: SurveyModel): void;
+    function completeSurvey(button: HTMLButtonElement, survey: SurveyModel): void;
 
     function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
+    function initPidSurvey(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
@@ -69,6 +71,7 @@ declare let Symbol;
         const storageName_PBR = "SurveyJS_LoadState_PBR";
         const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
+        const storageName_PID = "SurveyJS_LoadState_PID";
 
         globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
@@ -86,7 +89,7 @@ declare let Symbol;
             //        storage.save(storageName_PBR, storageData);
             //    });
 
-            const pbrSurvey = new NewPbrSurvey(lang, token, storageName_PBR);
+            const pbrSurvey = new PbrSurvey(lang, token, storageName_PBR);
             await pbrSurvey.loadSurveyFromUrl(jsonUrl);
             pbrSurvey.renderSurvey();
         };
@@ -105,9 +108,16 @@ declare let Symbol;
             //     storage.save(storageName_PA, storageData);
             // });
 
-            const paSurvey = new NewPaSurvey(lang, token, storageName_PA);
+            const paSurvey = new PaSurvey(lang, token, storageName_PA);
             await paSurvey.loadSurveyFromUrl(jsonUrl);
             paSurvey.renderSurvey();
+        };
+
+        globalThis.initPidSurvey = async (lang: "fr" | "en", token) => {
+            const jsonUrl = "/sample-data/survey_pid.json";
+            const pidSurvey = new PidSurvey(lang, token, storageName_PID);
+            await pidSurvey.loadSurveyFromUrl(jsonUrl);
+            pidSurvey.renderSurvey();
         };
 
         globalThis.initPiaETool = async (lang: "en" | "fr", token) => {
@@ -124,7 +134,7 @@ declare let Symbol;
             //    storage.save(storageName_PIA, storageData);
             // });
 
-            const piaSurvey = new NewPiaToolSurvey(lang, token, storageName_PIA);
+            const piaSurvey = new PiaSurvey(lang, token, storageName_PIA);
             await piaSurvey.loadSurveyFromUrl(jsonUrl);
             piaSurvey.renderSurvey();
 
@@ -151,7 +161,7 @@ declare let Symbol;
             //     storage.save(storageName_PIPEDA, storageData);
             // });
 
-            const pipedaSurvey = new NewPipedaSurvey(lang, token, storageName_PIPEDA);
+            const pipedaSurvey = new PipedaSurvey(lang, token, storageName_PIPEDA);
             await pipedaSurvey.loadSurveyFromUrl(jsonUrl);
             pipedaSurvey.renderSurvey();
         };
@@ -183,6 +193,17 @@ declare let Symbol;
                 };
 
                 pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA, page_title);
+            } else if (complaintType === "pid") {
+                jsonUrl = "/sample-data/survey_pid.json";
+                filename = "survey_export_pid";
+
+                const page_title: MultiLanguageProperty = {
+                    en: "PID PDF title",
+                    fr: "FR-PID PDF title",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID, page_title);
             }
         };
 
