@@ -1,7 +1,5 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import * as Survey from "survey-vue";
-import { jqueryuidatepicker } from "surveyjs-widgets";
 
 export class ContactInfoSurvey extends SurveyBase {
     private authToken: string;
@@ -13,8 +11,6 @@ export class ContactInfoSurvey extends SurveyBase {
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
         this.survey.showCompletedPage = false;
     }
-
-    protected registerWidgets(): void {}
 
     protected registerEventHandlers(): void {
         super.registerEventHandlers();
