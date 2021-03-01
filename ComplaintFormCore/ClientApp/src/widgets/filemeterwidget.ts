@@ -84,7 +84,8 @@ export class FileMeterWidget extends Widget {
             const size = this.getQuestionSize(question);
 
             if (size > totalSize) {
-                if (survey.locale === "fr") {
+                // TODO: Refactor this to use LocalizableString
+                if (sender.locale === "fr") {
                     options.error = "La taille des fichiers dépasse la taille totale autorisée.";
                 } else {
                     options.error = "The size of the files exceeds the total size allowed.";
@@ -195,6 +196,7 @@ export class FileMeterWidget extends Widget {
         totalSize = totalSize / 1048576;
         size = size / 1048576;
 
+        // TODO: Refactor this to use LocalizableString
         if (survey.locale === "fr") {
             header.innerText = `Vous avez téléchargé ${size.toFixed(1)} MB de ${totalSize.toFixed(1)} MB permis.`;
         } else {
