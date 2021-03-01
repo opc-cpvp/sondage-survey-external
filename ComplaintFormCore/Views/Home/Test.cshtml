@@ -1,4 +1,4 @@
-﻿@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
+@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
 
 @section CustomStyles {
 
@@ -6,10 +6,7 @@
 }
 
 @section CustomScripts {
-    @*<script src="~/js/survey/widgets/widgetCommentHtml.js"></script>*@
-
-    <script src="~/dist/bundle.js"></script>
-
+    <script src="~/js/clientapp/clientapp.min.js"></script>
     <script type="text/javascript">
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";

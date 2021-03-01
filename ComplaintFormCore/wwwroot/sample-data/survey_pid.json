@@ -1,0 +1,1251 @@
+{
+  "pages": [
+    {
+      "name": "page_intro",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the <em>Privacy Act</em>, or s 37(2) of the <em>Department of Employment and Social Development Act</em> (DESDA).</p><p>For more information about how the OPC manages personal information, please see our <a href='https//www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a></p></section>",
+            "fr": "<section class='alert alert-info'><p>L’outil de présentation en ligne a pour objet d’aider les institutions à présenter des avis au Commissariat à la protection de la vie privée du Canada. Le fonctionnaire délégué responsable de la gestion de la protection de la vie privée dans votre organisation doit approuver ces avis. Si vous ne savez pas qui est la personne responsable à cet égard, veuillez consulter la <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a> établie par le Secrétariat du Conseil du Trésor. Nous vous recommandons de consulter avec les responsables de la gestion de la protection de la vie privée (c.-à-d., AIPRP) de votre institution avant d’utiliser l’outil.</p><p>Veuillez noter que les institutions devraient limiter la quantité de renseignements personnels qu’elles transmettent pour répondre à la question. Dans les champs à texte libre, demandez-vous quelle est la meilleure façon de répondre à la question sans fournir plus de renseignements que nécessaire. De plus, veuillez ne téléverser aucun document dont le niveau de classification est supérieur à Protégé B. Si vous devez fournir un document dont le niveau de classification est supérieur à Protégé B, envoyez un courriel au Commissariat, à l’adresse scg-ga@priv.gc.ca afin de prendre des dispositions à cet égard.</p><p><br />Veuillez noter que dans certaines circonstances, les renseignements personnels ne peuvent pas être communiqués en vertu de l’alinéa 8(2)m) de la Loi sur la protection des renseignements personnels, car d’autres lois interdisent leur communication.<br />Le Commissariat recueille les renseignements, y compris les renseignements personnels, conformément au paragraphe 8(5) de la Loi sur la protection des renseignements personnels, ou au paragraphe 37(2) de la Loi sur le ministère de l’Emploi et du Développement social (LMEDS).</p><p>Pour obtenir plus d’information sur la façon dont le Commissariat gère les renseignements personnels, veuillez consulter notre <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/' target='_blank'>Politique de confidentialité</a>. </p></section>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "Institution",
+          "title": {
+            "en": "Institution name",
+            "fr": "Nom de l’institution"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "/api/Institution/GetAll?lang={locale}",
+            "titleName": "name",
+            "valueName": "value"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.1",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasNotificationApproved",
+          "title": {
+            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process?",
+            "fr": "Avant de commencer. L’avis a-t-il été officiellement approuvé conformément au processus d’approbation pour la communication des renseignments personnels dans l’intérêt public au sein de votre institution?"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-warning'><p>8(5) and 37(2) notifications must be approved by a delegated official. If you are unsure if you should submit a notification, please contact your institution’s Access to Information and Privacy (ATIP) coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a></p></section></p>",
+            "fr": "<p><section class='alert alert-warning'><p>Un fonctionnaire délégué doit approuver les avis concernant les paragraphes 8(5) et 37(2). Si vous n’êtes pas sûr de devoir soumettre un avis, veuillez communiquer avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de votre institution. Vous trouverez ses coordonnées ici : <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp</a></p></section></p>"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "html",
+          "visibleIf": "{HasNotificationApproved} = false",
+          "html": {
+            "en": "<p>Please ensure that your institution’s approval process has been completed before providing notification to our office. If you are unsure of who this is, please contact your institution’s Access to Information and Privacy (ATIP) Coordinator. You can find their contact information here: <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp</a><p><button class='btn btn-primary' onclick='endSession(); return false;'>End your session</button></p>",
+            "fr": "<p>Un fonctionnaire délégué doit approuver les avis concernant les paragraphes 8(5) et 37(2). Si vous n’êtes pas sûr de devoir soumettre un avis, veuillez communiquer avec le Avant de présenter votre avis au Commissariat, assurez-vous que le processus d’approbation en place au sein de votre institution a été suivi. Si vous ne savez pas avec certitude qui est la personne responsable, communiquez avec le coordonnateur de l’accès à l’information et de la protection des renseignements personnels (AIPRP) de votre institution. Vous trouverez ses coordonnées ici : <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp</a><p><button class='btn btn-primary' onclick='endSession(); return false;'>Terminer votre session</button></p>"
+          }
+        },
+        {
+          "type": "text",
+          "visibleIf": "{HasNotificationApproved} = true",
+          "name": "ApproverName",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide the name of the official responsible for approving this notification at your institution.",
+            "fr": "Veuillez indiquer le nom de l’employé chargé d’approuver l’avis au sein de votre institution"
+          }
+        },
+        {
+          "type": "text",
+          "visibleIf": "{HasNotificationApproved} = true",
+          "name": "ApproverTitle",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide the position title of the official responsible for approving this notification at your institution.",
+            "fr": "Veuillez préciser le titre de poste de l’employé chargé d’approuver l’avis"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_2",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.2",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Please provide the name and email address of the appropriate contact at your institution </p><section class='alert alert-info'><p>Please note that the contact should be the person best able to speak to this specific disclosure should OPC have additional questions. The contact will also receive acknowledgement of the notification. The position level of the contact is at the discretion of your institution.</p></section>",
+            "fr": "<p>Veuillez indiquer le nom et l’adresse de courriel de la personne-ressource au sein de votre institution.</p><section class='alert alert-info'><p>Veuillez noter que cette personne devrait être la plus apte à parler de cette communication précise si le Commissariat a des questions supplémentaires à lui poser. La personne recevra également un accusé de réception de l’avis. Le niveau du poste de la personne est à la discrétion de votre institution.</p></section>"
+          }
+        },
+        {
+          "type": "text",
+          "name": "ContactName",
+          "isRequired": true,
+          "title": {
+            "en": "Name:",
+            "fr": "Nom:"
+          }
+        },
+        {
+          "type": "text",
+          "name": "ContactEmail",
+          "inputType": "email",
+          "isRequired": true,
+          "title": {
+            "en": "Email address:",
+            "fr": "Adresse de courriel:"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_1_3",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 1.3",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "text",
+          "name": "ReferenceFileNumber",
+          "title": {
+            "en": "If applicable, please provide your institutional reference or file number",
+            "fr": "S’il y a lieu, veuillez indiquer le numéro de référence ou de dossier de votre institution."
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>The OPC recommends that your institution have a reference number to enable better internal tracking and communication with our office.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Le Commissariat recommande aux institutions de fournir un numéro de référence pour faciliter les communications avec son personnel ainsi que le suivi interne</p></section></p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_2_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "TimingOfDisclosure",
+          "title": {
+            "en": "Please provide information about the timing of the disclosure",
+            "fr": "Veuillez fournir des renseignements sur le moment de la communication."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "The disclosure has already taken place",
+                "fr": "La communication a déjà eu lieu"
+              },
+              "value": "already"
+            },
+            {
+              "text": {
+                "en": "The disclosure will take place in the future",
+                "fr": "La communication aura lieu"
+              },
+              "value": "future"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_2_0_a",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "visibleIf": "{TimingOfDisclosure} contains 'already'",
+      "elements": [
+        {
+          "type": "datepicker",
+          "name": "DateOfDisclosure",
+          "title": {
+            "en": "Date of Disclosure",
+            "fr": "Date de la communication"
+          },
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date",
+          "config": {
+            "maxDate": 0
+          }
+        },
+        {
+          "type": "comment",
+          "name": "DisclosurePriorToNotificationExplanation",
+          "isRequired": true,
+          "title": {
+            "en": "Please explain why the disclosure occurred prior to notification",
+            "fr": "Veuillez expliquer pourquoi les renseignements ont été communiqués avant la présentation de l’avis."
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>The Privacy Act states that institutions are to notify the Privacy Commissioner prior to the disclosure where reasonably practicable or in any other case forthwith on the disclosure</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>En vertu de la Loi sur la protection des renseignements personnels, l’institution doit donner un préavis de la communication des renseignements personnels au commissaire à la protection de la vie privée dans la mesure où il est raisonnablement possible de le faire; sinon, elle en avise le commissaire immédiatement après la communication.</p></section></p>"
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "WasNotPracticalToNotifyPCPrior",
+          "title": {
+            "en": "Notification to the Privacy Commissioner",
+            "fr": "Préavis au commissaire à la protection de la vie privée"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional information concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Cliquez ici si vous souhaitez de fournir des renseignements supplémentaires concernant les raisons pour lesquelles il n’était pas raisonnablement possible d’aviser le Commissariat avant que la communication n’ait lieu.</p></section></p>"
+          },
+          "hasOther": true,
+          "otherText": {
+            "en": "It was not reasonably practical to notify the Privacy Commissioner prior to the disclosure",
+            "fr": "Les circonstances ne justifiaient pas un préavis au commissaire à la protection de la vie privée."
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_2_0_b",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "visibleIf": "{TimingOfDisclosure} contains 'future'",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "AnticipatedDateOfDisclosureKnown",
+          "title": {
+            "en": "Anticipated Date of Disclosure",
+            "fr": "Date de communication prévue"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Known anticipated date of diclosure",
+                "fr": "Date de communication prévue connue"
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "Unknown anticipated date of diclosure",
+                "fr": "Date de communication prévue inconnue"
+              },
+              "value": "no"
+            }
+          ]
+        },
+        {
+          "type": "datepicker",
+          "name": "AnticipatedDateOfDisclosure",
+          "visibleIf": "{AnticipatedDateOfDisclosureKnown} contains 'yes'",
+          "title": {
+            "en": "Anticipated Date of Disclosure",
+            "fr": "Date de communication prévue"
+          },
+          "isRequired": true,
+          "dateFormat": "mm/dd/yy",
+          "inputType": "date"
+        },
+        {
+          "type": "comment",
+          "name": "AnticipatedDateOfDisclosureText",
+          "visibleIf": "{AnticipatedDateOfDisclosureKnown} contains 'no'",
+          "isRequired": true,
+          "title": {
+            "en": "If you do not know the exact date, please use the open text box to enter an anticipated month, date range, etc.",
+            "fr": "Si vous ne connaissez pas la date exacte, veuillez utiliser le champ de texte libre pour indiquer le mois prévu, la plage de dates prévue, etc."
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_3_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 3.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "LegislativeAuthority",
+          "title": {
+            "en": "Please indicate under what legislative authority the disclosure was/will be made",
+            "fr": "Quel est le fondement juridique en vertu duquel les renseignements ont été ou seront communiqués?"
+          },
+          "isRequired": true,
+          "hasOther": true,
+          "otherText": {
+            "en": "Other legal authority",
+            "fr": "Autre fondement juridique"
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "PA 8(2)(m)(i) – in the public interest",
+                "fr": "Loi sur la protection des renseignements personnels, sous-al. 8(2)(m)(i) – intérêt public"
+              },
+              "value": "public"
+            },
+            {
+              "text": {
+                "en": "PA 8(2)(m)(ii) – in the interest of the individual ",
+                "fr": "Loi sur la protection des renseignements personnels, sous-al. 8(2)(m)(ii) – avantage pour l’individu concerné "
+              },
+              "value": "individual"
+            },
+            {
+              "text": {
+                "en": "DESDA 37(1)",
+                "fr": "Loi sur le ministère de l’Emploi et du Développement social, par. 37(1)"
+              },
+              "value": "desda"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_3_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 3.1",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "OtherOptionsForDisclosure",
+          "title": {
+            "en": "Has the institution considered other options for this disclosure, such as subsections 8(2)(a) through 8(2)(l) of the Privacy Act?",
+            "fr": "L’institution a-t-elle envisagé d’autres options en ce qui concerne la communication, par exemple les al0inéas 8(2)a) à 8(2)(l) de la Loi sur la protection des renseignements personnels?  "
+          },
+          "description": {
+            "en": "It is possible another legislative authority may be more appropriate for the disclosure. Please note that in certain circumstances, personal information cannot be disclosed under s 8(2)(m) of the Privacy Act, because its disclosure is prohibited by other legislation.",
+            "fr": "Il est possible qu’une autre autorité législative soit plus appropriée pour justifier la communication."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Yes, the institution considered other options for this disclosure and determined that this is the most appropriate course of action",
+                "fr": "Oui. L’institution a envisagé d’autres options pour cette communication, mais elle a déterminé qu’il s’agissait de la solution la plus appropriée."
+              },
+              "value": "yes"
+            },
+            {
+              "text": {
+                "en": "No, the institution did not consider other options for this disclosure",
+                "fr": "Non. L’institution n’a envisagé aucune autre option pour cette communication."
+              },
+              "value": "no"
+            },
+            {
+              "text": {
+                "en": "No, subsections 8(2)(a) through 8(2)(l) of the Privacy Act do not apply for this disclosure",
+                "fr": "Non, les alinéas 8(2)a) à 8(2)l) de la Loi sur la protection des renseignements personnels ne s’appliquent pas à cette communication."
+              },
+              "value": "not_apply"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "OtherOptionsForDisclosureAdditonalInfo",
+          "title": {
+            "en": "Additional informations",
+            "fr": "Renseignements supplémentaires"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_4_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 4.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "DisclosureRecipients",
+          "title": {
+            "en": "Please indicate the disclosure recipient(s)",
+            "fr": "À qui les renseignements personnels ont-ils été ou seront-ils communiqués?"
+          },
+          "description": {
+            "en": "Choose all that apply. Please keep this high level; you will have the opportunity to provide more details later on.",
+            "fr": "Cochez toutes les réponses qui s’appliquent. Veuillez maintenir ce niveau élevé; vous aurez l’occasion de fournir plus de renseignements ultérieurement."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Law enforcement",
+                "fr": "Application de la loi"
+              },
+              "value": "law_enforcement"
+            },
+            {
+              "text": {
+                "en": "Family member",
+                "fr": "Membre de la famille"
+              },
+              "value": "family_member"
+            },
+            {
+              "text": {
+                "en": "Named representative",
+                "fr": "Représentant désigné"
+              },
+              "value": "named_representative"
+            },
+            {
+              "text": {
+                "en": "Government of Canada institution(s)",
+                "fr": "Institution(s) fédérale(s)"
+              },
+              "value": "goc_institution"
+            },
+            {
+              "text": {
+                "en": "Regulatory or Oversight Bodies",
+                "fr": "Organisme(s) de réglementation ou de surveillance"
+              },
+              "value": "regulatory"
+            },
+            {
+              "text": {
+                "en": "Government(s) in other jurisdiction(s) - This could include municipal, provincial, territorial, or foreign governments.",
+                "fr": "Gouvernement(s) des autres juridictions - Il peut s’agir de gouvernements municipaux, provinciaux, territoriaux ou étrangers."
+              },
+              "value": "gov_other_jurisdiction"
+            },
+            {
+              "text": {
+                "en": "Media",
+                "fr": "Média(s)"
+              },
+              "value": "media"
+            },
+            {
+              "text": {
+                "en": "Public",
+                "fr": "Public"
+              },
+              "value": "public"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_4_0_details",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 4.0 - Details",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>Provide more details about the disclosure recipient(s)</p></section>",
+            "fr": "<section class='alert alert-info'><p>FR-Provide more details about the disclosure recipient(s)</p></section>"
+          }
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_law_enforcement",
+          "visibleIf": "{DisclosureRecipients} contains 'law_enforcement'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which law enforcement body/bodies",
+            "fr": "Veuillez indiquer l’organisme ou les organismes d’application de la loi"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Law Enforcement Body",
+                "fr": "Organisme d'application de la loi"
+              }
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "DisclosureRecipients_FamilyMember",
+          "visibleIf": "{DisclosureRecipients} contains 'family_member'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which family member(s)",
+            "fr": "Veuillez indiquer le ou les membres de la famille"
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Spouse/Common-law spouse",
+                "fr": "Conjoint ou conjointe/Conjoint ou conjointe de fait"
+              },
+              "value": "spouse"
+            },
+            {
+              "text": {
+                "en": "Parent(s)",
+                "fr": "Parent(s)"
+              },
+              "value": "parent"
+            },
+            {
+              "text": {
+                "en": "Sibling(s) ",
+                "fr": "Frère(s) et sœur(s)"
+              },
+              "value": "sibling"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Personne(s) ayant un autre type de lien"
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_FamilyMember_Other",
+          "visibleIf": "{DisclosureRecipients} contains 'family_member' and {DisclosureRecipients_FamilyMember} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other family member",
+            "fr": "Veuillez indiquer le ou les personne(s) ayant un autre type de lien de famille"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Family Member",
+                "fr": "Membre de la famille"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "DisclosureRecipients_named_representative",
+          "visibleIf": "{DisclosureRecipients} contains 'named_representative'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which named representative",
+            "fr": "Veuillez indiquer le représentant désigné"
+          }
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_goc_institution",
+          "visibleIf": "{DisclosureRecipients} contains 'goc_institution'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government of Canada institution(s)",
+            "fr": "Veuillez indiquer quelle(s) institution(s) fédérale(s)"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Institution",
+                "fr": "Institution"
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Regulatory",
+          "visibleIf": "{DisclosureRecipients} contains 'regulatory'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Regulatory or Oversight body/bodies",
+            "fr": "Veuillez indiquer quel organisme(s) de réglementation ou de surveillance"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Body",
+                "fr": "Organisme"
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Jurisdiction",
+          "visibleIf": "{DisclosureRecipients} contains 'gov_other_jurisdiction'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which Government(s) in other jurisdiction(s)",
+            "fr": "Veuillez indiquer quel(s) Gouvernement(s) des autres juridictions "
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Government",
+                "fr": "Gouvernement"
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Media",
+          "visibleIf": "{DisclosureRecipients} contains 'media'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which media outlet(s)",
+            "fr": "Veuillez indiquer quel(s) média(s) "
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Media Outlet",
+                "fr": "Média"
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "DisclosureRecipients_Public",
+          "visibleIf": "{DisclosureRecipients} contains 'public'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which public disclosure recipient",
+            "fr": "Veuillez indiquer le(s) renseignement(s) public(s)"
+          }
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DisclosureRecipients_Other",
+          "visibleIf": "{DisclosureRecipients} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other recipient(s)",
+            "fr": "Veuillez indiquer le(s) autres renseignement(s)"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Recipient",
+                "fr": "Destinataire "
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_5_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 5",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "MultipleIndividualsAddOption",
+          "title": {
+            "en": "Please provide the names of the individuals whose personal information was/will be disclosed.",
+            "fr": "Veuillez fournir les noms des personnes dont les renseignements personnels ont été ou seront divulgués."
+          },
+          "description": {
+            "en": "<p>The OPC asks institutions to provide the name of the affected individual(s) in the case our office determines it is necessary to inform the individual(s) of the disclosure, as per s 8(5) of the Privacy Act. The answer will also effect the structure of the questions that follow.</p><p>You may either add the names directly into the tool, or upload a spreadsheet.</p>",
+            "fr": "<p>Le Commissariat demande aux institutions de fournir le nom des personnes concernées dans le cas où il juge nécessaire de les aviser de la communication, conformément au paragraphe 8(5) de la Loi sur la protection des renseignements personnels. La réponse aura également une incidence sur le déroulement des questions qui suivent. </p>"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Add names directly",
+                "fr": "Ajouter des noms directement"
+              },
+              "value": "directly"
+            },
+            {
+              "text": {
+                "en": "Upload",
+                "fr": "Téléverser"
+              },
+              "value": "upload"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "MultipleIndividuals",
+          "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
+          "isRequired": true,
+          "title": {
+            "en": "Individual(s)",
+            "fr": "Individu(s)"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Name",
+              "cellType": "text",
+              "title": {
+                "en": "Name",
+                "fr": "Nom"
+              }
+            }
+          ]
+        },
+        {
+          "type": "file",
+          "name": "FileMultipleIndividuals",
+          "titleLocation": "hidden",
+          "visibleIf": "{MultipleIndividualsAddOption} contains 'upload'",
+          "description": {
+            "en": "Upload document",
+            "fr": "Téléverser le document"
+          },
+          "isRequired": true,
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": false,
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+        }
+      ]
+    },
+    {
+      "name": "page_q_6_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 6.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionOfEvents",
+          "title": {
+            "en": "Description of events that lead to the disclosure",
+            "fr": "Description des événements à l’origine de la communication"
+          },
+          "description": {
+            "en": "This description should relate to the circumstances that prompted the institution to disclose the personal information.   Please provide a brief description with a limited amount of personal information required for us to understand the context for the disclosure. If necessary, you will have the option to upload additional documentation before submitting the notification.",
+            "fr": "Cette description devrait se rapporter aux circonstances qui ont incité l’institution à communiquer les renseignements personnels.   Veuillez décrire brièvement les événements en ne fournissant que les renseignements personnels nécessaires pour nous permettre de comprendre le contexte de la communication. Au besoin, vous aurez la possibilité de téléverser des documents supplémentaires avant de présenter l’avis. "
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_7_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 7.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "DataElementsDisclosed",
+          "title": {
+            "en": "Data elements disclosed",
+            "fr": "Éléments d’information communiqués"
+          },
+          "description": {
+            "en": "Choose all that apply.",
+            "fr": "Cochez toutes les réponses qui s’appliquent"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Name",
+                "fr": "Nom"
+              },
+              "value": "name"
+            },
+            {
+              "text": {
+                "en": "Date of birth",
+                "fr": "Date de naissance"
+              },
+              "value": "dob"
+            },
+            {
+              "text": {
+                "en": "Home address",
+                "fr": "Adresse du domicile"
+              },
+              "value": "home_address"
+            },
+            {
+              "text": {
+                "en": "Phone number",
+                "fr": "Numéro de téléphone"
+              },
+              "value": "phone_number"
+            },
+            {
+              "text": {
+                "en": "Email address",
+                "fr": "Adresse de courriel"
+              },
+              "value": "email"
+            },
+            {
+              "text": {
+                "en": "Information related to death",
+                "fr": "Renseignements se rapportant au décès"
+              },
+              "value": "death"
+            },
+            {
+              "text": {
+                "en": "Information related to law enforcement ",
+                "fr": "Renseignements relatifs à l’application de la loi"
+              },
+              "value": "law_enforcement"
+            },
+            {
+              "text": {
+                "en": "Medical information",
+                "fr": "Renseignements médicaux"
+              },
+              "value": "medical"
+            },
+            {
+              "text": {
+                "en": "Financial information",
+                "fr": "Renseignements financiers"
+              },
+              "value": "financial"
+            },
+            {
+              "text": {
+                "en": "Details of interaction with Government of Canada",
+                "fr": "Précisions concernant l’interaction avec le gouvernement du Canada "
+              },
+              "value": "interaction_goc"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_7_0_details",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 7.0 - Details about elements disclosed",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+
+      "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{DataElementsDisclosed} anyof ['medical','financial','interaction_goc','death','law_enforcement','other']",
+          "html": {
+            "en": "<p><section class='alert alert-info'><p>Provide details about the selected data elements disclosed</p></section>",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "MedicalDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'medical'",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a description of the medical data elements disclosed, without involving personal information, for example “medical diagnosis”, or “medical historyExplain",
+            "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "FinancialDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'financial'",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a description of the the financial data elements disclosed, without involving personal information, for example “banking information” or “history of financial benefits",
+            "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
+          }
+        },
+        {
+          "type": "comment",
+          "name": "InteractionGOCDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'interaction_goc'",
+          "isRequired": true,
+          "title": {
+            "en": "Explain the interaction with Government of Canada data elements disclosed. Details should be outlined in response to question 6",
+            "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
+          }
+        },
+        {
+          "type": "checkbox",
+          "name": "DeathDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'death'",
+          "isRequired": true,
+          "title": {
+            "en": "Indicate the information related to death data elements disclosed",
+            "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Date of death",
+                "fr": "Date du décès"
+              },
+              "value": "date"
+            },
+            {
+              "text": {
+                "en": "Cause of death",
+                "fr": "Cause du décès"
+              },
+              "value": "cause"
+            },
+            {
+              "text": {
+                "en": "Death related reports and investigations",
+                "fr": "Enquêtes ou rapports sur le décès"
+              },
+              "value": "reports_investigations"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre "
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "DeathDisclosedExplanation_Other",
+          "visibleIf": "{DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other information related to death was disclosed",
+            "fr": "Veuillez indiquer quelles autres informations relatives au décès ont été divulguées"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Information",
+                "fr": "Information"
+              }
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "InfoLawEnforcementDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement'",
+          "title": {
+            "en": "Indicate the information related to law enforcement data elements disclosed",
+            "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "Charges",
+                "fr": "Mises en accusation"
+              },
+              "value": "charges"
+            },
+            {
+              "text": {
+                "en": "Convictions",
+                "fr": "Condamnations"
+              },
+              "value": "convictions"
+            },
+            {
+              "text": {
+                "en": "Criminal record (where no record suspension has been ordered)",
+                "fr": "Casier judiciaire (lorsqu’aucune suspension de casier n’a été ordonnée)"
+              },
+              "value": "criminal_record"
+            },
+            {
+              "text": {
+                "en": "Other",
+                "fr": "Autre"
+              },
+              "value": "other"
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "InfoLawEnforcementDisclosedExplanation_Other",
+          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Please indicate which other information related to law enforcement was disclosed",
+            "fr": "Veuillez indiquer quelles autres renseignements relatives à l'application des lois ont été divulguées"
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Information",
+                "fr": "Information"
+              }
+            }
+          ]
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "OtherDisclosedExplanation",
+          "visibleIf": "{DataElementsDisclosed} contains 'other'",
+          "isRequired": true,
+          "title": {
+            "en": "Indicate the other data element(s) disclosed",
+            "fr": ""
+          },
+          "addRowText": {
+            "en": "Add",
+            "fr": "Ajouter"
+          },
+          "minRowCount": 1,
+          "rowCount": 1,
+          "confirmDelete": true,
+          "columns": [
+            {
+              "name": "Item",
+              "cellType": "text",
+              "title": {
+                "en": "Information",
+                "fr": "Information"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_q_8_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 8.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "RationalForDisclosure",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide rationale for disclosure. Your answer should include the purpose of the disclosure, and an explanation of why the public interest overrides privacy concerns in this instance, or how the disclosure would clearly benefit the individual.",
+            "fr": "Veuillez justifier la communication des renseignements personnels. Vous devriez préciser la fin visée par cette communication et expliquer pourquoi l’intérêt public l’emporte sur les préoccupations concernant la protection des renseignements personnels en question, ou comment l’individu concerné en retirerait manifestement un avantage."
+          },
+          "description": {
+            "en": "Public interest disclosure provisions are applied in unique, fact-specific situations in which the public interest clearly outweighs the privacy concerns of the affected individual(s); or it is in the best interest of the individual to disclose the personal information. Institutions should ensure that they have carefully weighed the invasion of privacy against the public interest, or the benefit to the individual.",
+            "fr": "Les dispositions portant sur la communication de renseignements personnels dans l’intérêt public ne visent pas à régir la communication de ce type de renseignements de façon systématique ou régulière. Elles s’appliquent plutôt dans les situations uniques qui se caractérisent par des faits particuliers et dans lesquelles l’intérêt public l’emporte manifestement sur les préoccupations de l’individu ou des individus touchés concernant la protection de leurs renseignements personnels. Les institutions devraient s’assurer qu’elles ont soigneusement évalué l’atteinte à la vie privée par rapport à l’intérêt public ou bien l’avantage qu’en retirerait l’individu concerné."
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_9_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 9.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "HasInstitutionNotifiedIndOfDisclosure",
+          "isRequired": true,
+          "title": {
+            "en": "Has your institution notified the affected individual(s) of the disclosure?",
+            "fr": "Votre institution a-t-elle avisé les personnes concernées de la communication?"
+          },
+          "description": {
+            "en": "The OPC may notify an individual of a disclosure of their personal information pursuant to paragraph 8(2)(m) if it considers it appropriate to do so.",
+            "fr": "Le Commissariat peut aviser une personne de la communication de ses renseignements personnels en vertu de l’alinéa 8(2)m) s’il juge approprié de le faire."
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_q_10_0",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 10.0",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "file",
+          "name": "FileSupplementaryDocumentations",
+          "title": {
+            "en": "Upload supplementary documentation",
+            "fr": "Téléversez les documents supplémentaires"
+          },
+          "description": {
+            "en": "Please do not upload any documents above Protected B. Should you need to provide documents above Protected B, please arrange this with our office by contacting us at scg-ga@priv.gc.ca. Please consider whether it is necessary to provide supplementary documentation, and the sensitivity of the personal information included. Only submit documents that would provide context and enable a better understanding of the disclosure",
+            "fr": "Veuillez ne téléverser aucun document dont le niveau de classification est supérieur à Protégé B. Si vous devez fournir un document dont le niveau de classification est supérieur à Protégé B, envoyez un courriel au Commissariat, à l’adresse scg-ga@priv.gc.ca afin de prendre des dispositions à cet égard. Veuillez examiner s’il est nécessaire de fournir des documents supplémentaires et de préciser le caractère sensible des renseignements personnels compris. Ne soumettez de documents que pour fournir un contexte et permettre une meilleure compréhension de la communication."
+          },
+          "hasComment": false,
+          "allowMultiple": true,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": false,
+          "showMeter": true,
+          "totalSize": 26214400,
+          "showPreview": true,
+          "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+        }
+      ]
+    },
+    {
+      "name": "page_q_10_1",
+      "title": {
+        "en": "Public interest disclosure notification online submission tool - Question 10.1",
+        "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p><h5 class='sv_q_title'>Download a copy of this notification for your records</h5></p><p><button class='btn btn-primary' onclick='showPDF(); return false;'>Download</button></p>",
+            "fr": "<p><h5 class='sv_q_title'>Téléchargez une copie de cet avis à titre d’information </h5></p><p><button class='btn btn-primary' onclick='showPDF(); return false;'>Téléchargez</button></p>"
+          }
+        }
+      ]
+    }
+  ]
+}

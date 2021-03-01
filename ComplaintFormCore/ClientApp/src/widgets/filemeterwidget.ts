@@ -62,7 +62,7 @@ export class FileMeterWidget extends Widget {
         container.className = "alert alert-info";
 
         const header = document.createElement("h4");
-        this.updateHeader(header, question);
+        this.updateHeader(survey, header, question);
 
         const meter = document.createElement("meter");
         meter.className = "full-width";
@@ -84,7 +84,12 @@ export class FileMeterWidget extends Widget {
             const size = this.getQuestionSize(question);
 
             if (size > totalSize) {
-                options.error = "The size of the files exceeds the total size allowed.";
+                // TODO: Refactor this to use LocalizableString
+                if (sender.locale === "fr") {
+                    options.error = "La taille des fichiers dépasse la taille totale autorisée.";
+                } else {
+                    options.error = "The size of the files exceeds the total size allowed.";
+                }
             }
         });
 
@@ -105,7 +110,7 @@ export class FileMeterWidget extends Widget {
 
             meter.value = this.getQuestionSize(question);
 
-            this.updateHeader(header, question);
+            this.updateHeader(sender, header, question);
         });
 
         survey.onClearFiles.add((sender: SurveyModel, options: any) => {
@@ -129,7 +134,7 @@ export class FileMeterWidget extends Widget {
 
             meter.value = this.getQuestionSize(question);
 
-            this.updateHeader(header, question);
+            this.updateHeader(sender, header, question);
         });
 
         question.onStateChanged.add((sender: QuestionFileModel, options: any) => {
@@ -183,7 +188,7 @@ export class FileMeterWidget extends Widget {
         this.questionFiles.set(question, questionFiles);
     }
 
-    private updateHeader(header: HTMLHeadingElement, question: Question): void {
+    private updateHeader(survey: SurveyModel, header: HTMLHeadingElement, question: Question): void {
         let totalSize: number = question.totalSize || 0;
         let size = this.getQuestionSize(question);
 
@@ -191,7 +196,12 @@ export class FileMeterWidget extends Widget {
         totalSize = totalSize / 1048576;
         size = size / 1048576;
 
-        header.innerText = `You have uploaded ${size.toFixed(1)} MB of files out of ${totalSize.toFixed(1)} MB allowed.`;
+        // TODO: Refactor this to use LocalizableString
+        if (survey.locale === "fr") {
+            header.innerText = `Vous avez téléchargé ${size.toFixed(1)} MB de ${totalSize.toFixed(1)} MB permis.`;
+        } else {
+            header.innerText = `You have uploaded ${size.toFixed(1)} MB of files out of ${totalSize.toFixed(1)} MB allowed.`;
+        }
     }
 
     private getQuestionSize(question: Question): number {
