@@ -356,3 +356,5 @@ node_modules
 /ComplaintFormCore/wwwroot/lib
 /ComplaintFormCore/wwwroot/dist/bundle.js
 /ComplaintFormCore/FileUploads
+/ComplaintFormCore/ClientApp/dist/clientapp.min.js
+/ComplaintFormCore/ClientApp/dist/clientapp.min.js.map

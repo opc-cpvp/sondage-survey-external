@@ -14,7 +14,7 @@ namespace SurveyToCS
 			Console.WriteLine("1) Type 'c' to generate the C# class with properties");
 			Console.WriteLine("2) Type 'v' to generate the FluentValidation class");
 			Console.WriteLine("3) Type 't' to generate test data");
-			Console.WriteLine("4) Type '' to generate test data");
+			Console.WriteLine("4) Type 'g' to generate test data");
 			Console.WriteLine("5) Type 'r' to rebuild to json with translated strings");
 			Console.Write("\r\nSelect an option: ");
 
@@ -75,6 +75,12 @@ namespace SurveyToCS
 			else if (line == "t")
 			{
 				string result = TestDataBuilder.CreateTestData(survey);
+				ClipboardService.SetText(result);
+				Console.WriteLine(result);
+			}
+			else if (line == "g")
+			{
+				string result = ExportForTranslation.CreateCSV(survey);
 				ClipboardService.SetText(result);
 				Console.WriteLine(result);
 			}
