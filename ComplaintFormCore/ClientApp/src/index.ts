@@ -16,6 +16,7 @@ import { TestSurvey } from "./tests/testSurvey";
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
 import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
+import { TellOPCSurvey } from "./other/tellOPCSurvey";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
 declare global {
@@ -33,6 +34,7 @@ declare global {
     function initPipeda(lang: "en" | "fr", token: string): void;
     function initContactInfo(lang: "en" | "fr", token: string): void;
     function initPidSurvey(lang: "en" | "fr", token: string): void;
+    function initTellOPC(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(lang: string, complaintType: string): void;
     function checkBoxInfoPopupEvent(checkbox): void;
@@ -96,6 +98,7 @@ declare let Symbol;
             await contactInfoSurvey.loadSurveyFromUrl(jsonUrl);
             contactInfoSurvey.renderSurvey();
         };
+        const storageName_TELLOPC = "SurveyJS_LoadState_TELLOPC";
 
         globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
@@ -188,6 +191,13 @@ declare let Symbol;
             const pipedaSurvey = new PipedaSurvey(lang, token, storageName_PIPEDA);
             await pipedaSurvey.loadSurveyFromUrl(jsonUrl);
             pipedaSurvey.renderSurvey();
+        };
+
+        globalThis.initTellOPC = async (lang: "en" | "fr", token) => {
+            const jsonUrl = "/sample-data/survey_tell_opc.json";
+            const tellOPCSurvey = new TellOPCSurvey(lang, token, storageName_TELLOPC);
+            await tellOPCSurvey.loadSurveyFromUrl(jsonUrl);
+            tellOPCSurvey.renderSurvey();
         };
 
         globalThis.exportToPDF = (lang, complaintType) => {

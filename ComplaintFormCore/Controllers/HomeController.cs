@@ -18,8 +18,18 @@ namespace ComplaintFormCore.Controllers
         {
             _logger = logger;
 
-            WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Home", Href = "/Home/Index" });
-        }
+            //  The token should be coming from the Complaint table
+            string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
+
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PIA", Href = "/Home/PiaETool?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Tell OPC", Href = "/Home/TellOPC?token=" + token });
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
+		}
 
         public IActionResult Index()
         {
@@ -49,7 +59,13 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
-        public IActionResult Pipeda([FromQuery(Name = "token")] string token)
+		public IActionResult TellOPC([FromQuery(Name = "token")] string token)
+		{
+			ViewBag.token = token;
+			return View();
+		}
+
+		public IActionResult Pipeda([FromQuery(Name = "token")] string token)
         {
             ViewBag.token = token;
             return View();
