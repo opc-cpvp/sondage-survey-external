@@ -1,119 +1,122 @@
-﻿import Vue from "vue";
+import { Question, SurveyError, SurveyModel } from "survey-vue";
+import { SurveyBase } from "../survey";
 import * as Survey from "survey-vue";
-import * as SurveyInit from "../surveyInit";
-import * as SurveyNavigation from "../surveyNavigation";
-import * as Ladda from "ladda";
-import { pbr_test_data } from "./pbr_test_data";
-import * as SurveyHelper from "../surveyHelper";
-import * as widgets from "surveyjs-widgets";
-import { SurveyLocalStorage } from "../surveyLocalStorage";
+import { jqueryuidatepicker } from "surveyjs-widgets";
 
-declare global {
-    // TODO: get rid of this global variable
-    var survey: Survey.SurveyModel; // eslint-disable-line no-var
-}
+export class PbrSurvey extends SurveyBase {
+    private authToken: string;
 
-export class PbrSurvey {
-    private storageName_PBR = "SurveyJS_LoadState_PBR";
+    public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
+        super(locale, storageName);
+        this.authToken = authToken;
 
-    public init(jsonUrl: string, lang: string, token: string): void {
-        SurveyInit.initSurvey();
+        // Since our completed page relies on a variable, we'll hide it until the variable is set.
+        this.survey.showCompletedPage = false;
+    }
 
-        //  Initialize jqueryuidatepicker used for datepickers
-        widgets.jqueryuidatepicker(Survey);
+    protected registerWidgets(): void {
+        jqueryuidatepicker(Survey);
+    }
 
-        void fetch(jsonUrl)
-            .then(response => response.json())
-            .then(json => {
-                const _survey = new Survey.Model(json);
-                globalThis.survey = _survey;
+    protected registerEventHandlers(): void {
+        super.registerEventHandlers();
 
-                _survey.complaintId = token;
+        this.survey.onServerValidateQuestions.add((sender: SurveyModel, options: any) => {
+            this.handleOnServerValidateQuestions(sender, options);
+        });
 
-                //  This needs to be here
-                _survey.locale = lang;
+        this.survey.onComplete.add((sender: SurveyModel, options: any) => {
+            this.handleOnComplete(sender, options);
+        });
+    }
 
-                //  We are going to use this variable to handle if the validation has passed or not.
-                let isValidSurvey = false;
+    private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
+        if (!this.survey.isLastPage) {
+            options.complete();
+            return;
+        }
 
-                _survey.onCompleting.add((sender, options) => {
-                    if (isValidSurvey === true) {
-                        options.allowComplete = true;
-                        return;
-                    }
+        const validationUrl = `/api/PBRSurvey/Validate?complaintId=${this.authToken}`;
 
-                    options.allowComplete = false;
-
-                    const uri = `/api/PBRSurvey/Validate?complaintId="${sender.complaintId as string}`;
-
-                    fetch(uri, {
-                        method: "POST",
-                        headers: {
-                            Accept: "application/json",
-                            "Content-Type": "application/json; charset=utf-8"
-                        },
-                        // body: JSON.stringify(pbr_test_data)
-                        body: JSON.stringify(sender.data)
-                    })
-                        .then(response => {
-                            if (response.ok) {
-                                //  Validation is good then we set the variable so the next call to doComplete()
-                                //  will bypass the validation
-                                isValidSurvey = true;
-                                _survey.doComplete();
-                            } else {
-                                if (response.json) {
-                                    void response.json().then(problem => {
-                                        SurveyHelper.printProblemDetails(problem, sender.locale);
-                                    });
-                                }
-                                Ladda.stopAll();
-                                return response;
-                            }
-                        })
-                        .catch(error => {
-                            console.warn(error);
-                            Ladda.stopAll();
-                        });
-                });
-
-                _survey.onComplete.add((sender, options) => {
-                    console.log(sender.data);
-
-                    const div_navigation = document.getElementById("div_navigation");
-                    if (div_navigation) {
-                        div_navigation.style.display = "none";
-                    }
-
-                    Ladda.stopAll();
-                });
-
-                // Adding particular event for this page only
-                _survey.onCurrentPageChanged.add((sender, options) => {
-                    new SurveyLocalStorage().saveStateLocally(sender, this.storageName_PBR);
-                });
-
-                SurveyInit.initSurveyModelEvents(_survey);
-
-                SurveyInit.initSurveyModelProperties(_survey);
-
-                const defaultData = {};
-
-                // Load the initial state
-                const storage: SurveyLocalStorage = new SurveyLocalStorage();
-                storage.loadStateLocally(_survey, this.storageName_PBR, JSON.stringify(defaultData));
-
-                storage.saveStateLocally(_survey, this.storageName_PBR);
-
-                // Call the event to set the navigation buttons on page load
-                SurveyNavigation.onCurrentPageChanged_updateNavButtons(_survey);
-
-                const app = new Vue({
-                    el: "#surveyElement",
-                    data: {
-                        survey: _survey
-                    }
-                });
+        void (async () => {
+            // Validate the survey results
+            const response = await fetch(validationUrl, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(sender.data)
             });
+
+            const questions = [] as Question[];
+            const errors = [] as SurveyError[];
+
+            if (!response.ok) {
+                const problem = await response.json();
+
+                Object.keys(problem.errors).forEach(q => {
+                    // options.errors in only able to set one error per question
+                    options.errors[q] = problem.errors[q][0];
+
+                    const question = this.survey.getQuestionByName(q);
+                    if (question && question["errors"]) {
+                        question.clearErrors();
+                        questions.push(question);
+                        for (const error of problem.errors[q]) {
+                            errors.push(new SurveyError(error, question));
+                        }
+                    }
+                });
+            }
+
+            options.complete();
+
+            // TODO: Remove the following lines after updating surveyjs >= v1.8.21 (Bug #2566)
+            if (this.survey.onValidatedErrorsOnCurrentPage.isEmpty) {
+                return;
+            }
+
+            const validationOptions = {
+                page: this.survey.currentPage,
+                questions: questions,
+                errors: errors
+            };
+
+            this.survey.onValidatedErrorsOnCurrentPage.fire(sender, validationOptions);
+        })();
+    }
+
+    private handleOnComplete(sender: SurveyModel, options: any): void {
+        void (async () => {
+            const completeUrl = `/api/PBRSurvey/Complete?complaintId=${this.authToken}`;
+
+            options.showDataSaving();
+
+            // Complete the survey
+            const response = await fetch(completeUrl, {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(sender.data)
+            });
+
+            if (!response.ok) {
+                const problem = await response.json();
+                options.showDataSavingError();
+                return;
+            }
+
+            const responseData = await response.json();
+            this.survey.setVariable("referenceNumber", responseData.referenceNumber);
+
+            // Now that the variable is set, show the completed page.
+            this.survey.showCompletedPage = true;
+            this.storage.remove(this.storageName);
+
+            options.showDataSavingSuccess();
+        })();
     }
 }

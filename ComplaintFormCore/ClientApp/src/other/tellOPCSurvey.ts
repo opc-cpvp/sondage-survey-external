@@ -1,9 +1,7 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import { CheckboxWidget } from "../widgets/checkboxwidget";
-import { FileMeterWidget } from "../widgets/filemeterwidget";
 
-export class NewPaSurvey extends SurveyBase {
+export class TellOPCSurvey extends SurveyBase {
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
@@ -12,11 +10,6 @@ export class NewPaSurvey extends SurveyBase {
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
         this.survey.showCompletedPage = false;
-    }
-
-    protected registerWidgets(): void {
-        CheckboxWidget.register();
-        FileMeterWidget.register();
     }
 
     protected registerEventHandlers(): void {
@@ -29,14 +22,6 @@ export class NewPaSurvey extends SurveyBase {
         this.survey.onComplete.add((sender: SurveyModel, options: any) => {
             this.handleOnComplete(sender, options);
         });
-
-        this.survey.onUploadFiles.add((sender: SurveyModel, options: any) => {
-            this.handleOnUploadFiles(sender, options);
-        });
-
-        this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
-            this.handleOnClearFiles(sender, options);
-        });
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
@@ -45,7 +30,7 @@ export class NewPaSurvey extends SurveyBase {
             return;
         }
 
-        const validationUrl = `/api/PASurvey/Validate?complaintId=${this.authToken}`;
+        const validationUrl = `/api/TellOPCSurvey/Validate?complaintId=${this.authToken}`;
 
         void (async () => {
             // Validate the survey results
@@ -98,7 +83,7 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PASurvey/Complete?complaintId=${this.authToken}`;
+            const completeUrl = `/api/TellOPCSurvey/Complete?complaintId=${this.authToken}`;
 
             options.showDataSaving();
 
@@ -127,51 +112,5 @@ export class NewPaSurvey extends SurveyBase {
 
             options.showDataSavingSuccess();
         })();
-    }
-
-    private handleOnUploadFiles(sender: SurveyModel, options: any): void {
-        void (async () => {
-            const questionName: string = options.name;
-            const uploadUrl = `/api/File/Upload?complaintId=${this.authToken}&questionName=${questionName}`;
-            const formData = new FormData();
-
-            options.files.forEach(file => {
-                formData.append(file.name, file);
-            });
-
-            // Complete the survey
-            const response = await fetch(uploadUrl, {
-                method: "POST",
-                body: formData
-            });
-
-            if (!response.ok) {
-                const problem = await response.json();
-                const questionErrors = new Map<Question, SurveyError[]>();
-
-                Object.keys(problem.errors).forEach(q => {
-                    const errors = problem.errors[q].map(error => new SurveyError(error, options.question));
-                    questionErrors.set(options.question, errors);
-                });
-
-                this.displayErrorSummary(questionErrors);
-                return;
-            }
-
-            const responseData = await response.json();
-            options.callback(
-                "success",
-                options.files.map(file => ({
-                    file: file,
-                    content: `/api/File/Get?complaintId=${this.authToken}&fileUniqueId=${
-                        responseData[file.name].content as string
-                    }&filename=${file.name as string}`
-                }))
-            );
-        })();
-    }
-
-    private handleOnClearFiles(sender: SurveyModel, options: any): void {
-        options.callback("success");
     }
 }
