@@ -45,20 +45,6 @@ steps:
     projects: '**/*[Tt]ests/*.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
-- task: Npm@1
-  displayName: 'npm install'
-  inputs:
-    workingDir: ComplaintFormCore/ClientApp
-    verbose: false
-
-- task: Npm@1
-  displayName: 'npm run build'
-  inputs:
-    command: custom
-    workingDir: ComplaintFormCore/ClientApp
-    verbose: false
-    customCommand: 'run build'
-
 - task: MSBuild@1
   displayName: 'Build solution **/*.sln'
   inputs:

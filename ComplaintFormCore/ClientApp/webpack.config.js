@@ -1,7 +1,9 @@
-﻿const path = require("path");
+const path = require("path");
 
 const config = {
-    entry: "./src/index.ts",
+    entry: {
+        clientapp: './src/index.ts'
+    },
     module: {
         rules: [
             {
@@ -24,14 +26,15 @@ const config = {
         }
     },
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, "../wwwroot/dist")
+        library: '[name]',
+        filename: "[name].min.js",
+        path: path.resolve(__dirname, "dist")
     }
 };
 
 module.exports = (env, argv) => {
     if (argv.mode === 'development') {
-        config.devtool = "inline-source-map";
+        config.devtool = 'source-map';
     }
 
     return config;
