@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using ComplaintFormCore.Models;
+using GoC.WebTemplate.Components.Core.Services;
+using GoC.WebTemplate.Components.Entities;
+using GoC.WebTemplate.CoreMVC.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ComplaintFormCore.Models;
-using GoC.WebTemplate.CoreMVC.Controllers;
-using GoC.WebTemplate.Components.Core.Services;
+using System;
+using System.Diagnostics;
 
 namespace ComplaintFormCore.Controllers
 {
-    public class HomeController : WebTemplateBaseController
+	public class HomeController : WebTemplateBaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -20,16 +18,7 @@ namespace ComplaintFormCore.Controllers
         {
             _logger = logger;
 
-            //  The token should be coming from the Complaint table
-            string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
-
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PIA", Href = "/Home/PiaETool?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
-			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Home", Href = "/Home/Index" });
         }
 
         public IActionResult Index()
