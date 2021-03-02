@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "PBR";
+    ViewData["Title"] = "PID";
 }
 
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -34,7 +34,12 @@
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
-        initPbr(lang, token);
+        initPidSurvey(lang, token);
+
+        initializeDatepicker(lang);
+
+        function showPDF() {
+            exportToPDF(lang, "pid");
+        }
     </script>
 }
-

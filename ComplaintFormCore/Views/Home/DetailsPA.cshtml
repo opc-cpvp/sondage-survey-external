@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "DetailsPA";
 }
 
@@ -36,13 +36,8 @@
 }
 
 @section CustomScripts {
-
-    <script src="~/dist/bundle.js"></script>
-
-
-
+    <script src="~/js/clientapp/clientapp.min.js"></script>
     <script type="text/javascript">
-
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
@@ -51,7 +46,6 @@
         function showPDF() {
             exportToPDF(lang, "pa");
         }
-
     </script>
 }
 
