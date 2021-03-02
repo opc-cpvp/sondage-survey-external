@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using ComplaintFormCore.Models;
+using GoC.WebTemplate.Components.Core.Services;
+using GoC.WebTemplate.CoreMVC.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ComplaintFormCore.Models;
-using GoC.WebTemplate.CoreMVC.Controllers;
-using GoC.WebTemplate.Components.Core.Services;
+using System;
+using System.Diagnostics;
 
 namespace ComplaintFormCore.Controllers
 {
-    public class HomeController : WebTemplateBaseController
+	public class HomeController : WebTemplateBaseController
     {
         private readonly ILogger<HomeController> _logger;
 
