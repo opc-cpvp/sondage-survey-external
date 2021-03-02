@@ -12,8 +12,6 @@ export class TellOPCSurvey extends SurveyBase {
         this.survey.showCompletedPage = false;
     }
 
-    protected registerWidgets(): void {}
-
     protected registerEventHandlers(): void {
         super.registerEventHandlers();
 
