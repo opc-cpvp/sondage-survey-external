@@ -1,17 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+using ComplaintFormCore.Models;
+using GoC.WebTemplate.Components.Core.Services;
+using GoC.WebTemplate.CoreMVC.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using ComplaintFormCore.Models;
-using GoC.WebTemplate.CoreMVC.Controllers;
-using GoC.WebTemplate.Components.Core.Services;
+using System;
+using System.Diagnostics;
 
 namespace ComplaintFormCore.Controllers
 {
-    public class HomeController : WebTemplateBaseController
+	public class HomeController : WebTemplateBaseController
     {
         private readonly ILogger<HomeController> _logger;
 
@@ -28,6 +25,8 @@ namespace ComplaintFormCore.Controllers
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
+            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Tell OPC", Href = "/Home/TellOPC?token=" + token });
         }
 
         public IActionResult Index()
@@ -58,13 +57,25 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
-        public IActionResult Pipeda([FromQuery(Name = "token")] string token)
+		public IActionResult TellOPC([FromQuery(Name = "token")] string token)
+		{
+			ViewBag.token = token;
+			return View();
+		}
+
+		public IActionResult Pipeda([FromQuery(Name = "token")] string token)
         {
             ViewBag.token = token;
             return View();
         }
 
         public IActionResult Pbr([FromQuery(Name = "token")] string token)
+        {
+            ViewBag.token = token;
+            return View();
+        }
+
+        public IActionResult Pid([FromQuery(Name = "token")] string token)
         {
             ViewBag.token = token;
             return View();

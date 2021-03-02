@@ -67,6 +67,8 @@ namespace SurveyToCS
 		public object rows { get; set; }
 
 		public string value { get; set; }
+
+		public bool? hasOther { get; set; }
 	}
 
 	public class Title

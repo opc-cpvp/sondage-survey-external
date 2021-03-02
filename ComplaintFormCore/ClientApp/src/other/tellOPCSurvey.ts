@@ -1,9 +1,7 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import * as Survey from "survey-vue";
-import { jqueryuidatepicker } from "surveyjs-widgets";
 
-export class NewPbrSurvey extends SurveyBase {
+export class TellOPCSurvey extends SurveyBase {
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
@@ -12,10 +10,6 @@ export class NewPbrSurvey extends SurveyBase {
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
         this.survey.showCompletedPage = false;
-    }
-
-    protected registerWidgets(): void {
-        jqueryuidatepicker(Survey);
     }
 
     protected registerEventHandlers(): void {
@@ -36,7 +30,7 @@ export class NewPbrSurvey extends SurveyBase {
             return;
         }
 
-        const validationUrl = `/api/PBRSurvey/Validate?complaintId=${this.authToken}`;
+        const validationUrl = `/api/TellOPCSurvey/Validate?complaintId=${this.authToken}`;
 
         void (async () => {
             // Validate the survey results
@@ -89,7 +83,7 @@ export class NewPbrSurvey extends SurveyBase {
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PBRSurvey/Complete?complaintId=${this.authToken}`;
+            const completeUrl = `/api/TellOPCSurvey/Complete?complaintId=${this.authToken}`;
 
             options.showDataSaving();
 

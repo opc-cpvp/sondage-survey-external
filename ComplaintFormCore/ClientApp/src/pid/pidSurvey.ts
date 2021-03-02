@@ -1,11 +1,13 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
-import { CheckboxWidget } from "../widgets/checkboxwidget";
+import * as Survey from "survey-vue";
+import * as widgets from "surveyjs-widgets";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
-export class NewPaSurvey extends SurveyBase {
+export class PidSurvey extends SurveyBase {
     public surveyData = "";
     private authToken: string;
+    private textBoxesMaxLength = 100;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);
@@ -16,7 +18,7 @@ export class NewPaSurvey extends SurveyBase {
     }
 
     protected registerWidgets(): void {
-        CheckboxWidget.register();
+        widgets.jqueryuidatepicker(Survey);
         FileMeterWidget.register();
     }
 
@@ -38,6 +40,10 @@ export class NewPaSurvey extends SurveyBase {
         this.survey.onClearFiles.add((sender: SurveyModel, options: any) => {
             this.handleOnClearFiles(sender, options);
         });
+
+        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleAfterRenderQuestion(sender, options);
+        });
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
@@ -46,7 +52,7 @@ export class NewPaSurvey extends SurveyBase {
             return;
         }
 
-        const validationUrl = `/api/PASurvey/Validate?complaintId=${this.authToken}`;
+        const validationUrl = `/api/PIDSurvey/Validate?complaintId=${this.authToken}`;
 
         void (async () => {
             // Validate the survey results
@@ -99,7 +105,7 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PASurvey/Complete?complaintId=${this.authToken}`;
+            const completeUrl = `/api/PIDSurvey/Complete?complaintId=${this.authToken}`;
 
             options.showDataSaving();
 
@@ -122,13 +128,12 @@ export class NewPaSurvey extends SurveyBase {
             const responseData = await response.json();
             this.survey.setVariable("referenceNumber", responseData.referenceNumber);
 
-            // Now that the variable is set, show the completed page.
-            this.survey.showCompletedPage = true;
-
             //  Store the json data in a public variable before clearing the storage.
             //  This is for pdf export
             this.surveyData = sender.data;
 
+            // Now that the variable is set, show the completed page.
+            this.survey.showCompletedPage = true;
             this.storage.remove(this.storageName);
 
             options.showDataSavingSuccess();
@@ -179,5 +184,12 @@ export class NewPaSurvey extends SurveyBase {
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
         options.callback("success");
+    }
+
+    private handleAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        if (options.question.getType() === "text") {
+            const textQuestion = options.question as Survey.QuestionTextModel;
+            textQuestion.maxLength = this.textBoxesMaxLength;
+        }
     }
 }

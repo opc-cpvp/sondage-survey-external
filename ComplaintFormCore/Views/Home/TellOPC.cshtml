@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "PBR";
+    ViewData["Title"] = "Tell the OPC about a privacy issue";
 }
 
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
@@ -22,19 +22,18 @@
 
 @section CustomStyles {
     <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/jqueryui/jquery-ui.min.css" />
 }
 
 @section CustomScripts {
-    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
     <script src="~/js/clientapp/clientapp.min.js"></script>
-    <script src="~/js/datepicker.js"></script>
+
     <script type="text/javascript">
+
         const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
         const token = "@ViewBag.token";
 
-        initPbr(lang, token);
+        initTellOPC(lang, token);
+
     </script>
 }
 

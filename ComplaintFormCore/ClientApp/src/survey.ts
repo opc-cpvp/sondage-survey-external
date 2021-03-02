@@ -165,12 +165,17 @@ export abstract class SurveyBase {
         StylesManager.applyTheme("bootstrap");
 
         // Override defaultBootstrapCss Properties
+        defaultBootstrapCss.checkbox.root = ""; // Allows the 'Other' textbox to display at full width.
         defaultBootstrapCss.error.icon = "";
-        defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-secondary";
+        defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-default";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
         defaultBootstrapCss.matrixdynamic.root = "table";
         defaultBootstrapCss.navigationButton = "btn btn-primary";
         defaultBootstrapCss.page.title = "sv_title";
+        defaultBootstrapCss.panel.container = "well";
+        defaultBootstrapCss.paneldynamic.buttonAdd = "btn btn-default";
+        defaultBootstrapCss.paneldynamic.buttonRemove = "btn btn-danger";
+        defaultBootstrapCss.question.description = ""; //  Removes the default class (small)
         defaultBootstrapCss.question.title = "sv_q_title";
         defaultBootstrapCss.question.titleRequired = "required";
 
@@ -184,6 +189,18 @@ export abstract class SurveyBase {
         this.survey.showPreviewBeforeComplete = "showAllQuestions";
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
+
+        //  The default value for this is true. That means when using hasOther = true for a checkbox type question,
+        //  SurveyJS creates an new property with name 'PropertyName-Comment'. Problem occurs when trying to convert
+        //  the survey data into C# object, dashes are not permitted in C#. This is much simpler to just set
+        //  storeOthersAsComment = false and then any 'other' item is passed to the back as is (e.g. in string).
+        this.survey.storeOthersAsComment = false;
+
+        //  This flag is to set the maxLength on all other as in hasOther
+        this.survey.maxOthersLength = 100;
+
+        //  This flag is to set the maxLength for all comments and text type question.
+        this.survey.maxTextLength = 2000;
     }
 
     private setSurveyLocalizations(): void {
