@@ -1,5 +1,6 @@
 import { Question, SurveyError, SurveyModel } from "survey-vue";
 import { SurveyBase } from "../survey";
+import { CheckboxWidget } from "../widgets/checkboxwidget";
 
 export class ContactInfoSurvey extends SurveyBase {
     private authToken: string;
