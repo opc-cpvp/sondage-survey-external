@@ -15,6 +15,7 @@ import { TestSurvey } from "./tests/testSurvey";
 
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
+import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 import { TellOPCSurvey } from "./other/tellOPCSurvey";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
@@ -31,6 +32,7 @@ declare global {
     function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
+    function initContactInfo(lang: "en" | "fr", token: string): void;
     function initPidSurvey(lang: "en" | "fr", token: string): void;
     function initTellOPC(lang: "en" | "fr", token: string): void;
 
@@ -74,7 +76,29 @@ declare let Symbol;
         const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
         const storageName_PID = "SurveyJS_LoadState_PID";
+        const storageName_CONTACTINFO = "SurveyJS_LoadState_CONTACTINFO";
         const storageName_TELLOPC = "SurveyJS_LoadState_TELLOPC";
+
+        globalThis.initContactInfo = async (lang: "en" | "fr", token) => {
+            const jsonUrl = "/sample-data/survey_contact.json";
+
+            // await import("./pbr/pbr_test_data")
+            //    .then(testData => testData.pbr_test_data)
+            //    .then(testData => {
+            //        const storage = new LocalStorage();
+
+            //        const storageData = {
+            //            currentPageNo: 0,
+            //            data: testData
+            //        } as SurveyState;
+
+            //        storage.save(storageName_PBR, storageData);
+            //    });
+
+            const contactInfoSurvey = new ContactInfoSurvey(lang, token, storageName_CONTACTINFO);
+            await contactInfoSurvey.loadSurveyFromUrl(jsonUrl);
+            contactInfoSurvey.renderSurvey();
+        };
 
         globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";

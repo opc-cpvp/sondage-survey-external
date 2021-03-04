@@ -1,0 +1,737 @@
+{
+  "pages": [
+    {
+      "name": "page__start",
+      "title": {
+        "en": "Information Request Form",
+        "fr": "Formulaire de demande d'information"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>If you have searched our website and have not found the information you are looking for, you may wish to contact our Information Centre. We are available to provide general information rather than legal advice. You can use the form below to send us your question(s) or you can <a href='https://www.priv.gc.ca/en/contact-the-opc/?WT.mc_id=irf-en-1' target='_blank'>contact us by phone or mail</a>.</p><p>The Commissioner is mandated to resolve complaints in a fair and unbiased manner, and, as an ombudsman, conducts investigations on a case-by-case basis. In order to carry out this oversight role effectively, the Commissioner is not in a position to provide what might be called an 'advance ruling' in connection with matters that may relate to a future investigation, nor can we provide you with any legal advice. We cannot advise how the Commissioner would apply the Privacy Act or the Personal Information Protection and Electronic Documents Act to any particular set of facts including your specific situation.</p><p>Please note that any questions submitted using this form will not be treated as privacy complaints under the Privacy Act or the Personal Information Protection and Electronic Documents Act. For further information on filing complaints under either Act, please see <a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/?WT.mc_id=irf-en-2' target='_blank'>File a formal privacy complaint</a>.</p>",
+            "fr": "<p>Si vous avez fait une recherche dans notre site Web sans pouvoir trouver l’information voulue, vous souhaiterez peut-être contacter notre Centre d’information. Nous sommes à votre disposition pour vous donner des renseignements généraux et non des avis juridiques. Vous pouvez utiliser le formulaire ci-après pour nous faire part de vos questions ou <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/?WT.mc_id=irf-fr-1' target='_blank'>nous contacter par téléphone ou par la poste</a>.</p><p>Le commissaire est chargé de régler les plaintes de façon juste et impartiale, et en tant qu’ombudsman, de mener des enquêtes au cas par cas. Pour mener à bien ce rôle de surveillance, le commissaire ne peut fournir ce qu’on pourrait appeler une « décision anticipée » en lien avec des événements qui pourraient être liés à de futures enquêtes, et nous ne pouvons pas fournir d’avis juridiques. Nous ne sommes pas en mesure de commenter sur la manière dont le commissaire pourrait appliquer la Loi sur la protection des renseignements personnels ou la Loi sur la protection des renseignements personnels et les documents électroniques à des faits particuliers, y compris votre situation précise.</p><p>Veuillez noter que les préoccupations soumises par ce formulaire ne seront pas traitées en tant que plaintes officielles en vertu de la Loi sur la protection des renseignements personnels ou la Loi sur la protection des renseignements personnels et les documents électroniques. Pour plus d’information sur le dépôt de plaintes sous l’une ou l’autre des lois, voir <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/?WT.mc_id=irf-fr-2' target='_blank'>Déposer une plainte officielle concernant la protection de la vie privée</a>.</p>"
+          }
+        },
+        {
+          "type": "text",
+          "name": "FirstName",
+          "title": {
+            "en": "First name",
+            "fr": "Prénom "
+          }
+        },
+        {
+          "type": "text",
+          "name": "LastName",
+          "title": {
+            "en": "Last name",
+            "fr": "Nom de famille"
+          }
+        },
+        {
+          "type": "text",
+          "name": "PhoneNumber",
+          "title": {
+            "en": "Phone Number",
+            "fr": "Numéro de téléphone"
+          }
+        },
+        {
+          "type": "text",
+          "name": "Email",
+          "inputType": "email",
+          "title": {
+            "en": "E-mail address (yourname@domain.com)",
+            "fr": "Adresse électronique (votrenom@domaine.com)"
+          },
+          "isRequired": true
+        },
+        {
+          "type": "dropdown",
+          "name": "ProvinceOrState",
+          "title": {
+            "en": "Province/Territory",
+            "fr": "Province ou territoire"
+          },
+          "isRequired": true,
+          "choicesByUrl": {
+            "url": "/api/Province?lang={locale}&addOther=true",
+            "titleName": "text",
+            "valueName": "value"
+          }
+        },
+        {
+          "type": "dropdown",
+          "name": "ContactingUsAs",
+          "title": {
+            "en": "Are you contacting us...",
+            "fr": "Nous contactez-vous..."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "as an individual?",
+                "fr": "à titre personnel?"
+              },
+              "value": "individual"
+            },
+            {
+              "text": {
+                "en": "on behalf of a federal government department or agency?",
+                "fr": "au nom d’un ministère ou d’un organisme fédéral?"
+              },
+              "value": "federal_or_agency"
+            },
+            {
+              "text": {
+                "en": "on behalf of a private sector organization?",
+                "fr": "au nom d’une organisation du secteur privé?"
+              },
+              "value": "private_sector"
+            },
+            {
+              "text": {
+                "en": "on behalf of a provincial or municipal government organization, a university, school or hospital?",
+                "fr": "au nom d’une organisation appartenant à une administration publique provinciale ou municipale, d’une université, d’une école ou d’un hôpital?"
+              },
+              "value": "organization_school_hospital"
+            }
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "QuestionsRelateTo",
+          "title": {
+            "en": "Do your questions relate to the personal information handling practices of...",
+            "fr": "Vos questions se rapportent-elles aux pratiques de traitement des renseignements personnels appliquées par..."
+          },
+          "isRequired": true,
+          "choices": [
+            {
+              "text": {
+                "en": "an individual?",
+                "fr": "une personne?"
+              },
+              "value": "individual"
+            },
+            {
+              "text": {
+                "en": "a federal government department or agency?",
+                "fr": "un organisme fédéral?"
+              },
+              "value": "federal_or_agency"
+            },
+            {
+              "text": {
+                "en": "a private sector organization?",
+                "fr": "organisatisme du secteur privé?"
+              },
+              "value": "private_sector"
+            },
+            {
+              "text": {
+                "en": "a provincial or municipal government organization, a university, school or hospital?",
+                "fr": "une organisation appartenant à une administration publique provinciale ou municipale, une université, une école ou un hôpital?"
+              },
+              "value": "organization_school_hospital"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_topics",
+      "title": {
+        "en": "Information Request Form",
+        "fr": "Formulaire de demande d'information"
+      },
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "TopicOfEnquiry",
+          "title": {
+            "en": "What is the topic of your enquiry?",
+            "fr": "Sur quel sujet souhaitez-vous obtenir de l’information?"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Making a selection is not mandatory, but may help us better respond to your request.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Choisir un sujet n’est pas obligatoire, mais pourrait nous aider à mieux répondre à votre demande.</p></section></p>"
+          },
+          "colCount": 2,
+          "choices": [
+            {
+              "text": {
+                "en": "Accessing personal information",
+                "fr": "Accès à des renseignements personnels"
+              },
+              "value": "personal_information"
+            },
+            {
+              "text": {
+                "en": "Advertising and Marketing",
+                "fr": "Publicité et Marketing"
+              },
+              "value": "advertising_marketing"
+            },
+            {
+              "text": {
+                "en": "Air travel and border crossings",
+                "fr": "Transport aérien et passage aux postes frontaliers"
+              },
+              "value": "air_travel"
+            },
+            {
+              "text": {
+                "en": "Authentication and identification",
+                "fr": "Identification et authentification"
+              },
+              "value": "authentication_identification"
+            },
+            {
+              "text": {
+                "en": "Behavioural advertising",
+                "fr": "La publicité comportementale"
+              },
+              "value": "behavioural_advertising"
+            },
+            {
+              "text": {
+                "en": "Biometrics",
+                "fr": "Biométrie"
+              },
+              "value": "biometrics"
+            },
+            {
+              "text": {
+                "en": "Businesses and the collection of personal information",
+                "fr": "Entreprises et collecte de renseignements personnels"
+              },
+              "value": "businesses_collection_pi"
+            },
+            {
+              "text": {
+                "en": "Businesses and the safeguarding of personal information",
+                "fr": "Entreprises et protection des renseignements personnels"
+              },
+              "value": "businesses_safeguarding_pi"
+            },
+            {
+              "text": {
+                "en": "Canada anti-spam legislation (CASL) and spam",
+                "fr": "Loi canadienne anti-pourriel (LCAP) et pourriels"
+              },
+              "value": "casl_spam"
+            },
+            {
+              "text": {
+                "en": "Cloud computing",
+                "fr": "L'infonuagique"
+              },
+              "value": "cloud"
+            },
+            {
+              "text": {
+                "en": "Compliance and application of the law",
+                "fr": "Conformité et application de la loi"
+              },
+              "value": "compliance"
+            },
+            {
+              "text": {
+                "en": "Consent",
+                "fr": "Consentement"
+              },
+              "value": "consent"
+            },
+            {
+              "text": {
+                "en": "Driver's licence",
+                "fr": "Permis de conduire"
+              },
+              "value": "driver_licence"
+            },
+            {
+              "text": {
+                "en": "Electronic disclosure of administrative tribunal decisions",
+                "fr": "Divulgation par voie électronique de décisions de tribunaux administratifs"
+              },
+              "value": "electronic_disclosure_tribunal_decisions"
+            },
+            {
+              "text": {
+                "en": "Filing a complaint under PIPEDA or the Privacy Act",
+                "fr": "Vous déposez une plainte en vertu de la LPRPDE ou de la Loi sur la protection des renseignements personnels"
+              },
+              "value": "complaint_pipeda"
+            },
+            {
+              "text": {
+                "en": "Genetic privacy",
+                "fr": "Protection des renseignements génétiques"
+              },
+              "value": "genetic_privacy"
+            },
+            {
+              "text": {
+                "en": "GPS",
+                "fr": "GPS"
+              },
+              "value": "gps"
+            },
+            {
+              "text": {
+                "en": "Health information",
+                "fr": "Renseignements sur la santé"
+              },
+              "value": "health_information"
+            },
+            {
+              "text": {
+                "en": "Identity theft",
+                "fr": "Vol d’identité"
+              },
+              "value": "identity_theft"
+            },
+            {
+              "text": {
+                "en": "Internet and online privacy",
+                "fr": "Internet et protection de la vie privée en ligne"
+              },
+              "value": "online_privacy"
+            },
+            {
+              "text": {
+                "en": "Jurisdiction",
+                "fr": "Secteurs de compétence"
+              },
+              "value": "jurisdiction"
+            },
+            {
+              "text": {
+                "en": "Landlords and tenants",
+                "fr": "Propriétaires et locataires"
+              },
+              "value": "landlords_tenants"
+            },
+            {
+              "text": {
+                "en": "Non-profit sector",
+                "fr": "Organismes sans but lucratif"
+              },
+              "value": "non_profit_sector"
+            },
+            {
+              "text": {
+                "en": "OPC role and mandate",
+                "fr": "Rôle et mandat du Commissariat"
+              },
+              "value": "OPC_role_mandate"
+            },
+            {
+              "text": {
+                "en": "Outsourcing and the flow of personal information across borders",
+                "fr": "Externalisation et circulation transfrontalière de renseignements personnels"
+              },
+              "value": "outsourcing"
+            },
+            {
+              "text": {
+                "en": "Personal financial information",
+                "fr": "Renseignements personnels de nature financière"
+              },
+              "value": "personal_financial_information"
+            },
+            {
+              "text": {
+                "en": "Privacy and kids",
+                "fr": "Protection de la vie privée et enfants"
+              },
+              "value": "privacy_kids"
+            },
+            {
+              "text": {
+                "en": "Privacy breaches",
+                "fr": "Atteintes à la vie privée"
+              },
+              "value": "privacy_breaches"
+            },
+            {
+              "text": {
+                "en": "Privacy impact assessments",
+                "fr": "Évaluation des facteurs relatifs à la vie privée"
+              },
+              "value": "impact_assessments"
+            },
+            {
+              "text": {
+                "en": "Privacy policies",
+                "fr": "Politiques de confidentialité"
+              },
+              "value": "privacy_policies"
+            },
+            {
+              "text": {
+                "en": "Public safety and law enforcement",
+                "fr": "Sécurité publique et application de la loi"
+              },
+              "value": "safety_law_enforcement"
+            },
+            {
+              "text": {
+                "en": "Social insurance number (SIN)",
+                "fr": "Numéro d’assurance sociale (NAS)"
+              },
+              "value": "sin"
+            },
+            {
+              "text": {
+                "en": "Social networking",
+                "fr": "Réseautage social"
+              },
+              "value": "social_networking"
+            },
+            {
+              "text": {
+                "en": "Surveillance and monitoring",
+                "fr": "Surveillance et contrôle"
+              },
+              "value": "surveillance_monitoring"
+            },
+            {
+              "text": {
+                "en": "Technology and privacy",
+                "fr": "Technologie et vie privée"
+              },
+              "value": "technology_privacy"
+            },
+            {
+              "text": {
+                "en": "Workplace privacy and employment",
+                "fr": "Protection de la vie privée au travail et emploi "
+              },
+              "value": "workplace_privacy"
+            },
+            {
+              "text": {
+                "en": "Your privacy rights",
+                "fr": "Votre droit à la vie privée"
+              },
+              "value": "privacy_rights"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_topics_details",
+      "title": {
+        "en": "Information Request Form",
+        "fr": "Formulaire de demande d'information"
+      },
+      "elements": [
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'personal_information'",
+          "html": {
+            "en": "<h2>Accessing Personal Information</h2><p>Canada’s two federal privacy laws—the <em>Privacy Act</em>, which applies to federal government institutions, and the <em>Personal Information Protection and Electronic Documents Act </em>(PIPEDA), which applies to many private-sector organizations—give people a right to access their personal information held by organizations.</p><p>For more details, you may wish to see our information on <a href='https://www.priv.gc.ca/en/privacy-topics/access-to-personal-information/accessing-your-personal-information/?WT.mc_id=irf-en-8' target='_blank'>accessing your personal information</a>.</p>",
+            "fr": "<h2>L'accès aux renseignements personnels</h2><p>Au Canada, deux lois fédérales sur la protection de la vie privée — la <em>Loi sur la protection des renseignements personnels</em>, qui s’applique aux institutions fédérales, et la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE), qui s’applique à de nombreuses organisations du secteur privé — confèrent aux personnes le droit d’accès aux renseignements personnels les concernant qui sont détenus par une organisation.</p><p>Pour obtenir plus de détails, rendez-vous à la page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/acces-aux-renseignements-personnels/consulter-vos-renseignements-personnels/?WT.mc_id=irf-fr-8' target='_blank'>consulter vos renseignements personnels</a>.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'advertising_marketing'",
+          "html": {
+            "en": "<h2>Advertising and Marketing</h2><p>Personal information has become a commodity—and finding ways to profit from it has become big business.</p><p>Free online services are often offered in exchange for personal information, and companies will use the personal information they collect to offer personalized content, such as customized marketing or behavioural advertising. Telemarketers also use personal information in an effort to offer individuals products or services.</p><p>You may be interested in our information about <a href='https://www.priv.gc.ca/en/privacy-topics/advertising-and-marketing/?WT.mc_id=irf-en-28' target='_blank'>advertising and marketing</a>.</p>",
+            "fr": "<h2>La publicité et le marketing</h2><p>Les renseignements personnels sont devenus une marchandise — et la recherche de moyens d’en tirer profit est devenue une activité très lucrative.</p><p>Des services en ligne sont souvent offerts sans frais en échange de renseignements personnels, et les entreprises exploitent les renseignements ainsi recueillis pour offrir un contenu personnalisé — par exemple, un marketing sur mesure ou de la publicité comportementale. Les télévendeurs utilisent aussi les renseignements personnels pour offrir aux individus des produits et des services.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/publicite-et-marketing/?WT.mc_id=irf-fr-28' target='_blank'>publicité et marketing</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'air_travel'",
+          "html": {
+            "en": "<h2>Privacy at Airports and Borders</h2><p>Travellers at Canadian airports and U.S. border crossings are subject to close scrutiny and several layers of security measures.  Airports, sea ports, international waterways and land border crossings are significantly different from other public places in Canada because the expectation of privacy is reduced. However, this does not mean that people lose all right to privacy.</p><p>You may be interested in our information on <a href='https://www.priv.gc.ca/en/privacy-topics/public-safety-and-law-enforcement/your-privacy-at-airports-and-borders/?WT.mc_id=irf-en-12' target='_blank'>privacy at airports and borders</a> which explains what to expect and where you can turn if you feel your privacy rights have been violated.</p>",
+            "fr": "<h2>Votre droit à la vie privée dans les aéroports et aux postes frontaliers</h2><p>Les voyageurs qui passent par un aéroport canadien ou franchissent un poste frontalier américain font l’objet d’une surveillance rigoureuse et de plusieurs types de mesures de sécurité. En effet, les aéroports, les ports de mer, les voies maritimes internationales et les postes frontaliers terrestres diffèrent grandement des autres lieux publics au Canada, car les attentes en matière de protection de la vie privée y sont moindres. Cela ne signifie toutefois pas que les gens perdent tout droit à la vie privée.</p><p>La page <a href='http://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/securite-publique-et-application-de-la-loi/votre-droit-a-la-vie-privee-dans-les-aeroports-et-aux-postes-frontaliers/?WT.mc_id=irf-fr-12' target='_blank'>Votre droit à la vie privée dans les aéroports et aux postes frontaliers</a> explique à quoi vous attendre et à qui vous adresser si vous estimez qu’il y a eu atteinte à votre droit à la vie privée. Elle renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'authentication_identification'",
+          "html": {
+            "en": "<h2>Authentication and Identification</h2><p>Identification and authentication processes can contribute to mutually beneficial interactions and the protection of privacy, but only if they are appropriately designed. An organization needs enough information about an individual to authorize a legitimate transaction, but needs to ensure that it does not collect, use, retain or disclose personal information that is not necessary for that purpose.</p><p>You may be interested in our <a href='https://www.priv.gc.ca/en/privacy-topics/identity-and-privacy/identification-and-authentication/auth_061013/?WT.mc_id=irf-en-77' target='_blank'>guidelines for identification and authentication</a>.</p>",
+            "fr": "<h2>L’identification et l’authentification</h2><p>Les processus d'identification et d'authentification peuvent favoriser les interactions mutuellement bénéfiques et la protection de la vie privée, mais seulement s'ils sont conçus de manière adéquate. En effet, une organisation a besoin de suffisamment de renseignements à propos d'un individu pour être en mesure d'autoriser une transaction légitime, mais elle doit s'abstenir de recueillir, d'utiliser, de conserver ou de communiquer des renseignements personnels qui ne sont pas requis à cette fin.</p><p>Nos <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/identite-et-vie-privee/identification-et-authentification/auth_061013/?WT.mc_id=irf-fr-77' target='_blank'>lignes directrices en matière d’identification et d’authentification</a> renferment de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'behavioural_advertising'",
+          "html": {
+            "en": "<h2>Behavioural Advertising</h2><p>Online behavioural advertising involves tracking consumers’ online activities, across sites and over time to deliver advertisements targeted to their inferred interests. These advertisers often use sophisticated algorithms to analyze the collected data, build detailed personal profiles of users, and assign them to various interest categories. Interest categories are used to present ads defined as relevant to users in those categories.</p><p>While advertising may help subsidize the delivery of free online content desired by most users, it is nevertheless essential that online advertising practices respect an individual’s privacy rights and consent choices.</p><p>Online behavioural advertising may be considered a reasonable purpose under the <em>Personal Information Protection and Electronic Documents Act</em> (PIPEDA), provided it is carried out under certain parameters, and is not made a condition of service for accessing and using the Internet, generally.</p><p>You may be interested in our <a href='https://www.priv.gc.ca/en/privacy-topics/advertising-and-marketing/behaviouraltargeted-advertising/gl_ba_1112/?WT.mc_id=irf-en-13' target='_blank'>guidelines on privacy and online behavioural advertising</a>.</p>",
+            "fr": "<h2>La publicité comportementale</h2><p>La publicité comportementale en ligne suppose le suivi des activités des consommateurs en ligne sur les sites Web au fil du temps afin de leur présenter des annonces ciblant leurs champs d’intérêt présumés. Les annonceurs qui ont recours à la publicité comportementale utilisent souvent des algorithmes sophistiqués pour analyser les données recueillies, établir des profils personnels détaillés d’utilisateurs et associer ces profils à différentes catégories de champs d’intérêt. Les utilisateurs d’une catégorie donnée se font ainsi présenter des annonces ciblées selon leurs champs d’intérêt présumés.</p><p>Même si la publicité peut aider à financer l’accès gratuit au contenu en ligne, ce que la plupart des utilisateurs recherchent, il est néanmoins essentiel que les pratiques de publicité en ligne respectent le droit à la vie privée et les choix en matière de consentement des personnes.</p><p>La publicité comportementale en ligne peut être considérée comme une activité raisonnable en vertu de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> (LPRPDE), pourvu qu'elle soit effectuée sous certains paramètres, et qu’elle ne soit pas une condition de service généralisée pour accéder et utiliser l’Internet.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/publicite-et-marketing/publicite-comportementale-et-publicite-ciblee/gl_ba_1112/?WT.mc_id=irf-fr-13' target='_blank'>lignes directrices sur la protection de la vie privée et la publicité comportementale en ligne</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'businesses_collection_pi'",
+          "html": {
+            "en": "<h2>Businesses and the Collection of Personal Information</h2><p>The <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-78' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA) sets out the rules businesses subject to the Act must follow when collecting personal information. Businesses must, among other things, clearly identify the reasons for collecting personal information before or at the time of collection, and how it will be used. Explaining why personal information is needed is essential to obtaining valid <a href='https://www.priv.gc.ca/en/privacy-topics/collecting-personal-information/consent/?WT.mc_id=irf-en-79' target='_blank'>consent</a> from the individuals, which is another requirement of PIPEDA.</p><p>PIPEDA also specifies that businesses must limit their collection to what is necessary for the identified purposes. So before collecting any personal information, businesses should carefully consider what they are collecting, why, how and what they will use it for, in order to ensure they have the right privacy practices in place.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/collecting-personal-information/?WT.mc_id=irf-en-80' target='_blank'>collecting personal information</a>.</p>",
+            "fr": "<h2>Les entreprises et la collecte des renseignements personnels</h2><p>La <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-78' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE) établit les règles que doivent suivre les entreprises qui y sont assujetties quand elles recueillent des renseignements personnels. Les entreprises doivent, entre autres, indiquer clairement les raisons pour lesquelles elles recueillent les renseignements personnels avant la collecte ou au moment de celle-ci, et comment elles les utiliseront. Elles doivent aussi expliquer aux individus pourquoi les renseignements personnels sont requis afin d’obtenir un <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/collecte-de-renseignements-personnels/consentement/?WT.mc_id=irf-fr-79' target='_blank'>consentement</a> valide, comme l’exige la LPRPDE.</p><p>La LPRPDE précise en outre que les entreprises doivent limiter leur collecte aux renseignements personnels qui sont nécessaires pour les fins précisées. Par conséquent, elles doivent adopter de bonnes pratiques en matière de protection de la vie privée et déterminer avant même de procéder à la collecte quels renseignements personnels elles recueilleront, pour quelles raisons et de quelle manière elles les recueilleront, et comment elles les utiliseront.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/collecte-de-renseignements-personnels/?WT.mc_id=irf-fr-80' target='_blank'>collecte de renseignements personnels</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'businesses_safeguarding_pi'",
+          "html": {
+            "en": "<h2>Businesses and the Safeguarding of Personal Information</h2><p>Businesses have an obligation to ensure that personal information is adequately protected, which can help reduce risk of <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-breaches/?WT.mc_id=irf-en-81' target='_blank'>privacy breaches</a>. This means protecting it against loss or theft, as well as unauthorized access, disclosure, copying, use or modification, and it means protecting the information regardless of its format—whether, for example, it is in electronic or paper form. Using appropriate safeguards is one of the ten principles within <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-82' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA) and is explained in more detail in our <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/guide_org/?WT.mc_id=irf-en-83' target='_blank'>privacy toolkit for businesses</a>.</p><p>Security measures should, for example, be documented in writing and include technological, physical and organizational safeguards. Any organization that holds large amounts of personal information must have safeguards appropriate to, among other factors, the sensitivity and amount of information collected. Businesses must also assess risks, align their policies to mitigate those risks and train employees to ensure that policies are actually implemented and followed.</p><p>Our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/safeguarding-personal-information/?WT.mc_id=irf-en-84' target='_blank'>safeguarding personal information</a> offers information, tools and guidance for businesses on how to fulfill their responsibilities to ensure personal information is properly safeguarded.</p>",
+            "fr": "<h2>Les entreprises et la protection des renseignements personnels</h2><p>Les entreprises sont tenues de protéger adéquatement les renseignements personnels, ce qui peut aider à réduire le risque d’<a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/atteintes-a-la-vie-privee/?WT.mc_id=irf-fr-81' target='_blank'>atteinte à la vie privée</a>. Ainsi, elles doivent les protéger contre la perte ou le vol ainsi que contre la consultation, la communication, la copie, l’utilisation ou la modification non autorisées. Les organisations doivent protéger les renseignements personnels quelle que soit la forme sous laquelle ils sont conservés. Le recours à des mesures de sécurité adéquates, l’un des dix principes de la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-82' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE), est expliqué en détail dans la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/guide_org/?WT.mc_id=irf-fr-83' target='_blank'>trousse d’outils en matière de vie privée à l’intention des entreprises</a>.</p><p>Par exemple, les mesures de sécurité devraient être documentées par écrit et inclure des mesures de protection technologiques, matérielles et organisationnelles. Toute organisation qui détient de grandes quantités de renseignements sensibles doit mettre en place des mesures de protection adaptées, entre autres, à la quantité de renseignements recueillis et à leur degré de sensibilité. Les entreprises doivent aussi évaluer les risques, harmoniser leurs politiques afin d’atténuer ces risques et former leurs employés afin de s’assurer que leurs politiques sont bien mises en œuvre et suivies.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/securite-des-renseignements-personnels/?WT.mc_id=irf-fr-84' target='_blank'>sécurité des renseignements personnels</a> propose des liens menant à de l’information, à des outils et à une orientation sur les mesures que peuvent prendre les entreprises pour s’acquitter des responsabilités leur incombant en matière de protection des renseignements personnels.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'casl_spam'",
+          "html": {
+            "en": "<h2>Canada’s Anti-Spam Legislation (CASL) and Spam</h2><p><a href='http://laws-lois.justice.gc.ca/eng/acts/E-1.6/index.html' target='_blank'>Canada’s anti-spam legislation</a> (CASL) is the federal law dealing with spam and other electronic threats.  It is meant to protect Canadians while ensuring that businesses can continue to compete in the global marketplace.</p><p>The Office of the Privacy Commissioner of Canada (OPC) shares responsibility for enforcing CASL with the <a href='http://www.crtc.gc.ca/eng/home-accueil.htm' target='_blank'>Canadian Radio-television and Telecommunications Commission (CRTC)</a> and the federal <a href='http://www.competitionbureau.gc.ca/eic/site/cb-bc.nsf/eng/home' target='_blank'>Competition Bureau</a>.</p><p>When CASL came into force, it introduced a number of changes to the Personal Information Protection and Electronic Documents Act (PIPEDA). Our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/legislation-related-to-pipeda/canadas-anti-spam-legislation/?WT.mc_id=irf-en-64' target='_blank'>Canada's anti-spam legislation</a> provides information about the OPC’s responsibilities under CASL and guidance for businesses related to the parts of CASL enforced by the OPC.</p><p>For full details on CASL, the roles of our partners and general compliance information, please visit the “<a href='http://fightspam.gc.ca/eic/site/030.nsf/eng/home' target='_blank'>fightspam.gc.ca</a>” web site.</p><p>If you are looking for information about how to deal with or prevent spam, you may be interested in our <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/online-privacy/spam/?WT.mc_id=irf-en-65' target='_blank'>spam topic page</a>.</p>",
+            "fr": "<h2>La loi canadienne anti-pourriel (LCAP) et les pourriels</h2><p>La <a href='http://laws-lois.justice.gc.ca/fra/lois/E-1.6/index.html' target='_blank'>Loi canadienne anti-pourriel</a> (LCAP) est la loi fédérale qui régit les pourriels et les autres menaces électroniques. Elle vise à protéger les Canadiens tout en veillant à ce que les entreprises demeurent concurrentielles sur le marché mondial.</p><p>Le Commissariat à la protection de la vie privée du Canada est responsable de l’application de la LCAP conjointement avec le <a href='http://www.crtc.gc.ca/fra/accueil-home.htm' target='_blank'>Conseil de la radiodiffusion et des télécommunications canadiennes (CRTC)</a> et le <a href='http://www.bureaudelaconcurrence.gc.ca/eic/site/cb-bc.nsf/fra/accueil' target='_blank'>Bureau de la concurrence</a> du gouvernement fédéral.</p><p>L’entrée en vigueur de la LCAP a entraîné plusieurs modifications à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE). La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/lois-ayant-un-rapport-avec-la-lprpde/la-loi-canadienne-anti-pourriel-lcap-et-la-lprpde/?WT.mc_id=irf-fr-64' target='_blank'>la Loi canadienne anti-pourriel (LCAP) et la LPRPDE</a> propose des liens menant à de l’information sur les responsabilités qui incombent au Commissariat en vertu de la LCAP et à une orientation à l’intention des entreprises sur les dispositions de la LCAP dont l’application relève du Commissariat.</p><p>Pour tout savoir sur la LCAP, le rôle des partenaires du Commissariat et la conformité à la loi, consultez le site Web <a href='http://fightspam.gc.ca/eic/site/030.nsf/fra/accueil' target='_blank'>combattrelepourriel.gc.ca</a>.</p><p>Pour en savoir plus sur les mesures à prendre pour traiter ou prévenir les pourriels, consultez la page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/protection-de-la-vie-privee-en-ligne/pourriel/?WT.mc_id=irf-fr-65' target='_blank'>pourriel</a>.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'cloud'",
+          "html": {
+            "en": "<h2>Cloud Computing</h2><p>Cloud computing is the delivery of computing services over the Internet. Cloud services allow individuals and businesses to use software and hardware that are managed by third parties at remote locations.</p><p>While there are benefits to cloud computing, there are privacy and security concerns too. Data is travelling over the Internet and is stored in remote locations. In addition, cloud providers often serve multiple customers simultaneously.  All of this may raise the scale of exposure to possible breaches, both accidental and deliberate.</p><p>For more information, you may be interested in our information on <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/online-privacy/cloud-computing/02_05_d_51_cc/?WT.mc_id=irf-en-14' target='_blank'>cloud computing and privacy</a>.</p>",
+            "fr": "<h2>L’infonuagique</h2><p>L'infonuagique est la prestation de services informatiques sur Internet. Les services d'infonuagique permettent aux personnes et aux entreprises d'utiliser les logiciels et le matériel gérés par des tierces parties à partir de lieux éloignés.</p><p>Les avantages associés à l'infonuagique sont toutefois accompagnés de préoccupations au chapitre de la protection de la vie privée et de la sécurité. Les données sont transmises sur Internet et sont stockées dans des lieux éloignés. De plus, les fournisseurs de services d'infonuagique desservent souvent plusieurs clients en même temps. Tous ces facteurs pourraient augmenter le niveau d'exposition aux atteintes possibles, accidentelles ou délibérées.</p><p>Pour obtenir plus de détails, consultez la page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/protection-de-la-vie-privee-en-ligne/infonuagique/02_05_d_51_cc/?WT.mc_id=irf-fr-14' target='_blank'>l’infonuagique et la protection de la vie privée</a>.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'compliance'",
+          "html": {
+            "en": "<h2>Compliance and Application of the Law</h2><p>The Office of the Privacy Commissioner of Canada has developed a number of resources to help businesses better understand their obligations under the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-22' target='_blank'><em>Personal Information Protection and Electronic Documents Act </em></a>(PIPEDA), and how the Act applies in certain situations and to specific issues.</p><p>You may be interested in our topic page, <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/?WT.mc_id=irf-en-23' target='_blank'>PIPEDA compliance help</a>, our <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/guide_org/?WT.mc_id=irf-en-24' target='_blank'>privacy toolkit for businesses</a> as well as our guidance on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/pipeda-compliance-help/gl_acc_201204/?WT.mc_id=irf-en-25' target='_blank'>getting accountability right with a privacy management program</a>.</p>",
+            "fr": "<h2>La conformité et l'application de la loi</h2><p>Le Commissariat à la protection de la vie privée du Canada a élaboré un certain nombre de ressources pour aider les entreprises à mieux comprendre les obligations qui leur incombent en vertu de la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-22' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE) et expliquer la façon dont la Loi s’applique dans certaines situations ou relativement à des enjeux particuliers.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/?WT.mc_id=irf-fr-23' target='_blank'>aide sur la façon de se conformer à la LPRPDE </a>propose des liens menant à de l’information qui pourrait vous intéresser. La publication intitulée <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/guide_org/?WT.mc_id=irf-fr-24' target='_blank'>trousse d’outils de la LPRPDE pour les entreprises</a> et le document d’orientation intitulé <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/aide-sur-la-facon-de-se-conformer-a-la-lprpde/gl_acc_201204/?WT.mc_id=irf-fr-25' target='_blank'>un programme de gestion de la protection de la vie privée : la clé de la responsabilité </a>renferment de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'consent'",
+          "html": {
+            "en": "<h2>Consent</h2><p>Consent is a key principle of the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-26' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA), Canada’s federal private sector privacy law.  Under PIPEDA, organizations are required to obtain meaningful consent for the collection, use and disclosure of personal information. Consent is considered meaningful when individuals are provided with clear information explaining what organizations are doing with their information.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/collecting-personal-information/consent/?WT.mc_id=irf-en-27' target='_blank'>consent</a>.</p>",
+            "fr": "<h2>Le consentement</h2><p>Le consentement est un élément clé de la<a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-26' target='_blank'><em> Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE), loi fédérale sur la protection des renseignements personnels dans le secteur privé au Canada. En vertu de la LPRPDE, les organisations doivent obtenir un consentement valable avant de recueillir, d’utiliser et de communiquer des renseignements personnels. Le consentement est considéré comme valable lorsque les individus ont reçu de l’information claire sur l’usage que feront les organisations de leurs renseignements.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/collecte-de-renseignements-personnels/consentement/?WT.mc_id=irf-fr-27' target='_blank'>consentement</a> propose des liens menant à de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'driver_licence'",
+          "html": {
+            "en": "<h2>Driver’s Licence</h2><p>A driver’s licence is a way for drivers to show that they are authorized to operate a motor vehicle and for authorities to enforce traffic laws. Driver’s licence numbers are unique to the driver and usually last a lifetime. The cards also contain a lot of personal information.</p><p>Businesses sometimes ask customers for their driver’s licence cards to verify identity, and sometimes want to record the information on the card for their records. However, privacy commissioners have taken the position that a driver’s licence should not be used as universal identity card.</p><p>You may be interested in our guidance on <a href='https://www.priv.gc.ca/en/privacy-topics/identity-and-privacy/drivers-licences/protecting-your-driver-s-licence/?WT.mc_id=irf-en-29' target='_blank'>protecting your driver’s licence</a> which touches on why retailers may ask for driver’s licences and what you can do if asked for yours.</p>",
+            "fr": "<h2>Le permis de conduire</h2><p>Le permis de conduire est un moyen pour les titulaires de prouver qu’ils sont autorisés à conduire un véhicule motorisé et pour les autorités d’appliquer les lois concernant la circulation routière. Le numéro de permis de conduire est exclusif au titulaire, qui le conserve généralement toute sa vie. Ce permis renferme aussi beaucoup de renseignements personnels.</p><p>Parfois, les entreprises demandent à voir le permis de conduire des clients pour vérifier leur identité et veulent consigner pour leurs dossiers les renseignements qui y figurent. Les commissaires à la protection de la vie privée estiment cependant que le permis de conduire ne devrait pas être utilisé comme pièce d’identité universelle.</p><p>Pour obtenir plus de détails, consultez le document d’orientation intitulé <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/identite-et-vie-privee/permis-de-conduire/protection-de-votre-permis-de-conduire/?WT.mc_id=irf-fr-29' target='_blank'>protection de votre permis de conduire</a>. On y explique pourquoi les détaillants pourraient vous demander votre permis de conduire et ce que vous pouvez faire si l’on vous demande de présenter le vôtre.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'electronic_disclosure_tribunal_decisions'",
+          "html": {
+            "en": "<h2>Electronic Disclosure of Administrative Tribunal Decisions</h2><p>Administrative and quasi-judicial bodies ('tribunals') widely utilize the Internet as an efficient, inexpensive and effective tool to communicate their decisions to the public. However, tribunal decisions may contain significant amounts of personal information.</p><p>You may be interested in our information on the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/privacy-act-compliance-help/gd_trib_201002/?WT.mc_id=irf-en-11' target='_blank'>electronic disclosure of personal information in the decisions of administrative tribunals</a>.</p>",
+            "fr": "<h2>La communication par voie électronique de décisions de tribunaux administratifs</h2><p>Les entités administratives et les autorités quasi judiciaires (les « tribunaux ») utilisent fréquemment Internet comme moyen efficace et peu coûteux de communiquer leurs décisions au public. Toutefois, les décisions de tribunaux peuvent contenir une quantité importante de renseignements personnels.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/aide-pour-l-application-de-la-loi-sur-la-protection-des-renseignements-personnels/gd_trib_201002/?WT.mc_id=irf-fr-11' target='_blank'>divulgation de renseignements personnels par voie électronique dans les décisions des tribunaux administratifs</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'complaint_pipeda'",
+          "html": {
+            "en": "<h2>Filing a Complaint Under PIPEDA or the Privacy Act</h2><p>If you believe your personal information has been mishandled, the Office of the Privacy Commissioner of Canada (OPC) encourages you to first try to address your concerns directly with the organization. Many times you can resolve privacy issues with businesses or federal institutions through direct communication.</p><p>If you are unable to resolve the privacy issue directly, you may choose to file a complaint with our Office.</p><p>Our Office can only accept complaints about the personal information handling practices of federal institutions subject to the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/?WT.mc_id=irf-en-15' target='_blank'><em>Privacy Act</em></a> or businesses subject to the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-16' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA).</p><p>You can file a complaint if, for example, you feel:</p><ul><li>your personal information has been wrongfully collected, used or disclosed;</li><li>you were refused access to your personal information; or</li><li>you feel there was an unreasonable delay in accessing your personal information.</li></ul><p>You may be interested in our information on how to <a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/?WT.mc_id=irf-en-17' target='_blank'>file a formal privacy complaint</a>.</p>",
+            "fr": "<h2>Le dépôt de plainte en vertu de la LPRPDE ou de la Loi sur la protection des renseignements personnels</h2><p>Si vous jugez que des renseignements personnels vous concernant ont été traités de façon inappropriée, le Commissariat à la protection de la vie privée du Canada (le Commissariat) vous encourage à vous adresser d’abord à l’organisation qui détient les renseignements personnels en question. Bien souvent, il est possible de résoudre les questions liées à la protection des renseignements personnels en communiquant directement avec les entreprises ou les institutions fédérales en cause.</p><p>Si vous n’arrivez pas à résoudre le problème directement avec l’organisation, vous pouvez déposer une plainte auprès du Commissariat.</p><p>Le Commissariat accepte uniquement les plaintes portant sur les pratiques de traitement des renseignements personnels des institutions fédérales assujetties à la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/?WT.mc_id=irf-fr-15' target='_blank'><em>Loi sur la protection des renseignements personnels</em></a> ou des organisations du secteur privé assujetties à la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-16' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE).</p><p>Vous pouvez déposer une plainte :</p><ul><li>si vous estimez que des renseignements personnels vous concernant ont été recueillis, utilisés ou communiqués illégalement;</li><li>si l’on vous a refusé l’accès à vos renseignements personnels;</li><li>si vous estimez que le délai d’obtention de vos renseignements personnels est excessif.</li></ul><p>La page <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/?WT.mc_id=irf-fr-17' target='_blank'>déposer une plainte officielle concernant la protection de la vie privée</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} anyof ['genetic_privacy','health_information']",
+          "html": {
+            "en": "<h2>Health, Genetic and Other Body Information</h2><p>Extracting information from the body was once limited to the field of medicine. However, today this type of data is increasingly being collected for a wide range of commercial, recreational and forensic purposes. Genetic results are used for ancestral research, fingerprints can replace passwords, facial or voice recognition software can identify individuals, and data about exercise and sleep patterns can be easily collected by wearable devices.</p><p>The information generated by our bodies is uniquely personal, and as such it can be highly sensitive. As more and more information about our bodies is collected and digitized, increasingly, by organizations and individuals who are not part of the health care sector, the impacts on privacy must be considered.</p><p> You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/health-genetic-and-other-body-information/?WT.mc_id=irf-en-35' target='_blank'>health, genetics and the body as information</a>. You may also be interested in information on <a href='https://www.priv.gc.ca/en/privacy-topics/health-genetic-and-other-body-information/02_05_d_70_phi/?WT.mc_id=irf-en-89' target='_blank'>who to contact with concerns about the protection of your personal health information</a>.</p><p>In the <strong>private sector</strong>, some provinces have privacy legislation that has been deemed “substantially similar” to PIPEDA, which means that it is applied instead of PIPEDA in some cases. Ontario, New Brunswick, Newfoundland and Labrador and Nova Scotia have privacy legislation which applies to health information that has been declared substantially similar to PIPEDA with respect to health information custodians.</p><ul><li>Ontario — <a href='http://www.e-laws.gov.on.ca/html/statutes/english/elaws_statutes_04p03_e.htm' target='_blank'><em>Personal Health Information Protection Act</em></a></li><li>New Brunswick — <a href='http://laws.gnb.ca/en/showfulldoc/cs/P-7.05/20121030' target='_blank'><em>Personal Health Information Privacy and Access Act</em></a></li><li>Newfoundland and Labrador's — <a href='http://assembly.nl.ca/Legislation/sr/statutes/p07-01.htm' target='_blank'><em>Personal Health Information Act</em></a></li><li>Nova Scotia — <a href='http://novascotia.ca/dhw/phia/PHIA-legislation.asp' target='_blank'><em>Personal Health Information Act</em></a></li></ul><p>Additionally, every province and territory has its own <strong>public sector</strong> legislation which may apply to provincial and municipal government agencies.</p><p>You may be interested in our <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/02_05_d_15/?WT.mc_id=irf-en-36' target='_blank'>overview of privacy legislation in Canada</a> and our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/health-genetic-and-other-body-information/?WT.mc_id=irf-en-37' target='_blank'>health, genetic and other body information</a>.</p>",
+            "fr": "<h2>Renseignements sur la santé, renseignements génétiques et autres renseignements sur le corps</h2><p>La collecte de renseignements sur le corps se limitait autrefois au domaine de la médecine, mais ces données sont maintenant de plus en plus recueillies à toute une gamme de fins commerciales, récréatives et judiciaires. Ainsi, les résultats des tests génétiques sont utilisés pour les recherches généalogiques, les empreintes digitales peuvent remplacer les mots de passe, les logiciels de reconnaissance faciale ou vocale servent à identifier les personnes et les appareils portatifs permettent de recueillir facilement les données concernant les habitudes d’exercice physique et de sommeil.</p><p>Les renseignements générés par notre corps sont tout à fait uniques et peuvent donc être de nature très sensible. Comme une quantité croissante de renseignements concernant notre corps sont recueillis et numérisés, en particulier par des organisations et des individus ne faisant pas partie du domaine médical, il faut prendre en compte les répercussions sur la vie privée.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/renseignements-sur-la-sante-renseignements-genetiques-et-autres-renseignements-sur-le-corps/?WT.mc_id=irf-fr-35' target='_blank'>renseignements sur la santé, renseignements génétiques et autres renseignements sur le corps</a> propose des liens menant à de l’information qui pourrait vous intéresser. La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/renseignements-sur-la-sante-renseignements-genetiques-et-autres-renseignements-sur-le-corps/02_05_d_70_phi/?WT.mc_id=irf-en-89' target='_blank'>à qui vous adresser en cas de préoccupations au sujet de la protection de vos renseignements personnels sur la santé</a> pourrait aussi vous être utile.</p><p>Certaines provinces ont adopté des lois sur la protection des renseignements personnels qui s’appliquent au <strong>secteur privé </strong>et qui sont considérées comme étant « essentiellement similaires » à la LPRPDE. Dans certains cas, ce sont ces lois qui s’appliquent au lieu de la LPRPDE. L’Ontario, le Nouveau-Brunswick, Terre-Neuve-et-Labrador et la Nouvelle-Écosse ont adopté une loi en matière de protection de la vie privée afin de protéger les renseignements personnels sur la santé, laquelle a été reconnue comme étant essentiellement similaire à la LPRPDE en ce qui concerne les dépositaires de renseignements sur la santé.</p><ul><li>Ontario — <a href='http://www.e-laws.gov.on.ca/html/statutes/french/elaws_statutes_04p03_f.htm' target='_blank'><em>Loi sur la protection des renseignements personnels sur la santé</em></a></li><li>Nouveau-Brunswick — <a href='http://laws.gnb.ca/fr/showdoc/cs/P-7.05/20121030' target='_blank'><em>Loi sur l’accès et la protection en matière de renseignements personnels sur la santé</em></a></li><li>Terre-Neuve-et-Labrador — <a href='http://assembly.nl.ca/Legislation/sr/statutes/p07-01.htm' target='_blank'><em>Personal Health Information Act</em></a></li><li>Nouvelle-Écosse — <a href='https://novascotia.ca/dhw/phia/PHIA-legislation.asp' target='_blank'><em>Personal Health Information Act</em></a></li></ul><p>En outre, chaque province et territoire a adopté sa propre loi sur la protection des renseignements personnels dans le <strong>secteur public</strong>. Ces lois s’appliquent généralement aux organismes provinciaux et municipaux.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/02_05_d_15/?WT.mc_id=irf-fr-36' target='_blank'>aperçu des lois sur la protection des renseignements personnels au Canada</a> renferme de l’information qui pourrait vous intéresser et la page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/renseignements-sur-la-sante-renseignements-genetiques-et-autres-renseignements-sur-le-corps/?WT.mc_id=irf-fr-37' target='_blank'>renseignements sur la santé, renseignements génétiques et autres renseignements sur le corps</a> propose des liens menant à de l’information qui pourrait aussi vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'identity_theft'",
+          "html": {
+            "en": "<h2>Identity Theft</h2><p>Identity theft occurs when someone takes information about you and pretends to be you for fraudulent purposes. Every year, thousands of people are victims of identity theft. Your name, date of birth, address, credit card, <a href='https://www.priv.gc.ca/en/privacy-topics/identity-and-privacy/social-insurance-numbers/?WT.mc_id=irf-en-38' target='_blank'>Social Insurance Number</a> (SIN) and other personal identification numbers can be used to open credit card and bank accounts, redirect mail, establish cellular phone service, rent vehicles, equipment, or accommodation, and even secure employment.</p><p>If you are a victim, the consequences are serious – you can be denied a driver's licence, a student loan, cell phone service. It can take years to undo the damage.</p><p>Our information on <a href='https://www.priv.gc.ca/en/privacy-topics/identity-and-privacy/identity-theft/?WT.mc_id=irf-en-39' target='_blank'>identity theft</a> includes advice to help protect your personal information, guard against identity theft and report it if it happens to you.</p>",
+            "fr": "<h2>Le vol d’identité</h2><p>Il y a vol d’identité quand un individu s’empare de vos renseignements personnels et se fait passer pour vous à des fins frauduleuses. Chaque année, des milliers de personnes sont victimes de ce type de vol. Vos nom, date de naissance, adresse, numéro de carte de crédit, <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/identite-et-vie-privee/numero-d-assurance-sociale/?WT.mc_id=irf-fr-38' target='_blank'>numéro d’assurance sociale</a> (NAS) et autres numéros d’identification personnels peuvent servir à obtenir une carte de crédit, à ouvrir un compte bancaire, à réacheminer le courrier, à établir un service de téléphone cellulaire, à louer un véhicule, de l’équipement ou une chambre ou même à obtenir un emploi.</p><p>Si vous êtes victime d’un vol d’identité, les répercussions sont graves – on peut refuser de vous délivrer un permis de conduire, de vous accorder un prêt d’études ou de vous fournir un service de téléphone cellulaire. Il faut parfois des années pour réparer les dommages.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/identite-et-vie-privee/vol-d-identite/?WT.mc_id=irf-fr-39' target='_blank'>vol d’identité</a> propose des liens menant à des conseils pour protéger vos renseignements personnels, prévenir le vol d’identité en ligne et, le cas échéant, le déclarer.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'online_privacy'",
+          "html": {
+            "en": "<h2>Internet and Online</h2><p>Websites, e-mail, social networking and discussion groups are a great way to keep in touch, share ideas, buy and sell things, and conduct business.</p><p>But it’s important to remember that even with the toughest privacy settings, your online activities are never entirely private. Your clicks and website visits leave data trails, leaving a “digital footprint” that reveals a lot about who you are, what you do, and what you like and dislike. Individuals and organizations can then use this information—in ways that you may or may not like.</p><p>You may be interested our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/online-privacy/?WT.mc_id=irf-en-40' target='_blank'>online privacy </a>as well as our <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/digital-devices/?WT.mc_id=irf-en-41' target='_blank'>digital devices</a> topic page.</p><p>We also have a number of resources about online privacy designed for youth, which can be found in our <a href='https://www.priv.gc.ca/en/about-the-opc/what-we-do/awareness-campaigns-and-events/privacy-education-for-kids/?WT.mc_id=irf-en-42' target='_blank'>privacy education for kids’</a> topic page.</p>",
+            "fr": "<h2>L'internet et la protection de la vie privée en ligne</h2><p>Les sites Web, le courriel, le réseautage social et les forums de discussion sont d’excellents moyens de rester en contact, de partager des idées, d’acheter ou de vendre des choses et de faire des affaires.</p><p>Il ne faut toutefois pas oublier que vos activités en ligne ne sont jamais tout à fait confidentielles, même avec les paramètres de confidentialité les plus stricts. Vos clics de souris et votre navigation sur les sites Web laissent des pistes de données. Ces « traces numériques » très révélatrices fournissent des détails sur ce que vous faites et ce que vous aimez ou n’aimez pas. Des individus et des organisations peuvent ensuite utiliser cette information à des fins qui pourraient vous plaire ou non.</p><p>Les pages <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/protection-de-la-vie-privee-en-ligne/?WT.mc_id=irf-fr-40' target='_blank'>protection de la vie privée en ligne</a> et <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/appareils-numeriques/?WT.mc_id=irf-fr-41' target='_blank'>appareils numériques</a> proposent des liens menant à de l’information qui pourrait vous intéresser.</p><p>La page <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/ce-que-nous-faisons/campagnes-et-activites-de-sensibilisation/sensibilisation-des-enfants-a-la-vie-privee/?WT.mc_id=irf-fr-42' target='_blank'>sensibilisation des enfants à la vie privée</a> renferme des liens menant à diverses ressources à l’intention des jeunes sur la protection de la vie privée en ligne.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'jurisdiction'",
+          "html": {
+            "en": "<h2>Jurisdiction</h2><p>There are a number of laws in Canada that relate to privacy rights, and there are various government organizations and agencies responsible for overseeing compliance with these laws.</p><p>The Office of the Privacy Commissioner of Canada (OPC) oversees compliance with two federal privacy laws:</p><ul><li>The <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/?WT.mc_id=irf-en-43' target='_blank'><em>Privacy Act</em></a>, which covers the personal information-handling practices of federal government departments and agencies.</li><li>The <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-44' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA), which covers the personal information-handling practices of many businesses.</li></ul><p>You may be interested in our information on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/?WT.mc_id=irf-en-45' target='_blank'>privacy laws in Canada</a>. You may also be interested in our tool to help you <a href='https://www.priv.gc.ca/en/report-a-concern/leg_info_201405/?WT.mc_id=irf-en-46' target='_blank'>find the right organization to contact about your privacy issue</a>.</p>",
+            "fr": "<h2>Les secteurs de compétence</h2><p>Au Canada, plusieurs lois portent sur le droit à la vie privée et divers ministères et organismes gouvernementaux sont chargés de veiller au respect de ces lois.</p><p>Le Commissariat à la protection de la vie privée du Canada veille au respect de deux lois fédérales sur la protection des renseignements personnels :</p><ul><li>la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/?WT.mc_id=irf-fr-43' target='_blank'><em>Loi sur la protection des renseignements personnels</em></a>, qui porte sur les pratiques de traitement des renseignements personnels des ministères et organismes fédéraux;</li><li>la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-44' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE), qui régit les pratiques de traitement des renseignements personnels de nombreuses entreprises.</li></ul><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/?WT.mc_id=irf-fr-45' target='_blank'>lois sur la protection des renseignements personnels au Canada</a> renferme de l’information qui pourrait vous intéresser. La page <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/leg_info_201405/?WT.mc_id=irf-fr-46' target='_blank'>trouver à qui vous adresser en cas de problème lié à la protection de la vie privée</a> pourrait aussi vous être utile.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'landlords_tenants'",
+          "html": {
+            "en": "<h2>Landlords and Tenants</h2><p>Individuals have a high expectation of privacy when it comes to their living space. At the same time, owners of rental housing units have a legitimate interest in ensuring the safety and security of both renters and property.</p><p>The landlord-tenant relationship can involve the collection, use and disclosure of significant amounts of personal information. Landlords are required to comply with the <em><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-71' target='_blank'>Personal Information Protection and Electronic Documents Act</a></em> (PIPEDA), Canada’s federal private sector privacy law, or similar provincial legislation.</p><p>You may be interested in our information about tenants’ privacy rights and landlords’ privacy obligations available on our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/landlords-and-tenants/?WT.mc_id=irf-en-72' target='_blank'>landlords and tenants</a>.</p>",
+            "fr": "<h2>Les propriétaires et les locataires</h2><p>Les personnes ont des attentes élevées en ce qui concerne le respect de leur vie privée lorsqu’il s’agit de leur logement. Les propriétaires de logements locatifs, quant à eux, ont un intérêt légitime à assurer la sécurité des locataires et de leur propriété.</p><p>La relation propriétaire-locataire peut donner lieu à la collecte, à l’utilisation et à la communication de quantités importantes de renseignements personnels. Les propriétaires doivent se conformer à la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-71' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE), la loi fédérale sur la protection des renseignements personnels applicable au secteur privé, ou à toute loi provinciale similaire.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/proprietaires-et-locataires/?WT.mc_id=irf-fr-72' target='_blank'>propriétaires et locataires</a> propose des liens menant à de l’information qui pourrait vous intéresser sur le droit à la vie privée des locataires et les obligations qui incombent aux propriétaires à cet égard.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'non_profit_sector'",
+          "html": {
+            "en": "<h2>Non-Profit Sector</h2><p>In many cases, non-profit and charity organizations are not subject to PIPEDA because they do not engage in commercial activities. However, the non-profit status does not automatically exempt an organization from the application of the Act. Some organizations may be engaged in commercial activities which are subject to the Act.</p><p>You may be interested in our information on the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/02_05_d_19/?WT.mc_id=irf-en-47' target='_blank'>application of the <em>Personal Information Protection and Electronic Documents Act</em> to charitable and non-profit organizations</a>.</p>",
+            "fr": "<h2>Les organismes sans but lucratif</h2><p>La plupart des œuvres de charité et des organismes sans but lucratif ne sont pas assujettis à la Loi sur la protection des renseignements personnels et les documents électroniques (LPRPDE) parce qu’ils n’exercent pas d’activités commerciales. Toutefois, le statut d’organisme sans but lucratif ne dispense pas systématiquement une organisation des obligations prévues par la LPRPDE. Certaines organisations peuvent exercer des activités commerciales qui sont visées par la Loi.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/02_05_d_19/?WT.mc_id=irf-fr-47' target='_blank'>application de la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em> aux œuvres de charité et aux organismes sans but lucratif</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'OPC_role_mandate'",
+          "html": {
+            "en": "<h2>OPC Role and Mandate</h2><p>The Office of the Privacy Commissioner of Canada (OPC) carries out its mission to protect and promote the privacy rights of individuals in a variety of ways. For example, by:</p><ul><li><a href='https://www.priv.gc.ca/en/opc-actions-and-decisions/investigations/?WT.mc_id=irf-en-48' target='_blank'>Investigating complaints</a>, conducting <a href='https://www.priv.gc.ca/en/opc-actions-and-decisions/audits/?WT.mc_id=irf-en-49' target='_blank'>audits</a> and pursuing court action under two federal laws—the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/?WT.mc_id=irf-en-50' target='_blank'><em>Privacy Act</em></a> and the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-51' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA);</li><li>Publicly reporting on the personal information handling practices of public and private sector organizations;</li><li>Supporting, undertaking and publishing <a href='https://www.priv.gc.ca/en/opc-actions-and-decisions/research/?WT.mc_id=irf-en-52' target='_blank'>research</a> into privacy issues; and</li><li>Promoting public awareness and understanding of privacy issues.</li></ul><p>To guide its work, the OPC has established <a href='https://www.priv.gc.ca/en/about-the-opc/opc-strategic-privacy-priorities/?WT.mc_id=irf-en-53' target='_blank'>strategic privacy priorities</a>.</p><p>You may be interested in learning more about <a href='https://www.priv.gc.ca/en/about-the-opc/what-we-do/?WT.mc_id=irf-en-54' target='_blank'>what we do</a>.</p>",
+            "fr": "<h2>Le rôle et le mandat du Commissariat</h2><p>Le Commissariat à la protection de la vie privée du Canada (le Commissariat) mène à bien sa mission, qui consiste à protéger et à promouvoir le droit des personnes à la vie privée, en ayant recours à une variété de moyens :</p><ul><li><a href='https://www.priv.gc.ca/fr/mesures-et-decisions-prises-par-le-commissariat/enquetes/?WT.mc_id=irf-fr-48' target='_blank'>enquêter sur les plaintes</a>, mener des <a href='https://www.priv.gc.ca/fr/mesures-et-decisions-prises-par-le-commissariat/verifications/?WT.mc_id=irf-fr-49' target='_blank'>vérifications</a> et intenter des poursuites judiciaires en vertu de deux lois fédérales, soit la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/?WT.mc_id=irf-fr-50' target='_blank'><em>Loi sur la protection des renseignements personnels</em></a> et la <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/?WT.mc_id=irf-fr-51' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques</em></a> (LPRPDE);</li><li>publier de l’information sur les pratiques relatives au traitement des renseignements personnels d’organisations des secteurs public et privé;</li><li>appuyer, entreprendre et publier des travaux de <a href='https://www.priv.gc.ca/fr/mesures-et-decisions-prises-par-le-commissariat/recherche/?WT.mc_id=irf-fr-52' target='_blank'>recherche</a> sur les enjeux liés à la protection de la vie privée;</li><li>sensibiliser la population aux enjeux concernant la protection de la vie privée et les lui faire comprendre.</li></ul><p>Pour le guider dans son travail, le Commissariat a établi des <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/priorites-strategiques-liees-a-la-vie-privee-du-commissariat/?WT.mc_id=irf-fr-53' target='_blank'>priorités stratégiques liées à la vie privée</a>.</p><p>La page <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/ce-que-nous-faisons/?WT.mc_id=irf-fr-54' target='_blank'>ce que nous faisons</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'outsourcing'",
+          "html": {
+            "en": "<h2>Outsourcing and the Flow of Personal Information Across Borders</h2><p>Businesses and government institutions may, at times, outsource the processing and storage of personal information. Canada’s <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/?WT.mc_id=irf-en-31' target='_blank'>federal privacy laws</a> do not prevent this; however, privacy issues need to be considered carefully by any organization to ensure that appropriate measures are taken to protect personal information when it is transferred to a third party or when personal information is transferred across borders.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/outsourcing/?WT.mc_id=irf-en-32' target='_blank'>outsourcing and privacy</a>. You may also be interested in related information on <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/online-privacy/cloud-computing/?WT.mc_id=irf-en-33' target='_blank'>cloud computing</a> and <a href='https://www.priv.gc.ca/en/privacy-topics/personal-information-transferred-across-borders/?WT.mc_id=irf-en-34' target='_blank'>cross-border transfers of personal information</a>.</p>",
+            "fr": "<h2>L'externalisation et la circulation transfrontalière de renseignements personnels</h2><p>Les entreprises et les institutions gouvernementales peuvent à l’occasion externaliser le traitement et le stockage de renseignements personnels. <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/?WT.mc_id=irf-fr-31' target='_blank'>Les lois fédérales</a> sur la protection des renseignements personnels n’interdisent pas cette pratique, mais les organisations doivent examiner attentivement les questions ayant trait à la protection de la vie privée pour s’assurer que des mesures adéquates sont prises pour protéger les renseignements personnels transférés à un tiers ou dans un autre pays.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/externalisation/?WT.mc_id=irf-fr-32' target='_blank'>externalisation et protection de la vie privée</a> propose des liens menant à de l’information qui pourrait vous intéresser. Les pages <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/protection-de-la-vie-privee-en-ligne/infonuagique/?WT.mc_id=irf-fr-33' target='_blank'>infonuagique</a> et <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/communication-transfrontaliere-de-renseignements-personnels/?WT.mc_id=irf-fr-34' target='_blank'>communication transfrontalière de renseignements personnels</a> renferment par ailleurs de l’information sur des sujets connexes.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'privacy_kids'",
+          "html": {
+            "en": "<h2>Privacy and Kids</h2><p>Young people today are early adopters and sophisticated users of new technologies, which they use with ease and enthusiasm.</p><p>The Office of the Privacy Commissioner of Canada believes personal information relating to children and youth is particularly sensitive, especially the younger they are. Children represent a vulnerable segment of the population and companies should make every attempt to avoid collecting their personal information.</p><p>We have a number of resources to help parents, teachers and others educate young people about protecting their personal information. You may be interested in our information about <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-and-kids/?WT.mc_id=irf-en-73' target='_blank'>privacy and kids</a>, including our graphic novel, <a href='https://www.priv.gc.ca/en/about-the-opc/what-we-do/awareness-campaigns-and-events/privacy-education-for-kids/social-smarts-privacy-the-internet-and-you/?WT.mc_id=irf-en-74' target='_blank'>Social Smarts: Privacy, the Internet and You</a>.</p>",
+            "fr": "<h2>La protection de la vie privée et des enfants</h2><p>Les jeunes d’aujourd’hui sont parmi les premiers à adopter les nouvelles technologies, qu’ils manient avec aisance et enthousiasme en utilisateurs avertis.</p><p>Le Commissariat à la protection de la vie privée du Canada estime que les renseignements personnels concernant les enfants et les jeunes, en particulier ceux en bas âge, sont extrêmement sensibles. Les enfants constituent un segment vulnérable de la population et les entreprises devraient tout mettre en œuvre pour éviter de recueillir leurs renseignements personnels.</p><p>Le Commissariat met à la disposition des parents, des enseignants et des autres intéressés plusieurs ressources pour apprendre aux jeunes comment protéger leurs renseignements personnels. La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/protection-de-la-vie-privee-et-enfants/?WT.mc_id=irf-fr-73' target='_blank'>protection de la vie privée et enfants</a> propose des liens menant à de l’information qui pourrait vous intéresser, entre autres, la bande dessinée <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/ce-que-nous-faisons/campagnes-et-activites-de-sensibilisation/sensibilisation-des-enfants-a-la-vie-privee/branches-et-futes-internet-et-vie-privee/?WT.mc_id=irf-fr-74' target='_blank'>Branchés et futés : Internet et vie privée</a>.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'privacy_breaches'",
+          "html": {
+            "en": "<h2>Privacy Breaches</h2><p>A privacy breach is the loss of, unauthorized access to, or disclosure of, personal information.</p><p>Some of the most common privacy breaches happen when personal information is stolen, lost or mistakenly shared. A privacy breach may also be a consequence of faulty business procedures or operational breakdowns.</p><p>You may be interested in our information about <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-breaches/?WT.mc_id=irf-en-57' target='_blank'>privacy breaches</a> and how organizations should respond if they experience a breach.</p>",
+            "fr": "<h2>Les atteintes à la vie privée</h2><p>Une atteinte à la vie privée se définit comme la perte ou la communication non autorisée de renseignements personnels, ou l’accès non autorisé à ceux-ci.</p><p>Le vol, la perte ou la communication par erreur de renseignements personnels sont à l’origine des atteintes les plus courantes à la vie privée. Une atteinte à la vie privée peut aussi résulter de procédures organisationnelles déficientes ou de défaillances opérationnelles.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/atteintes-a-la-vie-privee/?WT.mc_id=irf-fr-57' target='_blank'>atteintes à la vie privée</a> propose des liens menant à de l’information qui pourrait vous intéresser sur le sujet et la façon dont les organisations devraient réagir en pareil cas.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'impact_assessments'",
+          "html": {
+            "en": "<h2>Privacy Impact Assessments</h2><p>Privacy Impact Assessments (PIAs) are used to identify the potential privacy risks of new or redesigned federal government programs or services. They can also help eliminate or reduce those risks to an acceptable level.</p><p>Virtually all government institutions, as defined in section 3 of the <em><a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/?WT.mc_id=irf-en-58' target='_blank'>Privacy Act</a></em>, including parent Crown corporations and any wholly owned subsidiary of these corporations, must conduct PIAs for new or redesigned programs and services that raise privacy issues. Government institutions must provide completed PIAs to the <a href='https://www.canada.ca/en/treasury-board-secretariat/index.html' target='_blank'>Treasury Board of Canada Secretariat (TBS)</a> and the Office of the Privacy Commissioner of Canada (OPC).</p><p>TBS is responsible for preparing policy instruments concerning the operation of the <em>Privacy Act</em> and its regulations. This includes issuing <a href='http://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18308' target='_blank'>directives and guidelines on privacy impact assessment</a> related to the <em>Privacy Act</em>.</p><p>We have also developed guidance to assist federal institutions with the preparation of PIAs. You may be interested in our information on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-impact-assessments/?WT.mc_id=irf-en-59' target='_blank'>privacy impact assessments</a>.</p>",
+            "fr": "<h2>Les évaluations des facteurs relatifs à la vie privée</h2><p>L’évaluation des facteurs relatifs à la vie privée (EFVP) sert à repérer les risques d’atteinte à la vie privée qui pourraient être associés aux programmes et aux services du gouvernement fédéral, qu’ils soient nouveaux ou remaniés. Elle contribue aussi à éliminer ces risques ou à les ramener à un niveau acceptable.</p><p>Pratiquement toutes les institutions du gouvernement au sens de l’article 3 de la <em><a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels/?WT.mc_id=irf-fr-58' target='_blank'>Loi sur la protection des renseignements personnels</a></em>, y compris les sociétés d’État mères et leurs filiales en propriété exclusive, doivent effectuer une évaluation des facteurs relatifs à la vie privée pour les programmes et services nouveaux ou remaniés susceptibles de soulever des questions sur le plan de la protection de la vie privée. Les institutions doivent présenter les EFVP qu’elles ont menées au <a href='https://www.canada.ca/fr/secretariat-conseil-tresor.html' target='_blank'>Secrétariat du Conseil du Trésor du Canada (SCT)</a> et au Commissariat à la protection de la vie privée du Canada.</p><p>Le SCT est chargé d’élaborer des instruments de politique concernant l’application de la <em>Loi sur la protection des renseignements personnels</em> et de son règlement. Il doit notamment publier des lignes directrices et des <a href='http://www.tbs-sct.gc.ca/pol/doc-fra.aspx?id=18308' target='_blank'>directives sur l’évaluation des facteurs relatifs à la vie privée</a> en rapport avec la <em>Loi sur la protection des renseignements personnels</em>.</p><p>Le Commissariat a aussi élaboré une orientation pour aider les institutions fédérales à préparer les EFVP. La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/evaluations-des-facteurs-relatifs-a-la-vie-privee/?WT.mc_id=irf-fr-59' target='_blank'>évaluations des facteurs relatifs à la vie privée</a> renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'privacy_policies'",
+          "html": {
+            "en": "<h2>Privacy Policies</h2><p>Organizations that collect personal information must be upfront in explaining their privacy practices. Being open and accountable regarding privacy practices enhances transparency and builds trust, and is part of obtaining meaningful <a href='https://www.priv.gc.ca/en/privacy-topics/collecting-personal-information/consent/?WT.mc_id=irf-en-75' target='_blank'>consent</a>.</p><p>A good privacy policy explains, for example—clearly and in plain language—why an organization is collecting personal information, what they will do with it, how it will be protected and who they will share it with.</p><p>Users are then better able to make informed decisions about their personal information.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-policies/?WT.mc_id=irf-en-76' target='_blank'>privacy policies</a>.</p>",
+            "fr": "<h2>Les politiques de confidentialité</h2><p>Les organisations qui recueillent des renseignements personnels doivent expliquer ouvertement leurs pratiques en matière de protection de la vie privée. L’ouverture et la reddition de comptes à l’égard de ces pratiques renforcent la transparence et la confiance et font partie de l’obtention d’un <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/collecte-de-renseignements-personnels/consentement/?WT.mc_id=irf-fr-75' target='_blank'>consentement</a> valable.</p><p>Par exemple, une bonne politique de confidentialité explique – dans un langage clair et simple – pourquoi une organisation recueille des renseignements personnels, ce qu’elle va en faire, comment ils seront protégés et à qui elle les communiquera.</p><p>De cette façon, les utilisateurs sont plus en mesure de prendre des décisions éclairées concernant leurs renseignements personnels.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/politiques-de-confidentialite/?WT.mc_id=irf-fr-76' target='_blank'>Politiques de confidentialité </a>renferme de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'safety_law_enforcement'",
+          "html": {
+            "en": "<h2>Public Safety and Law Enforcement</h2><p>Police and national security agencies require adequate tools to keep Canadians safe and these tools need to be adapted to the digital world, but key lessons from history remind us that clear safeguards are also needed to protect rights and prevent abuse. National security agencies must also be subject to effective review and any new state powers must be justified on the basis of evidence.</p><p>Find more information about <a href='https://www.priv.gc.ca/en/opc-news/speeches/2016/s_d_20161206/?WT.mc_id=irf-en-60' target='_blank'>our views on national security and privacy</a>. You may also be interested in general information on privacy issues in the context of <a href='https://www.priv.gc.ca/en/privacy-topics/public-safety-and-law-enforcement/?WT.mc_id=irf-en-61' target='_blank'>public safety and law enforcement</a>.</p>",
+            "fr": "<h2>La sécurité publique et l’application de la loi</h2><p>Les autorités policières et les organismes de sécurité nationale doivent avoir les outils nécessaires pour assurer la sécurité des Canadiens. Ces outils doivent être adaptés au monde numérique. Mais, comme l’ont montré les leçons du passé, des mesures de protection claires sont nécessaires pour protéger les droits et prévenir les abus. En outre, les organismes de sécurité nationale doivent faire l’objet d’un contrôle efficace et l’octroi de nouveaux pouvoirs à l’État doit être justifié par des éléments probants.</p><p>Pour en savoir plus, consultez la page avec <a href='https://www.priv.gc.ca/fr/nouvelles-du-commissariat/allocutions/2016/s_d_20161206/?WT.mc_id=irf-fr-60' target='_blank'>les remarques du commissaire sur la sécurité nationale et la protection de la vie privée</a>. La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/securite-publique-et-application-de-la-loi/?WT.mc_id=irf-fr-61' target='_blank'>sécurité publique et application de la loi</a> propose des liens menant à de l’information générale qui pourrait vous intéresser sur des questions qui ont trait à la protection de la vie privée dans le contexte de la sécurité publique et de l’application de la loi.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'sin'",
+          "html": {
+            "en": "<h2>Social Insurance Number (SIN)</h2><p>The Social Insurance Number (SIN) is a confidential number that is restricted to income reporting purposes. It is a key piece of information about an individual that, if it falls into the wrong hands, can lead to identity theft.</p><p>Certain government departments and programs are authorized to collect and use the SIN and some private-sector organizations are required by law to request it; however, the SIN should not be used as a general identifier.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/identity-and-privacy/social-insurance-numbers/?WT.mc_id=irf-en-62' target='_blank'>social insurance numbers</a>.</p>",
+            "fr": "<h2>Le numéro d’assurance sociale (NAS)</h2><p>Le numéro d’assurance sociale (NAS) est un numéro confidentiel dont l’usage se limite aux fins de déclaration du revenu. Il s’agit d’un renseignement clé sur un individu qui peut mener au vol d’identité s’il tombe entre de mauvaises mains.</p><p>Certains programmes et ministères gouvernementaux sont autorisés à recueillir et à utiliser le NAS. Il en va de même pour les organisations du secteur privé qui y sont tenues en vertu de la loi. Le NAS ne devrait toutefois pas servir d’identificateur général.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/identite-et-vie-privee/numero-d-assurance-sociale/?WT.mc_id=irf-fr-62' target='_blank'>numéro d’assurance sociale</a> propose des liens menant à de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'social_networking'",
+          "html": {
+            "en": "<h2>Social Networking</h2><p>Many of us use social networking sites daily to share information about ourselves, to stay in touch with friends, make professional connections, and share ideas, opinions and photos. We often think about our personal sites as private, when in reality, many of them can be seen by friends, employers, university officials, and even parents. Once we put personal information on the Internet, there is a risk that it may be seen and used by people or organizations we don’t know and in unexpected ways that we may not be comfortable with.</p><p>You may be interested in our information about <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/online-privacy/social-networking/?WT.mc_id=irf-en-63' target='_blank'>social networking</a> and privacy in the context of your personal life and in the workplace.</p>",
+            "fr": "<h2>Le réseautage social</h2><p>Chaque jour, nous sommes nombreux à utiliser les sites de réseautage social pour échanger de l’information à propos de nous-mêmes, rester en contact avec des amis, créer des liens professionnels et partager des idées, des opinions et des photos. Nous croyons souvent que nos sites personnels sont privés. Or, plusieurs d’entre eux peuvent être visités par des amis, des employeurs, des représentants des universités et même les parents. Lorsque vous communiquez des renseignements personnels sur Internet, il est possible que des individus ou des organisations que vous ne connaissez pas les voient et les utilisent à des fins inattendues avec lesquels vous pourriez ne pas être à l’aise.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/protection-de-la-vie-privee-en-ligne/reseautage-social/?WT.mc_id=irf-fr-63' target='_blank'>réseautage social</a> propose des liens menant à de l’information qui pourrait vous intéresser sur le sujet et sur la protection de vos renseignements personnels dans votre vie personnelle et professionnelle.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'surveillance_monitoring'",
+          "html": {
+            "en": "<h2>Surveillance and Monitoring</h2><p>We live in an information society where vast quantities of data about us are gathered and analyzed through automated processes. Our activities and movements are monitored and recorded by security cameras, by loyalty programs, by online social networks and merchants, by border security agents, and a multitude of other features of everyday life.</p><p>Our website topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/surveillance-and-monitoring/?WT.mc_id=irf-en-66' target='_blank'>surveillance and monitoring</a> provides information on the privacy issues and challenges associated with these activities.</p>",
+            "fr": "<h2>La surveillance et le contrôle</h2><p>Nous vivons dans une société de l’information où d’énormes quantités de renseignements personnels sont recueillies et analysées au moyen de processus automatisés. Des caméras de sécurité, des programmes de fidélisation, des réseaux sociaux et des marchands en ligne, des agents des services frontaliers et une multitude de dispositifs de notre vie quotidienne surveillent et enregistrent nos activités et nos mouvements.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/surveillance-et-controle/?WT.mc_id=irf-fr-66' target='_blank'>surveillance et contrôle</a> propose des liens menant à de l’information qui pourrait vous intéresser sur les questions et les défis en matière de protection de la vie privée associés à ces activités.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'technology_privacy'",
+          "html": {
+            "en": "<h2>Technology and Privacy</h2><p>The constant and accelerating pace of technological change is having a profound impact on privacy protection. It is critical for organizations to consider privacy issues before launching new products or services that involve the collection of personal information. Individuals should also consider privacy issues before using new technologies.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/technology-and-privacy/?WT.mc_id=irf-en-67' target='_blank'>technology and privacy</a>.</p>",
+            "fr": "<h2>La technologie et la vie privée</h2><p>Le rythme incessant et de plus en plus rapide des changements technologiques a d’énormes répercussions sur la vie privée. Les organisations doivent prendre en compte les questions ayant trait à la protection de la vie privée avant de lancer de nouveaux produits et services donnant lieu à la collecte de renseignements personnels. Les individus doivent aussi se pencher sur ces questions avant d’utiliser de nouvelles technologies.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/?WT.mc_id=irf-fr-67' target='_blank'>technologie et vie privée</a> propose des liens menant à de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'workplace_privacy'",
+          "html": {
+            "en": "<h2>Workplace Privacy and Employment</h2><p>People expect to have some privacy at work, even if they are on their employer's premises and using the employer's equipment. At the same time, employers need certain information about their employees for things like pay and benefits, and they have to be able to ensure that work is being done efficiently and safely.</p><p>Employers and employees are often subject to privacy laws. The <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-privacy-act/?WT.mc_id=irf-en-68' target='_blank'><em>Privacy Act</em></a>, for example, applies to employee information in federal government institutions. Canada’s federal private sector privacy law, the <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/?WT.mc_id=irf-en-69' target='_blank'><em>Personal Information Protection and Electronic Documents Act</em></a> (PIPEDA) has limited application to employment situations. In terms of employee information, PIPEDA only applies to federally regulated organizations. That would include, for example, banks and telecommunications companies. Several provinces have privacy laws that apply to employee information.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-at-work/?WT.mc_id=irf-en-70' target='_blank'>privacy at work</a>.</p>",
+            "fr": "<h2>La protection de la vie privée au travail et à l’emploi</h2><p>Les employés s’attendent à bénéficier d’une certaine confidentialité en milieu de travail, même s’ils sont dans les locaux de leur employeur et utilisent son matériel. Pour leur part, les employeurs doivent disposer de certains renseignements sur leurs employés, par exemple pour la paye et les avantages sociaux, et ils doivent être en mesure de s’assurer que le travail est effectué de manière efficace et sûre.</p><p>Par ailleurs, les employés et les employeurs sont souvent assujettis aux lois sur la protection des renseignements personnels. La <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/?WT.mc_id=irf-fr-68' target='_blank'><em>Loi sur la protection des renseignements personnels</em></a>, par exemple, s’applique aux renseignements que détiennent les institutions fédérales sur leurs employés. La <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/?WT.mc_id=irf-fr-69' target='_blank'><em>Loi sur la protection des renseignements personnels et les documents électroniques </em></a>(LPRPDE), loi fédérale sur la protection des renseignements personnels dans le secteur privé au Canada, ne s’applique que de façon restreinte aux situations professionnelles. Et en ce qui concerne les renseignements des employés, cette loi s’applique uniquement aux organisations sous réglementation fédérale — par exemple, les banques et les entreprises de télécommunications. Plusieurs provinces ont adopté leurs propres lois sur la protection des renseignements personnels s’appliquant aux renseignements des employés.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/technologie-et-vie-privee/?WT.mc_id=irf-fr-70' target='_blank'>protection de la vie privée au travail</a> propose des liens menant à de l’information qui pourrait vous intéresser.</p>"
+          }
+        },
+        {
+          "type": "html",
+          "visibleIf": "{TopicOfEnquiry} contains 'privacy_rights'",
+          "html": {
+            "en": "<h2>Your Privacy Rights</h2><p>In Canada, the right to privacy is rooted in the Canadian Charter of Rights and Freedoms. The Charter does not specifically mention privacy or the protection of personal information. However, it does afford protection under Section 7 (the right to life, liberty and the security of the person), and Section 8 (the right to be secure against unreasonable search or seizure).</p><p>There are also a number of laws that protect your privacy rights by setting out rules for the way your personal information is handled by both governments and organizations. For example, in general, your personal information can only be collected, used and disclosed with your knowledge—and often your consent—for legitimate purposes. It must also be stored, shared and disposed of in a way that keeps it secure and confidential.</p><p>You may be interested in our topic page on <a href='https://www.priv.gc.ca/en/privacy-topics/your-privacy-rights/?WT.mc_id=irf-en-55' target='_blank'>your privacy rights</a>.</p><p>For more information and tips related to specific privacy matters, you may be interested in our topic page <a href='https://www.priv.gc.ca/en/for-individuals/?WT.mc_id=irf-en-56' target='_blank'>for individuals</a>.</p>",
+            "fr": "<h2>Votre droit à la vie privée</h2><p>Au Canada, le droit à la vie privée est ancré dans la Charte canadienne des droits et libertés. Sans mentionner expressément le respect de la vie privée ou la protection des renseignements personnels, la Charte assure une protection en vertu de l’article 7 (droit à la vie, à la liberté et à la sécurité de la personne) et de l’article 8 (droit à la protection contre les fouilles, les perquisitions ou les saisies abusives).</p><p>De plus, un certain nombre de lois protègent votre droit à la vie privée en établissant des règles qui régissent la façon dont les gouvernements et les organisations traitent vos renseignements personnels. Par exemple, en général, la collecte, l’utilisation et la communication de vos renseignements personnels doivent se faire à votre connaissance et avec votre consentement, et à des fins légitimes. Les renseignements personnels doivent également être conservés, communiqués et éliminés de manière sûre et confidentielle.</p><p>La page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/votre-droit-a-la-vie-privee/?WT.mc_id=irf-fr-55' target='_blank'>votre droit à la vie privée</a> propose des liens menant à de l’information qui pourrait vous intéresser.</p><p>La page <a href='https://www.priv.gc.ca/fr/pour-les-individus/?WT.mc_id=irf-fr-56' target='_blank'>pour les individus</a> propose des liens menant à de l’information et à des conseils sur des questions précises liées à la protection de la vie privée.</p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "page_question_details",
+      "title": {
+        "en": "Information Request Form",
+        "fr": "Formulaire de demande d'information"
+      },
+      "elements": [
+        {
+          "type": "comment",
+          "name": "QuestionToInformationCenterDetails",
+          "isRequired": true,
+          "title": {
+            "en": "What is your question for the Information Centre? (Maximum 2000 characters)",
+            "fr": "Quelle question souhaitez-vous poser au Centre d’information? (Maximum 2000 caractères)"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-warning'><p>Please do not provide any sensitive personal information, such as medical information, banking information, social insurance number, etc.</p></section></p>",
+            "fr": "<p><section class='alert alert-warning'><p>Veuillez ne fournir aucun renseignement personnel sensible – renseignements sur la santé, renseignements bancaires, numéro d’assurance sociale, etc.</p></section></p>"
+          },
+          "maxLength": 2000
+        },
+        {
+          "type": "html",
+          "html": {
+            "en": "<p>Please note that any questions submitted using this form will not be treated as privacy complaints under the <em>Privacy Act</em> or the <em>Personal Information Protection and Electronic Documents Act</em>. For further information on filing complaints under either Act, please see <a href='https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/?WT.mc_id=irf-en-85' target='_blank'>File a formal privacy complaint</a>.</p><p>Personal information collected when you use this form will only be used to address your information request and will be retained and disposed of in accordance with our <a href='https://www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/?WT.mc_id=irf-en-86' target='_blank'>Privacy Policy</a>.</p><p>If you do not wish to provide any personal information through our website, you can contact our Information Centre <a href='https://www.priv.gc.ca/en/contact-the-opc/?WT.mc_id=irf-en-87' target='_blank'>by phone or mail</a>.</p><p>To learn more about our role and mandate, please read <a href='https://www.priv.gc.ca/en/about-the-opc/?WT.mc_id=irf-en-88' target='_blank'>About the OPC</a>.</p>",
+            "fr": "<p>Veuillez noter que les demandes soumises par ce formulaire ne seront pas traitées en tant que plaintes officielles en vertu de la <em>Loi sur la protection des renseignements personnels</em> ou la <em>Loi sur la protection des renseignements personnels et les documents électroniques</em>. Pour plus d’information sur le dépôt de plaintes sous l’une ou l’autre des lois, voir <a href='https://www.priv.gc.ca/fr/signaler-un-probleme/deposer-une-plainte-officielle-concernant-la-protection-de-la-vie-privee/?WT.mc_id=irf-fr-85' target='_blank'>Déposer une plainte officielle concernant la protection de la vie privée</a>.</p><p>Les renseignements personnels recueillis sur le présent formulaire serviront uniquement à répondre à votre demande d’information. Ils seront conservés et éliminés conformément à la <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/?WT.mc_id=irf-fr-86' target='_blank'>Politique sur la protection des renseignements personnels du Commissariat</a>.</p><p>Si vous préférez ne communiquer aucun renseignement personnel via notre site Web, vous pouvez contacter notre Centre d’information <a href='https://www.priv.gc.ca/fr/communiquer-avec-le-commissariat/?WT.mc_id=irf-fr-87' target='_blank'>par téléphone ou par la poste</a>.</p><p>Pour en savoir plus sur notre rôle et notre mandat, veuillez consulter la section « <a href='https://www.priv.gc.ca/fr/a-propos-du-commissariat/?WT.mc_id=irf-fr-88' target='_blank'>À propos du Commissariat</a> » sur le site Web du Commissariat à la protection de la vie privée du Canada.</p>"
+          }
+        }
+      ]
+    }
+  ],
+  "completedHtml": {
+    "en": "<p>Thank you for sending us your question. We aim to respond to you within 10 business days.</p><p>If you are looking for information about a particular privacy topic, try browsing our <a href='https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/'>Privacy Topics</a> page or using our <a href='https://www.priv.gc.ca/en/search'>Search tool</a>.</p>",
+    "fr": "<p>Merci de nous avoir fait parvenir votre question. Nous comptons y répondre dans les 10 jours ouvrables.</p><p>Si vous cherchez des renseignements sur un sujet lié à la protection de la vie privée en particulier, essayez de naviguer sur notre page <a href='https://www.priv.gc.ca/fr/sujets-lies-a-la-protection-de-la-vie-privee/lois-sur-la-protection-des-renseignements-personnels-au-canada/la-loi-sur-la-protection-des-renseignements-personnels-et-les-documents-electroniques-lprpde/'>Sujets liés à la protection de la vie privée</a> ou utilisez notre <a href='https://www.priv.gc.ca/fr/recherche/?'>outil de recherche</a>.</p>"
+  }
+}
