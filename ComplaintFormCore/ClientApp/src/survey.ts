@@ -84,9 +84,8 @@ export abstract class SurveyBase {
         currentPage.scrollToTop();
     }
 
-    public getData(): any {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return this.survey.data;
+    public getSurveyModel(): SurveyModel {
+        return this.survey;
     }
 
     public loadSurveyFromUrl(surveyUrl: string): Promise<void> {

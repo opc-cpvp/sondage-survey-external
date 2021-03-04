@@ -122,8 +122,7 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(paSurvey.getData());
-                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
+                pdfClass.exportToPDF(filename, jsonUrl, lang, paSurvey.getSurveyModel(), page_title);
             };
         };
 
@@ -143,8 +142,7 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(pidSurvey.getData());
-                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
+                pdfClass.exportToPDF(filename, jsonUrl, lang, pidSurvey.getSurveyModel(), page_title);
             };
         };
 
@@ -203,8 +201,7 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(pipedaSurvey.getData());
-                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
+                pdfClass.exportToPDF(filename, jsonUrl, lang, pipedaSurvey.getSurveyModel(), page_title);
             };
         };
 
