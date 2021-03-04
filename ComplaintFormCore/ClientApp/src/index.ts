@@ -77,6 +77,7 @@ declare let Symbol;
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
         const storageName_PID = "SurveyJS_LoadState_PID";
         const storageName_CONTACTINFO = "SurveyJS_LoadState_CONTACTINFO";
+        const storageName_TELLOPC = "SurveyJS_LoadState_TELLOPC";
 
         globalThis.initContactInfo = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_contact.json";
@@ -98,7 +99,6 @@ declare let Symbol;
             await contactInfoSurvey.loadSurveyFromUrl(jsonUrl);
             contactInfoSurvey.renderSurvey();
         };
-        const storageName_TELLOPC = "SurveyJS_LoadState_TELLOPC";
 
         globalThis.initPbr = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pbr.json";
