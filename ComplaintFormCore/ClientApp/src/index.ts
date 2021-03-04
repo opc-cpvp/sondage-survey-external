@@ -11,7 +11,6 @@ import { PidSurvey } from "./pid/pidSurvey";
 import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
-import { TestSurvey } from "./tests/testSurvey";
 
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
@@ -27,7 +26,6 @@ declare global {
     function completeSurvey(button: HTMLButtonElement, survey: SurveyModel): void;
 
     function initPaSurvey(lang: "en" | "fr", token: string): void;
-    function initTestSurvey(lang: string, token: string): void;
     function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
@@ -124,8 +122,8 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(paSurvey.surveyData);
-                pdfClass.exportToPDFAlt(filename, jsonUrl, lang, surveyData, page_title);
+                const surveyData: string = JSON.stringify(paSurvey.getData());
+                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
             };
         };
 
@@ -145,8 +143,8 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(pidSurvey.surveyData);
-                pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID, page_title);
+                const surveyData: string = JSON.stringify(pidSurvey.getData());
+                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
             };
         };
 
@@ -205,8 +203,8 @@ declare let Symbol;
                     default: ""
                 };
 
-                const surveyData: string = JSON.stringify(pipedaSurvey.surveyData);
-                pdfClass.exportToPDFAlt(filename, jsonUrl, lang, surveyData, page_title);
+                const surveyData: string = JSON.stringify(pipedaSurvey.getData());
+                pdfClass.exportToPDF(filename, jsonUrl, lang, surveyData, page_title);
             };
         };
 
@@ -215,53 +213,6 @@ declare let Symbol;
             const tellOPCSurvey = new TellOPCSurvey(lang, token, storageName_TELLOPC);
             await tellOPCSurvey.loadSurveyFromUrl(jsonUrl);
             tellOPCSurvey.renderSurvey();
-        };
-
-        // globalThis.exportToPDF = (lang, complaintType) => {
-        //    let jsonUrl = "";
-        //    let filename = "";
-        //    const pdfClass = new surveyPdfExport();
-
-        //        const page_title: MultiLanguageProperty = {
-        //            en: "PIPDEA Review and send Privacy complaint form (federal institution)",
-        //            fr: "FR-Review and send—Privacy complaint form (federal institution)",
-        //            default: ""
-        //        };
-
-        //        pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PIPEDA, page_title);
-        //    } else if (complaintType === "pa") {
-        //        jsonUrl = "/sample-data/survey_pa_complaint.json";
-        //        filename = "survey_export_pa";
-
-        //        const page_title: MultiLanguageProperty = {
-        //            en: "PA Review and send Privacy complaint form (federal institution)",
-        //            fr: "FR-Review and send—Privacy complaint form (federal institution)",
-        //            default: ""
-        //        };
-
-        //        pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PA, page_title);
-        //    } else if (complaintType === "pid") {
-        //        jsonUrl = "/sample-data/survey_pid.json";
-        //        filename = "survey_export_pid";
-
-        //        const page_title: MultiLanguageProperty = {
-        //            en: "PID PDF title",
-        //            fr: "FR-PID PDF title",
-        //            default: ""
-        //        };
-
-        //        pdfClass.exportToPDF(filename, jsonUrl, lang, storageName_PID, page_title);
-        //    }
-        //        const surveyData: string = JSON.stringify(pipedaSurvey.surveyData);
-        //        pdfClass.exportToPDFAlt(filename, jsonUrl, lang, surveyData, page_title);
-        //    };
-        // };
-
-        globalThis.initTestSurvey = (lang, token) => {
-            const sampleSurvey = new TestSurvey();
-            const jsonUrl = "/sample-data/survey_test_2.json";
-
-            sampleSurvey.init(jsonUrl, lang, token);
         };
     }
 

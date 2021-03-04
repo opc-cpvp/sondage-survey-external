@@ -5,7 +5,6 @@ import * as widgets from "surveyjs-widgets";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class PidSurvey extends SurveyBase {
-    public surveyData = "";
     private authToken: string;
     private textBoxesMaxLength = 100;
 
@@ -127,10 +126,6 @@ export class PidSurvey extends SurveyBase {
 
             const responseData = await response.json();
             this.survey.setVariable("referenceNumber", responseData.referenceNumber);
-
-            //  Store the json data in a public variable before clearing the storage.
-            //  This is for pdf export
-            this.surveyData = sender.data;
 
             // Now that the variable is set, show the completed page.
             this.survey.showCompletedPage = true;

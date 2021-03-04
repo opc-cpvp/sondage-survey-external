@@ -6,7 +6,6 @@ import { PipedaProvinceData, PipedaProvincesData } from "./pipedaProvinceData";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 
 export class PipedaSurvey extends SurveyBase {
-    public surveyData = "";
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
@@ -126,10 +125,6 @@ export class PipedaSurvey extends SurveyBase {
 
             const responseData = await response.json();
             this.survey.setVariable("referenceNumber", responseData.referenceNumber);
-
-            //  Store the json data in a public variable before clearing the storage.
-            //  This is for pdf export
-            this.surveyData = sender.data;
 
             // Now that the variable is set, show the completed page.
             this.survey.showCompletedPage = true;
