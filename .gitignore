@@ -356,5 +356,3 @@ MigrationBackup/
 /ComplaintFormCore/wwwroot/js/clientapp
 /ComplaintFormCore/ClientApp/dist
 /ComplaintFormCore/FileUploads
-/ComplaintFormCore/ClientApp/dist/clientapp.min.js
-/ComplaintFormCore/ClientApp/dist/clientapp.min.js.map
