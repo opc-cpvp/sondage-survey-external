@@ -14,7 +14,7 @@ namespace SurveyToCS
 			Console.WriteLine("1) Type 'c' to generate the C# class with properties");
 			Console.WriteLine("2) Type 'v' to generate the FluentValidation class");
 			Console.WriteLine("3) Type 't' to generate test data");
-			Console.WriteLine("4) Type 'g' to generate test data");
+			Console.WriteLine("4) Type 'g' to generate translation CSV");
 			Console.WriteLine("5) Type 'r' to rebuild to json with translated strings");
 			Console.Write("\r\nSelect an option: ");
 
@@ -86,7 +86,7 @@ namespace SurveyToCS
 			}
 			else if (line == "r")
 			{
-				string result = ExportForTranslation.ReBuildJSON("", pathToJSONFile);
+				string result = ExportForTranslation.ReBuildJSON(@"C:\Users\jbrouillette\Source\Repos\online-complaint-form-pa_jf\SurveyToCS\new 12.csv", pathToJSONFile);
 				ClipboardService.SetText(result);
 				//Console.WriteLine(result);
 			}

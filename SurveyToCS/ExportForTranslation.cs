@@ -36,7 +36,7 @@ namespace SurveyToCS
 			return builder.ToString();
 		}
 
-		public static string ReBuildJSON(string csvStr, string pathToJSONFile)
+		public static string ReBuildJSON(string csv_path, string pathToJSONFile)
 		{
 			string json = string.Empty;
 
@@ -71,19 +71,53 @@ namespace SurveyToCS
 				return "";
 			}
 
-			var test = survey.pages.Where(p => p.name == "page_step_2_1_q_2_1_6").First().elements.Where(e => e.name == "pnd_OtherInstitutionHead").First();
-
-			if(test.type == "paneldynamic")
+			string[] lines = System.IO.File.ReadAllLines(csv_path);
+			foreach (string line in lines)
 			{
-				foreach(var item in test.templateElements)
+				TranslationItemCSV item = new TranslationItemCSV();
+
+				string[] columns = line.Split(',');
+
+				if (columns.Count() < 5)
 				{
-					item.title.fr = "xyz";
+					throw new Exception("problem with the translation construction");
 				}
-			}
-			else if(test.type == "matrixdynamic")
-			{
+
+				item.PageName = columns[0].Replace("\"", "");
+				item.ElementName = columns[1].Replace("\"", "");
+				item.PropertyName = columns[2].Replace("\"", "");
+				item.En = columns[3].Replace("\"", "");
+				item.Fr = columns[4].Replace("\"", "");
+
+				var page = survey.pages.Where(p => p.name == item.PageName).FirstOrDefault();
+
+				if(page != null)
+				{
+					if (item.PageName.Equals(item.ElementName))
+					{
+						// we know it's the page
+						if(item.PropertyName == "title")
+						{
+							page.title.fr = item.Fr;
+						}
+					}
+				}
 
 			}
+
+			//var test = survey.pages.Where(p => p.name == "page_step_2_1_q_2_1_6").First().elements.Where(e => e.name == "pnd_OtherInstitutionHead").First();
+
+			//if(test.type == "paneldynamic")
+			//{
+			//	foreach(var item in test.templateElements)
+			//	{
+			//		item.title.fr = "xyz";
+			//	}
+			//}
+			//else if(test.type == "matrixdynamic")
+			//{
+
+			//}
 
 			//test.fr = "salut ca va";
 
@@ -107,7 +141,7 @@ namespace SurveyToCS
 		{
 			foreach (var element in elements)
 			{
-				string elementName = !string.IsNullOrWhiteSpace(element.valueName) ? element.valueName : element.name;
+				string elementName = !string.IsNullOrWhiteSpace(element.name) ? element.name : element.valueName;
 
 				if (element.type == "panel")
 				{
@@ -179,7 +213,27 @@ namespace SurveyToCS
 
 					if(element.type == "paneldynamic")
 					{
+						if (element.templateElements != null && element.templateElements.Count > 0)
+						{
+							foreach (var item in element.templateElements)
+							{
+								if (item.title != null)
+								{
+									list.Add(new TranslationItemCSV(page.name, elementName, "template_item-title", item.title));
+								}
 
+								if(item.choices != null && item.choices.Count > 0)
+								{
+									foreach (var choice in item.choices)
+									{
+										if (choice.text != null)
+										{
+											list.Add(new TranslationItemCSV(page.name, elementName, "template_item_choice-title", choice.text));
+										}
+									}
+								}
+							}
+						}
 					}
 				}
 			}
@@ -188,6 +242,8 @@ namespace SurveyToCS
 
 	public class TranslationItemCSV
 	{
+		public TranslationItemCSV() { }
+
 		public TranslationItemCSV(string pageName, string elementName, string propertyName, Traduction traductionElement)
 		{
 			PageName = pageName;

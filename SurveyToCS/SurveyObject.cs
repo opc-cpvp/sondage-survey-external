@@ -15,12 +15,18 @@ namespace SurveyToCS
 	{
 		public string name { get; set; }
 		public Traduction title { get; set; }
-		public string visibleIf { get; set; }
+
 
 		/// <summary>
 		/// This is exclusivly for PIA Tool survey for now
 		/// </summary>
 		public string section { get; set; }
+
+		public string visibleIf { get; set; }
+
+		public bool? hideOnPreview { get; set; }
+
+		public bool? hideOnPDF { get; set; }
 
 		public List<Element> elements { get; set; }
 	}
