@@ -151,11 +151,14 @@
       "elements": [
         {
           "type": "checkbox",
-          "renderAs": "checkboxwithhtmlinfo",
           "name": "TopicOfEnquiry",
           "title": {
-            "en": "What is the topic of your enquiry? Making a selection is not mandatory, but may help us better respond to your request.",
-            "fr": "Sur quel sujet souhaitez-vous obtenir de l’information? Choisir un sujet n’est pas obligatoire, mais pourrait nous aider à mieux répondre à votre demande."
+            "en": "What is the topic of your enquiry?",
+            "fr": "Sur quel sujet souhaitez-vous obtenir de l’information?"
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Making a selection is not mandatory, but may help us better respond to your request.</p></section></p>",
+            "fr": "<p><section class='alert alert-info'><p>Choisir un sujet n’est pas obligatoire, mais pourrait nous aider à mieux répondre à votre demande.</p></section></p>"
           },
           "colCount": 2,
           "choices": [
@@ -708,12 +711,12 @@
           "name": "QuestionToInformationCenterDetails",
           "isRequired": true,
           "title": {
-            "en": "What is your question for the Information Centre? (Please do not provide any sensitive personal information, such as medical information, banking information, social insurance number, etc.)",
-            "fr": "Quelle question souhaitez-vous poser au Centre d’information? (Veuillez ne fournir aucun renseignement personnel sensible – renseignements sur la santé, renseignements bancaires, numéro d’assurance sociale, etc.)"
+            "en": "What is your question for the Information Centre? (Maximum 2000 characters)",
+            "fr": "Quelle question souhaitez-vous poser au Centre d’information? (Maximum 2000 caractères)"
           },
           "description": {
-            "en": "(Maximum 2000 characters)",
-            "fr": "(Maximum 2000 caractères)"
+            "en": "<p><section class='alert alert-warning'><p>Please do not provide any sensitive personal information, such as medical information, banking information, social insurance number, etc.</p></section></p>",
+            "fr": "<p><section class='alert alert-warning'><p>Veuillez ne fournir aucun renseignement personnel sensible – renseignements sur la santé, renseignements bancaires, numéro d’assurance sociale, etc.</p></section></p>"
           },
           "maxLength": 2000
         },
