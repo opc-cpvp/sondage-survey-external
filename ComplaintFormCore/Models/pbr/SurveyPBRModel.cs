@@ -47,7 +47,7 @@ namespace ComplaintFormCore.Models
 		/// Possible choices: [/api/Country?lang={locale}]<br/>
 		/// Survey question type: dropdown
 		/// </summary>
-		public int? OrganizationCountry { get; set; }
+		public string OrganizationCountry { get; set; }
 
 		/// <summary>
 		/// Page: page_organization<br/>
@@ -134,7 +134,7 @@ namespace ComplaintFormCore.Models
 		/// Possible choices: [/api/Country?lang={locale}]<br/>
 		/// Survey question type: dropdown
 		/// </summary>
-		public int? ContactCountry { get; set; }
+		public string ContactCountry { get; set; }
 
 		/// <summary>
 		/// Page: page_organization<br/>
