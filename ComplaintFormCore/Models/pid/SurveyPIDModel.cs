@@ -6,6 +6,14 @@ namespace ComplaintFormCore.Models
 	public class SurveyPIDModel
 	{
 		/// <summary>
+		/// Page: page_intro<br/>
+		/// Online submission tool option<br/>
+		/// Possible choices: [no, yes]<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string IsLongSurvey { get; set; }
+
+		/// <summary>
 		/// Page: page_q_1_0<br/>
 		/// Institution name<br/>
 		/// Possible choices: [/api/Institution/GetAll?lang={locale}]<br/>
@@ -129,7 +137,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_3_1<br/>
-		/// Additional information <br/>
+		/// Additional informations<br/>
 		/// Survey question type: comment
 		/// </summary>
 		public string OtherOptionsForDisclosureAdditonalInfo { get; set; }
@@ -199,7 +207,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_7_0_details<br/>
-		/// Explain the medical data elements disclosed<br/>
+		/// Please provide a description of the medical data elements disclosed, withou...<br/>
 		/// Required condition: {DataElementsDisclosed} contains 'medical'<br/>
 		/// Survey question type: comment
 		/// </summary>
@@ -207,7 +215,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_7_0_details<br/>
-		/// Explain the financial data elements disclosed<br/>
+		/// Please provide a description of the the financial data elements disclosed, ...<br/>
 		/// Required condition: {DataElementsDisclosed} contains 'financial'<br/>
 		/// Survey question type: comment
 		/// </summary>
@@ -215,7 +223,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_7_0_details<br/>
-		/// Explain the interaction with Government of Canada data elements disclosed<br/>
+		/// Explain the interaction with Government of Canada data elements disclosed. ...<br/>
 		/// Required condition: {DataElementsDisclosed} contains 'interaction_goc'<br/>
 		/// Survey question type: comment
 		/// </summary>
