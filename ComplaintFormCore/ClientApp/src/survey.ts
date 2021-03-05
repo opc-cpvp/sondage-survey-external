@@ -84,6 +84,10 @@ export abstract class SurveyBase {
         currentPage.scrollToTop();
     }
 
+    public getSurveyModel(): SurveyModel {
+        return this.survey;
+    }
+
     public loadSurveyFromUrl(surveyUrl: string): Promise<void> {
         return fetch(surveyUrl)
             .then(response => response.json())

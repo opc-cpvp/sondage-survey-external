@@ -10,7 +10,8 @@ import {
     QuestionHtmlModel,
     QuestionMatrixDynamicModel,
     QuestionPanelDynamicModel,
-    QuestionSelectBase
+    QuestionSelectBase,
+    SurveyModel
 } from "survey-vue";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
@@ -31,26 +32,23 @@ export class surveyPdfExport {
         // compress: true
     };
 
-    public exportToPDF(filename: string, jsonUrl: string, lang: string, storageName: string, pdf_page_title: MultiLanguageProperty): void {
+    public exportToPDF(
+        filename: string,
+        jsonUrl: string,
+        lang: string,
+        surveyModel: SurveyModel,
+        pdf_page_title: MultiLanguageProperty
+    ): void {
         void fetch(jsonUrl)
             .then(response => response.json())
             .then(json_pdf => {
                 //  Modify the json to strip out what we don't want
                 const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang, pdf_page_title);
 
-                //  Getting the data from browser local storage
-                const storageSt = window.localStorage.getItem(storageName) || "";
+                //  Then construct a new survey pdf object with the modified json
+                const survey_pdf = this.initSurveyPDF(modifiedJson, surveyModel, lang);
 
-                if (storageSt) {
-                    const res = JSON.parse(storageSt);
-
-                    if (res.data) {
-                        //  Then construct a new survey pdf object with the modified json
-                        const survey_pdf = this.initSurveyPDF(modifiedJson, res.data, lang);
-
-                        void survey_pdf.save(filename);
-                    }
-                }
+                void survey_pdf.save(filename);
             });
     }
 
@@ -244,12 +242,12 @@ export class surveyPdfExport {
         });
     }
 
-    private initSurveyPDF(json: string, data: any, lang: string): SurveyPDF {
+    private initSurveyPDF(json: string, surveyModel: SurveyModel, lang: string): SurveyPDF {
         //  From: https://embed.plnkr.co/qoxpmWp2XOUFlRDsk6ta/
 
         const surveyPDF = new SurveyPDF(json, this.pdfOptions);
         surveyPDF.locale = lang;
-        surveyPDF.data = data;
+        surveyPDF.data = surveyModel.data;
         surveyPDF.showQuestionNumbers = "off";
 
         //  This is to avoid the pdf to be editable
