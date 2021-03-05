@@ -1,5 +1,6 @@
 using ComplaintFormCore.Models;
 using GoC.WebTemplate.Components.Core.Services;
+using GoC.WebTemplate.Components.Entities;
 using GoC.WebTemplate.CoreMVC.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -27,7 +28,8 @@ namespace ComplaintFormCore.Controllers
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
 			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Tell OPC", Href = "/Home/TellOPC?token=" + token });
-        }
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
+		}
 
         public IActionResult Index()
         {
@@ -80,6 +82,12 @@ namespace ComplaintFormCore.Controllers
             ViewBag.token = token;
             return View();
         }
+
+		public IActionResult ContactInfo([FromQuery(Name = "token")] string token)
+		{
+			ViewBag.token = token;
+			return View();
+		}
 
         public IActionResult Test2()
         {
