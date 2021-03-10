@@ -17,31 +17,7 @@
         {
           "type": "radiogroup",
           "name": "IsLongSurvey",
-          "title": {
-            "en": "Online submission tool option",
-            "fr": ""
-          },
-          "description": {
-            "en": "",
-            "fr": ""
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Click here to proceed with the online submission tool where you will be guided through a series of questions, minimizing the amount personal information disclosed to our office. You will have the option to upload supplementary documentation. The tool encourages you to provide all necessary information for our office to complete our review, and lessens the likelihood of follow-up questions from our office.",
-                "fr": "Cliquez ici pour lancer l’outil de présentation en ligne. Vous serez alors dirigé au moyen d’une série de questions, réduisant au minimum la quantité de renseignements personnels communiquée au Commissariat. Vous aurez l’occasion de téléverser des documents additionnels. L’outil vous encourage à transmettre tous les renseignements nécessaires au Commissariat pour réaliser son examen, et afin de réduire la possibilité que vous ayez à fournir un complément d’information."
-              },
-              "value": "no"
-            },
-            {
-              "text": {
-                "en": "Click here to proceed with uploading your complete notification package only. We remind you to include only the minimum amount of personal information necessary for our office.",
-                "fr": "Cliquez ici pour téléverser l’avis complet seulement. Rappelez-vous d’inclure le minimum de renseignements personnels nécessaire au Commissariat."
-              },
-              "value": "yes"
-            }
-          ]
+          "visibleIf": "{false}"
         }
       ]
     },
