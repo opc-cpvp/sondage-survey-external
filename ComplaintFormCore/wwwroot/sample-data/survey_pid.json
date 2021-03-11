@@ -790,7 +790,8 @@
         },
         {
           "type": "matrixdynamic",
-          "name": "MultipleIndividuals",
+          "name": "mtx_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
           "isRequired": true,
           "title": {
@@ -868,94 +869,109 @@
       "visibleIf": "{IsLongSurvey} contains 'yes'",
       "elements": [
         {
-          "type": "checkbox",
-          "name": "DataElementsDisclosed",
+          "type": "paneldynamic",
+          "name": "pnd_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "title": {
             "en": "Data elements disclosed",
             "fr": "Éléments d’information communiqués"
           },
-          "description": {
-            "en": "Choose all that apply.",
-            "fr": "Cochez toutes les réponses qui s’appliquent"
-          },
-          "isRequired": true,
-          "choices": [
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Name}",
+          "templateElements": [
             {
-              "text": {
-                "en": "Name",
-                "fr": "Nom"
+              "type": "checkbox",
+              "name": "DataElementsDisclosed",
+              "title": {
+                "en": "Data elements disclosed",
+                "fr": "Éléments d’information communiqués"
               },
-              "value": "name"
-            },
-            {
-              "text": {
-                "en": "Date of birth",
-                "fr": "Date de naissance"
+              "description": {
+                "en": "Choose all that apply.",
+                "fr": "Cochez toutes les réponses qui s’appliquent"
               },
-              "value": "dob"
-            },
-            {
-              "text": {
-                "en": "Home address",
-                "fr": "Adresse du domicile"
-              },
-              "value": "home_address"
-            },
-            {
-              "text": {
-                "en": "Phone number",
-                "fr": "Numéro de téléphone"
-              },
-              "value": "phone_number"
-            },
-            {
-              "text": {
-                "en": "Email address",
-                "fr": "Adresse de courriel"
-              },
-              "value": "email"
-            },
-            {
-              "text": {
-                "en": "Information related to death",
-                "fr": "Renseignements se rapportant au décès"
-              },
-              "value": "death"
-            },
-            {
-              "text": {
-                "en": "Information related to law enforcement ",
-                "fr": "Renseignements relatifs à l’application de la loi"
-              },
-              "value": "law_enforcement"
-            },
-            {
-              "text": {
-                "en": "Medical information",
-                "fr": "Renseignements médicaux"
-              },
-              "value": "medical"
-            },
-            {
-              "text": {
-                "en": "Financial information",
-                "fr": "Renseignements financiers"
-              },
-              "value": "financial"
-            },
-            {
-              "text": {
-                "en": "Details of interaction with Government of Canada",
-                "fr": "Précisions concernant l’interaction avec le gouvernement du Canada "
-              },
-              "value": "interaction_goc"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Name",
+                    "fr": "Nom"
+                  },
+                  "value": "name"
+                },
+                {
+                  "text": {
+                    "en": "Date of birth",
+                    "fr": "Date de naissance"
+                  },
+                  "value": "dob"
+                },
+                {
+                  "text": {
+                    "en": "Home address",
+                    "fr": "Adresse du domicile"
+                  },
+                  "value": "home_address"
+                },
+                {
+                  "text": {
+                    "en": "Phone number",
+                    "fr": "Numéro de téléphone"
+                  },
+                  "value": "phone_number"
+                },
+                {
+                  "text": {
+                    "en": "Email address",
+                    "fr": "Adresse de courriel"
+                  },
+                  "value": "email"
+                },
+                {
+                  "text": {
+                    "en": "Information related to death",
+                    "fr": "Renseignements se rapportant au décès"
+                  },
+                  "value": "death"
+                },
+                {
+                  "text": {
+                    "en": "Information related to law enforcement ",
+                    "fr": "Renseignements relatifs à l’application de la loi"
+                  },
+                  "value": "law_enforcement"
+                },
+                {
+                  "text": {
+                    "en": "Medical information",
+                    "fr": "Renseignements médicaux"
+                  },
+                  "value": "medical"
+                },
+                {
+                  "text": {
+                    "en": "Financial information",
+                    "fr": "Renseignements financiers"
+                  },
+                  "value": "financial"
+                },
+                {
+                  "text": {
+                    "en": "Details of interaction with Government of Canada",
+                    "fr": "Précisions concernant l’interaction avec le gouvernement du Canada "
+                  },
+                  "value": "interaction_goc"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "other"
+                }
+              ]
             }
           ]
         }
@@ -978,193 +994,208 @@
           }
         },
         {
-          "type": "comment",
-          "name": "MedicalDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'medical'",
-          "isRequired": true,
+          "type": "paneldynamic",
+          "name": "pnd_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "title": {
-            "en": "Please provide a description of the medical data elements disclosed, without involving personal information, for example “medical diagnosis”, or “medical historyExplain",
-            "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
-          }
-        },
-        {
-          "type": "comment",
-          "name": "FinancialDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'financial'",
-          "isRequired": true,
-          "title": {
-            "en": "Please provide a description of the the financial data elements disclosed, without involving personal information, for example “banking information” or “history of financial benefits",
-            "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
-          }
-        },
-        {
-          "type": "comment",
-          "name": "InteractionGOCDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'interaction_goc'",
-          "isRequired": true,
-          "title": {
-            "en": "Explain the interaction with Government of Canada data elements disclosed. Details should be outlined in response to question 6",
-            "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
-          }
-        },
-        {
-          "type": "checkbox",
-          "name": "DeathDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'death'",
-          "isRequired": true,
-          "title": {
-            "en": "Indicate the information related to death data elements disclosed",
-            "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
+            "en": "Data elements disclosed",
+            "fr": "Éléments d’information communiqués"
           },
-          "choices": [
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Name}",
+          "templateElements": [
             {
-              "text": {
-                "en": "Date of death",
-                "fr": "Date du décès"
-              },
-              "value": "date"
-            },
-            {
-              "text": {
-                "en": "Cause of death",
-                "fr": "Cause du décès"
-              },
-              "value": "cause"
-            },
-            {
-              "text": {
-                "en": "Death related reports and investigations",
-                "fr": "Enquêtes ou rapports sur le décès"
-              },
-              "value": "reports_investigations"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre "
-              },
-              "value": "other"
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DeathDisclosedExplanation_Other",
-          "visibleIf": "{DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which other information related to death was disclosed",
-            "fr": "Veuillez indiquer quelles autres informations relatives au décès ont été divulguées"
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "MedicalDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'medical'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Please provide a description of the medical data elements disclosed, without involving personal information, for example “medical diagnosis”, or “medical historyExplain",
+                "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
               }
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "name": "InfoLawEnforcementDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement'",
-          "title": {
-            "en": "Indicate the information related to law enforcement data elements disclosed",
-            "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Charges",
-                "fr": "Mises en accusation"
-              },
-              "value": "charges"
             },
             {
-              "text": {
-                "en": "Convictions",
-                "fr": "Condamnations"
-              },
-              "value": "convictions"
-            },
-            {
-              "text": {
-                "en": "Criminal record (where no record suspension has been ordered)",
-                "fr": "Casier judiciaire (lorsqu’aucune suspension de casier n’a été ordonnée)"
-              },
-              "value": "criminal_record"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "InfoLawEnforcementDisclosedExplanation_Other",
-          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which other information related to law enforcement was disclosed",
-            "fr": "Veuillez indiquer quelles autres renseignements relatives à l'application des lois ont été divulguées"
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "FinancialDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'financial'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Please provide a description of the the financial data elements disclosed, without involving personal information, for example “banking information” or “history of financial benefits",
+                "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
               }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "OtherDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Indicate the other data element(s) disclosed",
-            "fr": ""
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
+            },
             {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "InteractionGOCDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'interaction_goc'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Explain the interaction with Government of Canada data elements disclosed. Details should be outlined in response to question 6",
+                "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
               }
+            },
+            {
+              "type": "checkbox",
+              "name": "DeathDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'death'",
+              "isRequired": true,
+              "title": {
+                "en": "Indicate the information related to death data elements disclosed",
+                "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Date of death",
+                    "fr": "Date du décès"
+                  },
+                  "value": "date"
+                },
+                {
+                  "text": {
+                    "en": "Cause of death",
+                    "fr": "Cause du décès"
+                  },
+                  "value": "cause"
+                },
+                {
+                  "text": {
+                    "en": "Death related reports and investigations",
+                    "fr": "Enquêtes ou rapports sur le décès"
+                  },
+                  "value": "reports_investigations"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre "
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "DeathDisclosedExplanation_Other",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'death' and {panel.DeathDisclosedExplanation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which other information related to death was disclosed",
+                "fr": "Veuillez indiquer quelles autres informations relatives au décès ont été divulguées"
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "InfoLawEnforcementDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'law_enforcement'",
+              "title": {
+                "en": "Indicate the information related to law enforcement data elements disclosed",
+                "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Charges",
+                    "fr": "Mises en accusation"
+                  },
+                  "value": "charges"
+                },
+                {
+                  "text": {
+                    "en": "Convictions",
+                    "fr": "Condamnations"
+                  },
+                  "value": "convictions"
+                },
+                {
+                  "text": {
+                    "en": "Criminal record (where no record suspension has been ordered)",
+                    "fr": "Casier judiciaire (lorsqu’aucune suspension de casier n’a été ordonnée)"
+                  },
+                  "value": "criminal_record"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "InfoLawEnforcementDisclosedExplanation_Other",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'law_enforcement' and {panel.InfoLawEnforcementDisclosedExplanation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which other information related to law enforcement was disclosed",
+                "fr": "Veuillez indiquer quelles autres renseignements relatives à l'application des lois ont été divulguées"
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "OtherDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Indicate the other data element(s) disclosed",
+                "fr": ""
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
             }
           ]
         }

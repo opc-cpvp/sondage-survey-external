@@ -92,6 +92,8 @@ export class PidSurvey extends SurveyBase {
                         }
                     }
                 });
+
+                return;
             }
 
             options.complete();
