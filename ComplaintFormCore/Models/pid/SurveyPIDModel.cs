@@ -10,7 +10,7 @@ namespace ComplaintFormCore.Models
 		/// Possible choices: []<br/>
 		/// Survey question type: radiogroup
 		/// </summary>
-		public string IsLongSurvey { get; set; }
+		public bool IsLongSurvey { get; set; }
 
 		/// <summary>
 		/// Page: page_q_1_0<br/>

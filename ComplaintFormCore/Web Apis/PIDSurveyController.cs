@@ -24,7 +24,7 @@ namespace ComplaintFormCore.Web_Apis
 		[HttpPost]
 		public IActionResult Complete([FromBody] SurveyPIDModel model, [FromQuery] string complaintId, [FromQuery] string isLongSurvey)
 		{
-			model.IsLongSurvey = isLongSurvey;
+			model.IsLongSurvey = isLongSurvey == "true";
 
 			OPCProblemDetails problems = _Validate(model);
 
@@ -39,7 +39,7 @@ namespace ComplaintFormCore.Web_Apis
 		[HttpPost]
 		public IActionResult Validate([FromBody] SurveyPIDModel model, [FromQuery] string complaintId, [FromQuery] string isLongSurvey)
 		{
-			model.IsLongSurvey = isLongSurvey;
+			model.IsLongSurvey = isLongSurvey == "true";
 
 			OPCProblemDetails problems = _Validate(model);
 

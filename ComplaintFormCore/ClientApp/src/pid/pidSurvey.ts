@@ -7,7 +7,7 @@ import { FileMeterWidget } from "../widgets/filemeterwidget";
 export class PidSurvey extends SurveyBase {
     private authToken: string;
     private textBoxesMaxLength = 100;
-    private isLongSurvey: string;
+    private isLongSurvey: boolean;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string, isShortSurvey: boolean) {
         super(locale, storageName);
@@ -15,10 +15,10 @@ export class PidSurvey extends SurveyBase {
 
         if (isShortSurvey === true) {
             this.survey.setVariable("IsLongSurvey", "no");
-            this.isLongSurvey = "no";
+            this.isLongSurvey = false;
         } else {
             this.survey.setVariable("IsLongSurvey", "yes");
-            this.isLongSurvey = "yes";
+            this.isLongSurvey = true;
         }
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
@@ -60,7 +60,7 @@ export class PidSurvey extends SurveyBase {
             return;
         }
 
-        const validationUrl = `/api/PIDSurvey/Validate?complaintId=${this.authToken}&isLongSurvey=${this.isLongSurvey}`;
+        const validationUrl = `/api/PIDSurvey/Validate?complaintId=${this.authToken}&isLongSurvey=${this.isLongSurvey.toString()}`;
 
         void (async () => {
             // Validate the survey results
@@ -115,7 +115,7 @@ export class PidSurvey extends SurveyBase {
 
     private handleOnComplete(sender: SurveyModel, options: any): void {
         void (async () => {
-            const completeUrl = `/api/PIDSurvey/Complete?complaintId=${this.authToken}&isLongSurvey=${this.isLongSurvey}`;
+            const completeUrl = `/api/PIDSurvey/Complete?complaintId=${this.authToken}&isLongSurvey=${this.isLongSurvey.toString()}`;
 
             options.showDataSaving();
 
