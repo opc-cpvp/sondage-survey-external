@@ -936,6 +936,110 @@ namespace ComplaintFormCore.Models
 			// SupplementaryMaterialFiles (Page: page_step_3_13_1)
 			RuleFor(x => x.SupplementaryMaterialFiles).NotEmpty().When(x => x.SupplementaryMaterials == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 
+			// WillITLegacySystemRetained_IsIncludeRisk (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_IsIncludeRisk).NotEmpty().When(x => x.WillITLegacySystemRetained == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+			// WillITLegacySystemRetained_RiskDescription (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_RiskDescription).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_RiskDescription).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_NotIncludeRiskDetails (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_NotIncludeRiskDetails).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_NotIncludeRiskDetails).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == false).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_RiskType (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_RiskType).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_RiskType).Must(x => new List<string> { "privacy_risk", "compliance_risk" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_PrivacyPrinciples (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_PrivacyPrinciples).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "privacy_risk").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleForEach(x => x.WillITLegacySystemRetained_PrivacyPrinciples).Must(x => new List<string> { "accountability", "accuracy", "challenging_compliance", "consent", "direct_purpose", "individual_access", "limiting_collection", "limiting_use", "limiting_disclosure", "limiting_retention", "openness", "safeguards" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "privacy_risk").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_ComplianceType (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceType).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceType).Must(x => new List<string> { "law_regulation", "governement", "internal" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_ComplianceTypeLawRegulation (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulation).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulation).Must(x => new List<string> { "privacy_act", "privacy_regulations", "other" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_ComplianceTypeLawRegulationSection (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationSection).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && new List<string>() { x.WillITLegacySystemRetained_ComplianceTypeLawRegulation }.Intersect(new List<string>() { "privacy_act", "privacy_regulations" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationSection).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && new List<string>() { x.WillITLegacySystemRetained_ComplianceTypeLawRegulation }.Intersect(new List<string>() { "privacy_act", "privacy_regulations" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && x.WillITLegacySystemRetained_ComplianceTypeLawRegulation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && x.WillITLegacySystemRetained_ComplianceTypeLawRegulation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection2 (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection2).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && x.WillITLegacySystemRetained_ComplianceTypeLawRegulation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection2).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "law_regulation" && x.WillITLegacySystemRetained_ComplianceTypeLawRegulation == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_GouvernmentDirectivesPolicies (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies).Must(x => new List<string> { "policy_privacy_protection", "policy_gov_security", "directive_privacy_practices", "directive_impact_Assessment", "directive_security", "directive_automated", "directive_sin", "other" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement").WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_DirectivesPoliciesSection (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSection).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && new List<string>() { x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies }.Intersect(new List<string>() { "policy_privacy_protection", "policy_gov_security", "directive_privacy_practices", "directive_impact_Assessment", "directive_security", "directive_automated", "directive_sin" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSection).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && new List<string>() { x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies }.Intersect(new List<string>() { "policy_privacy_protection", "policy_gov_security", "directive_privacy_practices", "directive_impact_Assessment", "directive_security", "directive_automated", "directive_sin" }).Any()).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_DirectivesPoliciesSectionOther (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSectionOther).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSectionOther).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_DirectivesPoliciesSectionOther2 (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSectionOther2).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_DirectivesPoliciesSectionOther2).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "governement" && x.WillITLegacySystemRetained_GouvernmentDirectivesPolicies == "other").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_InternalDirectivesPoliciesName (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesName).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesName).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_InternalDirectivesPoliciesSections (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesSections).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesSections).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_InternalDirectivesPoliciesCopySections (Page: page_step_4_WillITLegacySystemRetained)
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesCopySections).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_InternalDirectivesPoliciesCopySections).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_RiskType == "compliance_risk" && x.WillITLegacySystemRetained_ComplianceType == "internal").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_RiskLikelihood (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_RiskLikelihood).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_RiskImpactIndividuals (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_RiskImpactIndividuals).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_RiskImpactInstitution (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_RiskImpactInstitution).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ScaleOption (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_ScaleOption).Must(x => new List<string> { "manually", "upload" }.Contains(x)).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("SelectedValueNotValid"));
+
+			// WillITLegacySystemRetained_Scale (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_Scale).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_ScaleOption == "manually").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_Scale).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_ScaleOption == "manually").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_FilesRiskScale (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_FilesRiskScale).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true && x.WillITLegacySystemRetained_ScaleOption == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+
+			// WillITLegacySystemRetained_ProposedMitigation (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_ProposedMitigation).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ProposedMitigation).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ResponseManagement (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_ResponseManagement).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ResponsibleSection (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_ResponsibleSection).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_ResponsibleSection).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_ResponsiblePosition (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_ResponsiblePosition).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
+			// WillITLegacySystemRetained_AnticipatedDateImplementation (Page: page_step_4_WillITLegacySystemRetained_CalculRisk)
+			RuleFor(x => x.WillITLegacySystemRetained_AnticipatedDateImplementation).NotEmpty().When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
+			RuleFor(x => x.WillITLegacySystemRetained_AnticipatedDateImplementation).Length(0, 2000).When(x => x.WillITLegacySystemRetained == false && x.WillITLegacySystemRetained_IsIncludeRisk == true).WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsOverCharacterLimit"));
+
 			// BehalfMultipleInstitutionOthers
 			RuleForEach(x => x.BehalfMultipleInstitutionOthers).ChildRules(child => {
 				// OtherInstitutionHeadFullname (Page: page_step_2_1_q_2_1_6)

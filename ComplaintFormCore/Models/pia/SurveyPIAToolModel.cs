@@ -609,7 +609,7 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Page: page_step_3_1_q_3_1_3<br/>
 		/// Section: 3<br/>
-		/// Please describe how the institution will measure the program or activity's ...<br/>
+		/// Please describe how the institution will measure the program or activity’s ...<br/>
 		/// Required condition: {DoesMeasureEffectiveness} = true<br/>
 		/// Survey question type: comment
 		/// </summary>
@@ -678,7 +678,7 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Page: page_step_3_2_q_3_2_1<br/>
 		/// Section: 3<br/>
-		/// Is the following individual responsible for your institution's compliance w...<br/>
+		/// Is the following individual responsible for your institution’s compliance w...<br/>
 		/// Survey question type: boolean
 		/// </summary>
 		public bool? IsHeadYourInstitutionResponsibleWithPA { get; set; }
@@ -686,7 +686,7 @@ namespace ComplaintFormCore.Models
 		/// <summary>
 		/// Page: page_step_3_2_q_3_2_1<br/>
 		/// Section: 3<br/>
-		/// Who is responsible for your institution's compliance with the <em>Privacy A...<br/>
+		/// Who is responsible for your institution’s compliance with the <em>Privacy A...<br/>
 		/// Required condition: {IsHeadYourInstitutionResponsibleWithPA} = false<br/>
 		/// Survey question type: comment
 		/// </summary>
@@ -2000,6 +2000,250 @@ namespace ComplaintFormCore.Models
 		/// </summary>
 		public List<SurveyFile> SupplementaryMaterialFiles { get; set; }
 
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Earlier, you responded to a question that generated the need to answer a ri...<br/>
+		/// Survey question type: boolean
+		/// </summary>
+		public bool? WillITLegacySystemRetained_IsIncludeRisk { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Here is how the risk will appear in the table of privacy risks. Would you l...<br/>
+		/// Required condition: {WillITLegacySystemRetained_IsIncludeRisk} = true<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_RiskDescription { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please provide a brief explanation as to why the institution does not plan ...<br/>
+		/// Required condition: {WillITLegacySystemRetained_IsIncludeRisk} = false<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_NotIncludeRiskDetails { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Is this risk a privacy risk or a compliance risk? (4.2.1)<br/>
+		/// Possible choices: [privacy_risk, compliance_risk]<br/>
+		/// Required condition: {WillITLegacySystemRetained_IsIncludeRisk} = true<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string WillITLegacySystemRetained_RiskType { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which of the privacy principles apply to this risk (4.2.2)<br/>
+		/// Possible choices: [accountability, accuracy, challenging_compliance, consent, direct_purpose, individual_access, limiting_collection, limiting_use, limiting_disclosure, limiting_retention, openness, safeguards]<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> WillITLegacySystemRetained_PrivacyPrinciples { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate the type of non-compliance (4.2.3)<br/>
+		/// Possible choices: [law_regulation, governement, internal]<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string WillITLegacySystemRetained_ComplianceType { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate the applicable Government of Canada Law or regulation (4.2....<br/>
+		/// Possible choices: [privacy_act, privacy_regulations, other]<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'law_regulation'<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string WillITLegacySystemRetained_ComplianceTypeLawRegulation { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which section of the Law or regulation is at risk for non-c...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'law_regulation' and {WillITLegacySystemRetained_ComplianceTypeLawRegulation} anyof ['privacy_act','privacy_regulations']<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ComplianceTypeLawRegulationSection { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which Law or regulation that is at risk for non-compliance ...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'law_regulation' and {WillITLegacySystemRetained_ComplianceTypeLawRegulation} contains 'other'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which applicable section that is at risk for non-compliance...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'law_regulation' and {WillITLegacySystemRetained_ComplianceTypeLawRegulation} contains 'other'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ComplianceTypeLawRegulationOtherSection2 { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate the applicable with Government of Canada directive, policy ...<br/>
+		/// Possible choices: [policy_privacy_protection, policy_gov_security, directive_privacy_practices, directive_impact_Assessment, directive_security, directive_automated, directive_sin, other]<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'governement'<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string WillITLegacySystemRetained_GouvernmentDirectivesPolicies { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which section of the directive, policy instruments or proce...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'governement' and {WillITLegacySystemRetained_GouvernmentDirectivesPolicies} anyof ['policy_privacy_protection','policy_gov_security','directive_privacy_practices','directive_impact_Assessment','directive_security','directive_automated','directive_sin']<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_DirectivesPoliciesSection { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which directive, policy instruments or procedural document ...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'governement' and {WillITLegacySystemRetained_GouvernmentDirectivesPolicies} contains 'other'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_DirectivesPoliciesSectionOther { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which applicable section, that is at risk for non-complianc...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'governement' and {WillITLegacySystemRetained_GouvernmentDirectivesPolicies} contains 'other'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_DirectivesPoliciesSectionOther2 { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate the applicable internal directive, policy instruments or pr...<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'internal'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_InternalDirectivesPoliciesName { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please indicate which applicable sections for reference.<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'internal'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_InternalDirectivesPoliciesSections { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained<br/>
+		/// Section: 4<br/>
+		/// Please provide a copy of the applicable sections for reference.<br/>
+		/// Required condition: {WillITLegacySystemRetained_ComplianceType} contains 'internal'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_InternalDirectivesPoliciesCopySections { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Likelihood<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_RiskLikelihood { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Level of impact on individuals<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_RiskImpactIndividuals { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Level of impact on the institution<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_RiskImpactInstitution { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Enter the explanation of scale used or upload a copy of the institution’s r...<br/>
+		/// Possible choices: [manually, upload]<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public string WillITLegacySystemRetained_ScaleOption { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Explanation of scale used or copy of institution’s risk assessment scale<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_Scale { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Required condition: {WillITLegacySystemRetained_ScaleOption} contains 'upload'<br/>
+		/// Survey question type: file
+		/// </summary>
+		public List<SurveyFile> WillITLegacySystemRetained_FilesRiskScale { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Please outline the institution’s proposed mitigation<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ProposedMitigation { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Please outline the institution’s response from Management<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ResponseManagement { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Please indicate who will be responsible (section) for overseeing the applic...<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ResponsibleSection { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Please indicate who will be responsible (party/position) for overseeing the...<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_ResponsiblePosition { get; set; }
+
+		/// <summary>
+		/// Page: page_step_4_WillITLegacySystemRetained_CalculRisk<br/>
+		/// Section: 4<br/>
+		/// Please indicate the anticipated date of implementation of mitigating measur...<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string WillITLegacySystemRetained_AnticipatedDateImplementation { get; set; }
+
 
 		public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
@@ -2247,4 +2491,3 @@ namespace ComplaintFormCore.Models
 
 	}
 }
-

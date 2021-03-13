@@ -10,6 +10,7 @@ import {
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
+import { WillITLegacySystemRetained } from "./piaRiskDescriptionDefault";
 
 export class PiaSurvey extends SurveyBase {
     private authToken: string;
@@ -77,6 +78,10 @@ export class PiaSurvey extends SurveyBase {
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
             this.setNavigationBreadcrumbs(sender);
         });
+
+        this.survey.onValueChanging.add((sender: SurveyModel, options: any) => {
+            this.handleOnValueChanging(sender, options);
+        });
     }
 
     protected registerCustomProperties(): void {
@@ -121,6 +126,26 @@ export class PiaSurvey extends SurveyBase {
         const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
         if (li_breadcrumb) {
             li_breadcrumb.className += " active";
+        }
+    }
+
+    private handleOnValueChanging(surveyObj: SurveyModel, options: any): void {
+        switch (options.question.name) {
+            case "WillITLegacySystemRetained_IsIncludeRisk": {
+                if (options.question.value === true) {
+                    const descriptionQ = surveyObj.getQuestionByName("WillITLegacySystemRetained_RiskDescription");
+                    if (descriptionQ === null) {
+                        return;
+                    }
+
+                    //  Setup the default value
+                    descriptionQ.value = WillITLegacySystemRetained;
+                }
+                break;
+            }
+            default: {
+                break;
+            }
         }
     }
 
