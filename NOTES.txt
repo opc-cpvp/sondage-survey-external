@@ -191,3 +191,586 @@
         };
 
 *************************************************************************************************
+{
+      "name": "page_step_4_XXX",
+      "title": {
+        "en": "Risk question - IT legacy systems and services",
+        "fr": ""
+      },
+      "visibleIf": "{XXX} = false",
+      "section": "4",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "XXX_IsIncludeRisk",
+          "isRequired": true,
+          "title": {
+            "en": "Earlier, you responded to a question that generated the need to answer a risk question. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
+            "fr": ""
+          },
+          "description": {
+            "en": "You responded “No”  to *COPY THE QUESTION*",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "XXX_RiskDescription",
+          "visibleIf": "{XXX_IsIncludeRisk} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Here is how the risk will appear in the table of privacy risks. Would you like to modify this?",
+            "fr": ""
+          },
+          "description": {
+            "en": "If needed, modify the description of the risk to how you would like it to appear in your table of privacy risks",
+            "fr": ""
+          }
+        },
+        {
+          "type": "comment",
+          "name": "XXX_NotIncludeRiskDetails",
+          "visibleIf": "{XXX_IsIncludeRisk} = false",
+          "isRequired": true,
+          "title": {
+            "en": "Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk,",
+            "fr": ""
+          }
+        },
+        {
+          "type": "radiogroup",
+          "name": "XXX_RiskType",
+          "visibleIf": "{XXX_IsIncludeRisk} = true",
+          "isRequired": true,
+          "title": {
+            "en": "Is this risk a privacy risk or a compliance risk? (4.2.1)",
+            "fr": ""
+          },
+          "description": {
+            "en": "<p><section class='alert alert-info'><p>Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p></section></p>",
+            "fr": ""
+          },
+          "choices": [
+            {
+              "text": {
+                "en": "Privacy Risk",
+                "fr": ""
+              },
+              "value": "privacy_risk"
+            },
+            {
+              "text": {
+                "en": "Compliance Risk",
+                "fr": ""
+              },
+              "value": "compliance_risk"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnd_XXX_PrivacyRisk",
+          "visibleIf": "{XXX_IsIncludeRisk} = true and {XXX_RiskType} contains 'privacy_risk'",
+          "title": {
+            "en": "Privacy risk",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "checkbox",
+              "name": "XXX_PrivacyPrinciples",
+              "title": {
+                "en": "Please indicate which of the privacy principles apply to this risk (4.2.2)",
+                "fr": ""
+              },
+              "description": {
+                "en": "Select all that apply",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Accountability",
+                    "fr": ""
+                  },
+                  "value": "accountability"
+                },
+                {
+                  "text": {
+                    "en": "Accuracy",
+                    "fr": ""
+                  },
+                  "value": "accuracy"
+                },
+                {
+                  "text": {
+                    "en": "Challenging Compliance",
+                    "fr": ""
+                  },
+                  "value": "challenging_compliance"
+                },
+                {
+                  "text": {
+                    "en": "Consent",
+                    "fr": ""
+                  },
+                  "value": "consent"
+                },
+                {
+                  "text": {
+                    "en": "Direct Collection & Purpose Identification",
+                    "fr": ""
+                  },
+                  "value": "direct_purpose"
+                },
+                {
+                  "text": {
+                    "en": "Individual Access",
+                    "fr": ""
+                  },
+                  "value": "individual_access"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Collection",
+                    "fr": ""
+                  },
+                  "value": "limiting_collection"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Use",
+                    "fr": ""
+                  },
+                  "value": "limiting_use"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Disclosure",
+                    "fr": ""
+                  },
+                  "value": "limiting_disclosure"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Retention",
+                    "fr": ""
+                  },
+                  "value": "limiting_retention"
+                },
+                {
+                  "text": {
+                    "en": "Openness",
+                    "fr": ""
+                  },
+                  "value": "openness"
+                },
+                {
+                  "text": {
+                    "en": "Safeguards",
+                    "fr": ""
+                  },
+                  "value": "safeguards"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnd_XXX_ComplainceRisk",
+          "visibleIf": "{XXX_IsIncludeRisk} = true and {XXX_RiskType} contains 'compliance_risk'",
+          "title": {
+            "en": "Complaince risk",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "radiogroup",
+              "name": "XXX_ComplianceType",
+              "title": {
+                "en": "Please indicate the type of non-compliance (4.2.3)",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Non-compliance with Government of Canada Law or regulation",
+                    "fr": ""
+                  },
+                  "value": "law_regulation"
+                },
+                {
+                  "text": {
+                    "en": "Non-compliance with Government of Canada directive, policy instruments or procedural documents",
+                    "fr": ""
+                  },
+                  "value": "governement"
+                },
+                {
+                  "text": {
+                    "en": "Non-compliance with directive, policy instruments or procedural documents that are internal to the institution",
+                    "fr": ""
+                  },
+                  "value": "internal"
+                }
+              ]
+            },
+            {
+              "type": "radiogroup",
+              "name": "XXX_ComplianceTypeLawRegulation",
+              "visibleIf": "{XXX_ComplianceType} contains 'law_regulation'",
+              "title": {
+                "en": "Please indicate the applicable Government of Canada Law or regulation (4.2.4A)",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Privacy Act",
+                    "fr": ""
+                  },
+                  "value": "privacy_act"
+                },
+                {
+                  "text": {
+                    "en": "Privacy Regulations",
+                    "fr": ""
+                  },
+                  "value": "privacy_regulations"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ComplianceTypeLawRegulationSection",
+              "visibleIf": "{XXX_ComplianceType} contains 'law_regulation' and {XXX_ComplianceTypeLawRegulation} anyof ['privacy_act','privacy_regulations']",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which section of the Law or regulation is at risk for non-compliance (4.2.4A)",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ComplianceTypeLawRegulationOtherSection",
+              "visibleIf": "{XXX_ComplianceType} contains 'law_regulation' and {XXX_ComplianceTypeLawRegulation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which Law or regulation that is at risk for non-compliance (4.2.4A)",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ComplianceTypeLawRegulationOtherSection2",
+              "visibleIf": "{XXX_ComplianceType} contains 'law_regulation' and {XXX_ComplianceTypeLawRegulation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which applicable section that is at risk for non-compliance (4.2.4A)",
+                "fr": ""
+              }
+            },
+            {
+              "type": "radiogroup",
+              "name": "XXX_GouvernmentDirectivesPolicies",
+              "visibleIf": "{XXX_ComplianceType} contains 'governement'",
+              "title": {
+                "en": "Please indicate the applicable with Government of Canada directive, policy instruments or procedural documents (4.2.4B)",
+                "fr": ""
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Policy on Privacy Protection",
+                    "fr": ""
+                  },
+                  "value": "policy_privacy_protection"
+                },
+                {
+                  "text": {
+                    "en": "Policy on Government Security",
+                    "fr": ""
+                  },
+                  "value": "policy_gov_security"
+                },
+                {
+                  "text": {
+                    "en": "Directive on Privacy Practices",
+                    "fr": ""
+                  },
+                  "value": "directive_privacy_practices"
+                },
+                {
+                  "text": {
+                    "en": "Directive on Privacy Impact Assessment",
+                    "fr": ""
+                  },
+                  "value": "directive_impact_Assessment"
+                },
+                {
+                  "text": {
+                    "en": "Directive on Security Management",
+                    "fr": ""
+                  },
+                  "value": "directive_security"
+                },
+                {
+                  "text": {
+                    "en": "Directive on Automated Decision Making",
+                    "fr": ""
+                  },
+                  "value": "directive_automated"
+                },
+                {
+                  "text": {
+                    "en": "Directive on Social Insurance Number",
+                    "fr": ""
+                  },
+                  "value": "directive_sin"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": ""
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "XXX_DirectivesPoliciesSection",
+              "visibleIf": "{XXX_ComplianceType} contains 'governement' and {XXX_GouvernmentDirectivesPolicies} anyof ['policy_privacy_protection','policy_gov_security','directive_privacy_practices','directive_impact_Assessment','directive_security','directive_automated','directive_sin']",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which section of the directive, policy instruments or procedural document is at risk for non-compliance (4.2.4B)",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_DirectivesPoliciesSectionOther",
+              "visibleIf": "{XXX_ComplianceType} contains 'governement' and {XXX_GouvernmentDirectivesPolicies} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which directive, policy instruments or procedural document that is at risk for non-compliance",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_DirectivesPoliciesSectionOther2",
+              "visibleIf": "{XXX_ComplianceType} contains 'governement' and {XXX_GouvernmentDirectivesPolicies} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which applicable section, that is at risk for non-compliance",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_InternalDirectivesPoliciesName",
+              "visibleIf": "{XXX_ComplianceType} contains 'internal'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate the applicable internal directive, policy instruments or procedural document.",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_InternalDirectivesPoliciesSections",
+              "visibleIf": "{XXX_ComplianceType} contains 'internal'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which applicable sections for reference.",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_InternalDirectivesPoliciesCopySections",
+              "visibleIf": "{XXX_ComplianceType} contains 'internal'",
+              "isRequired": true,
+              "title": {
+                "en": "Please provide a copy of the applicable sections for reference.",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_4_XXX_CalculRisk",
+      "title": {
+        "en": "Risk question - IT legacy systems and services",
+        "fr": ""
+      },
+      "visibleIf": "{XXX} = false and {XXX_IsIncludeRisk} = true",
+      "section": "4",
+      "elements": [
+        {
+          "type": "panel",
+          "name": "pnl_XXX_RiskCalcul",
+          "title": {
+            "en": "Risk rating calculation",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "html",
+              "html": {
+                "en": "<section class='alert alert-info'><p>Now you need to calculate the risk rating, for which two calculations are required:</p><ul><li>The <strong>likelihood</strong> of the incident occurring; and</li><li>The extent of the <strong>impact</strong> on privacy rights or harm, if it occurs.</li></ul><p>As there is no standardized method of calculating likelihood or impact of privacy risk within the GC, you institution has likely developed its own risk assessment scale. Please use this scale to complete this section of the PIA. If your institution has not developed a risk assessment scale, you may use a simple high/medium/low or 1-5 ranking; if you do, please provide a description with your answer. You should verify this with your ATIP team.</p></section>",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_RiskLikelihood",
+              "title": {
+                "en": "Likelihood",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_RiskImpactIndividuals",
+              "title": {
+                "en": "Level of impact on individuals",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_RiskImpactInstitution",
+              "title": {
+                "en": "Level of impact on the institution",
+                "fr": ""
+              }
+            },
+            {
+              "type": "radiogroup",
+              "name": "XXX_ScaleOption",
+              "title": {
+                "en": "Enter the explanation of scale used or upload a copy of the institution’s risk assessment scale",
+                "fr": ""
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Manually",
+                    "fr": ""
+                  },
+                  "value": "manually"
+                },
+                {
+                  "text": {
+                    "en": "Upload",
+                    "fr": ""
+                  },
+                  "value": "upload"
+                }
+              ]
+            },
+            {
+              "type": "comment",
+              "name": "XXX_Scale",
+              "visibleIf": "{XXX_ScaleOption} contains 'manually'",
+              "title": {
+                "en": "Explanation of scale used or copy of institution’s risk assessment scale",
+                "fr": ""
+              }
+            },
+            {
+              "type": "file",
+              "name": "XXX_FilesRiskScale",
+              "visibleIf": "{XXX_ScaleOption} contains 'upload'",
+              "titleLocation": "hidden",
+              "description": {
+                "en": "Upload a copy of the institution’s risk assessment scale",
+                "fr": ""
+              },
+              "hasComment": false,
+              "allowMultiple": true,
+              "waitForUpload": false,
+              "maxSize": 0,
+              "storeDataAsText": false,
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "pnd_XXX_Mitigation",
+          "title": {
+            "en": "Mitigation",
+            "fr": ""
+          },
+          "elements": [
+            {
+              "type": "comment",
+              "name": "XXX_ProposedMitigation",
+              "isRequired": true,
+              "title": {
+                "en": "Please outline the institution’s proposed mitigation",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ResponseManagement",
+              "title": {
+                "en": "Please outline the institution’s response from Management",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ResponsibleSection",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate who will be responsible (section) for overseeing the application of the proposed mitigation",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_ResponsiblePosition",
+              "title": {
+                "en": "Please indicate who will be responsible (party/position) for overseeing the application of the proposed mitigation",
+                "fr": ""
+              }
+            },
+            {
+              "type": "comment",
+              "name": "XXX_AnticipatedDateImplementation",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate the anticipated date of implementation of mitigating measures",
+                "fr": ""
+              },
+              "description": {
+                "en": "Please be as specific as possible; if you are unable to provide an exact date, you should put the month or quarter of the year.",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    }

@@ -10,7 +10,12 @@ import {
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
-import { WillITLegacySystemRetained } from "./piaRiskDescriptionDefault";
+import {
+    DoesStaffReceivedTraining,
+    ProcessHandlingPrivacyComplaint_no,
+    ProcessHandlingPrivacyComplaint_yes,
+    WillITLegacySystemRetained
+} from "./piaRiskDescriptionDefault";
 
 export class PiaSurvey extends SurveyBase {
     private authToken: string;
@@ -69,6 +74,10 @@ export class PiaSurvey extends SurveyBase {
 
         this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
             this.handleOnAfterRenderQuestion(sender, options);
+        });
+
+        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderPage(sender, options);
         });
 
         this.survey.onAfterRenderSurvey.add((sender: SurveyModel, options: any) => {
@@ -139,13 +148,55 @@ export class PiaSurvey extends SurveyBase {
                     }
 
                     //  Setup the default value
-                    descriptionQ.value = WillITLegacySystemRetained;
+                    descriptionQ.value = surveyObj.locale === "fr" ? WillITLegacySystemRetained.fr : WillITLegacySystemRetained.en;
+                }
+                break;
+            }
+            case "DoesStaffReceivedTraining_IsIncludeRisk": {
+                if (options.question.value === true) {
+                    const descriptionQ = surveyObj.getQuestionByName("DoesStaffReceivedTraining_RiskDescription");
+                    if (descriptionQ === null) {
+                        return;
+                    }
+
+                    //  Setup the default value
+                    descriptionQ.value = surveyObj.locale === "fr" ? DoesStaffReceivedTraining.fr : DoesStaffReceivedTraining.en;
+                }
+                break;
+            }
+            case "ProcessHandlingPrivacyComplaint_IsIncludeRisk": {
+                if (options.question.value === true) {
+                    const descriptionQ = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint_RiskDescription");
+                    if (descriptionQ === null) {
+                        return;
+                    }
+
+                    //  We need to know the selected answer here
+                    const processHandlingPrivacyComplaint = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint");
+                    if (processHandlingPrivacyComplaint === null) {
+                        return;
+                    }
+
+                    //  Setup the default value
+                    if (processHandlingPrivacyComplaint.value === "no") {
+                        descriptionQ.value =
+                            surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_no.fr : ProcessHandlingPrivacyComplaint_no.en;
+                    } else {
+                        descriptionQ.value =
+                            surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_yes.fr : ProcessHandlingPrivacyComplaint_yes.en;
+                    }
                 }
                 break;
             }
             default: {
                 break;
             }
+        }
+    }
+
+    private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
+        if (options.page.name === "page_step_4_WillITLegacySystemRetained") {
+            // WillITLegacySystemRetained_IsIncludeRisk
         }
     }
 
