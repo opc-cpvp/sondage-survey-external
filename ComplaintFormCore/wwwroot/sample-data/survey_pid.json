@@ -861,7 +861,7 @@
         "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
-      "visibleIf": "{IsLongSurvey} contains 'yes'",
+      "visibleIf": "{IsLongSurvey} contains 'yes' and {MultipleIndividualsAddOption} contains 'directly'",
       "elements": [
         {
           "type": "paneldynamic",
@@ -978,7 +978,7 @@
         "en": "Public interest disclosure notification online submission tool - Details about elements disclosed",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
-      "visibleIf": "{IsLongSurvey} contains 'yes'",
+      "visibleIf": "{IsLongSurvey} contains 'yes' and {MultipleIndividualsAddOption} contains 'directly'",
       "elements": [
         {
           "type": "html",
