@@ -50,7 +50,7 @@
           "type": "boolean",
           "name": "HasNotificationApproved",
           "title": {
-            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process?",
+            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process for public interest disclosures?",
             "fr": "Avant de commencer. L’avis a-t-il été officiellement approuvé conformément au processus d’approbation pour la communication des renseignments personnels dans l’intérêt public au sein de votre institution?"
           },
           "description": {
@@ -223,7 +223,7 @@
             "fr": "Préavis au commissaire à la protection de la vie privée"
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional information concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
+            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional informations concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
             "fr": "<p><section class='alert alert-info'><p>Cliquez ici si vous souhaitez de fournir des renseignements supplémentaires concernant les raisons pour lesquelles il n’était pas raisonnablement possible d’aviser le Commissariat avant que la communication n’ait lieu.</p></section></p>"
           },
           "hasOther": true,
@@ -793,6 +793,10 @@
             "en": "Individual(s)",
             "fr": "Individu(s)"
           },
+          "description": {
+            "en": "If the name of the individual is not known to the institution, please indicate “unknown”",
+            "fr": ""
+          },
           "addRowText": {
             "en": "Add",
             "fr": "Ajouter"
@@ -1007,7 +1011,7 @@
               "visibleIf": "{panel.DataElementsDisclosed} contains 'medical'",
               "isRequired": true,
               "title": {
-                "en": "Please provide a description of the medical data elements disclosed, without involving personal information, for example “medical diagnosis”, or “medical historyExplain",
+                "en": "Please provide a description, without involving personal information, of the medical data elements disclosed. For example “medical diagnosis” or “medical history”.",
                 "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
               }
             },
@@ -1017,7 +1021,7 @@
               "visibleIf": "{panel.DataElementsDisclosed} contains 'financial'",
               "isRequired": true,
               "title": {
-                "en": "Please provide a description of the the financial data elements disclosed, without involving personal information, for example “banking information” or “history of financial benefits",
+                "en": "Please provide a description, without involving personal information, of the financial data elements disclosed. For example “banking information” or “history of financial benefits”.",
                 "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
               }
             },
@@ -1027,7 +1031,7 @@
               "visibleIf": "{panel.DataElementsDisclosed} contains 'interaction_goc'",
               "isRequired": true,
               "title": {
-                "en": "Explain the interaction with Government of Canada data elements disclosed. Details should be outlined in response to question 6",
+                "en": "Please explain the data elements disclosed with Government of Canada Interaction. Details should be outlined in response to question 6.",
                 "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
               }
             },
@@ -1037,7 +1041,7 @@
               "visibleIf": "{panel.DataElementsDisclosed} contains 'death'",
               "isRequired": true,
               "title": {
-                "en": "Indicate the information related to death data elements disclosed",
+                "en": "Please indicate the death data elements disclosed.",
                 "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
               },
               "choices": [
@@ -1103,7 +1107,7 @@
               "name": "InfoLawEnforcementDisclosedExplanation",
               "visibleIf": "{panel.DataElementsDisclosed} contains 'law_enforcement'",
               "title": {
-                "en": "Indicate the information related to law enforcement data elements disclosed",
+                "en": "Please indicate the law enforcement data elements disclosed.",
                 "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
               },
               "isRequired": true,
@@ -1171,7 +1175,7 @@
               "visibleIf": "{panel.DataElementsDisclosed} contains 'other'",
               "isRequired": true,
               "title": {
-                "en": "Indicate the other data element(s) disclosed",
+                "en": "Please indicate the other data element(s) disclosed.",
                 "fr": ""
               },
               "addRowText": {
@@ -1288,5 +1292,9 @@
         }
       ]
     }
-  ]
+  ],
+  "completedHtml": {
+    "en": "<section class='alert alert-info'><p>Thank you for using the portal. Your notification has been received. You should receive a response from us shortly.</p></section>",
+    "fr": "<section class='alert alert-info'><p>Merci d'utiliser le portail. Votre notification a été reçue. Vous devriez recevoir une réponse de notre part sous peu.</p></section>"
+  }
 }
