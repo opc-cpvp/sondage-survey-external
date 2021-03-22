@@ -1,6 +1,17 @@
 {
   "pages": [
     {
+      "name": "page_variables",
+      "visibleIf": "false",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsLongSurvey",
+          "isRequired": true
+        }
+      ]
+    },
+    {
       "name": "page_intro",
       "title": {
         "en": "Public interest disclosure notification online submission tool",
