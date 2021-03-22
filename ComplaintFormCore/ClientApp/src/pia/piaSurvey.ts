@@ -6,14 +6,15 @@ import {
     ItemValue,
     QuestionPanelDynamicModel,
     JsonObject,
-    QuestionSelectBase
+    QuestionSelectBase,
+    QuestionMatrixDynamicModel
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
 import {
     DoesStaffReceivedTraining,
     ProcessHandlingPrivacyComplaint_no,
-    ProcessHandlingPrivacyComplaint_yes,
+    ProcessHandlingPrivacyComplaint_yes_not_established,
     WillITLegacySystemRetained
 } from "./piaRiskDescriptionDefault";
 
@@ -183,7 +184,9 @@ export class PiaSurvey extends SurveyBase {
                             surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_no.fr : ProcessHandlingPrivacyComplaint_no.en;
                     } else {
                         descriptionQ.value =
-                            surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_yes.fr : ProcessHandlingPrivacyComplaint_yes.en;
+                            surveyObj.locale === "fr"
+                                ? ProcessHandlingPrivacyComplaint_yes_not_established.fr
+                                : ProcessHandlingPrivacyComplaint_yes_not_established.en;
                     }
                 }
                 break;
@@ -270,6 +273,56 @@ export class PiaSurvey extends SurveyBase {
             });
 
             receivingParties.choices = parties;
+        } else if (question.name === "mtx_PrivacyRisksMitigation") {
+            const mtx_rivacyRisksMitigation = question as QuestionMatrixDynamicModel;
+            if (mtx_rivacyRisksMitigation != null) {
+                mtx_rivacyRisksMitigation.value = null;
+
+                const youAnswer: string = sender.locale === "fr" ? "Vous avez repondu " : "You responded ";
+
+                // {
+                //    "name": "Name",
+                //        "cellType": "text",
+                //            "title": {
+                //        "en": "Name",
+                //            "fr": "Nom"
+                //    }
+                // }
+
+                // const WillITLegacySystemRetained = sender.getQuestionByName("WillITLegacySystemRetained");
+                // if (WillITLegacySystemRetained !== null && WillITLegacySystemRetained.value === false) {
+                //    const value: string = sender.locale === "fr" ? "Non" : "No";
+
+                //    mtx_rivacyRisksMitigation.addRow();
+
+                //    // mtx_rivacyRisksMitigation.setRowValue(0, "WillITLegacySystemRetained");
+                //    // mtx_rivacyRisksMitigation.rows[0].Text = "fsdfasdfsdf";
+
+                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("WillITLegacySystemRetained", `${youAnswer} “${value}” to “${WillITLegacySystemRetained.title}”`, "WillITLegacySystemRetained"));
+                // }
+
+                // const DoesStaffReceivedTraining = sender.getQuestionByName("DoesStaffReceivedTraining");
+                // if (DoesStaffReceivedTraining !== null && DoesStaffReceivedTraining.value === false) {
+                //    mtx_rivacyRisksMitigation.addRow();
+
+                //    // const value: string = sender.locale === "fr" ? "Non" : "No";
+                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("DoesStaffReceivedTraining", `${youAnswer} “${value}” to “${DoesStaffReceivedTraining.title}”`, "DoesStaffReceivedTraining"));
+                // }
+
+                // const ProcessHandlingPrivacyComplaint = sender.getQuestionByName("ProcessHandlingPrivacyComplaint");
+                // if (
+                //    ProcessHandlingPrivacyComplaint !== null &&
+                //    (ProcessHandlingPrivacyComplaint.value === "no" || ProcessHandlingPrivacyComplaint.value === "yes_not_established")
+                // ) {
+                //    mtx_rivacyRisksMitigation.addRow();
+
+                //    // const value: string = sender.locale === "fr" ? "Non" : "No";
+                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("ProcessHandlingPrivacyComplaint", `${youAnswer} “${ProcessHandlingPrivacyComplaint}” to “${ProcessHandlingPrivacyComplaint.title}”`, "ProcessHandlingPrivacyComplaint"));
+                // }
+
+                mtx_rivacyRisksMitigation.allowAddRows = false;
+                mtx_rivacyRisksMitigation.allowRemoveRows = false;
+            }
         }
     }
 

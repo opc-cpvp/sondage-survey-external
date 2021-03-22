@@ -7135,6 +7135,93 @@
         "en": "Step 4 – Complete a risk analysis",
         "fr": ""
       },
+      "elements": [
+        {
+          "type": "matrixdynamic",
+          "valueName": "PrivacyRisksMitigation",
+          "name": "mtx_PrivacyRisksMitigation",
+          "title": {
+            "en": "Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
+            "fr": ""
+          },
+          "rowCount ": 0,
+          "columns": [
+            {
+              "name": "name",
+              "cellType": "text",
+              "title": {
+                "en": "Question",
+                "fr": ""
+              }
+            },
+            {
+              "name": "answer",
+              "cellType": "text",
+              "title": {
+                "en": "Answer",
+                "fr": ""
+              }
+            },
+            {
+              "name": "add_privacy_risk_table",
+              "cellType": "boolean",
+              "title": {
+                "en": "Add",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_4",
+      "title": {
+        "en": "Step 4 – Complete a risk analysis",
+        "fr": ""
+      },
+      "elements": [
+        {
+          "type": "paneldynamic",
+          "name": "pnd_PrivacyRisksMitigation",
+          "valueName": "PrivacyRisksMitigation",
+          "title": {
+            "en": "missing",
+            "fr": ""
+          },
+          "description": {
+            "en": "hghgfhgfh",
+            "fr": ""
+          },
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.name}",
+          "templateElements": [
+            {
+              "type": "comment",
+              "name": "RiskDescription",
+              "visibleIf": "{panel.add_privacy_risk_table} = true",
+              "isRequired": true,
+              "title": {
+                "en": "Here is how the risk will appear in the table of privacy risks. Would you like to modify this?",
+                "fr": ""
+              },
+              "description": {
+                "en": "If needed, modify the description of the risk to how you would like it to appear in your table of privacy risks",
+                "fr": ""
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "page_step_4",
+      "title": {
+        "en": "Step 4 – Complete a risk analysis",
+        "fr": ""
+      },
       "section": "4",
       "elements": [
         {
