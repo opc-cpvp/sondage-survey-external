@@ -14,10 +14,10 @@ export class PidSurvey extends SurveyBase {
         this.authToken = authToken;
 
         if (isShortSurvey === true) {
-            this.survey.setVariable("IsLongSurvey", "no");
+            this.survey.setVariable("IsLongSurvey", false);
             this.isLongSurvey = false;
         } else {
-            this.survey.setVariable("IsLongSurvey", "yes");
+            this.survey.setVariable("IsLongSurvey", true);
             this.isLongSurvey = true;
         }
 
