@@ -38,7 +38,7 @@ namespace SurveyToCS
 					return list;
 				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)			// Group by name
+				.GroupBy(e => e.valueName ?? e.name)			// Group by element name
 				.Select(p => ParsePropertyElement(p.Key, p))
 				.ToList();
 
