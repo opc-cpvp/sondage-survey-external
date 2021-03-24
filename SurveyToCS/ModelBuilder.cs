@@ -20,27 +20,27 @@ namespace SurveyToCS
 				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
 				.Aggregate(new List<ModelProperty>(), (list, propertyElement) =>
 				{
-					var modelProperty = this.ParsePropertyElement(propertyElement.Key, propertyElement);
+					var modelProperty = ParsePropertyElement(propertyElement.Key, propertyElement);
 					list.Add(modelProperty);
 					return list;
 				});
 		}
 
-		private ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
+		private static ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
 		{
 			var property = new ModelProperty { Name = propertyName };
 
-			// get sub-properties (in the case of paneldynamic / matrix / matrixdynamic)
-			var subElements = new List<Element>();
-			subElements.AddRange(elements.SelectMany(e => e.columns ?? new List<Element>()));
-			subElements.AddRange(elements.SelectMany(e => e.templateElements ?? new List<Element>()));
-
-			var propertyElements = subElements
+			property.Properties = elements
+				.Aggregate(new List<Element>(), (list, e) =>
+				{
+					list.AddRange(e.columns		     ?? Enumerable.Empty<Element>());
+					list.AddRange(e.templateElements ?? Enumerable.Empty<Element>());
+					return list;
+				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name) // Group by valueName / name
-				.ToDictionary(e => e.Key, e => e.ToList());
-
-			property.Properties = propertyElements.Select(p => this.ParsePropertyElement(p.Key, p.Value)).ToList();
+				.GroupBy(e => e.valueName ?? e.name)			// Group by name
+				.Select(p => ParsePropertyElement(p.Key, p))
+				.ToList();
 
 			if (!property.IsCollection)
 			{
@@ -50,7 +50,7 @@ namespace SurveyToCS
 			return property;
 		}
 
-		private Type GetPropertyType(Element element)
+		private static Type GetPropertyType(Element element)
 		{
 			switch (element.cellType ?? element.type)
 			{
