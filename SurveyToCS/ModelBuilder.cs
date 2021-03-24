@@ -89,7 +89,7 @@ namespace SurveyToCS
 			return string.Empty;
 		}
 
-		public static string CreateModel(SurveyObject survey, string _namespace, string className)
+		public static string CreateModel(SurveyObject survey, string @namespace, string className)
 		{
 			var builder = new ModelBuilder(survey);
 
