@@ -7,8 +7,8 @@ namespace SurveyToCS
 {
 	public class ModelBuilder
 	{
-		private SurveyObject _survey;
-		private List<ModelProperty> _modelProperties = new List<ModelProperty>();
+		private readonly SurveyObject _survey;
+		private readonly List<ModelProperty> _modelProperties = new List<ModelProperty>();
 
 		public ModelBuilder(SurveyObject survey)
 		{
