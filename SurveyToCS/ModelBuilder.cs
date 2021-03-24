@@ -55,7 +55,7 @@ namespace SurveyToCS
 			return property;
 		}
 
-		public Type GetPropertyType(Element element)
+		private Type GetPropertyType(Element element)
 		{
 			switch (element.cellType ?? element.type)
 			{
