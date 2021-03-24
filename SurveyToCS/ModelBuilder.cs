@@ -8,30 +8,25 @@ namespace SurveyToCS
 	public class ModelBuilder
 	{
 		private readonly SurveyObject _survey;
-		private readonly List<ModelProperty> _modelProperties = new List<ModelProperty>();
+		private readonly List<ModelProperty> _modelProperties;
 
 		public ModelBuilder(SurveyObject survey)
 		{
 			this._survey = survey;
-			ParseSurvey();
-		}
 
-		private void ParseSurvey()
-		{
-			// Get top level elements
-			var propertyElements = this._survey.pages.SelectMany(p => p.elements)
+			_modelProperties = this._survey.pages
+				.SelectMany(p => p.elements)					// Select all elements on all the pages
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name) // Group by valueName / name
-				.ToDictionary(e => e.Key, e => e.ToList());
-
-			foreach (var propertyElement in propertyElements)
-			{
-				var modelProperty = this.ParsePropertyElement(propertyElement.Key, propertyElement.Value);
-				_modelProperties.Add(modelProperty);
-			}
+				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
+				.Aggregate(new List<ModelProperty>(), (list, propertyElement) =>
+				{
+					var modelProperty = this.ParsePropertyElement(propertyElement.Key, propertyElement);
+					list.Add(modelProperty);
+					return list;
+				});
 		}
 
-		private ModelProperty ParsePropertyElement(string propertyName, List<Element> elements)
+		private ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
 		{
 			var property = new ModelProperty { Name = propertyName };
 
