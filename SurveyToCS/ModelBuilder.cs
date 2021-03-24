@@ -15,12 +15,12 @@ namespace SurveyToCS
 			this._survey = survey;
 
 			_modelProperties = this._survey.pages
-				.SelectMany(p => p.elements)					// Select all elements on all the pages
+				.SelectMany(page => page.elements)		        // Select all elements on all the pages
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
 				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
-				.Aggregate(new List<ModelProperty>(), (list, propertyElement) =>
+				.Aggregate(new List<ModelProperty>(), (list, e) =>
 				{
-					var modelProperty = ParsePropertyElement(propertyElement.Key, propertyElement);
+					var modelProperty = ParsePropertyElement(e.Key, e);
 					list.Add(modelProperty);
 					return list;
 				});
@@ -39,7 +39,7 @@ namespace SurveyToCS
 				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
 				.GroupBy(e => e.valueName ?? e.name)			// Group by element name
-				.Select(p => ParsePropertyElement(p.Key, p))
+				.Select(e => ParsePropertyElement(e.Key, e))
 				.ToList();
 
 			if (!property.IsCollection)
