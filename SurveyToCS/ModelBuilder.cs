@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,106 +6,66 @@ namespace SurveyToCS
 {
 	public class ModelBuilder
 	{
-		private readonly SurveyObject _survey;
 		private readonly List<ModelProperty> _modelProperties;
 
 		public ModelBuilder(SurveyObject survey)
 		{
-			this._survey = survey;
-
-			_modelProperties = this._survey.pages
-				.SelectMany(page => page.elements)		        // Select all elements on all the pages
-				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
-				.Aggregate(new List<ModelProperty>(), (list, e) =>
-				{
-					var modelProperty = ParsePropertyElement(e.Key, e);
-					list.Add(modelProperty);
-					return list;
-				});
+			_modelProperties = new SurveyParser(survey).GetProperties();
 		}
 
-		private static ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
+		private string GenerateClasses(StringBuilder builder, ModelProperty property)
 		{
-			var property = new ModelProperty { Name = propertyName };
+			builder.AppendLine($"public class {property.Name}");
+			builder.AppendLine("{");
 
-			property.Properties = elements
-				.Aggregate(new List<Element>(), (list, e) =>
-				{
-					list.AddRange(e.columns		     ?? Enumerable.Empty<Element>());
-					list.AddRange(e.templateElements ?? Enumerable.Empty<Element>());
-					return list;
-				})
-				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)			// Group by element name
-				.Select(e => ParsePropertyElement(e.Key, e))
-				.ToList();
-
-			if (!property.IsCollection)
+			foreach (var subProperty in property.Properties)
 			{
-				property.Type = GetPropertyType(elements.Single());
+				builder.AppendLine(subProperty.ToString());
 			}
 
-			return property;
-		}
+			builder.AppendLine("}");
+			builder.AppendLine();
 
-		private static Type GetPropertyType(Element element)
-		{
-			switch (element.cellType ?? element.type)
+			foreach (var subProperty in property.Properties.Where(p => p.IsComplexObject))
 			{
-				case "boolean":
-					return element.isRequired ? typeof(bool) : typeof(bool?);
-				case "checkbox":
-				case "tagbox":
-					return typeof(List<string>);
-				case "datepicker":
-					return element.isRequired ? typeof(DateTime) : typeof(DateTime?);
-				case "text":
-					switch (element.inputType)
-					{
-						case "date":
-						case "datetime":
-						case "datetime-local":
-						case "time":
-							return element.isRequired ? typeof(DateTime) : typeof(DateTime?);
-						case "number":
-						case "range":
-							return element.isRequired ? typeof(int) : typeof(int?);
-						default:
-							return typeof(string);
-					}
-				case "comment":
-				case "dropdown":
-				case "radiogroup":
-					return typeof(string);
-				default:
-					return null;
+				GenerateClasses(builder, subProperty);
 			}
+
+			return builder.ToString();
 		}
 
-		public string GenerateModel()
+		public string GenerateModel(string @namespace, string className)
 		{
-			return string.Empty;
+			var builder = new StringBuilder();
+
+			// Add using statements
+			builder.AppendLine("using System;");
+			builder.AppendLine("using System.Collections.Generic;");
+			builder.AppendLine();
+
+			// Add namespace
+			builder.AppendLine($"namespace {@namespace}");
+			builder.AppendLine("{");
+
+			var rootClass = new ModelProperty
+			{
+				Name = className,
+				Properties = _modelProperties
+			};
+
+			GenerateClasses(builder, rootClass);
+
+			// End namespace
+			builder.AppendLine("}");
+
+			return builder.ToString();
 		}
 
 		public static string CreateModel(SurveyObject survey, string @namespace, string className)
 		{
 			var builder = new ModelBuilder(survey);
 
-			return builder.GenerateModel();
-		}
-	}
-
-	internal class ModelProperty
-	{
-		public bool IsCollection => Properties.Any();
-		public string Name { get; set; }
-		public Type Type { get; set; }
-		public List<ModelProperty> Properties { get; set; } = new List<ModelProperty>();
-
-		public override string ToString()
-		{
-			return this.Name;
+			return builder.GenerateModel(@namespace, className);
 		}
 	}
 }

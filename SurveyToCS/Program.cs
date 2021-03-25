@@ -51,7 +51,7 @@ namespace SurveyToCS
 				return;
 			}
 
-			ModelBuilder.CreateModel(survey, classNamespace, className);
+			ValidatorBuilder.CreateValidators(survey, classNamespace, className);
 			return;
 
 			foreach (var page in survey.pages)
@@ -62,7 +62,7 @@ namespace SurveyToCS
 			string line = Console.ReadLine();
 			if (line == "c")
 			{
-				string result = ClassPropertiesBuilder.CreateClassObject(survey, classNamespace, className);
+				string result = ModelBuilder.CreateModel(survey, classNamespace, className);
 				ClipboardService.SetText(result);
 				Console.WriteLine(result);
 			}
