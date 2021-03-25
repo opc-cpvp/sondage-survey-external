@@ -27,12 +27,6 @@ namespace SurveyToCS
 
 		public List<ModelProperty> GetProperties()
 		{
-			var items = _survey.pages
-				.SelectMany(page => page.elements)
-				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
-				.ToDictionary(e => e.Key, e => e.ToList());
-
 			return _survey.pages
 				.SelectMany(page => page.elements)              // Select all elements on all the pages
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
