@@ -4,11 +4,11 @@ namespace SurveyToCS
 {
 	public class ValidatorBuilder
 	{
-		private readonly List<ModelProperty> _modelProperties;
+		private readonly Dictionary<Page, List<ModelProperty>> _pageProperties;
 
 		public ValidatorBuilder(SurveyObject survey)
 		{
-			_modelProperties = new SurveyParser(survey).GetProperties();
+			_pageProperties = new SurveyParser(survey).GetPropertiesByPage();
 		}
 
 		public string GenerateValidator(string @namespace, string className)

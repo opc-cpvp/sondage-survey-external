@@ -14,16 +14,21 @@ namespace SurveyToCS
 
 		public List<ModelProperty> GetProperties()
 		{
-			return _survey.pages
-				.SelectMany(page => page.elements)              // Select all elements on all the pages
+			return GetPropertiesByPage().SelectMany(p => p.Value).ToList();
+		}
+
+		public Dictionary<Page, List<ModelProperty>> GetPropertiesByPage()
+		{
+			return _survey.pages.ToDictionary(p => p, p => p.elements
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
+				.GroupBy(e => e.GetNormalizedName())            // Group by element name
 				.Aggregate(new List<ModelProperty>(), (list, e) =>
 				{
 					var modelProperty = ParsePropertyElement(e.Key, e);
 					list.Add(modelProperty);
 					return list;
-				});
+				})
+			);
 		}
 
 		private ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
@@ -38,12 +43,13 @@ namespace SurveyToCS
 					return list;
 				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.valueName ?? e.name)            // Group by element name
+				.GroupBy(e => e.GetNormalizedName())            // Group by element name
 				.Select(e => ParsePropertyElement(e.Key, e))
 				.ToList();
 
 			if (property.IsComplexObject)
 			{
+				property.Element = elements.Where(e => e.name == propertyName).Single();
 				property.Type = property.Name;
 				property.IsList = true;
 			}
@@ -60,7 +66,7 @@ namespace SurveyToCS
 
 		private static bool IsElementList(Element element)
 		{
-			var elementType = element.cellType ?? element.type;
+			var elementType = element.GetNormalizedType();
 			switch (elementType)
 			{
 				case ElementTypes.CheckBox:
@@ -74,7 +80,7 @@ namespace SurveyToCS
 
 		private static string GetPropertyType(Element element)
 		{
-			var elementType = element.cellType ?? element.type;
+			var elementType = element.GetNormalizedType();
 			switch (elementType)
 			{
 				case ElementTypes.Boolean:
