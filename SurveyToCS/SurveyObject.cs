@@ -7,7 +7,6 @@ namespace SurveyToCS
 	public class SurveyObject
 	{
 		public List<Page> pages { get; set; }
-
 		public List<CalculatedValues> calculatedValues { get; set; }
 	}
 
@@ -15,20 +14,15 @@ namespace SurveyToCS
 	{
 		public string name { get; set; }
 		public Title title { get; set; }
-
 		public string visibleIf { get; set; }
-
 		public string section { get; set; }
-
 		public List<Element> elements { get; set; }
 	}
 
 	public class CalculatedValues
 	{
 		public string name { get; set; }
-
 		public string expression { get; set; }
-
 		public bool? includeIntoResult { get; set; }
 	}
 
@@ -37,13 +31,11 @@ namespace SurveyToCS
 		public Page parent { get; set; }
 		public string type { get; set; }
 		public string inputType { get; set; }
-
 		public string cellType { get; set; }
 		public Title title { get; set; }
 		public string name { get; set; }
 		public string valueName { get; set; }
 		public bool isRequired { get; set; }
-
 		public string requiredIf { get; set; }
 		public ChoicesByUrl choicesByUrl { get; set; }
 		public string renderMode { get; set; }
@@ -51,23 +43,16 @@ namespace SurveyToCS
 		public bool? allowRemovePanel { get; set; }
 		public bool? useDisplayValuesInTitle { get; set; }
 		public List<Element> elements { get; set; }
-
 		public List<Element> templateElements { get; set; }
-
 		public List<Element> columns { get; set; }
-
 		public int? maxLength { get; set; }
-
 		public List<Choices> choices { get; set; }
-
 		public string visibleIf { get; set; }
 
 		//	This property being an Object is weird by the problem is 'rows' is being used in
 		//	'matrix' type question as well as in 'comment'. Both as different data type.
 		public object rows { get; set; }
-
 		public string value { get; set; }
-
 		public bool? hasOther { get; set; }
 	}
 
