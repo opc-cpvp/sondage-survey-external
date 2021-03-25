@@ -4,18 +4,6 @@ using System.Linq;
 
 namespace SurveyToCS
 {
-	internal static class PropertyTypes
-	{
-		public static readonly string Boolean = "bool";
-		public static readonly string DateTime = "DateTime";
-		public static readonly string Integer = "int";
-		public static readonly string String = "string";
-		public static readonly string SurveyFile = "SurveyFile";
-		public static readonly string NullableBoolean = "bool?";
-		public static readonly string NullableDateTime = "DateTime?";
-		public static readonly string NullableInteger = "int?";
-	}
-
 	public class SurveyParser
 	{
 		private SurveyObject _survey;
@@ -70,16 +58,14 @@ namespace SurveyToCS
 			return property;
 		}
 
-
-
 		private static bool IsElementList(Element element)
 		{
 			var elementType = element.cellType ?? element.type;
 			switch (elementType)
 			{
-				case "checkbox":
-				case "tagbox":
-				case "file":
+				case ElementTypes.CheckBox:
+				case ElementTypes.TagBox:
+				case ElementTypes.File:
 					return true;
 				default:
 					return false;
@@ -91,32 +77,32 @@ namespace SurveyToCS
 			var elementType = element.cellType ?? element.type;
 			switch (elementType)
 			{
-				case "boolean":
+				case ElementTypes.Boolean:
 					return element.isRequired ? PropertyTypes.Boolean : PropertyTypes.NullableBoolean;
-				case "checkbox":
-				case "tagbox":
+				case ElementTypes.CheckBox:
+				case ElementTypes.TagBox:
 					return PropertyTypes.String;
-				case "datepicker":
+				case ElementTypes.DatePicker:
 					return element.isRequired ? PropertyTypes.DateTime : PropertyTypes.NullableDateTime;
-				case "file":
+				case ElementTypes.File:
 					return PropertyTypes.SurveyFile;
-				case "text":
+				case ElementTypes.Text:
 					switch (element.inputType)
 					{
-						case "date":
-						case "datetime":
-						case "datetime-local":
-						case "time":
+						case ElementInputTypes.Date:
+						case ElementInputTypes.DateTime:
+						case ElementInputTypes.DateTimeLocal:
+						case ElementInputTypes.Time:
 							return element.isRequired ? PropertyTypes.DateTime : PropertyTypes.NullableDateTime;
-						case "number":
-						case "range":
+						case ElementInputTypes.Number:
+						case ElementInputTypes.Range:
 							return element.isRequired ? PropertyTypes.Integer : PropertyTypes.NullableInteger;
 						default:
 							return PropertyTypes.String;
 					}
-				case "comment":
-				case "dropdown":
-				case "radiogroup":
+				case ElementTypes.Comment:
+				case ElementTypes.DropDown:
+				case ElementTypes.RadioGroup:
 					return PropertyTypes.String;
 				default:
 					throw new Exception($"Unable to get property type for: '{elementType}'");
