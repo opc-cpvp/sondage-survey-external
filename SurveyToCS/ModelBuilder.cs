@@ -13,7 +13,7 @@ namespace SurveyToCS
 			_modelProperties = new SurveyParser(survey).GetProperties();
 		}
 
-		private string GenerateClasses(StringBuilder builder, ModelProperty property)
+		private void GenerateClasses(StringBuilder builder, ModelProperty property)
 		{
 			builder.AppendLine($"public class {property.Name}");
 			builder.AppendLine("{");
@@ -30,8 +30,6 @@ namespace SurveyToCS
 			{
 				GenerateClasses(builder, subProperty);
 			}
-
-			return builder.ToString();
 		}
 
 		public string GenerateModel(string @namespace, string className)
