@@ -20,7 +20,7 @@ namespace SurveyToCS
 
 			foreach (var subProperty in property.Properties)
 			{
-				builder.AppendLine(subProperty.ToString());
+				builder.AppendLine($"public {(subProperty.IsList ? $"List<{subProperty.Type}>" : subProperty.Type)} {subProperty.Name} {{ get; set; }}");
 			}
 
 			builder.AppendLine("}");

@@ -11,10 +11,5 @@ namespace SurveyToCS
 		public string Name { get; set; }
 		public string Type { get; set; }
 		public List<ModelProperty> Properties { get; set; } = new List<ModelProperty>();
-
-		public override string ToString()
-		{
-			return $"public {(IsList ? $"List<{Type}>" : Type)} {Name} {{ get; set; }}";
-		}
 	}
 }
