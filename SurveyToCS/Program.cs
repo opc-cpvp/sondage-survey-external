@@ -51,9 +51,6 @@ namespace SurveyToCS
 				return;
 			}
 
-			ValidatorBuilder.CreateValidators(survey, classNamespace, className);
-			return;
-
 			foreach (var page in survey.pages)
 			{
 				Common.AddParentPage(page, page.elements);

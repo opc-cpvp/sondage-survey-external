@@ -14,12 +14,7 @@ namespace SurveyToCS
 
 		public List<ModelProperty> GetProperties()
 		{
-			return GetPropertiesByPage().SelectMany(p => p.Value).ToList();
-		}
-
-		public Dictionary<Page, List<ModelProperty>> GetPropertiesByPage()
-		{
-			return _survey.pages.ToDictionary(p => p, p => p.elements
+			return _survey.pages.SelectMany(p => p.elements)
 				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
 				.GroupBy(e => e.GetNormalizedName())            // Group by element name
 				.Aggregate(new List<ModelProperty>(), (list, e) =>
@@ -27,8 +22,7 @@ namespace SurveyToCS
 					var modelProperty = ParsePropertyElement(e.Key, e);
 					list.Add(modelProperty);
 					return list;
-				})
-			);
+				});
 		}
 
 		private ModelProperty ParsePropertyElement(string propertyName, IEnumerable<Element> elements)
