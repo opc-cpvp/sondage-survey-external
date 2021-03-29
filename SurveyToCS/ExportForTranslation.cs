@@ -10,6 +10,10 @@ namespace SurveyToCS
 {
 	public class ExportForTranslation
 	{
+		//	NOTE:	The idea here was to export the survey into a csv file to be sent to the translation office. The method to
+		//			call to export is CreateCSV. This part is implemented and works fine.
+		//			Then using 'ReBuildJSON' rebuild the survey from the same file. I made it work but it's not complete.
+
 		public static string CreateCSV(SurveyObject survey)
 		{
 			StringBuilder builder = new StringBuilder();
