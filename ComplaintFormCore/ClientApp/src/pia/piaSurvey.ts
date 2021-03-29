@@ -7,7 +7,9 @@ import {
     QuestionPanelDynamicModel,
     JsonObject,
     QuestionSelectBase,
-    QuestionMatrixDynamicModel
+    QuestionMatrixDynamicModel,
+    MatrixDropdownColumn,
+    QuestionMatrixDropdownModel
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
@@ -77,10 +79,6 @@ export class PiaSurvey extends SurveyBase {
             this.handleOnAfterRenderQuestion(sender, options);
         });
 
-        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderPage(sender, options);
-        });
-
         this.survey.onAfterRenderSurvey.add((sender: SurveyModel, options: any) => {
             this.setNavigationBreadcrumbs(sender);
         });
@@ -140,67 +138,58 @@ export class PiaSurvey extends SurveyBase {
     }
 
     private handleOnValueChanging(surveyObj: SurveyModel, options: any): void {
-        switch (options.question.name) {
-            case "WillITLegacySystemRetained_IsIncludeRisk": {
-                if (options.question.value === true) {
-                    const descriptionQ = surveyObj.getQuestionByName("WillITLegacySystemRetained_RiskDescription");
-                    if (descriptionQ === null) {
-                        return;
-                    }
-
-                    //  Setup the default value
-                    descriptionQ.value = surveyObj.locale === "fr" ? WillITLegacySystemRetained.fr : WillITLegacySystemRetained.en;
-                }
-                break;
-            }
-            case "DoesStaffReceivedTraining_IsIncludeRisk": {
-                if (options.question.value === true) {
-                    const descriptionQ = surveyObj.getQuestionByName("DoesStaffReceivedTraining_RiskDescription");
-                    if (descriptionQ === null) {
-                        return;
-                    }
-
-                    //  Setup the default value
-                    descriptionQ.value = surveyObj.locale === "fr" ? DoesStaffReceivedTraining.fr : DoesStaffReceivedTraining.en;
-                }
-                break;
-            }
-            case "ProcessHandlingPrivacyComplaint_IsIncludeRisk": {
-                if (options.question.value === true) {
-                    const descriptionQ = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint_RiskDescription");
-                    if (descriptionQ === null) {
-                        return;
-                    }
-
-                    //  We need to know the selected answer here
-                    const processHandlingPrivacyComplaint = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint");
-                    if (processHandlingPrivacyComplaint === null) {
-                        return;
-                    }
-
-                    //  Setup the default value
-                    if (processHandlingPrivacyComplaint.value === "no") {
-                        descriptionQ.value =
-                            surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_no.fr : ProcessHandlingPrivacyComplaint_no.en;
-                    } else {
-                        descriptionQ.value =
-                            surveyObj.locale === "fr"
-                                ? ProcessHandlingPrivacyComplaint_yes_not_established.fr
-                                : ProcessHandlingPrivacyComplaint_yes_not_established.en;
-                    }
-                }
-                break;
-            }
-            default: {
-                break;
-            }
-        }
-    }
-
-    private handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
-        if (options.page.name === "page_step_4_WillITLegacySystemRetained") {
-            // WillITLegacySystemRetained_IsIncludeRisk
-        }
+        //  THIS IS THE EVENT TO USE IF YOU ARE GOING FOR COPY/PASTING 25 TIMES THE TEMPLATE
+        // switch (options.question.name) {
+        //    case "WillITLegacySystemRetained_IsIncludeRisk": {
+        //        if (options.question.value === true) {
+        //            const descriptionQ = surveyObj.getQuestionByName("WillITLegacySystemRetained_RiskDescription");
+        //            if (descriptionQ === null) {
+        //                return;
+        //            }
+        //            //  Setup the default value
+        //            descriptionQ.value = surveyObj.locale === "fr" ? WillITLegacySystemRetained.fr : WillITLegacySystemRetained.en;
+        //        }
+        //        break;
+        //    }
+        //    case "DoesStaffReceivedTraining_IsIncludeRisk": {
+        //        if (options.question.value === true) {
+        //            const descriptionQ = surveyObj.getQuestionByName("DoesStaffReceivedTraining_RiskDescription");
+        //            if (descriptionQ === null) {
+        //                return;
+        //            }
+        //            //  Setup the default value
+        //            descriptionQ.value = surveyObj.locale === "fr" ? DoesStaffReceivedTraining.fr : DoesStaffReceivedTraining.en;
+        //        }
+        //        break;
+        //    }
+        //    case "ProcessHandlingPrivacyComplaint_IsIncludeRisk": {
+        //        if (options.question.value === true) {
+        //            const descriptionQ = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint_RiskDescription");
+        //            if (descriptionQ === null) {
+        //                return;
+        //            }
+        //            //  We need to know the selected answer here
+        //            const processHandlingPrivacyComplaint = surveyObj.getQuestionByName("ProcessHandlingPrivacyComplaint");
+        //            if (processHandlingPrivacyComplaint === null) {
+        //                return;
+        //            }
+        //            //  Setup the default value
+        //            if (processHandlingPrivacyComplaint.value === "no") {
+        //                descriptionQ.value =
+        //                    surveyObj.locale === "fr" ? ProcessHandlingPrivacyComplaint_no.fr : ProcessHandlingPrivacyComplaint_no.en;
+        //            } else {
+        //                descriptionQ.value =
+        //                    surveyObj.locale === "fr"
+        //                        ? ProcessHandlingPrivacyComplaint_yes_not_established.fr
+        //                        : ProcessHandlingPrivacyComplaint_yes_not_established.en;
+        //            }
+        //        }
+        //        break;
+        //    }
+        //    default: {
+        //        break;
+        //    }
+        // }
     }
 
     private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
@@ -274,39 +263,76 @@ export class PiaSurvey extends SurveyBase {
 
             receivingParties.choices = parties;
         } else if (question.name === "mtx_PrivacyRisksMitigation") {
-            const mtx_rivacyRisksMitigation = question as QuestionMatrixDynamicModel;
-            if (mtx_rivacyRisksMitigation != null) {
-                mtx_rivacyRisksMitigation.value = null;
+            //  NOTE: I have tried to use simple matrix for the first part of section 4 then a paneldynamic for the
+            //          following questions but the matrix not being dynamic doesn't work with paneldynamic.
 
+            // TODO: We need to populate the matrixdynamic with values based on answers from previous questions.
+            //      The matrixdynamic will have readonly dropdown as question refering to the questions generating
+            //      a risk.
+
+            //  First step is to populate the dropdownlist text from the original question. It didn't manage to do it so
+            //  I just copied the text.
+
+            //  Second is to add the rows to the matrixdynamic based on answers from previous questions. That too I couldn't do it.
+            //  I have tried updating the survey.data directly. I have tried to use matrixdynamic.addRow(). The only options that
+            //  worked is to ask the user to select what question they want to add to the matrix using the dropdown. The only problem
+            //  with this approach is for any questions generating a risk factor that the users don't want to have in the privacy table
+            //  they must explain why.
+
+            //  Third is to pre-populate the risk description with the text provided by the client ONLY if there wasn't any update by the user.
+            //
+
+            const mtx_rivacyRisksMitigation = question as QuestionMatrixDynamicModel;
+
+            if (mtx_rivacyRisksMitigation != null) {
                 const youAnswer: string = sender.locale === "fr" ? "Vous avez repondu " : "You responded ";
 
-                // {
-                //    "name": "Name",
-                //        "cellType": "text",
-                //            "title": {
-                //        "en": "Name",
-                //            "fr": "Nom"
-                //    }
+                // This piece of code was an attempt to add PrivacyRisksMitigation as question in the survey.data but it didn't work.
+                // let data: any[] = sender.data["PrivacyRisksMitigation"];
+                // if (sender.data["PrivacyRisksMitigation"] === undefined || sender.data["PrivacyRisksMitigation"] === null) {
+
+                //    const PrivacyRisksMitigation = [] as any[];
+                //    sender.data.push(PrivacyRisksMitigation);
                 // }
 
-                // const WillITLegacySystemRetained = sender.getQuestionByName("WillITLegacySystemRetained");
-                // if (WillITLegacySystemRetained !== null && WillITLegacySystemRetained.value === false) {
-                //    const value: string = sender.locale === "fr" ? "Non" : "No";
-
-                //    mtx_rivacyRisksMitigation.addRow();
-
-                //    // mtx_rivacyRisksMitigation.setRowValue(0, "WillITLegacySystemRetained");
-                //    // mtx_rivacyRisksMitigation.rows[0].Text = "fsdfasdfsdf";
-
-                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("WillITLegacySystemRetained", `${youAnswer} “${value}” to “${WillITLegacySystemRetained.title}”`, "WillITLegacySystemRetained"));
-                // }
+                const q_WillITLegacySystemRetained = sender.getQuestionByName("WillITLegacySystemRetained");
+                if (q_WillITLegacySystemRetained !== null && q_WillITLegacySystemRetained.value === false) {
+                    //    const value: string = sender.locale === "fr" ? "Non" : "No";
+                    // const col_name: MatrixDropdownColumn = mtx_rivacyRisksMitigation.getColumnByName("name");
+                    // const col_answer: MatrixDropdownColumn = mtx_rivacyRisksMitigation.getColumnByName("answer");
+                    // const WillITLegacySystemRetained: any = {
+                    //    "name": "WillITLegacySystemRetained"
+                    // };
+                    // const existing_WillITLegacySystemRetained = sender.data["PrivacyRisksMitigation"].filter(x => x.name == "WillITLegacySystemRetained");
+                    // if (existing_WillITLegacySystemRetained === null || existing_WillITLegacySystemRetained.length == 0) {
+                    //    sender.data["PrivacyRisksMitigation"].push(WillITLegacySystemRetained);
+                    // }
+                    // const receivingParties = mtx_rivacyRisksMitigation.columns.find(
+                    //    r => r.name === "WillITLegacySystemRetained"
+                    // ) as QuestionDropdownModel;
+                    // const choice_WillITLegacySystemRetained = receivingParties.choices.filter(x => x.name == "WillITLegacySystemRetained");
+                    // choice_WillITLegacySystemRetained
+                    // [
+                    //    {
+                    //        "name": "DoesStaffReceivedTraining",
+                    //        "answer": "tertwert",
+                    //        "add_privacy_risk_table": true
+                    //    },
+                    //    {
+                    //        "name": "WillITLegacySystemRetained",
+                    //        "answer": "tertwertwertwertwer",
+                    //        "add_privacy_risk_table": false
+                    //    }
+                    // ]
+                    // const choices: any[] = col.choices;
+                    // col.choices.filter(el => el === 80);
+                    //    // mtx_rivacyRisksMitigation.setRowValue(0, "WillITLegacySystemRetained");
+                    //    // mtx_rivacyRisksMitigation.rows[0].Text = "fsdfasdfsdf";
+                    //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("WillITLegacySystemRetained", `${youAnswer} “${value}” to “${WillITLegacySystemRetained.title}”`, "WillITLegacySystemRetained"));
+                }
 
                 // const DoesStaffReceivedTraining = sender.getQuestionByName("DoesStaffReceivedTraining");
                 // if (DoesStaffReceivedTraining !== null && DoesStaffReceivedTraining.value === false) {
-                //    mtx_rivacyRisksMitigation.addRow();
-
-                //    // const value: string = sender.locale === "fr" ? "Non" : "No";
-                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("DoesStaffReceivedTraining", `${youAnswer} “${value}” to “${DoesStaffReceivedTraining.title}”`, "DoesStaffReceivedTraining"));
                 // }
 
                 // const ProcessHandlingPrivacyComplaint = sender.getQuestionByName("ProcessHandlingPrivacyComplaint");
@@ -314,14 +340,10 @@ export class PiaSurvey extends SurveyBase {
                 //    ProcessHandlingPrivacyComplaint !== null &&
                 //    (ProcessHandlingPrivacyComplaint.value === "no" || ProcessHandlingPrivacyComplaint.value === "yes_not_established")
                 // ) {
-                //    mtx_rivacyRisksMitigation.addRow();
-
-                //    // const value: string = sender.locale === "fr" ? "Non" : "No";
-                //    // mtx_rivacyRisksMitigation.rows.push(new ItemValue("ProcessHandlingPrivacyComplaint", `${youAnswer} “${ProcessHandlingPrivacyComplaint}” to “${ProcessHandlingPrivacyComplaint.title}”`, "ProcessHandlingPrivacyComplaint"));
                 // }
 
-                mtx_rivacyRisksMitigation.allowAddRows = false;
-                mtx_rivacyRisksMitigation.allowRemoveRows = false;
+                // mtx_rivacyRisksMitigation.allowAddRows = false;
+                // mtx_rivacyRisksMitigation.allowRemoveRows = false;
             }
         }
     }

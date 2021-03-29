@@ -7135,42 +7135,14 @@
         "en": "Step 4 – Complete a risk analysis",
         "fr": ""
       },
+      "section": "4",
       "elements": [
         {
-          "type": "matrixdynamic",
-          "valueName": "PrivacyRisksMitigation",
-          "name": "mtx_PrivacyRisksMitigation",
-          "title": {
-            "en": "Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
+          "type": "html",
+          "html": {
+            "en": "<section class='alert alert-info'><p>All of your institution’s activities involve some kind of risk. Institutions manage risk by identifying it, analyzing it and then evaluating whether the risk needs to be mitigated. Analyzing risk can help you make choices when the options involve different types and levels of risk. It also gives you the chance to identify the most serious and the most likely problems.</p><p>Not all risks are equal. If there is a risk that your institution is not complying with the law, you must address it urgently and completely. However, even legally compliant programs may not be privacy-friendly. If there remains a risk that your initiative may still have negative impacts on individual privacy, you should work to minimize or eliminate those risks and assess whether or not remaining risks are justified.</p><p>You can have more than one measure to address each risk. For example, you may have a policy combined with a training program and an audit function to reduce a particular risk.</p><p><strong>It is our office’s expectation that you meaningfully analyze the privacy impacts of your initiative.</strong></p></section>",
             "fr": ""
-          },
-          "rowCount ": 0,
-          "columns": [
-            {
-              "name": "name",
-              "cellType": "text",
-              "title": {
-                "en": "Question",
-                "fr": ""
-              }
-            },
-            {
-              "name": "answer",
-              "cellType": "text",
-              "title": {
-                "en": "Answer",
-                "fr": ""
-              }
-            },
-            {
-              "name": "add_privacy_risk_table",
-              "cellType": "boolean",
-              "title": {
-                "en": "Add",
-                "fr": ""
-              }
-            }
-          ]
+          }
         }
       ]
     },
@@ -7180,37 +7152,48 @@
         "en": "Step 4 – Complete a risk analysis",
         "fr": ""
       },
+      "section": "4",
       "elements": [
         {
-          "type": "paneldynamic",
-          "name": "pnd_PrivacyRisksMitigation",
+          "type": "matrixdynamic",
           "valueName": "PrivacyRisksMitigation",
-          "title": {
-            "en": "missing",
-            "fr": ""
-          },
-          "description": {
-            "en": "hghgfhgfh",
-            "fr": ""
-          },
-          "renderMode": "list",
-          "allowAddPanel": false,
-          "allowRemovePanel": false,
-          "templateTitle": "{panel.name}",
-          "templateElements": [
+          "name": "mtx_smp_PrivacyRisksMitigation",
+          "title": "Please indicate if you agree or disagree with the following statements",
+          "columns": [
             {
-              "type": "comment",
-              "name": "RiskDescription",
-              "visibleIf": "{panel.add_privacy_risk_table} = true",
-              "isRequired": true,
-              "title": {
-                "en": "Here is how the risk will appear in the table of privacy risks. Would you like to modify this?",
+              "name": "add_it",
+              "title": "Add it?",
+              "choices": [
+                "Yes",
+                "No"
+              ],
+              "cellType": "radiogroup"
+            }
+          ],
+          "rows": [
+            {
+              "text": {
+                "en": "You have answered {WillITLegacySystemRetained} to “Are current IT legacy systems and services that will be retained, or those that will be substantially modified, compliant with privacy requirements?”",
                 "fr": ""
               },
-              "description": {
-                "en": "If needed, modify the description of the risk to how you would like it to appear in your table of privacy risks",
+              "visibleIf": "{WillITLegacySystemRetained} = false",
+              "value": "WillITLegacySystemRetained"
+            },
+            {
+              "text": {
+                "en": "You have answered {DoesStaffReceivedTraining} to “Does your institution ensure that staff receive privacy-related training?”",
                 "fr": ""
-              }
+              },
+              "visibleIf": "{DoesStaffReceivedTraining} = false",
+              "value": "DoesStaffReceivedTraining"
+            },
+            {
+              "text": {
+                "en": "You have answered {ProcessHandlingPrivacyComplaint} to “Please describe the process for handling a privacy complaint or inquiry.”",
+                "fr": ""
+              },
+              "visibleIf": "{ProcessHandlingPrivacyComplaint} anyof ['yes_not_established','no']",
+              "value": "ProcessHandlingPrivacyComplaint"
             }
           ]
         }
@@ -7225,14 +7208,65 @@
       "section": "4",
       "elements": [
         {
-          "type": "html",
-          "html": {
-            "en": "<section class='alert alert-info'><p>All of your institution’s activities involve some kind of risk. Institutions manage risk by identifying it, analyzing it and then evaluating whether the risk needs to be mitigated. Analyzing risk can help you make choices when the options involve different types and levels of risk. It also gives you the chance to identify the most serious and the most likely problems.</p><p>Not all risks are equal. If there is a risk that your institution is not complying with the law, you must address it urgently and completely. However, even legally compliant programs may not be privacy-friendly. If there remains a risk that your initiative may still have negative impacts on individual privacy, you should work to minimize or eliminate those risks and assess whether or not remaining risks are justified.</p><p>You can have more than one measure to address each risk. For example, you may have a policy combined with a training program and an audit function to reduce a particular risk.</p><p><strong>It is our office’s expectation that you meaningfully analyze the privacy impacts of your initiative.</strong></p></section>",
+          "type": "paneldynamic",
+          "name": "pnd_PrivacyRisksMitigation",
+          "valueName": "PrivacyRisksMitigation",
+          "title": {
+            "en": "Privacy Risks Mitigation",
             "fr": ""
-          }
+          },
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.name}",
+          "templateElements": [
+            {
+              "type": "comment",
+              "name": "RiskDescription",
+              "isRequired": true,
+              "title": {
+                "en": "Here is how the risk will appear in the table of privacy risks. Would you like to modify this?",
+                "fr": ""
+              },
+              "description": {
+                "en": "If needed, modify the description of the risk to how you would like it to appear in your table of privacy risks",
+                "fr": ""
+              }
+            },
+            {
+              "type": "radiogroup",
+              "name": "RiskType",
+              "isRequired": true,
+              "title": {
+                "en": "Is this risk a privacy risk or a compliance risk? (4.2.1)",
+                "fr": ""
+              },
+              "description": {
+                "en": "<p><section class='alert alert-info'><p>Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p></section></p>",
+                "fr": ""
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Privacy Risk",
+                    "fr": ""
+                  },
+                  "value": "privacy_risk"
+                },
+                {
+                  "text": {
+                    "en": "Compliance Risk",
+                    "fr": ""
+                  },
+                  "value": "compliance_risk"
+                }
+              ]
+            }
+          ]
         }
       ]
     },
+
     {
       "name": "page_step_4_WillITLegacySystemRetained",
       "title": {

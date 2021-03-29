@@ -191,6 +191,55 @@
         };
 
 *************************************************************************************************
+
+{
+          "type": "matrixdynamic",
+          "valueName": "PrivacyRisksMitigation",
+          "name": "mtx_PrivacyRisksMitigation",
+          "title": {
+            "en": "Earlier, you responded to the following question: [TEXT OF QUESTION]. You responded [RESPONSE]. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
+            "fr": ""
+          },
+          "rowCount": 1,
+          "columns": [
+            {
+              "name": "name",
+              "cellType": "dropdown",
+              "title": {
+                "en": "Question",
+                "fr": ""
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "You have answered {WillITLegacySystemRetained} to “Are current IT legacy systems and services that will be retained, or those that will be substantially modified, compliant with privacy requirements?”",
+                    "fr": ""
+                  },
+                  "visibleIf": "{WillITLegacySystemRetained} = false",
+                  "value": "WillITLegacySystemRetained"
+                },
+                {
+                  "text": {
+                    "en": "You have answered {DoesStaffReceivedTraining} to “Does your institution ensure that staff receive privacy-related training?”",
+                    "fr": ""
+                  },
+                  "visibleIf": "{DoesStaffReceivedTraining} = false",
+                  "value": "DoesStaffReceivedTraining"
+                },
+                {
+                  "text": {
+                    "en": "You have answered {ProcessHandlingPrivacyComplaint} to “Please describe the process for handling a privacy complaint or inquiry.”",
+                    "fr": ""
+                  },
+                  "visibleIf": "{ProcessHandlingPrivacyComplaint} anyof ['yes_not_established','no']",
+                  "value": "ProcessHandlingPrivacyComplaint"
+                }
+              ]
+            }
+          ]
+        }
+
+*************************************************************************************************
 {
       "name": "page_step_4_XXX",
       "title": {
