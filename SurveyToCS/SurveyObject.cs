@@ -39,6 +39,7 @@ namespace SurveyToCS
 		public string requiredIf { get; set; }
 		public ChoicesByUrl choicesByUrl { get; set; }
 		public string renderMode { get; set; }
+		public bool? allowMultiple { get; set; }
 		public bool? allowAddPanel { get; set; }
 		public bool? allowRemovePanel { get; set; }
 		public bool? useDisplayValuesInTitle { get; set; }
