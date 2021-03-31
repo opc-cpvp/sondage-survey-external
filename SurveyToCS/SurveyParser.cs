@@ -78,12 +78,12 @@ namespace SurveyToCS
 			switch (elementType)
 			{
 				case ElementTypes.Boolean:
-					return element.isRequired ? PropertyTypes.Boolean : PropertyTypes.NullableBoolean;
+					return element.IsOptional() ? PropertyTypes.NullableBoolean : PropertyTypes.Boolean;
 				case ElementTypes.CheckBox:
 				case ElementTypes.TagBox:
 					return PropertyTypes.String;
 				case ElementTypes.DatePicker:
-					return element.isRequired ? PropertyTypes.DateTime : PropertyTypes.NullableDateTime;
+					return element.IsOptional() ? PropertyTypes.NullableDateTime : PropertyTypes.DateTime;
 				case ElementTypes.File:
 					return PropertyTypes.SurveyFile;
 				case ElementTypes.Text:
@@ -93,10 +93,10 @@ namespace SurveyToCS
 						case ElementInputTypes.DateTime:
 						case ElementInputTypes.DateTimeLocal:
 						case ElementInputTypes.Time:
-							return element.isRequired ? PropertyTypes.DateTime : PropertyTypes.NullableDateTime;
+							return element.IsOptional() ? PropertyTypes.NullableDateTime : PropertyTypes.DateTime;
 						case ElementInputTypes.Number:
 						case ElementInputTypes.Range:
-							return element.isRequired ? PropertyTypes.Integer : PropertyTypes.NullableInteger;
+							return element.IsOptional() ?  PropertyTypes.NullableInteger : PropertyTypes.Integer;
 						default:
 							return PropertyTypes.String;
 					}
