@@ -65,8 +65,9 @@ namespace SurveyToCS
 			{
 				case ElementTypes.CheckBox:
 				case ElementTypes.TagBox:
-				case ElementTypes.File:
 					return true;
+				case ElementTypes.File:
+					return element.allowMultiple ?? false;
 				default:
 					return false;
 			}
