@@ -1,6 +1,17 @@
 {
   "pages": [
     {
+      "name": "page_variables",
+      "visibleIf": "false",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "IsLongSurvey",
+          "isRequired": true
+        }
+      ]
+    },
+    {
       "name": "page_intro",
       "title": {
         "en": "Public interest disclosure notification online submission tool",
@@ -10,7 +21,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the <em>Privacy Act</em>, or s 37(2) of the <em>Department of Employment and Social Development Act</em> (DESDA).</p><p>For more information about how the OPC manages personal information, please see our <a href='https//www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a></p></section>",
+            "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office. The delegated official responsible for privacy management in your institution must approve these notifications. If you are unsure of who is responsible, please consult the Treasury Board Secretariat&rsquo;s <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>List of access to information and privacy coordinators by institution.</a> We recommend consulting with those responsible for privacy management (i.e. ATIP) at your institution before using this tool.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required. Additionally, please do not provide any information or documents above Protected B. Should you need to provide documents above Protected B, please arrange this with our office by contacting us at <a href='mailto:scg-ga@priv.gc.ca' target='_blank'>scg-ga@priv.gc.ca</a>.</p><p>Please note that in certain circumstances, personal information cannot be disclosed under s 8(2)(m) of the Privacy Act, because its disclosure is prohibited by other legislation.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the Privacy Act, or s 37(2) of the Department of Employment and Social Development Act (DESDA). <br />For more information about how the OPC manages personal information, please see our <a href='https://www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a>.</p></section>",
             "fr": "<section class='alert alert-info'><p>L’outil de présentation en ligne a pour objet d’aider les institutions à présenter des avis au Commissariat à la protection de la vie privée du Canada. Le fonctionnaire délégué responsable de la gestion de la protection de la vie privée dans votre organisation doit approuver ces avis. Si vous ne savez pas qui est la personne responsable à cet égard, veuillez consulter la <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a> établie par le Secrétariat du Conseil du Trésor. Nous vous recommandons de consulter avec les responsables de la gestion de la protection de la vie privée (c.-à-d., AIPRP) de votre institution avant d’utiliser l’outil.</p><p>Veuillez noter que les institutions devraient limiter la quantité de renseignements personnels qu’elles transmettent pour répondre à la question. Dans les champs à texte libre, demandez-vous quelle est la meilleure façon de répondre à la question sans fournir plus de renseignements que nécessaire. De plus, veuillez ne téléverser aucun document dont le niveau de classification est supérieur à Protégé B. Si vous devez fournir un document dont le niveau de classification est supérieur à Protégé B, envoyez un courriel au Commissariat, à l’adresse scg-ga@priv.gc.ca afin de prendre des dispositions à cet égard.</p><p><br />Veuillez noter que dans certaines circonstances, les renseignements personnels ne peuvent pas être communiqués en vertu de l’alinéa 8(2)m) de la Loi sur la protection des renseignements personnels, car d’autres lois interdisent leur communication.<br />Le Commissariat recueille les renseignements, y compris les renseignements personnels, conformément au paragraphe 8(5) de la Loi sur la protection des renseignements personnels, ou au paragraphe 37(2) de la Loi sur le ministère de l’Emploi et du Développement social (LMEDS).</p><p>Pour obtenir plus d’information sur la façon dont le Commissariat gère les renseignements personnels, veuillez consulter notre <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/' target='_blank'>Politique de confidentialité</a>. </p></section>"
           }
         }
@@ -19,7 +30,7 @@
     {
       "name": "page_q_1_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 1.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
       "elements": [
@@ -42,7 +53,7 @@
     {
       "name": "page_q_1_1",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 1.1",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
       "elements": [
@@ -50,7 +61,7 @@
           "type": "boolean",
           "name": "HasNotificationApproved",
           "title": {
-            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process?",
+            "en": "Before you proceed. Has this notification been formally approved in accordance with your institution’s approval process for public interest disclosures?",
             "fr": "Avant de commencer. L’avis a-t-il été officiellement approuvé conformément au processus d’approbation pour la communication des renseignments personnels dans l’intérêt public au sein de votre institution?"
           },
           "description": {
@@ -92,7 +103,7 @@
     {
       "name": "page_q_1_2",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 1.2",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
       "elements": [
@@ -127,7 +138,7 @@
     {
       "name": "page_q_1_3",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 1.3",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
       "elements": [
@@ -148,9 +159,10 @@
     {
       "name": "page_q_2_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "radiogroup",
@@ -182,10 +194,10 @@
     {
       "name": "page_q_2_0_a",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
-      "visibleIf": "{TimingOfDisclosure} contains 'already'",
+      "visibleIf": "{IsLongSurvey} = true and {TimingOfDisclosure} contains 'already'",
       "elements": [
         {
           "type": "datepicker",
@@ -222,7 +234,7 @@
             "fr": "Préavis au commissaire à la protection de la vie privée"
           },
           "description": {
-            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional information concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
+            "en": "<p><section class='alert alert-info'><p>Click here if you would like to provide additional informations concerning why it was not reasonably practicable to notify the OPC prior to the disclosure taking place.</p></section></p>",
             "fr": "<p><section class='alert alert-info'><p>Cliquez ici si vous souhaitez de fournir des renseignements supplémentaires concernant les raisons pour lesquelles il n’était pas raisonnablement possible d’aviser le Commissariat avant que la communication n’ait lieu.</p></section></p>"
           },
           "hasOther": true,
@@ -236,10 +248,10 @@
     {
       "name": "page_q_2_0_b",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 2.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
-      "visibleIf": "{TimingOfDisclosure} contains 'future'",
+      "visibleIf": "{IsLongSurvey} = true and {TimingOfDisclosure} contains 'future'",
       "elements": [
         {
           "type": "radiogroup",
@@ -293,9 +305,10 @@
     {
       "name": "page_q_3_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 3.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "radiogroup",
@@ -339,9 +352,10 @@
     {
       "name": "page_q_3_1",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 3.1",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "radiogroup",
@@ -392,9 +406,10 @@
     {
       "name": "page_q_4_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 4.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "checkbox",
@@ -479,9 +494,10 @@
     {
       "name": "page_q_4_0_details",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 4.0 - Details",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "html",
@@ -744,9 +760,10 @@
     {
       "name": "page_q_5_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 5",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "radiogroup",
@@ -779,12 +796,17 @@
         },
         {
           "type": "matrixdynamic",
-          "name": "MultipleIndividuals",
+          "name": "mtx_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "visibleIf": "{MultipleIndividualsAddOption} contains 'directly'",
           "isRequired": true,
           "title": {
             "en": "Individual(s)",
             "fr": "Individu(s)"
+          },
+          "description": {
+            "en": "If the name of the individual is not known to the institution, please indicate “unknown”",
+            "fr": ""
           },
           "addRowText": {
             "en": "Add",
@@ -829,9 +851,10 @@
     {
       "name": "page_q_6_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 6.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "comment",
@@ -850,99 +873,115 @@
     {
       "name": "page_q_7_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 7.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true and {MultipleIndividualsAddOption} contains 'directly'",
       "elements": [
         {
-          "type": "checkbox",
-          "name": "DataElementsDisclosed",
+          "type": "paneldynamic",
+          "name": "pnd_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "title": {
             "en": "Data elements disclosed",
             "fr": "Éléments d’information communiqués"
           },
-          "description": {
-            "en": "Choose all that apply.",
-            "fr": "Cochez toutes les réponses qui s’appliquent"
-          },
-          "isRequired": true,
-          "choices": [
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Name}",
+          "templateElements": [
             {
-              "text": {
-                "en": "Name",
-                "fr": "Nom"
+              "type": "checkbox",
+              "name": "DataElementsDisclosed",
+              "title": {
+                "en": "Data elements disclosed",
+                "fr": "Éléments d’information communiqués"
               },
-              "value": "name"
-            },
-            {
-              "text": {
-                "en": "Date of birth",
-                "fr": "Date de naissance"
+              "description": {
+                "en": "Choose all that apply.",
+                "fr": "Cochez toutes les réponses qui s’appliquent"
               },
-              "value": "dob"
-            },
-            {
-              "text": {
-                "en": "Home address",
-                "fr": "Adresse du domicile"
-              },
-              "value": "home_address"
-            },
-            {
-              "text": {
-                "en": "Phone number",
-                "fr": "Numéro de téléphone"
-              },
-              "value": "phone_number"
-            },
-            {
-              "text": {
-                "en": "Email address",
-                "fr": "Adresse de courriel"
-              },
-              "value": "email"
-            },
-            {
-              "text": {
-                "en": "Information related to death",
-                "fr": "Renseignements se rapportant au décès"
-              },
-              "value": "death"
-            },
-            {
-              "text": {
-                "en": "Information related to law enforcement ",
-                "fr": "Renseignements relatifs à l’application de la loi"
-              },
-              "value": "law_enforcement"
-            },
-            {
-              "text": {
-                "en": "Medical information",
-                "fr": "Renseignements médicaux"
-              },
-              "value": "medical"
-            },
-            {
-              "text": {
-                "en": "Financial information",
-                "fr": "Renseignements financiers"
-              },
-              "value": "financial"
-            },
-            {
-              "text": {
-                "en": "Details of interaction with Government of Canada",
-                "fr": "Précisions concernant l’interaction avec le gouvernement du Canada "
-              },
-              "value": "interaction_goc"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Name",
+                    "fr": "Nom"
+                  },
+                  "value": "name"
+                },
+                {
+                  "text": {
+                    "en": "Date of birth",
+                    "fr": "Date de naissance"
+                  },
+                  "value": "dob"
+                },
+                {
+                  "text": {
+                    "en": "Home address",
+                    "fr": "Adresse du domicile"
+                  },
+                  "value": "home_address"
+                },
+                {
+                  "text": {
+                    "en": "Phone number",
+                    "fr": "Numéro de téléphone"
+                  },
+                  "value": "phone_number"
+                },
+                {
+                  "text": {
+                    "en": "Email address",
+                    "fr": "Adresse de courriel"
+                  },
+                  "value": "email"
+                },
+                {
+                  "text": {
+                    "en": "Information related to death",
+                    "fr": "Renseignements se rapportant au décès"
+                  },
+                  "value": "death"
+                },
+                {
+                  "text": {
+                    "en": "Information related to law enforcement ",
+                    "fr": "Renseignements relatifs à l’application de la loi"
+                  },
+                  "value": "law_enforcement"
+                },
+                {
+                  "text": {
+                    "en": "Medical information",
+                    "fr": "Renseignements médicaux"
+                  },
+                  "value": "medical"
+                },
+                {
+                  "text": {
+                    "en": "Financial information",
+                    "fr": "Renseignements financiers"
+                  },
+                  "value": "financial"
+                },
+                {
+                  "text": {
+                    "en": "Details of interaction with Government of Canada",
+                    "fr": "Précisions concernant l’interaction avec le gouvernement du Canada "
+                  },
+                  "value": "interaction_goc"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "other"
+                }
+              ]
             }
           ]
         }
@@ -951,10 +990,10 @@
     {
       "name": "page_q_7_0_details",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 7.0 - Details about elements disclosed",
+        "en": "Public interest disclosure notification online submission tool - Details about elements disclosed",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
-
+      "visibleIf": "{IsLongSurvey} = true and {MultipleIndividualsAddOption} contains 'directly'",
       "elements": [
         {
           "type": "html",
@@ -965,193 +1004,208 @@
           }
         },
         {
-          "type": "comment",
-          "name": "MedicalDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'medical'",
-          "isRequired": true,
+          "type": "paneldynamic",
+          "name": "pnd_MultipleIndividuals",
+          "valueName": "MultipleIndividuals",
           "title": {
-            "en": "Please provide a description of the medical data elements disclosed, without involving personal information, for example “medical diagnosis”, or “medical historyExplain",
-            "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
-          }
-        },
-        {
-          "type": "comment",
-          "name": "FinancialDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'financial'",
-          "isRequired": true,
-          "title": {
-            "en": "Please provide a description of the the financial data elements disclosed, without involving personal information, for example “banking information” or “history of financial benefits",
-            "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
-          }
-        },
-        {
-          "type": "comment",
-          "name": "InteractionGOCDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'interaction_goc'",
-          "isRequired": true,
-          "title": {
-            "en": "Explain the interaction with Government of Canada data elements disclosed. Details should be outlined in response to question 6",
-            "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
-          }
-        },
-        {
-          "type": "checkbox",
-          "name": "DeathDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'death'",
-          "isRequired": true,
-          "title": {
-            "en": "Indicate the information related to death data elements disclosed",
-            "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
+            "en": "Data elements disclosed",
+            "fr": "Éléments d’information communiqués"
           },
-          "choices": [
+          "renderMode": "list",
+          "allowAddPanel": false,
+          "allowRemovePanel": false,
+          "templateTitle": "{panel.Name}",
+          "templateElements": [
             {
-              "text": {
-                "en": "Date of death",
-                "fr": "Date du décès"
-              },
-              "value": "date"
-            },
-            {
-              "text": {
-                "en": "Cause of death",
-                "fr": "Cause du décès"
-              },
-              "value": "cause"
-            },
-            {
-              "text": {
-                "en": "Death related reports and investigations",
-                "fr": "Enquêtes ou rapports sur le décès"
-              },
-              "value": "reports_investigations"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre "
-              },
-              "value": "other"
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "DeathDisclosedExplanation_Other",
-          "visibleIf": "{DataElementsDisclosed} contains 'death' and {DeathDisclosedExplanation} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which other information related to death was disclosed",
-            "fr": "Veuillez indiquer quelles autres informations relatives au décès ont été divulguées"
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "MedicalDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'medical'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Please provide a description, without involving personal information, of the medical data elements disclosed. For example “medical diagnosis” or “medical history”.",
+                "fr": "Veuillez fournir une description des renseignements médicaux sans y inclure de renseignements personnels; par exemple, un « diagnostic médical » ou des « antécédents médicaux » :"
               }
-            }
-          ]
-        },
-        {
-          "type": "checkbox",
-          "name": "InfoLawEnforcementDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement'",
-          "title": {
-            "en": "Indicate the information related to law enforcement data elements disclosed",
-            "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
-          },
-          "isRequired": true,
-          "choices": [
-            {
-              "text": {
-                "en": "Charges",
-                "fr": "Mises en accusation"
-              },
-              "value": "charges"
             },
             {
-              "text": {
-                "en": "Convictions",
-                "fr": "Condamnations"
-              },
-              "value": "convictions"
-            },
-            {
-              "text": {
-                "en": "Criminal record (where no record suspension has been ordered)",
-                "fr": "Casier judiciaire (lorsqu’aucune suspension de casier n’a été ordonnée)"
-              },
-              "value": "criminal_record"
-            },
-            {
-              "text": {
-                "en": "Other",
-                "fr": "Autre"
-              },
-              "value": "other"
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "InfoLawEnforcementDisclosedExplanation_Other",
-          "visibleIf": "{DataElementsDisclosed} contains 'law_enforcement' and {InfoLawEnforcementDisclosedExplanation} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Please indicate which other information related to law enforcement was disclosed",
-            "fr": "Veuillez indiquer quelles autres renseignements relatives à l'application des lois ont été divulguées"
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
-            {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "FinancialDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'financial'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Please provide a description, without involving personal information, of the financial data elements disclosed. For example “banking information” or “history of financial benefits”.",
+                "fr": "Veuillez fournir une description des renseignements financier divulgués, sans y inclure de renseignements personnels; par exemple, des « renseignements bancaires » ou un « historique des avantages financiers » :"
               }
-            }
-          ]
-        },
-        {
-          "type": "matrixdynamic",
-          "name": "OtherDisclosedExplanation",
-          "visibleIf": "{DataElementsDisclosed} contains 'other'",
-          "isRequired": true,
-          "title": {
-            "en": "Indicate the other data element(s) disclosed",
-            "fr": ""
-          },
-          "addRowText": {
-            "en": "Add",
-            "fr": "Ajouter"
-          },
-          "minRowCount": 1,
-          "rowCount": 1,
-          "confirmDelete": true,
-          "columns": [
+            },
             {
-              "name": "Item",
-              "cellType": "text",
+              "type": "comment",
+              "name": "InteractionGOCDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'interaction_goc'",
+              "isRequired": true,
               "title": {
-                "en": "Information",
-                "fr": "Information"
+                "en": "Please explain the data elements disclosed with Government of Canada Interaction. Details should be outlined in response to question 6.",
+                "fr": "Veuillez indiquer l’interaction avec le gouvernement du Canada. Ces renseignements devraient être précisés en réponse à la question 6."
               }
+            },
+            {
+              "type": "checkbox",
+              "name": "DeathDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'death'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate the death data elements disclosed.",
+                "fr": "Veuillez indiquer quel(s) renseignement(s) se rapportant au décès "
+              },
+              "choices": [
+                {
+                  "text": {
+                    "en": "Date of death",
+                    "fr": "Date du décès"
+                  },
+                  "value": "date"
+                },
+                {
+                  "text": {
+                    "en": "Cause of death",
+                    "fr": "Cause du décès"
+                  },
+                  "value": "cause"
+                },
+                {
+                  "text": {
+                    "en": "Death related reports and investigations",
+                    "fr": "Enquêtes ou rapports sur le décès"
+                  },
+                  "value": "reports_investigations"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre "
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "DeathDisclosedExplanation_Other",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'death' and {panel.DeathDisclosedExplanation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which other information related to death was disclosed",
+                "fr": "Veuillez indiquer quelles autres informations relatives au décès ont été divulguées"
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "InfoLawEnforcementDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'law_enforcement'",
+              "title": {
+                "en": "Please indicate the law enforcement data elements disclosed.",
+                "fr": "Veuillez indiquer quels renseignements relatifs à l’application de la loi"
+              },
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Charges",
+                    "fr": "Mises en accusation"
+                  },
+                  "value": "charges"
+                },
+                {
+                  "text": {
+                    "en": "Convictions",
+                    "fr": "Condamnations"
+                  },
+                  "value": "convictions"
+                },
+                {
+                  "text": {
+                    "en": "Criminal record (where no record suspension has been ordered)",
+                    "fr": "Casier judiciaire (lorsqu’aucune suspension de casier n’a été ordonnée)"
+                  },
+                  "value": "criminal_record"
+                },
+                {
+                  "text": {
+                    "en": "Other",
+                    "fr": "Autre"
+                  },
+                  "value": "other"
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "InfoLawEnforcementDisclosedExplanation_Other",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'law_enforcement' and {panel.InfoLawEnforcementDisclosedExplanation} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate which other information related to law enforcement was disclosed",
+                "fr": "Veuillez indiquer quelles autres renseignements relatives à l'application des lois ont été divulguées"
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "matrixdynamic",
+              "name": "OtherDisclosedExplanation",
+              "visibleIf": "{panel.DataElementsDisclosed} contains 'other'",
+              "isRequired": true,
+              "title": {
+                "en": "Please indicate the other data element(s) disclosed.",
+                "fr": ""
+              },
+              "addRowText": {
+                "en": "Add",
+                "fr": "Ajouter"
+              },
+              "minRowCount": 1,
+              "rowCount": 1,
+              "confirmDelete": true,
+              "columns": [
+                {
+                  "name": "Item",
+                  "cellType": "text",
+                  "title": {
+                    "en": "Information",
+                    "fr": "Information"
+                  }
+                }
+              ]
             }
           ]
         }
@@ -1160,9 +1214,10 @@
     {
       "name": "page_q_8_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 8.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "comment",
@@ -1182,9 +1237,10 @@
     {
       "name": "page_q_9_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 9.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
+      "visibleIf": "{IsLongSurvey} = true",
       "elements": [
         {
           "type": "boolean",
@@ -1204,7 +1260,7 @@
     {
       "name": "page_q_10_0",
       "title": {
-        "en": "Public interest disclosure notification online submission tool - Question 10.0",
+        "en": "Public interest disclosure notification online submission tool",
         "fr": "Outil de présentation en ligne des avis de communication de renseignements personnels dans l’intérêt public"
       },
       "elements": [
@@ -1247,5 +1303,9 @@
         }
       ]
     }
-  ]
+  ],
+  "completedHtml": {
+    "en": "<section class='alert alert-info'><p>Thank you for using the portal. Your notification has been received. You should receive a response from us shortly.</p></section>",
+    "fr": "<section class='alert alert-info'><p>Merci d'utiliser le portail. Votre notification a été reçue. Vous devriez recevoir une réponse de notre part sous peu.</p></section>"
+  }
 }

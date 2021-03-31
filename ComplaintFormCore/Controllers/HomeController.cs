@@ -27,6 +27,7 @@ namespace ComplaintFormCore.Controllers
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
             WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
+			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID Short", Href = "/Home/PidShort?token=" + token + "&isShortSurvey=1" });
 			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Tell OPC", Href = "/Home/TellOPC?token=" + token });
 			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
 		}
@@ -82,6 +83,13 @@ namespace ComplaintFormCore.Controllers
             ViewBag.token = token;
             return View();
         }
+
+		public IActionResult PidShort([FromQuery(Name = "token")] string token, [FromQuery(Name = "isShortSurvey")] string isShortSurvey)
+		{
+			ViewBag.token = token;
+			ViewBag.isShortSurvey = isShortSurvey;
+			return View("Pid");
+		}
 
 		public IActionResult ContactInfo([FromQuery(Name = "token")] string token)
 		{

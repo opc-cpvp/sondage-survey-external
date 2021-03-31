@@ -6,6 +6,13 @@ namespace ComplaintFormCore.Models
 	public class SurveyPIDModel
 	{
 		/// <summary>
+		/// Page: page_intro<br/>
+		/// Possible choices: []<br/>
+		/// Survey question type: radiogroup
+		/// </summary>
+		public bool IsLongSurvey { get; set; }
+
+		/// <summary>
 		/// Page: page_q_1_0<br/>
 		/// Institution name<br/>
 		/// Possible choices: [/api/Institution/GetAll?lang={locale}]<br/>
@@ -129,7 +136,7 @@ namespace ComplaintFormCore.Models
 
 		/// <summary>
 		/// Page: page_q_3_1<br/>
-		/// Additional information <br/>
+		/// Additional informations<br/>
 		/// Survey question type: comment
 		/// </summary>
 		public string OtherOptionsForDisclosureAdditonalInfo { get; set; }
@@ -190,56 +197,6 @@ namespace ComplaintFormCore.Models
 		public string DescriptionOfEvents { get; set; }
 
 		/// <summary>
-		/// Page: page_q_7_0<br/>
-		/// Data elements disclosed<br/>
-		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc, other]<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> DataElementsDisclosed { get; set; }
-
-		/// <summary>
-		/// Page: page_q_7_0_details<br/>
-		/// Explain the medical data elements disclosed<br/>
-		/// Required condition: {DataElementsDisclosed} contains 'medical'<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string MedicalDisclosedExplanation { get; set; }
-
-		/// <summary>
-		/// Page: page_q_7_0_details<br/>
-		/// Explain the financial data elements disclosed<br/>
-		/// Required condition: {DataElementsDisclosed} contains 'financial'<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string FinancialDisclosedExplanation { get; set; }
-
-		/// <summary>
-		/// Page: page_q_7_0_details<br/>
-		/// Explain the interaction with Government of Canada data elements disclosed<br/>
-		/// Required condition: {DataElementsDisclosed} contains 'interaction_goc'<br/>
-		/// Survey question type: comment
-		/// </summary>
-		public string InteractionGOCDisclosedExplanation { get; set; }
-
-		/// <summary>
-		/// Page: page_q_7_0_details<br/>
-		/// Indicate the information related to death data elements disclosed<br/>
-		/// Possible choices: [date, cause, reports_investigations, other]<br/>
-		/// Required condition: {DataElementsDisclosed} contains 'death'<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> DeathDisclosedExplanation { get; set; }
-
-		/// <summary>
-		/// Page: page_q_7_0_details<br/>
-		/// Indicate the information related to law enforcement data elements disclosed<br/>
-		/// Possible choices: [charges, convictions, criminal_record, other]<br/>
-		/// Required condition: {DataElementsDisclosed} contains 'law_enforcement'<br/>
-		/// Survey question type: checkbox
-		/// </summary>
-		public List<string> InfoLawEnforcementDisclosedExplanation { get; set; }
-
-		/// <summary>
 		/// Page: page_q_8_0<br/>
 		/// Please provide rationale for disclosure. Your answer should include the pur...<br/>
 		/// Survey question type: comment
@@ -261,8 +218,6 @@ namespace ComplaintFormCore.Models
 		public List<SurveyFile> FileSupplementaryDocumentations { get; set; }
 
 
-		public List<DeathDisclosedExplanation_Other> DeathDisclosedExplanation_Other { get; set; }
-
 		public List<DisclosureRecipients_FamilyMember_Other> DisclosureRecipients_FamilyMember_Other { get; set; }
 
 		public List<DisclosureRecipients_goc_institution> DisclosureRecipients_goc_institution { get; set; }
@@ -277,20 +232,7 @@ namespace ComplaintFormCore.Models
 
 		public List<DisclosureRecipients_Regulatory> DisclosureRecipients_Regulatory { get; set; }
 
-		public List<InfoLawEnforcementDisclosedExplanation_Other> InfoLawEnforcementDisclosedExplanation_Other { get; set; }
-
 		public List<MultipleIndividuals> MultipleIndividuals { get; set; }
-
-		public List<OtherDisclosedExplanation> OtherDisclosedExplanation { get; set; }
-
-	}
-	public class DeathDisclosedExplanation_Other
-	{
-		/// <summary>
-		/// Information<br/>
-		/// Survey question type: text
-		/// </summary>
-		public string Item { get; set; }
 
 	}
 	public class DisclosureRecipients_FamilyMember_Other
@@ -356,15 +298,6 @@ namespace ComplaintFormCore.Models
 		public string Item { get; set; }
 
 	}
-	public class InfoLawEnforcementDisclosedExplanation_Other
-	{
-		/// <summary>
-		/// Information<br/>
-		/// Survey question type: text
-		/// </summary>
-		public string Item { get; set; }
-
-	}
 	public class MultipleIndividuals
 	{
 		/// <summary>
@@ -373,14 +306,97 @@ namespace ComplaintFormCore.Models
 		/// </summary>
 		public string Name { get; set; }
 
-	}
-	public class OtherDisclosedExplanation
-	{
 		/// <summary>
-		/// Information<br/>
-		/// Survey question type: text
+		/// Data elements disclosed<br/>
+		/// Possible choices: [name, dob, home_address, phone_number, email, death, law_enforcement, medical, financial, interaction_goc, other]<br/>
+		/// Survey question type: checkbox
 		/// </summary>
-		public string Item { get; set; }
+		public List<string> DataElementsDisclosed { get; set; }
+
+		/// <summary>
+		/// Please provide a description of the medical data elements disclosed, withou...<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'medical'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string MedicalDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Please provide a description of the the financial data elements disclosed, ...<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'financial'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string FinancialDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Explain the interaction with Government of Canada data elements disclosed. ...<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'interaction_goc'<br/>
+		/// Survey question type: comment
+		/// </summary>
+		public string InteractionGOCDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Indicate the information related to death data elements disclosed<br/>
+		/// Possible choices: [date, cause, reports_investigations, other]<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'death'<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public List<string> DeathDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Please indicate which other information related to death was disclosed<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'death' and {panel.DeathDisclosedExplanation} contains 'other'<br/>
+		/// Survey question type: matrixdynamic
+		/// </summary>
+		public class DeathDisclosedExplanation_OtherObject
+		{
+			/// <summary>
+			/// Information<br/>
+			/// Survey question type: text
+			/// </summary>
+			public string Item { get; set; }
+
+		}
+		public List<DeathDisclosedExplanation_OtherObject> DeathDisclosedExplanation_Other { get; set; }
+
+		/// <summary>
+		/// Indicate the information related to law enforcement data elements disclosed<br/>
+		/// Possible choices: [charges, convictions, criminal_record, other]<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'law_enforcement'<br/>
+		/// Survey question type: checkbox
+		/// </summary>
+		public string InfoLawEnforcementDisclosedExplanation { get; set; }
+
+		/// <summary>
+		/// Please indicate which other information related to law enforcement was disc...<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'law_enforcement' and {panel.InfoLawEnforcementDisclosedExplanation} contains 'other'<br/>
+		/// Survey question type: matrixdynamic
+		/// </summary>
+		public class InfoLawEnforcementDisclosedExplanation_OtherObject
+		{
+			/// <summary>
+			/// Information<br/>
+			/// Survey question type: text
+			/// </summary>
+			public string Item { get; set; }
+
+		}
+		public List<InfoLawEnforcementDisclosedExplanation_OtherObject> InfoLawEnforcementDisclosedExplanation_Other { get; set; }
+
+		/// <summary>
+		/// Indicate the other data element(s) disclosed<br/>
+		/// Required condition: {panel.DataElementsDisclosed} contains 'other'<br/>
+		/// Survey question type: matrixdynamic
+		/// </summary>
+		public class OtherDisclosedExplanationObject
+		{
+			/// <summary>
+			/// Information<br/>
+			/// Survey question type: text
+			/// </summary>
+			public string Item { get; set; }
+
+		}
+		public List<OtherDisclosedExplanationObject> OtherDisclosedExplanation { get; set; }
 
 	}
 }

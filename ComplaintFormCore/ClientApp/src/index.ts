@@ -31,7 +31,7 @@ declare global {
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
     function initContactInfo(lang: "en" | "fr", token: string): void;
-    function initPidSurvey(lang: "en" | "fr", token: string): void;
+    function initPidSurvey(lang: "en" | "fr", token: string, isShortSurvey: boolean): void;
     function initTellOPC(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(): void;
@@ -150,9 +150,10 @@ declare let Symbol;
             };
         };
 
-        globalThis.initPidSurvey = async (lang: "fr" | "en", token) => {
+        globalThis.initPidSurvey = async (lang: "fr" | "en", token, isShortSurvey) => {
             const jsonUrl = "/sample-data/survey_pid.json";
-            const pidSurvey = new PidSurvey(lang, token, storageName_PID);
+            const pidSurvey = new PidSurvey(lang, token, storageName_PID, isShortSurvey);
+
             await pidSurvey.loadSurveyFromUrl(jsonUrl);
             pidSurvey.renderSurvey();
 
