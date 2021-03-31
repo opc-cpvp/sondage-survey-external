@@ -15,5 +15,10 @@ namespace SurveyToCS
 		{
 			return element.valueName ?? element.name;
 		}
+
+		public static bool IsOptional(this Element element)
+		{
+			return !element.isRequired && string.IsNullOrWhiteSpace(element.defaultValue);
+		}
 	}
 }
