@@ -2,14 +2,23 @@
   "pages": [
     {
       "name": "page_variables",
-      "visibleIf": "false",
       "elements": [
         {
           "type": "boolean",
           "name": "IsLongSurvey",
-          "isRequired": true
+          "defaultValue": "true"
+        },
+        {
+          "type": "file",
+          "name": "SurveySummary",
+          "allowMultiple": false,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": true,
+          "acceptedTypes": ".pdf"
         }
-      ]
+      ],
+      "visible": false
     },
     {
       "name": "page_intro",
@@ -22,7 +31,7 @@
           "type": "html",
           "html": {
             "en": "<section class='alert alert-info'><p>This online submission tool is to help institutions submit notifications to our office. The delegated official responsible for privacy management in your institution must approve these notifications. If you are unsure of who is responsible, please consult the Treasury Board Secretariat&rsquo;s <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-eng.asp' target='_blank'>List of access to information and privacy coordinators by institution.</a> We recommend consulting with those responsible for privacy management (i.e. ATIP) at your institution before using this tool.</p><p>Please note that institutions should minimize the amount of personal information to what is necessary to answer the question. Where there is an open field, please consider how to best respond without providing more information than is required. Additionally, please do not provide any information or documents above Protected B. Should you need to provide documents above Protected B, please arrange this with our office by contacting us at <a href='mailto:scg-ga@priv.gc.ca' target='_blank'>scg-ga@priv.gc.ca</a>.</p><p>Please note that in certain circumstances, personal information cannot be disclosed under s 8(2)(m) of the Privacy Act, because its disclosure is prohibited by other legislation.</p><p>The information, including personal information, is being collected by our office pursuant to s 8(5) of the Privacy Act, or s 37(2) of the Department of Employment and Social Development Act (DESDA). <br />For more information about how the OPC manages personal information, please see our <a href='https://www.priv.gc.ca/en/privacy-and-transparency-at-the-opc/pp/' target='_blank'>Privacy Policy</a>.</p></section>",
-            "fr": "<section class='alert alert-info'><p>L’outil de présentation en ligne a pour objet d’aider les institutions à présenter des avis au Commissariat à la protection de la vie privée du Canada. Le fonctionnaire délégué responsable de la gestion de la protection de la vie privée dans votre organisation doit approuver ces avis. Si vous ne savez pas qui est la personne responsable à cet égard, veuillez consulter la <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a> établie par le Secrétariat du Conseil du Trésor. Nous vous recommandons de consulter avec les responsables de la gestion de la protection de la vie privée (c.-à-d., AIPRP) de votre institution avant d’utiliser l’outil.</p><p>Veuillez noter que les institutions devraient limiter la quantité de renseignements personnels qu’elles transmettent pour répondre à la question. Dans les champs à texte libre, demandez-vous quelle est la meilleure façon de répondre à la question sans fournir plus de renseignements que nécessaire. De plus, veuillez ne téléverser aucun document dont le niveau de classification est supérieur à Protégé B. Si vous devez fournir un document dont le niveau de classification est supérieur à Protégé B, envoyez un courriel au Commissariat, à l’adresse scg-ga@priv.gc.ca afin de prendre des dispositions à cet égard.</p><p><br />Veuillez noter que dans certaines circonstances, les renseignements personnels ne peuvent pas être communiqués en vertu de l’alinéa 8(2)m) de la Loi sur la protection des renseignements personnels, car d’autres lois interdisent leur communication.<br />Le Commissariat recueille les renseignements, y compris les renseignements personnels, conformément au paragraphe 8(5) de la Loi sur la protection des renseignements personnels, ou au paragraphe 37(2) de la Loi sur le ministère de l’Emploi et du Développement social (LMEDS).</p><p>Pour obtenir plus d’information sur la façon dont le Commissariat gère les renseignements personnels, veuillez consulter notre <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/' target='_blank'>Politique de confidentialité</a>. </p></section>"
+            "fr": "<section class='alert alert-info'><p>L’outil de présentation en ligne a pour objet d’aider les institutions à présenter des avis au Commissariat à la protection de la vie privée du Canada. Le fonctionnaire délégué responsable de la gestion de la protection de la vie privée dans votre organisation doit approuver ces avis. Si vous ne savez pas qui est la personne responsable à cet égard, veuillez consulter la <a href='https://www.tbs-sct.gc.ca/ap/atip-aiprp/coord-fra.asp' target='_blank'>liste des coordonnateurs de l’accès à l’information et de la protection des renseignements personnels par institution</a> établie par le Secrétariat du Conseil du Trésor. Nous vous recommandons de consulter avec les responsables de la gestion de la protection de la vie privée (c.-à-d., AIPRP) de votre institution avant d’utiliser l’outil.</p><p>Veuillez noter que les institutions devraient limiter la quantité de renseignements personnels qu’elles transmettent pour répondre à la question. Dans les champs à texte libre, demandez-vous quelle est la meilleure façon de répondre à la question sans fournir plus de renseignements que nécessaire. De plus, veuillez ne téléverser aucun document dont le niveau de classification est supérieur à Protégé B. Si vous devez fournir un document dont le niveau de classification est supérieur à Protégé B, envoyez un courriel au Commissariat, à l’adresse scg-ga@priv.gc.ca afin de prendre des dispositions à cet égard.</p><p><br />Veuillez noter que dans certaines circonstances, les renseignements personnels ne peuvent pas être communiqués en vertu de l’alinéa 8(2)m) de la Loi sur la protection des renseignements personnels, car d’autres lois interdisent leur communication.<br />Le Commissariat recueille les renseignements, y compris les renseignements personnels, conformément au paragraphe 8(5) de la Loi sur la protection des renseignements personnels, ou au paragraphe 37(2) de la Loi sur le ministère de l’Emploi et du Développement social (LMEDS).</p><p>Pour obtenir plus d’information sur la façon dont le Commissariat gère les renseignements personnels, veuillez consulter notre <a href='https://www.priv.gc.ca/fr/protection-de-la-vie-privee-et-transparence-au-commissariat/pp/' target='_blank'>Politique de confidentialité</a>. </p></section>"
           }
         }
       ]
@@ -207,7 +216,7 @@
             "fr": "Date de la communication"
           },
           "isRequired": true,
-          "dateFormat": "mm/dd/yy",
+          "dateFormat": "yy-mm-dd",
           "inputType": "date",
           "config": {
             "maxDate": 0
@@ -287,7 +296,7 @@
             "fr": "Date de communication prévue"
           },
           "isRequired": true,
-          "dateFormat": "mm/dd/yy",
+          "dateFormat": "yy-mm-dd",
           "inputType": "date"
         },
         {
