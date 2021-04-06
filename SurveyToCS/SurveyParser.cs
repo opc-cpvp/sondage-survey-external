@@ -41,19 +41,11 @@ namespace SurveyToCS
 				.Select(e => ParsePropertyElement(e.Key, e))
 				.ToList();
 
-			if (property.IsComplexObject)
-			{
-				property.Element = elements.Where(e => e.name == propertyName).Single();
-				property.Type = property.Name;
-				property.IsList = true;
-			}
-			else
-			{
-				var element = elements.Single();
-				property.Element = element;
-				property.IsList = IsElementList(element);
-				property.Type = GetPropertyType(element);
-			}
+			// Identify the main element by name, otherwise use the first instance
+			var element = elements.SingleOrDefault(e => e.name == propertyName) ?? elements.First();
+			property.Element = element;
+			property.Type = property.IsComplexObject ? property.Name : GetPropertyType(element);
+			property.IsList = property.IsComplexObject ? true : IsElementList(element);
 
 			return property;
 		}
