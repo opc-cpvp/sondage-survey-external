@@ -5,21 +5,21 @@ namespace ComplaintFormCore.Models
 {
 	public class SurveyPIDModel
 	{
-		public bool IsLongSurvey { get; set; }
+		public bool? IsLongSurvey { get; set; }
 		public List<SurveyFile> SurveySummary { get; set; }
 		public string Institution { get; set; }
-		public bool HasNotificationApproved { get; set; }
+		public bool? HasNotificationApproved { get; set; }
 		public string ApproverName { get; set; }
 		public string ApproverTitle { get; set; }
 		public string ContactName { get; set; }
 		public string ContactEmail { get; set; }
 		public string ReferenceFileNumber { get; set; }
 		public string TimingOfDisclosure { get; set; }
-		public DateTime DateOfDisclosure { get; set; }
+		public DateTime? DateOfDisclosure { get; set; }
 		public string DisclosurePriorToNotificationExplanation { get; set; }
 		public List<string> WasNotPracticalToNotifyPCPrior { get; set; }
 		public string AnticipatedDateOfDisclosureKnown { get; set; }
-		public DateTime AnticipatedDateOfDisclosure { get; set; }
+		public DateTime? AnticipatedDateOfDisclosure { get; set; }
 		public string AnticipatedDateOfDisclosureText { get; set; }
 		public string LegislativeAuthority { get; set; }
 		public string OtherOptionsForDisclosure { get; set; }
@@ -40,7 +40,7 @@ namespace ComplaintFormCore.Models
 		public List<SurveyFile> FileMultipleIndividuals { get; set; }
 		public string DescriptionOfEvents { get; set; }
 		public string RationalForDisclosure { get; set; }
-		public bool HasInstitutionNotifiedIndOfDisclosure { get; set; }
+		public bool? HasInstitutionNotifiedIndOfDisclosure { get; set; }
 		public List<SurveyFile> FileSupplementaryDocumentations { get; set; }
 	}
 
