@@ -6,6 +6,7 @@ namespace ComplaintFormCore.Models
 	public class SurveyPIDModel
 	{
 		public bool IsLongSurvey { get; set; }
+		public List<SurveyFile> SurveySummary { get; set; }
 		public string Institution { get; set; }
 		public bool HasNotificationApproved { get; set; }
 		public string ApproverName { get; set; }
