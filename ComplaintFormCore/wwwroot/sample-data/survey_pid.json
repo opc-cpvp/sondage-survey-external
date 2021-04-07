@@ -16,6 +16,10 @@
           "maxSize": 0,
           "storeDataAsText": true,
           "acceptedTypes": ".pdf"
+        },
+        {
+          "type": "text",
+          "name": "ReferenceNumber"
         }
       ],
       "visible": false
