@@ -7,7 +7,6 @@ import "whatwg-fetch";
 import { PaSurvey } from "./pa/paSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { PiaSurvey } from "./pia/piaSurvey";
-import { PidSurvey } from "./pid/pidSurvey";
 import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
@@ -31,7 +30,6 @@ declare global {
     function initPbr(lang: "en" | "fr", token: string): void;
     function initPipeda(lang: "en" | "fr", token: string): void;
     function initContactInfo(lang: "en" | "fr", token: string): void;
-    function initPidSurvey(lang: "en" | "fr", token: string, isShortSurvey: boolean): void;
     function initTellOPC(lang: "en" | "fr", token: string): void;
 
     function exportToPDF(): void;
@@ -73,7 +71,6 @@ declare let Symbol;
         const storageName_PBR = "SurveyJS_LoadState_PBR";
         const storageName_PIA = "SurveyJS_LoadState_PIA";
         const storageName_PIPEDA = "SurveyJS_LoadState_PIPEDA";
-        const storageName_PID = "SurveyJS_LoadState_PID";
         const storageName_CONTACTINFO = "SurveyJS_LoadState_CONTACTINFO";
         const storageName_TELLOPC = "SurveyJS_LoadState_TELLOPC";
 
@@ -147,27 +144,6 @@ declare let Symbol;
                 };
 
                 pdfClass.exportToPDF(filename, jsonUrl, lang, paSurvey.getSurveyModel(), page_title);
-            };
-        };
-
-        globalThis.initPidSurvey = async (lang: "fr" | "en", token, isShortSurvey) => {
-            const jsonUrl = "/sample-data/survey_pid.json";
-            const pidSurvey = new PidSurvey(lang, token, storageName_PID, isShortSurvey);
-
-            await pidSurvey.loadSurveyFromUrl(jsonUrl);
-            pidSurvey.renderSurvey();
-
-            globalThis.exportToPDF = function () {
-                const filename = "survey_export_pid";
-                const pdfClass = new surveyPdfExport();
-
-                const page_title: MultiLanguageProperty = {
-                    en: "PID export",
-                    fr: "PID export",
-                    default: ""
-                };
-
-                pdfClass.exportToPDF(filename, jsonUrl, lang, pidSurvey.getSurveyModel(), page_title);
             };
         };
 
