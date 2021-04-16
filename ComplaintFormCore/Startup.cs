@@ -1,32 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+using ComplaintFormCore.Models;
 using ComplaintFormCore.Resources;
+using FluentValidation.AspNetCore;
 using GoC.WebTemplate.Components.Core.Services;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
-using Newtonsoft;
-using FluentValidation.AspNetCore;
+using System;
+using System.Globalization;
 
 namespace ComplaintFormCore
 {
-    public class Startup
+	public class Startup
     {
         public Startup(IConfiguration configuration)
         {
@@ -53,7 +42,9 @@ namespace ComplaintFormCore
                 //});
 
             });
-            //services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
+			//services.AddTransient<ProblemDetailsFactory, OPCProblemDetailsFactory>();
+
+			services.AddOptions();
 
             //  https://visualstudiomagazine.com/articles/2018/12/01/working-with-session.aspx
             services.AddSession(so =>
@@ -87,7 +78,11 @@ namespace ComplaintFormCore
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
-        }
+
+			services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+			services.Configure<PidSettings>(Configuration.GetSection("AppSettings:PID"));
+			services.AddSingleton<IConfiguration>(Configuration);
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
