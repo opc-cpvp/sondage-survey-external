@@ -15,10 +15,6 @@ pool:
   - npm
   - msbuild
 
-variables:
-  BuildPlatform: 'any cpu'
-  BuildConfiguration: 'release'
-
 steps:
 - task: UseDotNet@2
   displayName: 'Use .NET Core sdk 3.1.301'
