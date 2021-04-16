@@ -348,10 +348,15 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/ComplaintFormCore/FileUploads/0f3ee945-def4-4288-8a03-9459bb4890da
+
+###############################################################
+# Survey Sondage External
+###############################################################
+
+# Application Settings
+appsettings.Development.json
 
 # ComplaintFormCore
-
 /ComplaintFormCore/wwwroot/lib
 /ComplaintFormCore/wwwroot/js/clientapp
 /ComplaintFormCore/ClientApp/dist
