@@ -6,6 +6,8 @@ namespace SurveyToCS
 {
 	public class SurveyParser
 	{
+		public static readonly string[] IgnoredElementTypes = { ElementTypes.Html };
+
 		private SurveyObject _survey;
 		public SurveyParser(SurveyObject survey)
 		{
@@ -15,8 +17,9 @@ namespace SurveyToCS
 		public List<ModelProperty> GetProperties()
 		{
 			return _survey.pages.SelectMany(p => p.elements)
-				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.GetNormalizedName())            // Group by element name
+				.Where(e => !string.IsNullOrWhiteSpace(e.name))    // Ignore elements without names
+				.Where(e => !IgnoredElementTypes.Contains(e.type)) // Ignore elements by type
+				.GroupBy(e => e.GetNormalizedName())               // Group by element name
 				.Aggregate(new List<ModelProperty>(), (list, e) =>
 				{
 					var modelProperty = ParsePropertyElement(e.Key, e);
@@ -32,12 +35,19 @@ namespace SurveyToCS
 			property.Properties = elements
 				.Aggregate(new List<Element>(), (list, e) =>
 				{
-					list.AddRange(e.columns ?? Enumerable.Empty<Element>());
-					list.AddRange(e.templateElements ?? Enumerable.Empty<Element>());
+					var properties = e.type switch
+					{
+						ElementTypes.Matrix => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.Matrix }),
+						ElementTypes.MatrixDynamic => e.columns,
+						ElementTypes.PanelDynamic => e.templateElements,
+						_ => Enumerable.Empty<Element>()
+					};
+					list.AddRange(properties ?? Enumerable.Empty<Element>());
 					return list;
 				})
-				.Where(e => !string.IsNullOrWhiteSpace(e.name)) // Ignore elements without names
-				.GroupBy(e => e.GetNormalizedName())            // Group by element name
+				.Where(e => !string.IsNullOrWhiteSpace(e.name))    // Ignore elements without names
+				.Where(e => !IgnoredElementTypes.Contains(e.type)) // Ignore elements by type
+				.GroupBy(e => e.GetNormalizedName())               // Group by element name
 				.Select(e => ParsePropertyElement(e.Key, e))
 				.ToList();
 
@@ -45,7 +55,7 @@ namespace SurveyToCS
 			var element = elements.SingleOrDefault(e => e.name == propertyName) ?? elements.First();
 			property.Element = element;
 			property.Type = property.IsComplexObject ? property.Name : GetPropertyType(element);
-			property.IsList = property.IsComplexObject ? true : IsElementList(element);
+			property.IsList = IsElementList(element);
 
 			return property;
 		}
@@ -56,8 +66,10 @@ namespace SurveyToCS
 			switch (elementType)
 			{
 				case ElementTypes.CheckBox:
-				case ElementTypes.TagBox:
 				case ElementTypes.File:
+				case ElementTypes.MatrixDynamic:
+				case ElementTypes.PanelDynamic:
+				case ElementTypes.TagBox:
 					return true;
 				default:
 					return false;
@@ -94,6 +106,7 @@ namespace SurveyToCS
 					}
 				case ElementTypes.Comment:
 				case ElementTypes.DropDown:
+				case ElementTypes.Matrix:
 				case ElementTypes.RadioGroup:
 					return PropertyTypes.String;
 				default:

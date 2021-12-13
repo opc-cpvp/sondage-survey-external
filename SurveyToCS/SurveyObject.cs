@@ -52,7 +52,7 @@ namespace SurveyToCS
 
 		//	This property being an Object is weird by the problem is 'rows' is being used in
 		//	'matrix' type question as well as in 'comment'. Both as different data type.
-		public object rows { get; set; }
+		public List<Row> rows { get; set; }
 		public string value { get; set; }
 		public bool? hasOther { get; set; }
 		public string defaultValue { get; set; }
