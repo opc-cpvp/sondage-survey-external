@@ -1,4 +1,5 @@
 const path = require("path");
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 const config = {
     entry: {
@@ -10,11 +11,19 @@ const config = {
                 test: /\.tsx?$/,
                 use: "ts-loader",
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ['vue-style-loader', 'css-loader']
+            },
+            {
+                test: /\.vue$/,
+                loader: 'vue-loader'
+            },
         ]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"],
+        extensions: [".tsx", ".ts", ".js", ".vue"],
         alias: {
             // Since we need to compile templates on the client(e.g.passing a
             // string to the template option, or mounting to an element using
@@ -29,7 +38,10 @@ const config = {
         library: '[name]',
         filename: "[name].min.js",
         path: path.resolve(__dirname, "dist")
-    }
+    },
+    plugins: [
+        new VueLoaderPlugin()
+    ]
 };
 
 module.exports = (env, argv) => {
