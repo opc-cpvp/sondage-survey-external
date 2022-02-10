@@ -141,7 +141,7 @@
           "name": "panelRiskDescriptions",
           "valueName": "panelRiskDescriptionsValue",
           "title": "Risks identified in previous questions",
-          "renderMode": "progressTop",
+          "renderMode": "list",
           "allowAddPanel": false,
           "allowRemovePanel": false,
           "templateTitle": "Risk Description #{panelIndex}",

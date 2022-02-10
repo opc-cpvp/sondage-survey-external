@@ -44,9 +44,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\pia\piaSurveyRisk.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisk.js.map" />
     <None Remove="ClientApp\src\pia\piaSurveyRisk.ts" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.js.map" />
     <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.ts" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.js.map" />
     <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.ts" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisks.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisks.js.map" />
     <None Remove="ClientApp\src\pia\piaSurveyRisks.ts" />
   </ItemGroup>
 
