@@ -14,22 +14,22 @@ export class PiaSurveyRiskDefaultValues {
     private getList(): PiaSurveyRiskDefaultValue[] {
         this.list.push(
             new PiaSurveyRiskDefaultValue(
-                "TestQuestion2.2.13",
-                "no",
+                "WillITLegacySystemRetained",
+                false,
                 "The institution’s current IT legacy systems and services that will be retained, or those that will be substantially modified, are not compliant with privacy requirements."
             )
         );
         this.list.push(
             new PiaSurveyRiskDefaultValue(
-                "TestQuestion3.2.4",
-                "no",
+                "DoesStaffReceivedTraining",
+                false,
                 "The institution does not ensure that staff receive privacy-related training."
             )
         );
         this.list.push(
             new PiaSurveyRiskDefaultValue(
-                "TestQuestion3.2.6",
-                "yes, but not yet established",
+                "ProcessHandlingPrivacyComplaint",
+                "yes_not_established",
                 "The institution has not yet established a process for handling a privacy complaint or inquiry."
             )
         );

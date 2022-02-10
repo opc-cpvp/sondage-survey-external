@@ -32,7 +32,13 @@ export class PiaSurveyRisks {
         }
     }
 
-    private isRiskAnswer(defaultAnswer: string, questionAnswer: string): boolean {
-        return defaultAnswer === questionAnswer;
+    private isRiskAnswer(defaultAnswer: any, questionAnswer: unknown): boolean {
+        if (typeof questionAnswer == "boolean") {
+            return defaultAnswer === questionAnswer;
+        } else if (typeof questionAnswer == "string") {
+            return defaultAnswer.toLowerCase() === questionAnswer.toLowerCase();
+        }
+
+        return false;
     }
 }

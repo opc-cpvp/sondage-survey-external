@@ -6,10 +6,7 @@ import {
     ItemValue,
     QuestionPanelDynamicModel,
     JsonObject,
-    QuestionSelectBase,
-    Page,
-    Panel,
-    PanelModel
+    QuestionSelectBase
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
@@ -110,28 +107,23 @@ export class PiaSurvey extends SurveyBase {
             rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
 
             for (let i = 0; i < rootPanel.panels.length; i++) {
-                const childPanel = rootPanel.panels[i];
+                const p = rootPanel.panels[i];
 
                 // Update panel properties.
-                childPanel.name = "risk_" + this.risks.currentList[i].questionName;
-                childPanel.title = "Risk Description from question " + this.risks.currentList[i].questionName;
+                p.name = "risk_" + this.risks.currentList[i].questionName;
+                p.title = "Risk Description from question " + this.risks.currentList[i].questionName;
 
                 // Update relevant question info.
-                childPanel.questions[0].description = childPanel.questions[0].description.replace(
+                p.questions[0].description = p.questions[0].description.replace(
                     "[TEXT OF QUESTION]",
                     this.risks.currentList[i].questionText
                 );
-                childPanel.questions[0].description = childPanel.questions[0].description.replace(
-                    "[RESPONSE]",
-                    this.risks.currentList[i].questionAnswer
-                );
-                childPanel.questions[1].description = childPanel.questions[1].description.replace(
+                p.questions[0].description = p.questions[0].description.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
+                p.questions[1].description = p.questions[1].description.replace(
                     "[DESCRIPTION OF THE RISK]",
                     this.risks.currentList[i].defaultDescriptionOfRisk
                 );
-                childPanel.questions[3].defaultValue = childPanel.questions[3].defaultValue = this.risks.currentList[
-                    i
-                ].defaultDescriptionOfRisk;
+                p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
             }
         }
 
