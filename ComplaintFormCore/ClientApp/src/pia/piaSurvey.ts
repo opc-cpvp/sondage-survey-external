@@ -6,13 +6,18 @@ import {
     ItemValue,
     QuestionPanelDynamicModel,
     JsonObject,
-    QuestionSelectBase
+    QuestionSelectBase,
+    Page,
+    Panel,
+    PanelModel
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
+import { PiaSurveyRisks } from "../pia/piaSurveyRisks";
 
 export class PiaSurvey extends SurveyBase {
     private authToken: string;
+    private risks = new PiaSurveyRisks();
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);
@@ -75,7 +80,11 @@ export class PiaSurvey extends SurveyBase {
         });
 
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
-            this.setNavigationBreadcrumbs(sender);
+            this.handlePiaOnCurrentPageChanged(sender, options);
+        });
+
+        this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleOnValidateQuestion(sender, options);
         });
     }
 
@@ -86,6 +95,47 @@ export class PiaSurvey extends SurveyBase {
             name: "section:text",
             default: false
         });
+    }
+
+    private handleOnValidateQuestion(sender: SurveyModel, options: any): void {
+        // Check if this question happens to be a "risk" related one.
+        this.risks.checkIfRisk(options.question);
+    }
+
+    private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        if (this.survey.currentPage && this.survey.currentPage.name === "page_step_4") {
+            // Get the root panel control.
+            const rootPanel = this.survey.currentPage.questions[0];
+            // Set the panel count using the risks collection.
+            rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
+
+            for (let i = 0; i < rootPanel.panels.length; i++) {
+                const childPanel = rootPanel.panels[i];
+
+                // Update panel properties.
+                childPanel.name = "risk_" + this.risks.currentList[i].questionName;
+                childPanel.title = "Risk Description from question " + this.risks.currentList[i].questionName;
+
+                // Update relevant question info.
+                childPanel.questions[0].description = childPanel.questions[0].description.replace(
+                    "[TEXT OF QUESTION]",
+                    this.risks.currentList[i].questionText
+                );
+                childPanel.questions[0].description = childPanel.questions[0].description.replace(
+                    "[RESPONSE]",
+                    this.risks.currentList[i].questionAnswer
+                );
+                childPanel.questions[1].description = childPanel.questions[1].description.replace(
+                    "[DESCRIPTION OF THE RISK]",
+                    this.risks.currentList[i].defaultDescriptionOfRisk
+                );
+                childPanel.questions[3].defaultValue = childPanel.questions[3].defaultValue = this.risks.currentList[
+                    i
+                ].defaultDescriptionOfRisk;
+            }
+        }
+
+        this.setNavigationBreadcrumbs(sender);
     }
 
     private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
