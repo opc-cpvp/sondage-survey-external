@@ -1,16 +1,6 @@
 {
   "pages": [
     {
-      "name": "page_variables",
-      "elements": [
-        {
-          "type": "text",
-          "name": "CurrentRiskDescription"
-        }
-      ],
-      "visible": false
-    },
-    {
       "name": "page_what_is_OPC_tool",
       "title": {
         "en": "What is the Office of the Privacy Commissioner of Canada’s privacy impact assessment e-Tool?",
@@ -7146,7 +7136,7 @@
         "fr": ""
       },
       "section": "4",
-      "visibleIf": "{IsAtLeastOneRiskQuestionPresent}",
+      "visible":  true,
       "elements": [
         {
           "type": "paneldynamic",
@@ -7156,13 +7146,13 @@
           "renderMode": "list",
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "templateTitle": "Risk Description #{panelIndex}",
+          "templateTitle": "Identified risk #{panelIndex}",
           "templateElements": [
             {
               "type": "radiogroup",
-              "name": "panel_q",
+              "name": "panel_risk_desc_q",
               "title": {
-                "en": "Panel question",
+                "en": "Panel risk description question",
                 "fr": ""
               },
               "description": {
@@ -7189,7 +7179,7 @@
             },
             {
               "type": "radiogroup",
-              "name": "panel_q_yes",
+              "name": "panel_risk_desc_q_yes",
               "title": {
                 "en": "Panel question - answer yes",
                 "fr": ""
@@ -7198,7 +7188,7 @@
                 "en": "<p>Here is how the risk will appear in the table of privacy risks: <strong>[DESCRIPTION OF THE RISK]</strong>. Would you like to modify this?</p>",
                 "fr": ""
               },
-              "visibleIf": "{panel.panel_q} = 'yes'",
+              "visibleIf": "{panel.panel_risk_desc_q} = 'yes'",
               "choices": [
                 {
                   "text": {
@@ -7218,7 +7208,7 @@
             },
             {
               "type": "text",
-              "name": "panel_q_no",
+              "name": "panel_risk_desc_q_no",
               "title": {
                 "en": "Panel question - answer no",
                 "fr": ""
@@ -7227,11 +7217,11 @@
                 "en": "<p>Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk:</p>",
                 "fr": ""
               },
-              "visibleIf": "{panel.panel_q} = 'no'"
+              "visibleIf": "{panel.panel_risk_desc_q} = 'no'"
             },
             {
               "type": "text",
-              "name": "TestQuestion4.1yesyes",
+              "name": "panel_risk_desc_q_yes_yes",
               "defaultValue": "[DESCRIPTION OF THE RISK]",
               "title": {
                 "en": "Panel question - answer yes - answer yes",
@@ -7241,7 +7231,7 @@
                 "en": "<p>Please modify the description of the risk to how you would like it to appear in your table of privacy risks:</p>",
                 "fr": ""
               },
-              "visibleIf": "{panel.panel_q_yes} = 'yes'"
+              "visibleIf": "{panel.panel_risk_desc_q_yes} = 'yes'"
             }
           ],
           "panelCount": 0
@@ -7276,10 +7266,6 @@
       "name": "IsElectronicFormat",
       "expression": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both'] or {IsPhysicalConvertedToElectronic} = true",
       "includeIntoResult": true
-    },
-    {
-      "name": "IsAtLeastOneRiskQuestionPresent",
-      "expression": "{WillITLegacySystemRetained} = 'no' OR {DoesStaffReceivedTraining} = 'no' OR {ProcessHandlingPrivacyComplaint} = 'yes_not_established'"
     }
   ]
 }

@@ -97,6 +97,8 @@ export class PiaSurvey extends SurveyBase {
     private handleOnValidateQuestion(sender: SurveyModel, options: any): void {
         // Check if this question happens to be a "risk" related one.
         this.risks.checkIfRisk(options.question);
+        // Section 4 should be visible only if there is at least one risk scenario identified.
+        this.survey.pages.filter(r => r.name === "page_step_4")[0].visible = this.risks.currentList.length > 0;
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
@@ -111,7 +113,7 @@ export class PiaSurvey extends SurveyBase {
 
                 // Update panel properties.
                 p.name = "risk_" + this.risks.currentList[i].questionName;
-                p.title = "Risk Description from question " + this.risks.currentList[i].questionName;
+                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
 
                 // Update relevant question info.
                 p.questions[0].description = p.questions[0].description.replace(
