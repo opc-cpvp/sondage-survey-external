@@ -124,7 +124,9 @@ export class PiaSurvey extends SurveyBase {
         }
     }
 
-    private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+    protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        super.handleOnAfterRenderQuestion(sender, options);
+
         const question = options.question as Question;
 
         // Generate the list of contact persons based on previous answers
