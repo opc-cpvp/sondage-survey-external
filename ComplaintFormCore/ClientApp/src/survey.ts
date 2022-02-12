@@ -1,13 +1,4 @@
-import {
-    defaultBootstrapCss,
-    surveyLocalization,
-    JsonObject,
-    Model,
-    Question,
-    StylesManager,
-    SurveyError,
-    SurveyModel
-} from "survey-vue";
+import { defaultBootstrapCss, surveyLocalization, JsonObject, Model, Question, StylesManager, SurveyError, SurveyModel } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 import { LocalStorage } from "./localStorage";
@@ -176,6 +167,90 @@ export abstract class SurveyBase {
         });
     }
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
+        const html = options.htmlElement as HTMLElement;
+        const headings = html?.querySelectorAll("h4");
+
+        // Check for the presence of headings
+        if (!headings) {
+            return;
+        }
+
+        // Replace headings with appropriate tag
+        headings.forEach((h, i) => {
+            if (i > 0) {
+                // Replace the headings (h4) with another heading (h2)
+                h.outerHTML = `<h2 class="${h.className}">${h.innerHTML}</h2>`;
+            } else {
+                // Replace the heading (h4) with another heading (h1)
+                h.outerHTML = `<h1 class="${h.className}">${h.innerHTML}</h1>`;
+            }
+        });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        const question = options.question as Question;
+
+        const html = options.htmlElement as HTMLElement;
+        const heading = html?.querySelector("h5");
+
+        // Check for the presence of a heading
+        if (!heading) {
+            return;
+        }
+
+        // Unwrap the divs contained within the heading to fix alignment with required field asterisk
+        let div = heading.querySelector("div");
+        while (div) {
+            div.outerHTML = div.innerHTML;
+            div = heading.querySelector("div");
+        }
+
+        // Replace the required text with a strong
+        if (question.isRequired) {
+            const required = heading.querySelector("span.sv_q_required_text");
+
+            if (required) {
+                required.outerHTML = `<strong class="${required.className}">${required.innerHTML}</strong>`;
+            }
+        }
+
+        // Replace the heading with a label
+        heading.outerHTML = `<label id="${question.ariaTitleId}" for="${question.inputId}" class="${heading.className}">${heading.innerHTML}</label>`;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        this.saveSurveyState();
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnTextMarkdown(sender: SurveyModel, options: any): void {
+        // convert the mardown text to html
+        let str = this.converter.makeHtml(options.text);
+
+        // remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
+
+        // set html
+        options.html = str;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
+        const questions = options.questions as Question[];
+
+        const questionErrors = new Map<Question, SurveyError[]>();
+        for (const question of questions) {
+            questionErrors.set(question, question.errors);
+        }
+
+        this.displayErrorSummary(questionErrors);
+    }
+
     private setSurveyProperties(): void {
         // Set Theme
         StylesManager.applyTheme("bootstrap");
@@ -268,84 +343,5 @@ export abstract class SurveyBase {
         }
 
         this.setSurveyState(state);
-    }
-
-    protected handleOnTextMarkdown(sender: SurveyModel, options: any): void {
-        // convert the mardown text to html
-        let str = this.converter.makeHtml(options.text);
-
-        // remove root paragraphs <p></p>
-        str = str.substring(3);
-        str = str.substring(0, str.length - 4);
-
-        // set html
-        options.html = str;
-    }
-
-    protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        this.saveSurveyState();
-    }
-
-    protected handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
-        const html = options.htmlElement as HTMLElement;
-        const headings = html?.querySelectorAll("h4");
-
-        // Check for the presence of headings
-        if (!headings) {
-            return;
-        }
-
-        // Replace headings with appropriate tag
-        headings.forEach((h, i) => {
-            if (i > 0) {
-                // Replace the headings (h4) with another heading (h2)
-                h.outerHTML = `<h2 class="${h.className}">${h.innerHTML}</h2>`;
-            } else {
-                // Replace the heading (h4) with another heading (h1)
-                h.outerHTML = `<h1 class="${h.className}">${h.innerHTML}</h1>`;
-            }
-        });
-    }
-
-    protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
-        const question = options.question as Question;
-
-        const html = options.htmlElement as HTMLElement;
-        const heading = html?.querySelector("h5");
-
-        // Check for the presence of a heading
-        if (!heading) {
-            return;
-        }
-
-        // Unwrap the divs contained within the heading to fix alignment with required field asterisk
-        let div = heading.querySelector("div");
-        while (div) {
-            div.outerHTML = div.innerHTML;
-            div = heading.querySelector("div");
-        }
-
-        // Replace the required text with a strong
-        if (question.isRequired) {
-            const required = heading.querySelector("span.sv_q_required_text");
-
-            if (required) {
-                required.outerHTML = `<strong class="${required.className}">${required.innerHTML}</strong>`;
-            }
-        }
-
-        // Replace the heading with a label
-        heading.outerHTML = `<label id="${question.ariaTitleId}" for="${question.inputId}" class="${heading.className}">${heading.innerHTML}</label>`;
-    }
-
-    protected handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
-        const questions = options.questions as Question[];
-
-        const questionErrors = new Map<Question, SurveyError[]>();
-        for (const question of questions) {
-            questionErrors.set(question, question.errors);
-        }
-
-        this.displayErrorSummary(questionErrors);
     }
 }

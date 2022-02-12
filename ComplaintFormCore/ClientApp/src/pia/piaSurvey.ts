@@ -88,42 +88,7 @@ export class PiaSurvey extends SurveyBase {
         });
     }
 
-    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
-        //  TODO: Probably disable some items when the user has not gone thru all the question.
-
-        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
-
-        if (!ul_progress_navigation) {
-            return;
-        }
-
-        if (surveyObj.isDisplayMode) {
-            //  We do not show the navigation bar in preview mode
-            ul_progress_navigation.className = "hidden";
-            return;
-        }
-
-        ul_progress_navigation.className = "breadcrumb";
-
-        if (surveyObj.currentPage.section === null) {
-            //  If for any reasons we forget to add the section property in the json at least nothing will happen
-            return;
-        }
-
-        const items = document.getElementsByClassName("breadcrumb-item");
-
-        Array.from(items).forEach(li => {
-            //  Reset the original class on each <li> item
-            li.className = "breadcrumb-item";
-        });
-
-        const section: string = surveyObj.currentPage.section;
-        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
-        if (li_breadcrumb) {
-            li_breadcrumb.className += " active";
-        }
-    }
-
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
         super.handleOnAfterRenderQuestion(sender, options);
 
@@ -196,6 +161,42 @@ export class PiaSurvey extends SurveyBase {
             });
 
             receivingParties.choices = parties;
+        }
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
+        //  TODO: Probably disable some items when the user has not gone thru all the question.
+
+        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
+
+        if (!ul_progress_navigation) {
+            return;
+        }
+
+        if (surveyObj.isDisplayMode) {
+            //  We do not show the navigation bar in preview mode
+            ul_progress_navigation.className = "hidden";
+            return;
+        }
+
+        ul_progress_navigation.className = "breadcrumb";
+
+        if (surveyObj.currentPage.section === null) {
+            //  If for any reasons we forget to add the section property in the json at least nothing will happen
+            return;
+        }
+
+        const items = document.getElementsByClassName("breadcrumb-item");
+
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
+
+        const section: string = surveyObj.currentPage.section;
+        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
+        if (li_breadcrumb) {
+            li_breadcrumb.className += " active";
         }
     }
 
