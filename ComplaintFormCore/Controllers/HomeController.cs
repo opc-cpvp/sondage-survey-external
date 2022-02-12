@@ -42,6 +42,12 @@ namespace ComplaintFormCore.Controllers
             return View();
         }
 
+		public IActionResult BreachPA([FromQuery(Name = "token")] string token)
+		{
+			ViewBag.token = token;
+			return View();
+		}
+
         public IActionResult DetailsPA([FromQuery(Name = "token")] string token)
         {
             ViewBag.token = token;

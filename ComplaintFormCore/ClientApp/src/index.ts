@@ -4,6 +4,8 @@ import "details-polyfill"; //  Polyfill to open/close the <details> tags
 import "element-closest-polyfill"; //  Polyfill to use Element.closest
 import { SurveyModel } from "survey-vue";
 import "whatwg-fetch";
+
+import { BreachPaSurvey } from "./breach_pa/breachPaSurvey";
 import { PaSurvey } from "./pa/paSurvey";
 import { PbrSurvey } from "./pbr/pbrSurvey";
 import { PiaSurvey } from "./pia/piaSurvey";
@@ -25,6 +27,7 @@ declare global {
     function showPreview(survey: SurveyModel): void;
     function completeSurvey(button: HTMLButtonElement, survey: SurveyModel): void;
 
+    function initBreachPaSurvey(lang: "en" | "fr", token: string): void;
     function initPaSurvey(lang: "en" | "fr", token: string): void;
     function initPiaETool(lang: "en" | "fr", token: string): void;
     function initPbr(lang: "en" | "fr", token: string): void;
@@ -67,6 +70,7 @@ declare let Symbol;
         globalThis.showPreview = SurveyNavigation.showPreview;
         globalThis.completeSurvey = SurveyNavigation.completeSurvey;
 
+        const storageName_BREACH_PA = "SurveyJS_LoadState_BREACH_PA";
         const storageName_PA = "SurveyJS_LoadState_PA";
         const storageName_PBR = "SurveyJS_LoadState_PBR";
         const storageName_PIA = "SurveyJS_LoadState_PIA";
@@ -114,6 +118,14 @@ declare let Symbol;
             const pbrSurvey = new PbrSurvey(lang, token, storageName_PBR);
             await pbrSurvey.loadSurveyFromUrl(jsonUrl);
             pbrSurvey.renderSurvey();
+        };
+
+        globalThis.initBreachPaSurvey = async (lang: "en" | "fr", token) => {
+            const jsonUrl = "/sample-data/survey_breach_pa.json";
+
+            const breachPaSurvey = new BreachPaSurvey(lang, token, storageName_BREACH_PA);
+            await breachPaSurvey.loadSurveyFromUrl(jsonUrl);
+            breachPaSurvey.renderSurvey();
         };
 
         globalThis.initPaSurvey = async (lang: "en" | "fr", token) => {

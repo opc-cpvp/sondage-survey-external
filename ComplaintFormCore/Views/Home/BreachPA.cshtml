@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Privacy Act Breach Report";
+}
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+@inject ComplaintFormCore.Resources.SharedViewLocalizer Localizer
+
+@functions
+{
+    public string GetAntiXsrfRequestToken()
+    {
+        return Xsrf.GetAndStoreTokens(Context).RequestToken;
+    }
+
+}
+
+<div id="surveyElement" style="display:inline-block;width:100%;">
+    <survey :survey='survey' />
+</div>
+
+<div id="surveyResult"></div>
+
+@section CustomStyles {
+    <link href="~/css/site.css" rel="stylesheet" />
+}
+
+@section CustomScripts {
+    <script src="~/js/clientapp/clientapp.min.js"></script>
+    <script type="text/javascript">
+        const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
+        const token = "@ViewBag.token";
+
+        initBreachPaSurvey(lang, token);
+    </script>
+}
