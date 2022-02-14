@@ -102,34 +102,48 @@ export class PiaSurvey extends SurveyBase {
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        if (this.survey.currentPage && this.survey.currentPage.name === "page_step_4") {
-            // Get the root panel control.
-            const rootPanel = this.survey.currentPage.questions[0];
-            // Set the panel count using the risks collection.
-            rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
+        this.handleSectionFour();
+        this.setNavigationBreadcrumbs(sender);
+    }
 
-            for (let i = 0; i < rootPanel.panels.length; i++) {
-                const p = rootPanel.panels[i];
-
-                // Update panel properties.
-                p.name = "risk_" + this.risks.currentList[i].questionName;
-                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
-
-                // Update relevant question info.
-                p.questions[0].description = p.questions[0].description.replace(
-                    "[TEXT OF QUESTION]",
-                    this.risks.currentList[i].questionText
-                );
-                p.questions[0].description = p.questions[0].description.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
-                p.questions[1].description = p.questions[1].description.replace(
-                    "[DESCRIPTION OF THE RISK]",
-                    this.risks.currentList[i].defaultDescriptionOfRisk
-                );
-                p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
-            }
+    private handleSectionFour(): void {
+        if (
+            !(this.survey.currentPage || this.survey.currentPage.name === "page_step_4" || this.survey.currentPage.name === "page_step_4_2")
+        ) {
+            return;
         }
 
-        this.setNavigationBreadcrumbs(sender);
+        // Get the root panel control.
+        const rootPanel = this.survey.currentPage.questions[0];
+
+        if (!(rootPanel && rootPanel.panels)) {
+            return;
+        }
+
+        // Set the panel count using the risks collection.
+        rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
+
+        // TODO: FOR NOW UNTIL 4.2 FULLY IMPLEMENTED...
+        if (this.survey.currentPage.name === "page_step_4_2") {
+            return;
+        }
+
+        for (let i = 0; i < rootPanel.panels.length; i++) {
+            const p = rootPanel.panels[i];
+
+            // Update panel properties.
+            p.name = "risk_" + this.risks.currentList[i].questionName;
+            p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
+
+            // Update relevant question info.
+            p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.risks.currentList[i].questionText);
+            p.questions[0].title = p.questions[0].title.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
+            p.questions[1].title = p.questions[1].title.replace(
+                "[DESCRIPTION OF THE RISK]",
+                this.risks.currentList[i].defaultDescriptionOfRisk
+            );
+            p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
+        }
     }
 
     private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {

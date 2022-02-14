@@ -1122,6 +1122,12 @@ namespace ComplaintFormCore.Models
 				child.RuleFor(x => x.SummaryFiles).NotEmpty().When(x => x.SummaryType == "upload").WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 			});
 
+			// RiskAssessmentScaleFiles (Page: panel_risk_assessment_4_2_5_2)
+			//RuleFor(x => x.RiskAssessmentScaleFiles)
+			//	.NotEmpty()
+			//	.When(x => (new List<string>() { x.StorageManagement }
+			//	.Intersect(new List<string>() { "some", "none" }).Any() || x.IsInstituionManageStorageOfPI == false) && x.FormalAgreementToManageStorage == "yes_in_place" && x.RelevantAgreementDocumentationType == "upload")
+			//	.WithMessage(_localizer.GetLocalizedStringSharedResource("FieldIsRequired"));
 		}
 	}
 }

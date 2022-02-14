@@ -2000,6 +2000,13 @@ namespace ComplaintFormCore.Models
 		/// </summary>
 		public List<SurveyFile> SupplementaryMaterialFiles { get; set; }
 
+		/// <summary>
+		/// Page: page_step_4_2<br/>
+		/// Section: 4.2<br/>
+		/// Required condition: {panel.panel_risk_assessment_4_2_5_2} = 'upload_copy'<br/>
+		/// Survey question type: file
+		/// </summary>
+		public List<SurveyFile> RiskAssessmentScaleFiles { get; set; }
 
 		public List<BehalfMultipleInstitutionOthers> BehalfMultipleInstitutionOthers { get; set; }
 
@@ -2244,7 +2251,6 @@ namespace ComplaintFormCore.Models
 		/// Survey question type: file
 		/// </summary>
 		public List<SurveyFile> SummaryFiles { get; set; }
-
 	}
 }
 
