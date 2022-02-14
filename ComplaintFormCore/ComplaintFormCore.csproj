@@ -1,68 +1,69 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup Label="Globals">
-    <SccProjectName>SAK</SccProjectName>
-    <SccProvider>SAK</SccProvider>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccLocalPath>SAK</SccLocalPath>
-  </PropertyGroup>
+	<PropertyGroup Label="Globals">
+		<SccProjectName>SAK</SccProjectName>
+		<SccProvider>SAK</SccProvider>
+		<SccAuxPath>SAK</SccAuxPath>
+		<SccLocalPath>SAK</SccLocalPath>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>ComplaintFormCore</RootNamespace>
-    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
-    <IsPackable>true</IsPackable>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<RootNamespace>ComplaintFormCore</RootNamespace>
+		<TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+		<TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+		<IsPackable>true</IsPackable>
 
-    <SpaRoot>ClientApp\</SpaRoot>
-    <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+		<SpaClientRoot>ClientApp\</SpaClientRoot>
+		<DefaultItemExcludes>$(DefaultItemExcludes);$(SpaClientRoot)node_modules\**</DefaultItemExcludes>
 
-    <!-- VS's FastUpToDateCheck doesn't consider .ts file changes, so it's necessary to disable it to get incremental builds to work correctly (albeit not as fast as if FastUpToDateCheck did work for them) -->
-    <DisableFastUpToDateCheck>false</DisableFastUpToDateCheck>
-  </PropertyGroup>
+		<!-- VS's FastUpToDateCheck doesn't consider .ts file changes, so it's necessary to disable it to get incremental builds to work correctly (albeit not as fast as if FastUpToDateCheck did work for them) -->
+		<DisableFastUpToDateCheck>false</DisableFastUpToDateCheck>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
-    <PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
-    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
-    <PackageReference Include="libphonenumber-csharp" Version="8.12.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.7" />
-    <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="3.1.4" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
-    <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
+		<PackageReference Include="GoC.WebTemplate-CoreMVC" Version="2.1.12" />
+		<PackageReference Include="Hellang.Middleware.ProblemDetails" Version="5.1.1" />
+		<PackageReference Include="libphonenumber-csharp" Version="8.12.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="3.1.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration" Version="3.1.4" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+		<PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Remove="$(SpaRoot)**\*.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="$(SpaClientRoot)**\*.json" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="$(SpaRoot)**\*.json" Exclude="$(SpaRoot)node_modules\**" />
-    <WebpackInputs Include="$(SpaRoot)**\*.ts" Exclude="$(SpaRoot)node_modules\**" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="$(SpaClientRoot)**\*.json" Exclude="$(SpaClientRoot)node_modules\**" />
+		<WebpackInputs Include="$(SpaClientRoot)**\*.ts" Exclude="$(SpaClientRoot)node_modules\**" />
+	</ItemGroup>
 
-  <Target Name="EnsureNodeEnv" BeforeTargets="Build" Condition=" !Exists('$(SpaRoot)node_modules') ">
-    <!-- Ensure Node.js is installed -->
-    <Exec Command="node --version" ContinueOnError="true">
-      <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
-    </Exec>
-    <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-    <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-  </Target>
+	<Target Name="EnsureNodeEnv" BeforeTargets="Build">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaClientRoot)" Command="npm install" Condition="!Exists('$(SpaClientRoot)node_modules')" />
+	</Target>
 
-  <Target Name="RunWebpack" BeforeTargets="Build" Inputs="@(WebpackInputs)" Outputs="$(SpaRoot)dist\clientapp.min.js">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:dev" Condition=" '$(Configuration)' == 'Debug' " />
-    <Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" Condition=" '$(Configuration)' != 'Debug' " />
+	<Target Name="RunClientWebpack" AfterTargets="Build" Inputs="@(WebpackInputs)" Outputs="$(ProjectDir)wwwroot\js\clientapp\clientapp.min.js">
+		<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+		<Exec WorkingDirectory="$(SpaClientRoot)" Command="npm run build:dev" Condition=" '$(Configuration)' == 'Debug' " />
+		<Exec WorkingDirectory="$(SpaClientRoot)" Command="npm run build" Condition=" '$(Configuration)' != 'Debug' " />
 
-    <ItemGroup>
-      <DistFiles Include="$(SpaRoot)dist\**" />
-    </ItemGroup>
+		<ItemGroup>
+			<DistFiles Remove="@(DistFiles)" />
+			<DistFiles Include="$(SpaClientRoot)dist\**" />
+		</ItemGroup>
 
-    <RemoveDir Directories="$(ProjectDir)wwwroot\js\clientapp" />
-    <Copy SourceFiles="@(DistFiles)" DestinationFolder="$(ProjectDir)wwwroot\js\clientapp" />
-  </Target>
+		<RemoveDir Directories="$(ProjectDir)wwwroot\js\clientapp" />
+		<Copy SourceFiles="@(DistFiles)" DestinationFolder="$(ProjectDir)wwwroot\js\clientapp" />
+	</Target>
 </Project>
