@@ -1,15 +1,4 @@
-import {
-    defaultBootstrapCss,
-    surveyLocalization,
-    JsonObject,
-    Model,
-    PageModel,
-    Question,
-    QuestionHtmlModel,
-    StylesManager,
-    SurveyError,
-    SurveyModel
-} from "survey-vue";
+import { defaultBootstrapCss, surveyLocalization, JsonObject, Model, Question, StylesManager, SurveyError, SurveyModel } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 import { LocalStorage } from "./localStorage";
@@ -38,20 +27,24 @@ export abstract class SurveyBase {
     }
 
     public displayErrorSummary(questionErrors: Map<Question, SurveyError[]>): void {
-        const currentPage = this.survey.currentPage as PageModel;
+        const summaryId = "errors";
 
-        let errorsQuestion = currentPage.getQuestionByName("errors") as QuestionHtmlModel;
-        if (errorsQuestion !== null) {
-            currentPage.removeQuestion(errorsQuestion);
+        // If there's already an error summary, remove it
+        let summary = document.getElementById(summaryId);
+        if (summary) {
+            summary.remove();
         }
 
+        // If there aren't any errors, exit
         if (questionErrors.size === 0) {
             return;
         }
 
         const errorText = surveyLocalization.getString("errorText") as string;
 
-        const summary = document.createElement("section");
+        // Create and populate the error summary
+        summary = document.createElement("section");
+        summary.id = summaryId;
         summary.className = "alert alert-danger";
 
         let index = 1;
@@ -62,26 +55,28 @@ export abstract class SurveyBase {
             for (const error of errors) {
                 const item = document.createElement("li");
                 const link = document.createElement("a");
-                link.href = `#${question.inputId}`;
+                link.href = `#${question.hasSingleInput ? question.inputId : question.id}`;
                 link.innerText = `${errorText} ${index++}: ${title.innerText} - ${error.getText()}`;
                 item.appendChild(link);
                 list.appendChild(item);
             }
         });
 
-        const validationError = surveyLocalization.getString("validationError")["format"](index - 1) as string;
+        const errorCount = index - 1;
+        const localizationKey = errorCount > 1 ? "validationErrors" : "validationError";
+        const validationError = surveyLocalization.getString(localizationKey)["format"](errorCount) as string;
 
+        // Set the error summary's title
         const header = document.createElement("h2");
         header.innerText = validationError;
 
         summary.appendChild(header);
         summary.appendChild(list);
 
-        errorsQuestion = new QuestionHtmlModel("errors");
-        errorsQuestion.html = summary.outerHTML;
-
-        currentPage.addQuestion(errorsQuestion, 0);
-        currentPage.scrollToTop();
+        // Insert the error summary after the page's heading
+        const heading = document.querySelector("h1");
+        heading?.parentNode?.insertBefore(summary, heading.nextSibling);
+        heading?.scrollIntoView();
     }
 
     public getSurveyModel(): SurveyModel {
@@ -128,6 +123,14 @@ export abstract class SurveyBase {
         this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
             this.handleOnCurrentPageChanged(sender, options);
         });
+
+        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderPage(sender, options);
+        });
+
+        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleOnAfterRenderQuestion(sender, options);
+        });
     }
 
     // TODO: This method should actually be converted into a widget.
@@ -162,6 +165,90 @@ export abstract class SurveyBase {
             name: "hideOnPreview:boolean",
             default: false
         });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
+        const html = options.htmlElement as HTMLElement;
+        const headings = html?.querySelectorAll("h4");
+
+        // Check for the presence of headings
+        if (!headings) {
+            return;
+        }
+
+        // Replace headings with appropriate tag
+        headings.forEach((h, i) => {
+            if (i > 0) {
+                // Replace the headings (h4) with another heading (h2)
+                h.outerHTML = `<h2 class="${h.className}">${h.innerHTML}</h2>`;
+            } else {
+                // Replace the heading (h4) with another heading (h1)
+                h.outerHTML = `<h1 class="${h.className}">${h.innerHTML}</h1>`;
+            }
+        });
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        const question = options.question as Question;
+
+        const html = options.htmlElement as HTMLElement;
+        const heading = html?.querySelector("h5");
+
+        // Check for the presence of a heading
+        if (!heading) {
+            return;
+        }
+
+        // Unwrap the divs contained within the heading to fix alignment with required field asterisk
+        let div = heading.querySelector("div");
+        while (div) {
+            div.outerHTML = div.innerHTML;
+            div = heading.querySelector("div");
+        }
+
+        // Replace the required text with a strong
+        if (question.isRequired) {
+            const required = heading.querySelector("span.sv_q_required_text");
+
+            if (required) {
+                required.outerHTML = `<strong class="${required.className}">${required.innerHTML}</strong>`;
+            }
+        }
+
+        // Replace the heading with a label
+        heading.outerHTML = `<label id="${question.ariaTitleId}" for="${question.inputId}" class="${heading.className}">${heading.innerHTML}</label>`;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        this.saveSurveyState();
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnTextMarkdown(sender: SurveyModel, options: any): void {
+        // convert the mardown text to html
+        let str = this.converter.makeHtml(options.text);
+
+        // remove root paragraphs <p></p>
+        str = str.substring(3);
+        str = str.substring(0, str.length - 4);
+
+        // set html
+        options.html = str;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
+        const questions = options.questions as Question[];
+
+        const questionErrors = new Map<Question, SurveyError[]>();
+        for (const question of questions) {
+            questionErrors.set(question, question.errors);
+        }
+
+        this.displayErrorSummary(questionErrors);
     }
 
     private setSurveyProperties(): void {
@@ -222,8 +309,11 @@ export abstract class SurveyBase {
         surveyLocalization.locales["en"].requiredText = "(required)";
         surveyLocalization.locales["fr"].requiredText = "(obligatoire)";
 
-        surveyLocalization.locales["en"].validationError = "The form could not be submitted because {0} errors were found.";
-        surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreurs ont été trouvées.";
+        surveyLocalization.locales["en"].validationError = "The form could not be submitted because {0} error was found.";
+        surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreur a été trouvée.";
+
+        surveyLocalization.locales["en"].validationErrors = "The form could not be submitted because {0} errors were found.";
+        surveyLocalization.locales["fr"].validationErrors = "Le formulaire n'a pu être soumis car {0} erreurs ont été trouvées.";
     }
 
     private getSurveyState(): SurveyState {
@@ -253,32 +343,5 @@ export abstract class SurveyBase {
         }
 
         this.setSurveyState(state);
-    }
-
-    private handleOnTextMarkdown(sender: SurveyModel, options: any): void {
-        // convert the mardown text to html
-        let str = this.converter.makeHtml(options.text);
-
-        // remove root paragraphs <p></p>
-        str = str.substring(3);
-        str = str.substring(0, str.length - 4);
-
-        // set html
-        options.html = str;
-    }
-
-    private handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        this.saveSurveyState();
-    }
-
-    private handleOnValidatedErrorsOnCurrentPage(sender: SurveyModel, options: any): void {
-        const questions = options.questions as Question[];
-
-        const questionErrors = new Map<Question, SurveyError[]>();
-        for (const question of questions) {
-            questionErrors.set(question, question.errors);
-        }
-
-        this.displayErrorSummary(questionErrors);
     }
 }
