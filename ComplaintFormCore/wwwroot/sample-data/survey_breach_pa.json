@@ -1,0 +1,964 @@
+{
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "ReportInitial",
+          "title": "Is this the first report related to this incident",
+          "choices": [
+            {
+              "value": "original",
+              "text": "Original Report"
+            },
+            {
+              "value": "amended",
+              "text": "Amended or updated report"
+            }
+          ]
+        }
+      ],
+      "title": "Privacy Act Breach Report"
+    },
+    {
+      "name": "page2",
+      "elements": [
+        {
+          "type": "text",
+          "name": "ReportReferenceNumber",
+          "title": "Institution's Reference Number",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "ReportFileNumber",
+          "title": "OPC File Number",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'amended'",
+      "title": "Breach Amendment"
+    },
+    {
+      "name": "page3",
+      "elements": [
+        {
+          "type": "file",
+          "name": "FilesUpload",
+          "title": "Please select the file(s) containing your supplementary information",
+          "description": "Supported files: *.doc; *.docx; *.pdf; *.txt; *.jpeg; *.jpg; *.png",
+          "isRequired": true,
+          "allowMultiple": true,
+          "allowImagesPreview": false,
+          "acceptedTypes": ".doc,.docx,.pdf,.txt,.png,.jpeg,.jpg"
+        },
+        {
+          "type": "comment",
+          "name": "FilesComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information.",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'amended'",
+      "title": "Breach Amendment"
+    },
+    {
+      "name": "page4",
+      "elements": [
+        {
+          "type": "dropdown",
+          "name": "InstitutionName",
+          "title": "Institution name",
+          "description": "Select institution name in the drop-down list.",
+          "isRequired": true,
+          "choices": [
+            "item1",
+            "item2",
+            "item3"
+          ]
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "A. Information about the institution",
+      "description": "A.1. Name of the institution"
+    },
+    {
+      "name": "page5",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "RepresentativeType",
+          "title": "Representative type",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "internal",
+              "text": "Internal representative"
+            },
+            {
+              "value": "external",
+              "text": "External representative (e.g. legal representative)"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeFirstName",
+          "title": "First Name",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeLastName",
+          "startWithNewLine": false,
+          "title": "Last Name",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeTitlePosition",
+          "title": "Title / position",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeTelephone",
+          "title": "Telephone",
+          "isRequired": true,
+          "inputType": "tel"
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeTelephoneExtension",
+          "startWithNewLine": false,
+          "title": "Telephone extension",
+          "inputType": "number"
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeEmail",
+          "title": "Email",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeAddress",
+          "title": "Address"
+        },
+        {
+          "type": "text",
+          "name": "RepresentativeCity",
+          "title": "City"
+        },
+        {
+          "type": "dropdown",
+          "name": "RepresentativeProvinceState",
+          "title": "Province / State",
+          "choices": [
+            "item1",
+            "item2",
+            "item3"
+          ]
+        },
+        {
+          "type": "dropdown",
+          "name": "RepresentativeCountry",
+          "title": "Country",
+          "choices": [
+            "item1",
+            "item2",
+            "item3"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "RepresentativePostalCodeZip",
+          "title": "Postal code / ZIP"
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "A. Information about the institution",
+      "description": "A.2. Contact information of a person who can answer, on behalf of the institution, questions about the breach"
+    },
+    {
+      "name": "page6",
+      "elements": [
+        {
+          "type": "text",
+          "name": "AffectedIndividualsNumber",
+          "title": "Number of affected individuals",
+          "description": "Number of affected individuals by the breach, or if unknown, the approximate number.",
+          "isRequired": true,
+          "inputType": "number",
+          "min": "1"
+        },
+        {
+          "type": "comment",
+          "name": "AffectedIndividualsComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.1. Affected Individuals"
+    },
+    {
+      "name": "page7",
+      "elements": [
+        {
+          "type": "text",
+          "name": "TimelineStartDate",
+          "title": "Start date of breach occurrence",
+          "isRequired": true,
+          "inputType": "date"
+        },
+        {
+          "type": "text",
+          "name": "TimelineDiscoveryDate",
+          "title": "When the institution discovered the breach",
+          "inputType": "date"
+        },
+        {
+          "type": "text",
+          "name": "TimelineEndDate",
+          "title": "End date of breach occurrence",
+          "inputType": "date"
+        },
+        {
+          "type": "comment",
+          "name": "TimelineComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.2. Breach timeline"
+    },
+    {
+      "name": "page8",
+      "elements": [
+        {
+          "type": "radiogroup",
+          "name": "BreachType",
+          "title": "Type of breach",
+          "description": "Please select the option that best fits from the list below.",
+          "choices": [
+            {
+              "value": "disclosure",
+              "text": "Improper or unauthorized disclosure"
+            },
+            {
+              "value": "loss",
+              "text": "Loss"
+            },
+            {
+              "value": "theft",
+              "text": "Theft"
+            },
+            {
+              "value": "access",
+              "text": "Improper or unauthorized access"
+            }
+          ],
+          "hasOther": true,
+          "otherText": "Other (please explain below)"
+        },
+        {
+          "type": "panel",
+          "name": "BreachCause",
+          "elements": [
+            {
+              "type": "matrixdropdown",
+              "name": "ExternalSourceCyberAttack",
+              "title": "External source - Cyber attack",
+              "columns": [
+                {
+                  "name": "credentials",
+                  "title": "Compromised credentials attack",
+                  "cellType": "checkbox",
+                  "choices": [
+                    {
+                      "value": "bruteForce",
+                      "text": "Brute force attack"
+                    },
+                    {
+                      "value": "passwordSpray",
+                      "text": "Password spray / Rainbow table attack"
+                    },
+                    {
+                      "value": "credentialStuffing",
+                      "text": "Credential stuffing"
+                    },
+                    {
+                      "value": "other",
+                      "text": "Other compromised credentials attack"
+                    }
+                  ]
+                },
+                {
+                  "name": "hacking",
+                  "title": "Hacking",
+                  "cellType": "checkbox",
+                  "choices": [
+                    {
+                      "value": "hacking",
+                      "text": "Hacking"
+                    }
+                  ]
+                },
+                {
+                  "name": "malware",
+                  "title": "Malware",
+                  "cellType": "checkbox",
+                  "choices": [
+                    {
+                      "value": "ransomware",
+                      "text": "Ransomware"
+                    },
+                    {
+                      "value": "formjacking",
+                      "text": "Formjacking"
+                    },
+                    {
+                      "value": "injection",
+                      "text": "Injection"
+                    },
+                    {
+                      "value": "trojan",
+                      "text": "Trojan"
+                    },
+                    {
+                      "value": "worm",
+                      "text": "Worm"
+                    },
+                    {
+                      "value": "other",
+                      "text": "Other malware attack"
+                    }
+                  ]
+                },
+                {
+                  "name": "phishing",
+                  "title": "Phishing",
+                  "cellType": "checkbox",
+                  "choices": [
+                    {
+                      "value": "phishing",
+                      "text": "Phishing"
+                    }
+                  ]
+                },
+                {
+                  "name": "other",
+                  "title": "Cyber attack - other",
+                  "cellType": "checkbox",
+                  "choices": [
+                    {
+                      "value": "other",
+                      "text": "Cyber attack - other"
+                    }
+                  ]
+                }
+              ],
+              "columnLayout": "vertical",
+              "cellType": "checkbox",
+              "rows": [
+                "Cause"
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "ExternalSourceGeneral",
+              "title": "External source - General",
+              "choices": [
+                {
+                  "value": "socialEngineering",
+                  "text": "Social engineering"
+                },
+                {
+                  "value": "theft",
+                  "text": "Theft"
+                },
+                {
+                  "value": "other",
+                  "text": "External source - other"
+                }
+              ]
+            },
+            {
+              "type": "checkbox",
+              "name": "InternalSource",
+              "title": "Internal source",
+              "choices": [
+                {
+                  "value": "accessingInformation",
+                  "text": "Accessing information without access privileges"
+                },
+                {
+                  "value": "applicationSecurity",
+                  "text": "Application security vulnerability"
+                },
+                {
+                  "value": "bccField",
+                  "text": "Bcc field was not used"
+                },
+                {
+                  "value": "classificationError",
+                  "text": "Classification or labelling error"
+                },
+                {
+                  "value": "dataError",
+                  "text": "Data entry error"
+                },
+                {
+                  "value": "handling",
+                  "text": "Handling of records in an unapproved manner"
+                },
+                {
+                  "value": "disposal",
+                  "text": "Improper or unauthorized disposal or destruction"
+                },
+                {
+                  "value": "loss",
+                  "text": "Loss or misplacement"
+                },
+                {
+                  "value": "corresspondenceEmail",
+                  "text": "Misdirected correspondence – email"
+                },
+                {
+                  "value": "corresspondenceMail",
+                  "text": "Misdirected correspondence – regular mail"
+                },
+                {
+                  "value": "misuseAccess",
+                  "text": "Misuse of access privileges"
+                },
+                {
+                  "value": "misuseKnowledge",
+                  "text": "Misuse of private or entrusted knowledge"
+                },
+                {
+                  "value": "workaround",
+                  "text": "Use of workaround or shortcut"
+                },
+                {
+                  "value": "unapprovedHardware",
+                  "text": "Use of unapproved / inappropriate hardware or device"
+                },
+                {
+                  "value": "unapprovedSoftware",
+                  "text": "Use of unapproved / inappropriate software"
+                },
+                {
+                  "value": "other",
+                  "text": "Internal source - other"
+                }
+              ]
+            }
+          ],
+          "title": "Cause of the breach",
+          "description": "Please select the option that best fits from the list below. This may require consultation with Security or other internal groups.",
+          "isRequired": true,
+          "innerIndent": 1
+        },
+        {
+          "type": "comment",
+          "name": "BreachComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.3. Type and cause of breach"
+    },
+    {
+      "name": "page9",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "DescriptionHow",
+          "title": "Describe how and why the breach occurred",
+          "description": "Please include some technical detail regarding the breach including an explanation of the methodology of the cyber attack if one took place.",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionOrganizationsInvolved",
+          "title": "Identify all organizations involved in the breach including their role(s) with respect to the personal information in question",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionWhere",
+          "title": "Identify where the breach occurred"
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionDiscovery",
+          "title": "Describe how the breach was discovered"
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionRelevantApplications",
+          "title": "Identify any relevant IT application(s) or system(s)",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionRelevantPrograms",
+          "title": "Identify the relevant program(s) or service(s)",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionWho",
+          "title": "Describe who may have had unauthorized access to the personal information (to the extent known)",
+          "description": "Include an estimate of the number of unauthorized recipients.",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "DescriptionRelationship",
+          "title": "What is the relationship (to the extent known) between the unauthorized recipients and one or more of the affected individuals (e.g. same employer, partners or ex-partners, business relationship)",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.4. Description"
+    },
+    {
+      "name": "page10",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "SafeguardsSecurity",
+          "title": "Were there security safeguards in place at the time of the breach to prevent the type of breach that occurred",
+          "isRequired": true
+        },
+        {
+          "type": "checkbox",
+          "name": "SafeguardsNature",
+          "visibleIf": "{SafeguardsSecurity} = true",
+          "title": "Please specify the nature of those safeguards",
+          "description": "Select all that apply.",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "administrative",
+              "text": "Administrative safeguards"
+            },
+            {
+              "value": "physical",
+              "text": "Physical safeguards"
+            },
+            {
+              "value": "technical",
+              "text": "Technical safeguards"
+            }
+          ]
+        },
+        {
+          "type": "checkbox",
+          "name": "SafeguardsMethods",
+          "visibleIf": "{SafeguardsNature} anyof ['physical', 'technical']",
+          "title": "Which method(s) of physical or information technology safeguards were in place",
+          "description": "Select all that apply.",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "encryption",
+              "text": "Encryption"
+            },
+            {
+              "value": "accessControl",
+              "text": "IT/IM access control (e.g. password, user id, permissions, biometric identification protocol)"
+            },
+            {
+              "value": "secureContainer",
+              "text": "Secure container or case"
+            },
+            {
+              "value": "mfa",
+              "text": "Multi-factor authentication"
+            }
+          ],
+          "hasOther": true,
+          "otherText": "Other (specify)"
+        },
+        {
+          "type": "comment",
+          "name": "SafeguardsComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.5. Security safeguards"
+    },
+    {
+      "name": "page11",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "PersonalInformationAbout",
+          "title": "Who was the personal information about",
+          "description": "Select all that apply.",
+          "choices": [
+            {
+              "value": "client",
+              "text": "Client / service recipient"
+            },
+            {
+              "value": "federal",
+              "text": "Federal employee"
+            }
+          ],
+          "hasOther": true,
+          "otherText": "Other (specify)"
+        },
+        {
+          "type": "comment",
+          "name": "PersonalInformationBanks",
+          "title": "Please identify the Personal Information Banks (PIBs) for the information subject to the breach"
+        },
+        {
+          "type": "boolean",
+          "name": "PersonalInformationAcccess",
+          "title": "Does the institution or the affected individual still have access to the information (e.g., a stored or backup copy) that the breach compromised"
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "PersonalInformationCategoryType",
+          "title": "What categories of personal information did the breach compromise (to the extent known)",
+          "description": "Select all that apply and provide types.",
+          "columns": [
+            {
+              "name": "Category",
+              "cellType": "dropdown",
+              "isRequired": true,
+              "choices": [
+                {
+                  "value": "account",
+                  "text": "Account information"
+                },
+                {
+                  "value": "id",
+                  "text": "Assigned identifying number or symbol"
+                },
+                {
+                  "value": "biometric",
+                  "text": "Biometric information"
+                },
+                {
+                  "value": "contact",
+                  "text": "Contact information"
+                },
+                {
+                  "value": "credential",
+                  "text": "Credential information"
+                },
+                {
+                  "value": "demographic",
+                  "text": "Demographic information"
+                },
+                {
+                  "value": "education",
+                  "text": "Education information"
+                },
+                {
+                  "value": "employment",
+                  "text": "Employment information"
+                },
+                {
+                  "value": "financial",
+                  "text": "Financial and credit information"
+                },
+                {
+                  "value": "genetic",
+                  "text": "Genetic information"
+                },
+                {
+                  "value": "government",
+                  "text": "Government-issued information"
+                },
+                {
+                  "value": "health",
+                  "text": "Health information"
+                },
+                {
+                  "value": "law",
+                  "text": "Law enforcement and administration information"
+                },
+                {
+                  "value": "location",
+                  "text": "Location / surveillance information"
+                },
+                {
+                  "value": "preferences",
+                  "text": "Other information indicative of preferences, opinions or behaviour"
+                },
+                {
+                  "value": "security",
+                  "text": "Security / surveillance information"
+                }
+              ],
+              "hasOther": true,
+              "otherText": "Other (specify)"
+            },
+            {
+              "name": "Type",
+              "cellType": "text",
+              "isRequired": true
+            }
+          ],
+          "rowCount": 1,
+          "minRowCount": 1
+        },
+        {
+          "type": "comment",
+          "name": "PersonalInformationComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.6. Personal information"
+    },
+    {
+      "name": "page12",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "HarmInjury",
+          "title": "What is the probable injury or harm from the breach to affected individuals",
+          "description": "Select all that apply.",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "bodily",
+              "text": "Bodily harm"
+            },
+            {
+              "value": "humiliation",
+              "text": "Humiliation"
+            },
+            {
+              "value": "reputation",
+              "text": "Damage to reputation or relationships"
+            },
+            {
+              "value": "employment",
+              "text": "Loss of employment, business, or professional opportunities"
+            },
+            {
+              "value": "financial",
+              "text": "Financial loss"
+            },
+            {
+              "value": "identity",
+              "text": "Identity theft"
+            },
+            {
+              "value": "credit",
+              "text": "Negative effects on the credit record"
+            },
+            {
+              "value": "property",
+              "text": "Damage to or loss of property"
+            },
+            {
+              "value": "unknown",
+              "text": "Unknown"
+            }
+          ],
+          "hasOther": true
+        },
+        {
+          "type": "comment",
+          "name": "HarmWhy",
+          "title": "Please explain why the institution expects that there will be injury or harm to affected individuals",
+          "description": "IMPORTANT: Avoid using personal information unless it is necessary to explain the nature and sensitivity of the information."
+        },
+        {
+          "type": "comment",
+          "name": "HarmComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "B. Information about the breach",
+      "description": "B.7. Harm to affected individuals"
+    },
+    {
+      "name": "page13",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "NotificationNotified",
+          "title": "Has the institution notified affected individuals",
+          "description": "Answer “Yes” if the notification is completed or planned.",
+          "isRequired": true
+        },
+        {
+          "type": "text",
+          "name": "NotificationDateBegin",
+          "visibleIf": "{NotificationNotified} = true",
+          "title": "Date notification began (or is planned)",
+          "inputType": "date"
+        },
+        {
+          "type": "text",
+          "name": "NotificationDateCompleted",
+          "visibleIf": "{NotificationNotified} = true",
+          "title": "Date notification was completed",
+          "inputType": "date"
+        },
+        {
+          "type": "checkbox",
+          "name": "NotificationMethod",
+          "visibleIf": "{NotificationNotified} = true",
+          "title": "Method of notification used or planned for affected individuals",
+          "isRequired": true,
+          "choices": [
+            {
+              "value": "directly",
+              "text": "All affected individuals notified directly"
+            },
+            {
+              "value": "indirectly",
+              "text": "All affected individuals notified indirectly"
+            },
+            {
+              "value": "directlyIndirectly",
+              "text": "Some individuals notified directly, some notified only indirectly"
+            },
+            {
+              "value": "notNotified",
+              "text": "Some or all affected individuals not notified"
+            }
+          ]
+        },
+        {
+          "type": "comment",
+          "name": "NotificationReason",
+          "visibleIf": "{NotificationMethod} anyof ['notNotified']",
+          "title": "If the institution decided against notifying some or all affected individuals, please explain why",
+          "isRequired": true
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "C. Notification",
+      "description": "C.1. For affected individuals"
+    },
+    {
+      "name": "page14",
+      "elements": [
+        {
+          "type": "matrixdynamic",
+          "name": "NotificationOrganizationsLaw",
+          "title": "If applicable, which law enforcement organizations were notified about the breach (municipal, provincial, territorial, federal, international policing services)",
+          "columns": [
+            {
+              "name": "Organization",
+              "cellType": "text",
+              "isRequired": true
+            },
+            {
+              "name": "DateNotified",
+              "title": "Date notified",
+              "cellType": "text",
+              "isRequired": true,
+              "inputType": "date"
+            }
+          ],
+          "rowCount": 0
+        },
+        {
+          "type": "matrixdynamic",
+          "name": "NotificationOrganizationsOther",
+          "title": "If applicable, which other organizations and/or government institutions were notified about the breach (which have not been previously identified in this form",
+          "description": "e.g. TBS - for privacy and cyber impacts, RCMP - for fraud, etc.",
+          "columns": [
+            {
+              "name": "Organization",
+              "cellType": "text",
+              "isRequired": true
+            },
+            {
+              "name": "DateNotified",
+              "title": "Date notified",
+              "cellType": "text",
+              "isRequired": true,
+              "inputType": "date"
+            }
+          ],
+          "rowCount": 0
+        },
+        {
+          "type": "comment",
+          "name": "NotificationComments",
+          "title": "Additional comments",
+          "description": "Do not include any personal information."
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "C. Notification",
+      "description": "C.2. For other organizations"
+    },
+    {
+      "name": "page15",
+      "elements": [
+        {
+          "type": "boolean",
+          "name": "ContainmentIdentitifed",
+          "title": "Could the unauthorized recipients, if any, of the information be identified",
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "ContainmentContacted",
+          "visibleIf": "{ContainmentIdentitifed} = true",
+          "title": "Has the institution contacted the recipients",
+          "isRequired": true
+        },
+        {
+          "type": "boolean",
+          "name": "ContainmentAccess",
+          "title": "Does the institution still have access to the information subject of the breach",
+          "isRequired": true
+        },
+        {
+          "type": "comment",
+          "name": "ContainmentMitigation",
+          "title": "Description of any other steps taken or planned by the institution to reduce the risk of injury or harm to individuals, or to mitigate that harm"
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "D. Ongoing breach containment and risk mitigation"
+    },
+    {
+      "name": "page16",
+      "elements": [
+        {
+          "type": "comment",
+          "name": "PreventionRisk",
+          "title": "Description of any steps taken or to be taken by the institution to reduce the risk of a similar breach occurring in the future"
+        }
+      ],
+      "visibleIf": "{ReportInitial} = 'original'",
+      "title": "E. Breach prevention"
+    }
+  ],
+  "showQuestionNumbers": "off",
+  "showProgressBar": "bottom"
+}

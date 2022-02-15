@@ -18,89 +18,70 @@ namespace ComplaintFormCore.Controllers
         {
             _logger = logger;
 
-            //  The token should be coming from the Complaint table
-            string token = "0f3ee945-def4-4288-8a03-9459bb4890da";
-
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Test", Href= "/Home/Test?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PIA", Href = "/Home/PiaETool?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PA", Href = "/Home/DetailsPA?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Pipeda", Href = "/Home/Pipeda?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PBR", Href = "/Home/Pbr?token=" + token });
-            WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID", Href = "/Home/Pid?token=" + token });
-			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "PID Short", Href = "/Home/PidShort?token=" + token + "&isShortSurvey=1" });
-			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Tell OPC", Href = "/Home/TellOPC?token=" + token });
-			WebTemplateModel.Breadcrumbs.Add(new GoC.WebTemplate.Components.Entities.Breadcrumb() { Title = "Contact Info", Href = "/Home/ContactInfo?token=" + token });
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Home", Href = "/Home/Index" });
 		}
 
         public IActionResult Index()
         {
             return View();
-        }
+		}
+		public IActionResult BreachPA([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Breach PA", Href = $"/Home/BreachPA?token={token}" });
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
+			ViewBag.token = token;
+			return View();
+		}
+		public IActionResult ContactInfo([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Contact Info", Href = $"/Home/ContactInfo?token={token}" });
 
-        public IActionResult DetailsPA([FromQuery(Name = "token")] string token)
-        {
-            ViewBag.token = token;
-            return View();
-        }
+			ViewBag.token = token;
+			return View();
+		}
+		public IActionResult DetailsPA([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Details PA", Href = $"/Home/DetailsPA?token={token}" });
 
-        public IActionResult Test([FromQuery(Name = "token")] string token)
-        {
-            ViewBag.token = token;
-            return View();
-        }
+			ViewBag.token = token;
+			return View();
+		}
+		public IActionResult Pbr([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "PBR", Href = $"/Home/Pbr?token={token}" });
 
-        public IActionResult PiaETool([FromQuery(Name = "token")] string token)
+			ViewBag.token = token;
+			return View();
+		}
+		public IActionResult PiaETool([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "PIA", Href = $"/Home/PiaETool?token={token}" });
+
+			ViewBag.token = token;
+			return View();
+		}
+		public IActionResult Pipeda([FromQuery(Name = "token")] string token)
+		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "PIPEDA", Href = $"/Home/Pipeda?token={token}" });
+
+			ViewBag.token = token;
+			return View();
+		}
+
+		public IActionResult Privacy()
         {
-            ViewBag.token = token;
-            return View();
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb() { Title = "Privacy", Href = $"/Home/Privacy" });
+
+			return View();
         }
 
 		public IActionResult TellOPC([FromQuery(Name = "token")] string token)
 		{
+			WebTemplateModel.Breadcrumbs.Add(new Breadcrumb { Title = "Tell OPC", Href = $"/Home/TellOPC?token={token}" });
+
 			ViewBag.token = token;
 			return View();
 		}
-
-		public IActionResult Pipeda([FromQuery(Name = "token")] string token)
-        {
-            ViewBag.token = token;
-            return View();
-        }
-
-        public IActionResult Pbr([FromQuery(Name = "token")] string token)
-        {
-            ViewBag.token = token;
-            return View();
-        }
-
-        public IActionResult Pid([FromQuery(Name = "token")] string token)
-        {
-            ViewBag.token = token;
-            return View();
-        }
-
-		public IActionResult PidShort([FromQuery(Name = "token")] string token, [FromQuery(Name = "isShortSurvey")] string isShortSurvey)
-		{
-			ViewBag.token = token;
-			ViewBag.isShortSurvey = isShortSurvey;
-			return View("Pid");
-		}
-
-		public IActionResult ContactInfo([FromQuery(Name = "token")] string token)
-		{
-			ViewBag.token = token;
-			return View();
-		}
-
-        public IActionResult Test2()
-        {
-            return View();
-        }
 
         // This action at /home/survey can bind JSON to a model
         [HttpPost]
@@ -108,8 +89,6 @@ namespace ComplaintFormCore.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SurveyFromBody([FromBody] SurveyPAModel model, [FromQuery] string surveyId)
         {
-
-
             return Json(new { ReferenceNumber = Guid.NewGuid().ToString() });
         }
 

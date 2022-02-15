@@ -179,6 +179,82 @@ export class PiaSurvey extends SurveyBase {
         });
     }
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
+        super.handleOnAfterRenderQuestion(sender, options);
+
+        const question = options.question as Question;
+
+        // Generate the list of contact persons based on previous answers
+        if (question.name === "PersonContact") {
+            const personContactQuestion = question as QuestionSelectBase;
+            const anotherIndividual = this.survey.locale === "fr" ? "Autre individu" : "Another individual";
+            const contacts: ItemValue[] = [new ItemValue("another", anotherIndividual)];
+
+            const contactQuestions = [
+                "HeadYourInstitutionFullname", // Question 2.1.5 - Who is the head of the government institution
+                "pnd_OtherInstitutionHead", // Question 2.1.6 - Head of the government institution or delegate
+                "SeniorOfficialFullname", // Question 2.1.7 - Senior official or executive responsible
+                "panle_senior_officials_others" // Question 2.1.8 - Senior official or executive responsible
+            ];
+            contactQuestions.forEach(q => {
+                const contactQuestion = this.survey.getQuestionByName(q);
+                if (contactQuestion === null) {
+                    return;
+                }
+
+                // Search for contact fields in the dynamic panels
+                if (contactQuestion instanceof QuestionPanelDynamicModel) {
+                    const items = contactQuestion.value as any[];
+                    const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
+                    items.forEach(item => {
+                        fields.forEach(f => {
+                            const contact = item[f];
+                            if (contact === null || contacts.some(c => c.value === contact)) {
+                                return;
+                            }
+                            contacts.push(new ItemValue(contact, contact));
+                        });
+                    });
+                } else {
+                    contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
+                }
+            });
+
+            personContactQuestion.choices = contacts;
+        } else if (question.name === "pnd_PurposeOfNotAllDisclosed") {
+            //  For this question, we need to populate the dropdown named 'ReceivingParties' inside the
+            //  paneldynamic 'pnd_PurposeOfNotAllDisclosed' with what the user has selected in a previous question.
+
+            const purposeOfNotAllDisclosed = question as QuestionPanelDynamicModel;
+            const receivingParties = purposeOfNotAllDisclosed.templateElements.find(
+                r => r.name === "ReceivingParties"
+            ) as QuestionDropdownModel;
+            if (receivingParties === undefined) {
+                return;
+            }
+
+            const otherPartiesSharePersonalInformation = this.survey.getQuestionByName(
+                "OtherPartiesSharePersonalInformation"
+            ) as QuestionPanelDynamicModel;
+            if (otherPartiesSharePersonalInformation === null) {
+                return;
+            }
+
+            const parties: ItemValue[] = [];
+            const items = otherPartiesSharePersonalInformation.value as any[];
+            items.forEach(item => {
+                const party = item.Party;
+                if (party === null) {
+                    return;
+                }
+                parties.push(new ItemValue(party, party));
+            });
+
+            receivingParties.choices = parties;
+        }
+    }
+
     private addSectionInfo(currentSection: string): string {
         let sectionHtml = "<li onclick=\"gotoSection('" + currentSection + '\')" id="li_section_' + currentSection + '">';
         sectionHtml += "Step ".concat(currentSection);
@@ -260,79 +336,6 @@ export class PiaSurvey extends SurveyBase {
         const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
         if (li_breadcrumb) {
             li_breadcrumb.className += " active";
-        }
-    }
-
-    private handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
-        const question = options.question as Question;
-
-        // Generate the list of contact persons based on previous answers
-        if (question.name === "PersonContact") {
-            const personContactQuestion = question as QuestionSelectBase;
-            const anotherIndividual = this.survey.locale === "fr" ? "Autre individu" : "Another individual";
-            const contacts: ItemValue[] = [new ItemValue("another", anotherIndividual)];
-
-            const contactQuestions = [
-                "HeadYourInstitutionFullname", // Question 2.1.5 - Who is the head of the government institution
-                "pnd_OtherInstitutionHead", // Question 2.1.6 - Head of the government institution or delegate
-                "SeniorOfficialFullname", // Question 2.1.7 - Senior official or executive responsible
-                "panle_senior_officials_others" // Question 2.1.8 - Senior official or executive responsible
-            ];
-            contactQuestions.forEach(q => {
-                const contactQuestion = this.survey.getQuestionByName(q);
-                if (contactQuestion === null) {
-                    return;
-                }
-
-                // Search for contact fields in the dynamic panels
-                if (contactQuestion instanceof QuestionPanelDynamicModel) {
-                    const items = contactQuestion.value as any[];
-                    const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
-                    items.forEach(item => {
-                        fields.forEach(f => {
-                            const contact = item[f];
-                            if (contact === null || contacts.some(c => c.value === contact)) {
-                                return;
-                            }
-                            contacts.push(new ItemValue(contact, contact));
-                        });
-                    });
-                } else {
-                    contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
-                }
-            });
-
-            personContactQuestion.choices = contacts;
-        } else if (question.name === "pnd_PurposeOfNotAllDisclosed") {
-            //  For this question, we need to populate the dropdown named 'ReceivingParties' inside the
-            //  paneldynamic 'pnd_PurposeOfNotAllDisclosed' with what the user has selected in a previous question.
-
-            const purposeOfNotAllDisclosed = question as QuestionPanelDynamicModel;
-            const receivingParties = purposeOfNotAllDisclosed.templateElements.find(
-                r => r.name === "ReceivingParties"
-            ) as QuestionDropdownModel;
-            if (receivingParties === undefined) {
-                return;
-            }
-
-            const otherPartiesSharePersonalInformation = this.survey.getQuestionByName(
-                "OtherPartiesSharePersonalInformation"
-            ) as QuestionPanelDynamicModel;
-            if (otherPartiesSharePersonalInformation === null) {
-                return;
-            }
-
-            const parties: ItemValue[] = [];
-            const items = otherPartiesSharePersonalInformation.value as any[];
-            items.forEach(item => {
-                const party = item.Party;
-                if (party === null) {
-                    return;
-                }
-                parties.push(new ItemValue(party, party));
-            });
-
-            receivingParties.choices = parties;
         }
     }
 
