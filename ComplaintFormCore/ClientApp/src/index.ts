@@ -182,6 +182,18 @@ declare let Symbol;
             globalThis.gotoPage = pageName => {
                 piaSurvey.gotoPage(pageName);
             };
+
+            globalThis.exportToPDF = function () {
+                const filename = "survey_export_pia";
+                const pdfClass = new surveyPdfExport();
+                const page_title: MultiLanguageProperty = {
+                    en: "PIA Tool",
+                    fr: "FR-PIA Tool",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), page_title);
+            };
         };
 
         globalThis.initPipeda = async (lang: "en" | "fr", token) => {

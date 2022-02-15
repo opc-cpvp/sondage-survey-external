@@ -3,7 +3,7 @@
     {
       "name": "page_what_is_OPC_tool",
       "title": {
-        "en": "What is the Office of the Privacy Commissioner of Canadaís privacy impact assessment e-Tool?",
+        "en": "What is the Office of the Privacy Commissioner of Canada‚Äôs privacy impact assessment e-Tool?",
         "fr": ""
       },
       "section": "0",
@@ -71,7 +71,7 @@
     {
       "name": "page_role_of_OPC_tool",
       "title": {
-        "en": "What is the OPCís role in the privacy impact assessment process?",
+        "en": "What is the OPC‚Äôs role in the privacy impact assessment process?",
         "fr": ""
       },
       "section": "0",
@@ -255,7 +255,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-warning'><p>Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPCís e-Tool once you have determined your legal authority for this program or activity.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Exit the e-Tool</button></p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on your answer you should reconsider proceeding with this initiative. You may revisit the OPC‚Äôs e-Tool once you have determined your legal authority for this program or activity.</p><p><button class='btn btn-primary' onclick='endSession(); return false;'>Exit the e-Tool</button></p></section>",
             "fr": ""
           },
           "visibleIf": "{HasLegalAuthority}  = false"
@@ -348,7 +348,7 @@
           "type": "boolean",
           "name": "IsProgamContractedOut",
           "title": {
-            "en": "Is the program or activity being contracted out, or transferred to another level of government or to the private sector, in a way that will result in major changes that could affect individualsí personal information or privacy? (1.4)",
+            "en": "Is the program or activity being contracted out, or transferred to another level of government or to the private sector, in a way that will result in major changes that could affect individuals‚Äô personal information or privacy? (1.4)",
             "fr": ""
           },
           "isRequired": true
@@ -371,7 +371,7 @@
             "fr": ""
           },
           "description": {
-            "en": "The *Privacy Act* defines personal information as ìinformation about an identifiable individual that is recorded in any form.î Examples of personal information include name, address, employment history, fingerprints, medical diagnoses and personal opinions.",
+            "en": "The *Privacy Act* defines personal information as ‚Äúinformation about an identifiable individual that is recorded in any form.‚Äù Examples of personal information include name, address, employment history, fingerprints, medical diagnoses and personal opinions.",
             "fr": ""
           },
           "isRequired": true
@@ -390,7 +390,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institutionís team responsible for privacy. This group may include Access to Information and Privacy (ATIP) coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy, and if there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution‚Äôs team responsible for privacy. This group may include Access to Information and Privacy (ATIP) coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy, and if there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -470,7 +470,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>Examples of administrative uses of personal information include using personal information to:<ul><li>decide whether an individual can enter the country</li><li>determine whether an individual is eligible to receive a social service</li><li>investigate an individual for possible wrongdoing</li></ul></p><p>Examples of non-administrative uses of personal information include research or statistical purposes where an individualís personal information is not used to make a decision that directly affects them.</p></p>",
+            "en": "<p><p>Examples of administrative uses of personal information include using personal information to:<ul><li>decide whether an individual can enter the country</li><li>determine whether an individual is eligible to receive a social service</li><li>investigate an individual for possible wrongdoing</li></ul></p><p>Examples of non-administrative uses of personal information include research or statistical purposes where an individual‚Äôs personal information is not used to make a decision that directly affects them.</p></p>",
             "fr": ""
           },
           "isRequired": true,
@@ -505,7 +505,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institutionís team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution‚Äôs team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -586,7 +586,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>Whereas PIAs concentrate on privacy compliance as well as risks to privacy posed by <strong>programs and activities</strong>, other assessments have different areas of focus. For example:<ol><li><strong>Security assessments and authorizations</strong> evaluate security practices and controls to establish the extent to which they are implemented correctly, achieving the desired outcome and whether related residual risk should be accepted</li><li><strong>Business impact assessments</strong> identify and prioritize an institutionís critical services and assets to allow for selection of suitable measures to address risks to the availability of those services and assets</li><li><strong>algorithmic impact assessments</strong> identify and mitigate risks associated with deploying an automated decision-making system</li></ol></p><p>If your initiative is not a program or activity, you should consider completing other formal assessments along with or instead of a PIA. If you need assistance scoping your PIA or determining which assessments may be appropriate, please contact your institutionís team responsible for privacy. You may also wish to contact the OPCís Government Advisory Directorate.</p></p>",
+            "en": "<p><p>Whereas PIAs concentrate on privacy compliance as well as risks to privacy posed by <strong>programs and activities</strong>, other assessments have different areas of focus. For example:<ol><li><strong>Security assessments and authorizations</strong> evaluate security practices and controls to establish the extent to which they are implemented correctly, achieving the desired outcome and whether related residual risk should be accepted</li><li><strong>Business impact assessments</strong> identify and prioritize an institution‚Äôs critical services and assets to allow for selection of suitable measures to address risks to the availability of those services and assets</li><li><strong>algorithmic impact assessments</strong> identify and mitigate risks associated with deploying an automated decision-making system</li></ol></p><p>If your initiative is not a program or activity, you should consider completing other formal assessments along with or instead of a PIA. If you need assistance scoping your PIA or determining which assessments may be appropriate, please contact your institution‚Äôs team responsible for privacy. You may also wish to contact the OPC‚Äôs Government Advisory Directorate.</p></p>",
             "fr": ""
           },
           "choices": [
@@ -620,7 +620,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institutionís team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
+            "en": "<section class='alert alert-warning'><p>Based on the answers provided, a PIA may not be required for your program or activity. More information is required to make a determination. Therefore, we recommend that you contact your institution‚Äôs team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts or senior privacy advisors.</p><p>If you do not conduct a PIA, be sure to document your decision and the rationale.</p><p>Note that you may decide to conduct a PIA for your program or activity even if it does not use personal information for an administrative purpose. The TBS Directive on Privacy Impact Assessment encourages institutions to undertake PIAs if their program or activity will have an impact on privacy and there are potential privacy risks that should be assessed and mitigated. While you may not be required to do a PIA in such circumstances, thoroughly assessing risks to privacy through a PIA will help you develop legally compliant and privacy-friendly programs.</p><p>Also note that under the TBS Policy on Privacy Protection, heads of government institutions are required to notify the Privacy Commissioner of any planned initiatives (legislation, regulations, policies, programs) that could relate to the Privacy Act or to any of its provisions, or that could have an impact on the privacy of Canadians. The Privacy Commissioner should be notified early enough to allow for his review and to discuss the issues involved.</p></section>",
             "fr": ""
           }
         },
@@ -796,7 +796,7 @@
           "type": "dropdown",
           "name": "BehalfSingleInstitution",
           "title": {
-            "en": "On behalf of which institution are you submitting a PIA? Select from the drop-down list. If the institution is not listed, please select îotherî.",
+            "en": "On behalf of which institution are you submitting a PIA? Select from the drop-down list. If the institution is not listed, please select ‚Äùother‚Äù.",
             "fr": ""
           },
           "isRequired": true,
@@ -835,7 +835,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Select the lead institution from the drop-down list. If the institution is not listed, please select ëotherí.",
+            "en": "Select the lead institution from the drop-down list. If the institution is not listed, please select ‚Äòother‚Äô.",
             "fr": ""
           },
           "isRequired": true,
@@ -862,7 +862,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Select all other institutions involved in this PIA. If any of the institutions are not listed, please select ëotherí.",
+            "en": "Select all other institutions involved in this PIA. If any of the institutions are not listed, please select ‚Äòother‚Äô.",
             "fr": ""
           },
           "minRowCount": 1,
@@ -1320,7 +1320,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that there will be a question coming about program or activity phases. Therefore if this the first PIA of a phased program or activity, you should select ìNew PIAî.",
+            "en": "Please note that there will be a question coming about program or activity phases. Therefore if this the first PIA of a phased program or activity, you should select ‚ÄúNew PIA‚Äù.",
             "fr": ""
           },
           "isRequired": true,
@@ -1367,7 +1367,7 @@
             "fr": ""
           },
           "description": {
-            "en": "OPCís PIA file numbers take the form: PIA-00XXXX.",
+            "en": "OPC‚Äôs PIA file numbers take the form: PIA-00XXXX.",
             "fr": ""
           },
           "isRequired": true,
@@ -1441,7 +1441,7 @@
             "fr": ""
           },
           "description": {
-            "en": "OPCís PIA file numbers take the form: PIA-00XXXX.",
+            "en": "OPC‚Äôs PIA file numbers take the form: PIA-00XXXX.",
             "fr": ""
           },
           "isRequired": true,
@@ -1477,7 +1477,7 @@
     {
       "name": "page_step_2_2_q_2_2_1",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.1",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.1",
         "fr": ""
       },
       "section": "2",
@@ -1500,7 +1500,7 @@
     {
       "name": "page_step_2_2_q_2_2_2",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.2",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.2",
         "fr": ""
       },
       "section": "2",
@@ -1523,7 +1523,7 @@
             },
             {
               "text": {
-                "en": "Participation is not mandatory, but participation is automatic. Individuals must ëopt-outí if they do not wish to participate",
+                "en": "Participation is not mandatory, but participation is automatic. Individuals must ‚Äòopt-out‚Äô if they do not wish to participate",
                 "fr": ""
               },
               "value": "participation_not_mandatory_but_automatic"
@@ -1537,7 +1537,7 @@
             },
             {
               "text": {
-                "en": "Participation is voluntary or optional for individuals. Individuals must ìopt-inî if they wish to participate",
+                "en": "Participation is voluntary or optional for individuals. Individuals must ‚Äúopt-in‚Äù if they wish to participate",
                 "fr": ""
               },
               "value": "participation_voluntary"
@@ -1549,7 +1549,7 @@
     {
       "name": "page_step_2_2_q_2_2_3",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.3",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.3",
         "fr": ""
       },
       "section": "2",
@@ -1578,7 +1578,7 @@
     {
       "name": "page_step_2_2_q_2_2_4",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.4",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.4",
         "fr": ""
       },
       "section": "2",
@@ -1637,7 +1637,7 @@
     {
       "name": "page_step_2_2_q_2_2_5",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.5",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.5",
         "fr": ""
       },
       "section": "2",
@@ -1656,7 +1656,7 @@
     {
       "name": "page_step_2_2_q_2_2_6",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.6",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.6",
         "fr": ""
       },
       "section": "2",
@@ -1685,7 +1685,7 @@
     {
       "name": "page_step_2_2_q_2_2_7",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.7",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.7",
         "fr": ""
       },
       "section": "2",
@@ -1714,7 +1714,7 @@
     {
       "name": "page_step_2_2_q_2_2_8",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.8",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.8",
         "fr": ""
       },
       "section": "2",
@@ -1743,7 +1743,7 @@
     {
       "name": "page_step_2_2_q_2_2_10",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.10",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.10",
         "fr": ""
       },
       "section": "2",
@@ -1772,7 +1772,7 @@
     {
       "name": "page_step_2_2_q_2_2_12",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.12",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.12",
         "fr": ""
       },
       "section": "2",
@@ -1801,7 +1801,7 @@
     {
       "name": "page_step_2_2_q_2_2_13",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.13",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.13",
         "fr": ""
       },
       "section": "2",
@@ -1820,7 +1820,7 @@
     {
       "name": "page_step_2_2_q_2_2_14",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.14",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.14",
         "fr": ""
       },
       "section": "2",
@@ -1839,7 +1839,7 @@
     {
       "name": "page_step_2_2_q_2_2_15",
       "title": {
-        "en": "2.2 ñ Introduction to the program or activity - Question 2.2.15",
+        "en": "2.2 ‚Äì Introduction to the program or activity - Question 2.2.15",
         "fr": "IsProgramRolledOutPhases"
       },
       "section": "2",
@@ -1906,7 +1906,7 @@
     {
       "name": "page_step_3_1_q_3",
       "title": {
-        "en": "Step 3 ñ Program or activity details",
+        "en": "Step 3 ‚Äì Program or activity details",
         "fr": ""
       },
       "section": "3",
@@ -1917,7 +1917,7 @@
           "type": "html",
           "visibleIf": "{NewOrUpdatedPIA} anyof ['new_pia','new_pia_covers_already_submitted']",
           "html": {
-            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc.</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Developmentís (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiativeís intrusiveness.</p></section>",
+            "en": "<section class='alert alert-info'><p>In STEP 2, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc.</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development‚Äôs (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative‚Äôs intrusiveness.</p></section>",
             "fr": ""
           }
         },
@@ -1925,7 +1925,7 @@
           "type": "html",
           "visibleIf": "{NewOrUpdatedPIA} contains 'update_pia'",
           "html": {
-            "en": "<section class='alert alert-info'><p>In STEP 3, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ëSkip this questioní</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Developmentís (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiativeís intrusiveness.</p></section>",
+            "en": "<section class='alert alert-info'><p>In STEP 3, you will be asked to provide some details about your program or activity. You will be asked about the population affected by the program or activity, how the institution(s) involved in the program or activity collect, use, and disclose personal information, etc. Where you are confident that the information being requested is not changing from your original PIA submission, you can click ‚ÄòSkip this question‚Äô</p><p>The section that follows is structured around key privacy principles. They are based upon the Organization for Economic Co-operation and Development‚Äôs (OECD) Guidelines on the Protection of Privacy and Transborder Flows of Personal Data, which have shaped and largely underpin privacy and data protection legislation around the world. They provide a useful framework for your analysis.</p><p>Note: If you are developing a project that involves personal information, you must comply with the Privacy Act. Your PIA should clearly demonstrate how your initiative meets legal requirements as well as the policy requirements of the Government of Canada. References to law and policy requirements are provided throughout. After ensuring your compliance with law and policy, you should then work to further minimize your initiative‚Äôs intrusiveness.</p></section>",
             "fr": ""
           }
         }
@@ -1934,7 +1934,7 @@
     {
       "name": "page_step_3_1_q_3_1",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -1944,7 +1944,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p>It may be useful to assess your program or activity in the context of its potential impact on our right to privacy, and other fundamental rights and values, including freedom and democracy. This assessment should include asking probing questions about the need for the program or activity, its effectiveness, whether its impacts are in proportion to its purported benefits and whether there are less privacy invasive alternatives. While these questions are essential for assessing a high-risk initiative, they are useful questions to ask for any project.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or childrenís information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "en": "<section class='alert alert-info'><p>It may be useful to assess your program or activity in the context of its potential impact on our right to privacy, and other fundamental rights and values, including freedom and democracy. This assessment should include asking probing questions about the need for the program or activity, its effectiveness, whether its impacts are in proportion to its purported benefits and whether there are less privacy invasive alternatives. While these questions are essential for assessing a high-risk initiative, they are useful questions to ask for any project.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children‚Äôs information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
             "fr": ""
           }
         }
@@ -1953,7 +1953,7 @@
     {
       "name": "page_step_3_1_q_3_1_1_q_3_1_2",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -1967,7 +1967,7 @@
           },
           "isRequired": true,
           "description": {
-            "en": "<p><p>Please ensure your response answers the following questions:</p><p><ul><li>What specific need does the program or activity meet?</li><li>Is your proposed collection, use or disclosure of personal information rationally connected to a pressing and substantial public goal? Note: Do not simply reiterate the institutional mandate, for example, ìlaw enforcementî or ìborder control.î</li><li>Is each piece of personal information necessary to achieve the goal?</li></ul></p></p>",
+            "en": "<p><p>Please ensure your response answers the following questions:</p><p><ul><li>What specific need does the program or activity meet?</li><li>Is your proposed collection, use or disclosure of personal information rationally connected to a pressing and substantial public goal? Note: Do not simply reiterate the institutional mandate, for example, ‚Äúlaw enforcement‚Äù or ‚Äúborder control.‚Äù</li><li>Is each piece of personal information necessary to achieve the goal?</li></ul></p></p>",
             "fr": ""
           }
         },
@@ -1985,7 +1985,7 @@
     {
       "name": "page_step_3_1_q_3_1_3",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -1996,7 +1996,7 @@
           "visibleIf": "{DoesMeasureEffectiveness} = true",
           "isRequired": true,
           "title": {
-            "en": "Please describe how the institution will measure the program or activityís effectiveness.",
+            "en": "Please describe how the institution will measure the program or activity‚Äôs effectiveness.",
             "fr": ""
           },
           "description": {
@@ -2010,7 +2010,7 @@
           "visibleIf": "{DoesMeasureEffectiveness} = false",
           "isRequired": true,
           "title": {
-            "en": "Please explain why your institution will not measure this program or activityís effectiveness.",
+            "en": "Please explain why your institution will not measure this program or activity‚Äôs effectiveness.",
             "fr": ""
           }
         }
@@ -2019,7 +2019,7 @@
     {
       "name": "page_step_3_1_q_3_1_4",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -2042,7 +2042,7 @@
     {
       "name": "page_step_3_1_q_3_1_5",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -2061,7 +2061,7 @@
     {
       "name": "page_step_3_1_q_3_1_6",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "section": "3",
@@ -2095,7 +2095,7 @@
     {
       "name": "page_step_3_1_q_3_1_7",
       "title": {
-        "en": "3.1 ñ The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
+        "en": "3.1 ‚Äì The Necessity, effectiveness, proportionality and minimal intrusiveness of the program or activity",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -2105,7 +2105,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-warning'><p><strong>Note on high-risk programs and activities</strong></p><p>If your initiative is likely to be high risk (see risk factors below) and you cannot explain how its proposed collection, use or disclosure of personal information is rationally connected to a pressing and substantial public goal, the initiative should not go forward. In this case, your institution should review the initiativeís objectives and revisit whether it indeed has the legal authority to proceed. You should demonstrate that your high-risk program or activity is necessary, effective, proportional and minimally intrusive. You should ensure high-risk programs or activities pass all steps of the test above before proceeding with their implementation. We recommend that you contact your institutionís team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts, senior privacy advisors, or legal.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or childrenís information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
+            "en": "<section class='alert alert-warning'><p><strong>Note on high-risk programs and activities</strong></p><p>If your initiative is likely to be high risk (see risk factors below) and you cannot explain how its proposed collection, use or disclosure of personal information is rationally connected to a pressing and substantial public goal, the initiative should not go forward. In this case, your institution should review the initiative‚Äôs objectives and revisit whether it indeed has the legal authority to proceed. You should demonstrate that your high-risk program or activity is necessary, effective, proportional and minimally intrusive. You should ensure high-risk programs or activities pass all steps of the test above before proceeding with their implementation. We recommend that you contact your institution‚Äôs team responsible for privacy. This group may include ATIP coordinators, privacy officers, policy analysts, senior privacy advisors, or legal.</p><p><strong>Risk factors</strong></p><p>Note that the more of the following risk factors your program or activity includes, the higher its overall risk:</p><ul><li>involves large amount of personal information</li><li>involves sensitive personal information, such as financial or medical information, SIN or children‚Äôs information</li><li>context is sensitive</li><li>involves the personal information of many individuals</li><li>involves the personal information of one or more vulnerable populations</li><li>has a major impact on individuals (in other words, high stakes)</li><li>is long-term</li><li>involves using personal information for secondary purposes, sharing personal information outside of the institution, profiling or behavioural predictions, automated decision-making, systemic monitoring of individuals, collecting personal information without notice to or consent of the individual, or data matching (linking unconnected personal information)</li></ul></section>",
             "fr": ""
           }
         },
@@ -2164,7 +2164,7 @@
     {
       "name": "page_step_3_2",
       "title": {
-        "en": "3.2 ñ Accountability",
+        "en": "3.2 ‚Äì Accountability",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -2174,7 +2174,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 3.1' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-4' target='_blank'>s. 3.1</a></li><li><strong>Relevant policy requirements</strong>: <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Policy on Privacy Protection</a> and <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accountability means</strong>: Put someone in charge of your institutionís handling of personal information and develop privacy policies, procedures and training.</li></ul></section></p>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 3.1' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-1.html#h-4' target='_blank'>s. 3.1</a></li><li><strong>Relevant policy requirements</strong>: <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Policy on Privacy Protection</a> and <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accountability means</strong>: Put someone in charge of your institution‚Äôs handling of personal information and develop privacy policies, procedures and training.</li></ul></section></p>",
             "fr": ""
           }
         }
@@ -2183,7 +2183,7 @@
     {
       "name": "page_step_3_2_q_3_2_1",
       "title": {
-        "en": "3.2 ñ Accountability",
+        "en": "3.2 ‚Äì Accountability",
         "fr": ""
       },
       "section": "3",
@@ -2192,7 +2192,7 @@
           "type": "boolean",
           "name": "IsHeadYourInstitutionResponsibleWithPA",
           "title": {
-            "en": "Is the following individual responsible for your institutionís compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "en": "Is the following individual responsible for your institution‚Äôs compliance with the <em>Privacy Act</em> and privacy best practices?",
             "fr": ""
           },
           "description": {
@@ -2206,11 +2206,11 @@
           "name": "ResponsibleComplianceWithPA",
           "visibleIf": "{IsHeadYourInstitutionResponsibleWithPA} = false",
           "title": {
-            "en": "Who is responsible for your institutionís compliance with the <em>Privacy Act</em> and privacy best practices?",
+            "en": "Who is responsible for your institution‚Äôs compliance with the <em>Privacy Act</em> and privacy best practices?",
             "fr": ""
           },
           "description": {
-            "en": "<p><p>Please provide the title of the individual. This individual is usually your institutionís ATIP coordinator, chief privacy officer, privacy management director, etc.</p></p>",
+            "en": "<p><p>Please provide the title of the individual. This individual is usually your institution‚Äôs ATIP coordinator, chief privacy officer, privacy management director, etc.</p></p>",
             "fr": ""
           },
           "isRequired": true
@@ -2220,7 +2220,7 @@
     {
       "name": "page_step_3_2_q_3_2_3",
       "title": {
-        "en": "3.2 ñ Accountability",
+        "en": "3.2 ‚Äì Accountability",
         "fr": ""
       },
       "section": "3",
@@ -2234,7 +2234,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>Some examples may includeÖ</p></p>",
+            "en": "<p><p>Some examples may include‚Ä¶</p></p>",
             "fr": ""
           }
         }
@@ -2243,7 +2243,7 @@
     {
       "name": "page_step_3_2_q_3_2_4_q_3_2_5",
       "title": {
-        "en": "3.2 ñ Accountability",
+        "en": "3.2 ‚Äì Accountability",
         "fr": ""
       },
       "section": "3",
@@ -2257,7 +2257,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>If some but not all of your staff receive privacy-related training, you should answer ìYesî to this question. You will be given an opportunity to describe the training offered, including who receives training.</p></p>",
+            "en": "<p><p>If some but not all of your staff receive privacy-related training, you should answer ‚ÄúYes‚Äù to this question. You will be given an opportunity to describe the training offered, including who receives training.</p></p>",
             "fr": ""
           }
         },
@@ -2280,7 +2280,7 @@
     {
       "name": "page_step_3_2_q_3_2_6",
       "title": {
-        "en": "3.2 ñ Accountability",
+        "en": "3.2 ‚Äì Accountability",
         "fr": ""
       },
       "section": "3",
@@ -2294,7 +2294,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -2336,7 +2336,7 @@
     {
       "name": "page_step_3_3",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -2355,7 +2355,7 @@
     {
       "name": "page_step_3_3_1",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2421,7 +2421,7 @@
     {
       "name": "page_step_3_3_2",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2430,11 +2430,11 @@
           "type": "matrixdynamic",
           "valueName": "PersonalInformationCategory",
           "title": {
-            "en": "Please detail each personal information element that your program or activity collects or creates by selecting the category of personal information and entering the exact personal information element(s) that you will be collecting in that category. Use ìOtherî to describe any personal information elements that do not fit the categories provided. You can select each category more than once if necessary to accurately reflect all of the sub-elements.",
+            "en": "Please detail each personal information element that your program or activity collects or creates by selecting the category of personal information and entering the exact personal information element(s) that you will be collecting in that category. Use ‚ÄúOther‚Äù to describe any personal information elements that do not fit the categories provided. You can select each category more than once if necessary to accurately reflect all of the sub-elements.",
             "fr": ""
           },
           "description": {
-            "en": "For example, if you are collecting address information, you may need to select ìaddressî more than once, as you may need to type in ìstreet number, street name, street type, postal code, city, provinceî as the personal information sub-elements to be collected.",
+            "en": "For example, if you are collecting address information, you may need to select ‚Äúaddress‚Äù more than once, as you may need to type in ‚Äústreet number, street name, street type, postal code, city, province‚Äù as the personal information sub-elements to be collected.",
             "fr": ""
           },
           "isRequired": true,
@@ -2592,7 +2592,7 @@
                 },
                 {
                   "text": {
-                    "en": "Government-issued ID (SIN, passport, driverís licence)",
+                    "en": "Government-issued ID (SIN, passport, driver‚Äôs licence)",
                     "fr": ""
                   },
                   "value": "government_issued_id"
@@ -2627,7 +2627,7 @@
                 },
                 {
                   "text": {
-                    "en": "Log files about an individualís transactions (device info, IP address, access time, etc.)",
+                    "en": "Log files about an individual‚Äôs transactions (device info, IP address, access time, etc.)",
                     "fr": ""
                   },
                   "value": "transactions"
@@ -2704,7 +2704,7 @@
     {
       "name": "page_step_3_3_3",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2746,7 +2746,7 @@
     {
       "name": "page_step_3_3_4",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2756,11 +2756,11 @@
           "name": "IsContextualSensitivities",
           "isRequired": true,
           "title": {
-            "en": "Is the context in which the personal information is collected and used sensitive? In other words, does the personal information have ìcontextual sensitivities?î",
+            "en": "Is the context in which the personal information is collected and used sensitive? In other words, does the personal information have ‚Äúcontextual sensitivities?‚Äù",
             "fr": ""
           },
           "description": {
-            "en": "<p><p>There is no ìbright lineî separation of what is, and is not, sensitive information. Certain categories of information (such as health or financial) will generally be considered sensitive, but even non-sensitive information can become sensitive depending on the circumstances.</p><p>An individual piece of information considered non-sensitive on its own, could become sensitive depending on what it is capable of revealing when combined with other personal information about the individual. For example, the names of employees on a team may not be considered sensitive, but that same list, if it identified employees having a specific illness would be considered sensitive based on the context.</p><p>Conversely, in certain circumstances, personal information generally considered sensitive may become less so where other related information is already in the public domain, depending on the purpose for which such information is being made public and the nature of the relationship between the parties involved. For example, an individualís political affiliation would become less sensitive if that person decided to run for office for that political party.</p></p>",
+            "en": "<p><p>There is no ‚Äúbright line‚Äù separation of what is, and is not, sensitive information. Certain categories of information (such as health or financial) will generally be considered sensitive, but even non-sensitive information can become sensitive depending on the circumstances.</p><p>An individual piece of information considered non-sensitive on its own, could become sensitive depending on what it is capable of revealing when combined with other personal information about the individual. For example, the names of employees on a team may not be considered sensitive, but that same list, if it identified employees having a specific illness would be considered sensitive based on the context.</p><p>Conversely, in certain circumstances, personal information generally considered sensitive may become less so where other related information is already in the public domain, depending on the purpose for which such information is being made public and the nature of the relationship between the parties involved. For example, an individual‚Äôs political affiliation would become less sensitive if that person decided to run for office for that political party.</p></p>",
             "fr": ""
           }
         },
@@ -2783,7 +2783,7 @@
     {
       "name": "page_step_pre_3_3_5",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2829,7 +2829,7 @@
     {
       "name": "page_step_3_3_5",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['physical','both']",
@@ -2844,7 +2844,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection. Please describe the collection schedule (when is information transferred ñ is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only. If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
+            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection. Please describe the collection schedule (when is information transferred ‚Äì is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only. If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
             "fr": ""
           }
         },
@@ -2871,7 +2871,7 @@
             "fr": ""
           },
           "description": {
-            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a ìsnapshot.î If information is purged after being copied, please indicate it.",
+            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a ‚Äúsnapshot.‚Äù If information is purged after being copied, please indicate it.",
             "fr": ""
           }
         }
@@ -2880,7 +2880,7 @@
     {
       "name": "page_step_3_3_6",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "visibleIf": "{PersonalInformationPhysicalAndOrElectronicFormat} anyof ['electronic','both']",
@@ -2895,7 +2895,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection.  Please describe the collection schedule (when is information transferred ñ is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only.  If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
+            "en": "Please provide a detailed description that includes the personal information elements collected in this format and the method of collection.  Please describe the collection schedule (when is information transferred ‚Äì is it immediate, iterative, in a batch, etc.). Please note that this description refers to collection only.  If this information is later modified to be stored in electronic format, you will have the opportunity to discuss this later. You will also have a chance later to discuss safeguards surrounding collection.",
             "fr": ""
           }
         },
@@ -2922,7 +2922,7 @@
             "fr": ""
           },
           "description": {
-            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a ìsnapshot.î If information is purged after being copied, please indicate so.",
+            "en": "The description does not necessarily need to be very detailed if the information is covered in your data flow diagram and other areas of the PIA. If that is the case, please give enough detail to give a ‚Äúsnapshot.‚Äù If information is purged after being copied, please indicate so.",
             "fr": ""
           }
         }
@@ -2931,7 +2931,7 @@
     {
       "name": "page_step_3_3_8a",
       "title": {
-        "en": "3.3 ñ Limiting collection",
+        "en": "3.3 ‚Äì Limiting collection",
         "fr": ""
       },
       "section": "3.3",
@@ -2945,7 +2945,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>Some examples of how this could occur:</p><ul><li>An individual types irrelevant personal information into an open text field on an online form</li><li>An individual provides irrelevant personal information by filling out a part of a form that does not apply to their application</li><li>One department provides another with a dataset for the purposes for data matching, and some entries will likely not result in a positive match</li></ul><p>Please note that by selecting ìYesî, you will have the opportunity later to discuss how you manage this inadvertent collection.</p></p>",
+            "en": "<p><p>Some examples of how this could occur:</p><ul><li>An individual types irrelevant personal information into an open text field on an online form</li><li>An individual provides irrelevant personal information by filling out a part of a form that does not apply to their application</li><li>One department provides another with a dataset for the purposes for data matching, and some entries will likely not result in a positive match</li></ul><p>Please note that by selecting ‚ÄúYes‚Äù, you will have the opportunity later to discuss how you manage this inadvertent collection.</p></p>",
             "fr": ""
           }
         },
@@ -2978,7 +2978,7 @@
     {
       "name": "page_step_3_4",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -2988,7 +2988,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What direct collection and purpose identification means</strong>: When you collect someoneís personal information, collect it directly from them whenever possible and tell them why you need it.</li></ul></section></p>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirement</strong>: <em>Privacy Act</em> <a title='s. 4' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 4</a></li><li><strong>Relevant policy requirements</strong>: <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What direct collection and purpose identification means</strong>: When you collect someone‚Äôs personal information, collect it directly from them whenever possible and tell them why you need it.</li></ul></section></p>",
             "fr": ""
           }
         }
@@ -2997,7 +2997,7 @@
     {
       "name": "page_step_3_4_1",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "section": "3.4",
@@ -3016,7 +3016,7 @@
     {
       "name": "page_step_3_4_2",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false",
@@ -3090,7 +3090,7 @@
     {
       "name": "page_step_3_4_3_and_3_4_4",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly']",
@@ -3105,7 +3105,7 @@
           },
           "isRequired": true,
           "description": {
-            "en": "<p>Sections 7 and 8 of the <em>Privacy Act</em> provide that personal information may be used or disclosed by a government institution without the consent of the individual to whom it relates for a purpose directly related to the purpose(s) for which the information was obtained or compiled. Such related purposes are termed consistent uses.</p><p>For a use or disclosure to be consistent, it must have a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. A test of whether a proposed use or disclosure is ìconsistentî may be whether it would be reasonable for the individual who provided the information to expect that it would be used in the proposed manner. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out. <strong>Source</strong>: Treasury Board of Canada Secretariat</p>",
+            "en": "<p>Sections 7 and 8 of the <em>Privacy Act</em> provide that personal information may be used or disclosed by a government institution without the consent of the individual to whom it relates for a purpose directly related to the purpose(s) for which the information was obtained or compiled. Such related purposes are termed consistent uses.</p><p>For a use or disclosure to be consistent, it must have a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. A test of whether a proposed use or disclosure is ‚Äúconsistent‚Äù may be whether it would be reasonable for the individual who provided the information to expect that it would be used in the proposed manner. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out. <strong>Source</strong>: Treasury Board of Canada Secretariat</p>",
             "fr": ""
           }
         },
@@ -3119,7 +3119,7 @@
           },
           "isRequired": true,
           "description": {
-            "en": "Interpret the definition of ìconsistent useî narrowly. A consistent use is defined as a use that has a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out.",
+            "en": "Interpret the definition of ‚Äúconsistent use‚Äù narrowly. A consistent use is defined as a use that has a reasonable and direct connection to the original purpose(s) for which the information was obtained or compiled. This means that the original purpose and the proposed purpose are so closely related that the individual would expect that the information would be used for the consistent purpose, even if the use is not spelled out.",
             "fr": ""
           }
         },
@@ -3138,7 +3138,7 @@
     {
       "name": "page_step_3_4_5",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly']",
@@ -3158,7 +3158,7 @@
     {
       "name": "page_step_3_4_6_A_and_C",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly']",
@@ -3172,7 +3172,7 @@
             "fr": ""
           },
           "description": {
-            "en": "An ISA could take the form of a letter of agreement, memoranda of understanding, etc. For more information on ISAs, see TBSís Guidance on Preparing Information Sharing Agreements Involving Personal Information.",
+            "en": "An ISA could take the form of a letter of agreement, memoranda of understanding, etc. For more information on ISAs, see TBS‚Äôs Guidance on Preparing Information Sharing Agreements Involving Personal Information.",
             "fr": ""
           },
           "isRequired": true,
@@ -3219,7 +3219,7 @@
     {
       "name": "page_step_3_4_6B",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} != ['directly'] and {FormalInformationSharingAgreement} = 'yes_already_in_place'",
@@ -3322,7 +3322,7 @@
     {
       "name": "page_step_3_4_7",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "section": "3.4",
@@ -3345,7 +3345,7 @@
     {
       "name": "page_step_3_4_8",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "section": "3.4",
@@ -3365,7 +3365,7 @@
     {
       "name": "page_step_3_4_9",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false",
@@ -3408,7 +3408,7 @@
     {
       "name": "page_step_3_4_10_a_b_c",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} anyof ['new_pib','update_pib']",
@@ -3506,7 +3506,7 @@
     {
       "name": "page_step_3_4_10_d_e",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib'",
@@ -3541,7 +3541,7 @@
     {
       "name": "page_step_3_4_11",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{HasExistingPIB} = true or {NoPIBStatusReason} anyof ['new_pib','update_pib'] or ({IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = true)",
@@ -3654,7 +3654,7 @@
     {
       "name": "page_step_3_4_12_and_13",
       "title": {
-        "en": "3.4 ñ Direct collection and purpose identification",
+        "en": "3.4 ‚Äì Direct collection and purpose identification",
         "fr": ""
       },
       "visibleIf": "{InstitutionNotifyIndividuals} anyof ['yes_already_in_place','yes_not_established'] or ({HasExistingPIB} = false and {NoPIBStatusReason} contains 'no_pib' and {IsDirectlyFromIndividual} = false and {WhereWhomInfoCollected} = ['directly'] and {IsOriginalPurposeConsistent} = false)",
@@ -3677,7 +3677,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìAfter the collection has taken placeî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúAfter the collection has taken place‚Äù to this question.",
             "fr": ""
           },
           "isRequired": true,
@@ -3710,7 +3710,7 @@
     {
       "name": "page_step_3_5",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -3729,7 +3729,7 @@
     {
       "name": "page_step_3_5_1",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "section": "3.5",
@@ -3743,7 +3743,7 @@
             "fr": ""
           },
           "description": {
-            "en": "If you are unsure, consult with your Information Management officials to determine your authority to retain and dispose of the personal information. If your institution has submitted its request to LAC, please select ëYesí and provide further detail in the open-text field provided.",
+            "en": "If you are unsure, consult with your Information Management officials to determine your authority to retain and dispose of the personal information. If your institution has submitted its request to LAC, please select ‚ÄòYes‚Äô and provide further detail in the open-text field provided.",
             "fr": ""
           }
         },
@@ -3762,7 +3762,7 @@
     {
       "name": "page_step_3_5_2",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "visibleIf": "{IsPhysicalFormat} = true",
@@ -3786,7 +3786,7 @@
     {
       "name": "page_step_3_5_3",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "visibleIf": "{IsElectronicFormat} = true",
@@ -3810,7 +3810,7 @@
     {
       "name": "page_step_3_5_4",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "section": "3.5",
@@ -3866,7 +3866,7 @@
     {
       "name": "page_step_3_5_5",
       "title": {
-        "en": "3.5 ñ Retention",
+        "en": "3.5 ‚Äì Retention",
         "fr": ""
       },
       "visibleIf": "{IsThereCollectNotIntended} = true",
@@ -3891,7 +3891,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that retention of personal information for ìjust-in-caseî future scenarios are counter to the <em>Privacy Act</em>.",
+            "en": "Please note that retention of personal information for ‚Äújust-in-case‚Äù future scenarios are counter to the <em>Privacy Act</em>.",
             "fr": ""
           }
         }
@@ -3900,7 +3900,7 @@
     {
       "name": "page_step_3_6",
       "title": {
-        "en": "3.6 ñ Accuracy",
+        "en": "3.6 ‚Äì Accuracy",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -3910,7 +3910,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individualís personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul></p></section></p>",
+            "en": "<p><section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 6(2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#docCont' target='_blank'>s. 6(2)</a></li><li><strong>Relevant policy requirements</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What accuracy means:</strong>: When you use an individual‚Äôs personal information to make a decision that directly affects them, ensure that the information you use is correct.</li></ul></p></section></p>",
             "fr": ""
           }
         }
@@ -3919,7 +3919,7 @@
     {
       "name": "page_step_3_6_1_a",
       "title": {
-        "en": "3.6 ñ Accuracy",
+        "en": "3.6 ‚Äì Accuracy",
         "fr": ""
       },
       "section": "3.6",
@@ -3971,7 +3971,7 @@
     {
       "name": "page_step_3_6_1_b_c",
       "title": {
-        "en": "3.6 ñ Accuracy",
+        "en": "3.6 ‚Äì Accuracy",
         "fr": ""
       },
       "section": "3.6",
@@ -4037,7 +4037,7 @@
     {
       "name": "page_step_3_6_2",
       "title": {
-        "en": "3.6 ñ Accuracy",
+        "en": "3.6 ‚Äì Accuracy",
         "fr": ""
       },
       "section": "3.6",
@@ -4051,7 +4051,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>In the context of personal information, an authoritative source is a trusted and reliable source from which to collect information about a person. There are many authoritative sources, enabled by federal, provincial and territorial acts and regulations, that record information relating to an individual such as vital events, legal or professional status, and benefit entitlements. Social media websites cannot be considered an authoritative source in most cases, especially without verifying the accuracy of the information of the affected individual.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question.</p></p>",
+            "en": "<p><p>In the context of personal information, an authoritative source is a trusted and reliable source from which to collect information about a person. There are many authoritative sources, enabled by federal, provincial and territorial acts and regulations, that record information relating to an individual such as vital events, legal or professional status, and benefit entitlements. Social media websites cannot be considered an authoritative source in most cases, especially without verifying the accuracy of the information of the affected individual.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question.</p></p>",
             "fr": ""
           },
           "choices": [
@@ -4093,7 +4093,7 @@
     {
       "name": "page_step_3_6_3",
       "title": {
-        "en": "3.6 ñ Accuracy",
+        "en": "3.6 ‚Äì Accuracy",
         "fr": ""
       },
       "section": "3.6",
@@ -4112,7 +4112,7 @@
     {
       "name": "page_step_3_7",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -4131,7 +4131,7 @@
     {
       "name": "page_step_3_7_1",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "section": "3.7",
@@ -4220,7 +4220,7 @@
     {
       "name": "page_step_3_7_2",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "section": "3.7",
@@ -4310,7 +4310,7 @@
     {
       "name": "page_step_3_7_3",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "section": "3.7",
@@ -4329,7 +4329,7 @@
     {
       "name": "page_step_3_7_4",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "section": "3.7",
@@ -4352,7 +4352,7 @@
     {
       "name": "page_step_3_7_5",
       "title": {
-        "en": "3.7 ñ Disposal",
+        "en": "3.7 ‚Äì Disposal",
         "fr": ""
       },
       "section": "3.7",
@@ -4366,7 +4366,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -4398,7 +4398,7 @@
     {
       "name": "page_step_3_8",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -4408,7 +4408,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 7' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 7</a></li><li><strong>Relevant policy requirement</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What limiting use means:</strong>: Limit your use of individualsí personal information.</li></ul></p></section>",
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 7' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 7</a></li><li><strong>Relevant policy requirement</strong>: <a href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a></li><li><strong>What limiting use means:</strong>: Limit your use of individuals‚Äô personal information.</li></ul></p></section>",
             "fr": ""
           }
         }
@@ -4417,7 +4417,7 @@
     {
       "name": "page_step_3_8_1",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4426,35 +4426,35 @@
           "type": "dropdown",
           "name": "PopulationImpactedByUseOfPI",
           "title": {
-            "en": "Please describe the population that will be impacted by the program or activityís use of personal information.(3.8.1)",
+            "en": "Please describe the population that will be impacted by the program or activity‚Äôs use of personal information.(3.8.1)",
             "fr": ""
           },
           "isRequired": true,
           "choices": [
             {
               "text": {
-                "en": "The programís use of personal information for internal administrative purposes affects certain employees",
+                "en": "The program‚Äôs use of personal information for internal administrative purposes affects certain employees",
                 "fr": ""
               },
               "value": "certain_employees"
             },
             {
               "text": {
-                "en": "The programís use of personal information for internal administrative purposes affects all employees",
+                "en": "The program‚Äôs use of personal information for internal administrative purposes affects all employees",
                 "fr": ""
               },
               "value": "all_employees"
             },
             {
               "text": {
-                "en": "The programís use of personal information for external administrative purposes affects certain individuals",
+                "en": "The program‚Äôs use of personal information for external administrative purposes affects certain individuals",
                 "fr": ""
               },
               "value": "certain_individuals"
             },
             {
               "text": {
-                "en": "The programís use of personal information for external administrative purposes affects all individuals",
+                "en": "The program‚Äôs use of personal information for external administrative purposes affects all individuals",
                 "fr": ""
               },
               "value": "all_individuals"
@@ -4475,7 +4475,7 @@
     {
       "name": "page_step_3_8_2",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4508,7 +4508,7 @@
     {
       "name": "page_step_3_8_3",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4517,7 +4517,7 @@
           "type": "dropdown",
           "name": "SizePopulationImpacted",
           "title": {
-            "en": "Which of the following best describes the size of the population impacted by the program or activityís collection, use, and disclosure of personal information? (3.8.3)",
+            "en": "Which of the following best describes the size of the population impacted by the program or activity‚Äôs collection, use, and disclosure of personal information? (3.8.3)",
             "fr": ""
           },
           "description": {
@@ -4554,7 +4554,7 @@
     {
       "name": "page_step_3_8_4_and_5",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4612,7 +4612,7 @@
     {
       "name": "page_step_3_8_6",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4649,7 +4649,7 @@
             },
             {
               "text": {
-                "en": "With the individualís consent?",
+                "en": "With the individual‚Äôs consent?",
                 "fr": ""
               },
               "value": "individual_consent"
@@ -4668,7 +4668,7 @@
     {
       "name": "page_step_3_8_7",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4735,7 +4735,7 @@
     {
       "name": "page_step_3_8_8_and_9",
       "title": {
-        "en": "3.8 ñ Limiting use",
+        "en": "3.8 ‚Äì Limiting use",
         "fr": ""
       },
       "section": "3.8",
@@ -4767,7 +4767,7 @@
     {
       "name": "page_step_3_9",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "hideOnPreview": true,
@@ -4777,7 +4777,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 8(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 8(1) and (2)</a></li><li><strong>Relevant policy requirements and other references: </strong>: <a href='https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/privacy/guidance-preparing-information-sharing-agreements-involving-personal-information.html#a664Protectionof' target='_blank'>Guidance on Preparing Information Sharing Agreements Involving Personal Information</a><a href='https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/privacy/guidance-document-taking-privacy-into-account-before-making-contracting-decisions.html' target='_blank'>Guidance Document: Taking Privacy into Account Before Making Contracting Decisions</a>, Guidelines on Service Agreements, <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What limiting disclosure means</strong>:Limit your sharing of individualsí personal information.</li></ul></p></section>",
+            "en": "<section class='alert alert-info'><p><ul><li><strong>Relevant legal requirements</strong>: <em>Privacy Act</em> <a title='s. 8(1) and (2)' href='https://laws-lois.justice.gc.ca/eng/acts/P-21/page-2.html#h-6' target='_blank'>s. 8(1) and (2)</a></li><li><strong>Relevant policy requirements and other references: </strong>: <a href='https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/privacy/guidance-preparing-information-sharing-agreements-involving-personal-information.html#a664Protectionof' target='_blank'>Guidance on Preparing Information Sharing Agreements Involving Personal Information</a><a href='https://www.canada.ca/en/treasury-board-secretariat/services/access-information-privacy/privacy/guidance-document-taking-privacy-into-account-before-making-contracting-decisions.html' target='_blank'>Guidance Document: Taking Privacy into Account Before Making Contracting Decisions</a>, Guidelines on Service Agreements, <a title='Directive on Privacy Practices' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=18309' target='_blank'>Directive on Privacy Practices</a> and <a title='Policy on Privacy Protection' href='https://www.tbs-sct.gc.ca/pol/doc-eng.aspx?id=12510' target='_blank'>Policy on Privacy Protection</a></li><li><strong>What limiting disclosure means</strong>:Limit your sharing of individuals‚Äô personal information.</li></ul></p></section>",
             "fr": ""
           }
         }
@@ -4786,7 +4786,7 @@
     {
       "name": "page_step_3_9_1",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "section": "3.9",
@@ -4809,7 +4809,7 @@
     {
       "name": "page_step_3_9_2",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
@@ -4840,7 +4840,7 @@
             },
             {
               "text": {
-                "en": "With the individualís consent",
+                "en": "With the individual‚Äôs consent",
                 "fr": ""
               },
               "value": "individual_consent"
@@ -4859,7 +4859,7 @@
     {
       "name": "page_step_3_9_3A",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
@@ -4997,7 +4997,7 @@
     {
       "name": "page_step_3_9_3B",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and ({PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} notempty or {PartiesSharePersonalInformation[0].Party} != 'other')",
@@ -5032,7 +5032,7 @@
     {
       "name": "page_step_3_9_4",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty",
@@ -5051,7 +5051,7 @@
     {
       "name": "page_step_3_9_5A",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = false",
@@ -5095,7 +5095,7 @@
     {
       "name": "page_step_3_9_5B",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {PartiesSharePersonalInformation[0].Party} = 'other' and {PartiesSharePersonalInformation[1]} empty and {WillAllPICollectedBeDisclosed} = true",
@@ -5130,7 +5130,7 @@
     {
       "name": "page_step_3_9_6A",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true",
@@ -5177,7 +5177,7 @@
     {
       "name": "page_step_3_9_6B",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} contains 'yes_in_place'",
@@ -5207,7 +5207,7 @@
     {
       "name": "page_step_3_9_6C",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} contains 'yes_in_place'",
@@ -5318,7 +5318,7 @@
     {
       "name": "page_step_3_9_6D",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "visibleIf": "{IsCollectionReasonOtherThanStorage} = true and {InformationSharingAgreementInPlace} anyof ['yes_not_established','no']",
@@ -5342,7 +5342,7 @@
     {
       "name": "page_step_3_9_7_and_3_9_8",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "section": "3.9",
@@ -5356,7 +5356,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -5402,7 +5402,7 @@
     {
       "name": "page_step_3_9_9",
       "title": {
-        "en": "3.9 ñ Limiting disclosure",
+        "en": "3.9 ‚Äì Limiting disclosure",
         "fr": ""
       },
       "section": "3.9",
@@ -5437,7 +5437,7 @@
     {
       "name": "page_step_3_10",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "section": "3.10",
@@ -5454,7 +5454,7 @@
     {
       "name": "page_step_3_10_1",
       "title": {
-        "en": "3.10 ñ Safeguards (Security designation)",
+        "en": "3.10 ‚Äì Safeguards (Security designation)",
         "fr": ""
       },
       "section": "3.10",
@@ -5468,7 +5468,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Descriptions of security designations for the federal government are available on the web. Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "Descriptions of security designations for the federal government are available on the web. Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           }
         }
@@ -5477,7 +5477,7 @@
     {
       "name": "page_step_3_10_2",
       "title": {
-        "en": "3.10 ñ Safeguards (Security designation)",
+        "en": "3.10 ‚Äì Safeguards (Security designation)",
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
@@ -5497,7 +5497,7 @@
     {
       "name": "page_step_3_10_3",
       "title": {
-        "en": "3.10 ñ Safeguards (Security designation)",
+        "en": "3.10 ‚Äì Safeguards (Security designation)",
         "fr": ""
       },
       "visibleIf": "{HasSecurityDesignation} = true",
@@ -5585,7 +5585,7 @@
     {
       "name": "page_step_3_10_4_A_B",
       "title": {
-        "en": "3.10 ñ Safeguards (Assessments)",
+        "en": "3.10 ‚Äì Safeguards (Assessments)",
         "fr": ""
       },
       "section": "3.10",
@@ -5598,7 +5598,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Examples may include Security Assessment and Authorization (SA&A), Security Assessment Report (SAR), Threat and Risk Assessment (TRA). Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ëNoí to this question.",
+            "en": "Examples may include Security Assessment and Authorization (SA&A), Security Assessment Report (SAR), Threat and Risk Assessment (TRA). Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄòNo‚Äô to this question.",
             "fr": ""
           },
           "renderMode": "list",
@@ -5714,7 +5714,7 @@
     {
       "name": "page_step_3_10_5",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "visibleIf": "{IsPhysicalFormat} = true",
@@ -5734,7 +5734,7 @@
     {
       "name": "page_step_3_10_6",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "visibleIf": "{IsElectronicFormat} = true",
@@ -5754,7 +5754,7 @@
     {
       "name": "page_step_3_10_7",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "section": "3.10",
@@ -5807,7 +5807,7 @@
     {
       "name": "page_step_3_10_8",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "visibleIf": "{StorageManagement} anyof ['all','some'] or {IsInstituionManageStorageOfPI} = true",
@@ -5822,7 +5822,7 @@
             "fr": ""
           },
           "description": {
-            "en": "For example, is data stored in GCDocs? If personal information is captured on paper forms, where are they stored? Please note that you will have the opportunity to provide a detailed description of all of your physical, operational and technical safeguards later. This questions aims to get a ìsnapshotî of how personal information is stored.",
+            "en": "For example, is data stored in GCDocs? If personal information is captured on paper forms, where are they stored? Please note that you will have the opportunity to provide a detailed description of all of your physical, operational and technical safeguards later. This questions aims to get a ‚Äúsnapshot‚Äù of how personal information is stored.",
             "fr": ""
           }
         }
@@ -5831,7 +5831,7 @@
     {
       "name": "page_step_3_10_9_A",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "visibleIf": "{StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false",
@@ -5846,7 +5846,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìëNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚Äú‚ÄòNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -5878,7 +5878,7 @@
     {
       "name": "page_step_3_10_9_B",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
@@ -5908,7 +5908,7 @@
     {
       "name": "page_step_3_10_9_C",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place'",
@@ -5974,7 +5974,7 @@
     {
       "name": "page_step_3_10_9_D",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and {FormalAgreementToManageStorage} = 'yes_in_place' and {RelevantAgreementDocumentationType} = 'upload'",
@@ -5998,7 +5998,7 @@
     {
       "name": "page_step_3_10_9_E",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "visibleIf": "({StorageManagement} anyof ['some','none'] or {IsInstituionManageStorageOfPI} = false) and ({FormalAgreementToManageStorage} != 'yes_in_place' or {RelevantAgreementDocumentationType} = 'no_upload')",
@@ -6022,7 +6022,7 @@
     {
       "name": "page_step_3_10_10",
       "title": {
-        "en": "3.10 ñ Safeguards (Storage)",
+        "en": "3.10 ‚Äì Safeguards (Storage)",
         "fr": ""
       },
       "section": "3.10",
@@ -6046,7 +6046,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><ul><li>Please provide the name of the cloud provider. Note that there are specific approved cloud solutions for information at the Protected B level. If your institution is using a different provider for materials at this level or higher, please explain why.</li><li>Please include information on any third party products that you have added to the cloud environment from the service providerís marketplaces, if applicable.</li><li>Please note that you will have the opportunity to discuss safeguards (administrative, physical, and technical) later. However, you may choose to discuss cloud-specific safeguards here, if more appropriate.</li><li>If you feel that you have already sufficiently answered this question in other answers, you may refer back to those answers.</li></ul></p>",
+            "en": "<p><ul><li>Please provide the name of the cloud provider. Note that there are specific approved cloud solutions for information at the Protected B level. If your institution is using a different provider for materials at this level or higher, please explain why.</li><li>Please include information on any third party products that you have added to the cloud environment from the service provider‚Äôs marketplaces, if applicable.</li><li>Please note that you will have the opportunity to discuss safeguards (administrative, physical, and technical) later. However, you may choose to discuss cloud-specific safeguards here, if more appropriate.</li><li>If you feel that you have already sufficiently answered this question in other answers, you may refer back to those answers.</li></ul></p>",
             "fr": ""
           }
         }
@@ -6055,7 +6055,7 @@
     {
       "name": "page_step_3_10_11",
       "title": {
-        "en": "3.10 ñ Safeguards (Residency)",
+        "en": "3.10 ‚Äì Safeguards (Residency)",
         "fr": ""
       },
       "section": "3.10",
@@ -6092,14 +6092,14 @@
             },
             {
               "text": {
-                "en": "Personal information could be transmitted through a country other than Canada in specific circumstances (for example, based on the userís email provider)",
+                "en": "Personal information could be transmitted through a country other than Canada in specific circumstances (for example, based on the user‚Äôs email provider)",
                 "fr": ""
               },
               "value": "specific_circumstances"
             },
             {
               "text": {
-                "en": "No ñ personal information does not leave Canada",
+                "en": "No ‚Äì personal information does not leave Canada",
                 "fr": ""
               },
               "value": "no"
@@ -6121,7 +6121,7 @@
     {
       "name": "page_step_3_10_12",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "section": "3.10",
@@ -6135,7 +6135,7 @@
             "fr": ""
           },
           "description": {
-            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -6181,7 +6181,7 @@
     {
       "name": "page_step_3_10_13",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "section": "3.10",
@@ -6195,7 +6195,7 @@
             "fr": ""
           },
           "description": {
-            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -6241,7 +6241,7 @@
     {
       "name": "page_step_3_10_14",
       "title": {
-        "en": "3.10 ñ Safeguards",
+        "en": "3.10 ‚Äì Safeguards",
         "fr": ""
       },
       "section": "3.10",
@@ -6255,7 +6255,7 @@
             "fr": ""
           },
           "description": {
-            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "If you previously indicated that you collect or store information in more than one format (in other words, physical and electronic), please indicate which safeguards apply to which format(s). Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -6301,7 +6301,7 @@
     {
       "name": "page_step_3_10_15",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6315,7 +6315,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question. This question refers to your institution as well as any third parties to whom you are disclosing information (as applicable).",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question. This question refers to your institution as well as any third parties to whom you are disclosing information (as applicable).",
             "fr": ""
           }
         }
@@ -6324,7 +6324,7 @@
     {
       "name": "page_step_3_10_16_A_B",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6371,7 +6371,7 @@
     {
       "name": "page_step_3_10_16_C",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6404,7 +6404,7 @@
     {
       "name": "page_step_3_10_17",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6418,7 +6418,7 @@
             "fr": ""
           },
           "description": {
-            "en": "This is most commonly done through audit logging. Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "This is most commonly done through audit logging. Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -6450,7 +6450,7 @@
     {
       "name": "page_step_3_10_18_A",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6481,7 +6481,7 @@
     {
       "name": "page_step_3_10_18_B",
       "title": {
-        "en": "3.10 ñ Safeguards (Access)",
+        "en": "3.10 ‚Äì Safeguards (Access)",
         "fr": ""
       },
       "section": "3.10",
@@ -6501,7 +6501,7 @@
     {
       "name": "page_step_3_10_19",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6515,7 +6515,7 @@
             "fr": ""
           },
           "description": {
-            "en": "According to the TBS Guidelines for Privacy Breaches, a privacy breach involves improper or unauthorized collection, use, disclosure, retention or disposal of personal information. A privacy breach may occur within an institution or off-site and may be the result of inadvertent errors or malicious actions by employees, third parties, partners in information sharing agreements or intruders. A breach is deemed ìmaterialî if the breach involves sensitive personal information and could reasonably be expected to cause serious injury or harm to the individual and/or involves a large number of affected individuals.",
+            "en": "According to the TBS Guidelines for Privacy Breaches, a privacy breach involves improper or unauthorized collection, use, disclosure, retention or disposal of personal information. A privacy breach may occur within an institution or off-site and may be the result of inadvertent errors or malicious actions by employees, third parties, partners in information sharing agreements or intruders. A breach is deemed ‚Äúmaterial‚Äù if the breach involves sensitive personal information and could reasonably be expected to cause serious injury or harm to the individual and/or involves a large number of affected individuals.",
             "fr": ""
           }
         }
@@ -6524,7 +6524,7 @@
     {
       "name": "page_step_3_10_20",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6543,7 +6543,7 @@
     {
       "name": "page_step_3_10_21_and_22",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6557,7 +6557,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -6599,7 +6599,7 @@
     {
       "name": "page_step_3_10_23",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6618,7 +6618,7 @@
     {
       "name": "page_step_3_10_24",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6655,7 +6655,7 @@
     {
       "name": "page_step_3_10_26",
       "title": {
-        "en": "3.10 ñ Safeguards (Breaches)",
+        "en": "3.10 ‚Äì Safeguards (Breaches)",
         "fr": ""
       },
       "section": "3.10",
@@ -6692,7 +6692,7 @@
     {
       "name": "page_step_3_10_28_A_B",
       "title": {
-        "en": "3.10 ñ Safeguards (Testing)",
+        "en": "3.10 ‚Äì Safeguards (Testing)",
         "fr": ""
       },
       "section": "3.10",
@@ -6721,7 +6721,7 @@
     {
       "name": "page_step_3_11_1",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6738,7 +6738,7 @@
     {
       "name": "page_step_3_11_1_and_2",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6775,7 +6775,7 @@
     {
       "name": "page_step_3_11_3",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6808,7 +6808,7 @@
     {
       "name": "page_step_3_11_4",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6841,7 +6841,7 @@
     {
       "name": "page_step_3_11_5",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6875,7 +6875,7 @@
     {
       "name": "page_step_3_11_6",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6898,7 +6898,7 @@
     {
       "name": "page_step_3_11_7",
       "title": {
-        "en": "3.11 ñ Openness",
+        "en": "3.11 ‚Äì Openness",
         "fr": ""
       },
       "section": "3.11",
@@ -6912,7 +6912,7 @@
             "fr": ""
           },
           "description": {
-            "en": "The TBS Directive on Privacy Impact Assessment requires that federal government institutions make certain aspects of PIAs publicly available. Most institutions do this by posting a description of the initiative and the required components of the PIA on their websites. Public reporting allows individuals to have an idea of how government is using their personal information and helps foster trust in the institutionís operations. You may need to rework summaries to protect interests such as commercial confidentiality, individual privacy, security of information or legal privilege prior to publishing.",
+            "en": "The TBS Directive on Privacy Impact Assessment requires that federal government institutions make certain aspects of PIAs publicly available. Most institutions do this by posting a description of the initiative and the required components of the PIA on their websites. Public reporting allows individuals to have an idea of how government is using their personal information and helps foster trust in the institution‚Äôs operations. You may need to rework summaries to protect interests such as commercial confidentiality, individual privacy, security of information or legal privilege prior to publishing.",
             "fr": ""
           }
         },
@@ -6931,7 +6931,7 @@
     {
       "name": "page_step_3_12",
       "title": {
-        "en": "3.12 ñ Individual Access",
+        "en": "3.12 ‚Äì Individual Access",
         "fr": ""
       },
       "section": "3.12",
@@ -6948,7 +6948,7 @@
     {
       "name": "page_step_3_12_1",
       "title": {
-        "en": "3.12 ñ Individual Access",
+        "en": "3.12 ‚Äì Individual Access",
         "fr": ""
       },
       "section": "3.12",
@@ -6962,7 +6962,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss the risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -7004,7 +7004,7 @@
     {
       "name": "page_step_3_12_3",
       "title": {
-        "en": "3.12 ñ Individual Access",
+        "en": "3.12 ‚Äì Individual Access",
         "fr": ""
       },
       "section": "3.12",
@@ -7018,7 +7018,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           },
           "choices": [
@@ -7050,7 +7050,7 @@
     {
       "name": "page_step_3_12_4",
       "title": {
-        "en": "3.12 ñ Individual Access",
+        "en": "3.12 ‚Äì Individual Access",
         "fr": ""
       },
       "section": "3.12",
@@ -7064,7 +7064,7 @@
             "fr": ""
           },
           "description": {
-            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ìNoî to this question.",
+            "en": "Please note that you will have the opportunity later to discuss risks and mitigation if you respond ‚ÄúNo‚Äù to this question.",
             "fr": ""
           }
         }
@@ -7073,7 +7073,7 @@
     {
       "name": "page_step_3_13_1",
       "title": {
-        "en": "3.13 ñ Supplementary Information",
+        "en": "3.13 ‚Äì Supplementary Information",
         "fr": ""
       },
       "section": "3.13",
@@ -7703,6 +7703,10 @@
       ]
     }
   ],
+  "completedHtml": {
+    "en": "<h1>Completed PIA eTool Survey</h1><p>Some text...</p><div class='alert alert-info'><p>More text...</p></div><h2>Download a summary of your complaint</h2><p>You can download a summary to save or print</p><button type='button' onclick='showPDF()' class='btn btn-primary piwik_download'>Download a summary of your complaint</button>",
+    "fr": ""
+  },
   "calculatedValues": [
     {
       "name": "IsPhysicalFormat",
