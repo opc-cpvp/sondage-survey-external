@@ -6,7 +6,8 @@ import {
     ItemValue,
     QuestionPanelDynamicModel,
     JsonObject,
-    QuestionSelectBase
+    QuestionSelectBase,
+    PageModel
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
@@ -41,6 +42,96 @@ export class PiaSurvey extends SurveyBase {
         if (page) {
             this.survey.currentPage = page;
         }
+    }
+
+    // TODO - IF APPROVED BY THE CLIENT, MODIFY TO BUILD A VUE MENU INSTEAD
+    public setSurveyNavigation(): void {
+        const surveyNavigation = document.getElementById("surveyNavigation") as HTMLUListElement;
+
+        let html = "<ul>";
+        let section = "";
+        let subSection = "";
+
+        this.survey.pages.forEach(p => {
+            if (p) {
+                // TODO: Should we check for visible here? -> && p.isVisible === true
+
+                // Get current section.
+                const currentSection = p.getPropertyValue("section").substring(0, 1);
+
+                // TODO: FOR NOW, LIMIT TO FIRST TWO SECTIONS - UNTIL APPROVED BY CLIENT...
+                if (currentSection === "0" || currentSection === "1") {
+                    // Check if section changed.
+                    if (currentSection === section) {
+                        let currentSubSection = "";
+                        if (p.getPropertyValue("section").includes(".")) {
+                            // Get current sub-section.
+                            // currentSubSection = p.getPropertyValue("section").substring(2, p.getPropertyValue("section").length);
+                            currentSubSection = p.getPropertyValue("section").substring(2);
+                        }
+
+                        if (currentSubSection === subSection || currentSubSection === "") {
+                            // Same sub-section - add current page info.
+                            html += this.addPageInfo(p);
+                        } else {
+                            if (subSection !== "") {
+                                // Close off previous section.
+                                html += "</ul></li>";
+                            }
+
+                            // Start new subSection.
+                            html += this.addSubSectionInfo(p, currentSection, currentSubSection);
+
+                            // Add current (first for this sub-section) page info.
+                            html += this.addPageInfo(p);
+
+                            subSection = currentSubSection;
+                        }
+                    } else {
+                        if (section !== "") {
+                            // Close off previous section.
+                            html += "</ul></li>";
+                        }
+
+                        // Start new section.
+                        html += this.addSectionInfo(currentSection);
+
+                        // Reset sub-section.
+                        subSection = "";
+
+                        let currentSubSection = "";
+                        if (p.getPropertyValue("section").includes(".")) {
+                            // Get current sub-section.
+                            currentSubSection = p.getPropertyValue("section").substring(2);
+                        }
+
+                        if (currentSubSection === subSection || currentSubSection === "") {
+                            // Same sub-section - add current page info.
+                            html += this.addPageInfo(p);
+                        } else {
+                            if (subSection !== "") {
+                                // Close off previous section.
+                                html += "</ul></li>";
+                            }
+
+                            // Start new subSection.
+                            html += this.addSubSectionInfo(p, currentSection, currentSubSection);
+
+                            // Add current (first for this sub-section) page info.
+                            html += this.addPageInfo(p);
+
+                            subSection = currentSubSection;
+                        }
+
+                        section = currentSection;
+                    }
+                }
+            }
+        });
+
+        html += "</ul>";
+
+        surveyNavigation.innerHTML = html;
     }
 
     protected registerWidgets(): void {
@@ -162,6 +253,54 @@ export class PiaSurvey extends SurveyBase {
 
             receivingParties.choices = parties;
         }
+    }
+
+    private addSectionInfo(currentSection: string): string {
+        let sectionHtml = "<li onclick=\"gotoSection('" + currentSection + '\')" id="li_section_' + currentSection + '">';
+        sectionHtml += "Step ".concat(currentSection);
+        sectionHtml += "<ul>";
+        return sectionHtml;
+    }
+
+    private addSubSectionInfo(page: PageModel, currentSection: string, currentSubSection: string): string {
+        let subSectionHtml =
+            "<li onclick=\"gotoSection('" + currentSection + "." + currentSubSection + '\')" id="li_subsection_' + currentSubSection + '">';
+        subSectionHtml += this.getSubsectionTitle(page, currentSubSection);
+        subSectionHtml += "<ul>";
+        return subSectionHtml;
+    }
+
+    private getSubsectionTitle(page: PageModel, currentSubSection: string): string {
+        let title = "Sub-Section ".concat(currentSubSection);
+
+        if (page && page.title && page.title !== "") {
+            const index = page.title.indexOf(" - ");
+            if (index !== -1) {
+                title = page.title.substring(0, index);
+            }
+        }
+
+        return title;
+    }
+
+    private addPageInfo(page: PageModel): string {
+        let pageHtml = "<li onclick=\"gotoPage('" + page.name + '\')" id="li_page_' + page.name + '">';
+        pageHtml += this.getPageTitle(page);
+        pageHtml += "</li>";
+        return pageHtml;
+    }
+
+    private getPageTitle(page: PageModel): string {
+        let title = page.title;
+
+        if (title && title !== "") {
+            const index = title.indexOf(" - ");
+            if (index !== -1) {
+                title = title.substring(index + 2);
+            }
+        }
+
+        return title;
     }
 
     private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
