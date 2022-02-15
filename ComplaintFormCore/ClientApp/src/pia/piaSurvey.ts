@@ -293,7 +293,7 @@ export class PiaSurvey extends SurveyBase {
     private getPageTitle(page: PageModel): string {
         let title = page.title;
 
-        if (title && title && title !== "") {
+        if (title && title !== "") {
             const index = title.indexOf(" - ");
             if (index !== -1) {
                 title = title.substring(index + 2);
