@@ -7244,7 +7244,7 @@
               "type": "radiogroup",
               "name": "panel_risk_assessment_4_2_1",
               "title": {
-                "en": "Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?",
+                "en": "Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?",
                 "fr": ""
               },
               "description": {

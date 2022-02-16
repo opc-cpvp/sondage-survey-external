@@ -173,8 +173,8 @@ export class PiaSurvey extends SurveyBase {
     private handleOnValidateQuestion(sender: SurveyModel, options: any): void {
         // Check if this question happens to be a "risk" related one.
         this.risks.checkIfRisk(options.question);
-        // Section 4 should be visible only if there is at least one risk scenario identified.
-        this.survey.pages.filter(r => r.name === "page_step_4")[0].visible = this.risks.currentList.length > 0;
+        // Section 4 pages should be visible only if there is at least one risk scenario identified.
+        this.survey.pages.filter(p => p.name.substr(0, 11) === "page_step_4").forEach(r => (r.visible = this.risks.currentList.length > 0));
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
@@ -199,26 +199,32 @@ export class PiaSurvey extends SurveyBase {
         // Set the panel count using the risks collection.
         rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
 
-        // TODO: FOR NOW UNTIL 4.2 FULLY IMPLEMENTED...
-        if (this.survey.currentPage.name === "page_step_4_2") {
-            return;
-        }
-
         for (let i = 0; i < rootPanel.panels.length; i++) {
             const p = rootPanel.panels[i];
 
-            // Update panel properties.
-            p.name = "risk_" + this.risks.currentList[i].questionName;
-            p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
+            if (this.survey.currentPage.name === "page_step_4") {
+                // Update panel properties.
+                p.name = "risk_" + this.risks.currentList[i].questionName;
+                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
 
-            // Update relevant question info.
-            p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.risks.currentList[i].questionText);
-            p.questions[0].title = p.questions[0].title.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
-            p.questions[1].title = p.questions[1].title.replace(
-                "[DESCRIPTION OF THE RISK]",
-                this.risks.currentList[i].defaultDescriptionOfRisk
-            );
-            p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
+                // Update relevant question info.
+                p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.risks.currentList[i].questionText);
+                p.questions[0].title = p.questions[0].title.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
+                p.questions[1].title = p.questions[1].title.replace(
+                    "[DESCRIPTION OF THE RISK]",
+                    this.risks.currentList[i].defaultDescriptionOfRisk
+                );
+                p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
+            } else {
+                // Update panel properties.
+                p.name = "riskAssessment_" + this.risks.currentList[i].questionName;
+                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
+                // Update relevant question info.
+                p.questions[0].title = p.questions[0].title.replace(
+                    "[DESCRIPTION OF THE RISK]",
+                    this.risks.currentList[i].defaultDescriptionOfRisk
+                );
+            }
         }
     }
 
