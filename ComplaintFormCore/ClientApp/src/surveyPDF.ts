@@ -3,7 +3,6 @@ import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-cor
 import { AdornersOptions, SurveyPDF } from "survey-pdf";
 import {
     IElement,
-    Model,
     PageModel,
     PanelModelBase,
     Question,
@@ -53,7 +52,7 @@ export class surveyPdfExport {
     }
 
     private modifySurveyJsonforPDF(json_pdf: any, lang: string, pdf_page_title: MultiLanguageProperty): string {
-        const originalSurvey = new Model(json_pdf);
+        const originalSurvey = new SurveyModel(json_pdf);
         originalSurvey.locale = lang;
 
         //  The idea is to convert each survey pages into survey panels
@@ -194,15 +193,15 @@ export class surveyPdfExport {
     }
 
     private buildFilePreview(survey: SurveyPDF, options: AdornersOptions, lang: string) {
-        const htmlQuestion = QuestionFactory.Instance.createQuestion("html", "html_question");
+        const htmlQuestion = (QuestionFactory.Instance.createQuestion("html", "html_question") as unknown) as QuestionHtmlModel;
 
         if (options.question.value && options.question.value.length > 0) {
             htmlQuestion.html = "<ol>";
 
-            options.question.value.forEach((fileItem: Question) => {
+            options.question.value.forEach((fileItem: File) => {
                 htmlQuestion.html += "<li>";
 
-                const fileSizeInBytes = (fileItem.size as number) || 0;
+                const fileSizeInBytes = fileItem.size || 0;
 
                 if (fileSizeInBytes < 1000) {
                     htmlQuestion.html += `${fileItem.name} (${fileSizeInBytes} B)`;
@@ -227,7 +226,7 @@ export class surveyPdfExport {
         }
 
         //  TODO: jf
-        const flatHtml = options.repository.create(survey, htmlQuestion, options.controller, "html");
+        const flatHtml = options.repository.create(survey, htmlQuestion as any, options.controller, "html");
 
         return new Promise<void>(resolve => {
             flatHtml

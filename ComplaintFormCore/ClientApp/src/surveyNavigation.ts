@@ -27,7 +27,7 @@ export function onCurrentPageChanged_updateNavButtons(survey: SurveyModel): void
     showPreviewButton.classList.remove("hidden");
     showPreviewButton.classList.remove("inline");
     showPreviewButton.classList.add(
-        !survey.isDisplayMode && (survey.isLastPage || survey.passedPreviewPage === true) ? "inline" : "hidden"
+        !survey.isDisplayMode && (survey.isLastPage || (survey as any).passedPreviewPage === true) ? "inline" : "hidden"
     );
 
     const completeButton = document.getElementById("btnComplete") ?? new HTMLElement();
@@ -40,7 +40,7 @@ export function onCurrentPageChanged_updateNavButtons(survey: SurveyModel): void
 
 export function showPreview(survey: SurveyModel): void {
     //  Set the survey property that will hold the information as to if the user has reached the 'Preview'
-    survey.passedPreviewPage = true;
+    (survey as any).passedPreviewPage = true;
 
     //  Calling the native showPreview method
     survey.showPreview();

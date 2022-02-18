@@ -112,29 +112,33 @@ export class PiaSurvey extends SurveyBase {
                 "SeniorOfficialFullname", // Question 2.1.7 - Senior official or executive responsible
                 "panle_senior_officials_others" // Question 2.1.8 - Senior official or executive responsible
             ];
-            contactQuestions.forEach(q => {
-                const contactQuestion = this.survey.getQuestionByName(q);
-                if (contactQuestion === null) {
-                    return;
-                }
+            if (contactQuestions) {
+                contactQuestions.forEach(q => {
+                    const contactQuestion = this.survey.getQuestionByName(q);
+                    if (contactQuestion === null) {
+                        return;
+                    }
 
-                // Search for contact fields in the dynamic panels
-                if (contactQuestion instanceof QuestionPanelDynamicModel) {
-                    const items = contactQuestion.value as any[];
-                    const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
-                    items.forEach(item => {
-                        fields.forEach(f => {
-                            const contact = item[f];
-                            if (contact === null || contacts.some(c => c.value === contact)) {
-                                return;
-                            }
-                            contacts.push(new ItemValue(contact, contact));
-                        });
-                    });
-                } else {
-                    contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
-                }
-            });
+                    // Search for contact fields in the dynamic panels
+                    if (contactQuestion instanceof QuestionPanelDynamicModel) {
+                        const items = contactQuestion.value as any[];
+                        const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
+                        if (items) {
+                            items.forEach(item => {
+                                fields.forEach(f => {
+                                    const contact = item[f];
+                                    if (contact === null || contacts.some(c => c.value === contact)) {
+                                        return;
+                                    }
+                                    contacts.push(new ItemValue(contact, contact));
+                                });
+                            });
+                        }
+                    } else {
+                        contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
+                    }
+                });
+            }
 
             personContactQuestion.choices = contacts;
         } else if (question.name === "pnd_PurposeOfNotAllDisclosed") {
@@ -158,13 +162,15 @@ export class PiaSurvey extends SurveyBase {
 
             const parties: ItemValue[] = [];
             const items = otherPartiesSharePersonalInformation.value as any[];
-            items.forEach(item => {
-                const party = item.Party;
-                if (party === null) {
-                    return;
-                }
-                parties.push(new ItemValue(party, party));
-            });
+            if (items) {
+                items.forEach(item => {
+                    const party = item.Party;
+                    if (party === null) {
+                        return;
+                    }
+                    parties.push(new ItemValue(party, party));
+                });
+            }
 
             receivingParties.choices = parties;
         }

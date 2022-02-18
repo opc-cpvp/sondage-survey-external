@@ -1,4 +1,4 @@
-import { defaultBootstrapCss, surveyLocalization, JsonObject, Model, Question, StylesManager, SurveyError, SurveyModel } from "survey-vue";
+import { defaultBootstrapCss, surveyLocalization, JsonObject, Question, StylesManager, SurveyError, SurveyModel } from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 import { LocalStorage } from "./localStorage";
@@ -16,7 +16,7 @@ export abstract class SurveyBase {
 
     public constructor(locale: "en" | "fr" = "en", storageName: string) {
         this.storageName = storageName;
-        this.survey = new Model();
+        this.survey = new SurveyModel();
 
         this.survey.locale = locale;
         this.setSurveyLocalizations();
