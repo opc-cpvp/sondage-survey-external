@@ -1,3 +1,4 @@
+import { Question } from "survey-vue";
 import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
 
 export class PiaSurveyRiskDefaultValues {
@@ -7,37 +8,29 @@ export class PiaSurveyRiskDefaultValues {
         this.list = this.getList();
     }
 
-    public getDefaultValue(questionName: string): PiaSurveyRiskDefaultValue {
-        return this.list.filter(r => r.questionName === questionName)[0];
+    public getDefaultValue(question: Question): PiaSurveyRiskDefaultValue {
+        return this.list.filter(r => r.questionName === question.name && this.IsAnswerTheSame(r.questionAnswer, question.value))[0];
     }
 
     private getList(): PiaSurveyRiskDefaultValue[] {
-        this.list.push(
-            new PiaSurveyRiskDefaultValue(
-                "WillITLegacySystemRetained",
-                false,
-                "The institution’s current IT legacy systems and services that will be retained, or those that will be substantially modified, are not compliant with privacy requirements."
-            )
-        );
-        this.list.push(
-            new PiaSurveyRiskDefaultValue(
-                "DoesStaffReceivedTraining",
-                false,
-                "The institution does not ensure that staff receive privacy-related training."
-            )
-        );
-        this.list.push(
-            new PiaSurveyRiskDefaultValue(
-                "ProcessHandlingPrivacyComplaint",
-                "yes_not_established",
-                "The institution has not yet established a process for handling a privacy complaint or inquiry."
-            )
-        );
-        // ...
-        // TODO:
-        //      - ADD ALL OTHER DEFAULT VALUES FROM THE WORD DOCUMENT.
-        //      - UPDATE "questionName" PROPERTY WITH CORRECT VALUES AFTER WE FIGURE OUT THE FORMAT OF THIS "QUESTION ID"
+        const defaultValues = require("./piaSurveyRiskDefaultValues.json");
+
+        if (defaultValues) {
+            defaultValues.list.forEach(d => {
+                this.list.push(new PiaSurveyRiskDefaultValue(d.questionName, d.questionAnswer, d.descriptionOfRisk));
+            });
+        }
 
         return this.list;
+    }
+
+    private IsAnswerTheSame(defaultAnswer: any, questionAnswer: unknown): boolean {
+        if (typeof questionAnswer == "boolean") {
+            return defaultAnswer === questionAnswer;
+        } else if (typeof questionAnswer == "string") {
+            return defaultAnswer.toLowerCase() === questionAnswer.toLowerCase();
+        }
+
+        return false;
     }
 }
