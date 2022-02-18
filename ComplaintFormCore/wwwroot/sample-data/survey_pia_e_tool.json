@@ -7535,91 +7535,84 @@
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'internal_directive_policy_procedural'"
             },
             {
-              "type": "panel",
-              "name": "panel_risk_assessment_4_2_5",
-              "titleLocation": "hidden",
-              "elements": [
+              "type": "multipletext",
+              "name": "panel_risk_assessment_4_2_5_1",
+              "title": {
+                "en": "Now you need to calculate the risk rating, for which two calculations are required:<ul><li>The <strong>likelihood</strong> of the incident occurring; and</li><li>The extent of the <strong>impact</strong> on privacy rights or harm, if it occurs.</li></ul>",
+                "fr": ""
+              },
+              "isRequired": true,
+              "description": {
+                "en": "<p>As there is no standardized method of calculating likelihood or impact of privacy risk within the GC, you institution has likely developed its own risk assessment scale. Please use this scale to complete this section of the PIA. If your institution has not developed a risk assessment scale, you may use a simple high/medium/low or 1-5 ranking; if you do, please provide a description with your answer. You should verify this with your ATIP team.</p>",
+                "fr": ""
+              },
+              "items": [
                 {
-                  "type": "multipletext",
-                  "name": "panel_risk_assessment_4_2_5_1",
-                  "title": {
-                    "en": "Now you need to calculate the risk rating, for which two calculations are required:<ul><li>The <strong>likelihood</strong> of the incident occurring; and</li><li>The extent of the <strong>impact</strong> on privacy rights or harm, if it occurs.</li></ul>",
-                    "fr": ""
-                  },
-                  "isRequired": true,
-                  "description": {
-                    "en": "<p>As there is no standardized method of calculating likelihood or impact of privacy risk within the GC, you institution has likely developed its own risk assessment scale. Please use this scale to complete this section of the PIA. If your institution has not developed a risk assessment scale, you may use a simple high/medium/low or 1-5 ranking; if you do, please provide a description with your answer. You should verify this with your ATIP team.</p>",
-                    "fr": ""
-                  },
-                  "items": [
-                    {
-                      "name": "panel_risk_assessment_4_2_5_likelihood",
-                      "title": "Likelihood:"
-                    },
-                    {
-                      "name": "panel_risk_assessment_4_2_5_individuals",
-                      "title": "Level of impact on individuals:"
-                    },
-                    {
-                      "name": "panel_risk_assessment_4_2_5_institution",
-                      "title": "Level of impact on the institution:"
-                    }
-                  ],
-                  "visibleIf": ""
+                  "name": "panel_risk_assessment_4_2_5_likelihood",
+                  "title": "Likelihood:"
                 },
                 {
-                  "type": "radiogroup",
-                  "name": "panel_risk_assessment_4_2_5_2",
-                  "title": {
-                    "en": "Explanation of scale used or copy of institution&#39;s risk assessment scale",
-                    "fr": ""
-                  },
-                  "description": {
-                    "en": "",
-                    "fr": ""
-                  },
-                  "visibleIf": "",
-                  "isRequired": true,
-                  "choices": [
-                    {
-                      "text": {
-                        "en": "Enter explanation of scale used",
-                        "fr": ""
-                      },
-                      "value": "enter_explanation"
-                    },
-                    {
-                      "text": {
-                        "en": "Upload a copy of the institution&#39;s risk assessment scale",
-                        "fr": ""
-                      },
-                      "value": "upload_copy"
-                    }
-                  ]
+                  "name": "panel_risk_assessment_4_2_5_individuals",
+                  "title": "Level of impact on individuals:"
                 },
                 {
-                  "type": "text",
-                  "name": "panel_risk_assessment_4_2_5_2_explanation",
-                  "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'enter_explanation'",
-                  "titleLocation": "hidden"
+                  "name": "panel_risk_assessment_4_2_5_institution",
+                  "title": "Level of impact on the institution:"
+                }
+              ],
+              "visibleIf": ""
+            },
+            {
+              "type": "radiogroup",
+              "name": "panel_risk_assessment_4_2_5_2",
+              "title": {
+                "en": "Explanation of scale used or copy of institution&#39;s risk assessment scale",
+                "fr": ""
+              },
+              "description": {
+                "en": "",
+                "fr": ""
+              },
+              "visibleIf": "",
+              "isRequired": true,
+              "choices": [
+                {
+                  "text": {
+                    "en": "Enter explanation of scale used",
+                    "fr": ""
+                  },
+                  "value": "enter_explanation"
                 },
                 {
-                  "type": "file",
-                  "name": "RiskAssessmentScaleFiles",
-                  "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'upload_copy'",
-                  "titleLocation": "hidden",
-                  "isRequired": false,
-                  "hasComment": false,
-                  "allowMultiple": false,
-                  "waitForUpload": false,
-                  "maxSize": 0,
-                  "storeDataAsText": false,
-                  "showMeter": true,
-                  "totalSize": 26214400,
-                  "showPreview": true,
-                  "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
+                  "text": {
+                    "en": "Upload a copy of the institution&#39;s risk assessment scale",
+                    "fr": ""
+                  },
+                  "value": "upload_copy"
                 }
               ]
+            },
+            {
+              "type": "text",
+              "name": "panel_risk_assessment_4_2_5_2_explanation",
+              "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'enter_explanation'",
+              "titleLocation": "hidden"
+            },
+            {
+              "type": "file",
+              "name": "RiskAssessmentScaleFiles",
+              "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'upload_copy'",
+              "titleLocation": "hidden",
+              "isRequired": false,
+              "hasComment": false,
+              "allowMultiple": false,
+              "waitForUpload": false,
+              "maxSize": 0,
+              "storeDataAsText": false,
+              "showMeter": true,
+              "totalSize": 26214400,
+              "showPreview": true,
+              "acceptedTypes": ".doc,.docx,.xls,.xls,.xlsx,.ppt,.pptx,.pptx,.wpd,.csv,.pdf,.jpg,.jpeg,.gif,.txt,.rtf,.tif,.tiff"
             },
             {
               "type": "multipletext",
@@ -7704,7 +7697,7 @@
     }
   ],
   "completedHtml": {
-    "en": "<h1>Completed PIA eTool Survey</h1><p>Some text...</p><div class='alert alert-info'><p>More text...</p></div><h2>Download a summary of your complaint</h2><p>You can download a summary to save or print</p><button type='button' onclick='showPDF()' class='btn btn-primary piwik_download'>Download a summary of your complaint</button>",
+    "en": "<h1>Completed PIA eTool Survey</h1><p>Some text...</p><div class='alert alert-info'><p>More text...</p></div><h2>Download a summary of your survey</h2><p>You can download a summary to save or print</p><button type='button' onclick='showPDF()' class='btn btn-primary piwik_download'>Download a summary of your survey</button>",
     "fr": ""
   },
   "calculatedValues": [

@@ -3,6 +3,7 @@ using ComplaintFormCore.Models;
 using ComplaintFormCore.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System;
 
 namespace ComplaintFormCore.Web_Apis
 {
@@ -45,9 +46,13 @@ namespace ComplaintFormCore.Web_Apis
         [HttpPost]
         public IActionResult SendEmail([FromBody] SurveyPIAToolModel model, [FromQuery] string complaintId)
         {
-
-
             return Ok();
         }
-    }
+
+		[HttpPost]
+		public IActionResult Complete([FromBody] SurveyPipedaModel model, [FromQuery] string complaintId)
+		{
+			return Ok(new { ReferenceNumber = Guid.NewGuid().ToString() });
+		}
+	}
 }
