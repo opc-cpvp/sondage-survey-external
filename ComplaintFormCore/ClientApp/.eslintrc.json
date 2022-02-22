@@ -72,7 +72,6 @@
       }
     ],
     "@typescript-eslint/unified-signatures": "error",
-    "@typescript-eslint/no-var-requires": 0,
     // eslint
     "arrow-body-style": "error",
     "complexity": "off",

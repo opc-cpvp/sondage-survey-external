@@ -184,11 +184,11 @@ declare let Symbol;
             };
 
             globalThis.exportToPDF = function () {
-                const filename = "survey_export_pia";
+                const filename = "survey_export_piaetool";
                 const pdfClass = new surveyPdfExport();
                 const page_title: MultiLanguageProperty = {
-                    en: "PIA Tool",
-                    fr: "FR-PIA Tool",
+                    en: "PIA eTool",
+                    fr: "FR-PIA eTool",
                     default: ""
                 };
 

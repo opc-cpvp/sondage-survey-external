@@ -13,14 +13,14 @@ export class PiaSurveyRisks {
 
     // Method that processes each question.
     public checkIfRisk(question: Question): void {
-        // Check if this question + answer combo exists in the list of "risk" related questions.
+        // First remove any existing risk item(s) for this question name.
+        this.currentList = this.currentList.filter(r => r.questionName !== question.name);
+
+        // Then check if this question + answer combo exists in the list of "risk" related questions.
         const defaultValue = this.defaultValues.getDefaultValue(question);
 
         if (defaultValue) {
-            // First remove any existing risk item(s) for this question name.
-            this.currentList = this.currentList.filter(r => r.questionName !== question.name);
-
-            // Then add new item.
+            // Add new risk item.
             this.currentList.push(new PiaSurveyRisk(question.name, question.title, question.value, defaultValue.descriptionOfRisk));
         }
     }

@@ -1,5 +1,6 @@
 import { Question } from "survey-vue";
 import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
+import * as defaultValues from "./piaSurveyRiskDefaultValues.json";
 
 export class PiaSurveyRiskDefaultValues {
     private list: PiaSurveyRiskDefaultValue[] = [];
@@ -13,10 +14,8 @@ export class PiaSurveyRiskDefaultValues {
     }
 
     private getList(): PiaSurveyRiskDefaultValue[] {
-        const defaultValues = require("./piaSurveyRiskDefaultValues.json");
-
         if (defaultValues) {
-            defaultValues.list.forEach(d => {
+            (defaultValues as any).list.forEach(d => {
                 this.list.push(new PiaSurveyRiskDefaultValue(d.questionName, d.questionAnswer, d.descriptionOfRisk));
             });
         }

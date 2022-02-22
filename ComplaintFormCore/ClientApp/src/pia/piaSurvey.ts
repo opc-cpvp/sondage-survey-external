@@ -197,7 +197,6 @@ export class PiaSurvey extends SurveyBase {
 
         // Get the root panel control.
         const rootPanel = this.survey.currentPage.questions[0];
-
         if (!(rootPanel && rootPanel.panels)) {
             return;
         }
@@ -211,7 +210,6 @@ export class PiaSurvey extends SurveyBase {
             if (this.survey.currentPage.name === "page_step_4") {
                 // Update panel properties.
                 p.name = "risk_" + this.risks.currentList[i].questionName;
-                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
 
                 // Update relevant question info.
                 p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.risks.currentList[i].questionText);
@@ -224,7 +222,6 @@ export class PiaSurvey extends SurveyBase {
             } else {
                 // Update panel properties.
                 p.name = "riskAssessment_" + this.risks.currentList[i].questionName;
-                p.title = (p.title as string) + ", question name: " + this.risks.currentList[i].questionName;
                 // Update relevant question info.
                 p.questions[0].title = p.questions[0].title.replace(
                     "[DESCRIPTION OF THE RISK]",
