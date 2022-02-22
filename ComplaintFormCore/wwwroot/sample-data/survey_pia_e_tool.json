@@ -7248,7 +7248,7 @@
                 "fr": ""
               },
               "description": {
-                "en": "<p>Privacy risks, in this context, are generally risks that individuals&#39; privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
+                "en": "<p>Privacy risks, in this context, are generally risks that individuals&rsquo; privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
                 "fr": ""
               },
               "isRequired": true,
@@ -7566,7 +7566,7 @@
               "type": "radiogroup",
               "name": "panel_risk_assessment_4_2_5_2",
               "title": {
-                "en": "Explanation of scale used or copy of institution&#39;s risk assessment scale",
+                "en": "Explanation of scale used or copy of institution&rsquo;s risk assessment scale",
                 "fr": ""
               },
               "description": {
@@ -7585,7 +7585,7 @@
                 },
                 {
                   "text": {
-                    "en": "Upload a copy of the institution&#39;s risk assessment scale",
+                    "en": "Upload a copy of the institution&rsquo;s risk assessment scale",
                     "fr": ""
                   },
                   "value": "upload_copy"
@@ -7596,7 +7596,10 @@
               "type": "text",
               "name": "panel_risk_assessment_4_2_5_2_explanation",
               "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'enter_explanation'",
-              "titleLocation": "hidden"
+              "title": {
+                "en": "Explanation of scale used:",
+                "fr": ""
+              }
             },
             {
               "type": "file",
@@ -7618,7 +7621,7 @@
               "type": "multipletext",
               "name": "panel_risk_assessment_4_2_6",
               "title": {
-                "en": "Please outline the institution&#39;s proposed mitigation",
+                "en": "Please outline the institution&rsquo;s proposed mitigation",
                 "fr": ""
               },
               "items": [

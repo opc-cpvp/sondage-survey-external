@@ -184,51 +184,8 @@ export class PiaSurvey extends SurveyBase {
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        this.handleSectionFour();
+        this.risks.processSectionFour(this.survey);
         this.setNavigationBreadcrumbs(sender);
-    }
-
-    private handleSectionFour(): void {
-        if (
-            !(this.survey.currentPage || this.survey.currentPage.name === "page_step_4" || this.survey.currentPage.name === "page_step_4_2")
-        ) {
-            return;
-        }
-
-        // Get the root panel control.
-        const rootPanel = this.survey.currentPage.questions[0];
-        if (!(rootPanel && rootPanel.panels)) {
-            return;
-        }
-
-        // Set the panel count using the risks collection.
-        rootPanel.maxPanelCount = rootPanel.mixPanelCount = rootPanel.panelCount = this.risks.currentList.length;
-
-        for (let i = 0; i < rootPanel.panels.length; i++) {
-            const p = rootPanel.panels[i];
-
-            if (this.survey.currentPage.name === "page_step_4") {
-                // Update panel properties.
-                p.name = "risk_" + this.risks.currentList[i].questionName;
-
-                // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.risks.currentList[i].questionText);
-                p.questions[0].title = p.questions[0].title.replace("[RESPONSE]", this.risks.currentList[i].questionAnswer);
-                p.questions[1].title = p.questions[1].title.replace(
-                    "[DESCRIPTION OF THE RISK]",
-                    this.risks.currentList[i].defaultDescriptionOfRisk
-                );
-                p.questions[3].defaultValue = p.questions[3].defaultValue = this.risks.currentList[i].defaultDescriptionOfRisk;
-            } else {
-                // Update panel properties.
-                p.name = "riskAssessment_" + this.risks.currentList[i].questionName;
-                // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace(
-                    "[DESCRIPTION OF THE RISK]",
-                    this.risks.currentList[i].defaultDescriptionOfRisk
-                );
-            }
-        }
     }
 
     private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
