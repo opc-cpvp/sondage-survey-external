@@ -1,8 +1,16 @@
-import { Question, SurveyModel } from "survey-vue";
+import { PageModel, Question, SurveyModel } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
 
 export class PiaSurveyRisks {
+    readonly stepFourPageName = "page_step_4";
+    readonly stepFourTwoPageName = "page_step_4_2";
+    readonly questionTag = "[TEXT OF QUESTION]";
+    readonly responseTag = "[RESPONSE]";
+    readonly riskTag = "[DESCRIPTION OF THE RISK]";
+    readonly riskPrefix = "risk_";
+    readonly assessmentPrefix = "riskAssessment_";
+
     public currentList: PiaSurveyRisk[];
     public defaultValues: PiaSurveyRiskDefaultValues;
 
@@ -25,13 +33,19 @@ export class PiaSurveyRisks {
         }
     }
 
-    public processSectionFour(survey: SurveyModel): void {
-        if (!(survey.currentPage || survey.currentPage.name === "page_step_4" || survey.currentPage.name === "page_step_4_2")) {
+    public processSectionFourPreview(survey: SurveyModel): void {
+        survey.pages.forEach(p => {
+            this.processSectionFour(p);
+        });
+    }
+
+    public processSectionFour(page: PageModel): void {
+        if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName) {
             return;
         }
 
         // Get the root panel control.
-        const rootPanel = survey.currentPage.questions[0];
+        const rootPanel = page.questions[0];
         if (!(rootPanel && rootPanel.panels)) {
             return;
         }
@@ -42,25 +56,19 @@ export class PiaSurveyRisks {
         for (let i = 0; i < rootPanel.panels.length; i++) {
             const p = rootPanel.panels[i];
 
-            if (survey.currentPage.name === "page_step_4") {
+            if (page.name === this.stepFourPageName) {
                 // Update panel properties.
-                p.name = "risk_" + this.currentList[i].questionName;
+                p.name = this.riskPrefix + this.currentList[i].questionName;
                 // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace("[TEXT OF QUESTION]", this.currentList[i].questionText);
-                p.questions[0].title = p.questions[0].title.replace("[RESPONSE]", this.currentList[i].questionAnswer);
-                p.questions[1].title = p.questions[1].title.replace(
-                    "[DESCRIPTION OF THE RISK]",
-                    this.currentList[i].defaultDescriptionOfRisk
-                );
+                p.questions[0].title = p.questions[0].title.replace(this.questionTag, this.currentList[i].questionText);
+                p.questions[0].title = p.questions[0].title.replace(this.responseTag, this.currentList[i].questionAnswer);
+                p.questions[1].title = p.questions[1].title.replace(this.riskTag, this.currentList[i].defaultDescriptionOfRisk);
                 p.questions[3].defaultValue = p.questions[3].defaultValue = this.currentList[i].defaultDescriptionOfRisk;
             } else {
                 // Update panel properties.
-                p.name = "riskAssessment_" + this.currentList[i].questionName;
+                p.name = this.assessmentPrefix + this.currentList[i].questionName;
                 // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace(
-                    "[DESCRIPTION OF THE RISK]",
-                    this.currentList[i].defaultDescriptionOfRisk
-                );
+                p.questions[0].title = p.questions[0].title.replace(this.riskTag, this.currentList[i].defaultDescriptionOfRisk);
             }
         }
     }

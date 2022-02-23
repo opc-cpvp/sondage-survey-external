@@ -83,6 +83,10 @@ export class PiaSurvey extends SurveyBase {
         this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
             this.handleOnValidateQuestion(sender, options);
         });
+
+        this.survey.onShowingPreview.add((sender: SurveyModel, options: any) => {
+            this.handleOnShowingPreview(sender, options);
+        });
     }
 
     protected registerCustomProperties(): void {
@@ -183,45 +187,13 @@ export class PiaSurvey extends SurveyBase {
         this.survey.pages.filter(p => p.name.substr(0, 11) === "page_step_4").forEach(r => (r.visible = this.risks.currentList.length > 0));
     }
 
-    private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        this.risks.processSectionFour(this.survey);
-        this.setNavigationBreadcrumbs(sender);
+    private handleOnShowingPreview(sender: SurveyModel, options: any): void {
+        this.risks.processSectionFourPreview(this.survey);
     }
 
-    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
-        //  TODO: Probably disable some items when the user has not gone thru all the question.
-
-        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
-
-        if (!ul_progress_navigation) {
-            return;
-        }
-
-        if (surveyObj.isDisplayMode) {
-            //  We do not show the navigation bar in preview mode
-            ul_progress_navigation.className = "hidden";
-            return;
-        }
-
-        ul_progress_navigation.className = "breadcrumb";
-
-        if (surveyObj.currentPage.section === null) {
-            //  If for any reasons we forget to add the section property in the json at least nothing will happen
-            return;
-        }
-
-        const items = document.getElementsByClassName("breadcrumb-item");
-
-        Array.from(items).forEach(li => {
-            //  Reset the original class on each <li> item
-            li.className = "breadcrumb-item";
-        });
-
-        const section: string = surveyObj.currentPage.section;
-        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
-        if (li_breadcrumb) {
-            li_breadcrumb.className += " active";
-        }
+    private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        this.risks.processSectionFour(this.survey.currentPage);
+        this.setNavigationBreadcrumbs(sender);
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
@@ -358,5 +330,41 @@ export class PiaSurvey extends SurveyBase {
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
         options.callback("success");
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
+        //  TODO: Probably disable some items when the user has not gone thru all the question.
+
+        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
+
+        if (!ul_progress_navigation) {
+            return;
+        }
+
+        if (surveyObj.isDisplayMode) {
+            //  We do not show the navigation bar in preview mode
+            ul_progress_navigation.className = "hidden";
+            return;
+        }
+
+        ul_progress_navigation.className = "breadcrumb";
+
+        if (surveyObj.currentPage.section === null) {
+            //  If for any reasons we forget to add the section property in the json at least nothing will happen
+            return;
+        }
+
+        const items = document.getElementsByClassName("breadcrumb-item");
+
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
+
+        const section: string = surveyObj.currentPage.section;
+        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
+        if (li_breadcrumb) {
+            li_breadcrumb.className += " active";
+        }
     }
 }
