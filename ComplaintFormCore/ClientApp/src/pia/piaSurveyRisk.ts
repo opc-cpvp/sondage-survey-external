@@ -1,4 +1,5 @@
 export class PiaSurveyRisk {
+    public panelId = "";
     public questionName = "";
     public questionText = "";
     public questionAnswer = "";

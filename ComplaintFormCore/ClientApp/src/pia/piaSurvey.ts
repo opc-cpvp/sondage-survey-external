@@ -83,10 +83,6 @@ export class PiaSurvey extends SurveyBase {
         this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
             this.handleOnValidateQuestion(sender, options);
         });
-
-        this.survey.onShowingPreview.add((sender: SurveyModel, options: any) => {
-            this.handleOnShowingPreview(sender, options);
-        });
     }
 
     protected registerCustomProperties(): void {
@@ -185,10 +181,6 @@ export class PiaSurvey extends SurveyBase {
         this.risks.checkIfRisk(options.question);
         // Section 4 pages should be visible only if there is at least one risk scenario identified.
         this.survey.pages.filter(p => p.name.substr(0, 11) === "page_step_4").forEach(r => (r.visible = this.risks.currentList.length > 0));
-    }
-
-    private handleOnShowingPreview(sender: SurveyModel, options: any): void {
-        this.risks.processSectionFourPreview(this.survey);
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {

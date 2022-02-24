@@ -1,4 +1,4 @@
-import { PageModel, Question, SurveyModel } from "survey-vue";
+import { PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
 
@@ -8,8 +8,9 @@ export class PiaSurveyRisks {
     readonly questionTag = "[TEXT OF QUESTION]";
     readonly responseTag = "[RESPONSE]";
     readonly riskTag = "[DESCRIPTION OF THE RISK]";
-    readonly riskPrefix = "risk_";
-    readonly assessmentPrefix = "riskAssessment_";
+    readonly panelIdPrefix = "#";
+    readonly panelDescriptionsName = "panelRiskDescriptions";
+    readonly panelAssessmentName = "panelRiskAssessment";
 
     public currentList: PiaSurveyRisk[];
     public defaultValues: PiaSurveyRiskDefaultValues;
@@ -33,14 +34,16 @@ export class PiaSurveyRisks {
         }
     }
 
-    public processSectionFourPreview(survey: SurveyModel): void {
-        survey.pages.forEach(p => {
-            this.processSectionFour(p);
-        });
-    }
-
     public processSectionFour(page: PageModel): void {
-        if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName) {
+        // Process only 2 section 4 pages or a preview page.
+        if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName && page.name !== "all") {
+            return;
+        }
+
+        // Preview page.
+        if (page.name === "all") {
+            this.processPreviewPage(page, this.panelDescriptionsName);
+            this.processPreviewPage(page, this.panelAssessmentName);
             return;
         }
 
@@ -56,20 +59,70 @@ export class PiaSurveyRisks {
         for (let i = 0; i < rootPanel.panels.length; i++) {
             const p = rootPanel.panels[i];
 
+            // Store panel id for reference.
+            this.currentList[i].panelId = this.getPanelId(p);
+
             if (page.name === this.stepFourPageName) {
-                // Update panel properties.
-                p.name = this.riskPrefix + this.currentList[i].questionName;
-                // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace(this.questionTag, this.currentList[i].questionText);
-                p.questions[0].title = p.questions[0].title.replace(this.responseTag, this.currentList[i].questionAnswer);
-                p.questions[1].title = p.questions[1].title.replace(this.riskTag, this.currentList[i].defaultDescriptionOfRisk);
-                p.questions[3].defaultValue = p.questions[3].defaultValue = this.currentList[i].defaultDescriptionOfRisk;
+                this.updateRiskDescriptionTitles(p.questions, this.currentList[i]);
+                p.questions[3].defaultValue = this.currentList[i].defaultDescriptionOfRisk;
             } else {
-                // Update panel properties.
-                p.name = this.assessmentPrefix + this.currentList[i].questionName;
-                // Update relevant question info.
-                p.questions[0].title = p.questions[0].title.replace(this.riskTag, this.currentList[i].defaultDescriptionOfRisk);
+                this.updateRiskAssessmentTitles(p.questions, this.currentList[i]);
             }
         }
+    }
+
+    private processPreviewPage(page: PageModel, panelName: string): void {
+        // Find the root panel.
+        const main = page.questions.filter(q => q.name === panelName)[0];
+        if (!main) {
+            return;
+        }
+
+        main.panels.forEach(p => {
+            // Get the panel id.
+            const panelId = this.getPanelId(p);
+
+            if (panelId !== "") {
+                // Try to find a risk item that matches the current panel Id.
+                const risk = this.currentList.filter(r => r.panelId === panelId)[0];
+                if (risk) {
+                    // Update title(s).
+                    if (panelName === this.panelDescriptionsName) {
+                        this.updateRiskDescriptionTitles(p.questions, risk);
+                    } else {
+                        this.updateRiskAssessmentTitles(p.questions, risk);
+                    }
+                }
+            }
+        });
+    }
+
+    private updateRiskDescriptionTitles(questions: any, risk: PiaSurveyRisk): void {
+        questions[0].title = this.updateTitle(questions[0], this.questionTag, risk.questionText);
+        questions[0].title = this.updateTitle(questions[0], this.responseTag, risk.questionAnswer);
+        questions[1].title = this.updateTitle(questions[1], this.riskTag, risk.defaultDescriptionOfRisk);
+    }
+
+    private updateRiskAssessmentTitles(questions: any, risk: PiaSurveyRisk): void {
+        questions[0].title = this.updateTitle(questions[0], this.riskTag, risk.defaultDescriptionOfRisk);
+    }
+
+    private updateTitle(question: Question, tag: string, tagValue: string): string {
+        return question.title.replace(tag, tagValue);
+    }
+
+    private getPanelId(panel: any): string {
+        const defaultVal = "" as string;
+
+        if (!panel || !panel.processedTitle) {
+            return defaultVal;
+        }
+
+        const index = panel.processedTitle.indexOf(this.panelIdPrefix, panel.processedTitle);
+        if (index === -1) {
+            return defaultVal;
+        }
+
+        return panel.processedTitle.substring(Number(index) + 1) as string;
     }
 }
