@@ -81,7 +81,7 @@ export class PiaSurveyRisks {
         compositeBricks.forEach(c => {
             const unfoldedComposites = c.unfold();
             if (unfoldedComposites) {
-                // Process HTMLBrick-s.
+                // Process HTMLBrick-s only.
                 const htmlBricks = unfoldedComposites.filter(b => b instanceof HTMLBrick);
                 htmlBricks.forEach(h => {
                     const unfoldedHtml = (h as HTMLBrick).unfold()[0] as any;

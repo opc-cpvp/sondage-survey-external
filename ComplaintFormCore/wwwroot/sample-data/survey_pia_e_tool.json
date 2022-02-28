@@ -13,7 +13,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p><strong>What is a PIA?</strong><p><p>A privacy impact assessment (PIA) is a risk management process that helps institutions ensure legislative requirements are met, as well as identify and manage the impacts their programs and activities will have on individuals&rsquo; privacy. First and foremost, conducting a PIA is a means of helping to ensure compliance with:</p><ul><li>legal requirements set out in the Privacy Act</li><li>the institution or program&rsquo;s enabling legislation</li><li>the requirements of Treasury Board of Canada Secretariat (TBS) and Government of Canada policies and directives</li></ul><p>Programs and activities must comply with legal and policy requirements. The way they are designed should also incorporate best practices and minimize negative impacts on the privacy of individuals. For example, you should work to reduce the risk that an individual may suffer harm, such as identity theft, reputational damage, physical harm or distress, as a result of your program&rsquo;s handling of their personal information. A PIA may not eliminate such risks altogether, but should help to identify and manage them. There is often more than one way of designing a project. A PIA can help identify the least privacy intrusive way of achieving a legitimate aim.</p>",
+            "en": "<p><strong>What is a PIA?</strong><p><p>A privacy impact assessment (PIA) is a risk management process that helps institutions ensure legislative requirements are met, as well as identify and manage the impacts their programs and activities will have on individuals’ privacy. First and foremost, conducting a PIA is a means of helping to ensure compliance with:</p><ul><li>legal requirements set out in the Privacy Act</li><li>the institution or program’s enabling legislation</li><li>the requirements of Treasury Board of Canada Secretariat (TBS) and Government of Canada policies and directives</li></ul><p>Programs and activities must comply with legal and policy requirements. The way they are designed should also incorporate best practices and minimize negative impacts on the privacy of individuals. For example, you should work to reduce the risk that an individual may suffer harm, such as identity theft, reputational damage, physical harm or distress, as a result of your program’s handling of their personal information. A PIA may not eliminate such risks altogether, but should help to identify and manage them. There is often more than one way of designing a project. A PIA can help identify the least privacy intrusive way of achieving a legitimate aim.</p>",
             "fr": ""
           }
         },
@@ -48,7 +48,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p>You can use the completed PIA report to manage and mitigate privacy risks within your institution&rsquo;s broader risk management framework. From time to time, you should review your PIA report and consider whether it should be updated to reflect new or substantial changes to your program or activity involving personal information.</p>",
+            "en": "<p>You can use the completed PIA report to manage and mitigate privacy risks within your institution’s broader risk management framework. From time to time, you should review your PIA report and consider whether it should be updated to reflect new or substantial changes to your program or activity involving personal information.</p>",
             "fr": ""
           }
         },
@@ -62,7 +62,7 @@
         {
           "type": "html",
           "html": {
-            "en": "<p><strong>OPC&rsquo;s companion guide</strong></p><p>You may also wish to consult our office&rsquo;s supporting document Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process. It provides guidance to federal public sector institutions on how to comply with the Privacy Act and effectively manage privacy risks as part of the PIA process.</p>",
+            "en": "<p><strong>OPC’s companion guide</strong></p><p>You may also wish to consult our office’s supporting document Expectations: OPC’s Guide to the Privacy Impact Assessment Process. It provides guidance to federal public sector institutions on how to comply with the Privacy Act and effectively manage privacy risks as part of the PIA process.</p>",
             "fr": ""
           }
         }
@@ -116,21 +116,21 @@
         {
           "type": "html",
           "html": {
-            "en": "<p>If you have questions about the PIA process or the e-Tool, do not hesitate to contact our office&rsquo;s <a title='Government Advisory (GA)' href='https://www.priv.gc.ca/en/about-the-opc/who-we-are/organizational-structure/' target='_blank'>Government Advisory (GA)</a> Directorate. The OPC&rsquo;s GA Directorate provides advice to federal public sector institutions on specific programs and activities involving personal information. We provide advice through:<ul><li>consultation</li><li>reviewing PIA reports, information sharing agreements, and notifications under s. 8(2)(m) and 9(4) of the Privacy Act</li><li>conducting advisory engagements</li></ul></p>",
+            "en": "<p>If you have questions about the PIA process or the e-Tool, do not hesitate to contact our office’s <a title='Government Advisory (GA)' href='https://www.priv.gc.ca/en/about-the-opc/who-we-are/organizational-structure/' target='_blank'>Government Advisory (GA)</a> Directorate. The OPC’s GA Directorate provides advice to federal public sector institutions on specific programs and activities involving personal information. We provide advice through:<ul><li>consultation</li><li>reviewing PIA reports, information sharing agreements, and notifications under s. 8(2)(m) and 9(4) of the Privacy Act</li><li>conducting advisory engagements</li></ul></p>",
             "fr": ""
           }
         },
         {
           "type": "html",
           "html": {
-            "en": "<p>You can contact the OPC at any stage in your program&rsquo;s development for assistance in identifying compliance issues as well as risks to privacy and potential mitigation strategies. You can reach the GA Directorate by phone at 819-994-XXXX or by email at scg-ga@priv.gc.ca.</p>",
+            "en": "<p>You can contact the OPC at any stage in your program’s development for assistance in identifying compliance issues as well as risks to privacy and potential mitigation strategies. You can reach the GA Directorate by phone at 819-994-XXXX or by email at scg-ga@priv.gc.ca.</p>",
             "fr": ""
           }
         },
         {
           "type": "html",
           "html": {
-            "en": "<p>Expectations: OPC&rsquo;s Guide to the Privacy Impact Assessment Process includes more information on how the OPC&rsquo;s can help.</p>",
+            "en": "<p>Expectations: OPC’s Guide to the Privacy Impact Assessment Process includes more information on how the OPC’s can help.</p>",
             "fr": ""
           }
         }
@@ -708,7 +708,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>A single institution PIA covers only the program or activity of one institution, either because only one institution administers the program or activity or because the PIA only addresses one institution&rsquo;s activities related to a multi-institutional program or activity. <br /> <br />A multi-institutional PIA addresses the activities of multiple institutions involved in administering a joint program or activity. According to the TBS Directive on Privacy Impact Assessment, in cases of joint programs or activities, an overarching or a multi-institutional PIA is favoured as it helps to reduce the chances of gaps or inconsistencies.</p></p>",
+            "en": "<p><p>A single institution PIA covers only the program or activity of one institution, either because only one institution administers the program or activity or because the PIA only addresses one institution’s activities related to a multi-institutional program or activity. <br /> <br />A multi-institutional PIA addresses the activities of multiple institutions involved in administering a joint program or activity. According to the TBS Directive on Privacy Impact Assessment, in cases of joint programs or activities, an overarching or a multi-institutional PIA is favoured as it helps to reduce the chances of gaps or inconsistencies.</p></p>",
             "fr": ""
           },
           "choices": [
@@ -3824,7 +3824,7 @@
             "fr": ""
           },
           "description": {
-            "en": "<p><p>If an institution intends to dispose of personal information that has been used for an administrative purpose prior to the expiration of the two-year minimum retention standard established by the Privacy Regulations, it must obtain the consent of the individual to whom the information relates, in writing, before doing so.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond &lsquo;No&rsquo; to this question.</p></p>",
+            "en": "<p><p>If an institution intends to dispose of personal information that has been used for an administrative purpose prior to the expiration of the two-year minimum retention standard established by the Privacy Regulations, it must obtain the consent of the individual to whom the information relates, in writing, before doing so.</p><p>Please note that you will have the opportunity later to discuss the risks and mitigation if you respond &lsquo;No’ to this question.</p></p>",
             "fr": ""
           },
           "choices": [
@@ -7180,6 +7180,7 @@
                 "en": "Here is how the risk will appear in the table of privacy risks: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Would you like to modify this?",
                 "fr": ""
               },
+              "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q} = 'yes'",
               "choices": [
                 {
@@ -7205,6 +7206,7 @@
                 "en": "Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk:",
                 "fr": ""
               },
+              "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q} = 'no'"
             },
             {
@@ -7215,6 +7217,7 @@
                 "en": "Please modify the description of the risk to how you would like it to appear in your table of privacy risks:",
                 "fr": ""
               },
+              "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q_yes} = 'yes'"
             }
           ],
@@ -7248,7 +7251,7 @@
                 "fr": ""
               },
               "description": {
-                "en": "<p>Privacy risks, in this context, are generally risks that individuals&rsquo; privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
+                "en": "<p>Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
                 "fr": ""
               },
               "isRequired": true,
@@ -7566,7 +7569,7 @@
               "type": "radiogroup",
               "name": "panel_risk_assessment_4_2_5_2",
               "title": {
-                "en": "Explanation of scale used or copy of institution&rsquo;s risk assessment scale",
+                "en": "Explanation of scale used or copy of institution’s risk assessment scale",
                 "fr": ""
               },
               "description": {
@@ -7585,7 +7588,7 @@
                 },
                 {
                   "text": {
-                    "en": "Upload a copy of the institution&rsquo;s risk assessment scale",
+                    "en": "Upload a copy of the institution’s risk assessment scale",
                     "fr": ""
                   },
                   "value": "upload_copy"
@@ -7593,8 +7596,9 @@
               ]
             },
             {
-              "type": "text",
+              "type": "comment",
               "name": "panel_risk_assessment_4_2_5_2_explanation",
+              "isRequired": true,
               "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'enter_explanation'",
               "title": {
                 "en": "Explanation of scale used:",
@@ -7621,7 +7625,7 @@
               "type": "multipletext",
               "name": "panel_risk_assessment_4_2_6",
               "title": {
-                "en": "Please outline the institution&rsquo;s proposed mitigation",
+                "en": "Please outline the institution’s proposed mitigation",
                 "fr": ""
               },
               "items": [
