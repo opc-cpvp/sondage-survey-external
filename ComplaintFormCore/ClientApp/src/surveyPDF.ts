@@ -31,7 +31,6 @@ export class surveyPdfExport {
         // compress: true
     };
 
-    // public processQuestionDelegate: (surveyPdf: SurveyPDF, options: AdornersOptions) => void;
     public processQuestionDelegate = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {};
 
     public exportToPDF(

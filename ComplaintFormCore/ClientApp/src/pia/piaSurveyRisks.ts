@@ -86,13 +86,20 @@ export class PiaSurveyRisks {
                 htmlBricks.forEach(h => {
                     const unfoldedHtml = (h as HTMLBrick).unfold()[0] as any;
                     if (unfoldedHtml) {
-                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.questionTag, "Nenad Testing - Text of Question");
-                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.responseTag, "Nenad Testing - Response");
-                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.riskTag, "Nenad Testing - Description of Risk");
+                        // Get the parent panel id.
+                        const panelId = this.getPanelId(unfoldedHtml.question.parent);
+                        // Try to find a risk item that matches the current panel Id.
+                        const risk = this.currentList.filter(r => r.panelId === panelId)[0];
+                        if (risk) {
+                            // Update title(s).
+                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.questionTag, risk.questionText);
+                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.responseTag, risk.questionAnswer);
+                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.riskTag, risk.defaultDescriptionOfRisk);
+                        }
                     }
                 });
 
-                // TODO: - use values from this.currentList above - how to get the panelId for PDF for matching???
+                // TODO:
                 // Can type: multipletext have more than one line of text?
                 // multipletext type not showing on the PDF - why?
             }
