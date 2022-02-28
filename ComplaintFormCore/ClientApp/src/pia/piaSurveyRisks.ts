@@ -98,10 +98,6 @@ export class PiaSurveyRisks {
                         }
                     }
                 });
-
-                // TODO:
-                // Can type: multipletext have more than one line of text?
-                // multipletext type not showing on the PDF - why?
             }
         });
     }
