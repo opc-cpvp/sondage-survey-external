@@ -13,8 +13,8 @@ import { FileMeterWidget } from "../widgets/filemeterwidget";
 import { PiaSurveyRisks } from "../pia/piaSurveyRisks";
 
 export class PiaSurvey extends SurveyBase {
+    public risks: PiaSurveyRisks = new PiaSurveyRisks();
     private authToken: string;
-    private risks = new PiaSurveyRisks();
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);

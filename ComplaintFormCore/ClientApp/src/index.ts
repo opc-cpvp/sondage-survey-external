@@ -12,6 +12,7 @@ import { PiaSurvey } from "./pia/piaSurvey";
 import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
+import { AdornersOptions, SurveyPDF } from "survey-pdf";
 
 import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 import { TellOPCSurvey } from "./other/tellOPCSurvey";
@@ -191,6 +192,11 @@ declare let Symbol;
                     fr: "FR-PIA eTool",
                     default: ""
                 };
+
+                const processQuestion = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {
+                    piaSurvey.risks.processPdfQuestion(options);
+                };
+                pdfClass.processQuestionDelegate = processQuestion;
 
                 pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), page_title);
             };

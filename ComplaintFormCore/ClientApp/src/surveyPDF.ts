@@ -31,6 +31,9 @@ export class surveyPdfExport {
         // compress: true
     };
 
+    // public processQuestionDelegate: (surveyPdf: SurveyPDF, options: AdornersOptions) => void;
+    public processQuestionDelegate = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {};
+
     public exportToPDF(
         filename: string,
         jsonUrl: string,
@@ -128,6 +131,7 @@ export class surveyPdfExport {
                 valueName: panelDynamicBase.valueName,
                 type: "paneldynamic",
                 title: panelDynamicBase.title,
+                templateTitle: panelDynamicBase.templateTitle,
                 visibleIf: panelDynamicBase.visibleIf,
                 templateElements: [] as any
             };
@@ -270,7 +274,6 @@ export class surveyPdfExport {
         });
 
         surveyPDF.onRenderPanel.add((survey, options) => {
-            console.log(options.panel.name + ": " + options.panel.visibleIf);
             if (options.panel.isVisible === false) {
                 options.panel.delete();
             }
@@ -284,6 +287,14 @@ export class surveyPdfExport {
             if (options.question.getType() === "file") {
                 return this.buildFilePreview(survey, options, lang);
             }
+
+            if (this.processQuestionDelegate) {
+                this.processQuestionDelegate(survey, options);
+            }
+
+            return new Promise<void>(resolve => {
+                resolve();
+            });
         });
 
         return surveyPDF;

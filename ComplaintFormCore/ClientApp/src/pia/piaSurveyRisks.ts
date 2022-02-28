@@ -1,6 +1,7 @@
 import { PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
+import { AdornersOptions, CompositeBrick, HTMLBrick } from "survey-pdf";
 
 export class PiaSurveyRisks {
     readonly stepFourPageName = "page_step_4";
@@ -71,6 +72,33 @@ export class PiaSurveyRisks {
         }
     }
 
+    public processPdfQuestion(options: AdornersOptions): void {
+        if (options.question.name !== this.panelDescriptionsName && options.question.name !== this.panelAssessmentName) {
+            return;
+        }
+
+        const compositeBricks = options.bricks.filter(b => b instanceof CompositeBrick);
+        compositeBricks.forEach(c => {
+            const unfoldedComposites = c.unfold();
+            if (unfoldedComposites) {
+                // Process HTMLBrick-s.
+                const htmlBricks = unfoldedComposites.filter(b => b instanceof HTMLBrick);
+                htmlBricks.forEach(h => {
+                    const unfoldedHtml = (h as HTMLBrick).unfold()[0] as any;
+                    if (unfoldedHtml) {
+                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.questionTag, "Nenad Testing - Text of Question");
+                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.responseTag, "Nenad Testing - Response");
+                        unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.riskTag, "Nenad Testing - Description of Risk");
+                    }
+                });
+
+                // TODO: - use values from this.currentList above - how to get the panelId for PDF for matching???
+                // Can type: multipletext have more than one line of text?
+                // multipletext type not showing on the PDF - why?
+            }
+        });
+    }
+
     private processPreviewPage(page: PageModel, panelName: string): void {
         // Find the root panel.
         const main = page.questions.filter(q => q.name === panelName)[0];
@@ -98,17 +126,17 @@ export class PiaSurveyRisks {
     }
 
     private updateRiskDescriptionTitles(questions: any, risk: PiaSurveyRisk): void {
-        questions[0].title = this.updateTitle(questions[0], this.questionTag, risk.questionText);
-        questions[0].title = this.updateTitle(questions[0], this.responseTag, risk.questionAnswer);
-        questions[1].title = this.updateTitle(questions[1], this.riskTag, risk.defaultDescriptionOfRisk);
+        questions[0].title = this.updateTitle(questions[0].title, this.questionTag, risk.questionText);
+        questions[0].title = this.updateTitle(questions[0].title, this.responseTag, risk.questionAnswer);
+        questions[1].title = this.updateTitle(questions[1].title, this.riskTag, risk.defaultDescriptionOfRisk);
     }
 
     private updateRiskAssessmentTitles(questions: any, risk: PiaSurveyRisk): void {
-        questions[0].title = this.updateTitle(questions[0], this.riskTag, risk.defaultDescriptionOfRisk);
+        questions[0].title = this.updateTitle(questions[0].title, this.riskTag, risk.defaultDescriptionOfRisk);
     }
 
-    private updateTitle(question: Question, tag: string, tagValue: string): string {
-        return question.title.replace(tag, tagValue);
+    private updateTitle(title: string, tag: string, tagValue: string): string {
+        return title.replace(tag, tagValue);
     }
 
     private getPanelId(panel: any): string {

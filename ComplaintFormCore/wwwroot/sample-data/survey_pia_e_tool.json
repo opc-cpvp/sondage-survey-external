@@ -7199,7 +7199,7 @@
               ]
             },
             {
-              "type": "text",
+              "type": "comment",
               "name": "panel_risk_desc_q_no",
               "title": {
                 "en": "Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk:",
@@ -7208,7 +7208,7 @@
               "visibleIf": "{panel.panel_risk_desc_q} = 'no'"
             },
             {
-              "type": "text",
+              "type": "comment",
               "name": "panel_risk_desc_q_yes_yes",
               "defaultValue": "[DESCRIPTION OF THE RISK]",
               "title": {
