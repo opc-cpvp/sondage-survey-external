@@ -10,6 +10,8 @@ import {
     QuestionMatrixDynamicModel,
     QuestionPanelDynamicModel,
     QuestionSelectBase,
+    QuestionMultipleTextModel,
+    MultipleTextItemModel,
     SurveyModel
 } from "survey-vue";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
@@ -154,6 +156,28 @@ export class surveyPdfExport {
             };
 
             panel.elements.push(innerPanel);
+        } else if (element.getType() === "multipletext") {
+            const multipleTextBase = element as QuestionMultipleTextModel;
+
+            const innerPanel = {
+                name: multipleTextBase.name,
+                valueName: multipleTextBase.valueName,
+                type: "multipletext",
+                title: multipleTextBase.title,
+                visibleIf: multipleTextBase.visibleIf,
+                colCount: multipleTextBase.colCount,
+                items: [] as any
+            };
+
+            multipleTextBase.items.forEach((panelElement: IElement) => {
+                this.setElements(innerPanel, panelElement);
+            });
+
+            if (panel.templateElements) {
+                panel.templateElements.push(innerPanel);
+            } else {
+                panel.elements.push(innerPanel);
+            }
         } else {
             const question = element as Question;
 
@@ -174,6 +198,17 @@ export class surveyPdfExport {
                     panel.templateElements.push(newElement);
                 } else {
                     panel.elements.push(newElement);
+                }
+            } else if (question instanceof MultipleTextItemModel) {
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    visibleIf: question.visibleIf
+                };
+
+                if (panel.items) {
+                    panel.items.push(newElement);
                 }
             } else {
                 const newElement = {
