@@ -6,6 +6,7 @@ import { AdornersOptions, CompositeBrick, HTMLBrick } from "survey-pdf";
 export class PiaSurveyRisks {
     readonly stepFourPageName = "page_step_4";
     readonly stepFourTwoPageName = "page_step_4_2";
+    readonly previewPageName = "all";
     readonly questionTag = "[TEXT OF QUESTION]";
     readonly responseTag = "[RESPONSE]";
     readonly riskTag = "[DESCRIPTION OF THE RISK]";
@@ -37,12 +38,12 @@ export class PiaSurveyRisks {
 
     public processSectionFour(page: PageModel): void {
         // Process only 2 section 4 pages or a preview page.
-        if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName && page.name !== "all") {
+        if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName && page.name !== this.previewPageName) {
             return;
         }
 
         // Preview page.
-        if (page.name === "all") {
+        if (page.name === this.previewPageName) {
             this.processPreviewPage(page, this.panelDescriptionsName);
             this.processPreviewPage(page, this.panelAssessmentName);
             return;

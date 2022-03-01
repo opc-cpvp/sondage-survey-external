@@ -14,6 +14,7 @@ import { PiaSurveyRisks } from "../pia/piaSurveyRisks";
 
 export class PiaSurvey extends SurveyBase {
     public risks: PiaSurveyRisks = new PiaSurveyRisks();
+    readonly pageFourPrefix = "page_step_4";
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
@@ -180,7 +181,9 @@ export class PiaSurvey extends SurveyBase {
         // Check if this question happens to be a "risk" related one.
         this.risks.checkIfRisk(options.question);
         // Section 4 pages should be visible only if there is at least one risk scenario identified.
-        this.survey.pages.filter(p => p.name.substr(0, 11) === "page_step_4").forEach(r => (r.visible = this.risks.currentList.length > 0));
+        this.survey.pages
+            .filter(p => p.name.substr(0, 11) === this.pageFourPrefix)
+            .forEach(r => (r.visible = this.risks.currentList.length > 0));
     }
 
     private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
