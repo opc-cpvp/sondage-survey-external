@@ -69,10 +69,6 @@ export class PiaSurvey extends SurveyBase {
             this.handleOnClearFiles(sender, options);
         });
 
-        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderQuestion(sender, options);
-        });
-
         this.survey.onAfterRenderSurvey.add((sender: SurveyModel, options: any) => {
             this.setNavigationBreadcrumbs(sender);
         });

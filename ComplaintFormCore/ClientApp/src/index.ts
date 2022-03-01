@@ -194,7 +194,7 @@ declare let Symbol;
                 };
 
                 const processQuestion = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {
-                    piaSurvey.risks.processPdfQuestion(options);
+                    piaSurvey.risks.processPdfQuestion(surveyPdf, options);
                 };
                 pdfClass.processQuestionDelegate = processQuestion;
 

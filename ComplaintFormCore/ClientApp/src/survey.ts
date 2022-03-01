@@ -1,4 +1,14 @@
-import { defaultBootstrapCss, surveyLocalization, JsonObject, Question, StylesManager, SurveyError, SurveyModel } from "survey-vue";
+import {
+    defaultBootstrapCss,
+    surveyLocalization,
+    JsonObject,
+    Question,
+    StylesManager,
+    SurveyError,
+    SurveyModel,
+    settings,
+    PageModel
+} from "survey-vue";
 import { Converter } from "showdown";
 import Vue from "vue";
 import { LocalStorage } from "./localStorage";
@@ -74,9 +84,11 @@ export abstract class SurveyBase {
         summary.appendChild(list);
 
         // Insert the error summary after the page's heading
-        const heading = document.querySelector("h1");
-        heading?.parentNode?.insertBefore(summary, heading.nextSibling);
-        heading?.scrollIntoView();
+        const heading = document.querySelector(".sv_page_title");
+        if (heading) {
+            heading.parentNode?.insertBefore(summary, heading.nextSibling);
+            heading.scrollIntoView();
+        }
     }
 
     public getSurveyModel(): SurveyModel {
@@ -124,12 +136,12 @@ export abstract class SurveyBase {
             this.handleOnCurrentPageChanged(sender, options);
         });
 
-        this.survey.onAfterRenderPage.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderPage(sender, options);
-        });
-
         this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
             this.handleOnAfterRenderQuestion(sender, options);
+        });
+
+        this.survey.onPageAdded.add((sender: SurveyModel, options: any) => {
+            this.handleOnPageAdded(sender, options);
         });
     }
 
@@ -168,33 +180,11 @@ export abstract class SurveyBase {
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    protected handleOnAfterRenderPage(sender: SurveyModel, options: any): void {
-        const html = options.htmlElement as HTMLElement;
-        const headings = html?.querySelectorAll("h4");
-
-        // Check for the presence of headings
-        if (!headings) {
-            return;
-        }
-
-        // Replace headings with appropriate tag
-        headings.forEach((h, i) => {
-            if (i > 0) {
-                // Replace the headings (h4) with another heading (h2)
-                h.outerHTML = `<h2 class="${h.className}">${h.innerHTML}</h2>`;
-            } else {
-                // Replace the heading (h4) with another heading (h1)
-                h.outerHTML = `<h1 class="${h.className}">${h.innerHTML}</h1>`;
-            }
-        });
-    }
-
-    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     protected handleOnAfterRenderQuestion(sender: SurveyModel, options: any): void {
         const question = options.question as Question;
 
         const html = options.htmlElement as HTMLElement;
-        const heading = html?.querySelector("h5");
+        const heading = html?.querySelector(".sv_q_title");
 
         // Check for the presence of a heading
         if (!heading) {
@@ -210,20 +200,25 @@ export abstract class SurveyBase {
 
         // Replace the required text with a strong
         if (question.isRequired) {
-            const required = heading.querySelector("span.sv_q_required_text");
-
-            if (required) {
-                required.outerHTML = `<strong class="${required.className}">${required.innerHTML}</strong>`;
-            }
+            const required = document.createElement("strong");
+            required.className = defaultBootstrapCss.question.requiredText;
+            required.innerText = sender.requiredText;
+            heading.appendChild(required);
         }
 
-        // Replace the heading with a label
-        heading.outerHTML = `<label id="${question.ariaTitleId}" for="${question.inputId}" class="${heading.className}">${heading.innerHTML}</label>`;
+        // Added spacing to radio label
+        if (question.getType() === "radiogroup") {
+            html.querySelectorAll<HTMLSpanElement>("fieldset span.sv-string-viewer").forEach(value => {
+                value.innerText = ` ${value.innerText}`;
+            });
+        }
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
     protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
         this.saveSurveyState();
+        // Scroll page back to top on page changed
+        sender.scrollToTopOnPageChange();
     }
 
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -251,35 +246,64 @@ export abstract class SurveyBase {
         this.displayErrorSummary(questionErrors);
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    private handleOnPageAdded(sender: SurveyModel, options: any): void {
+        const page = options.page as PageModel;
+
+        // Check if the added page is the preview page
+        if (page.name !== "all") {
+            return;
+        }
+
+        // Set the page title otherwise, it won't be rendered
+        page.title = sender.previewText;
+    }
+
     private setSurveyProperties(): void {
+        // Override the main-color to match the theme
+        StylesManager.ThemeColors["bootstrap"]["$main-color"] = "#00627e";
+
         // Set Theme
         StylesManager.applyTheme("bootstrap");
 
         // Override defaultBootstrapCss Properties
-        defaultBootstrapCss.checkbox.root = ""; // Allows the 'Other' textbox to display at full width.
         defaultBootstrapCss.error.icon = "";
+        defaultBootstrapCss.error.item = "label label-danger";
+        defaultBootstrapCss.error.root = "";
         defaultBootstrapCss.matrixdynamic.buttonAdd = "btn btn-default";
         defaultBootstrapCss.matrixdynamic.buttonRemove = "btn btn-danger";
-        defaultBootstrapCss.matrixdynamic.root = "table";
-        defaultBootstrapCss.navigationButton = "btn btn-primary";
-        defaultBootstrapCss.page.title = "sv_title";
-        defaultBootstrapCss.panel.container = "well";
+        defaultBootstrapCss.navigation.complete = "btn btn-primary";
+        defaultBootstrapCss.navigation.edit = "btn btn-primary";
+        defaultBootstrapCss.navigation.next = "btn btn-primary";
+        defaultBootstrapCss.navigation.prev = "btn btn-default";
+        defaultBootstrapCss.navigation.preview = "btn btn-primary";
+        defaultBootstrapCss.navigation.start = "btn btn-primary";
+        defaultBootstrapCss.page.title = "sv_page_title";
+        defaultBootstrapCss.panel.container = "sv_p_container well";
         defaultBootstrapCss.paneldynamic.buttonAdd = "btn btn-default";
         defaultBootstrapCss.paneldynamic.buttonRemove = "btn btn-danger";
-        defaultBootstrapCss.question.description = ""; //  Removes the default class (small)
+        defaultBootstrapCss.progressTextInBar = "";
+        defaultBootstrapCss.question.description = "";
+        defaultBootstrapCss.question.mainRoot = "sv_qstn form-group";
         defaultBootstrapCss.question.title = "sv_q_title";
         defaultBootstrapCss.question.titleRequired = "required";
+        defaultBootstrapCss.question.requiredText = "required";
+        defaultBootstrapCss.radiogroup.root = "form-inline";
 
-        // onHidden -> survey clears the question value when the question becomes invisible.
-        // If a question has an answer value and it was invisible initially, a survey clears the value on completing.
-        this.survey.clearInvisibleValues = "onHidden";
+        settings.titleTags.page = "h1";
+        settings.titleTags.panel = "label";
+        settings.titleTags.question = "label";
+
+        this.survey.clearInvisibleValues = "onHidden"; // Clear the question value when it becomes invisible. If a question has value and it was invisible initially then survey clears the value on completing.
         this.survey.focusOnFirstError = false;
         this.survey.questionErrorLocation = "top";
         this.survey.requiredText = surveyLocalization.getString("requiredText");
         this.survey.showCompletedPage = true;
-        this.survey.showPreviewBeforeComplete = "showAllQuestions";
+        this.survey.showPreviewBeforeComplete = "showAllQuestions"; // Allow respondents to preview answers before submitting the survey results.
         this.survey.showProgressBar = "bottom";
         this.survey.showQuestionNumbers = "off";
+        this.survey.storeOthersAsComment = false; // Gets or sets whether the "Others" option text is stored as question comment.
+        this.survey.questionTitlePattern = "numTitle"; // Remove the required text from question titles since we'll handle it manually.
 
         //  The default value for this is true. That means when using hasOther = true for a checkbox type question,
         //  SurveyJS creates an new property with name 'PropertyName-Comment'. Problem occurs when trying to convert
@@ -297,22 +321,50 @@ export abstract class SurveyBase {
     private setSurveyLocalizations(): void {
         // Override surveyjs strings
         surveyLocalization.locales["en"].otherItemText = "Other";
-        surveyLocalization.locales["fr"].otherItemText = "Autre";
-
         surveyLocalization.locales["en"].requiredError = "This field is required";
-        surveyLocalization.locales["fr"].requiredError = "Ce champ est obligatoire";
+
+        surveyLocalization.locales["fr"].addPanel = "Ajouter une nouvelle ligne";
+        surveyLocalization.locales["fr"].chooseFile = "Ajouter le(s) fichier(s)...";
+        surveyLocalization.locales["fr"].chooseFileCaption = "Sélectionner un fichier";
+        surveyLocalization.locales["fr"].clearCaption = "Effacer";
+        surveyLocalization.locales["fr"].completingSurveyBefore = "Nos dossiers indiquent que vous avez déjà rempli ce questionnaire.";
+        surveyLocalization.locales["fr"].emptyRowsText = "Il n'y a aucune ligne.";
+        surveyLocalization.locales["fr"].exceedMaxSize = "La taille du fichier ne doit pas dépasser {0}";
+        surveyLocalization.locales["fr"].invalidEmail = "Merci d'entrer une adresse de courriel valide.";
+        surveyLocalization.locales["fr"].invalidExpression = "L'expression : {0} doit donner la valeur 'true'.";
+        surveyLocalization.locales["fr"].loadingFile = "Téléchargement...";
+        surveyLocalization.locales["fr"].maxError = "Le nombre ne doit pas être supérieur à {0}";
+        surveyLocalization.locales["fr"].maxSelectError = "Merci de ne sélectionner pas plus de {0} réponse(s).";
+        surveyLocalization.locales["fr"].minError = "Le nombre ne doit pas être inférieur à {0}";
+        surveyLocalization.locales["fr"].minSelectError = "Merci de sélectionner au moins {0} réponse(s).";
+        surveyLocalization.locales["fr"].modalApplyButtonText = "Appliquer";
+        surveyLocalization.locales["fr"].modalCancelButtonText = "Annuler";
+        surveyLocalization.locales["fr"].multipletext_itemname = "texte";
+        surveyLocalization.locales["fr"].noFileChosen = "Aucun fichier sélectionné";
+        surveyLocalization.locales["fr"].otherItemText = "Autre";
+        surveyLocalization.locales["fr"].panelDynamicProgressText = "Enregistrement {0} de {1}";
+        surveyLocalization.locales["fr"].progressText = "Page {0} de {1}";
+        surveyLocalization.locales["fr"].removeFileCaption = "Supprimer ce fichier";
+        surveyLocalization.locales["fr"].requiredError = "Merci de répondre à la question.";
+        surveyLocalization.locales["fr"].requiredInAllRowsError = "Merci de répondre à toutes les questions.";
+        surveyLocalization.locales["fr"].savingDataError = "Une erreur s'est produite et a empêché la sauvegarde des résultats.";
+        surveyLocalization.locales["fr"].selectAllItemText = "Sélectionner tout";
+        surveyLocalization.locales["fr"].signaturePlaceHolder = "Signer ici";
+        surveyLocalization.locales["fr"].uploadingFile =
+            "Votre fichier est en cours de téléchargement. Merci de patienter quelques secondes et de réessayer.";
+        surveyLocalization.locales["fr"].urlGetChoicesError =
+            "La requête indique un champ de données vide ou la propriété 'path' est incorrecte";
+        surveyLocalization.locales["fr"].urlRequestError = "La requête a généré une erreur '{0}'. {1}";
 
         // Define custom localizable strings
         surveyLocalization.locales["en"].errorText = "Error";
-        surveyLocalization.locales["fr"].errorText = "Erreur";
-
         surveyLocalization.locales["en"].requiredText = "(required)";
-        surveyLocalization.locales["fr"].requiredText = "(obligatoire)";
-
         surveyLocalization.locales["en"].validationError = "The form could not be submitted because {0} error was found.";
-        surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreur a été trouvée.";
-
         surveyLocalization.locales["en"].validationErrors = "The form could not be submitted because {0} errors were found.";
+
+        surveyLocalization.locales["fr"].errorText = "Erreur";
+        surveyLocalization.locales["fr"].requiredText = "(obligatoire)";
+        surveyLocalization.locales["fr"].validationError = "Le formulaire n'a pu être soumis car {0} erreur a été trouvée.";
         surveyLocalization.locales["fr"].validationErrors = "Le formulaire n'a pu être soumis car {0} erreurs ont été trouvées.";
     }
 

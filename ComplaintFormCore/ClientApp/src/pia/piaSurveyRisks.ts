@@ -1,7 +1,7 @@
 import { PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
-import { AdornersOptions, CompositeBrick, HTMLBrick } from "survey-pdf";
+import { SurveyPDF, AdornersOptions, CompositeBrick, HTMLBrick } from "survey-pdf";
 
 export class PiaSurveyRisks {
     readonly stepFourPageName = "page_step_4";
@@ -73,7 +73,7 @@ export class PiaSurveyRisks {
         }
     }
 
-    public processPdfQuestion(options: AdornersOptions): void {
+    public processPdfQuestion(surveyPdf: SurveyPDF, options: AdornersOptions): void {
         if (options.question.name !== this.panelDescriptionsName && options.question.name !== this.panelAssessmentName) {
             return;
         }
