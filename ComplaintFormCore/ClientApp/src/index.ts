@@ -12,11 +12,13 @@ import { PiaSurvey } from "./pia/piaSurvey";
 import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
-import { AdornersOptions, SurveyPDF } from "survey-pdf";
+import { PiaSurveyPdfExport } from "./pia/piaSurveyPdfExport";
 
 import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 import { TellOPCSurvey } from "./other/tellOPCSurvey";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
+import { LocalStorage } from "./localStorage";
+import { SurveyState } from "./models/surveyState";
 
 declare global {
     function startSurvey(survey: SurveyModel): void;
@@ -161,15 +163,16 @@ declare let Symbol;
         globalThis.initPiaETool = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
 
-            // await import("./pia/pia_test_data").then(testData => {
-            //    const storage = new LocalStorage();
+            // await import("./pia/pia_test_data")
+            //    .then(testData => {
+            //        const storage = new LocalStorage();
 
-            //    const storageData = {
-            //        currentPageNo: 0,
-            //        data: testData.piaTestData
-            //    } as SurveyState;
+            //        const storageData = {
+            //            currentPageNo: 0,
+            //            data: testData.piaTestData
+            //        } as SurveyState;
 
-            //    storage.save(storageName_PIA, storageData);
+            //        storage.save(storageName_PIA, storageData);
             // });
 
             const piaSurvey = new PiaSurvey(lang, token, storageName_PIA);
@@ -186,17 +189,12 @@ declare let Symbol;
 
             globalThis.exportToPDF = function () {
                 const filename = "survey_export_piaetool";
-                const pdfClass = new surveyPdfExport();
+                const pdfClass = new PiaSurveyPdfExport(piaSurvey);
                 const page_title: MultiLanguageProperty = {
                     en: "PIA eTool",
                     fr: "FR-PIA eTool",
                     default: ""
                 };
-
-                const processQuestion = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {
-                    piaSurvey.risks.processPdfQuestion(surveyPdf, options);
-                };
-                pdfClass.processQuestionDelegate = processQuestion;
 
                 pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), page_title);
             };

@@ -1,7 +1,7 @@
 import { PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
-import { SurveyPDF, AdornersOptions, CompositeBrick, HTMLBrick } from "survey-pdf";
+import { IQuestion } from "survey-core";
 
 export class PiaSurveyRisks {
     readonly stepFourPageName = "page_step_4";
@@ -73,34 +73,22 @@ export class PiaSurveyRisks {
         }
     }
 
-    public processPdfQuestion(surveyPdf: SurveyPDF, options: AdornersOptions): void {
-        if (options.question.name !== this.panelDescriptionsName && options.question.name !== this.panelAssessmentName) {
-            return;
+    public getUpdatedPdfQuestionTitle(question: IQuestion): string {
+        let retVal: string = (question as any).title;
+
+        // Get the parent panel id.
+        const panelId = this.getPanelId(question.parent);
+
+        // Try to find a risk item that matches the current panel Id.
+        const risk = this.currentList.filter(r => r.panelId === panelId)[0];
+
+        if (risk) {
+            retVal = this.updateTitle(retVal, this.questionTag, risk.questionText);
+            retVal = this.updateTitle(retVal, this.responseTag, risk.questionAnswer);
+            retVal = this.updateTitle(retVal, this.riskTag, risk.defaultDescriptionOfRisk);
         }
 
-        const compositeBricks = options.bricks.filter(b => b instanceof CompositeBrick);
-        compositeBricks.forEach(c => {
-            const unfoldedComposites = c.unfold();
-            if (unfoldedComposites) {
-                // Process HTMLBrick-s only.
-                const htmlBricks = unfoldedComposites.filter(b => b instanceof HTMLBrick);
-                htmlBricks.forEach(h => {
-                    const unfoldedHtml = (h as HTMLBrick).unfold()[0] as any;
-                    if (unfoldedHtml) {
-                        // Get the parent panel id.
-                        const panelId = this.getPanelId(unfoldedHtml.question.parent);
-                        // Try to find a risk item that matches the current panel Id.
-                        const risk = this.currentList.filter(r => r.panelId === panelId)[0];
-                        if (risk) {
-                            // Update title(s).
-                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.questionTag, risk.questionText);
-                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.responseTag, risk.questionAnswer);
-                            unfoldedHtml.html = this.updateTitle(unfoldedHtml.html, this.riskTag, risk.defaultDescriptionOfRisk);
-                        }
-                    }
-                });
-            }
-        });
+        return retVal;
     }
 
     private processPreviewPage(page: PageModel, panelName: string): void {

@@ -1,5 +1,4 @@
 import { Converter } from "showdown";
-import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
 import { AdornersOptions, SurveyPDF } from "survey-pdf";
 import {
     IElement,
@@ -12,11 +11,14 @@ import {
     QuestionSelectBase,
     QuestionMultipleTextModel,
     MultipleTextItemModel,
-    SurveyModel
+    SurveyModel,
+    QuestionFactory
 } from "survey-vue";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
 export class surveyPdfExport {
+    public survey_pdf!: SurveyPDF;
+
     private pdfOptions = {
         fontSize: 12,
         margins: {
@@ -33,8 +35,6 @@ export class surveyPdfExport {
         // compress: true
     };
 
-    public processQuestionDelegate = (surveyPdf: SurveyPDF, options: AdornersOptions): void => {};
-
     public exportToPDF(
         filename: string,
         jsonUrl: string,
@@ -49,11 +49,17 @@ export class surveyPdfExport {
                 const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang, pdf_page_title);
 
                 //  Then construct a new survey pdf object with the modified json
-                const survey_pdf = this.initSurveyPDF(modifiedJson, surveyModel, lang);
+                this.survey_pdf = this.initSurveyPDF(modifiedJson, surveyModel, lang);
 
-                void survey_pdf.save(filename);
+                // Call overridable method in case some extra processing is needed.
+                this.doAdvancedProcessing();
+
+                void this.survey_pdf.save(filename);
             });
     }
+
+    // Override this method in a child class to do any extra processing.
+    protected doAdvancedProcessing(): void {}
 
     private modifySurveyJsonforPDF(json_pdf: any, lang: string, pdf_page_title: MultiLanguageProperty): string {
         const originalSurvey = new SurveyModel(json_pdf);
@@ -321,14 +327,6 @@ export class surveyPdfExport {
             if (options.question.getType() === "file") {
                 return this.buildFilePreview(survey, options, lang);
             }
-
-            if (this.processQuestionDelegate) {
-                this.processQuestionDelegate(survey, options);
-            }
-
-            return new Promise<void>(resolve => {
-                resolve();
-            });
         });
 
         return surveyPDF;

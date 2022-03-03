@@ -44,6 +44,7 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\pia\piaSurveyPdfExport.ts" />
     <None Remove="ClientApp\src\pia\piaSurveyRisk.js" />
     <None Remove="ClientApp\src\pia\piaSurveyRisk.js.map" />
     <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.js" />
@@ -56,6 +57,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyPdfExport.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRisk.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.ts" />
     <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.ts" />
@@ -64,6 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\pia\piaSurveyPdfExport.ts" />
     <TypeScriptCompile Include="ClientApp\typings\piaSurveyRiskDefaultValuesTypings.d.ts" />
   </ItemGroup>
 
