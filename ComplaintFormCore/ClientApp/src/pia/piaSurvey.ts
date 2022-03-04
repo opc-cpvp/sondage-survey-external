@@ -164,10 +164,6 @@ export class PiaSurvey extends SurveyBase {
             this.setNavigationBreadcrumbs(sender);
         });
 
-        this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
-            this.handlePiaOnCurrentPageChanged(sender, options);
-        });
-
         this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
             this.handleOnValidateQuestion(sender, options);
         });
@@ -264,6 +260,13 @@ export class PiaSurvey extends SurveyBase {
         }
     }
 
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        super.handleOnCurrentPageChanged(sender, options);
+        this.risks.processSectionFour(this.survey.currentPage);
+        this.setNavigationBreadcrumbs(sender);
+    }
+
     private addSectionInfo(currentSection: string): string {
         let sectionHtml = "<li onclick=\"gotoSection('" + currentSection + '\')" id="li_section_' + currentSection + '">';
         sectionHtml += "Step ".concat(currentSection);
@@ -319,11 +322,6 @@ export class PiaSurvey extends SurveyBase {
         this.survey.pages
             .filter(p => p.name.substr(0, 11) === this.pageFourPrefix)
             .forEach(r => (r.visible = this.risks.currentList.length > 0));
-    }
-
-    private handlePiaOnCurrentPageChanged(sender: SurveyModel, options: any): void {
-        this.risks.processSectionFour(this.survey.currentPage);
-        this.setNavigationBreadcrumbs(sender);
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {

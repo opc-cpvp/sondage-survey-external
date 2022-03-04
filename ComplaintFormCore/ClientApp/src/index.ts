@@ -191,13 +191,13 @@ declare let Symbol;
             globalThis.exportToPDF = function () {
                 const filename = "survey_export_piaetool";
                 const pdfClass = new PiaSurveyPdfExport(piaSurvey);
-                const page_title: MultiLanguageProperty = {
+                const pageTitle: MultiLanguageProperty = {
                     en: "PIA eTool",
                     fr: "FR-PIA eTool",
                     default: ""
                 };
 
-                pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), page_title);
+                pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), pageTitle);
             };
         };
 
