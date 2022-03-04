@@ -14,8 +14,40 @@
 
 }
 
-<div id="surveyElement" style="display:inline-block;width:100%;">
-    <survey :survey='survey' />
+@section CustomStyles {
+    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
+    <link href="~/css/breadcrumb.css" rel="stylesheet" />
+    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
+}
+
+@section CustomScripts {
+    <script src="~/js/clientapp/clientapp.min.js"></script>
+    <script src="~/lib/select2/js/select2.min.js"></script>
+
+    <script type="text/javascript">
+        const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
+        const token = "@ViewBag.token";
+
+        initPiaETool(lang, token);
+
+        function handleOnClick(page) {
+            gotoPage(page);
+        }
+
+        function showPDF() {
+            exportToPDF();
+        }
+    </script>
+}
+
+<div style="width: 100%;">
+    <div style="float: left; width: 25%; margin-top: 30px;">
+        <div id="surveySideMenu"></div>
+    </div>
+    <div id="surveyElement" style="display:inline-block; width:75%">
+        <survey :survey='survey' />
+    </div>
 </div>
 
 <div id="surveyResult"></div>
@@ -65,40 +97,3 @@
     </li>
 </ul>
 
-@section CustomStyles {
-    <link href="~/css/site.css" rel="stylesheet" />
-    <link href="~/css/ladda-themeless.min.css" rel="stylesheet" />
-    <link href="~/css/breadcrumb.css" rel="stylesheet" />
-    <link href="~/lib/select2/css/select2.min.css" rel="stylesheet" />
-}
-
-@section CustomScripts {
-    <script src="~/js/clientapp/clientapp.min.js"></script>
-    <script src="~/lib/select2/js/select2.min.js"></script>
-
-    <script type="text/javascript">
-        const lang = "@System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName";
-        const token = "@ViewBag.token";
-
-        initPiaETool(lang, token);
-
-        function handleOnClick(page) {
-            gotoPage(page);
-        }
-
-        function showPDF() {
-            exportToPDF();
-        }
-    </script>
-}
-
-<div style="width: 100%;">
-    <div style="float: left; width: 25%; margin-top: 30px;">
-        <div id="surveySideMenu"></div>
-    </div>
-    <div id="surveyElement" style="display:inline-block; width:75%">
-        <survey :survey='survey' />
-    </div>
-</div>
-
-<div id="surveyResult"></div>
