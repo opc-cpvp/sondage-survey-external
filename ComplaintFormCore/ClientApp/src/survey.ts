@@ -14,6 +14,13 @@ import Vue from "vue";
 import { LocalStorage } from "./localStorage";
 import { SurveyState } from "./models/surveyState";
 
+import SurveySideMenu from "./vue/SurveySideMenu.vue";
+import { Menu } from "ant-design-vue";
+
+// Bug in Ant css - if the complete css loaded, it takes over the "body" styling.
+// import "ant-design-vue/dist/antd.css";
+import "ant-design-vue/lib/menu/style/index.css";
+
 export abstract class SurveyBase {
     public readonly storageName: string;
     protected readonly survey: SurveyModel;
@@ -108,6 +115,16 @@ export abstract class SurveyBase {
             data: {
                 survey: this.survey
             }
+        });
+    }
+
+    public renderSurveySideMenu(): void {
+        Vue.use(Menu);
+        Vue.config.productionTip = false;
+        new Vue({
+            el: "#surveySideMenu",
+            components: { SurveySideMenu: SurveySideMenu },
+            template: "<SurveySideMenu/>"
         });
     }
 

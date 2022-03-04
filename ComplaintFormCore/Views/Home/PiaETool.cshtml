@@ -82,9 +82,23 @@
 
         initPiaETool(lang, token);
 
+        function handleOnClick(page) {
+            gotoPage(page);
+        }
+
         function showPDF() {
             exportToPDF();
         }
     </script>
 }
 
+<div style="width: 100%;">
+    <div style="float: left; width: 25%; margin-top: 30px;">
+        <div id="surveySideMenu"></div>
+    </div>
+    <div id="surveyElement" style="display:inline-block; width:75%">
+        <survey :survey='survey' />
+    </div>
+</div>
+
+<div id="surveyResult"></div>

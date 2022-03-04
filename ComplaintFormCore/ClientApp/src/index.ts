@@ -178,6 +178,7 @@ declare let Symbol;
             const piaSurvey = new PiaSurvey(lang, token, storageName_PIA);
             await piaSurvey.loadSurveyFromUrl(jsonUrl);
             piaSurvey.renderSurvey();
+            piaSurvey.renderSurveySideMenu();
 
             globalThis.gotoSection = section => {
                 piaSurvey.gotoSection(section);

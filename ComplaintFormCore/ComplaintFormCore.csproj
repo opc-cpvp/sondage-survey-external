@@ -44,6 +44,26 @@
 	</ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\js\main.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\vue-shim.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\vue-shim.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\src\vue\SurveySideMenu.vue" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\vue-shim.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ClientApp\src\pia\piaSurveyPdfExport.ts" />
     <None Remove="ClientApp\src\pia\piaSurveyRisk.js" />
     <None Remove="ClientApp\src\pia\piaSurveyRisk.js.map" />
