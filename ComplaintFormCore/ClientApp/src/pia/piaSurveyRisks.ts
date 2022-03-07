@@ -1,5 +1,6 @@
 import { PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
+import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
 import { IQuestion } from "survey-core";
 
@@ -13,13 +14,17 @@ export class PiaSurveyRisks {
     readonly panelIdPrefix = "#";
     readonly panelDescriptionsName = "panelRiskDescriptions";
     readonly panelAssessmentName = "panelRiskAssessment";
+    readonly localeEn = "en";
+    readonly localeFr = "fr";
 
     public currentList: PiaSurveyRisk[];
     public defaultValues: PiaSurveyRiskDefaultValues;
+    private locale: string = this.localeEn;
 
-    public constructor() {
+    public constructor(locale: "en" | "fr" = "en") {
         this.defaultValues = new PiaSurveyRiskDefaultValues();
         this.currentList = [];
+        this.locale = locale;
     }
 
     // Method that processes each question.
@@ -32,7 +37,7 @@ export class PiaSurveyRisks {
 
         if (defaultValue) {
             // Add new risk item.
-            this.currentList.push(new PiaSurveyRisk(question.name, question.title, question.value, defaultValue.descriptionOfRisk));
+            this.currentList.push(new PiaSurveyRisk(question.name, question.title, question.value, this.getDescription(defaultValue)));
         }
     }
 
@@ -144,5 +149,9 @@ export class PiaSurveyRisks {
         }
 
         return panel.processedTitle.substring(Number(index) + 1) as string;
+    }
+
+    private getDescription(defaultValue: PiaSurveyRiskDefaultValue): string {
+        return this.locale === this.localeFr ? defaultValue.descriptionOfRisk.fr : defaultValue.descriptionOfRisk.en;
     }
 }

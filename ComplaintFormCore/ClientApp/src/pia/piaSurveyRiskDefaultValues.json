@@ -3,292 +3,466 @@
     {
       "questionName": "WillITLegacySystemRetained",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution’s current IT legacy systems and services that will be retained, or those that will be substantially modified, are not compliant with privacy requirements."
+      "descriptionOfRisk": {
+        "en": "The institution’s current IT legacy systems and services that will be retained, or those that will be substantially modified, are not compliant with privacy requirements.",
+        "fr": "fr-The institution’s current IT legacy systems and services that will be retained, or those that will be substantially modified, are not compliant with privacy requirements."
+      }
     },
     {
       "questionName": "DoesStaffReceivedTraining",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution does not ensure that staff receive privacy-related training."
+      "descriptionOfRisk": {
+        "en": "The institution does not ensure that staff receive privacy-related training.",
+        "fr": "fr-The institution does not ensure that staff receive privacy-related training."
+      }
     },
     {
       "questionName": "ProcessHandlingPrivacyComplaint",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution has not yet established a process for handling a privacy complaint or inquiry."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet established a process for handling a privacy complaint or inquiry.",
+        "fr": "fr-The institution has not yet established a process for handling a privacy complaint or inquiry."
+      }
     },
     {
       "questionName": "ProcessHandlingPrivacyComplaint",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have a process for handling a privacy complaint or inquiry."
+      "descriptionOfRisk": {
+        "en": "The institution does not have a process for handling a privacy complaint or inquiry.",
+        "fr": "fr-The institution does not have a process for handling a privacy complaint or inquiry."
+      }
     },
     {
       "questionName": "HasDataMinimization",
       "questionAnswer": "not_yet_planned",
-      "descriptionOfRisk": "The institution has not yet undertaken a data minimization exercise."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet undertaken a data minimization exercise.",
+        "fr": "fr-The institution has not yet undertaken a data minimization exercise."
+      }
     },
     {
       "questionName": "HasDataMinimization",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution has not undertaken a data minimization exercise."
+      "descriptionOfRisk": {
+        "en": "The institution has not undertaken a data minimization exercise.",
+        "fr": "fr-The institution has not undertaken a data minimization exercise."
+      }
     },
     {
       "questionName": "DoesHavePoliciesProcedures",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution does not have policies or procedures in place to manage the inadvertent collection of personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not have policies or procedures in place to manage the inadvertent collection of personal information.",
+        "fr": "fr-The institution does not have policies or procedures in place to manage the inadvertent collection of personal information."
+      }
     },
     {
       "questionName": "FormalInformationSharingAgreement",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA)."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA).",
+        "fr": "fr-The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA)."
+      }
     },
     {
       "questionName": "FormalInformationSharingAgreement",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA)."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA).",
+        "fr": "fr-The institution does not yet capture the collection of personal information from at least one third party in a formal information sharing agreement (ISA)."
+      }
     },
     {
       "questionName": "HasPrivacyNoticeStatement",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution will not have a privacy notice statement for this program or activity."
+      "descriptionOfRisk": {
+        "en": "The institution will not have a privacy notice statement for this program or activity.",
+        "fr": "fr-The institution will not have a privacy notice statement for this program or activity."
+      }
     },
     {
       "questionName": "HasDraftFinalVersionPNSAvailable",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution will have a privacy notice statement for this program or activity, but does not yet have draft or final version(s)."
+      "descriptionOfRisk": {
+        "en": "The institution will have a privacy notice statement for this program or activity, but does not yet have draft or final version(s).",
+        "fr": "fr-The institution will have a privacy notice statement for this program or activity, but does not yet have draft or final version(s)."
+      }
     },
     {
       "questionName": "HasLibraryArchiveCanadaApproved",
       "questionAnswer": false,
-      "descriptionOfRisk": "Library and Archive Canada has not approved a records retention and disposal schedule that applies to the personal information collected, used, and/or disclosed as a part of this program or activity."
+      "descriptionOfRisk": {
+        "en": "Library and Archive Canada has not approved a records retention and disposal schedule that applies to the personal information collected, used, and/or disclosed as a part of this program or activity.",
+        "fr": "fr-Library and Archive Canada has not approved a records retention and disposal schedule that applies to the personal information collected, used, and/or disclosed as a part of this program or activity."
+      }
     },
     {
       "questionName": "ControlsProceduresImplementation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution has not yet implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it.",
+        "fr": "fr-The institution has not yet implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it."
+      }
     },
     {
       "questionName": "ControlsProceduresImplementation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution has not implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it."
+      "descriptionOfRisk": {
+        "en": "The institution has not implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it.",
+        "fr": "fr-The institution has not implemented controls and procedures to ensure that the personal information used to make a decision that directly affects an individual will be retained for such a time after use, and as prescribed by Section 4(1)(a) of the Privacy Regulations, to ensure individuals can access it."
+      }
     },
     {
       "questionName": "MechanismToCorrectPersonalInformation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity.",
+        "fr": "fr-The institution does not yet provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity."
+      }
     },
     {
       "questionName": "MechanismToCorrectPersonalInformation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity."
+      "descriptionOfRisk": {
+        "en": "The institution does not provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity.",
+        "fr": "fr-The institution does not provide individuals with a mechanism to correct their personal information that is in its control in relation to this program or activity."
+      }
     },
     {
       "questionName": "WillProvideOpportunityToAddStatement",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet provide individuals the opportunity to add a statement to their personal information when it refuses their correction request."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet provide individuals the opportunity to add a statement to their personal information when it refuses their correction request.",
+        "fr": "fr-The institution does not yet provide individuals the opportunity to add a statement to their personal information when it refuses their correction request."
+      }
     },
     {
       "questionName": "WillProvideOpportunityToAddStatement",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not provide individuals the opportunity to add a statement to their personal information when it refuses their correction request."
+      "descriptionOfRisk": {
+        "en": "The institution does not provide individuals the opportunity to add a statement to their personal information when it refuses their correction request.",
+        "fr": "fr-The institution does not provide individuals the opportunity to add a statement to their personal information when it refuses their correction request."
+      }
     },
     {
       "questionName": "ProcessDisposalPhysicalFormat",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to physical format."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to physical format.",
+        "fr": "fr-The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to physical format."
+      }
     },
     {
       "questionName": "ProcessDisposalPhysicalFormat",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to physical format."
+      "descriptionOfRisk": {
+        "en": "The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to physical format.",
+        "fr": "fr-The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to physical format."
+      }
     },
     {
       "questionName": "ProcessDisposalDocumentationPhysicalFormat",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution has not yet documented and made available to employees the process by which to dispose of personal information in physical format."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet documented and made available to employees the process by which to dispose of personal information in physical format.",
+        "fr": "fr-The institution has not yet documented and made available to employees the process by which to dispose of personal information in physical format."
+      }
     },
     {
       "questionName": "ProcessDisposalDocumentationPhysicalFormat",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution has not documented and made available to employees the process by which to dispose of personal information in physical format."
+      "descriptionOfRisk": {
+        "en": "The institution has not documented and made available to employees the process by which to dispose of personal information in physical format.",
+        "fr": "fr-The institution has not documented and made available to employees the process by which to dispose of personal information in physical format."
+      }
     },
     {
       "questionName": "ProcessDisposalElectronicFormat",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format.",
+        "fr": "fr-The institution does not yet have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format."
+      }
     },
     {
       "questionName": "ProcessDisposalElectronicFormat",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format."
+      "descriptionOfRisk": {
+        "en": "The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format.",
+        "fr": "fr-The institution does not have an established process by which to dispose of the personal information that it collects in and/or converts to electronic format."
+      }
     },
     {
       "questionName": "ProcessDisposalDocumentationElectronicFormat",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution has not yet documented and made available to employees the process by which to dispose of personal information in electronic format."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet documented and made available to employees the process by which to dispose of personal information in electronic format.",
+        "fr": "fr-The institution has not yet documented and made available to employees the process by which to dispose of personal information in electronic format."
+      }
     },
     {
       "questionName": "ProcessDisposalDocumentationElectronicFormat",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution has not documented and made available to employees the process by which to dispose of personal information in electronic format."
+      "descriptionOfRisk": {
+        "en": "The institution has not documented and made available to employees the process by which to dispose of personal information in electronic format.",
+        "fr": "fr-The institution has not documented and made available to employees the process by which to dispose of personal information in electronic format."
+      }
     },
     {
       "questionName": "EquipementDeviceDeleteStoredInformation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "When disposing of equipment or devices used for storing personal information, the institution does not yet first remove or delete any stored information."
+      "descriptionOfRisk": {
+        "en": "When disposing of equipment or devices used for storing personal information, the institution does not yet first remove or delete any stored information.",
+        "fr": "fr-When disposing of equipment or devices used for storing personal information, the institution does not yet first remove or delete any stored information."
+      }
     },
     {
       "questionName": "EquipementDeviceDeleteStoredInformation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "When disposing of equipment or devices used for storing personal information (such as filing cabinets, computers, external hard drives, cellphones and audio tapes), the institution does not first remove or delete any stored information."
+      "descriptionOfRisk": {
+        "en": "When disposing of equipment or devices used for storing personal information (such as filing cabinets, computers, external hard drives, cellphones and audio tapes), the institution does not first remove or delete any stored information.",
+        "fr": "fr-When disposing of equipment or devices used for storing personal information (such as filing cabinets, computers, external hard drives, cellphones and audio tapes), the institution does not first remove or delete any stored information."
+      }
     },
     {
       "questionName": "InformationSharingAgreementInPlace",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information.",
+        "fr": "fr-The institution does not yet have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information."
+      }
     },
     {
       "questionName": "InformationSharingAgreementInPlace",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information."
+      "descriptionOfRisk": {
+        "en": "The institution does not have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information.",
+        "fr": "fr-The institution does not have information sharing agreements (ISAs) in place with the third parties to whom it institutions discloses information."
+      }
     },
     {
       "questionName": "DoesISARequireUpdates",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution is not completing updates to its existing ISA(s) to protect adequately the personal information disclosed as a part of this program/activity"
+      "descriptionOfRisk": {
+        "en": "The institution is not completing updates to its existing ISA(s) to protect adequately the personal information disclosed as a part of this program/activity",
+        "fr": "fr-The institution is not completing updates to its existing ISA(s) to protect adequately the personal information disclosed as a part of this program/activity"
+      }
     },
     {
       "questionName": "InformIndividuals",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet inform individuals of the purpose for which it discloses their personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet inform individuals of the purpose for which it discloses their personal information.",
+        "fr": "fr-The institution does not yet inform individuals of the purpose for which it discloses their personal information."
+      }
     },
     {
       "questionName": "InformIndividuals",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not inform individuals of the purpose for which it discloses their personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not inform individuals of the purpose for which it discloses their personal information.",
+        "fr": "fr-The institution does not inform individuals of the purpose for which it discloses their personal information."
+      }
     },
     {
       "questionName": "HasSecurityDesignation",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution has not assigned a security designation to the personal information."
+      "descriptionOfRisk": {
+        "en": "The institution has not assigned a security designation to the personal information.",
+        "fr": "fr-The institution has not assigned a security designation to the personal information."
+      }
     },
     {
       "questionName": "CompleteState",
       "questionAnswer": "yes_not_completed",
-      "descriptionOfRisk": "The institution has not yet completed security assessments for this program or activity."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet completed security assessments for this program or activity.",
+        "fr": "fr-The institution has not yet completed security assessments for this program or activity."
+      }
     },
     {
       "questionName": "CompleteState",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution is not completing security assessments for this program or activity."
+      "descriptionOfRisk": {
+        "en": "The institution is not completing security assessments for this program or activity.",
+        "fr": "fr-The institution is not completing security assessments for this program or activity."
+      }
     },
     {
       "questionName": "FormalAgreementToManageStorage",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information.",
+        "fr": "fr-The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information."
+      }
     },
     {
       "questionName": "FormalAgreementToManageStorage",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information.",
+        "fr": "fr-The institution does not yet have in place formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information."
+      }
     },
     {
       "questionName": "DoesAgreementRequireUpdates",
       "questionAnswer": false,
-      "descriptionOfRisk": "The formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information require updates to protect adequately the personal information managed by the third party (or third parties)."
+      "descriptionOfRisk": {
+        "en": "The formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information require updates to protect adequately the personal information managed by the third party (or third parties).",
+        "fr": "fr-The formal agreements that detail the sharing of personal information, with the third party (or third parties) that manage(s) the storage of the personal information require updates to protect adequately the personal information managed by the third party (or third parties)."
+      }
     },
     {
       "questionName": "PersonalInformationLeaveCanadaDescription",
       "questionAnswer": "n/a",
-      "descriptionOfRisk": "Personal information leaves Canada."
+      "descriptionOfRisk": {
+        "en": "Personal information leaves Canada.",
+        "fr": "fr-Personal information leaves Canada."
+      }
     },
     {
       "questionName": "AdministrativeSafeguardsImplementation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not yet have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "AdministrativeSafeguardsImplementation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not have administrative safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "PhysicalSafeguardsImplementation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not yet have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "PhysicalSafeguardsImplementation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not have physical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "TechnicalSafeguardsImplementation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not yet have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "TechnicalSafeguardsImplementation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      "descriptionOfRisk": {
+        "en": "The institution does not have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit.",
+        "fr": "fr-The institution does not have technical safeguards implemented or planned for implementation to protect the personal information while in storage or in transit."
+      }
     },
     {
       "questionName": "HasEstablishedWhoHaveAccessToPI",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution has not established which persons or positions will have access to the personal information collected for this initiative."
+      "descriptionOfRisk": {
+        "en": "The institution has not established which persons or positions will have access to the personal information collected for this initiative.",
+        "fr": "fr-The institution has not established which persons or positions will have access to the personal information collected for this initiative."
+      }
     },
     {
       "questionName": "MonitorModificationOfPersonalInformation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet monitor access to or modification of personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet monitor access to or modification of personal information.",
+        "fr": "fr-The institution does not yet monitor access to or modification of personal information."
+      }
     },
     {
       "questionName": "MonitorModificationOfPersonalInformation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not monitor access to or modification of personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not monitor access to or modification of personal information.",
+        "fr": "fr-The institution does not monitor access to or modification of personal information."
+      }
     },
     {
       "questionName": "ProcessHandlingBreachOfPI",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet have a process for handling a breach of personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet have a process for handling a breach of personal information.",
+        "fr": "fr-The institution does not yet have a process for handling a breach of personal information."
+      }
     },
     {
       "questionName": "ProcessHandlingBreachOfPI",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not have a process for handling a breach of personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not have a process for handling a breach of personal information.",
+        "fr": "fr-The institution does not have a process for handling a breach of personal information."
+      }
     },
     {
       "questionName": "HasSafeguardsOngoingBasis",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution does not test safeguards on an ongoing basis to ensure they are functioning appropriately."
+      "descriptionOfRisk": {
+        "en": "The institution does not test safeguards on an ongoing basis to ensure they are functioning appropriately.",
+        "fr": "fr-The institution does not test safeguards on an ongoing basis to ensure they are functioning appropriately."
+      }
     },
     {
       "questionName": "HasPIASummaryOnWebsite",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution has not prepared a summary of this PIA to post on its website."
+      "descriptionOfRisk": {
+        "en": "The institution has not prepared a summary of this PIA to post on its website.",
+        "fr": "fr-The institution has not prepared a summary of this PIA to post on its website."
+      }
     },
     {
       "questionName": "MechanismToAccessPersonalInformation",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution has not yet provided individuals with a mechanism to access their personal information."
+      "descriptionOfRisk": {
+        "en": "The institution has not yet provided individuals with a mechanism to access their personal information.",
+        "fr": "fr-The institution has not yet provided individuals with a mechanism to access their personal information."
+      }
     },
     {
       "questionName": "MechanismToAccessPersonalInformation",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution has not provided individuals with a mechanism to access their personal information."
+      "descriptionOfRisk": {
+        "en": "The institution has not provided individuals with a mechanism to access their personal information.",
+        "fr": "fr-The institution has not provided individuals with a mechanism to access their personal information."
+      }
     },
     {
       "questionName": "ThirdPartiesNotifiedOfChangesToPI",
       "questionAnswer": "yes_not_established",
-      "descriptionOfRisk": "The institution does not yet notify third parties to whom personal information is disclosed changes and corrections made to personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not yet notify third parties to whom personal information is disclosed changes and corrections made to personal information.",
+        "fr": "fr-The institution does not yet notify third parties to whom personal information is disclosed changes and corrections made to personal information."
+      }
     },
     {
       "questionName": "ThirdPartiesNotifiedOfChangesToPI",
       "questionAnswer": "no",
-      "descriptionOfRisk": "The institution does not notify third parties to whom personal information is disclosed changes and corrections made to personal information."
+      "descriptionOfRisk": {
+        "en": "The institution does not notify third parties to whom personal information is disclosed changes and corrections made to personal information.",
+        "fr": "fr-The institution does not notify third parties to whom personal information is disclosed changes and corrections made to personal information."
+      }
     },
     {
       "questionName": "AreRequestorsAdvisedOfRefusal",
       "questionAnswer": false,
-      "descriptionOfRisk": "The institution does not advise requestors of the reasons for refusal and recourse available to them when it refuses their access requests."
+      "descriptionOfRisk": {
+        "en": "The institution does not advise requestors of the reasons for refusal and recourse available to them when it refuses their access requests.",
+        "fr": "fr-The institution does not advise requestors of the reasons for refusal and recourse available to them when it refuses their access requests."
+      }
     }
   ]
 }

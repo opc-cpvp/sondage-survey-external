@@ -14,13 +14,14 @@ import { FileMeterWidget } from "../widgets/filemeterwidget";
 import { PiaSurveyRisks } from "../pia/piaSurveyRisks";
 
 export class PiaSurvey extends SurveyBase {
-    public risks: PiaSurveyRisks = new PiaSurveyRisks();
+    public risks: PiaSurveyRisks;
     readonly pageFourPrefix = "page_step_4";
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);
         this.authToken = authToken;
+        this.risks = new PiaSurveyRisks(locale);
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
         this.survey.showCompletedPage = false;

@@ -7153,7 +7153,7 @@
               "name": "panel_risk_desc_q",
               "title": {
                 "en": "Earlier, you responded to the following question: &quot;<i>[TEXT OF QUESTION]</i>&quot;. You responded: &quot;<i>[RESPONSE]</i>&quot;. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
-                "fr": ""
+                "fr": "fr-Earlier, you responded to the following question: &quot;<i>[TEXT OF QUESTION]</i>&quot;. You responded: &quot;<i>[RESPONSE]</i>&quot;. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?"
               },
               "isRequired": true,
               "choices": [
@@ -7178,7 +7178,7 @@
               "name": "panel_risk_desc_q_yes",
               "title": {
                 "en": "Here is how the risk will appear in the table of privacy risks: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Would you like to modify this?",
-                "fr": ""
+                "fr": "fr-Here is how the risk will appear in the table of privacy risks: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Would you like to modify this?"
               },
               "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q} = 'yes'",
@@ -7204,7 +7204,7 @@
               "name": "panel_risk_desc_q_no",
               "title": {
                 "en": "Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk:",
-                "fr": ""
+                "fr": "fr-Please provide a brief explanation as to why the institution does not plan to formally mitigate this risk:"
               },
               "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q} = 'no'"
@@ -7215,7 +7215,7 @@
               "defaultValue": "[DESCRIPTION OF THE RISK]",
               "title": {
                 "en": "Please modify the description of the risk to how you would like it to appear in your table of privacy risks:",
-                "fr": ""
+                "fr": "fr-Please modify the description of the risk to how you would like it to appear in your table of privacy risks:"
               },
               "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q_yes} = 'yes'"
@@ -7248,25 +7248,25 @@
               "name": "panel_risk_assessment_4_2_1",
               "title": {
                 "en": "Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?",
-                "fr": ""
+                "fr": "fr-Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?"
               },
               "description": {
                 "en": "<p>Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
-                "fr": ""
+                "fr": "<p>fr-Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>"
               },
               "isRequired": true,
               "choices": [
                 {
                   "text": {
                     "en": "Privacy Risk",
-                    "fr": ""
+                    "fr": "fr-Privacy Risk"
                   },
                   "value": "privacy_risk"
                 },
                 {
                   "text": {
                     "en": "Compliance Risk",
-                    "fr": ""
+                    "fr": "fr-Compliance Risk"
                   },
                   "value": "compliance_risk"
                 }
@@ -7277,27 +7277,95 @@
               "name": "panel_risk_assessment_4_2_2",
               "title": {
                 "en": "Please indicate which of the privacy principles apply to this risk (select all that apply)",
-                "fr": ""
-              },
-              "description": {
-                "en": "",
-                "fr": ""
+                "fr": "fr-Please indicate which of the privacy principles apply to this risk (select all that apply)"
               },
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'privacy_risk'",
               "isRequired": true,
               "choices": [
-                "Accountability",
-                "Accuracy",
-                "Challenging Compliance",
-                "Consent",
-                "Direct Collection & Purpose Identification",
-                "Individual Access",
-                "Limiting Collection",
-                "Limiting Use",
-                "Limiting Disclosure",
-                "Limiting Retention",
-                "Openness",
-                "Safeguards"
+                {
+                  "text": {
+                    "en": "Accountability",
+                    "fr": "fr-Accountability"
+                  },
+                  "value": "accountability"
+                },
+                {
+                  "text": {
+                    "en": "Accuracy",
+                    "fr": "fr-Accuracy"
+                  },
+                  "value": "accuracy"
+                },
+                {
+                  "text": {
+                    "en": "Challenging Compliance",
+                    "fr": "fr-Challenging Compliance"
+                  },
+                  "value": "challenging_compliance"
+                },
+                {
+                  "text": {
+                    "en": "Consent",
+                    "fr": "fr-Consent"
+                  },
+                  "value": "consent"
+                },
+                {
+                  "text": {
+                    "en": "Direct Collection & Purpose Identification",
+                    "fr": "fr-Direct Collection & Purpose Identification"
+                  },
+                  "value": "direct_collection"
+                },
+                {
+                  "text": {
+                    "en": "Individual Access",
+                    "fr": "fr-Individual Access"
+                  },
+                  "value": "individual_access"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Collection",
+                    "fr": "fr-Limiting Collection"
+                  },
+                  "value": "limiting_collection"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Use",
+                    "fr": "fr-Limiting Use"
+                  },
+                  "value": "limiting_use"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Disclosure",
+                    "fr": "fr-Limiting Disclosure"
+                  },
+                  "value": "limiting_disclosure"
+                },
+                {
+                  "text": {
+                    "en": "Limiting Retention",
+                    "fr": "fr-Limiting Retention"
+                  },
+                  "value": "limiting_retention"
+                },
+                {
+                  "text": {
+                    "en": "Openness",
+                    "fr": "fr-Openness"
+                  },
+                  "value": "openness"
+                },
+                {
+                  "text": {
+                    "en": "Safeguards",
+                    "fr": "fr-Safeguards"
+                  },
+                  "value": "safeguards"
+                }
               ]
             },
             {
@@ -7305,11 +7373,7 @@
               "name": "panel_risk_assessment_4_2_3",
               "title": {
                 "en": "Please indicate the type of non-compliance",
-                "fr": ""
-              },
-              "description": {
-                "en": "",
-                "fr": ""
+                "fr": "fr-Please indicate the type of non-compliance"
               },
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk'",
               "isRequired": true,
@@ -7317,21 +7381,21 @@
                 {
                   "text": {
                     "en": "Non-compliance with Government of Canada Law or regulation",
-                    "fr": "*Non-compliance with Government of Canada Law or regulation"
+                    "fr": "fr-Non-compliance with Government of Canada Law or regulation"
                   },
                   "value": "law_or_regulation"
                 },
                 {
                   "text": {
                     "en": "Non-compliance with Government of Canada directive, policy instruments or procedural documents",
-                    "fr": "*Non-compliance with Government of Canada directive, policy instruments or procedural documents"
+                    "fr": "fr-Non-compliance with Government of Canada directive, policy instruments or procedural documents"
                   },
                   "value": "directive_policy_procedural"
                 },
                 {
                   "text": {
                     "en": "Non-compliance with directive, policy instruments or procedural documents that are internal to the institution",
-                    "fr": "*Non-compliance with directive, policy instruments or procedural documents that are internal to the institution"
+                    "fr": "fr-Non-compliance with directive, policy instruments or procedural documents that are internal to the institution"
                   },
                   "value": "internal_directive_policy_procedural"
                 }
@@ -7342,11 +7406,7 @@
               "name": "panel_risk_assessment_4_2_4_a",
               "title": {
                 "en": "Please indicate the applicable Government of Canada Law or regulation",
-                "fr": ""
-              },
-              "description": {
-                "en": "",
-                "fr": ""
+                "fr": "fr-Please indicate the applicable Government of Canada Law or regulation"
               },
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'law_or_regulation'",
               "isRequired": true,
@@ -7354,21 +7414,21 @@
                 {
                   "text": {
                     "en": "Privacy Act",
-                    "fr": "*Privacy Act"
+                    "fr": "fr-Privacy Act"
                   },
                   "value": "privacy_act"
                 },
                 {
                   "text": {
                     "en": "Privacy Regulations",
-                    "fr": "*Privacy Regulations"
+                    "fr": "fr-Privacy Regulations"
                   },
                   "value": "privacy_regulations"
                 },
                 {
                   "text": {
                     "en": "Other",
-                    "fr": "*Other"
+                    "fr": "fr-Other"
                   },
                   "value": "other"
                 }
@@ -7379,12 +7439,15 @@
               "name": "panel_risk_assessment_4_2_4_a_1",
               "title": {
                 "en": "Please indicate which section of the Law or regulation is at risk for non-compliance",
-                "fr": ""
+                "fr": "fr-Please indicate which section of the Law or regulation is at risk for non-compliance"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_4_a_1_section",
-                  "title": "Section:"
+                  "title": {
+                    "en": "Section:",
+                    "fr": "fr-Section:"
+                  }
                 }
               ],
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'law_or_regulation' AND ({panel.panel_risk_assessment_4_2_4_a} = 'privacy_act' OR {panel.panel_risk_assessment_4_2_4_a} = 'privacy_regulations')"
@@ -7394,16 +7457,22 @@
               "name": "panel_risk_assessment_4_2_4_a_2",
               "title": {
                 "en": "Please indicate which Law or regulation, and the applicable section, that is at risk for non-compliance",
-                "fr": ""
+                "fr": "fr-Please indicate which Law or regulation, and the applicable section, that is at risk for non-compliance"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_4_a_2_law_or_regulation",
-                  "title": "Law or regulation:"
+                  "title": {
+                    "en": "Law or regulation:",
+                    "fr": "fr-Law or regulation:"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_4_a_2_section",
-                  "title": "Section:"
+                  "title": {
+                    "en": "Section:",
+                    "fr": "fr-Section:"
+                  }
                 }
               ],
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'law_or_regulation' AND ({panel.panel_risk_assessment_4_2_4_a} = 'other')"
@@ -7413,7 +7482,7 @@
               "name": "panel_risk_assessment_4_2_4_b",
               "title": {
                 "en": "Please indicate the applicable Government of Canada Law or regulation",
-                "fr": ""
+                "fr": "fr-Please indicate the applicable Government of Canada Law or regulation"
               },
               "description": {
                 "en": "",
@@ -7425,56 +7494,56 @@
                 {
                   "text": {
                     "en": "Policy on Privacy Protection",
-                    "fr": "*Policy on Privacy Protection"
+                    "fr": "fr-Policy on Privacy Protection"
                   },
                   "value": "privacy_protection"
                 },
                 {
                   "text": {
                     "en": "Policy on Government Security",
-                    "fr": "*Policy on Government Security"
+                    "fr": "fr-Policy on Government Security"
                   },
                   "value": "government_security"
                 },
                 {
                   "text": {
                     "en": "Directive on Privacy Practices",
-                    "fr": "*Directive on Privacy Practices"
+                    "fr": "fr-Directive on Privacy Practices"
                   },
                   "value": "privacy_practices"
                 },
                 {
                   "text": {
                     "en": "Directive on Privacy Impact Assessment",
-                    "fr": "*Directive on Privacy Impact Assessment"
+                    "fr": "fr-Directive on Privacy Impact Assessment"
                   },
                   "value": "impact_assessment"
                 },
                 {
                   "text": {
                     "en": "Directive on Security Management",
-                    "fr": "*Directive on Security Management"
+                    "fr": "fr-Directive on Security Management"
                   },
                   "value": "security_management"
                 },
                 {
                   "text": {
                     "en": "Directive on Automated Decision Making",
-                    "fr": "*Directive on Automated Decision Making"
+                    "fr": "fr-Directive on Automated Decision Making"
                   },
                   "value": "decision_making"
                 },
                 {
                   "text": {
                     "en": "Directive on Social Insurance Number",
-                    "fr": "*Directive on Social Insurance Number"
+                    "fr": "fr-Directive on Social Insurance Number"
                   },
                   "value": "social_insurance_number"
                 },
                 {
                   "text": {
                     "en": "Other",
-                    "fr": "*Other"
+                    "fr": "fr-Other"
                   },
                   "value": "other"
                 }
@@ -7485,12 +7554,15 @@
               "name": "panel_risk_assessment_4_2_4_b_1",
               "title": {
                 "en": "Please indicate which section of the directive, policy instruments or procedural document is at risk for non-compliance:",
-                "fr": ""
+                "fr": "fr-Please indicate which section of the directive, policy instruments or procedural document is at risk for non-compliance:"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_4_b_1_section",
-                  "title": "Section:"
+                  "title": {
+                    "en": "Section:",
+                    "fr": "fr-Section:"
+                  }
                 }
               ],
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'directive_policy_procedural' AND ({panel.panel_risk_assessment_4_2_4_b} = 'privacy_protection' OR {panel.panel_risk_assessment_4_2_4_b} = 'government_security' OR {panel.panel_risk_assessment_4_2_4_b} = 'privacy_practices' OR {panel.panel_risk_assessment_4_2_4_b} = 'impact_assessment' OR {panel.panel_risk_assessment_4_2_4_b} = 'security_management' OR {panel.panel_risk_assessment_4_2_4_b} = 'decision_making' OR {panel.panel_risk_assessment_4_2_4_b} = 'social_insurance_number')"
@@ -7500,16 +7572,22 @@
               "name": "panel_risk_assessment_4_2_4_b_2",
               "title": {
                 "en": "Please indicate which directive, policy instruments or procedural document, and the applicable section, that is at risk for non-compliance:",
-                "fr": ""
+                "fr": "fr-Please indicate which directive, policy instruments or procedural document, and the applicable section, that is at risk for non-compliance:"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_4_b_2_directive",
-                  "title": "Directive, policy instruments or procedural documents:"
+                  "title": {
+                    "en": "Directive, policy instruments or procedural documents:",
+                    "fr": "fr-Directive, policy instruments or procedural documents:"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_4_b_2_section",
-                  "title": "Section:"
+                  "title": {
+                    "en": "Section:",
+                    "fr": "fr-Section:"
+                  }
                 }
               ],
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'directive_policy_procedural' AND {panel.panel_risk_assessment_4_2_4_b} = 'other'"
@@ -7519,20 +7597,29 @@
               "name": "panel_risk_assessment_4_2_4_c",
               "title": {
                 "en": "Please indicate the applicable internal directive, policy instruments or procedural document. Please provide a copy of the applicable sections for reference",
-                "fr": ""
+                "fr": "fr-Please indicate the applicable internal directive, policy instruments or procedural document. Please provide a copy of the applicable sections for reference"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_4_c_name",
-                  "title": "Name of internal directive, policy instruments or procedural document:"
+                  "title": {
+                    "en": "Name of internal directive, policy instruments or procedural document:",
+                    "fr": "fr-Name of internal directive, policy instruments or procedural document:"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_4_c_sections",
-                  "title": "Section(s):"
+                  "title": {
+                    "en": "Section(s):",
+                    "fr": "fr-Section(s):"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_4_c_copy_of_sections",
-                  "title": "Copy of section(s):"
+                  "title": {
+                    "en": "Copy of section(s):",
+                    "fr": "fr-Copy of section(s):"
+                  }
                 }
               ],
               "visibleIf": "{panel.panel_risk_assessment_4_2_1} = 'compliance_risk' AND {panel.panel_risk_assessment_4_2_3} = 'internal_directive_policy_procedural'"
@@ -7542,25 +7629,34 @@
               "name": "panel_risk_assessment_4_2_5_1",
               "title": {
                 "en": "Now you need to calculate the risk rating, for which two calculations are required:<ul><li>The <strong>likelihood</strong> of the incident occurring; and</li><li>The extent of the <strong>impact</strong> on privacy rights or harm, if it occurs.</li></ul>",
-                "fr": ""
+                "fr": "fr-Now you need to calculate the risk rating, for which two calculations are required:<ul><li>The <strong>likelihood</strong> of the incident occurring; and</li><li>The extent of the <strong>impact</strong> on privacy rights or harm, if it occurs.</li></ul>"
               },
               "isRequired": true,
               "description": {
                 "en": "<p>As there is no standardized method of calculating likelihood or impact of privacy risk within the GC, you institution has likely developed its own risk assessment scale. Please use this scale to complete this section of the PIA. If your institution has not developed a risk assessment scale, you may use a simple high/medium/low or 1-5 ranking; if you do, please provide a description with your answer. You should verify this with your ATIP team.</p>",
-                "fr": ""
+                "fr": "<p>fr-As there is no standardized method of calculating likelihood or impact of privacy risk within the GC, you institution has likely developed its own risk assessment scale. Please use this scale to complete this section of the PIA. If your institution has not developed a risk assessment scale, you may use a simple high/medium/low or 1-5 ranking; if you do, please provide a description with your answer. You should verify this with your ATIP team.</p>"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_5_likelihood",
-                  "title": "Likelihood:"
+                  "title": {
+                    "en": "Likelihood:",
+                    "fr": "fr-Likelihood:"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_5_individuals",
-                  "title": "Level of impact on individuals:"
+                  "title": {
+                    "en": "Level of impact on individuals:",
+                    "fr": "fr-Level of impact on individuals:"
+                  }
                 },
                 {
                   "name": "panel_risk_assessment_4_2_5_institution",
-                  "title": "Level of impact on the institution:"
+                  "title": {
+                    "en": "Level of impact on the institution:",
+                    "fr": "fr-Level of impact on the institution:"
+                  }
                 }
               ],
               "visibleIf": ""
@@ -7570,11 +7666,7 @@
               "name": "panel_risk_assessment_4_2_5_2",
               "title": {
                 "en": "Explanation of scale used or copy of institution’s risk assessment scale",
-                "fr": ""
-              },
-              "description": {
-                "en": "",
-                "fr": ""
+                "fr": "fr-Explanation of scale used or copy of institution’s risk assessment scale"
               },
               "visibleIf": "",
               "isRequired": true,
@@ -7582,14 +7674,14 @@
                 {
                   "text": {
                     "en": "Enter explanation of scale used",
-                    "fr": ""
+                    "fr": "fr-Enter explanation of scale used"
                   },
                   "value": "enter_explanation"
                 },
                 {
                   "text": {
                     "en": "Upload a copy of the institution’s risk assessment scale",
-                    "fr": ""
+                    "fr": "fr-Upload a copy of the institution’s risk assessment scale"
                   },
                   "value": "upload_copy"
                 }
@@ -7602,7 +7694,7 @@
               "visibleIf": "{panel.panel_risk_assessment_4_2_5_2} = 'enter_explanation'",
               "title": {
                 "en": "Explanation of scale used:",
-                "fr": ""
+                "fr": "fr-Explanation of scale used:"
               }
             },
             {
@@ -7626,17 +7718,23 @@
               "name": "panel_risk_assessment_4_2_6",
               "title": {
                 "en": "Please outline the institution’s proposed mitigation",
-                "fr": ""
+                "fr": "fr-Please outline the institution’s proposed mitigation"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_6_proposed_mitigation",
-                  "title": "Proposed Mitigation:",
+                  "title": {
+                    "en": "Proposed Mitigation:",
+                    "fr": "fr-Proposed Mitigation:"
+                  },
                   "isRequired": true
                 },
                 {
                   "name": "panel_risk_assessment_4_2_6_response_from_management",
-                  "title": "Response from Management (optional):"
+                  "title": {
+                    "en": "Response from Management (optional):",
+                    "fr": "fr-Response from Management (optional):"
+                  }
                 }
               ],
               "visibleIf": ""
@@ -7646,17 +7744,23 @@
               "name": "panel_risk_assessment_4_2_7",
               "title": {
                 "en": "Please indicate who will be responsible for overseeing the application of the proposed mitigation",
-                "fr": ""
+                "fr": "fr-Please indicate who will be responsible for overseeing the application of the proposed mitigation"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_7_responsible",
-                  "title": "Responsible section:",
+                  "title": {
+                    "en": "Responsible section:",
+                    "fr": "fr-Responsible section:"
+                  },
                   "isRequired": true
                 },
                 {
                   "name": "panel_risk_assessment_4_2_7_party",
-                  "title": "Response party/position (optional):"
+                  "title": {
+                    "en": "Response party/position (optional):",
+                    "fr": "fr-Response party/position (optional):"
+                  }
                 }
               ],
               "visibleIf": ""
@@ -7666,16 +7770,19 @@
               "name": "panel_risk_assessment_4_2_8",
               "title": {
                 "en": "Please indicate the anticipated date of implementation of mitigating measures",
-                "fr": ""
+                "fr": "fr-Please indicate the anticipated date of implementation of mitigating measures"
               },
               "description": {
                 "en": "<p>Please be as specific as possible; if you are unable to provide an exact date, you should put the month or quarter of the year.</p>",
-                "fr": ""
+                "fr": "fr-<p>Please be as specific as possible; if you are unable to provide an exact date, you should put the month or quarter of the year.</p>"
               },
               "items": [
                 {
                   "name": "panel_risk_assessment_4_2_8_date",
-                  "title": "Expected date of implementation of mitigating measures:"
+                  "title": {
+                    "en": "Expected date of implementation of mitigating measures:",
+                    "fr": "fr-Expected date of implementation of mitigating measures:"
+                  }
                 }
               ],
               "visibleIf": ""

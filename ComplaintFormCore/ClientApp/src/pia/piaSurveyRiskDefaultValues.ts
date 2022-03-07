@@ -1,4 +1,5 @@
 import { Question } from "survey-vue";
+import { PiaSurveyDescriptionOfRisk } from "./piaSurveyDescriptionOfRisk";
 import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
 import * as defaultValues from "./piaSurveyRiskDefaultValues.json";
 
@@ -16,7 +17,7 @@ export class PiaSurveyRiskDefaultValues {
     private getList(): PiaSurveyRiskDefaultValue[] {
         if (defaultValues) {
             (defaultValues as any).list.forEach(d => {
-                this.list.push(new PiaSurveyRiskDefaultValue(d.questionName, d.questionAnswer, d.descriptionOfRisk));
+                this.list.push(new PiaSurveyRiskDefaultValue(d.questionName, d.questionAnswer, this.getNewDescriptionOfRisk(d)));
             });
         }
 
@@ -31,5 +32,9 @@ export class PiaSurveyRiskDefaultValues {
         }
 
         return false;
+    }
+
+    private getNewDescriptionOfRisk(jsonDefaultValue: any): PiaSurveyDescriptionOfRisk {
+        return new PiaSurveyDescriptionOfRisk(jsonDefaultValue.descriptionOfRisk.en, jsonDefaultValue.descriptionOfRisk.fr);
     }
 }

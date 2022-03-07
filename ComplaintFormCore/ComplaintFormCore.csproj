@@ -48,10 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <None Remove="ClientApp\src\vue-shim.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <WebpackInputs Remove="ClientApp\src\vue-shim.d.ts" />
   </ItemGroup>
 
@@ -60,6 +62,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <TypeScriptCompile Include="ClientApp\src\vue-shim.d.ts" />
   </ItemGroup>
 
