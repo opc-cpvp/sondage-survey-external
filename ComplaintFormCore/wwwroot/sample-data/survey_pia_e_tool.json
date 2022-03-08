@@ -7142,11 +7142,17 @@
           "type": "paneldynamic",
           "name": "panelRiskDescriptions",
           "valueName": "panelRiskDescriptionsValue",
-          "title": "Risks identified in previous questions",
+          "title": {
+            "en": "Risks identified in previous questions",
+            "fr": "fr-Risks identified in previous questions"
+          },
           "renderMode": "list",
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "templateTitle": "Identified risk #{panelIndex}",
+          "templateTitle": {
+            "en": "Identified risk #{panelIndex}",
+            "fr": "fr-Identified risk #{panelIndex}"
+          },
           "templateElements": [
             {
               "type": "radiogroup",
@@ -7237,11 +7243,17 @@
         {
           "type": "paneldynamic",
           "name": "panelRiskAssessment",
-          "title": "Assessment of Identified Privacy Risks ",
+          "title": {
+            "en": "Assessment of Identified Privacy Risks",
+            "fr": "fr-Assessment of Identified Privacy Risks"
+          },
           "renderMode": "list",
           "allowAddPanel": false,
           "allowRemovePanel": false,
-          "templateTitle": "Risk assessment #{panelIndex}",
+          "templateTitle": {
+            "en": "Risk assessment #{panelIndex}",
+            "fr": "fr-Risk assessment #{panelIndex}"
+          },
           "templateElements": [
             {
               "type": "radiogroup",
