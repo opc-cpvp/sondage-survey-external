@@ -1,4 +1,4 @@
-import { PageModel, Question } from "survey-vue";
+import { SurveyModel, PageModel, Question } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
@@ -16,6 +16,7 @@ export class PiaSurveyRisks {
     readonly panelAssessmentName = "panelRiskAssessment";
     readonly localeEn = "en";
     readonly localeFr = "fr";
+    readonly valueYes = "yes";
 
     public currentList: PiaSurveyRisk[];
     public defaultValues: PiaSurveyRiskDefaultValues;
@@ -41,8 +42,11 @@ export class PiaSurveyRisks {
         }
     }
 
-    public processSectionFour(page: PageModel): void {
-        // Process only 2 section 4 pages or a preview page.
+    public processSectionFour(survey: SurveyModel): void {
+        // Get current page.
+        const page: PageModel = survey.currentPage;
+
+        // Process only section 4 pages or a preview page.
         if (page.name !== this.stepFourPageName && page.name !== this.stepFourTwoPageName && page.name !== this.previewPageName) {
             return;
         }
@@ -73,6 +77,7 @@ export class PiaSurveyRisks {
                 this.updateRiskDescriptionTitles(p.questions, this.currentList[i]);
                 p.questions[3].defaultValue = this.currentList[i].defaultDescriptionOfRisk;
             } else {
+                this.currentList[i].defaultDescriptionOfRisk = this.getUpdatedDescriptionOfRisk(survey, this.currentList[i]);
                 this.updateRiskAssessmentTitles(p.questions, this.currentList[i]);
             }
         }
@@ -153,5 +158,35 @@ export class PiaSurveyRisks {
 
     private getDescription(defaultValue: PiaSurveyRiskDefaultValue): string {
         return this.locale === this.localeFr ? defaultValue.descriptionOfRisk.fr : defaultValue.descriptionOfRisk.en;
+    }
+
+    private getUpdatedDescriptionOfRisk(survey: SurveyModel, risk: PiaSurveyRisk): string {
+        // Default value - no change.
+        let retVal = risk.defaultDescriptionOfRisk;
+
+        // Find "identified risks" page.
+        const page: PageModel = survey.pages.filter(p => p.name === this.stepFourPageName)[0];
+        if (!page) {
+            return retVal;
+        }
+
+        // Get the root panel.
+        const rootPanel = page.questions[0];
+        if (!(rootPanel && rootPanel.panels)) {
+            return retVal;
+        }
+
+        // Find child panel with a matching panelId.
+        const panel = rootPanel.panels.filter(p => this.getPanelId(p) === risk.panelId)[0];
+        if (!(panel && panel.questions)) {
+            return retVal;
+        }
+
+        // If user answered first and second questions as "yes", then get the fourth question answer.
+        if (panel.questions[0].value === this.valueYes && panel.questions[1].value === this.valueYes) {
+            retVal = panel.questions[3].value;
+        }
+
+        return retVal;
     }
 }

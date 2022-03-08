@@ -17,8 +17,6 @@ import { PiaSurveyPdfExport } from "./pia/piaSurveyPdfExport";
 import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 import { TellOPCSurvey } from "./other/tellOPCSurvey";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
-import { LocalStorage } from "./localStorage";
-import { SurveyState } from "./models/surveyState";
 
 declare global {
     function startSurvey(survey: SurveyModel): void;
