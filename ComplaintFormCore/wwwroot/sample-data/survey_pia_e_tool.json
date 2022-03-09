@@ -231,10 +231,10 @@
     {
       "name": "page_before_begin_q_0_1",
       "title": {
-        "en": "Before you begin",
+        "en": "Before you begin - Legal Authority",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.1",
       "elements": [
         {
           "type": "html",
@@ -265,10 +265,10 @@
     {
       "name": "page_before_begin_q_0_2",
       "title": {
-        "en": "Before you begin",
+        "en": "Before you begin - Relevant legistation and policies",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.1",
       "elements": [
         {
           "type": "comment",
@@ -290,10 +290,10 @@
     {
       "name": "page_step_1_a",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - The name of your program or activity",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "elements": [
         {
           "type": "html",
@@ -325,10 +325,10 @@
     {
       "name": "page_step_1_b",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - Major changes or program contracted out",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "visibleIf": "{IsNewprogram} = false",
       "elements": [
         {
@@ -358,10 +358,10 @@
     {
       "name": "page_step_1_q_1_5",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - Personal information",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "elements": [
         {
           "type": "boolean",
@@ -381,10 +381,10 @@
     {
       "name": "page_step_1_q_1_6",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - PIA may not be required",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "visibleIf": "{IsProgramInvolvePersonalInformation} = false",
       "elements": [
         {
@@ -457,10 +457,10 @@
     {
       "name": "page_step_1_q_1_7",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - Administrative uses",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "elements": [
         {
           "type": "radiogroup",
@@ -496,10 +496,10 @@
     {
       "name": "page_step_1_q_1_8",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - PIA may not be required",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "visibleIf": "{PersonalInfoUsedFor} contains 'non_admin_purpose'",
       "elements": [
         {
@@ -572,10 +572,10 @@
     {
       "name": "page_step_1_q_1_9",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - Your PIA subject",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "elements": [
         {
           "type": "radiogroup",
@@ -611,10 +611,10 @@
     {
       "name": "page_step_1_q_1_10",
       "title": {
-        "en": "Step 1 - Determine if a PIA is required",
+        "en": "Determine if a PIA is required - PIA may not be required",
         "fr": ""
       },
-      "section": "1",
+      "section": "1.2",
       "visibleIf": "{SubjectOfPIA} contains 'other'",
       "elements": [
         {
