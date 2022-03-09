@@ -74,9 +74,18 @@
           "description": "Select institution name in the drop-down list.",
           "isRequired": true,
           "choices": [
-            "item1",
-            "item2",
-            "item3"
+            {
+              "value": "item1",
+              "text": "item1"
+            },
+            {
+              "value": "item2",
+              "text": "item2"
+            },
+            {
+              "value": "item3",
+              "text": "item3"
+            }
           ]
         }
       ],
@@ -157,9 +166,18 @@
           "name": "RepresentativeProvinceState",
           "title": "Province / State",
           "choices": [
-            "item1",
-            "item2",
-            "item3"
+            {
+              "value": "item1",
+              "text": "item1"
+            },
+            {
+              "value": "item2",
+              "text": "item2"
+            },
+            {
+              "value": "item3",
+              "text": "item3"
+            }
           ]
         },
         {
@@ -167,9 +185,18 @@
           "name": "RepresentativeCountry",
           "title": "Country",
           "choices": [
-            "item1",
-            "item2",
-            "item3"
+            {
+              "value": "item1",
+              "text": "item1"
+            },
+            {
+              "value": "item2",
+              "text": "item2"
+            },
+            {
+              "value": "item3",
+              "text": "item3"
+            }
           ]
         },
         {
@@ -277,7 +304,7 @@
               "title": "External source - Cyber attack",
               "columns": [
                 {
-                  "name": "credentials",
+                  "name": "Credentials",
                   "title": "Compromised credentials attack",
                   "cellType": "checkbox",
                   "choices": [
@@ -300,7 +327,7 @@
                   ]
                 },
                 {
-                  "name": "hacking",
+                  "name": "Hacking",
                   "title": "Hacking",
                   "cellType": "checkbox",
                   "choices": [
@@ -311,7 +338,7 @@
                   ]
                 },
                 {
-                  "name": "malware",
+                  "name": "Malware",
                   "title": "Malware",
                   "cellType": "checkbox",
                   "choices": [
@@ -342,7 +369,7 @@
                   ]
                 },
                 {
-                  "name": "phishing",
+                  "name": "Phishing",
                   "title": "Phishing",
                   "cellType": "checkbox",
                   "choices": [
@@ -353,7 +380,7 @@
                   ]
                 },
                 {
-                  "name": "other",
+                  "name": "Other",
                   "title": "Cyber attack - other",
                   "cellType": "checkbox",
                   "choices": [
@@ -367,7 +394,10 @@
               "columnLayout": "vertical",
               "cellType": "checkbox",
               "rows": [
-                "Cause"
+                {
+                  "value": "Cause",
+                  "text": "Cause"
+                }
               ]
             },
             {
