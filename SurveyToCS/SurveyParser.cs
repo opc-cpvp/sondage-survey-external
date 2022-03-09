@@ -38,7 +38,9 @@ namespace SurveyToCS
 					var properties = e.type switch
 					{
 						ElementTypes.Matrix => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.Matrix }),
+						ElementTypes.MatrixDropDown => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.MatrixDynamic, columns = e.columns }),
 						ElementTypes.MatrixDynamic => e.columns,
+						ElementTypes.Panel => e.elements,
 						ElementTypes.PanelDynamic => e.templateElements,
 						_ => Enumerable.Empty<Element>()
 					};
