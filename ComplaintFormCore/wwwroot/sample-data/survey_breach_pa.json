@@ -951,14 +951,14 @@
       "elements": [
         {
           "type": "boolean",
-          "name": "ContainmentIdentitifed",
+          "name": "ContainmentIdentified",
           "title": "Could the unauthorized recipients, if any, of the information be identified",
           "isRequired": true
         },
         {
           "type": "boolean",
           "name": "ContainmentContacted",
-          "visibleIf": "{ContainmentIdentitifed} = true",
+          "visibleIf": "{ContainmentIdentified} = true",
           "title": "Has the institution contacted the recipients",
           "isRequired": true
         },
