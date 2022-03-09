@@ -11,6 +11,7 @@ namespace SurveyToCS
 		public const string File = "file";
 		public const string Matrix = "matrix";
 		public const string MatrixDynamic = "matrixdynamic";
+		public const string Panel = "panel";
 		public const string PanelDynamic = "paneldynamic";
 		public const string TagBox = "tagbox";
 		public const string Text = "text";

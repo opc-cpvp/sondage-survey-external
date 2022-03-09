@@ -39,6 +39,7 @@ namespace SurveyToCS
 					{
 						ElementTypes.Matrix => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.Matrix }),
 						ElementTypes.MatrixDynamic => e.columns,
+						ElementTypes.Panel => e.elements,
 						ElementTypes.PanelDynamic => e.templateElements,
 						_ => Enumerable.Empty<Element>()
 					};
