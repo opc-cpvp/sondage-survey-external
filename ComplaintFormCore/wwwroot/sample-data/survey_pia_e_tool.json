@@ -7158,8 +7158,8 @@
               "type": "radiogroup",
               "name": "panel_risk_desc_q",
               "title": {
-                "en": "Earlier, you responded to the following question: &quot;<i>[TEXT OF QUESTION]</i>&quot;. You responded: &quot;<i>[RESPONSE]</i>&quot;. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
-                "fr": "fr-Earlier, you responded to the following question: &quot;<i>[TEXT OF QUESTION]</i>&quot;. You responded: &quot;<i>[RESPONSE]</i>&quot;. This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?"
+                "en": "Earlier, you responded to the following question: \"[TEXT OF QUESTION]\". You responded: \"[RESPONSE]\". This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?",
+                "fr": "fr-Earlier, you responded to the following question: \"[TEXT OF QUESTION]\". You responded: \"[RESPONSE]\". This could indicate a risk for the institution. Would you like to include as a risk for the institution to mitigate in the table of privacy risks?"
               },
               "isRequired": true,
               "choices": [
@@ -7183,8 +7183,8 @@
               "type": "radiogroup",
               "name": "panel_risk_desc_q_yes",
               "title": {
-                "en": "Here is how the risk will appear in the table of privacy risks: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Would you like to modify this?",
-                "fr": "fr-Here is how the risk will appear in the table of privacy risks: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Would you like to modify this?"
+                "en": "Here is how the risk will appear in the table of privacy risks: \"[DESCRIPTION OF THE RISK]\". Would you like to modify this?",
+                "fr": "fr-Here is how the risk will appear in the table of privacy risks: \"[DESCRIPTION OF THE RISK]\". Would you like to modify this?"
               },
               "isRequired": true,
               "visibleIf": "{panel.panel_risk_desc_q} = 'yes'",
@@ -7259,8 +7259,8 @@
               "type": "radiogroup",
               "name": "panel_risk_assessment_4_2_1",
               "title": {
-                "en": "Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?",
-                "fr": "fr-Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: &quot;<i>[DESCRIPTION OF THE RISK]</i>&quot;. Is this risk a privacy risk or a compliance risk?"
+                "en": "Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: \"[DESCRIPTION OF THE RISK]\". Is this risk a privacy risk or a compliance risk?",
+                "fr": "fr-Earlier, you indicated that you want to include the following risk in your Privacy Risk Table: \"[DESCRIPTION OF THE RISK]\". Is this risk a privacy risk or a compliance risk?"
               },
               "description": {
                 "en": "<p>Privacy risks, in this context, are generally risks that individuals’ privacy rights will be impacted per the privacy principles of the CSA Model Code. Compliance risks, in this context, are risks that the institution will not be compliant with the Privacy Act, the TBS privacy policy suite, or any other applicable policy or legislation. One risk can certainly be both a privacy risk and a compliance risk; where there is a compliance aspect to the risk, the institution should choose this option and can use the risk description field to further discuss the risks to privacy, as appropriate.</p>",
