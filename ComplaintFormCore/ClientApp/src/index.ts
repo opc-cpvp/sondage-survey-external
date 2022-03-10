@@ -12,6 +12,7 @@ import { PiaSurvey } from "./pia/piaSurvey";
 import { PipedaSurvey } from "./pipeda/pipedaSurvey";
 import * as SurveyNavigation from "./surveyNavigation";
 import { surveyPdfExport } from "./surveyPDF";
+import { PiaSurveyPdfExport } from "./pia/piaSurveyPdfExport";
 
 import { ContactInfoSurvey } from "./contact_info_centre/contactInfoSurvey";
 import { TellOPCSurvey } from "./other/tellOPCSurvey";
@@ -160,15 +161,16 @@ declare let Symbol;
         globalThis.initPiaETool = async (lang: "en" | "fr", token) => {
             const jsonUrl = "/sample-data/survey_pia_e_tool.json";
 
-            // await import("./pia/pia_test_data").then(testData => {
-            //    const storage = new LocalStorage();
+            // await import("./pia/pia_test_data")
+            //    .then(testData => {
+            //        const storage = new LocalStorage();
 
-            //    const storageData = {
-            //        currentPageNo: 0,
-            //        data: testData.piaTestData
-            //    } as SurveyState;
+            //        const storageData = {
+            //            currentPageNo: 0,
+            //            data: testData.piaTestData
+            //        } as SurveyState;
 
-            //    storage.save(storageName_PIA, storageData);
+            //        storage.save(storageName_PIA, storageData);
             // });
 
             const piaSurvey = new PiaSurvey(lang, token, storageName_PIA);
@@ -182,6 +184,18 @@ declare let Symbol;
 
             globalThis.gotoPage = pageName => {
                 piaSurvey.gotoPage(pageName);
+            };
+
+            globalThis.exportToPDF = function () {
+                const filename = "survey_export_piaetool";
+                const pdfClass = new PiaSurveyPdfExport(piaSurvey);
+                const pageTitle: MultiLanguageProperty = {
+                    en: "PIA eTool",
+                    fr: "FR-PIA eTool",
+                    default: ""
+                };
+
+                pdfClass.exportToPDF(filename, jsonUrl, lang, piaSurvey.getSurveyModel(), pageTitle);
             };
         };
 

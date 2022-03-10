@@ -67,7 +67,7 @@ export class FileMeterWidget extends Widget {
         const meter = document.createElement("meter");
         meter.className = "full-width";
         meter.min = 0;
-        meter.max = question.totalSize || 0;
+        meter.max = (question as any).totalSize || 0;
         meter.value = this.getQuestionSize(question);
 
         container.appendChild(header);
@@ -80,7 +80,7 @@ export class FileMeterWidget extends Widget {
                 return;
             }
 
-            const totalSize = question.totalSize || 0;
+            const totalSize = (question as any).totalSize || 0;
             const size = this.getQuestionSize(question);
 
             if (size > totalSize) {
@@ -137,7 +137,7 @@ export class FileMeterWidget extends Widget {
             this.updateHeader(sender, header, question);
         });
 
-        question.onStateChanged.add((sender: QuestionFileModel, options: any) => {
+        fileQuestion.onStateChanged.add((sender: QuestionFileModel, options: any) => {
             if (options.state !== "loaded") {
                 return;
             }
@@ -166,7 +166,7 @@ export class FileMeterWidget extends Widget {
      */
     isFit(question: Question): boolean {
         if (this.activatedBy === "property") {
-            return question.showMeter && question.totalSize && question.getType() === "file";
+            return (question as any).showMeter && (question as any).totalSize && question.getType() === "file";
         }
         return false;
     }
@@ -189,7 +189,7 @@ export class FileMeterWidget extends Widget {
     }
 
     private updateHeader(survey: SurveyModel, header: HTMLHeadingElement, question: Question): void {
-        let totalSize: number = question.totalSize || 0;
+        let totalSize: number = (question as any).totalSize || 0;
         let size = this.getQuestionSize(question);
 
         // Convert bytes to megabytes

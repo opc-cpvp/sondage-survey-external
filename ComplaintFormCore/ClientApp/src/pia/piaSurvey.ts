@@ -11,13 +11,17 @@ import {
 } from "survey-vue";
 import { SurveyBase } from "../survey";
 import { FileMeterWidget } from "../widgets/filemeterwidget";
+import { PiaSurveyRisks } from "../pia/piaSurveyRisks";
 
 export class PiaSurvey extends SurveyBase {
+    public risks: PiaSurveyRisks;
+    readonly pageFourPrefix = "page_step_4";
     private authToken: string;
 
     public constructor(locale: "en" | "fr" = "en", authToken: string, storageName: string) {
         super(locale, storageName);
         this.authToken = authToken;
+        this.risks = new PiaSurveyRisks(locale);
 
         // Since our completed page relies on a variable, we'll hide it until the variable is set.
         this.survey.showCompletedPage = false;
@@ -157,16 +161,12 @@ export class PiaSurvey extends SurveyBase {
             this.handleOnClearFiles(sender, options);
         });
 
-        this.survey.onAfterRenderQuestion.add((sender: SurveyModel, options: any) => {
-            this.handleOnAfterRenderQuestion(sender, options);
-        });
-
         this.survey.onAfterRenderSurvey.add((sender: SurveyModel, options: any) => {
             this.setNavigationBreadcrumbs(sender);
         });
 
-        this.survey.onCurrentPageChanged.add((sender: SurveyModel, options: any) => {
-            this.setNavigationBreadcrumbs(sender);
+        this.survey.onValidateQuestion.add((sender: SurveyModel, options: any) => {
+            this.handleOnValidateQuestion(sender, options);
         });
     }
 
@@ -197,6 +197,7 @@ export class PiaSurvey extends SurveyBase {
                 "SeniorOfficialFullname", // Question 2.1.7 - Senior official or executive responsible
                 "panle_senior_officials_others" // Question 2.1.8 - Senior official or executive responsible
             ];
+
             contactQuestions.forEach(q => {
                 const contactQuestion = this.survey.getQuestionByName(q);
                 if (contactQuestion === null) {
@@ -207,15 +208,17 @@ export class PiaSurvey extends SurveyBase {
                 if (contactQuestion instanceof QuestionPanelDynamicModel) {
                     const items = contactQuestion.value as any[];
                     const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
-                    items.forEach(item => {
-                        fields.forEach(f => {
-                            const contact = item[f];
-                            if (contact === null || contacts.some(c => c.value === contact)) {
-                                return;
-                            }
-                            contacts.push(new ItemValue(contact, contact));
+                    if (items) {
+                        items.forEach(item => {
+                            fields.forEach(f => {
+                                const contact = item[f];
+                                if (contact === null || contacts.some(c => c.value === contact)) {
+                                    return;
+                                }
+                                contacts.push(new ItemValue(contact, contact));
+                            });
                         });
-                    });
+                    }
                 } else {
                     contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
                 }
@@ -243,16 +246,25 @@ export class PiaSurvey extends SurveyBase {
 
             const parties: ItemValue[] = [];
             const items = otherPartiesSharePersonalInformation.value as any[];
-            items.forEach(item => {
-                const party = item.Party;
-                if (party === null) {
-                    return;
-                }
-                parties.push(new ItemValue(party, party));
-            });
+            if (items) {
+                items.forEach(item => {
+                    const party = item.Party;
+                    if (party === null) {
+                        return;
+                    }
+                    parties.push(new ItemValue(party, party));
+                });
+            }
 
             receivingParties.choices = parties;
         }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+    protected handleOnCurrentPageChanged(sender: SurveyModel, options: any): void {
+        super.handleOnCurrentPageChanged(sender, options);
+        this.risks.processSectionFour(this.survey);
+        this.setNavigationBreadcrumbs(sender);
     }
 
     private addSectionInfo(currentSection: string): string {
@@ -303,40 +315,13 @@ export class PiaSurvey extends SurveyBase {
         return title;
     }
 
-    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
-        //  TODO: Probably disable some items when the user has not gone thru all the question.
-
-        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
-
-        if (!ul_progress_navigation) {
-            return;
-        }
-
-        if (surveyObj.isDisplayMode) {
-            //  We do not show the navigation bar in preview mode
-            ul_progress_navigation.className = "hidden";
-            return;
-        }
-
-        ul_progress_navigation.className = "breadcrumb";
-
-        if (surveyObj.currentPage.section === null) {
-            //  If for any reasons we forget to add the section property in the json at least nothing will happen
-            return;
-        }
-
-        const items = document.getElementsByClassName("breadcrumb-item");
-
-        Array.from(items).forEach(li => {
-            //  Reset the original class on each <li> item
-            li.className = "breadcrumb-item";
-        });
-
-        const section: string = surveyObj.currentPage.section;
-        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
-        if (li_breadcrumb) {
-            li_breadcrumb.className += " active";
-        }
+    private handleOnValidateQuestion(sender: SurveyModel, options: any): void {
+        // Check if this question happens to be a "risk" related one.
+        this.risks.checkIfRisk(options.question);
+        // Section 4 pages should be visible only if there is at least one risk scenario identified.
+        this.survey.pages
+            .filter(p => p.name.substr(0, 11) === this.pageFourPrefix)
+            .forEach(r => (r.visible = this.risks.currentList.length > 0));
     }
 
     private handleOnServerValidateQuestions(sender: SurveyModel, options: any): void {
@@ -473,5 +458,41 @@ export class PiaSurvey extends SurveyBase {
 
     private handleOnClearFiles(sender: SurveyModel, options: any): void {
         options.callback("success");
+    }
+
+    private setNavigationBreadcrumbs(surveyObj: SurveyModel): void {
+        //  TODO: Probably disable some items when the user has not gone thru all the question.
+
+        const ul_progress_navigation = document.getElementById("ul_pia_navigation") as HTMLUListElement;
+
+        if (!ul_progress_navigation) {
+            return;
+        }
+
+        if (surveyObj.isDisplayMode) {
+            //  We do not show the navigation bar in preview mode
+            ul_progress_navigation.className = "hidden";
+            return;
+        }
+
+        ul_progress_navigation.className = "breadcrumb";
+
+        if (surveyObj.currentPage.section === null) {
+            //  If for any reasons we forget to add the section property in the json at least nothing will happen
+            return;
+        }
+
+        const items = document.getElementsByClassName("breadcrumb-item");
+
+        Array.from(items).forEach(li => {
+            //  Reset the original class on each <li> item
+            li.className = "breadcrumb-item";
+        });
+
+        const section: string = surveyObj.currentPage.section;
+        const li_breadcrumb = document.getElementById(`li_breadcrumb_${section}`);
+        if (li_breadcrumb) {
+            li_breadcrumb.className += " active";
+        }
     }
 }

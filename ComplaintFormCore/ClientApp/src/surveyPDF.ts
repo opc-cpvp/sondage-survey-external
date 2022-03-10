@@ -1,9 +1,7 @@
 import { Converter } from "showdown";
-import { QuestionFactory } from "survey-core"; //  SurveyPDF is using survey-core
 import { AdornersOptions, SurveyPDF } from "survey-pdf";
 import {
     IElement,
-    Model,
     PageModel,
     PanelModelBase,
     Question,
@@ -11,11 +9,16 @@ import {
     QuestionMatrixDynamicModel,
     QuestionPanelDynamicModel,
     QuestionSelectBase,
-    SurveyModel
+    QuestionMultipleTextModel,
+    MultipleTextItemModel,
+    SurveyModel,
+    QuestionFactory
 } from "survey-vue";
 import { MultiLanguageProperty } from "./models/multiLanguageProperty";
 
 export class surveyPdfExport {
+    public survey_pdf!: SurveyPDF;
+
     private pdfOptions = {
         fontSize: 12,
         margins: {
@@ -46,14 +49,20 @@ export class surveyPdfExport {
                 const modifiedJson = this.modifySurveyJsonforPDF(json_pdf, lang, pdf_page_title);
 
                 //  Then construct a new survey pdf object with the modified json
-                const survey_pdf = this.initSurveyPDF(modifiedJson, surveyModel, lang);
+                this.survey_pdf = this.initSurveyPDF(modifiedJson, surveyModel, lang);
 
-                void survey_pdf.save(filename);
+                // Call overridable method in case some extra processing is needed.
+                this.doAdvancedProcessing();
+
+                void this.survey_pdf.save(filename);
             });
     }
 
+    // Override this method in a child class to do any extra processing.
+    protected doAdvancedProcessing(): void {}
+
     private modifySurveyJsonforPDF(json_pdf: any, lang: string, pdf_page_title: MultiLanguageProperty): string {
-        const originalSurvey = new Model(json_pdf);
+        const originalSurvey = new SurveyModel(json_pdf);
         originalSurvey.locale = lang;
 
         //  The idea is to convert each survey pages into survey panels
@@ -129,6 +138,7 @@ export class surveyPdfExport {
                 valueName: panelDynamicBase.valueName,
                 type: "paneldynamic",
                 title: panelDynamicBase.title,
+                templateTitle: panelDynamicBase.templateTitle,
                 visibleIf: panelDynamicBase.visibleIf,
                 templateElements: [] as any
             };
@@ -152,6 +162,28 @@ export class surveyPdfExport {
             };
 
             panel.elements.push(innerPanel);
+        } else if (element.getType() === "multipletext") {
+            const multipleTextBase = element as QuestionMultipleTextModel;
+
+            const innerPanel = {
+                name: multipleTextBase.name,
+                valueName: multipleTextBase.valueName,
+                type: "multipletext",
+                title: multipleTextBase.title,
+                visibleIf: multipleTextBase.visibleIf,
+                colCount: multipleTextBase.colCount,
+                items: [] as any
+            };
+
+            multipleTextBase.items.forEach((panelElement: IElement) => {
+                this.setElements(innerPanel, panelElement);
+            });
+
+            if (panel.templateElements) {
+                panel.templateElements.push(innerPanel);
+            } else {
+                panel.elements.push(innerPanel);
+            }
         } else {
             const question = element as Question;
 
@@ -172,6 +204,17 @@ export class surveyPdfExport {
                     panel.templateElements.push(newElement);
                 } else {
                     panel.elements.push(newElement);
+                }
+            } else if (question instanceof MultipleTextItemModel) {
+                const newElement = {
+                    name: question.name,
+                    type: question.getType(),
+                    title: question.title,
+                    visibleIf: question.visibleIf
+                };
+
+                if (panel.items) {
+                    panel.items.push(newElement);
                 }
             } else {
                 const newElement = {
@@ -194,15 +237,15 @@ export class surveyPdfExport {
     }
 
     private buildFilePreview(survey: SurveyPDF, options: AdornersOptions, lang: string) {
-        const htmlQuestion = QuestionFactory.Instance.createQuestion("html", "html_question");
+        const htmlQuestion = (QuestionFactory.Instance.createQuestion("html", "html_question") as unknown) as QuestionHtmlModel;
 
         if (options.question.value && options.question.value.length > 0) {
             htmlQuestion.html = "<ol>";
 
-            options.question.value.forEach((fileItem: Question) => {
+            options.question.value.forEach((fileItem: File) => {
                 htmlQuestion.html += "<li>";
 
-                const fileSizeInBytes = (fileItem.size as number) || 0;
+                const fileSizeInBytes = fileItem.size || 0;
 
                 if (fileSizeInBytes < 1000) {
                     htmlQuestion.html += `${fileItem.name} (${fileSizeInBytes} B)`;
@@ -227,7 +270,7 @@ export class surveyPdfExport {
         }
 
         //  TODO: jf
-        const flatHtml = options.repository.create(survey, htmlQuestion, options.controller, "html");
+        const flatHtml = options.repository.create(survey, htmlQuestion as any, options.controller, "html");
 
         return new Promise<void>(resolve => {
             flatHtml
@@ -271,7 +314,6 @@ export class surveyPdfExport {
         });
 
         surveyPDF.onRenderPanel.add((survey, options) => {
-            console.log(options.panel.name + ": " + options.panel.visibleIf);
             if (options.panel.isVisible === false) {
                 options.panel.delete();
             }

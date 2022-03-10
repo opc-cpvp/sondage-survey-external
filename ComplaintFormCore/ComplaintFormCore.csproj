@@ -48,10 +48,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <None Remove="ClientApp\src\vue-shim.d.ts" />
   </ItemGroup>
 
   <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <WebpackInputs Remove="ClientApp\src\vue-shim.d.ts" />
   </ItemGroup>
 
@@ -60,7 +62,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\pia\piaSurveyDescriptionOfRisk.ts" />
     <TypeScriptCompile Include="ClientApp\src\vue-shim.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\pia\piaSurveyPdfExport.ts" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisk.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisk.js.map" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.js.map" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.js.map" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisks.js" />
+    <None Remove="ClientApp\src\pia\piaSurveyRisks.js.map" />
+    <None Remove="ClientApp\typings\piaSurveyRiskDefaultValuesTypings.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyPdfExport.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRisk.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRiskDefaultValue.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRiskDefaultValues.ts" />
+    <WebpackInputs Remove="ClientApp\src\pia\piaSurveyRisks.ts" />
+    <WebpackInputs Remove="ClientApp\typings\piaSurveyRiskDefaultValuesTypings.d.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\pia\piaSurveyPdfExport.ts" />
+    <TypeScriptCompile Include="ClientApp\typings\piaSurveyRiskDefaultValuesTypings.d.ts" />
   </ItemGroup>
 
 	<Target Name="EnsureNodeEnv" BeforeTargets="Build">
