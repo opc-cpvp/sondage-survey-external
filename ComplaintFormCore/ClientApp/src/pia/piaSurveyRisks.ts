@@ -31,7 +31,7 @@ export class PiaSurveyRisks {
     // Method that processes each question.
     public checkIfRisk(question: Question): void {
         // First remove any existing risk item(s) for this question name.
-        this.currentList = this.currentList.filter(r => r.questionName !== question.name);
+        this.currentList = this.currentList.filter(r => r.questionName !== question?.name);
 
         // Then check if this question + answer combo exists in the list of "risk" related questions.
         const defaultValue = this.defaultValues.getDefaultValue(question);
@@ -66,7 +66,7 @@ export class PiaSurveyRisks {
 
         // Get the root panel control.
         const rootPanel = page.questions[0];
-        if (!(rootPanel && rootPanel.panels)) {
+        if (!rootPanel?.panels) {
             return;
         }
 
@@ -90,13 +90,13 @@ export class PiaSurveyRisks {
     }
 
     public getUpdatedPdfQuestionTitle(question: IQuestion): string {
-        let retVal: string = (question as any).title;
+        let retVal: string = (question as any)?.title;
 
         // Get the parent panel id.
         const panelId = this.getPanelId(question.parent as any);
 
         // Try to find a risk item that matches the current panel Id.
-        const risk = this.currentList.filter(r => r.panelId === panelId)[0];
+        const risk = this.currentList.find(r => r.panelId === panelId);
 
         if (risk) {
             retVal = this.updateTitle(retVal, this.questionTag, risk.questionText);
@@ -109,8 +109,8 @@ export class PiaSurveyRisks {
 
     private processPreviewPage(page: PageModel, panelName: string): void {
         // Find the root panel.
-        const main = page.questions.filter(q => q.name === panelName)[0];
-        if (!main) {
+        const main = page.questions.find(q => q.name === panelName);
+        if (!main?.panels) {
             return;
         }
 
@@ -120,7 +120,7 @@ export class PiaSurveyRisks {
 
             if (panelId !== "") {
                 // Try to find a risk item that matches the current panel Id.
-                const risk = this.currentList.filter(r => r.panelId === panelId)[0];
+                const risk = this.currentList.find(r => r.panelId === panelId);
                 if (risk) {
                     // Update title(s).
                     if (panelName === this.panelDescriptionsName) {
@@ -144,13 +144,13 @@ export class PiaSurveyRisks {
     }
 
     private updateTitle(title: string, tag: string, tagValue: string): string {
-        return title.replace(tag, tagValue);
+        return title?.replace(tag, tagValue);
     }
 
     private getPanelId(panel: PanelModel): string {
         const defaultVal = "";
 
-        if (!panel || !panel.processedTitle) {
+        if (!panel?.processedTitle) {
             return defaultVal;
         }
 
@@ -163,7 +163,7 @@ export class PiaSurveyRisks {
     }
 
     private getDescription(defaultValue: PiaSurveyRiskDefaultValue): string {
-        return this.locale === this.localeFr ? defaultValue.descriptionOfRisk.fr : defaultValue.descriptionOfRisk.en;
+        return this.locale === this.localeFr ? defaultValue?.descriptionOfRisk?.fr : defaultValue?.descriptionOfRisk?.en;
     }
 
     private getUpdatedDescriptionOfRisk(survey: SurveyModel, risk: PiaSurveyRisk): string {
@@ -171,20 +171,20 @@ export class PiaSurveyRisks {
         let retVal = risk.defaultDescriptionOfRisk;
 
         // Find "identified risks" page.
-        const page: PageModel = survey.pages.filter(p => p.name === this.stepFourPageName)[0];
+        const page: PageModel = survey.pages.find(p => p.name === this.stepFourPageName);
         if (!page) {
             return retVal;
         }
 
         // Get the root panel.
         const rootPanel = page.questions[0];
-        if (!(rootPanel && rootPanel.panels)) {
+        if (!rootPanel?.panels) {
             return retVal;
         }
 
         // Find child panel with a matching panelId.
-        const panel = rootPanel.panels.filter(p => this.getPanelId(p) === risk.panelId)[0];
-        if (!(panel && panel.questions)) {
+        const panel = rootPanel.panels.find(p => this.getPanelId(p) === risk.panelId);
+        if (!panel?.questions) {
             return retVal;
         }
 

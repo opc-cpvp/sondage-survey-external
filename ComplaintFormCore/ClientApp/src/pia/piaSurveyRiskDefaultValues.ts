@@ -17,15 +17,13 @@ export class PiaSurveyRiskDefaultValues {
     }
 
     private getList(): PiaSurveyRiskDefaultValue[] {
-        if (defaultValues) {
-            (defaultValues as any).list.forEach(d => {
-                this.list.push({
-                    questionName: d.questionName,
-                    questionAnswer: d.questionAnswer,
-                    descriptionOfRisk: this.getNewDescriptionOfRisk(d)
-                });
+        (defaultValues as any)?.list.forEach(d => {
+            this.list.push({
+                questionName: d.questionName,
+                questionAnswer: d.questionAnswer,
+                descriptionOfRisk: this.getNewDescriptionOfRisk(d)
             });
-        }
+        });
 
         return this.list;
     }
@@ -34,7 +32,7 @@ export class PiaSurveyRiskDefaultValues {
         if (typeof questionAnswer == "boolean") {
             return defaultAnswer === questionAnswer;
         } else if (typeof questionAnswer == "string") {
-            return (defaultAnswer as string).toLowerCase() === questionAnswer.toLowerCase();
+            return (defaultAnswer as string)?.toLowerCase() === questionAnswer?.toLowerCase();
         }
 
         return false;
@@ -42,8 +40,8 @@ export class PiaSurveyRiskDefaultValues {
 
     private getNewDescriptionOfRisk(jsonDefaultValue: any): PiaSurveyDescriptionOfRisk {
         return {
-            en: jsonDefaultValue.descriptionOfRisk.en,
-            fr: jsonDefaultValue.descriptionOfRisk.fr
+            en: jsonDefaultValue?.descriptionOfRisk?.en,
+            fr: jsonDefaultValue?.descriptionOfRisk?.fr
         };
     }
 }
