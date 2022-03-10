@@ -38,7 +38,13 @@ export class PiaSurveyRisks {
 
         if (defaultValue) {
             // Add new risk item.
-            this.currentList.push(new PiaSurveyRisk(question.name, question.title, question.value, this.getDescription(defaultValue)));
+            this.currentList.push({
+                panelId: "",
+                questionName: question.name,
+                questionText: question.title,
+                questionAnswer: question.value,
+                defaultDescriptionOfRisk: this.getDescription(defaultValue)
+            });
         }
     }
 

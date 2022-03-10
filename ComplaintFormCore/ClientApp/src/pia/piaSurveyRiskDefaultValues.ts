@@ -17,7 +17,11 @@ export class PiaSurveyRiskDefaultValues {
     private getList(): PiaSurveyRiskDefaultValue[] {
         if (defaultValues) {
             (defaultValues as any).list.forEach(d => {
-                this.list.push(new PiaSurveyRiskDefaultValue(d.questionName, d.questionAnswer, this.getNewDescriptionOfRisk(d)));
+                this.list.push({
+                    questionName: d.questionName,
+                    questionAnswer: d.questionAnswer,
+                    descriptionOfRisk: this.getNewDescriptionOfRisk(d)
+                });
             });
         }
 
@@ -35,6 +39,9 @@ export class PiaSurveyRiskDefaultValues {
     }
 
     private getNewDescriptionOfRisk(jsonDefaultValue: any): PiaSurveyDescriptionOfRisk {
-        return new PiaSurveyDescriptionOfRisk(jsonDefaultValue.descriptionOfRisk.en, jsonDefaultValue.descriptionOfRisk.fr);
+        return {
+            en: jsonDefaultValue.descriptionOfRisk.en,
+            fr: jsonDefaultValue.descriptionOfRisk.fr
+        };
     }
 }
