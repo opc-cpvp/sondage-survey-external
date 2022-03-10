@@ -2,6 +2,6 @@ import { PiaSurveyDescriptionOfRisk } from "./piaSurveyDescriptionOfRisk";
 
 export interface PiaSurveyRiskDefaultValue {
     questionName: string;
-    questionAnswer: unknown;
+    questionAnswer: string | boolean;
     descriptionOfRisk: PiaSurveyDescriptionOfRisk;
 }

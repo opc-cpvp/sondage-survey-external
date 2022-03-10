@@ -1,4 +1,4 @@
-import { SurveyModel, PageModel, Question } from "survey-vue";
+import { SurveyModel, PageModel, Question, PanelModel } from "survey-vue";
 import { PiaSurveyRisk } from "./piaSurveyRisk";
 import { PiaSurveyRiskDefaultValue } from "./piaSurveyRiskDefaultValue";
 import { PiaSurveyRiskDefaultValues } from "./piaSurveyRiskDefaultValues";
@@ -93,7 +93,7 @@ export class PiaSurveyRisks {
         let retVal: string = (question as any).title;
 
         // Get the parent panel id.
-        const panelId = this.getPanelId(question.parent);
+        const panelId = this.getPanelId(question.parent as any);
 
         // Try to find a risk item that matches the current panel Id.
         const risk = this.currentList.filter(r => r.panelId === panelId)[0];
@@ -147,19 +147,19 @@ export class PiaSurveyRisks {
         return title.replace(tag, tagValue);
     }
 
-    private getPanelId(panel: any): string {
-        const defaultVal = "" as string;
+    private getPanelId(panel: PanelModel): string {
+        const defaultVal = "";
 
         if (!panel || !panel.processedTitle) {
             return defaultVal;
         }
 
-        const index = panel.processedTitle.indexOf(this.panelIdPrefix, panel.processedTitle);
+        const index = panel.processedTitle.indexOf(this.panelIdPrefix);
         if (index === -1) {
             return defaultVal;
         }
 
-        return panel.processedTitle.substring(Number(index) + 1) as string;
+        return panel.processedTitle.substring(Number(index) + 1);
     }
 
     private getDescription(defaultValue: PiaSurveyRiskDefaultValue): string {

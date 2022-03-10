@@ -11,7 +11,9 @@ export class PiaSurveyRiskDefaultValues {
     }
 
     public getDefaultValue(question: Question): PiaSurveyRiskDefaultValue {
-        return this.list.filter(r => r.questionName === question.name && this.IsAnswerTheSame(r.questionAnswer, question.value))[0];
+        return this.list.find(
+            d => d.questionName === question.name && this.IsAnswerTheSame(d.questionAnswer, question.value)
+        ) as PiaSurveyRiskDefaultValue;
     }
 
     private getList(): PiaSurveyRiskDefaultValue[] {
@@ -28,11 +30,11 @@ export class PiaSurveyRiskDefaultValues {
         return this.list;
     }
 
-    private IsAnswerTheSame(defaultAnswer: any, questionAnswer: unknown): boolean {
+    private IsAnswerTheSame(defaultAnswer: string | boolean, questionAnswer: unknown): boolean {
         if (typeof questionAnswer == "boolean") {
             return defaultAnswer === questionAnswer;
         } else if (typeof questionAnswer == "string") {
-            return defaultAnswer.toLowerCase() === questionAnswer.toLowerCase();
+            return (defaultAnswer as string).toLowerCase() === questionAnswer.toLowerCase();
         }
 
         return false;
