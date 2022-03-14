@@ -17,6 +17,10 @@ export class PiaSurveyRisks {
     readonly localeEn = "en";
     readonly localeFr = "fr";
     readonly valueYes = "yes";
+    readonly questionEarlier = "panel_risk_desc_q";
+    readonly questionHereIs = "panel_risk_desc_q_yes";
+    readonly questionEdit = "panel_risk_desc_q_yes_yes";
+    readonly questionAssessment = "panel_risk_assessment_4_2_1";
 
     public currentList: PiaSurveyRisk[];
     public defaultValues: PiaSurveyRiskDefaultValues;
@@ -81,7 +85,7 @@ export class PiaSurveyRisks {
 
             if (page.name === this.stepFourPageName) {
                 this.updateRiskDescriptionTitles(p.questions, this.currentList[i]);
-                p.questions[3].defaultValue = this.currentList[i].defaultDescriptionOfRisk;
+                p.questions.find(q => q.name === this.questionEdit).defaultValue = this.currentList[i].defaultDescriptionOfRisk;
             } else {
                 this.currentList[i].defaultDescriptionOfRisk = this.getUpdatedDescriptionOfRisk(survey, this.currentList[i]);
                 this.updateRiskAssessmentTitles(p.questions, this.currentList[i]);
@@ -134,13 +138,35 @@ export class PiaSurveyRisks {
     }
 
     private updateRiskDescriptionTitles(questions: any, risk: PiaSurveyRisk): void {
-        questions[0].title = this.updateTitle(questions[0].title, this.questionTag, risk.questionText);
-        questions[0].title = this.updateTitle(questions[0].title, this.responseTag, risk.questionAnswer);
-        questions[1].title = this.updateTitle(questions[1].title, this.riskTag, risk.defaultDescriptionOfRisk);
+        this.updateQuestionTitle(
+            questions.find(q => q.name === this.questionEarlier),
+            this.questionTag,
+            risk.questionText
+        );
+        this.updateQuestionTitle(
+            questions.find(q => q.name === this.questionEarlier),
+            this.responseTag,
+            risk.questionAnswer
+        );
+        this.updateQuestionTitle(
+            questions.find(q => q.name === this.questionHereIs),
+            this.riskTag,
+            risk.defaultDescriptionOfRisk
+        );
     }
 
     private updateRiskAssessmentTitles(questions: any, risk: PiaSurveyRisk): void {
-        questions[0].title = this.updateTitle(questions[0].title, this.riskTag, risk.defaultDescriptionOfRisk);
+        this.updateQuestionTitle(
+            questions.find(q => q.name === this.questionAssessment),
+            this.riskTag,
+            risk.defaultDescriptionOfRisk
+        );
+    }
+
+    private updateQuestionTitle(question: any, tag: string, tagValue: string): void {
+        if (question) {
+            question.title = this.updateTitle(question.title, tag, tagValue);
+        }
     }
 
     private updateTitle(title: string, tag: string, tagValue: string): string {
@@ -177,7 +203,7 @@ export class PiaSurveyRisks {
         }
 
         // Get the root panel.
-        const rootPanel = page.questions[0];
+        const rootPanel = page.questions.find(q => q.name === this.panelDescriptionsName);
         if (!rootPanel?.panels) {
             return retVal;
         }
@@ -189,8 +215,10 @@ export class PiaSurveyRisks {
         }
 
         // If user answered first and second questions as "yes", then get the fourth question answer.
-        if (panel.questions[0].value === this.valueYes && panel.questions[1].value === this.valueYes) {
-            retVal = panel.questions[3].value;
+        const earlierValue = panel.questions.find(q => q.name === this.questionEarlier)?.value;
+        const hereIsValue = panel.questions.find(q => q.name === this.questionHereIs)?.value;
+        if (earlierValue === this.valueYes && hereIsValue === this.valueYes) {
+            retVal = panel.questions.find(q => q.name === this.questionEdit)?.value ?? retVal;
         }
 
         return retVal;
