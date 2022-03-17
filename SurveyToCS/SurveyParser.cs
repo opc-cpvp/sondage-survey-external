@@ -6,7 +6,7 @@ namespace SurveyToCS
 {
 	public class SurveyParser
 	{
-		public static readonly string[] IgnoredElementTypes = { ElementTypes.Html };
+		public static readonly string[] IgnoredElementTypes = { ElementTypes.Html, ElementTypes.Panel };
 
 		private SurveyObject _survey;
 		public SurveyParser(SurveyObject survey)
@@ -16,7 +16,20 @@ namespace SurveyToCS
 
 		public List<ModelProperty> GetProperties()
 		{
-			return _survey.pages.SelectMany(p => p.elements)
+			return _survey.pages
+				.Aggregate(new List<Element>(), (list, p) =>
+				{
+					// Get page elements
+					list.AddRange(p.elements);
+
+					// Get panel elements
+					var panelElements = p.elements
+						.Where(e => e.type == ElementTypes.Panel)
+						.SelectMany(p => p.elements);
+
+					list.AddRange(panelElements);
+					return list;
+				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name))    // Ignore elements without names
 				.Where(e => !IgnoredElementTypes.Contains(e.type)) // Ignore elements by type
 				.GroupBy(e => e.GetNormalizedName())               // Group by element name
@@ -37,14 +50,23 @@ namespace SurveyToCS
 				{
 					var properties = e.type switch
 					{
-						ElementTypes.Matrix => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.Matrix }),
-						ElementTypes.MatrixDropDown => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.MatrixDynamic, columns = e.columns }),
+						ElementTypes.Matrix => e.rows?.Select(r => new Element { name = r.value, type = e.GetNormalizedType() }),
+						ElementTypes.MatrixDropDown => e.rows?.Select(r => new Element { name = r.value, type = ElementTypes.MatrixRow, columns = e.columns }),
 						ElementTypes.MatrixDynamic => e.columns,
-						ElementTypes.Panel => e.elements,
+						ElementTypes.MatrixRow => e.columns,
 						ElementTypes.PanelDynamic => e.templateElements,
 						_ => Enumerable.Empty<Element>()
 					};
-					list.AddRange(properties ?? Enumerable.Empty<Element>());
+
+					list.AddRange(properties);
+
+					// Get panel elements
+					var panelElements = properties
+						.Where(e => e.type == ElementTypes.Panel)
+						.SelectMany(p => p.elements);
+
+					list.AddRange(panelElements);
+
 					return list;
 				})
 				.Where(e => !string.IsNullOrWhiteSpace(e.name))    // Ignore elements without names

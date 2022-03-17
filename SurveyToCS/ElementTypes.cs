@@ -12,6 +12,7 @@ namespace SurveyToCS
 		public const string Matrix = "matrix";
 		public const string MatrixDropDown = "matrixdropdown";
 		public const string MatrixDynamic = "matrixdynamic";
+		public const string MatrixRow = "matrixrow"; // This type doesn't actually exist, it's simply used to control the logic
 		public const string Panel = "panel";
 		public const string PanelDynamic = "paneldynamic";
 		public const string TagBox = "tagbox";
