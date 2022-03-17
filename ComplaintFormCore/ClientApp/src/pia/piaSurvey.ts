@@ -208,17 +208,15 @@ export class PiaSurvey extends SurveyBase {
                 if (contactQuestion instanceof QuestionPanelDynamicModel) {
                     const items = contactQuestion.value as any[];
                     const fields = ["OtherInstitutionHeadFullname", "SeniorOfficialOtherFullname"];
-                    if (items) {
-                        items.forEach(item => {
-                            fields.forEach(f => {
-                                const contact = item[f];
-                                if (contact === null || contacts.some(c => c.value === contact)) {
-                                    return;
-                                }
-                                contacts.push(new ItemValue(contact, contact));
-                            });
+                    items?.forEach(item => {
+                        fields.forEach(f => {
+                            const contact = item[f];
+                            if (contact === null || contacts.some(c => c.value === contact)) {
+                                return;
+                            }
+                            contacts.push(new ItemValue(contact, contact));
                         });
-                    }
+                    });
                 } else {
                     contacts.push(new ItemValue(contactQuestion.value, contactQuestion.value));
                 }
@@ -246,15 +244,13 @@ export class PiaSurvey extends SurveyBase {
 
             const parties: ItemValue[] = [];
             const items = otherPartiesSharePersonalInformation.value as any[];
-            if (items) {
-                items.forEach(item => {
-                    const party = item.Party;
-                    if (party === null) {
-                        return;
-                    }
-                    parties.push(new ItemValue(party, party));
-                });
-            }
+            items?.forEach(item => {
+                const party = item.Party;
+                if (party === null) {
+                    return;
+                }
+                parties.push(new ItemValue(party, party));
+            });
 
             receivingParties.choices = parties;
         }

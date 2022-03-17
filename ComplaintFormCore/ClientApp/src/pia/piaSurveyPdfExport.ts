@@ -15,15 +15,13 @@ export class PiaSurveyPdfExport extends surveyPdfExport {
 
     protected doAdvancedProcessing(): void {
         this.survey_pdf.onRenderQuestion.add((survey, options) => {
-            if (
-                options.question.name !== this.riskDescription &&
-                options.question.name !== this.riskDescriptionYes &&
-                options.question.name !== this.riskAssessment
-            ) {
+            const qName = options?.question?.name;
+
+            if (qName !== this.riskDescription && qName !== this.riskDescriptionYes && qName !== this.riskAssessment) {
                 return;
             }
 
-            (options.question as any).title = this.piaSurvey.risks.getUpdatedPdfQuestionTitle(options.question);
+            (options.question as any).title = this.piaSurvey?.risks?.getUpdatedPdfQuestionTitle(options.question);
 
             // Create new question
             const flatRadiogroup = options.repository.create(this.survey_pdf, options.question as any, options.controller, "radiogroup");
