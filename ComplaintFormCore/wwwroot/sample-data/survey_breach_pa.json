@@ -1,6 +1,33 @@
 {
   "pages": [
     {
+      "name": "page0",
+      "elements": [
+        {
+          "type": "text",
+          "name": "ApplicationUrl"
+        },
+        {
+          "type": "file",
+          "name": "SurveySummary",
+          "allowMultiple": false,
+          "waitForUpload": false,
+          "maxSize": 0,
+          "storeDataAsText": true,
+          "acceptedTypes": ".pdf"
+        },
+        {
+          "type": "text",
+          "name": "Locale"
+        },
+        {
+          "type": "text",
+          "name": "ReferenceNumber"
+        }
+      ],
+      "visible": false
+    },
+    {
       "name": "page1",
       "elements": [
         {
@@ -70,7 +97,7 @@
       "elements": [
         {
           "type": "dropdown",
-          "name": "InstitutionName",
+          "name": "Institution",
           "title": "Institution name",
           "description": "Select institution name in the drop-down list.",
           "isRequired": true,
@@ -322,7 +349,7 @@
                       "text": "Credential stuffing"
                     },
                     {
-                      "value": "other",
+                      "value": "credentialsOther",
                       "text": "Other compromised credentials attack"
                     }
                   ]
@@ -364,7 +391,7 @@
                       "text": "Worm"
                     },
                     {
-                      "value": "other",
+                      "value": "malwareOther",
                       "text": "Other malware attack"
                     }
                   ]
@@ -386,14 +413,13 @@
                   "cellType": "checkbox",
                   "choices": [
                     {
-                      "value": "other",
+                      "value": "cyberAttackOther",
                       "text": "Cyber attack - other"
                     }
                   ]
                 }
               ],
               "columnLayout": "vertical",
-              "cellType": "checkbox",
               "rows": [
                 {
                   "value": "Cause",
@@ -415,7 +441,7 @@
                   "text": "Theft"
                 },
                 {
-                  "value": "other",
+                  "value": "externalSourceOther",
                   "text": "External source - other"
                 }
               ]
@@ -458,11 +484,11 @@
                   "text": "Loss or misplacement"
                 },
                 {
-                  "value": "corresspondenceEmail",
+                  "value": "correspondenceEmail",
                   "text": "Misdirected correspondence – email"
                 },
                 {
-                  "value": "corresspondenceMail",
+                  "value": "correspondenceMail",
                   "text": "Misdirected correspondence – regular mail"
                 },
                 {
@@ -486,7 +512,7 @@
                   "text": "Use of unapproved / inappropriate software"
                 },
                 {
-                  "value": "other",
+                  "value": "internalSourceOther",
                   "text": "Internal source - other"
                 }
               ]
