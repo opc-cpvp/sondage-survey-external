@@ -13,7 +13,7 @@ namespace SurveyToCS
 	public class Page
 	{
 		public string name { get; set; }
-		public string title { get; set; }
+		public Title title { get; set; }
 		public string visibleIf { get; set; }
 		public string section { get; set; }
 		public List<Element> elements { get; set; }
@@ -32,7 +32,7 @@ namespace SurveyToCS
 		public string type { get; set; }
 		public string inputType { get; set; }
 		public string cellType { get; set; }
-		public string title { get; set; }
+		public Title title { get; set; }
 		public string name { get; set; }
 		public string valueName { get; set; }
 		public bool isRequired { get; set; }
